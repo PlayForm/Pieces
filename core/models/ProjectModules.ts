@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ProjectModule } from './ProjectModule';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ProjectModule } from "./ProjectModule.tsx";
 import {
-    ProjectModuleFromJSON,
-    ProjectModuleFromJSONTyped,
-    ProjectModuleToJSON,
-} from './ProjectModule';
+	ProjectModuleFromJSON,
+	ProjectModuleToJSON,
+} from "./ProjectModule.tsx";
 
 /**
  * This is a plural representation of the ProjectModule
@@ -32,56 +30,58 @@ import {
  * @interface ProjectModules
  */
 export interface ProjectModules {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ProjectModules
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ProjectModule>}
-     * @memberof ProjectModules
-     */
-    iterable: Array<ProjectModule>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ProjectModules
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ProjectModule>}
+	 * @memberof ProjectModules
+	 */
+	iterable: ProjectModule[];
 }
 
 /**
  * Check if a given object implements the ProjectModules interface.
  */
 export function instanceOfProjectModules(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ProjectModulesFromJSON(json: any): ProjectModules {
-    return ProjectModulesFromJSONTyped(json, false);
+	return ProjectModulesFromJSONTyped(json, false);
 }
 
-export function ProjectModulesFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectModules {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ProjectModuleFromJSON)),
-    };
+export function ProjectModulesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ProjectModules {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ProjectModuleFromJSON),
+	};
 }
 
 export function ProjectModulesToJSON(value?: ProjectModules | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ProjectModuleToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ProjectModuleToJSON),
+	};
 }
-

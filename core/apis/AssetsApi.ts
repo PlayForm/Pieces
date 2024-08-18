@@ -12,611 +12,820 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  Asset,
-  Assets,
-  AssetsSearchWithFiltersInput,
-  AssetsSearchWithFiltersOutput,
-  FlattenedAssets,
-  Formats,
-  PseudoAssets,
-  SearchedAssets,
-  Seed,
-  SeededAssetsRecommendation,
-  StreamedIdentifiers,
-} from '../models/index';
+	Asset,
+	Assets,
+	AssetsSearchWithFiltersInput,
+	AssetsSearchWithFiltersOutput,
+	FlattenedAssets,
+	Formats,
+	PseudoAssets,
+	SearchedAssets,
+	Seed,
+	SeededAssetsRecommendation,
+	StreamedIdentifiers,
+} from "../models/index.ts";
 import {
-    AssetFromJSON,
-    AssetToJSON,
-    AssetsFromJSON,
-    AssetsToJSON,
-    AssetsSearchWithFiltersInputFromJSON,
-    AssetsSearchWithFiltersInputToJSON,
-    AssetsSearchWithFiltersOutputFromJSON,
-    AssetsSearchWithFiltersOutputToJSON,
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsToJSON,
-    FormatsFromJSON,
-    FormatsToJSON,
-    PseudoAssetsFromJSON,
-    PseudoAssetsToJSON,
-    SearchedAssetsFromJSON,
-    SearchedAssetsToJSON,
-    SeedFromJSON,
-    SeedToJSON,
-    SeededAssetsRecommendationFromJSON,
-    SeededAssetsRecommendationToJSON,
-    StreamedIdentifiersFromJSON,
-    StreamedIdentifiersToJSON,
-} from '../models/index';
+	AssetFromJSON,
+	AssetsFromJSON,
+	AssetsSearchWithFiltersInputToJSON,
+	AssetsSearchWithFiltersOutputFromJSON,
+	AssetsToJSON,
+	FlattenedAssetsFromJSON,
+	FormatsFromJSON,
+	PseudoAssetsFromJSON,
+	SearchedAssetsFromJSON,
+	SeedFromJSON,
+	SeedToJSON,
+	SeededAssetsRecommendationToJSON,
+	StreamedIdentifiersFromJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface AssetsCreateNewAssetRequest {
-    transferables?: boolean;
-    seed?: Seed;
+	transferables?: boolean;
+	seed?: Seed;
 }
 
 export interface AssetsDeleteAssetRequest {
-    asset: string;
+	asset: string;
 }
 
 export interface AssetsDraftRequest {
-    transferables?: boolean;
-    seed?: Seed;
+	transferables?: boolean;
+	seed?: Seed;
 }
 
 export interface AssetsGetRecommendedAssetsRequest {
-    seededAssetsRecommendation?: SeededAssetsRecommendation;
+	seededAssetsRecommendation?: SeededAssetsRecommendation;
 }
 
 export interface AssetsGetRelatedAssetsRequest {
-    assets?: Assets;
+	assets?: Assets;
 }
 
 export interface AssetsIdentifiersSnapshotRequest {
-    pseudo?: boolean;
+	pseudo?: boolean;
 }
 
 export interface AssetsSearchWithFiltersRequest {
-    transferables?: boolean;
-    pseudo?: boolean;
-    assetsSearchWithFiltersInput?: AssetsSearchWithFiltersInput;
+	transferables?: boolean;
+	pseudo?: boolean;
+	assetsSearchWithFiltersInput?: AssetsSearchWithFiltersInput;
 }
 
 export interface AssetsSnapshotRequest {
-    transferables?: boolean;
-    suggested?: boolean;
-    pseudo?: boolean;
+	transferables?: boolean;
+	suggested?: boolean;
+	pseudo?: boolean;
 }
 
 export interface AssetsSpecificAssetFormatsSnapshotRequest {
-    asset: string;
-    transferables?: boolean;
+	asset: string;
+	transferables?: boolean;
 }
 
 export interface AssetsSpecificAssetSnapshotRequest {
-    asset: string;
-    transferables?: boolean;
+	asset: string;
+	transferables?: boolean;
 }
 
 export interface SearchAssetsRequest {
-    query?: string;
-    transferables?: boolean;
-    searchableTags?: string;
-    pseudo?: boolean;
+	query?: string;
+	transferables?: boolean;
+	searchableTags?: string;
+	pseudo?: boolean;
 }
 
 /**
- * 
+ *
  */
 export class AssetsApi extends runtime.BaseAPI {
-
-    /**
-     * Accepts a seeded (a structure that comes before an asset, and will be used in creation) asset and uploads it to Pieces. The response will be the newly created Asset object.
-     * /assets/create [POST] Scoped to Asset
-     */
-    async assetsCreateNewAssetRaw(requestParameters: AssetsCreateNewAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Asset>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/assets/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeedToJSON(requestParameters.seed),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetFromJSON(jsonValue));
-    }
-
-    /**
-     * Accepts a seeded (a structure that comes before an asset, and will be used in creation) asset and uploads it to Pieces. The response will be the newly created Asset object.
-     * /assets/create [POST] Scoped to Asset
-     */
-    async assetsCreateNewAsset(requestParameters: AssetsCreateNewAssetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Asset> {
-        const response = await this.assetsCreateNewAssetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Deletes a specific asset from the system by providing its unique identifier (UID). Upon successful deletion, it returns the UID of the deleted asset.
-     * /assets/{asset}/delete [POST] Scoped to Asset
-     */
-    async assetsDeleteAssetRaw(requestParameters: AssetsDeleteAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling assetsDeleteAsset.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/{asset}/delete`.replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * Deletes a specific asset from the system by providing its unique identifier (UID). Upon successful deletion, it returns the UID of the deleted asset.
-     * /assets/{asset}/delete [POST] Scoped to Asset
-     */
-    async assetsDeleteAsset(requestParameters: AssetsDeleteAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.assetsDeleteAssetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows developers to input a Seed and receive a drafted asset with preprocessed information. No data is persisted; this is solely an input/output endpoint.  For images, it returns the original Seed.
-     * /assets/draft [POST]
-     */
-    async assetsDraftRaw(requestParameters: AssetsDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Seed>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/assets/draft`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeedToJSON(requestParameters.seed),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SeedFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows developers to input a Seed and receive a drafted asset with preprocessed information. No data is persisted; this is solely an input/output endpoint.  For images, it returns the original Seed.
-     * /assets/draft [POST]
-     */
-    async assetsDraft(requestParameters: AssetsDraftRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Seed> {
-        const response = await this.assetsDraftRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Expects a SeededAssetsRecommendation Model in the request body, containing assets and interactions. Returns an Assets Model suitable for UI.
-     * Your GET endpoint
-     */
-    async assetsGetRecommendedAssetsRaw(requestParameters: AssetsGetRecommendedAssetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Assets>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/assets/recommended`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededAssetsRecommendationToJSON(requestParameters.seededAssetsRecommendation),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * Expects a SeededAssetsRecommendation Model in the request body, containing assets and interactions. Returns an Assets Model suitable for UI.
-     * Your GET endpoint
-     */
-    async assetsGetRecommendedAssets(requestParameters: AssetsGetRecommendedAssetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Assets> {
-        const response = await this.assetsGetRecommendedAssetsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Retrieves one or more related assets when provided with one or more input assets.
-     * /assets/related [GET]
-     */
-    async assetsGetRelatedAssetsRaw(requestParameters: AssetsGetRelatedAssetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Assets>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/assets/related`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-            body: AssetsToJSON(requestParameters.assets),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieves one or more related assets when provided with one or more input assets.
-     * /assets/related [GET]
-     */
-    async assetsGetRelatedAssets(requestParameters: AssetsGetRelatedAssetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Assets> {
-        const response = await this.assetsGetRelatedAssetsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Retrieves all asset IDs associated with your account.
-     * /assets/identifiers [GET]
-     */
-    async assetsIdentifiersSnapshotRaw(requestParameters: AssetsIdentifiersSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlattenedAssets>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/identifiers`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FlattenedAssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieves all asset IDs associated with your account.
-     * /assets/identifiers [GET]
-     */
-    async assetsIdentifiersSnapshot(requestParameters: AssetsIdentifiersSnapshotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlattenedAssets> {
-        const response = await this.assetsIdentifiersSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Retrieves a snapshot exclusively containing pseudo Assets from your Pieces drive.
-     * /assets/pseudo [GET]
-     */
-    async assetsPseudoSnapshotRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PseudoAssets>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/pseudo`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => PseudoAssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieves a snapshot exclusively containing pseudo Assets from your Pieces drive.
-     * /assets/pseudo [GET]
-     */
-    async assetsPseudoSnapshot(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PseudoAssets> {
-        const response = await this.assetsPseudoSnapshotRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Enables searching through your pieces and returns Assets (the results) based on your query.  When sending a query in the request body, fuzzy search is applied.  Additionally, the request body can include a search space, currently as a list of UUIDs (and potentially Seeds in the future). Optional filters can also be included in the request body, represented as an iterable of filters, all of which are combined using AND operations.
-     * /assets/search [POST]
-     */
-    async assetsSearchWithFiltersRaw(requestParameters: AssetsSearchWithFiltersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssetsSearchWithFiltersOutput>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/assets/search`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: AssetsSearchWithFiltersInputToJSON(requestParameters.assetsSearchWithFiltersInput),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetsSearchWithFiltersOutputFromJSON(jsonValue));
-    }
-
-    /**
-     * Enables searching through your pieces and returns Assets (the results) based on your query.  When sending a query in the request body, fuzzy search is applied.  Additionally, the request body can include a search space, currently as a list of UUIDs (and potentially Seeds in the future). Optional filters can also be included in the request body, represented as an iterable of filters, all of which are combined using AND operations.
-     * /assets/search [POST]
-     */
-    async assetsSearchWithFilters(requestParameters: AssetsSearchWithFiltersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AssetsSearchWithFiltersOutput> {
-        const response = await this.assetsSearchWithFiltersRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get all of the users Assets.
-     * /assets [GET] Scoped to Assets
-     */
-    async assetsSnapshotRaw(requestParameters: AssetsSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Assets>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        if (requestParameters.suggested !== undefined) {
-            queryParameters['suggested'] = requestParameters.suggested;
-        }
-
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * Get all of the users Assets.
-     * /assets [GET] Scoped to Assets
-     */
-    async assetsSnapshot(requestParameters: AssetsSnapshotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Assets> {
-        const response = await this.assetsSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Retrieves the available formats for a specific asset identified by its ID
-     * /assets/{asset}/formats [GET] Scoped To Assets
-     */
-    async assetsSpecificAssetFormatsSnapshotRaw(requestParameters: AssetsSpecificAssetFormatsSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Formats>> {
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling assetsSpecificAssetFormatsSnapshot.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/{asset}/formats`.replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FormatsFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieves the available formats for a specific asset identified by its ID
-     * /assets/{asset}/formats [GET] Scoped To Assets
-     */
-    async assetsSpecificAssetFormatsSnapshot(requestParameters: AssetsSpecificAssetFormatsSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Formats> {
-        const response = await this.assetsSpecificAssetFormatsSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows clients to retrieve details of a specific asset by providing its UUID in the path.
-     * /assets/{asset} [GET] Scoped to Assets
-     */
-    async assetsSpecificAssetSnapshotRaw(requestParameters: AssetsSpecificAssetSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Asset>> {
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling assetsSpecificAssetSnapshot.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/{asset}`.replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows clients to retrieve details of a specific asset by providing its UUID in the path.
-     * /assets/{asset} [GET] Scoped to Assets
-     */
-    async assetsSpecificAssetSnapshot(requestParameters: AssetsSpecificAssetSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Asset> {
-        const response = await this.assetsSpecificAssetSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Provides a WebSocket connection that emits changes to your asset\'s identifiers (UUIDs).
-     * /assets/stream/identifiers [WS]
-     */
-    async assetsStreamIdentifiersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StreamedIdentifiers>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/stream/identifiers`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => StreamedIdentifiersFromJSON(jsonValue));
-    }
-
-    /**
-     * Provides a WebSocket connection that emits changes to your asset\'s identifiers (UUIDs).
-     * /assets/stream/identifiers [WS]
-     */
-    async assetsStreamIdentifiers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StreamedIdentifiers> {
-        const response = await this.assetsStreamIdentifiersRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Provides a WebSocket connection that emits changes to your assets, including their transferable.
-     * /assets/stream/transferables [WS]
-     */
-    async getAssetsStreamTransferablesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Assets>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/stream/transferables`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * Provides a WebSocket connection that emits changes to your assets, including their transferable.
-     * /assets/stream/transferables [WS]
-     */
-    async getAssetsStreamTransferables(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Assets> {
-        const response = await this.getAssetsStreamTransferablesRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.
-     * /assets/search?query=string [GET]
-     */
-    async searchAssetsRaw(requestParameters: SearchAssetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedAssets>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.query !== undefined) {
-            queryParameters['query'] = requestParameters.query;
-        }
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        if (requestParameters.searchableTags !== undefined) {
-            queryParameters['searchable_tags'] = requestParameters.searchableTags;
-        }
-
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/search`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedAssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.
-     * /assets/search?query=string [GET]
-     */
-    async searchAssets(requestParameters: SearchAssetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedAssets> {
-        const response = await this.searchAssetsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Provides a WebSocket connection that emits changes to your assets.
-     * /assets/stream [WS]
-     */
-    async streamAssetsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Assets>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/assets/stream`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * Provides a WebSocket connection that emits changes to your assets.
-     * /assets/stream [WS]
-     */
-    async streamAssets(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Assets> {
-        const response = await this.streamAssetsRaw(initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * Accepts a seeded (a structure that comes before an asset, and will be used in creation) asset and uploads it to Pieces. The response will be the newly created Asset object.
+	 * /assets/create [POST] Scoped to Asset
+	 */
+	async assetsCreateNewAssetRaw(
+		requestParameters: AssetsCreateNewAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Asset>> {
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/assets/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeedToJSON(requestParameters.seed),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Accepts a seeded (a structure that comes before an asset, and will be used in creation) asset and uploads it to Pieces. The response will be the newly created Asset object.
+	 * /assets/create [POST] Scoped to Asset
+	 */
+	async assetsCreateNewAsset(
+		requestParameters: AssetsCreateNewAssetRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Asset> {
+		const response = await this.assetsCreateNewAssetRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Deletes a specific asset from the system by providing its unique identifier (UID). Upon successful deletion, it returns the UID of the deleted asset.
+	 * /assets/{asset}/delete [POST] Scoped to Asset
+	 */
+	async assetsDeleteAssetRaw(
+		requestParameters: AssetsDeleteAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<string>> {
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling assetsDeleteAsset.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/{asset}/delete".replace(
+					`{${"asset"}}`,
+					encodeURIComponent(String(requestParameters.asset)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		if (this.isJsonMime(response.headers.get("content-type"))) {
+			return new runtime.JSONApiResponse<string>(response);
+		} else {
+			return new runtime.TextApiResponse(response) as any;
+		}
+	}
+
+	/**
+	 * Deletes a specific asset from the system by providing its unique identifier (UID). Upon successful deletion, it returns the UID of the deleted asset.
+	 * /assets/{asset}/delete [POST] Scoped to Asset
+	 */
+	async assetsDeleteAsset(
+		requestParameters: AssetsDeleteAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<string> {
+		const response = await this.assetsDeleteAssetRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Allows developers to input a Seed and receive a drafted asset with preprocessed information. No data is persisted; this is solely an input/output endpoint.  For images, it returns the original Seed.
+	 * /assets/draft [POST]
+	 */
+	async assetsDraftRaw(
+		requestParameters: AssetsDraftRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Seed>> {
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/assets/draft",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeedToJSON(requestParameters.seed),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SeedFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Allows developers to input a Seed and receive a drafted asset with preprocessed information. No data is persisted; this is solely an input/output endpoint.  For images, it returns the original Seed.
+	 * /assets/draft [POST]
+	 */
+	async assetsDraft(
+		requestParameters: AssetsDraftRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Seed> {
+		const response = await this.assetsDraftRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Expects a SeededAssetsRecommendation Model in the request body, containing assets and interactions. Returns an Assets Model suitable for UI.
+	 * Your GET endpoint
+	 */
+	async assetsGetRecommendedAssetsRaw(
+		requestParameters: AssetsGetRecommendedAssetsRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Assets>> {
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/assets/recommended",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededAssetsRecommendationToJSON(
+					requestParameters.seededAssetsRecommendation,
+				),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Expects a SeededAssetsRecommendation Model in the request body, containing assets and interactions. Returns an Assets Model suitable for UI.
+	 * Your GET endpoint
+	 */
+	async assetsGetRecommendedAssets(
+		requestParameters: AssetsGetRecommendedAssetsRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Assets> {
+		const response = await this.assetsGetRecommendedAssetsRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Retrieves one or more related assets when provided with one or more input assets.
+	 * /assets/related [GET]
+	 */
+	async assetsGetRelatedAssetsRaw(
+		requestParameters: AssetsGetRelatedAssetsRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Assets>> {
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/assets/related",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+				body: AssetsToJSON(requestParameters.assets),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Retrieves one or more related assets when provided with one or more input assets.
+	 * /assets/related [GET]
+	 */
+	async assetsGetRelatedAssets(
+		requestParameters: AssetsGetRelatedAssetsRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Assets> {
+		const response = await this.assetsGetRelatedAssetsRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Retrieves all asset IDs associated with your account.
+	 * /assets/identifiers [GET]
+	 */
+	async assetsIdentifiersSnapshotRaw(
+		requestParameters: AssetsIdentifiersSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<FlattenedAssets>> {
+		const queryParameters: any = {};
+
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/identifiers",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			FlattenedAssetsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Retrieves all asset IDs associated with your account.
+	 * /assets/identifiers [GET]
+	 */
+	async assetsIdentifiersSnapshot(
+		requestParameters: AssetsIdentifiersSnapshotRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<FlattenedAssets> {
+		const response = await this.assetsIdentifiersSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Retrieves a snapshot exclusively containing pseudo Assets from your Pieces drive.
+	 * /assets/pseudo [GET]
+	 */
+	async assetsPseudoSnapshotRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<PseudoAssets>> {
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/pseudo",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			PseudoAssetsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Retrieves a snapshot exclusively containing pseudo Assets from your Pieces drive.
+	 * /assets/pseudo [GET]
+	 */
+	async assetsPseudoSnapshot(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<PseudoAssets> {
+		const response = await this.assetsPseudoSnapshotRaw(initOverrides);
+		return await response.value();
+	}
+
+	/**
+	 * Enables searching through your pieces and returns Assets (the results) based on your query.  When sending a query in the request body, fuzzy search is applied.  Additionally, the request body can include a search space, currently as a list of UUIDs (and potentially Seeds in the future). Optional filters can also be included in the request body, represented as an iterable of filters, all of which are combined using AND operations.
+	 * /assets/search [POST]
+	 */
+	async assetsSearchWithFiltersRaw(
+		requestParameters: AssetsSearchWithFiltersRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<AssetsSearchWithFiltersOutput>> {
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/assets/search",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: AssetsSearchWithFiltersInputToJSON(
+					requestParameters.assetsSearchWithFiltersInput,
+				),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetsSearchWithFiltersOutputFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Enables searching through your pieces and returns Assets (the results) based on your query.  When sending a query in the request body, fuzzy search is applied.  Additionally, the request body can include a search space, currently as a list of UUIDs (and potentially Seeds in the future). Optional filters can also be included in the request body, represented as an iterable of filters, all of which are combined using AND operations.
+	 * /assets/search [POST]
+	 */
+	async assetsSearchWithFilters(
+		requestParameters: AssetsSearchWithFiltersRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<AssetsSearchWithFiltersOutput> {
+		const response = await this.assetsSearchWithFiltersRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Get all of the users Assets.
+	 * /assets [GET] Scoped to Assets
+	 */
+	async assetsSnapshotRaw(
+		requestParameters: AssetsSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Assets>> {
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		if (requestParameters.suggested !== undefined) {
+			queryParameters["suggested"] = requestParameters.suggested;
+		}
+
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Get all of the users Assets.
+	 * /assets [GET] Scoped to Assets
+	 */
+	async assetsSnapshot(
+		requestParameters: AssetsSnapshotRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Assets> {
+		const response = await this.assetsSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Retrieves the available formats for a specific asset identified by its ID
+	 * /assets/{asset}/formats [GET] Scoped To Assets
+	 */
+	async assetsSpecificAssetFormatsSnapshotRaw(
+		requestParameters: AssetsSpecificAssetFormatsSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Formats>> {
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling assetsSpecificAssetFormatsSnapshot.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/{asset}/formats".replace(
+					`{${"asset"}}`,
+					encodeURIComponent(String(requestParameters.asset)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			FormatsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Retrieves the available formats for a specific asset identified by its ID
+	 * /assets/{asset}/formats [GET] Scoped To Assets
+	 */
+	async assetsSpecificAssetFormatsSnapshot(
+		requestParameters: AssetsSpecificAssetFormatsSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Formats> {
+		const response = await this.assetsSpecificAssetFormatsSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Allows clients to retrieve details of a specific asset by providing its UUID in the path.
+	 * /assets/{asset} [GET] Scoped to Assets
+	 */
+	async assetsSpecificAssetSnapshotRaw(
+		requestParameters: AssetsSpecificAssetSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Asset>> {
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling assetsSpecificAssetSnapshot.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/{asset}".replace(
+					`{${"asset"}}`,
+					encodeURIComponent(String(requestParameters.asset)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Allows clients to retrieve details of a specific asset by providing its UUID in the path.
+	 * /assets/{asset} [GET] Scoped to Assets
+	 */
+	async assetsSpecificAssetSnapshot(
+		requestParameters: AssetsSpecificAssetSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Asset> {
+		const response = await this.assetsSpecificAssetSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Provides a WebSocket connection that emits changes to your asset\'s identifiers (UUIDs).
+	 * /assets/stream/identifiers [WS]
+	 */
+	async assetsStreamIdentifiersRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<StreamedIdentifiers>> {
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/stream/identifiers",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			StreamedIdentifiersFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Provides a WebSocket connection that emits changes to your asset\'s identifiers (UUIDs).
+	 * /assets/stream/identifiers [WS]
+	 */
+	async assetsStreamIdentifiers(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<StreamedIdentifiers> {
+		const response = await this.assetsStreamIdentifiersRaw(initOverrides);
+		return await response.value();
+	}
+
+	/**
+	 * Provides a WebSocket connection that emits changes to your assets, including their transferable.
+	 * /assets/stream/transferables [WS]
+	 */
+	async getAssetsStreamTransferablesRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Assets>> {
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/stream/transferables",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Provides a WebSocket connection that emits changes to your assets, including their transferable.
+	 * /assets/stream/transferables [WS]
+	 */
+	async getAssetsStreamTransferables(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Assets> {
+		const response =
+			await this.getAssetsStreamTransferablesRaw(initOverrides);
+		return await response.value();
+	}
+
+	/**
+	 * Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.
+	 * /assets/search?query=string [GET]
+	 */
+	async searchAssetsRaw(
+		requestParameters: SearchAssetsRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedAssets>> {
+		const queryParameters: any = {};
+
+		if (requestParameters.query !== undefined) {
+			queryParameters["query"] = requestParameters.query;
+		}
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		if (requestParameters.searchableTags !== undefined) {
+			queryParameters["searchable_tags"] =
+				requestParameters.searchableTags;
+		}
+
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/search",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedAssetsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.
+	 * /assets/search?query=string [GET]
+	 */
+	async searchAssets(
+		requestParameters: SearchAssetsRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedAssets> {
+		const response = await this.searchAssetsRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Provides a WebSocket connection that emits changes to your assets.
+	 * /assets/stream [WS]
+	 */
+	async streamAssetsRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Assets>> {
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/assets/stream",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetsFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Provides a WebSocket connection that emits changes to your assets.
+	 * /assets/stream [WS]
+	 */
+	async streamAssets(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Assets> {
+		const response = await this.streamAssetsRaw(initOverrides);
+		return await response.value();
+	}
 }

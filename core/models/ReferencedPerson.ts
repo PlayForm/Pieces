@@ -12,84 +12,86 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedPerson } from './FlattenedPerson';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedPerson } from "./FlattenedPerson.tsx";
 import {
-    FlattenedPersonFromJSON,
-    FlattenedPersonFromJSONTyped,
-    FlattenedPersonToJSON,
-} from './FlattenedPerson';
+	FlattenedPersonFromJSON,
+	FlattenedPersonToJSON,
+} from "./FlattenedPerson.tsx";
 
 /**
- * [DAG Safe] version of a Person Model. 
+ * [DAG Safe] version of a Person Model.
  * @export
  * @interface ReferencedPerson
  */
 export interface ReferencedPerson {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedPerson
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedPerson
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedPerson}
-     * @memberof ReferencedPerson
-     */
-    reference?: FlattenedPerson;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedPerson
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedPerson
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedPerson}
+	 * @memberof ReferencedPerson
+	 */
+	reference?: FlattenedPerson;
 }
 
 /**
  * Check if a given object implements the ReferencedPerson interface.
  */
 export function instanceOfReferencedPerson(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReferencedPersonFromJSON(json: any): ReferencedPerson {
-    return ReferencedPersonFromJSONTyped(json, false);
+	return ReferencedPersonFromJSONTyped(json, false);
 }
 
-export function ReferencedPersonFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedPerson {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedPersonFromJSON(json['reference']),
-    };
+export function ReferencedPersonFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedPerson {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedPersonFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
 export function ReferencedPersonToJSON(value?: ReferencedPerson | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedPersonToJSON(value.reference),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedPersonToJSON(value.reference),
+	};
 }
-

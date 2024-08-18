@@ -12,131 +12,134 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ExternallySourcedEnum } from './ExternallySourcedEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ExternallySourcedEnum } from "./ExternallySourcedEnum.tsx";
 import {
-    ExternallySourcedEnumFromJSON,
-    ExternallySourcedEnumFromJSONTyped,
-    ExternallySourcedEnumToJSON,
-} from './ExternallySourcedEnum';
-import type { MailgunMetadata } from './MailgunMetadata';
+	ExternallySourcedEnumFromJSON,
+	ExternallySourcedEnumToJSON,
+} from "./ExternallySourcedEnum.tsx";
+import type { MailgunMetadata } from "./MailgunMetadata.tsx";
 import {
-    MailgunMetadataFromJSON,
-    MailgunMetadataFromJSONTyped,
-    MailgunMetadataToJSON,
-} from './MailgunMetadata';
+	MailgunMetadataFromJSON,
+	MailgunMetadataToJSON,
+} from "./MailgunMetadata.tsx";
 
 /**
  * This is all optional properties around the most basic information around a non-pieces user.
- * 
+ *
  * A Basic type will NOT have a scope as it is not an actual pieces user.
  * @export
  * @interface PersonBasicType
  */
 export interface PersonBasicType {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof PersonBasicType
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * username or twitter handle...etc
-     * @type {string}
-     * @memberof PersonBasicType
-     */
-    username?: string;
-    /**
-     * This is the name of the basic user.
-     * @type {string}
-     * @memberof PersonBasicType
-     */
-    name?: string;
-    /**
-     * this is a url picture representation of a user.
-     * @type {string}
-     * @memberof PersonBasicType
-     */
-    picture?: string;
-    /**
-     * an email that was extracted.
-     * @type {string}
-     * @memberof PersonBasicType
-     */
-    email?: string;
-    /**
-     * 
-     * @type {ExternallySourcedEnum}
-     * @memberof PersonBasicType
-     */
-    sourced?: ExternallySourcedEnum;
-    /**
-     * This is a specific url that this basic user came from.
-     * @type {string}
-     * @memberof PersonBasicType
-     */
-    url?: string;
-    /**
-     * 
-     * @type {MailgunMetadata}
-     * @memberof PersonBasicType
-     */
-    mailgun?: MailgunMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof PersonBasicType
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * username or twitter handle...etc
+	 * @type {string}
+	 * @memberof PersonBasicType
+	 */
+	username?: string;
+	/**
+	 * This is the name of the basic user.
+	 * @type {string}
+	 * @memberof PersonBasicType
+	 */
+	name?: string;
+	/**
+	 * this is a url picture representation of a user.
+	 * @type {string}
+	 * @memberof PersonBasicType
+	 */
+	picture?: string;
+	/**
+	 * an email that was extracted.
+	 * @type {string}
+	 * @memberof PersonBasicType
+	 */
+	email?: string;
+	/**
+	 *
+	 * @type {ExternallySourcedEnum}
+	 * @memberof PersonBasicType
+	 */
+	sourced?: ExternallySourcedEnum;
+	/**
+	 * This is a specific url that this basic user came from.
+	 * @type {string}
+	 * @memberof PersonBasicType
+	 */
+	url?: string;
+	/**
+	 *
+	 * @type {MailgunMetadata}
+	 * @memberof PersonBasicType
+	 */
+	mailgun?: MailgunMetadata;
 }
 
 /**
  * Check if a given object implements the PersonBasicType interface.
  */
-export function instanceOfPersonBasicType(value: object): boolean {
-    let isInstance = true;
+export function instanceOfPersonBasicType(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function PersonBasicTypeFromJSON(json: any): PersonBasicType {
-    return PersonBasicTypeFromJSONTyped(json, false);
+	return PersonBasicTypeFromJSONTyped(json, false);
 }
 
-export function PersonBasicTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): PersonBasicType {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'username': !exists(json, 'username') ? undefined : json['username'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'picture': !exists(json, 'picture') ? undefined : json['picture'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'sourced': !exists(json, 'sourced') ? undefined : ExternallySourcedEnumFromJSON(json['sourced']),
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'mailgun': !exists(json, 'mailgun') ? undefined : MailgunMetadataFromJSON(json['mailgun']),
-    };
+export function PersonBasicTypeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): PersonBasicType {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		username: exists(json, "username") ? json["username"] : undefined,
+		name: exists(json, "name") ? json["name"] : undefined,
+		picture: exists(json, "picture") ? json["picture"] : undefined,
+		email: exists(json, "email") ? json["email"] : undefined,
+		sourced: exists(json, "sourced")
+			? ExternallySourcedEnumFromJSON(json["sourced"])
+			: undefined,
+		url: exists(json, "url") ? json["url"] : undefined,
+		mailgun: exists(json, "mailgun")
+			? MailgunMetadataFromJSON(json["mailgun"])
+			: undefined,
+	};
 }
 
 export function PersonBasicTypeToJSON(value?: PersonBasicType | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'username': value.username,
-        'name': value.name,
-        'picture': value.picture,
-        'email': value.email,
-        'sourced': ExternallySourcedEnumToJSON(value.sourced),
-        'url': value.url,
-        'mailgun': MailgunMetadataToJSON(value.mailgun),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		username: value.username,
+		name: value.name,
+		picture: value.picture,
+		email: value.email,
+		sourced: ExternallySourcedEnumToJSON(value.sourced),
+		url: value.url,
+		mailgun: MailgunMetadataToJSON(value.mailgun),
+	};
 }
-

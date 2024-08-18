@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Model } from './Model';
-import {
-    ModelFromJSON,
-    ModelFromJSONTyped,
-    ModelToJSON,
-} from './Model';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Model } from "./Model.tsx";
+import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
 
 /**
  * This is a List of MachineLearning Models
@@ -32,56 +27,58 @@ import {
  * @interface Models
  */
 export interface Models {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Models
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Model>}
-     * @memberof Models
-     */
-    iterable: Array<Model>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Models
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Model>}
+	 * @memberof Models
+	 */
+	iterable: Model[];
 }
 
 /**
  * Check if a given object implements the Models interface.
  */
 export function instanceOfModels(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ModelsFromJSON(json: any): Models {
-    return ModelsFromJSONTyped(json, false);
+	return ModelsFromJSONTyped(json, false);
 }
 
-export function ModelsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Models {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ModelFromJSON)),
-    };
+export function ModelsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Models {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ModelFromJSON),
+	};
 }
 
 export function ModelsToJSON(value?: Models | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ModelToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ModelToJSON),
+	};
 }
-

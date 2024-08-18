@@ -12,47 +12,48 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * These are all the possible uses for a model, i.e. code classification, OCR, text vs code,  tagify code, tag-based code search, neural code search, tagify color and code description.
  * @export
  */
 export const ModelUsageEnum = {
-    Ocr: 'OCR',
-    CodeClassification: 'CODE_CLASSIFICATION',
-    TextVsCode: 'TEXT_VS_CODE',
-    TagifyCode: 'TAGIFY_CODE',
-    TlpTagSearch: 'TLP_TAG_SEARCH',
-    TlpNeuralCodeSearch: 'TLP_NEURAL_CODE_SEARCH',
-    TagifyColorFromCode: 'TAGIFY_COLOR_FROM_CODE',
-    CodeDescription: 'CODE_DESCRIPTION',
-    CodeTitle: 'CODE_TITLE',
-    CodeSearchQueries: 'CODE_SEARCH_QUERIES',
-    CodeExtractiveTags: 'CODE_EXTRACTIVE_TAGS',
-    CodeExtractiveLinks: 'CODE_EXTRACTIVE_LINKS',
-    CodeConversation: 'CODE_CONVERSATION',
-    CodeGeneration: 'CODE_GENERATION',
-    CodeSearch: 'CODE_SEARCH',
-    CodeDiscovery: 'CODE_DISCOVERY',
-    CodeRelatedPeople: 'CODE_RELATED_PEOPLE',
-    CodeFramework: 'CODE_FRAMEWORK',
-    VideoOcr: 'VIDEO_OCR',
-    TextVsCodeSegmentation: 'TEXT_VS_CODE_SEGMENTATION',
-    TextEmbedding: 'TEXT_EMBEDDING',
-    TechnicalError: 'TECHNICAL_ERROR'
+	Ocr: "OCR",
+	CodeClassification: "CODE_CLASSIFICATION",
+	TextVsCode: "TEXT_VS_CODE",
+	TagifyCode: "TAGIFY_CODE",
+	TlpTagSearch: "TLP_TAG_SEARCH",
+	TlpNeuralCodeSearch: "TLP_NEURAL_CODE_SEARCH",
+	TagifyColorFromCode: "TAGIFY_COLOR_FROM_CODE",
+	CodeDescription: "CODE_DESCRIPTION",
+	CodeTitle: "CODE_TITLE",
+	CodeSearchQueries: "CODE_SEARCH_QUERIES",
+	CodeExtractiveTags: "CODE_EXTRACTIVE_TAGS",
+	CodeExtractiveLinks: "CODE_EXTRACTIVE_LINKS",
+	CodeConversation: "CODE_CONVERSATION",
+	CodeGeneration: "CODE_GENERATION",
+	CodeSearch: "CODE_SEARCH",
+	CodeDiscovery: "CODE_DISCOVERY",
+	CodeRelatedPeople: "CODE_RELATED_PEOPLE",
+	CodeFramework: "CODE_FRAMEWORK",
+	VideoOcr: "VIDEO_OCR",
+	TextVsCodeSegmentation: "TEXT_VS_CODE_SEGMENTATION",
+	TextEmbedding: "TEXT_EMBEDDING",
+	TechnicalError: "TECHNICAL_ERROR",
 } as const;
-export type ModelUsageEnum = typeof ModelUsageEnum[keyof typeof ModelUsageEnum];
-
+export type ModelUsageEnum =
+	(typeof ModelUsageEnum)[keyof typeof ModelUsageEnum];
 
 export function ModelUsageEnumFromJSON(json: any): ModelUsageEnum {
-    return ModelUsageEnumFromJSONTyped(json, false);
+	return ModelUsageEnumFromJSONTyped(json, false);
 }
 
-export function ModelUsageEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelUsageEnum {
-    return json as ModelUsageEnum;
+export function ModelUsageEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ModelUsageEnum {
+	return json as ModelUsageEnum;
 }
 
 export function ModelUsageEnumToJSON(value?: ModelUsageEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

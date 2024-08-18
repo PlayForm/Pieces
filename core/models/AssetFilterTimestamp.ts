@@ -12,95 +12,101 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
 
 /**
  * if you want a range between you can use from && to.
- * 
+ *
  * if you want anything before, use to and NO from.
- * 
+ *
  * if you want anything after, use from and NO to.
  * @export
  * @interface AssetFilterTimestamp
  */
 export interface AssetFilterTimestamp {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AssetFilterTimestamp
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof AssetFilterTimestamp
-     */
-    from?: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof AssetFilterTimestamp
-     */
-    to?: GroupedTimestamp;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AssetFilterTimestamp
-     */
-    between?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AssetFilterTimestamp
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof AssetFilterTimestamp
+	 */
+	from?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof AssetFilterTimestamp
+	 */
+	to?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof AssetFilterTimestamp
+	 */
+	between?: boolean;
 }
 
 /**
  * Check if a given object implements the AssetFilterTimestamp interface.
  */
-export function instanceOfAssetFilterTimestamp(value: object): boolean {
-    let isInstance = true;
+export function instanceOfAssetFilterTimestamp(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AssetFilterTimestampFromJSON(json: any): AssetFilterTimestamp {
-    return AssetFilterTimestampFromJSONTyped(json, false);
+	return AssetFilterTimestampFromJSONTyped(json, false);
 }
 
-export function AssetFilterTimestampFromJSONTyped(json: any, ignoreDiscriminator: boolean): AssetFilterTimestamp {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'from': !exists(json, 'from') ? undefined : GroupedTimestampFromJSON(json['from']),
-        'to': !exists(json, 'to') ? undefined : GroupedTimestampFromJSON(json['to']),
-        'between': !exists(json, 'between') ? undefined : json['between'],
-    };
+export function AssetFilterTimestampFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AssetFilterTimestamp {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		from: exists(json, "from")
+			? GroupedTimestampFromJSON(json["from"])
+			: undefined,
+		to: exists(json, "to")
+			? GroupedTimestampFromJSON(json["to"])
+			: undefined,
+		between: exists(json, "between") ? json["between"] : undefined,
+	};
 }
 
-export function AssetFilterTimestampToJSON(value?: AssetFilterTimestamp | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'from': GroupedTimestampToJSON(value.from),
-        'to': GroupedTimestampToJSON(value.to),
-        'between': value.between,
-    };
+export function AssetFilterTimestampToJSON(
+	value?: AssetFilterTimestamp | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		from: GroupedTimestampToJSON(value.from),
+		to: GroupedTimestampToJSON(value.to),
+		between: value.between,
+	};
 }
-

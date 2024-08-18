@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ByteDescriptor } from './ByteDescriptor';
+import { exists } from "../runtime.ts";
+import type { ByteDescriptor } from "./ByteDescriptor.tsx";
 import {
-    ByteDescriptorFromJSON,
-    ByteDescriptorFromJSONTyped,
-    ByteDescriptorToJSON,
-} from './ByteDescriptor';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ByteDescriptorFromJSON,
+	ByteDescriptorToJSON,
+} from "./ByteDescriptor.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the progress for the OSFileStreamingRead
@@ -32,65 +30,71 @@ import {
  * @interface OSFileStreamingReadProgress
  */
 export interface OSFileStreamingReadProgress {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSFileStreamingReadProgress
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ByteDescriptor}
-     * @memberof OSFileStreamingReadProgress
-     */
-    total: ByteDescriptor;
-    /**
-     * 
-     * @type {ByteDescriptor}
-     * @memberof OSFileStreamingReadProgress
-     */
-    transferred: ByteDescriptor;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSFileStreamingReadProgress
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ByteDescriptor}
+	 * @memberof OSFileStreamingReadProgress
+	 */
+	total: ByteDescriptor;
+	/**
+	 *
+	 * @type {ByteDescriptor}
+	 * @memberof OSFileStreamingReadProgress
+	 */
+	transferred: ByteDescriptor;
 }
 
 /**
  * Check if a given object implements the OSFileStreamingReadProgress interface.
  */
 export function instanceOfOSFileStreamingReadProgress(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "total" in value;
-    isInstance = isInstance && "transferred" in value;
+	let isInstance = true;
+	isInstance = isInstance && "total" in value;
+	isInstance = isInstance && "transferred" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function OSFileStreamingReadProgressFromJSON(json: any): OSFileStreamingReadProgress {
-    return OSFileStreamingReadProgressFromJSONTyped(json, false);
+export function OSFileStreamingReadProgressFromJSON(
+	json: any,
+): OSFileStreamingReadProgress {
+	return OSFileStreamingReadProgressFromJSONTyped(json, false);
 }
 
-export function OSFileStreamingReadProgressFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSFileStreamingReadProgress {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'total': ByteDescriptorFromJSON(json['total']),
-        'transferred': ByteDescriptorFromJSON(json['transferred']),
-    };
+export function OSFileStreamingReadProgressFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSFileStreamingReadProgress {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		total: ByteDescriptorFromJSON(json["total"]),
+		transferred: ByteDescriptorFromJSON(json["transferred"]),
+	};
 }
 
-export function OSFileStreamingReadProgressToJSON(value?: OSFileStreamingReadProgress | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'total': ByteDescriptorToJSON(value.total),
-        'transferred': ByteDescriptorToJSON(value.transferred),
-    };
+export function OSFileStreamingReadProgressToJSON(
+	value?: OSFileStreamingReadProgress | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		total: ByteDescriptorToJSON(value.total),
+		transferred: ByteDescriptorToJSON(value.transferred),
+	};
 }
-

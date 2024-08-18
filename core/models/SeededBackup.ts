@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a precursor to a Backup, for now this will not need to take any properties.
@@ -26,47 +25,49 @@ import {
  * @interface SeededBackup
  */
 export interface SeededBackup {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededBackup
-     */
-    schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededBackup
+	 */
+	schema?: EmbeddedModelSchema;
 }
 
 /**
  * Check if a given object implements the SeededBackup interface.
  */
-export function instanceOfSeededBackup(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededBackup(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededBackupFromJSON(json: any): SeededBackup {
-    return SeededBackupFromJSONTyped(json, false);
+	return SeededBackupFromJSONTyped(json, false);
 }
 
-export function SeededBackupFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededBackup {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-    };
+export function SeededBackupFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededBackup {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+	};
 }
 
 export function SeededBackupToJSON(value?: SeededBackup | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+	};
 }
-

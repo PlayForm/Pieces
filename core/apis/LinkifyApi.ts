@@ -12,135 +12,174 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Linkify,
-  LinkifyMultiple,
-  Shares,
-} from '../models/index';
+import type { Linkify, LinkifyMultiple, Shares } from "../models/index.ts";
 import {
-    LinkifyFromJSON,
-    LinkifyToJSON,
-    LinkifyMultipleFromJSON,
-    LinkifyMultipleToJSON,
-    SharesFromJSON,
-    SharesToJSON,
-} from '../models/index';
+	LinkifyMultipleToJSON,
+	LinkifyToJSON,
+	SharesFromJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface LinkifyRequest {
-    linkify?: Linkify;
+	linkify?: Linkify;
 }
 
 export interface LinkifyMultipleRequest {
-    linkifyMultiple?: LinkifyMultiple;
+	linkifyMultiple?: LinkifyMultiple;
 }
 
 export interface LinkifyShareRevokeRequest {
-    share: string;
+	share: string;
 }
 
 /**
- * 
+ *
  */
 export class LinkifyApi extends runtime.BaseAPI {
+	/**
+	 *
+	 * /linkify [POST]
+	 */
+	async linkifyRaw(
+		requestParameters: LinkifyRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Shares>> {
+		const queryParameters: any = {};
 
-    /**
-     * 
-     * /linkify [POST]
-     */
-    async linkifyRaw(requestParameters: LinkifyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Shares>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/linkify",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: LinkifyToJSON(requestParameters.linkify),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/linkify`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: LinkifyToJSON(requestParameters.linkify),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SharesFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SharesFromJSON(jsonValue));
-    }
+	/**
+	 *
+	 * /linkify [POST]
+	 */
+	async linkify(
+		requestParameters: LinkifyRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Shares> {
+		const response = await this.linkifyRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * 
-     * /linkify [POST]
-     */
-    async linkify(requestParameters: LinkifyRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Shares> {
-        const response = await this.linkifyRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * - assumption that you have already backed up the asset\'s that you are sending to this endpoint.(b/c the assets are ids.)
+	 * /linkify/multiple [POST]
+	 */
+	async linkifyMultipleRaw(
+		requestParameters: LinkifyMultipleRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Shares>> {
+		const queryParameters: any = {};
 
-    /**
-     * - assumption that you have already backed up the asset\'s that you are sending to this endpoint.(b/c the assets are ids.)
-     * /linkify/multiple [POST]
-     */
-    async linkifyMultipleRaw(requestParameters: LinkifyMultipleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Shares>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/linkify/multiple",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: LinkifyMultipleToJSON(requestParameters.linkifyMultiple),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/linkify/multiple`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: LinkifyMultipleToJSON(requestParameters.linkifyMultiple),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SharesFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SharesFromJSON(jsonValue));
-    }
+	/**
+	 * - assumption that you have already backed up the asset\'s that you are sending to this endpoint.(b/c the assets are ids.)
+	 * /linkify/multiple [POST]
+	 */
+	async linkifyMultiple(
+		requestParameters: LinkifyMultipleRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Shares> {
+		const response = await this.linkifyMultipleRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * - assumption that you have already backed up the asset\'s that you are sending to this endpoint.(b/c the assets are ids.)
-     * /linkify/multiple [POST]
-     */
-    async linkifyMultiple(requestParameters: LinkifyMultipleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Shares> {
-        const response = await this.linkifyMultipleRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will revoke a link.
+	 * [POST} /linkify/{share}/revoke
+	 */
+	async linkifyShareRevokeRaw(
+		requestParameters: LinkifyShareRevokeRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<string>> {
+		if (
+			requestParameters.share === null ||
+			requestParameters.share === undefined
+		) {
+			throw new runtime.RequiredError(
+				"share",
+				"Required parameter requestParameters.share was null or undefined when calling linkifyShareRevoke.",
+			);
+		}
 
-    /**
-     * This will revoke a link.
-     * [POST} /linkify/{share}/revoke
-     */
-    async linkifyShareRevokeRaw(requestParameters: LinkifyShareRevokeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        if (requestParameters.share === null || requestParameters.share === undefined) {
-            throw new runtime.RequiredError('share','Required parameter requestParameters.share was null or undefined when calling linkifyShareRevoke.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/linkify/{share}/revoke".replace(
+					`{${"share"}}`,
+					encodeURIComponent(String(requestParameters.share)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/linkify/{share}/revoke`.replace(`{${"share"}}`, encodeURIComponent(String(requestParameters.share))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		if (this.isJsonMime(response.headers.get("content-type"))) {
+			return new runtime.JSONApiResponse<string>(response);
+		} else {
+			return new runtime.TextApiResponse(response) as any;
+		}
+	}
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * This will revoke a link.
-     * [POST} /linkify/{share}/revoke
-     */
-    async linkifyShareRevoke(requestParameters: LinkifyShareRevokeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.linkifyShareRevokeRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will revoke a link.
+	 * [POST} /linkify/{share}/revoke
+	 */
+	async linkifyShareRevoke(
+		requestParameters: LinkifyShareRevokeRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<string> {
+		const response = await this.linkifyShareRevokeRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

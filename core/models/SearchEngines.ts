@@ -12,98 +12,96 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FilterOperationTypeEnum } from './FilterOperationTypeEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FilterOperationTypeEnum } from "./FilterOperationTypeEnum.tsx";
 import {
-    FilterOperationTypeEnumFromJSON,
-    FilterOperationTypeEnumFromJSONTyped,
-    FilterOperationTypeEnumToJSON,
-} from './FilterOperationTypeEnum';
-import type { SearchEngine } from './SearchEngine';
-import {
-    SearchEngineFromJSON,
-    SearchEngineFromJSONTyped,
-    SearchEngineToJSON,
-} from './SearchEngine';
+	FilterOperationTypeEnumFromJSON,
+	FilterOperationTypeEnumToJSON,
+} from "./FilterOperationTypeEnum.tsx";
+import type { SearchEngine } from "./SearchEngine.tsx";
+import { SearchEngineFromJSON, SearchEngineToJSON } from "./SearchEngine.tsx";
 
 /**
  * This is a model for plural Engine.
  * This means that you can run multiple searches, this follow similar behavior to the Asset Filtering.where you can
  * create you own complex operations: IE search a query in FTS, and filter all that have the create from here to here.
- * 
+ *
  * note: each Engine will only represent 1 search operation, however you many pass in operations to create further nesting. IE
- * 
+ *
  * Engine: [FTS + w/ operations: [created filter, updated filer, ncs Search] w/ a type of OR:::: This can be as nested as you want however will just increase the time till it returns results.]
- * 
+ *
  * note: type: default behavior for the type is an AND operation.
  * @export
  * @interface SearchEngines
  */
 export interface SearchEngines {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchEngines
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchEngine>}
-     * @memberof SearchEngines
-     */
-    iterable: Array<SearchEngine>;
-    /**
-     * 
-     * @type {FilterOperationTypeEnum}
-     * @memberof SearchEngines
-     */
-    type?: FilterOperationTypeEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchEngines
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchEngine>}
+	 * @memberof SearchEngines
+	 */
+	iterable: SearchEngine[];
+	/**
+	 *
+	 * @type {FilterOperationTypeEnum}
+	 * @memberof SearchEngines
+	 */
+	type?: FilterOperationTypeEnum;
 }
 
 /**
  * Check if a given object implements the SearchEngines interface.
  */
 export function instanceOfSearchEngines(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchEnginesFromJSON(json: any): SearchEngines {
-    return SearchEnginesFromJSONTyped(json, false);
+	return SearchEnginesFromJSONTyped(json, false);
 }
 
-export function SearchEnginesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchEngines {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchEngineFromJSON)),
-        'type': !exists(json, 'type') ? undefined : FilterOperationTypeEnumFromJSON(json['type']),
-    };
+export function SearchEnginesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchEngines {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SearchEngineFromJSON),
+		type: exists(json, "type")
+			? FilterOperationTypeEnumFromJSON(json["type"])
+			: undefined,
+	};
 }
 
 export function SearchEnginesToJSON(value?: SearchEngines | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchEngineToJSON)),
-        'type': FilterOperationTypeEnumToJSON(value.type),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SearchEngineToJSON),
+		type: FilterOperationTypeEnumToJSON(value.type),
+	};
 }
-

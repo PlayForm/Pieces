@@ -12,87 +12,86 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TextLocation } from './TextLocation';
-import {
-    TextLocationFromJSON,
-    TextLocationFromJSONTyped,
-    TextLocationToJSON,
-} from './TextLocation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TextLocation } from "./TextLocation.tsx";
+import { TextLocationFromJSON, TextLocationToJSON } from "./TextLocation.tsx";
 
 /**
  * Thext Match currently used for sensitive for scales for people, and anything related to text matching.
- * 
+ *
  * group: is the entire match
  * subgroup is the inner match within the group.(optional)
  * @export
  * @interface TextMatch
  */
 export interface TextMatch {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TextMatch
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TextLocation}
-     * @memberof TextMatch
-     */
-    group: TextLocation;
-    /**
-     * 
-     * @type {TextLocation}
-     * @memberof TextMatch
-     */
-    subgroup?: TextLocation;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TextMatch
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TextLocation}
+	 * @memberof TextMatch
+	 */
+	group: TextLocation;
+	/**
+	 *
+	 * @type {TextLocation}
+	 * @memberof TextMatch
+	 */
+	subgroup?: TextLocation;
 }
 
 /**
  * Check if a given object implements the TextMatch interface.
  */
 export function instanceOfTextMatch(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "group" in value;
+	let isInstance = true;
+	isInstance = isInstance && "group" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TextMatchFromJSON(json: any): TextMatch {
-    return TextMatchFromJSONTyped(json, false);
+	return TextMatchFromJSONTyped(json, false);
 }
 
-export function TextMatchFromJSONTyped(json: any, ignoreDiscriminator: boolean): TextMatch {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'group': TextLocationFromJSON(json['group']),
-        'subgroup': !exists(json, 'subgroup') ? undefined : TextLocationFromJSON(json['subgroup']),
-    };
+export function TextMatchFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TextMatch {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		group: TextLocationFromJSON(json["group"]),
+		subgroup: exists(json, "subgroup")
+			? TextLocationFromJSON(json["subgroup"])
+			: undefined,
+	};
 }
 
 export function TextMatchToJSON(value?: TextMatch | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'group': TextLocationToJSON(value.group),
-        'subgroup': TextLocationToJSON(value.subgroup),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		group: TextLocationToJSON(value.group),
+		subgroup: TextLocationToJSON(value.subgroup),
+	};
 }
-

@@ -12,89 +12,100 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GraphicalMachineLearningProcessingEvent } from './GraphicalMachineLearningProcessingEvent';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GraphicalMachineLearningProcessingEvent } from "./GraphicalMachineLearningProcessingEvent.tsx";
 import {
-    GraphicalMachineLearningProcessingEventFromJSON,
-    GraphicalMachineLearningProcessingEventFromJSONTyped,
-    GraphicalMachineLearningProcessingEventToJSON,
-} from './GraphicalMachineLearningProcessingEvent';
-import type { TLPMachineLearningProcessingEvent } from './TLPMachineLearningProcessingEvent';
+	GraphicalMachineLearningProcessingEventFromJSON,
+	GraphicalMachineLearningProcessingEventToJSON,
+} from "./GraphicalMachineLearningProcessingEvent.tsx";
+import type { TLPMachineLearningProcessingEvent } from "./TLPMachineLearningProcessingEvent.tsx";
 import {
-    TLPMachineLearningProcessingEventFromJSON,
-    TLPMachineLearningProcessingEventFromJSONTyped,
-    TLPMachineLearningProcessingEventToJSON,
-} from './TLPMachineLearningProcessingEvent';
+	TLPMachineLearningProcessingEventFromJSON,
+	TLPMachineLearningProcessingEventToJSON,
+} from "./TLPMachineLearningProcessingEvent.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededTrackedMachineLearningEvent
  */
 export interface SeededTrackedMachineLearningEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededTrackedMachineLearningEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TLPMachineLearningProcessingEvent}
-     * @memberof SeededTrackedMachineLearningEvent
-     */
-    tlp?: TLPMachineLearningProcessingEvent;
-    /**
-     * 
-     * @type {GraphicalMachineLearningProcessingEvent}
-     * @memberof SeededTrackedMachineLearningEvent
-     */
-    graphical?: GraphicalMachineLearningProcessingEvent;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededTrackedMachineLearningEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TLPMachineLearningProcessingEvent}
+	 * @memberof SeededTrackedMachineLearningEvent
+	 */
+	tlp?: TLPMachineLearningProcessingEvent;
+	/**
+	 *
+	 * @type {GraphicalMachineLearningProcessingEvent}
+	 * @memberof SeededTrackedMachineLearningEvent
+	 */
+	graphical?: GraphicalMachineLearningProcessingEvent;
 }
 
 /**
  * Check if a given object implements the SeededTrackedMachineLearningEvent interface.
  */
-export function instanceOfSeededTrackedMachineLearningEvent(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededTrackedMachineLearningEvent(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededTrackedMachineLearningEventFromJSON(json: any): SeededTrackedMachineLearningEvent {
-    return SeededTrackedMachineLearningEventFromJSONTyped(json, false);
+export function SeededTrackedMachineLearningEventFromJSON(
+	json: any,
+): SeededTrackedMachineLearningEvent {
+	return SeededTrackedMachineLearningEventFromJSONTyped(json, false);
 }
 
-export function SeededTrackedMachineLearningEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededTrackedMachineLearningEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'tlp': !exists(json, 'tlp') ? undefined : TLPMachineLearningProcessingEventFromJSON(json['tlp']),
-        'graphical': !exists(json, 'graphical') ? undefined : GraphicalMachineLearningProcessingEventFromJSON(json['graphical']),
-    };
+export function SeededTrackedMachineLearningEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededTrackedMachineLearningEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		tlp: exists(json, "tlp")
+			? TLPMachineLearningProcessingEventFromJSON(json["tlp"])
+			: undefined,
+		graphical: exists(json, "graphical")
+			? GraphicalMachineLearningProcessingEventFromJSON(json["graphical"])
+			: undefined,
+	};
 }
 
-export function SeededTrackedMachineLearningEventToJSON(value?: SeededTrackedMachineLearningEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'tlp': TLPMachineLearningProcessingEventToJSON(value.tlp),
-        'graphical': GraphicalMachineLearningProcessingEventToJSON(value.graphical),
-    };
+export function SeededTrackedMachineLearningEventToJSON(
+	value?: SeededTrackedMachineLearningEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		tlp: TLPMachineLearningProcessingEventToJSON(value.tlp),
+		graphical: GraphicalMachineLearningProcessingEventToJSON(
+			value.graphical,
+		),
+	};
 }
-

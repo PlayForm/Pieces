@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the input body for /os/update/check, just a placeholder for now.
@@ -26,47 +25,53 @@ import {
  * @interface UncheckedOSServerUpdate
  */
 export interface UncheckedOSServerUpdate {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof UncheckedOSServerUpdate
-     */
-    schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof UncheckedOSServerUpdate
+	 */
+	schema?: EmbeddedModelSchema;
 }
 
 /**
  * Check if a given object implements the UncheckedOSServerUpdate interface.
  */
-export function instanceOfUncheckedOSServerUpdate(value: object): boolean {
-    let isInstance = true;
+export function instanceOfUncheckedOSServerUpdate(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function UncheckedOSServerUpdateFromJSON(json: any): UncheckedOSServerUpdate {
-    return UncheckedOSServerUpdateFromJSONTyped(json, false);
+export function UncheckedOSServerUpdateFromJSON(
+	json: any,
+): UncheckedOSServerUpdate {
+	return UncheckedOSServerUpdateFromJSONTyped(json, false);
 }
 
-export function UncheckedOSServerUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): UncheckedOSServerUpdate {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-    };
+export function UncheckedOSServerUpdateFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): UncheckedOSServerUpdate {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+	};
 }
 
-export function UncheckedOSServerUpdateToJSON(value?: UncheckedOSServerUpdate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-    };
+export function UncheckedOSServerUpdateToJSON(
+	value?: UncheckedOSServerUpdate | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+	};
 }
-

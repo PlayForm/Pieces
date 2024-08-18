@@ -12,32 +12,37 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * Enum used for the status of the progress in downloading a model.
  * @export
  */
 export const ModelDownloadProgressStatusEnum = {
-    Initialized: 'INITIALIZED',
-    InProgress: 'IN-PROGRESS',
-    Completed: 'COMPLETED',
-    Failed: 'FAILED',
-    Unknown: 'UNKNOWN',
-    Canceled: 'CANCELED',
-    Reset: 'RESET'
+	Initialized: "INITIALIZED",
+	InProgress: "IN-PROGRESS",
+	Completed: "COMPLETED",
+	Failed: "FAILED",
+	Unknown: "UNKNOWN",
+	Canceled: "CANCELED",
+	Reset: "RESET",
 } as const;
-export type ModelDownloadProgressStatusEnum = typeof ModelDownloadProgressStatusEnum[keyof typeof ModelDownloadProgressStatusEnum];
+export type ModelDownloadProgressStatusEnum =
+	(typeof ModelDownloadProgressStatusEnum)[keyof typeof ModelDownloadProgressStatusEnum];
 
-
-export function ModelDownloadProgressStatusEnumFromJSON(json: any): ModelDownloadProgressStatusEnum {
-    return ModelDownloadProgressStatusEnumFromJSONTyped(json, false);
+export function ModelDownloadProgressStatusEnumFromJSON(
+	json: any,
+): ModelDownloadProgressStatusEnum {
+	return ModelDownloadProgressStatusEnumFromJSONTyped(json, false);
 }
 
-export function ModelDownloadProgressStatusEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelDownloadProgressStatusEnum {
-    return json as ModelDownloadProgressStatusEnum;
+export function ModelDownloadProgressStatusEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ModelDownloadProgressStatusEnum {
+	return json as ModelDownloadProgressStatusEnum;
 }
 
-export function ModelDownloadProgressStatusEnumToJSON(value?: ModelDownloadProgressStatusEnum | null): any {
-    return value as any;
+export function ModelDownloadProgressStatusEnumToJSON(
+	value?: ModelDownloadProgressStatusEnum | null,
+): any {
+	return value as any;
 }
-

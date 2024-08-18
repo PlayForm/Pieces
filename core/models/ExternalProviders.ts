@@ -12,76 +12,76 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ExternalProvider } from './ExternalProvider';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ExternalProvider } from "./ExternalProvider.tsx";
 import {
-    ExternalProviderFromJSON,
-    ExternalProviderFromJSONTyped,
-    ExternalProviderToJSON,
-} from './ExternalProvider';
+	ExternalProviderFromJSON,
+	ExternalProviderToJSON,
+} from "./ExternalProvider.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface ExternalProviders
  */
 export interface ExternalProviders {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ExternalProviders
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ExternalProvider>}
-     * @memberof ExternalProviders
-     */
-    iterable: Array<ExternalProvider>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ExternalProviders
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ExternalProvider>}
+	 * @memberof ExternalProviders
+	 */
+	iterable: ExternalProvider[];
 }
 
 /**
  * Check if a given object implements the ExternalProviders interface.
  */
 export function instanceOfExternalProviders(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ExternalProvidersFromJSON(json: any): ExternalProviders {
-    return ExternalProvidersFromJSONTyped(json, false);
+	return ExternalProvidersFromJSONTyped(json, false);
 }
 
-export function ExternalProvidersFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExternalProviders {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ExternalProviderFromJSON)),
-    };
+export function ExternalProvidersFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExternalProviders {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ExternalProviderFromJSON),
+	};
 }
 
 export function ExternalProvidersToJSON(value?: ExternalProviders | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ExternalProviderToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ExternalProviderToJSON),
+	};
 }
-

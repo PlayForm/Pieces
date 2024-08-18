@@ -12,31 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnnotationTypeEnum } from './AnnotationTypeEnum';
+import { exists } from "../runtime.ts";
+import type { AnnotationTypeEnum } from "./AnnotationTypeEnum.tsx";
 import {
-    AnnotationTypeEnumFromJSON,
-    AnnotationTypeEnumFromJSONTyped,
-    AnnotationTypeEnumToJSON,
-} from './AnnotationTypeEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AnnotationTypeEnumFromJSON,
+	AnnotationTypeEnumToJSON,
+} from "./AnnotationTypeEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedConversationMessages } from './FlattenedConversationMessages';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
-    FlattenedConversationMessagesFromJSON,
-    FlattenedConversationMessagesFromJSONTyped,
-    FlattenedConversationMessagesToJSON,
-} from './FlattenedConversationMessages';
-import type { MechanismEnum } from './MechanismEnum';
+	FlattenedConversationMessagesFromJSON,
+	FlattenedConversationMessagesToJSON,
+} from "./FlattenedConversationMessages.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
 
 /**
  * This is the percursor to a fully referenced Annotation.
@@ -44,137 +40,145 @@ import {
  * @interface SeededAnnotation
  */
 export interface SeededAnnotation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededAnnotation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof SeededAnnotation
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededAnnotation
-     */
-    asset?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededAnnotation
-     */
-    person?: string;
-    /**
-     * 
-     * @type {AnnotationTypeEnum}
-     * @memberof SeededAnnotation
-     */
-    type: AnnotationTypeEnum;
-    /**
-     * This is the text of the annotation.
-     * @type {string}
-     * @memberof SeededAnnotation
-     */
-    text: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededAnnotation
-     */
-    model?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededAnnotation
-     */
-    pseudo?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededAnnotation
-     */
-    favorited?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededAnnotation
-     */
-    anchor?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededAnnotation
-     */
-    conversation?: string;
-    /**
-     * 
-     * @type {FlattenedConversationMessages}
-     * @memberof SeededAnnotation
-     */
-    messages?: FlattenedConversationMessages;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededAnnotation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof SeededAnnotation
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededAnnotation
+	 */
+	asset?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededAnnotation
+	 */
+	person?: string;
+	/**
+	 *
+	 * @type {AnnotationTypeEnum}
+	 * @memberof SeededAnnotation
+	 */
+	type: AnnotationTypeEnum;
+	/**
+	 * This is the text of the annotation.
+	 * @type {string}
+	 * @memberof SeededAnnotation
+	 */
+	text: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededAnnotation
+	 */
+	model?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededAnnotation
+	 */
+	pseudo?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededAnnotation
+	 */
+	favorited?: boolean;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededAnnotation
+	 */
+	anchor?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededAnnotation
+	 */
+	conversation?: string;
+	/**
+	 *
+	 * @type {FlattenedConversationMessages}
+	 * @memberof SeededAnnotation
+	 */
+	messages?: FlattenedConversationMessages;
 }
 
 /**
  * Check if a given object implements the SeededAnnotation interface.
  */
 export function instanceOfSeededAnnotation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "text" in value;
+	let isInstance = true;
+	isInstance = isInstance && "type" in value;
+	isInstance = isInstance && "text" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededAnnotationFromJSON(json: any): SeededAnnotation {
-    return SeededAnnotationFromJSONTyped(json, false);
+	return SeededAnnotationFromJSONTyped(json, false);
 }
 
-export function SeededAnnotationFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededAnnotation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'asset': !exists(json, 'asset') ? undefined : json['asset'],
-        'person': !exists(json, 'person') ? undefined : json['person'],
-        'type': AnnotationTypeEnumFromJSON(json['type']),
-        'text': json['text'],
-        'model': !exists(json, 'model') ? undefined : json['model'],
-        'pseudo': !exists(json, 'pseudo') ? undefined : json['pseudo'],
-        'favorited': !exists(json, 'favorited') ? undefined : json['favorited'],
-        'anchor': !exists(json, 'anchor') ? undefined : json['anchor'],
-        'conversation': !exists(json, 'conversation') ? undefined : json['conversation'],
-        'messages': !exists(json, 'messages') ? undefined : FlattenedConversationMessagesFromJSON(json['messages']),
-    };
+export function SeededAnnotationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededAnnotation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		asset: exists(json, "asset") ? json["asset"] : undefined,
+		person: exists(json, "person") ? json["person"] : undefined,
+		type: AnnotationTypeEnumFromJSON(json["type"]),
+		text: json["text"],
+		model: exists(json, "model") ? json["model"] : undefined,
+		pseudo: exists(json, "pseudo") ? json["pseudo"] : undefined,
+		favorited: exists(json, "favorited") ? json["favorited"] : undefined,
+		anchor: exists(json, "anchor") ? json["anchor"] : undefined,
+		conversation: exists(json, "conversation")
+			? json["conversation"]
+			: undefined,
+		messages: exists(json, "messages")
+			? FlattenedConversationMessagesFromJSON(json["messages"])
+			: undefined,
+	};
 }
 
 export function SeededAnnotationToJSON(value?: SeededAnnotation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'asset': value.asset,
-        'person': value.person,
-        'type': AnnotationTypeEnumToJSON(value.type),
-        'text': value.text,
-        'model': value.model,
-        'pseudo': value.pseudo,
-        'favorited': value.favorited,
-        'anchor': value.anchor,
-        'conversation': value.conversation,
-        'messages': FlattenedConversationMessagesToJSON(value.messages),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		asset: value.asset,
+		person: value.person,
+		type: AnnotationTypeEnumToJSON(value.type),
+		text: value.text,
+		model: value.model,
+		pseudo: value.pseudo,
+		favorited: value.favorited,
+		anchor: value.anchor,
+		conversation: value.conversation,
+		messages: FlattenedConversationMessagesToJSON(value.messages),
+	};
 }
-

@@ -12,78 +12,90 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { QGPTStreamedOutputExtractedTextualMaterials } from './QGPTStreamedOutputExtractedTextualMaterials';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { QGPTStreamedOutputExtractedTextualMaterials } from "./QGPTStreamedOutputExtractedTextualMaterials.tsx";
 import {
-    QGPTStreamedOutputExtractedTextualMaterialsFromJSON,
-    QGPTStreamedOutputExtractedTextualMaterialsFromJSONTyped,
-    QGPTStreamedOutputExtractedTextualMaterialsToJSON,
-} from './QGPTStreamedOutputExtractedTextualMaterials';
+	QGPTStreamedOutputExtractedTextualMaterialsFromJSON,
+	QGPTStreamedOutputExtractedTextualMaterialsToJSON,
+} from "./QGPTStreamedOutputExtractedTextualMaterials.tsx";
 
 /**
  * This is used as an object that will return some of the extracted materials from both
  * the message w/ compeleted/ or stopped
- * 
+ *
  * as well as the context(if using WorkstreamContext)
  * @export
  * @interface QGPTStreamedOutputExtractedMaterials
  */
 export interface QGPTStreamedOutputExtractedMaterials {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTStreamedOutputExtractedMaterials
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {QGPTStreamedOutputExtractedTextualMaterials}
-     * @memberof QGPTStreamedOutputExtractedMaterials
-     */
-    textual?: QGPTStreamedOutputExtractedTextualMaterials;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTStreamedOutputExtractedMaterials
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {QGPTStreamedOutputExtractedTextualMaterials}
+	 * @memberof QGPTStreamedOutputExtractedMaterials
+	 */
+	textual?: QGPTStreamedOutputExtractedTextualMaterials;
 }
 
 /**
  * Check if a given object implements the QGPTStreamedOutputExtractedMaterials interface.
  */
-export function instanceOfQGPTStreamedOutputExtractedMaterials(value: object): boolean {
-    let isInstance = true;
+export function instanceOfQGPTStreamedOutputExtractedMaterials(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function QGPTStreamedOutputExtractedMaterialsFromJSON(json: any): QGPTStreamedOutputExtractedMaterials {
-    return QGPTStreamedOutputExtractedMaterialsFromJSONTyped(json, false);
+export function QGPTStreamedOutputExtractedMaterialsFromJSON(
+	json: any,
+): QGPTStreamedOutputExtractedMaterials {
+	return QGPTStreamedOutputExtractedMaterialsFromJSONTyped(json, false);
 }
 
-export function QGPTStreamedOutputExtractedMaterialsFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTStreamedOutputExtractedMaterials {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'textual': !exists(json, 'textual') ? undefined : QGPTStreamedOutputExtractedTextualMaterialsFromJSON(json['textual']),
-    };
+export function QGPTStreamedOutputExtractedMaterialsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTStreamedOutputExtractedMaterials {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		textual: exists(json, "textual")
+			? QGPTStreamedOutputExtractedTextualMaterialsFromJSON(
+					json["textual"],
+				)
+			: undefined,
+	};
 }
 
-export function QGPTStreamedOutputExtractedMaterialsToJSON(value?: QGPTStreamedOutputExtractedMaterials | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'textual': QGPTStreamedOutputExtractedTextualMaterialsToJSON(value.textual),
-    };
+export function QGPTStreamedOutputExtractedMaterialsToJSON(
+	value?: QGPTStreamedOutputExtractedMaterials | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		textual: QGPTStreamedOutputExtractedTextualMaterialsToJSON(
+			value.textual,
+		),
+	};
 }
-

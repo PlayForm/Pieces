@@ -12,76 +12,82 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ExportedDatabaseFormat } from './ExportedDatabaseFormat';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ExportedDatabaseFormat } from "./ExportedDatabaseFormat.tsx";
 import {
-    ExportedDatabaseFormatFromJSON,
-    ExportedDatabaseFormatFromJSONTyped,
-    ExportedDatabaseFormatToJSON,
-} from './ExportedDatabaseFormat';
+	ExportedDatabaseFormatFromJSON,
+	ExportedDatabaseFormatToJSON,
+} from "./ExportedDatabaseFormat.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface ExportedDatabaseFormats
  */
 export interface ExportedDatabaseFormats {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ExportedDatabaseFormats
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ExportedDatabaseFormat>}
-     * @memberof ExportedDatabaseFormats
-     */
-    iterable: Array<ExportedDatabaseFormat>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ExportedDatabaseFormats
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ExportedDatabaseFormat>}
+	 * @memberof ExportedDatabaseFormats
+	 */
+	iterable: ExportedDatabaseFormat[];
 }
 
 /**
  * Check if a given object implements the ExportedDatabaseFormats interface.
  */
 export function instanceOfExportedDatabaseFormats(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ExportedDatabaseFormatsFromJSON(json: any): ExportedDatabaseFormats {
-    return ExportedDatabaseFormatsFromJSONTyped(json, false);
+export function ExportedDatabaseFormatsFromJSON(
+	json: any,
+): ExportedDatabaseFormats {
+	return ExportedDatabaseFormatsFromJSONTyped(json, false);
 }
 
-export function ExportedDatabaseFormatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExportedDatabaseFormats {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ExportedDatabaseFormatFromJSON)),
-    };
+export function ExportedDatabaseFormatsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExportedDatabaseFormats {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			ExportedDatabaseFormatFromJSON,
+		),
+	};
 }
 
-export function ExportedDatabaseFormatsToJSON(value?: ExportedDatabaseFormats | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ExportedDatabaseFormatToJSON)),
-    };
+export function ExportedDatabaseFormatsToJSON(
+	value?: ExportedDatabaseFormats | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ExportedDatabaseFormatToJSON),
+	};
 }
-

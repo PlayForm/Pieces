@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedConversation } from './SearchedConversation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedConversation } from "./SearchedConversation.tsx";
 import {
-    SearchedConversationFromJSON,
-    SearchedConversationFromJSONTyped,
-    SearchedConversationToJSON,
-} from './SearchedConversation';
+	SearchedConversationFromJSON,
+	SearchedConversationToJSON,
+} from "./SearchedConversation.tsx";
 
 /**
  * This is the plural Model used to return many SearchedConversation.
@@ -32,56 +30,62 @@ import {
  * @interface SearchedConversations
  */
 export interface SearchedConversations {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedConversations
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedConversation>}
-     * @memberof SearchedConversations
-     */
-    iterable: Array<SearchedConversation>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedConversations
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedConversation>}
+	 * @memberof SearchedConversations
+	 */
+	iterable: SearchedConversation[];
 }
 
 /**
  * Check if a given object implements the SearchedConversations interface.
  */
 export function instanceOfSearchedConversations(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SearchedConversationsFromJSON(json: any): SearchedConversations {
-    return SearchedConversationsFromJSONTyped(json, false);
+export function SearchedConversationsFromJSON(
+	json: any,
+): SearchedConversations {
+	return SearchedConversationsFromJSONTyped(json, false);
 }
 
-export function SearchedConversationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedConversations {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedConversationFromJSON)),
-    };
+export function SearchedConversationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedConversations {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SearchedConversationFromJSON),
+	};
 }
 
-export function SearchedConversationsToJSON(value?: SearchedConversations | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedConversationToJSON)),
-    };
+export function SearchedConversationsToJSON(
+	value?: SearchedConversations | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SearchedConversationToJSON),
+	};
 }
-

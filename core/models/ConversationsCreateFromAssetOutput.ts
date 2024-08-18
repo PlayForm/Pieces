@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedConversation } from './ReferencedConversation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
-    ReferencedConversationFromJSON,
-    ReferencedConversationFromJSONTyped,
-    ReferencedConversationToJSON,
-} from './ReferencedConversation';
+	ReferencedConversationFromJSON,
+	ReferencedConversationToJSON,
+} from "./ReferencedConversation.tsx";
 
 /**
  * This is the model for the output for the "/conversations/create/from_asset/{asset}" endpoints.
@@ -32,56 +30,64 @@ import {
  * @interface ConversationsCreateFromAssetOutput
  */
 export interface ConversationsCreateFromAssetOutput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ConversationsCreateFromAssetOutput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ReferencedConversation}
-     * @memberof ConversationsCreateFromAssetOutput
-     */
-    conversation: ReferencedConversation;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ConversationsCreateFromAssetOutput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ReferencedConversation}
+	 * @memberof ConversationsCreateFromAssetOutput
+	 */
+	conversation: ReferencedConversation;
 }
 
 /**
  * Check if a given object implements the ConversationsCreateFromAssetOutput interface.
  */
-export function instanceOfConversationsCreateFromAssetOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conversation" in value;
+export function instanceOfConversationsCreateFromAssetOutput(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "conversation" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ConversationsCreateFromAssetOutputFromJSON(json: any): ConversationsCreateFromAssetOutput {
-    return ConversationsCreateFromAssetOutputFromJSONTyped(json, false);
+export function ConversationsCreateFromAssetOutputFromJSON(
+	json: any,
+): ConversationsCreateFromAssetOutput {
+	return ConversationsCreateFromAssetOutputFromJSONTyped(json, false);
 }
 
-export function ConversationsCreateFromAssetOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationsCreateFromAssetOutput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'conversation': ReferencedConversationFromJSON(json['conversation']),
-    };
+export function ConversationsCreateFromAssetOutputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ConversationsCreateFromAssetOutput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		conversation: ReferencedConversationFromJSON(json["conversation"]),
+	};
 }
 
-export function ConversationsCreateFromAssetOutputToJSON(value?: ConversationsCreateFromAssetOutput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'conversation': ReferencedConversationToJSON(value.conversation),
-    };
+export function ConversationsCreateFromAssetOutputToJSON(
+	value?: ConversationsCreateFromAssetOutput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		conversation: ReferencedConversationToJSON(value.conversation),
+	};
 }
-

@@ -12,34 +12,35 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const SearchedMatchEnum = {
-    Title: 'TITLE',
-    Annotation: 'ANNOTATION',
-    Hint: 'HINT',
-    Content: 'CONTENT',
-    Fuzzy: 'FUZZY',
-    Multiple: 'MULTIPLE',
-    Tags: 'TAGS',
-    Websites: 'WEBSITES',
-    Persons: 'PERSONS'
+	Title: "TITLE",
+	Annotation: "ANNOTATION",
+	Hint: "HINT",
+	Content: "CONTENT",
+	Fuzzy: "FUZZY",
+	Multiple: "MULTIPLE",
+	Tags: "TAGS",
+	Websites: "WEBSITES",
+	Persons: "PERSONS",
 } as const;
-export type SearchedMatchEnum = typeof SearchedMatchEnum[keyof typeof SearchedMatchEnum];
-
+export type SearchedMatchEnum =
+	(typeof SearchedMatchEnum)[keyof typeof SearchedMatchEnum];
 
 export function SearchedMatchEnumFromJSON(json: any): SearchedMatchEnum {
-    return SearchedMatchEnumFromJSONTyped(json, false);
+	return SearchedMatchEnumFromJSONTyped(json, false);
 }
 
-export function SearchedMatchEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedMatchEnum {
-    return json as SearchedMatchEnum;
+export function SearchedMatchEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedMatchEnum {
+	return json as SearchedMatchEnum;
 }
 
 export function SearchedMatchEnumToJSON(value?: SearchedMatchEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

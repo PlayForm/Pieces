@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This is the specific role of a format.
  * @export
  */
 export const Role = {
-    Original: 'ORIGINAL',
-    Additional: 'ADDITIONAL',
-    Both: 'BOTH',
-    Preview: 'PREVIEW'
+	Original: "ORIGINAL",
+	Additional: "ADDITIONAL",
+	Both: "BOTH",
+	Preview: "PREVIEW",
 } as const;
-export type Role = typeof Role[keyof typeof Role];
-
+export type Role = (typeof Role)[keyof typeof Role];
 
 export function RoleFromJSON(json: any): Role {
-    return RoleFromJSONTyped(json, false);
+	return RoleFromJSONTyped(json, false);
 }
 
-export function RoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): Role {
-    return json as Role;
+export function RoleFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Role {
+	return json as Role;
 }
 
 export function RoleToJSON(value?: Role | null): any {
-    return value as any;
+	return value as any;
 }
-

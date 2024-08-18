@@ -12,43 +12,34 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Aesthetics } from './Aesthetics';
+import { exists } from "../runtime.ts";
+import type { Aesthetics } from "./Aesthetics.tsx";
+import { AestheticsFromJSON, AestheticsToJSON } from "./Aesthetics.tsx";
+import type { AllocationCloud } from "./AllocationCloud.tsx";
 import {
-    AestheticsFromJSON,
-    AestheticsFromJSONTyped,
-    AestheticsToJSON,
-} from './Aesthetics';
-import type { AllocationCloud } from './AllocationCloud';
+	AllocationCloudFromJSON,
+	AllocationCloudToJSON,
+} from "./AllocationCloud.tsx";
+import type { Auth0UserMetadata } from "./Auth0UserMetadata.tsx";
 import {
-    AllocationCloudFromJSON,
-    AllocationCloudFromJSONTyped,
-    AllocationCloudToJSON,
-} from './AllocationCloud';
-import type { Auth0UserMetadata } from './Auth0UserMetadata';
+	Auth0UserMetadataFromJSON,
+	Auth0UserMetadataToJSON,
+} from "./Auth0UserMetadata.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    Auth0UserMetadataFromJSON,
-    Auth0UserMetadataFromJSONTyped,
-    Auth0UserMetadataToJSON,
-} from './Auth0UserMetadata';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ExternalProviders } from "./ExternalProviders.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ExternalProviders } from './ExternalProviders';
+	ExternalProvidersFromJSON,
+	ExternalProvidersToJSON,
+} from "./ExternalProviders.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    ExternalProvidersFromJSON,
-    ExternalProvidersFromJSONTyped,
-    ExternalProvidersToJSON,
-} from './ExternalProviders';
-import type { GroupedTimestamp } from './GroupedTimestamp';
-import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
 
 /**
  * This is the model for a user logged into Pieces.
@@ -56,146 +47,158 @@ import {
  * @interface UserProfile
  */
 export interface UserProfile {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof UserProfile
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * mapped from picture.URL pointing to the user's profile picture. 
-     * @type {string}
-     * @memberof UserProfile
-     */
-    picture?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserProfile
-     */
-    email?: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof UserProfile
-     */
-    created?: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof UserProfile
-     */
-    updated?: GroupedTimestamp;
-    /**
-     * 	(unique) User's username.
-     * 	
-     * @type {string}
-     * @memberof UserProfile
-     */
-    username?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserProfile
-     */
-    id: string;
-    /**
-     * This is the name of the User.
-     * @type {string}
-     * @memberof UserProfile
-     */
-    name?: string;
-    /**
-     * 
-     * @type {Aesthetics}
-     * @memberof UserProfile
-     */
-    aesthetics: Aesthetics;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserProfile
-     */
-    vanityname?: string;
-    /**
-     * 
-     * @type {AllocationCloud}
-     * @memberof UserProfile
-     */
-    allocation?: AllocationCloud;
-    /**
-     * 
-     * @type {ExternalProviders}
-     * @memberof UserProfile
-     */
-    providers?: ExternalProviders;
-    /**
-     * 
-     * @type {Auth0UserMetadata}
-     * @memberof UserProfile
-     */
-    auth0?: Auth0UserMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof UserProfile
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * mapped from picture.URL pointing to the user's profile picture.
+	 * @type {string}
+	 * @memberof UserProfile
+	 */
+	picture?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof UserProfile
+	 */
+	email?: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof UserProfile
+	 */
+	created?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof UserProfile
+	 */
+	updated?: GroupedTimestamp;
+	/**
+	 * 	(unique) User's username.
+	 *
+	 * @type {string}
+	 * @memberof UserProfile
+	 */
+	username?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof UserProfile
+	 */
+	id: string;
+	/**
+	 * This is the name of the User.
+	 * @type {string}
+	 * @memberof UserProfile
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {Aesthetics}
+	 * @memberof UserProfile
+	 */
+	aesthetics: Aesthetics;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof UserProfile
+	 */
+	vanityname?: string;
+	/**
+	 *
+	 * @type {AllocationCloud}
+	 * @memberof UserProfile
+	 */
+	allocation?: AllocationCloud;
+	/**
+	 *
+	 * @type {ExternalProviders}
+	 * @memberof UserProfile
+	 */
+	providers?: ExternalProviders;
+	/**
+	 *
+	 * @type {Auth0UserMetadata}
+	 * @memberof UserProfile
+	 */
+	auth0?: Auth0UserMetadata;
 }
 
 /**
  * Check if a given object implements the UserProfile interface.
  */
 export function instanceOfUserProfile(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "aesthetics" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "aesthetics" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function UserProfileFromJSON(json: any): UserProfile {
-    return UserProfileFromJSONTyped(json, false);
+	return UserProfileFromJSONTyped(json, false);
 }
 
-export function UserProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserProfile {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'picture': !exists(json, 'picture') ? undefined : json['picture'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'created': !exists(json, 'created') ? undefined : GroupedTimestampFromJSON(json['created']),
-        'updated': !exists(json, 'updated') ? undefined : GroupedTimestampFromJSON(json['updated']),
-        'username': !exists(json, 'username') ? undefined : json['username'],
-        'id': json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'aesthetics': AestheticsFromJSON(json['aesthetics']),
-        'vanityname': !exists(json, 'vanityname') ? undefined : json['vanityname'],
-        'allocation': !exists(json, 'allocation') ? undefined : AllocationCloudFromJSON(json['allocation']),
-        'providers': !exists(json, 'providers') ? undefined : ExternalProvidersFromJSON(json['providers']),
-        'auth0': !exists(json, 'auth0') ? undefined : Auth0UserMetadataFromJSON(json['auth0']),
-    };
+export function UserProfileFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): UserProfile {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		picture: exists(json, "picture") ? json["picture"] : undefined,
+		email: exists(json, "email") ? json["email"] : undefined,
+		created: exists(json, "created")
+			? GroupedTimestampFromJSON(json["created"])
+			: undefined,
+		updated: exists(json, "updated")
+			? GroupedTimestampFromJSON(json["updated"])
+			: undefined,
+		username: exists(json, "username") ? json["username"] : undefined,
+		id: json["id"],
+		name: exists(json, "name") ? json["name"] : undefined,
+		aesthetics: AestheticsFromJSON(json["aesthetics"]),
+		vanityname: exists(json, "vanityname") ? json["vanityname"] : undefined,
+		allocation: exists(json, "allocation")
+			? AllocationCloudFromJSON(json["allocation"])
+			: undefined,
+		providers: exists(json, "providers")
+			? ExternalProvidersFromJSON(json["providers"])
+			: undefined,
+		auth0: exists(json, "auth0")
+			? Auth0UserMetadataFromJSON(json["auth0"])
+			: undefined,
+	};
 }
 
 export function UserProfileToJSON(value?: UserProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'picture': value.picture,
-        'email': value.email,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'username': value.username,
-        'id': value.id,
-        'name': value.name,
-        'aesthetics': AestheticsToJSON(value.aesthetics),
-        'vanityname': value.vanityname,
-        'allocation': AllocationCloudToJSON(value.allocation),
-        'providers': ExternalProvidersToJSON(value.providers),
-        'auth0': Auth0UserMetadataToJSON(value.auth0),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		picture: value.picture,
+		email: value.email,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		username: value.username,
+		id: value.id,
+		name: value.name,
+		aesthetics: AestheticsToJSON(value.aesthetics),
+		vanityname: value.vanityname,
+		allocation: AllocationCloudToJSON(value.allocation),
+		providers: ExternalProvidersToJSON(value.providers),
+		auth0: Auth0UserMetadataToJSON(value.auth0),
+	};
 }
-

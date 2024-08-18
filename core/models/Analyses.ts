@@ -12,76 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Analysis } from './Analysis';
+import { exists } from "../runtime.ts";
+import type { Analysis } from "./Analysis.tsx";
+import { AnalysisFromJSON, AnalysisToJSON } from "./Analysis.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AnalysisFromJSON,
-    AnalysisFromJSONTyped,
-    AnalysisToJSON,
-} from './Analysis';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface Analyses
  */
 export interface Analyses {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Analyses
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Analysis>}
-     * @memberof Analyses
-     */
-    iterable: Array<Analysis>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Analyses
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Analysis>}
+	 * @memberof Analyses
+	 */
+	iterable: Analysis[];
 }
 
 /**
  * Check if a given object implements the Analyses interface.
  */
 export function instanceOfAnalyses(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AnalysesFromJSON(json: any): Analyses {
-    return AnalysesFromJSONTyped(json, false);
+	return AnalysesFromJSONTyped(json, false);
 }
 
-export function AnalysesFromJSONTyped(json: any, ignoreDiscriminator: boolean): Analyses {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(AnalysisFromJSON)),
-    };
+export function AnalysesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Analyses {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(AnalysisFromJSON),
+	};
 }
 
 export function AnalysesToJSON(value?: Analyses | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(AnalysisToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(AnalysisToJSON),
+	};
 }
-

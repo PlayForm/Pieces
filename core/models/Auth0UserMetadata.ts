@@ -12,31 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnonymousTemporalRange } from './AnonymousTemporalRange';
+import { exists } from "../runtime.ts";
+import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
-    AnonymousTemporalRangeFromJSON,
-    AnonymousTemporalRangeFromJSONTyped,
-    AnonymousTemporalRangeToJSON,
-} from './AnonymousTemporalRange';
-import type { Auth0OpenAIUserMetadata } from './Auth0OpenAIUserMetadata';
+	AnonymousTemporalRangeFromJSON,
+	AnonymousTemporalRangeToJSON,
+} from "./AnonymousTemporalRange.tsx";
+import type { Auth0OpenAIUserMetadata } from "./Auth0OpenAIUserMetadata.tsx";
 import {
-    Auth0OpenAIUserMetadataFromJSON,
-    Auth0OpenAIUserMetadataFromJSONTyped,
-    Auth0OpenAIUserMetadataToJSON,
-} from './Auth0OpenAIUserMetadata';
-import type { Auth0UserAllocationMetadata } from './Auth0UserAllocationMetadata';
+	Auth0OpenAIUserMetadataFromJSON,
+	Auth0OpenAIUserMetadataToJSON,
+} from "./Auth0OpenAIUserMetadata.tsx";
+import type { Auth0UserAllocationMetadata } from "./Auth0UserAllocationMetadata.tsx";
 import {
-    Auth0UserAllocationMetadataFromJSON,
-    Auth0UserAllocationMetadataFromJSONTyped,
-    Auth0UserAllocationMetadataToJSON,
-} from './Auth0UserAllocationMetadata';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	Auth0UserAllocationMetadataFromJSON,
+	Auth0UserAllocationMetadataToJSON,
+} from "./Auth0UserAllocationMetadata.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * User Metadata from Auth0
@@ -44,104 +40,114 @@ import {
  * @interface Auth0UserMetadata
  */
 export interface Auth0UserMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Auth0UserMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof Auth0UserMetadata
-     */
-    globalId: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Auth0UserMetadata
-     */
-    cloudKey?: string;
-    /**
-     * A customer ID that is added to the user in the case of payments
-     * @type {string}
-     * @memberof Auth0UserMetadata
-     */
-    stripeCustomerId?: string;
-    /**
-     * this is the vanityname of the user.(set from their custom CNAME dns record.) ie mark.pieces.cloud where "mark" is the vanityname.
-     * @type {string}
-     * @memberof Auth0UserMetadata
-     */
-    vanityname?: string;
-    /**
-     * 
-     * @type {Auth0UserAllocationMetadata}
-     * @memberof Auth0UserMetadata
-     */
-    allocation?: Auth0UserAllocationMetadata;
-    /**
-     * 
-     * @type {Auth0OpenAIUserMetadata}
-     * @memberof Auth0UserMetadata
-     */
-    openAI?: Auth0OpenAIUserMetadata;
-    /**
-     * 
-     * @type {AnonymousTemporalRange}
-     * @memberof Auth0UserMetadata
-     */
-    beta?: AnonymousTemporalRange;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Auth0UserMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Auth0UserMetadata
+	 */
+	globalId: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Auth0UserMetadata
+	 */
+	cloudKey?: string;
+	/**
+	 * A customer ID that is added to the user in the case of payments
+	 * @type {string}
+	 * @memberof Auth0UserMetadata
+	 */
+	stripeCustomerId?: string;
+	/**
+	 * this is the vanityname of the user.(set from their custom CNAME dns record.) ie mark.pieces.cloud where "mark" is the vanityname.
+	 * @type {string}
+	 * @memberof Auth0UserMetadata
+	 */
+	vanityname?: string;
+	/**
+	 *
+	 * @type {Auth0UserAllocationMetadata}
+	 * @memberof Auth0UserMetadata
+	 */
+	allocation?: Auth0UserAllocationMetadata;
+	/**
+	 *
+	 * @type {Auth0OpenAIUserMetadata}
+	 * @memberof Auth0UserMetadata
+	 */
+	openAI?: Auth0OpenAIUserMetadata;
+	/**
+	 *
+	 * @type {AnonymousTemporalRange}
+	 * @memberof Auth0UserMetadata
+	 */
+	beta?: AnonymousTemporalRange;
 }
 
 /**
  * Check if a given object implements the Auth0UserMetadata interface.
  */
 export function instanceOfAuth0UserMetadata(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "globalId" in value;
+	let isInstance = true;
+	isInstance = isInstance && "globalId" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function Auth0UserMetadataFromJSON(json: any): Auth0UserMetadata {
-    return Auth0UserMetadataFromJSONTyped(json, false);
+	return Auth0UserMetadataFromJSONTyped(json, false);
 }
 
-export function Auth0UserMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): Auth0UserMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'globalId': json['global_id'],
-        'cloudKey': !exists(json, 'cloud_key') ? undefined : json['cloud_key'],
-        'stripeCustomerId': !exists(json, 'stripe_customer_id') ? undefined : json['stripe_customer_id'],
-        'vanityname': !exists(json, 'vanityname') ? undefined : json['vanityname'],
-        'allocation': !exists(json, 'allocation') ? undefined : Auth0UserAllocationMetadataFromJSON(json['allocation']),
-        'openAI': !exists(json, 'open_AI') ? undefined : Auth0OpenAIUserMetadataFromJSON(json['open_AI']),
-        'beta': !exists(json, 'beta') ? undefined : AnonymousTemporalRangeFromJSON(json['beta']),
-    };
+export function Auth0UserMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Auth0UserMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		globalId: json["global_id"],
+		cloudKey: exists(json, "cloud_key") ? json["cloud_key"] : undefined,
+		stripeCustomerId: exists(json, "stripe_customer_id")
+			? json["stripe_customer_id"]
+			: undefined,
+		vanityname: exists(json, "vanityname") ? json["vanityname"] : undefined,
+		allocation: exists(json, "allocation")
+			? Auth0UserAllocationMetadataFromJSON(json["allocation"])
+			: undefined,
+		openAI: exists(json, "open_AI")
+			? Auth0OpenAIUserMetadataFromJSON(json["open_AI"])
+			: undefined,
+		beta: exists(json, "beta")
+			? AnonymousTemporalRangeFromJSON(json["beta"])
+			: undefined,
+	};
 }
 
 export function Auth0UserMetadataToJSON(value?: Auth0UserMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'global_id': value.globalId,
-        'cloud_key': value.cloudKey,
-        'stripe_customer_id': value.stripeCustomerId,
-        'vanityname': value.vanityname,
-        'allocation': Auth0UserAllocationMetadataToJSON(value.allocation),
-        'open_AI': Auth0OpenAIUserMetadataToJSON(value.openAI),
-        'beta': AnonymousTemporalRangeToJSON(value.beta),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		global_id: value.globalId,
+		cloud_key: value.cloudKey,
+		stripe_customer_id: value.stripeCustomerId,
+		vanityname: value.vanityname,
+		allocation: Auth0UserAllocationMetadataToJSON(value.allocation),
+		open_AI: Auth0OpenAIUserMetadataToJSON(value.openAI),
+		beta: AnonymousTemporalRangeToJSON(value.beta),
+	};
 }
-

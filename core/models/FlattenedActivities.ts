@@ -12,76 +12,78 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedActivity } from './ReferencedActivity';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedActivity } from "./ReferencedActivity.tsx";
 import {
-    ReferencedActivityFromJSON,
-    ReferencedActivityFromJSONTyped,
-    ReferencedActivityToJSON,
-} from './ReferencedActivity';
+	ReferencedActivityFromJSON,
+	ReferencedActivityToJSON,
+} from "./ReferencedActivity.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface FlattenedActivities
  */
 export interface FlattenedActivities {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedActivities
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedActivity>}
-     * @memberof FlattenedActivities
-     */
-    iterable: Array<ReferencedActivity>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedActivities
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedActivity>}
+	 * @memberof FlattenedActivities
+	 */
+	iterable: ReferencedActivity[];
 }
 
 /**
  * Check if a given object implements the FlattenedActivities interface.
  */
 export function instanceOfFlattenedActivities(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedActivitiesFromJSON(json: any): FlattenedActivities {
-    return FlattenedActivitiesFromJSONTyped(json, false);
+	return FlattenedActivitiesFromJSONTyped(json, false);
 }
 
-export function FlattenedActivitiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedActivities {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedActivityFromJSON)),
-    };
+export function FlattenedActivitiesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedActivities {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ReferencedActivityFromJSON),
+	};
 }
 
-export function FlattenedActivitiesToJSON(value?: FlattenedActivities | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedActivityToJSON)),
-    };
+export function FlattenedActivitiesToJSON(
+	value?: FlattenedActivities | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedActivityToJSON),
+	};
 }
-

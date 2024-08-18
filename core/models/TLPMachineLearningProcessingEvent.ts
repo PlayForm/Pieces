@@ -12,75 +12,83 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TLPCodeProcessing } from './TLPCodeProcessing';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TLPCodeProcessing } from "./TLPCodeProcessing.tsx";
 import {
-    TLPCodeProcessingFromJSON,
-    TLPCodeProcessingFromJSONTyped,
-    TLPCodeProcessingToJSON,
-} from './TLPCodeProcessing';
+	TLPCodeProcessingFromJSON,
+	TLPCodeProcessingToJSON,
+} from "./TLPCodeProcessing.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface TLPMachineLearningProcessingEvent
  */
 export interface TLPMachineLearningProcessingEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPMachineLearningProcessingEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TLPCodeProcessing}
-     * @memberof TLPMachineLearningProcessingEvent
-     */
-    code?: TLPCodeProcessing;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPMachineLearningProcessingEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TLPCodeProcessing}
+	 * @memberof TLPMachineLearningProcessingEvent
+	 */
+	code?: TLPCodeProcessing;
 }
 
 /**
  * Check if a given object implements the TLPMachineLearningProcessingEvent interface.
  */
-export function instanceOfTLPMachineLearningProcessingEvent(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTLPMachineLearningProcessingEvent(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPMachineLearningProcessingEventFromJSON(json: any): TLPMachineLearningProcessingEvent {
-    return TLPMachineLearningProcessingEventFromJSONTyped(json, false);
+export function TLPMachineLearningProcessingEventFromJSON(
+	json: any,
+): TLPMachineLearningProcessingEvent {
+	return TLPMachineLearningProcessingEventFromJSONTyped(json, false);
 }
 
-export function TLPMachineLearningProcessingEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPMachineLearningProcessingEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'code': !exists(json, 'code') ? undefined : TLPCodeProcessingFromJSON(json['code']),
-    };
+export function TLPMachineLearningProcessingEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPMachineLearningProcessingEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		code: exists(json, "code")
+			? TLPCodeProcessingFromJSON(json["code"])
+			: undefined,
+	};
 }
 
-export function TLPMachineLearningProcessingEventToJSON(value?: TLPMachineLearningProcessingEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'code': TLPCodeProcessingToJSON(value.code),
-    };
+export function TLPMachineLearningProcessingEventToJSON(
+	value?: TLPMachineLearningProcessingEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		code: TLPCodeProcessingToJSON(value.code),
+	};
 }
-

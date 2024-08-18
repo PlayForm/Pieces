@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { TrackedAssetsEventSearchMetadata } from './TrackedAssetsEventSearchMetadata';
+import { exists } from "../runtime.ts";
+import type { TrackedAssetsEventSearchMetadata } from "./TrackedAssetsEventSearchMetadata.tsx";
 import {
-    TrackedAssetsEventSearchMetadataFromJSON,
-    TrackedAssetsEventSearchMetadataFromJSONTyped,
-    TrackedAssetsEventSearchMetadataToJSON,
-} from './TrackedAssetsEventSearchMetadata';
+	TrackedAssetsEventSearchMetadataFromJSON,
+	TrackedAssetsEventSearchMetadataToJSON,
+} from "./TrackedAssetsEventSearchMetadata.tsx";
 
 /**
  * Additional Metadata as Neeeded i.e. Search + Query, etc
@@ -26,47 +25,55 @@ import {
  * @interface SeededTrackedAssetsEventMetadata
  */
 export interface SeededTrackedAssetsEventMetadata {
-    /**
-     * 
-     * @type {TrackedAssetsEventSearchMetadata}
-     * @memberof SeededTrackedAssetsEventMetadata
-     */
-    search?: TrackedAssetsEventSearchMetadata;
+	/**
+	 *
+	 * @type {TrackedAssetsEventSearchMetadata}
+	 * @memberof SeededTrackedAssetsEventMetadata
+	 */
+	search?: TrackedAssetsEventSearchMetadata;
 }
 
 /**
  * Check if a given object implements the SeededTrackedAssetsEventMetadata interface.
  */
-export function instanceOfSeededTrackedAssetsEventMetadata(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededTrackedAssetsEventMetadata(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededTrackedAssetsEventMetadataFromJSON(json: any): SeededTrackedAssetsEventMetadata {
-    return SeededTrackedAssetsEventMetadataFromJSONTyped(json, false);
+export function SeededTrackedAssetsEventMetadataFromJSON(
+	json: any,
+): SeededTrackedAssetsEventMetadata {
+	return SeededTrackedAssetsEventMetadataFromJSONTyped(json, false);
 }
 
-export function SeededTrackedAssetsEventMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededTrackedAssetsEventMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'search': !exists(json, 'search') ? undefined : TrackedAssetsEventSearchMetadataFromJSON(json['search']),
-    };
+export function SeededTrackedAssetsEventMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededTrackedAssetsEventMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		search: exists(json, "search")
+			? TrackedAssetsEventSearchMetadataFromJSON(json["search"])
+			: undefined,
+	};
 }
 
-export function SeededTrackedAssetsEventMetadataToJSON(value?: SeededTrackedAssetsEventMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'search': TrackedAssetsEventSearchMetadataToJSON(value.search),
-    };
+export function SeededTrackedAssetsEventMetadataToJSON(
+	value?: SeededTrackedAssetsEventMetadata | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		search: TrackedAssetsEventSearchMetadataToJSON(value.search),
+	};
 }
-

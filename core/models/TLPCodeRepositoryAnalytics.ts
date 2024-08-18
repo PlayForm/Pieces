@@ -12,69 +12,74 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface TLPCodeRepositoryAnalytics
  */
 export interface TLPCodeRepositoryAnalytics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeRepositoryAnalytics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeRepositoryAnalytics
-     */
-    id?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeRepositoryAnalytics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeRepositoryAnalytics
+	 */
+	id?: string;
 }
 
 /**
  * Check if a given object implements the TLPCodeRepositoryAnalytics interface.
  */
-export function instanceOfTLPCodeRepositoryAnalytics(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTLPCodeRepositoryAnalytics(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeRepositoryAnalyticsFromJSON(json: any): TLPCodeRepositoryAnalytics {
-    return TLPCodeRepositoryAnalyticsFromJSONTyped(json, false);
+export function TLPCodeRepositoryAnalyticsFromJSON(
+	json: any,
+): TLPCodeRepositoryAnalytics {
+	return TLPCodeRepositoryAnalyticsFromJSONTyped(json, false);
 }
 
-export function TLPCodeRepositoryAnalyticsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeRepositoryAnalytics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': !exists(json, 'id') ? undefined : json['id'],
-    };
+export function TLPCodeRepositoryAnalyticsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeRepositoryAnalytics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: exists(json, "id") ? json["id"] : undefined,
+	};
 }
 
-export function TLPCodeRepositoryAnalyticsToJSON(value?: TLPCodeRepositoryAnalytics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-    };
+export function TLPCodeRepositoryAnalyticsToJSON(
+	value?: TLPCodeRepositoryAnalytics | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+	};
 }
-

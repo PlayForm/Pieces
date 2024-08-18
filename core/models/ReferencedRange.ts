@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedRange } from './FlattenedRange';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedRange } from "./FlattenedRange.tsx";
 import {
-    FlattenedRangeFromJSON,
-    FlattenedRangeFromJSONTyped,
-    FlattenedRangeToJSON,
-} from './FlattenedRange';
+	FlattenedRangeFromJSON,
+	FlattenedRangeToJSON,
+} from "./FlattenedRange.tsx";
 
 /**
  * This is a minimal version of a Range, with mainly an Id.
@@ -32,64 +30,68 @@ import {
  * @interface ReferencedRange
  */
 export interface ReferencedRange {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedRange
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedRange
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedRange}
-     * @memberof ReferencedRange
-     */
-    reference?: FlattenedRange;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedRange
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedRange
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedRange}
+	 * @memberof ReferencedRange
+	 */
+	reference?: FlattenedRange;
 }
 
 /**
  * Check if a given object implements the ReferencedRange interface.
  */
 export function instanceOfReferencedRange(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReferencedRangeFromJSON(json: any): ReferencedRange {
-    return ReferencedRangeFromJSONTyped(json, false);
+	return ReferencedRangeFromJSONTyped(json, false);
 }
 
-export function ReferencedRangeFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedRange {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedRangeFromJSON(json['reference']),
-    };
+export function ReferencedRangeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedRange {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedRangeFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
 export function ReferencedRangeToJSON(value?: ReferencedRange | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedRangeToJSON(value.reference),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedRangeToJSON(value.reference),
+	};
 }
-

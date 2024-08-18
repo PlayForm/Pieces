@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamPatternEngineSources } from './WorkstreamPatternEngineSources';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamPatternEngineSources } from "./WorkstreamPatternEngineSources.tsx";
 import {
-    WorkstreamPatternEngineSourcesFromJSON,
-    WorkstreamPatternEngineSourcesFromJSONTyped,
-    WorkstreamPatternEngineSourcesToJSON,
-} from './WorkstreamPatternEngineSources';
+	WorkstreamPatternEngineSourcesFromJSON,
+	WorkstreamPatternEngineSourcesToJSON,
+} from "./WorkstreamPatternEngineSources.tsx";
 
 /**
  * This is a search realted to the workstream pattern engine data,
@@ -33,55 +31,63 @@ import {
  * @interface WorkstreamSearchOptions
  */
 export interface WorkstreamSearchOptions {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamSearchOptions
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {WorkstreamPatternEngineSources}
-     * @memberof WorkstreamSearchOptions
-     */
-    sources?: WorkstreamPatternEngineSources;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamSearchOptions
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {WorkstreamPatternEngineSources}
+	 * @memberof WorkstreamSearchOptions
+	 */
+	sources?: WorkstreamPatternEngineSources;
 }
 
 /**
  * Check if a given object implements the WorkstreamSearchOptions interface.
  */
-export function instanceOfWorkstreamSearchOptions(value: object): boolean {
-    let isInstance = true;
+export function instanceOfWorkstreamSearchOptions(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamSearchOptionsFromJSON(json: any): WorkstreamSearchOptions {
-    return WorkstreamSearchOptionsFromJSONTyped(json, false);
+export function WorkstreamSearchOptionsFromJSON(
+	json: any,
+): WorkstreamSearchOptions {
+	return WorkstreamSearchOptionsFromJSONTyped(json, false);
 }
 
-export function WorkstreamSearchOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamSearchOptions {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'sources': !exists(json, 'sources') ? undefined : WorkstreamPatternEngineSourcesFromJSON(json['sources']),
-    };
+export function WorkstreamSearchOptionsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamSearchOptions {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		sources: exists(json, "sources")
+			? WorkstreamPatternEngineSourcesFromJSON(json["sources"])
+			: undefined,
+	};
 }
 
-export function WorkstreamSearchOptionsToJSON(value?: WorkstreamSearchOptions | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'sources': WorkstreamPatternEngineSourcesToJSON(value.sources),
-    };
+export function WorkstreamSearchOptionsToJSON(
+	value?: WorkstreamSearchOptions | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		sources: WorkstreamPatternEngineSourcesToJSON(value.sources),
+	};
 }
-

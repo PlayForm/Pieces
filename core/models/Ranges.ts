@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Range } from './Range';
-import {
-    RangeFromJSON,
-    RangeFromJSONTyped,
-    RangeToJSON,
-} from './Range';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Range } from "./Range.tsx";
+import { RangeFromJSON, RangeToJSON } from "./Range.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a collection of many Ranges
@@ -38,80 +29,82 @@ import {
  * @interface Ranges
  */
 export interface Ranges {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Ranges
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Range>}
-     * @memberof Ranges
-     */
-    iterable: Array<Range>;
-    /**
-     * This is a Map<String, int> where the the key is an range id.
-     * @type {{ [key: string]: number; }}
-     * @memberof Ranges
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof Ranges
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Ranges
-     */
-    continuous?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Ranges
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Range>}
+	 * @memberof Ranges
+	 */
+	iterable: Range[];
+	/**
+	 * This is a Map<String, int> where the the key is an range id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof Ranges
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Ranges
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof Ranges
+	 */
+	continuous?: boolean;
 }
 
 /**
  * Check if a given object implements the Ranges interface.
  */
 export function instanceOfRanges(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function RangesFromJSON(json: any): Ranges {
-    return RangesFromJSONTyped(json, false);
+	return RangesFromJSONTyped(json, false);
 }
 
-export function RangesFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ranges {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(RangeFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'continuous': !exists(json, 'continuous') ? undefined : json['continuous'],
-    };
+export function RangesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Ranges {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(RangeFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		continuous: exists(json, "continuous") ? json["continuous"] : undefined,
+	};
 }
 
 export function RangesToJSON(value?: Ranges | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(RangeToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-        'continuous': value.continuous,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(RangeToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+		continuous: value.continuous,
+	};
 }
-

@@ -12,107 +12,110 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { UpdatingStatusEnum } from './UpdatingStatusEnum';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { UpdatingStatusEnum } from "./UpdatingStatusEnum.tsx";
 import {
-    UpdatingStatusEnumFromJSON,
-    UpdatingStatusEnumFromJSONTyped,
-    UpdatingStatusEnumToJSON,
-} from './UpdatingStatusEnum';
+	UpdatingStatusEnumFromJSON,
+	UpdatingStatusEnumToJSON,
+} from "./UpdatingStatusEnum.tsx";
 
 /**
  * This is the model for the progress of the current update of Pieces os.
- * 
+ *
  * /os/update/check/stream && /os/update/check/
- * 
+ *
  * we will emit on a progress update
- * 
+ *
  * updated: is an optional property that will let us know when the update was checked last.
- * 
+ *
  * NOTE: it is reccommended to use the stream instead of pulling.
  * NOTE: lets think about if we want to have a closing(as well as how we want to handle restarts)
  * @export
  * @interface OSServerUpdateStatus
  */
 export interface OSServerUpdateStatus {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSServerUpdateStatus
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {UpdatingStatusEnum}
-     * @memberof OSServerUpdateStatus
-     */
-    status: UpdatingStatusEnum;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof OSServerUpdateStatus
-     */
-    updated?: GroupedTimestamp;
-    /**
-     * Optionally if the update is in progress you will recieve a download percent(from 0-100).
-     * @type {number}
-     * @memberof OSServerUpdateStatus
-     */
-    percentage?: number | null;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSServerUpdateStatus
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {UpdatingStatusEnum}
+	 * @memberof OSServerUpdateStatus
+	 */
+	status: UpdatingStatusEnum;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof OSServerUpdateStatus
+	 */
+	updated?: GroupedTimestamp;
+	/**
+	 * Optionally if the update is in progress you will recieve a download percent(from 0-100).
+	 * @type {number}
+	 * @memberof OSServerUpdateStatus
+	 */
+	percentage?: number | null;
 }
 
 /**
  * Check if a given object implements the OSServerUpdateStatus interface.
  */
 export function instanceOfOSServerUpdateStatus(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "status" in value;
+	let isInstance = true;
+	isInstance = isInstance && "status" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function OSServerUpdateStatusFromJSON(json: any): OSServerUpdateStatus {
-    return OSServerUpdateStatusFromJSONTyped(json, false);
+	return OSServerUpdateStatusFromJSONTyped(json, false);
 }
 
-export function OSServerUpdateStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSServerUpdateStatus {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'status': UpdatingStatusEnumFromJSON(json['status']),
-        'updated': !exists(json, 'updated') ? undefined : GroupedTimestampFromJSON(json['updated']),
-        'percentage': !exists(json, 'percentage') ? undefined : json['percentage'],
-    };
+export function OSServerUpdateStatusFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSServerUpdateStatus {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		status: UpdatingStatusEnumFromJSON(json["status"]),
+		updated: exists(json, "updated")
+			? GroupedTimestampFromJSON(json["updated"])
+			: undefined,
+		percentage: exists(json, "percentage") ? json["percentage"] : undefined,
+	};
 }
 
-export function OSServerUpdateStatusToJSON(value?: OSServerUpdateStatus | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'status': UpdatingStatusEnumToJSON(value.status),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'percentage': value.percentage,
-    };
+export function OSServerUpdateStatusToJSON(
+	value?: OSServerUpdateStatus | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		status: UpdatingStatusEnumToJSON(value.status),
+		updated: GroupedTimestampToJSON(value.updated),
+		percentage: value.percentage,
+	};
 }
-

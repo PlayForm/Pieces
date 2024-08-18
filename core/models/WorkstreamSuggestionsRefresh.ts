@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamSuggestions } from './WorkstreamSuggestions';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamSuggestions } from "./WorkstreamSuggestions.tsx";
 import {
-    WorkstreamSuggestionsFromJSON,
-    WorkstreamSuggestionsFromJSONTyped,
-    WorkstreamSuggestionsToJSON,
-} from './WorkstreamSuggestions';
+	WorkstreamSuggestionsFromJSON,
+	WorkstreamSuggestionsToJSON,
+} from "./WorkstreamSuggestions.tsx";
 
 /**
  * This will return the new refreshed suggestions, about what data changed, and the data that was used to bias the suggestions.
@@ -32,56 +30,62 @@ import {
  * @interface WorkstreamSuggestionsRefresh
  */
 export interface WorkstreamSuggestionsRefresh {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamSuggestionsRefresh
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {WorkstreamSuggestions}
-     * @memberof WorkstreamSuggestionsRefresh
-     */
-    suggestions: WorkstreamSuggestions;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamSuggestionsRefresh
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {WorkstreamSuggestions}
+	 * @memberof WorkstreamSuggestionsRefresh
+	 */
+	suggestions: WorkstreamSuggestions;
 }
 
 /**
  * Check if a given object implements the WorkstreamSuggestionsRefresh interface.
  */
 export function instanceOfWorkstreamSuggestionsRefresh(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "suggestions" in value;
+	let isInstance = true;
+	isInstance = isInstance && "suggestions" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamSuggestionsRefreshFromJSON(json: any): WorkstreamSuggestionsRefresh {
-    return WorkstreamSuggestionsRefreshFromJSONTyped(json, false);
+export function WorkstreamSuggestionsRefreshFromJSON(
+	json: any,
+): WorkstreamSuggestionsRefresh {
+	return WorkstreamSuggestionsRefreshFromJSONTyped(json, false);
 }
 
-export function WorkstreamSuggestionsRefreshFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamSuggestionsRefresh {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'suggestions': WorkstreamSuggestionsFromJSON(json['suggestions']),
-    };
+export function WorkstreamSuggestionsRefreshFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamSuggestionsRefresh {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		suggestions: WorkstreamSuggestionsFromJSON(json["suggestions"]),
+	};
 }
 
-export function WorkstreamSuggestionsRefreshToJSON(value?: WorkstreamSuggestionsRefresh | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'suggestions': WorkstreamSuggestionsToJSON(value.suggestions),
-    };
+export function WorkstreamSuggestionsRefreshToJSON(
+	value?: WorkstreamSuggestionsRefresh | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		suggestions: WorkstreamSuggestionsToJSON(value.suggestions),
+	};
 }
-

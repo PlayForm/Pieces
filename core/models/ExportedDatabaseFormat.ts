@@ -12,79 +12,84 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface ExportedDatabaseFormat
  */
 export interface ExportedDatabaseFormat {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ExportedDatabaseFormat
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * this is the id of the format
-     * @type {string}
-     * @memberof ExportedDatabaseFormat
-     */
-    id: string;
-    /**
-     * these are bytes.
-     * @type {Array<number>}
-     * @memberof ExportedDatabaseFormat
-     */
-    raw: Array<number>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ExportedDatabaseFormat
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * this is the id of the format
+	 * @type {string}
+	 * @memberof ExportedDatabaseFormat
+	 */
+	id: string;
+	/**
+	 * these are bytes.
+	 * @type {Array<number>}
+	 * @memberof ExportedDatabaseFormat
+	 */
+	raw: number[];
 }
 
 /**
  * Check if a given object implements the ExportedDatabaseFormat interface.
  */
 export function instanceOfExportedDatabaseFormat(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "raw" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "raw" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ExportedDatabaseFormatFromJSON(json: any): ExportedDatabaseFormat {
-    return ExportedDatabaseFormatFromJSONTyped(json, false);
+export function ExportedDatabaseFormatFromJSON(
+	json: any,
+): ExportedDatabaseFormat {
+	return ExportedDatabaseFormatFromJSONTyped(json, false);
 }
 
-export function ExportedDatabaseFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExportedDatabaseFormat {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'raw': json['raw'],
-    };
+export function ExportedDatabaseFormatFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExportedDatabaseFormat {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		raw: json["raw"],
+	};
 }
 
-export function ExportedDatabaseFormatToJSON(value?: ExportedDatabaseFormat | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'raw': value.raw,
-    };
+export function ExportedDatabaseFormatToJSON(
+	value?: ExportedDatabaseFormat | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		raw: value.raw,
+	};
 }
-

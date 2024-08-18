@@ -12,47 +12,35 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ApplicationNameEnum } from './ApplicationNameEnum';
+import { exists } from "../runtime.ts";
+import type { ApplicationNameEnum } from "./ApplicationNameEnum.tsx";
 import {
-    ApplicationNameEnumFromJSON,
-    ApplicationNameEnumFromJSONTyped,
-    ApplicationNameEnumToJSON,
-} from './ApplicationNameEnum';
-import type { CapabilitiesEnum } from './CapabilitiesEnum';
+	ApplicationNameEnumFromJSON,
+	ApplicationNameEnumToJSON,
+} from "./ApplicationNameEnum.tsx";
+import type { CapabilitiesEnum } from "./CapabilitiesEnum.tsx";
 import {
-    CapabilitiesEnumFromJSON,
-    CapabilitiesEnumFromJSONTyped,
-    CapabilitiesEnumToJSON,
-} from './CapabilitiesEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	CapabilitiesEnumFromJSON,
+	CapabilitiesEnumToJSON,
+} from "./CapabilitiesEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { MechanismEnum } from './MechanismEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { PlatformEnum } from './PlatformEnum';
-import {
-    PlatformEnumFromJSON,
-    PlatformEnumFromJSONTyped,
-    PlatformEnumToJSON,
-} from './PlatformEnum';
-import type { PrivacyEnum } from './PrivacyEnum';
-import {
-    PrivacyEnumFromJSON,
-    PrivacyEnumFromJSONTyped,
-    PrivacyEnumToJSON,
-} from './PrivacyEnum';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { PlatformEnum } from "./PlatformEnum.tsx";
+import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
+import type { PrivacyEnum } from "./PrivacyEnum.tsx";
+import { PrivacyEnumFromJSON, PrivacyEnumToJSON } from "./PrivacyEnum.tsx";
 
 /**
  * A Model to describe what application a format/analytics event originated.
- * 
+ *
  * mechanism: This will let us know where this came from.
  * ie.only 2 enums are used here or else throw and error.
  * default mechanism here is MANUAL- meaning that this came from our user Connecting an application.
@@ -61,125 +49,133 @@ import {
  * @interface Application
  */
 export interface Application {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Application
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * The ID of the application at the device level
-     * @type {string}
-     * @memberof Application
-     */
-    id: string;
-    /**
-     * 
-     * @type {ApplicationNameEnum}
-     * @memberof Application
-     */
-    name: ApplicationNameEnum;
-    /**
-     * This is the specific version number 0.0.0
-     * @type {string}
-     * @memberof Application
-     */
-    version: string;
-    /**
-     * 
-     * @type {PlatformEnum}
-     * @memberof Application
-     */
-    platform: PlatformEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Application
-     */
-    onboarded: boolean;
-    /**
-     * 
-     * @type {PrivacyEnum}
-     * @memberof Application
-     */
-    privacy: PrivacyEnum;
-    /**
-     * 
-     * @type {CapabilitiesEnum}
-     * @memberof Application
-     */
-    capabilities?: CapabilitiesEnum;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof Application
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.
-     * @type {boolean}
-     * @memberof Application
-     */
-    automaticUnload?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Application
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * The ID of the application at the device level
+	 * @type {string}
+	 * @memberof Application
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {ApplicationNameEnum}
+	 * @memberof Application
+	 */
+	name: ApplicationNameEnum;
+	/**
+	 * This is the specific version number 0.0.0
+	 * @type {string}
+	 * @memberof Application
+	 */
+	version: string;
+	/**
+	 *
+	 * @type {PlatformEnum}
+	 * @memberof Application
+	 */
+	platform: PlatformEnum;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof Application
+	 */
+	onboarded: boolean;
+	/**
+	 *
+	 * @type {PrivacyEnum}
+	 * @memberof Application
+	 */
+	privacy: PrivacyEnum;
+	/**
+	 *
+	 * @type {CapabilitiesEnum}
+	 * @memberof Application
+	 */
+	capabilities?: CapabilitiesEnum;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof Application
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 * This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.
+	 * @type {boolean}
+	 * @memberof Application
+	 */
+	automaticUnload?: boolean;
 }
 
 /**
  * Check if a given object implements the Application interface.
  */
 export function instanceOfApplication(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "version" in value;
-    isInstance = isInstance && "platform" in value;
-    isInstance = isInstance && "onboarded" in value;
-    isInstance = isInstance && "privacy" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "name" in value;
+	isInstance = isInstance && "version" in value;
+	isInstance = isInstance && "platform" in value;
+	isInstance = isInstance && "onboarded" in value;
+	isInstance = isInstance && "privacy" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ApplicationFromJSON(json: any): Application {
-    return ApplicationFromJSONTyped(json, false);
+	return ApplicationFromJSONTyped(json, false);
 }
 
-export function ApplicationFromJSONTyped(json: any, ignoreDiscriminator: boolean): Application {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'name': ApplicationNameEnumFromJSON(json['name']),
-        'version': json['version'],
-        'platform': PlatformEnumFromJSON(json['platform']),
-        'onboarded': json['onboarded'],
-        'privacy': PrivacyEnumFromJSON(json['privacy']),
-        'capabilities': !exists(json, 'capabilities') ? undefined : CapabilitiesEnumFromJSON(json['capabilities']),
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'automaticUnload': !exists(json, 'automaticUnload') ? undefined : json['automaticUnload'],
-    };
+export function ApplicationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Application {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		name: ApplicationNameEnumFromJSON(json["name"]),
+		version: json["version"],
+		platform: PlatformEnumFromJSON(json["platform"]),
+		onboarded: json["onboarded"],
+		privacy: PrivacyEnumFromJSON(json["privacy"]),
+		capabilities: exists(json, "capabilities")
+			? CapabilitiesEnumFromJSON(json["capabilities"])
+			: undefined,
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		automaticUnload: exists(json, "automaticUnload")
+			? json["automaticUnload"]
+			: undefined,
+	};
 }
 
 export function ApplicationToJSON(value?: Application | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'name': ApplicationNameEnumToJSON(value.name),
-        'version': value.version,
-        'platform': PlatformEnumToJSON(value.platform),
-        'onboarded': value.onboarded,
-        'privacy': PrivacyEnumToJSON(value.privacy),
-        'capabilities': CapabilitiesEnumToJSON(value.capabilities),
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'automaticUnload': value.automaticUnload,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		name: ApplicationNameEnumToJSON(value.name),
+		version: value.version,
+		platform: PlatformEnumToJSON(value.platform),
+		onboarded: value.onboarded,
+		privacy: PrivacyEnumToJSON(value.privacy),
+		capabilities: CapabilitiesEnumToJSON(value.capabilities),
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		automaticUnload: value.automaticUnload,
+	};
 }
-

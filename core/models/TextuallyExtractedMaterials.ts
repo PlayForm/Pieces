@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TextuallyExtractedMaterial } from './TextuallyExtractedMaterial';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TextuallyExtractedMaterial } from "./TextuallyExtractedMaterial.tsx";
 import {
-    TextuallyExtractedMaterialFromJSON,
-    TextuallyExtractedMaterialFromJSONTyped,
-    TextuallyExtractedMaterialToJSON,
-} from './TextuallyExtractedMaterial';
+	TextuallyExtractedMaterialFromJSON,
+	TextuallyExtractedMaterialToJSON,
+} from "./TextuallyExtractedMaterial.tsx";
 
 /**
  * This is a plural of an Extraction
@@ -32,56 +30,66 @@ import {
  * @interface TextuallyExtractedMaterials
  */
 export interface TextuallyExtractedMaterials {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TextuallyExtractedMaterials
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<TextuallyExtractedMaterial>}
-     * @memberof TextuallyExtractedMaterials
-     */
-    iterable: Array<TextuallyExtractedMaterial>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TextuallyExtractedMaterials
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<TextuallyExtractedMaterial>}
+	 * @memberof TextuallyExtractedMaterials
+	 */
+	iterable: TextuallyExtractedMaterial[];
 }
 
 /**
  * Check if a given object implements the TextuallyExtractedMaterials interface.
  */
 export function instanceOfTextuallyExtractedMaterials(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TextuallyExtractedMaterialsFromJSON(json: any): TextuallyExtractedMaterials {
-    return TextuallyExtractedMaterialsFromJSONTyped(json, false);
+export function TextuallyExtractedMaterialsFromJSON(
+	json: any,
+): TextuallyExtractedMaterials {
+	return TextuallyExtractedMaterialsFromJSONTyped(json, false);
 }
 
-export function TextuallyExtractedMaterialsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TextuallyExtractedMaterials {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(TextuallyExtractedMaterialFromJSON)),
-    };
+export function TextuallyExtractedMaterialsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TextuallyExtractedMaterials {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			TextuallyExtractedMaterialFromJSON,
+		),
+	};
 }
 
-export function TextuallyExtractedMaterialsToJSON(value?: TextuallyExtractedMaterials | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(TextuallyExtractedMaterialToJSON)),
-    };
+export function TextuallyExtractedMaterialsToJSON(
+	value?: TextuallyExtractedMaterials | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			TextuallyExtractedMaterialToJSON,
+		),
+	};
 }
-

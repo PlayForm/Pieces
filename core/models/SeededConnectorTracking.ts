@@ -12,189 +12,203 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededTrackedAdoptionEvent } from './SeededTrackedAdoptionEvent';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededTrackedAdoptionEvent } from "./SeededTrackedAdoptionEvent.tsx";
 import {
-    SeededTrackedAdoptionEventFromJSON,
-    SeededTrackedAdoptionEventFromJSONTyped,
-    SeededTrackedAdoptionEventToJSON,
-} from './SeededTrackedAdoptionEvent';
-import type { SeededTrackedAssetEvent } from './SeededTrackedAssetEvent';
+	SeededTrackedAdoptionEventFromJSON,
+	SeededTrackedAdoptionEventToJSON,
+} from "./SeededTrackedAdoptionEvent.tsx";
+import type { SeededTrackedAssetEvent } from "./SeededTrackedAssetEvent.tsx";
 import {
-    SeededTrackedAssetEventFromJSON,
-    SeededTrackedAssetEventFromJSONTyped,
-    SeededTrackedAssetEventToJSON,
-} from './SeededTrackedAssetEvent';
-import type { SeededTrackedAssetsEvent } from './SeededTrackedAssetsEvent';
+	SeededTrackedAssetEventFromJSON,
+	SeededTrackedAssetEventToJSON,
+} from "./SeededTrackedAssetEvent.tsx";
+import type { SeededTrackedAssetsEvent } from "./SeededTrackedAssetsEvent.tsx";
 import {
-    SeededTrackedAssetsEventFromJSON,
-    SeededTrackedAssetsEventFromJSONTyped,
-    SeededTrackedAssetsEventToJSON,
-} from './SeededTrackedAssetsEvent';
-import type { SeededTrackedConversationEvent } from './SeededTrackedConversationEvent';
+	SeededTrackedAssetsEventFromJSON,
+	SeededTrackedAssetsEventToJSON,
+} from "./SeededTrackedAssetsEvent.tsx";
+import type { SeededTrackedConversationEvent } from "./SeededTrackedConversationEvent.tsx";
 import {
-    SeededTrackedConversationEventFromJSON,
-    SeededTrackedConversationEventFromJSONTyped,
-    SeededTrackedConversationEventToJSON,
-} from './SeededTrackedConversationEvent';
-import type { SeededTrackedFormatEvent } from './SeededTrackedFormatEvent';
+	SeededTrackedConversationEventFromJSON,
+	SeededTrackedConversationEventToJSON,
+} from "./SeededTrackedConversationEvent.tsx";
+import type { SeededTrackedFormatEvent } from "./SeededTrackedFormatEvent.tsx";
 import {
-    SeededTrackedFormatEventFromJSON,
-    SeededTrackedFormatEventFromJSONTyped,
-    SeededTrackedFormatEventToJSON,
-} from './SeededTrackedFormatEvent';
-import type { SeededTrackedInteractionEvent } from './SeededTrackedInteractionEvent';
+	SeededTrackedFormatEventFromJSON,
+	SeededTrackedFormatEventToJSON,
+} from "./SeededTrackedFormatEvent.tsx";
+import type { SeededTrackedInteractionEvent } from "./SeededTrackedInteractionEvent.tsx";
 import {
-    SeededTrackedInteractionEventFromJSON,
-    SeededTrackedInteractionEventFromJSONTyped,
-    SeededTrackedInteractionEventToJSON,
-} from './SeededTrackedInteractionEvent';
-import type { SeededTrackedKeyboardEvent } from './SeededTrackedKeyboardEvent';
+	SeededTrackedInteractionEventFromJSON,
+	SeededTrackedInteractionEventToJSON,
+} from "./SeededTrackedInteractionEvent.tsx";
+import type { SeededTrackedKeyboardEvent } from "./SeededTrackedKeyboardEvent.tsx";
 import {
-    SeededTrackedKeyboardEventFromJSON,
-    SeededTrackedKeyboardEventFromJSONTyped,
-    SeededTrackedKeyboardEventToJSON,
-} from './SeededTrackedKeyboardEvent';
-import type { SeededTrackedMachineLearningEvent } from './SeededTrackedMachineLearningEvent';
+	SeededTrackedKeyboardEventFromJSON,
+	SeededTrackedKeyboardEventToJSON,
+} from "./SeededTrackedKeyboardEvent.tsx";
+import type { SeededTrackedMachineLearningEvent } from "./SeededTrackedMachineLearningEvent.tsx";
 import {
-    SeededTrackedMachineLearningEventFromJSON,
-    SeededTrackedMachineLearningEventFromJSONTyped,
-    SeededTrackedMachineLearningEventToJSON,
-} from './SeededTrackedMachineLearningEvent';
-import type { SeededTrackedSessionEvent } from './SeededTrackedSessionEvent';
+	SeededTrackedMachineLearningEventFromJSON,
+	SeededTrackedMachineLearningEventToJSON,
+} from "./SeededTrackedMachineLearningEvent.tsx";
+import type { SeededTrackedSessionEvent } from "./SeededTrackedSessionEvent.tsx";
 import {
-    SeededTrackedSessionEventFromJSON,
-    SeededTrackedSessionEventFromJSONTyped,
-    SeededTrackedSessionEventToJSON,
-} from './SeededTrackedSessionEvent';
+	SeededTrackedSessionEventFromJSON,
+	SeededTrackedSessionEventToJSON,
+} from "./SeededTrackedSessionEvent.tsx";
 
 /**
  * This model is designed to be light weight and low friction while most of the heavy lifting will be happening inside of the context servers.
- * 
+ *
  * This Model is important because this has references to our materials, instead of fully referenced materials.(very similar to our SeededTrackedEvent, consider consolidating and converting these to Referenced models instead of ID's)
  * @export
  * @interface SeededConnectorTracking
  */
 export interface SeededConnectorTracking {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededConnectorTracking
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededTrackedFormatEvent}
-     * @memberof SeededConnectorTracking
-     */
-    format?: SeededTrackedFormatEvent;
-    /**
-     * 
-     * @type {SeededTrackedAssetEvent}
-     * @memberof SeededConnectorTracking
-     */
-    asset?: SeededTrackedAssetEvent;
-    /**
-     * 
-     * @type {SeededTrackedInteractionEvent}
-     * @memberof SeededConnectorTracking
-     */
-    interaction?: SeededTrackedInteractionEvent;
-    /**
-     * 
-     * @type {SeededTrackedKeyboardEvent}
-     * @memberof SeededConnectorTracking
-     */
-    keyboard?: SeededTrackedKeyboardEvent;
-    /**
-     * 
-     * @type {SeededTrackedSessionEvent}
-     * @memberof SeededConnectorTracking
-     */
-    session?: SeededTrackedSessionEvent;
-    /**
-     * 
-     * @type {SeededTrackedAssetsEvent}
-     * @memberof SeededConnectorTracking
-     */
-    assets?: SeededTrackedAssetsEvent;
-    /**
-     * 
-     * @type {SeededTrackedMachineLearningEvent}
-     * @memberof SeededConnectorTracking
-     */
-    ml?: SeededTrackedMachineLearningEvent;
-    /**
-     * 
-     * @type {SeededTrackedAdoptionEvent}
-     * @memberof SeededConnectorTracking
-     */
-    adoption?: SeededTrackedAdoptionEvent;
-    /**
-     * 
-     * @type {SeededTrackedConversationEvent}
-     * @memberof SeededConnectorTracking
-     */
-    conversation?: SeededTrackedConversationEvent;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededConnectorTracking
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededTrackedFormatEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	format?: SeededTrackedFormatEvent;
+	/**
+	 *
+	 * @type {SeededTrackedAssetEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	asset?: SeededTrackedAssetEvent;
+	/**
+	 *
+	 * @type {SeededTrackedInteractionEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	interaction?: SeededTrackedInteractionEvent;
+	/**
+	 *
+	 * @type {SeededTrackedKeyboardEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	keyboard?: SeededTrackedKeyboardEvent;
+	/**
+	 *
+	 * @type {SeededTrackedSessionEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	session?: SeededTrackedSessionEvent;
+	/**
+	 *
+	 * @type {SeededTrackedAssetsEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	assets?: SeededTrackedAssetsEvent;
+	/**
+	 *
+	 * @type {SeededTrackedMachineLearningEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	ml?: SeededTrackedMachineLearningEvent;
+	/**
+	 *
+	 * @type {SeededTrackedAdoptionEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	adoption?: SeededTrackedAdoptionEvent;
+	/**
+	 *
+	 * @type {SeededTrackedConversationEvent}
+	 * @memberof SeededConnectorTracking
+	 */
+	conversation?: SeededTrackedConversationEvent;
 }
 
 /**
  * Check if a given object implements the SeededConnectorTracking interface.
  */
-export function instanceOfSeededConnectorTracking(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededConnectorTracking(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededConnectorTrackingFromJSON(json: any): SeededConnectorTracking {
-    return SeededConnectorTrackingFromJSONTyped(json, false);
+export function SeededConnectorTrackingFromJSON(
+	json: any,
+): SeededConnectorTracking {
+	return SeededConnectorTrackingFromJSONTyped(json, false);
 }
 
-export function SeededConnectorTrackingFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededConnectorTracking {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'format': !exists(json, 'format') ? undefined : SeededTrackedFormatEventFromJSON(json['format']),
-        'asset': !exists(json, 'asset') ? undefined : SeededTrackedAssetEventFromJSON(json['asset']),
-        'interaction': !exists(json, 'interaction') ? undefined : SeededTrackedInteractionEventFromJSON(json['interaction']),
-        'keyboard': !exists(json, 'keyboard') ? undefined : SeededTrackedKeyboardEventFromJSON(json['keyboard']),
-        'session': !exists(json, 'session') ? undefined : SeededTrackedSessionEventFromJSON(json['session']),
-        'assets': !exists(json, 'assets') ? undefined : SeededTrackedAssetsEventFromJSON(json['assets']),
-        'ml': !exists(json, 'ml') ? undefined : SeededTrackedMachineLearningEventFromJSON(json['ml']),
-        'adoption': !exists(json, 'adoption') ? undefined : SeededTrackedAdoptionEventFromJSON(json['adoption']),
-        'conversation': !exists(json, 'conversation') ? undefined : SeededTrackedConversationEventFromJSON(json['conversation']),
-    };
+export function SeededConnectorTrackingFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededConnectorTracking {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		format: exists(json, "format")
+			? SeededTrackedFormatEventFromJSON(json["format"])
+			: undefined,
+		asset: exists(json, "asset")
+			? SeededTrackedAssetEventFromJSON(json["asset"])
+			: undefined,
+		interaction: exists(json, "interaction")
+			? SeededTrackedInteractionEventFromJSON(json["interaction"])
+			: undefined,
+		keyboard: exists(json, "keyboard")
+			? SeededTrackedKeyboardEventFromJSON(json["keyboard"])
+			: undefined,
+		session: exists(json, "session")
+			? SeededTrackedSessionEventFromJSON(json["session"])
+			: undefined,
+		assets: exists(json, "assets")
+			? SeededTrackedAssetsEventFromJSON(json["assets"])
+			: undefined,
+		ml: exists(json, "ml")
+			? SeededTrackedMachineLearningEventFromJSON(json["ml"])
+			: undefined,
+		adoption: exists(json, "adoption")
+			? SeededTrackedAdoptionEventFromJSON(json["adoption"])
+			: undefined,
+		conversation: exists(json, "conversation")
+			? SeededTrackedConversationEventFromJSON(json["conversation"])
+			: undefined,
+	};
 }
 
-export function SeededConnectorTrackingToJSON(value?: SeededConnectorTracking | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'format': SeededTrackedFormatEventToJSON(value.format),
-        'asset': SeededTrackedAssetEventToJSON(value.asset),
-        'interaction': SeededTrackedInteractionEventToJSON(value.interaction),
-        'keyboard': SeededTrackedKeyboardEventToJSON(value.keyboard),
-        'session': SeededTrackedSessionEventToJSON(value.session),
-        'assets': SeededTrackedAssetsEventToJSON(value.assets),
-        'ml': SeededTrackedMachineLearningEventToJSON(value.ml),
-        'adoption': SeededTrackedAdoptionEventToJSON(value.adoption),
-        'conversation': SeededTrackedConversationEventToJSON(value.conversation),
-    };
+export function SeededConnectorTrackingToJSON(
+	value?: SeededConnectorTracking | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		format: SeededTrackedFormatEventToJSON(value.format),
+		asset: SeededTrackedAssetEventToJSON(value.asset),
+		interaction: SeededTrackedInteractionEventToJSON(value.interaction),
+		keyboard: SeededTrackedKeyboardEventToJSON(value.keyboard),
+		session: SeededTrackedSessionEventToJSON(value.session),
+		assets: SeededTrackedAssetsEventToJSON(value.assets),
+		ml: SeededTrackedMachineLearningEventToJSON(value.ml),
+		adoption: SeededTrackedAdoptionEventToJSON(value.adoption),
+		conversation: SeededTrackedConversationEventToJSON(value.conversation),
+	};
 }
-

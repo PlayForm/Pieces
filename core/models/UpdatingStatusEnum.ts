@@ -12,38 +12,41 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This is a simple enum used to determine the status of the Updating process.(of PiecesOS)
- * 
+ *
  * UpdatingStatusEnum(READY_TO_RESTART, AVAILABLE(but not downloaded), DOWNLOADING, UNKNOWN, UP_TO_DATE)
- * 
+ *
  * UNKNOWN: should never be the case
- * 
+ *
  * These are some enums that are currently not implemented but are for future support( REINSTALL_REQUIRED, CONTACT_SUPPORT)
  * @export
  */
 export const UpdatingStatusEnum = {
-    ReadyToRestart: 'READY_TO_RESTART',
-    Available: 'AVAILABLE',
-    Downloading: 'DOWNLOADING',
-    Unknown: 'UNKNOWN',
-    UpToDate: 'UP_TO_DATE',
-    ReinstallRequired: 'REINSTALL_REQUIRED',
-    ContactSupport: 'CONTACT_SUPPORT'
+	ReadyToRestart: "READY_TO_RESTART",
+	Available: "AVAILABLE",
+	Downloading: "DOWNLOADING",
+	Unknown: "UNKNOWN",
+	UpToDate: "UP_TO_DATE",
+	ReinstallRequired: "REINSTALL_REQUIRED",
+	ContactSupport: "CONTACT_SUPPORT",
 } as const;
-export type UpdatingStatusEnum = typeof UpdatingStatusEnum[keyof typeof UpdatingStatusEnum];
-
+export type UpdatingStatusEnum =
+	(typeof UpdatingStatusEnum)[keyof typeof UpdatingStatusEnum];
 
 export function UpdatingStatusEnumFromJSON(json: any): UpdatingStatusEnum {
-    return UpdatingStatusEnumFromJSONTyped(json, false);
+	return UpdatingStatusEnumFromJSONTyped(json, false);
 }
 
-export function UpdatingStatusEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdatingStatusEnum {
-    return json as UpdatingStatusEnum;
+export function UpdatingStatusEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): UpdatingStatusEnum {
+	return json as UpdatingStatusEnum;
 }
 
-export function UpdatingStatusEnumToJSON(value?: UpdatingStatusEnum | null): any {
-    return value as any;
+export function UpdatingStatusEnumToJSON(
+	value?: UpdatingStatusEnum | null,
+): any {
+	return value as any;
 }
-

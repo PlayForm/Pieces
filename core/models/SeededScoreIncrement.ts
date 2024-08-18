@@ -12,309 +12,366 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededScore } from './SeededScore';
-import {
-    SeededScoreFromJSON,
-    SeededScoreFromJSONTyped,
-    SeededScoreToJSON,
-} from './SeededScore';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededScore } from "./SeededScore.tsx";
+import { SeededScoreFromJSON, SeededScoreToJSON } from "./SeededScore.tsx";
 
 /**
  * This is the body for a respective scores increment,
- * 
+ *
  * This will enable us to know what material we want to increment, all of which are optional, if it is defined we will attempt to increment the material.
  * @export
  * @interface SeededScoreIncrement
  */
 export interface SeededScoreIncrement {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededScoreIncrement
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    asset?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    assets?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    website?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    websites?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    anchor?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    anchors?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    anchorPoint?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    anchorPoints?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    annotation?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    annotations?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    conversation?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    conversations?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    conversationMessage?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    conversationMessages?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    share?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    shares?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    sensitive?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    sensitives?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    hint?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    hints?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    person?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    persons?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    tag?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    tags?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    workstreamSummary?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    workstreamSummaries?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    workstreamEvents?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    workstreamEvent?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    ranges?: SeededScore;
-    /**
-     * 
-     * @type {SeededScore}
-     * @memberof SeededScoreIncrement
-     */
-    range?: SeededScore;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededScoreIncrement
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	asset?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	assets?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	website?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	websites?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	anchor?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	anchors?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	anchorPoint?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	anchorPoints?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	annotation?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	annotations?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	conversation?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	conversations?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	conversationMessage?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	conversationMessages?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	share?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	shares?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	sensitive?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	sensitives?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	hint?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	hints?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	person?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	persons?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	tag?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	tags?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	workstreamSummary?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	workstreamSummaries?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	workstreamEvents?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	workstreamEvent?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	ranges?: SeededScore;
+	/**
+	 *
+	 * @type {SeededScore}
+	 * @memberof SeededScoreIncrement
+	 */
+	range?: SeededScore;
 }
 
 /**
  * Check if a given object implements the SeededScoreIncrement interface.
  */
-export function instanceOfSeededScoreIncrement(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededScoreIncrement(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededScoreIncrementFromJSON(json: any): SeededScoreIncrement {
-    return SeededScoreIncrementFromJSONTyped(json, false);
+	return SeededScoreIncrementFromJSONTyped(json, false);
 }
 
-export function SeededScoreIncrementFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededScoreIncrement {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': !exists(json, 'asset') ? undefined : SeededScoreFromJSON(json['asset']),
-        'assets': !exists(json, 'assets') ? undefined : SeededScoreFromJSON(json['assets']),
-        'website': !exists(json, 'website') ? undefined : SeededScoreFromJSON(json['website']),
-        'websites': !exists(json, 'websites') ? undefined : SeededScoreFromJSON(json['websites']),
-        'anchor': !exists(json, 'anchor') ? undefined : SeededScoreFromJSON(json['anchor']),
-        'anchors': !exists(json, 'anchors') ? undefined : SeededScoreFromJSON(json['anchors']),
-        'anchorPoint': !exists(json, 'anchorPoint') ? undefined : SeededScoreFromJSON(json['anchorPoint']),
-        'anchorPoints': !exists(json, 'anchorPoints') ? undefined : SeededScoreFromJSON(json['anchorPoints']),
-        'annotation': !exists(json, 'annotation') ? undefined : SeededScoreFromJSON(json['annotation']),
-        'annotations': !exists(json, 'annotations') ? undefined : SeededScoreFromJSON(json['annotations']),
-        'conversation': !exists(json, 'conversation') ? undefined : SeededScoreFromJSON(json['conversation']),
-        'conversations': !exists(json, 'conversations') ? undefined : SeededScoreFromJSON(json['conversations']),
-        'conversationMessage': !exists(json, 'conversationMessage') ? undefined : SeededScoreFromJSON(json['conversationMessage']),
-        'conversationMessages': !exists(json, 'conversationMessages') ? undefined : SeededScoreFromJSON(json['conversationMessages']),
-        'share': !exists(json, 'share') ? undefined : SeededScoreFromJSON(json['share']),
-        'shares': !exists(json, 'shares') ? undefined : SeededScoreFromJSON(json['shares']),
-        'sensitive': !exists(json, 'sensitive') ? undefined : SeededScoreFromJSON(json['sensitive']),
-        'sensitives': !exists(json, 'sensitives') ? undefined : SeededScoreFromJSON(json['sensitives']),
-        'hint': !exists(json, 'hint') ? undefined : SeededScoreFromJSON(json['hint']),
-        'hints': !exists(json, 'hints') ? undefined : SeededScoreFromJSON(json['hints']),
-        'person': !exists(json, 'person') ? undefined : SeededScoreFromJSON(json['person']),
-        'persons': !exists(json, 'persons') ? undefined : SeededScoreFromJSON(json['persons']),
-        'tag': !exists(json, 'tag') ? undefined : SeededScoreFromJSON(json['tag']),
-        'tags': !exists(json, 'tags') ? undefined : SeededScoreFromJSON(json['tags']),
-        'workstreamSummary': !exists(json, 'workstream_summary') ? undefined : SeededScoreFromJSON(json['workstream_summary']),
-        'workstreamSummaries': !exists(json, 'workstream_summaries') ? undefined : SeededScoreFromJSON(json['workstream_summaries']),
-        'workstreamEvents': !exists(json, 'workstream_events') ? undefined : SeededScoreFromJSON(json['workstream_events']),
-        'workstreamEvent': !exists(json, 'workstream_event') ? undefined : SeededScoreFromJSON(json['workstream_event']),
-        'ranges': !exists(json, 'ranges') ? undefined : SeededScoreFromJSON(json['ranges']),
-        'range': !exists(json, 'range') ? undefined : SeededScoreFromJSON(json['range']),
-    };
+export function SeededScoreIncrementFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededScoreIncrement {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: exists(json, "asset")
+			? SeededScoreFromJSON(json["asset"])
+			: undefined,
+		assets: exists(json, "assets")
+			? SeededScoreFromJSON(json["assets"])
+			: undefined,
+		website: exists(json, "website")
+			? SeededScoreFromJSON(json["website"])
+			: undefined,
+		websites: exists(json, "websites")
+			? SeededScoreFromJSON(json["websites"])
+			: undefined,
+		anchor: exists(json, "anchor")
+			? SeededScoreFromJSON(json["anchor"])
+			: undefined,
+		anchors: exists(json, "anchors")
+			? SeededScoreFromJSON(json["anchors"])
+			: undefined,
+		anchorPoint: exists(json, "anchorPoint")
+			? SeededScoreFromJSON(json["anchorPoint"])
+			: undefined,
+		anchorPoints: exists(json, "anchorPoints")
+			? SeededScoreFromJSON(json["anchorPoints"])
+			: undefined,
+		annotation: exists(json, "annotation")
+			? SeededScoreFromJSON(json["annotation"])
+			: undefined,
+		annotations: exists(json, "annotations")
+			? SeededScoreFromJSON(json["annotations"])
+			: undefined,
+		conversation: exists(json, "conversation")
+			? SeededScoreFromJSON(json["conversation"])
+			: undefined,
+		conversations: exists(json, "conversations")
+			? SeededScoreFromJSON(json["conversations"])
+			: undefined,
+		conversationMessage: exists(json, "conversationMessage")
+			? SeededScoreFromJSON(json["conversationMessage"])
+			: undefined,
+		conversationMessages: exists(json, "conversationMessages")
+			? SeededScoreFromJSON(json["conversationMessages"])
+			: undefined,
+		share: exists(json, "share")
+			? SeededScoreFromJSON(json["share"])
+			: undefined,
+		shares: exists(json, "shares")
+			? SeededScoreFromJSON(json["shares"])
+			: undefined,
+		sensitive: exists(json, "sensitive")
+			? SeededScoreFromJSON(json["sensitive"])
+			: undefined,
+		sensitives: exists(json, "sensitives")
+			? SeededScoreFromJSON(json["sensitives"])
+			: undefined,
+		hint: exists(json, "hint")
+			? SeededScoreFromJSON(json["hint"])
+			: undefined,
+		hints: exists(json, "hints")
+			? SeededScoreFromJSON(json["hints"])
+			: undefined,
+		person: exists(json, "person")
+			? SeededScoreFromJSON(json["person"])
+			: undefined,
+		persons: exists(json, "persons")
+			? SeededScoreFromJSON(json["persons"])
+			: undefined,
+		tag: exists(json, "tag") ? SeededScoreFromJSON(json["tag"]) : undefined,
+		tags: exists(json, "tags")
+			? SeededScoreFromJSON(json["tags"])
+			: undefined,
+		workstreamSummary: exists(json, "workstream_summary")
+			? SeededScoreFromJSON(json["workstream_summary"])
+			: undefined,
+		workstreamSummaries: exists(json, "workstream_summaries")
+			? SeededScoreFromJSON(json["workstream_summaries"])
+			: undefined,
+		workstreamEvents: exists(json, "workstream_events")
+			? SeededScoreFromJSON(json["workstream_events"])
+			: undefined,
+		workstreamEvent: exists(json, "workstream_event")
+			? SeededScoreFromJSON(json["workstream_event"])
+			: undefined,
+		ranges: exists(json, "ranges")
+			? SeededScoreFromJSON(json["ranges"])
+			: undefined,
+		range: exists(json, "range")
+			? SeededScoreFromJSON(json["range"])
+			: undefined,
+	};
 }
 
-export function SeededScoreIncrementToJSON(value?: SeededScoreIncrement | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': SeededScoreToJSON(value.asset),
-        'assets': SeededScoreToJSON(value.assets),
-        'website': SeededScoreToJSON(value.website),
-        'websites': SeededScoreToJSON(value.websites),
-        'anchor': SeededScoreToJSON(value.anchor),
-        'anchors': SeededScoreToJSON(value.anchors),
-        'anchorPoint': SeededScoreToJSON(value.anchorPoint),
-        'anchorPoints': SeededScoreToJSON(value.anchorPoints),
-        'annotation': SeededScoreToJSON(value.annotation),
-        'annotations': SeededScoreToJSON(value.annotations),
-        'conversation': SeededScoreToJSON(value.conversation),
-        'conversations': SeededScoreToJSON(value.conversations),
-        'conversationMessage': SeededScoreToJSON(value.conversationMessage),
-        'conversationMessages': SeededScoreToJSON(value.conversationMessages),
-        'share': SeededScoreToJSON(value.share),
-        'shares': SeededScoreToJSON(value.shares),
-        'sensitive': SeededScoreToJSON(value.sensitive),
-        'sensitives': SeededScoreToJSON(value.sensitives),
-        'hint': SeededScoreToJSON(value.hint),
-        'hints': SeededScoreToJSON(value.hints),
-        'person': SeededScoreToJSON(value.person),
-        'persons': SeededScoreToJSON(value.persons),
-        'tag': SeededScoreToJSON(value.tag),
-        'tags': SeededScoreToJSON(value.tags),
-        'workstream_summary': SeededScoreToJSON(value.workstreamSummary),
-        'workstream_summaries': SeededScoreToJSON(value.workstreamSummaries),
-        'workstream_events': SeededScoreToJSON(value.workstreamEvents),
-        'workstream_event': SeededScoreToJSON(value.workstreamEvent),
-        'ranges': SeededScoreToJSON(value.ranges),
-        'range': SeededScoreToJSON(value.range),
-    };
+export function SeededScoreIncrementToJSON(
+	value?: SeededScoreIncrement | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: SeededScoreToJSON(value.asset),
+		assets: SeededScoreToJSON(value.assets),
+		website: SeededScoreToJSON(value.website),
+		websites: SeededScoreToJSON(value.websites),
+		anchor: SeededScoreToJSON(value.anchor),
+		anchors: SeededScoreToJSON(value.anchors),
+		anchorPoint: SeededScoreToJSON(value.anchorPoint),
+		anchorPoints: SeededScoreToJSON(value.anchorPoints),
+		annotation: SeededScoreToJSON(value.annotation),
+		annotations: SeededScoreToJSON(value.annotations),
+		conversation: SeededScoreToJSON(value.conversation),
+		conversations: SeededScoreToJSON(value.conversations),
+		conversationMessage: SeededScoreToJSON(value.conversationMessage),
+		conversationMessages: SeededScoreToJSON(value.conversationMessages),
+		share: SeededScoreToJSON(value.share),
+		shares: SeededScoreToJSON(value.shares),
+		sensitive: SeededScoreToJSON(value.sensitive),
+		sensitives: SeededScoreToJSON(value.sensitives),
+		hint: SeededScoreToJSON(value.hint),
+		hints: SeededScoreToJSON(value.hints),
+		person: SeededScoreToJSON(value.person),
+		persons: SeededScoreToJSON(value.persons),
+		tag: SeededScoreToJSON(value.tag),
+		tags: SeededScoreToJSON(value.tags),
+		workstream_summary: SeededScoreToJSON(value.workstreamSummary),
+		workstream_summaries: SeededScoreToJSON(value.workstreamSummaries),
+		workstream_events: SeededScoreToJSON(value.workstreamEvents),
+		workstream_event: SeededScoreToJSON(value.workstreamEvent),
+		ranges: SeededScoreToJSON(value.ranges),
+		range: SeededScoreToJSON(value.range),
+	};
 }
-

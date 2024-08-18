@@ -12,192 +12,251 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  Annotation,
-  Annotations,
-  SearchInput,
-  SearchedAnnotations,
-  SeededAnnotation,
-} from '../models/index';
+	Annotation,
+	Annotations,
+	SearchInput,
+	SearchedAnnotations,
+	SeededAnnotation,
+} from "../models/index.ts";
 import {
-    AnnotationFromJSON,
-    AnnotationToJSON,
-    AnnotationsFromJSON,
-    AnnotationsToJSON,
-    SearchInputFromJSON,
-    SearchInputToJSON,
-    SearchedAnnotationsFromJSON,
-    SearchedAnnotationsToJSON,
-    SeededAnnotationFromJSON,
-    SeededAnnotationToJSON,
-} from '../models/index';
+	AnnotationFromJSON,
+	AnnotationsFromJSON,
+	SearchInputToJSON,
+	SearchedAnnotationsFromJSON,
+	SeededAnnotationToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface AnnotationsCreateNewAnnotationRequest {
-    seededAnnotation?: SeededAnnotation;
+	seededAnnotation?: SeededAnnotation;
 }
 
 export interface AnnotationsDeleteSpecificAnnotationRequest {
-    annotation: string;
+	annotation: string;
 }
 
 export interface AnnotationsSnapshotRequest {
-    annotationTypeFilter?: AnnotationsSnapshotAnnotationTypeFilterEnum;
+	annotationTypeFilter?: AnnotationsSnapshotAnnotationTypeFilterEnum;
 }
 
 export interface SearchAnnotationsRequest {
-    transferables?: boolean;
-    searchInput?: SearchInput;
+	transferables?: boolean;
+	searchInput?: SearchInput;
 }
 
 /**
- * 
+ *
  */
 export class AnnotationsApi extends runtime.BaseAPI {
+	/**
+	 * This will create an annotation.
+	 * /annotations/create [POST]
+	 */
+	async annotationsCreateNewAnnotationRaw(
+		requestParameters: AnnotationsCreateNewAnnotationRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Annotation>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will create an annotation.
-     * /annotations/create [POST]
-     */
-    async annotationsCreateNewAnnotationRaw(requestParameters: AnnotationsCreateNewAnnotationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Annotation>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/annotations/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededAnnotationToJSON(
+					requestParameters.seededAnnotation,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/annotations/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededAnnotationToJSON(requestParameters.seededAnnotation),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AnnotationFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AnnotationFromJSON(jsonValue));
-    }
+	/**
+	 * This will create an annotation.
+	 * /annotations/create [POST]
+	 */
+	async annotationsCreateNewAnnotation(
+		requestParameters: AnnotationsCreateNewAnnotationRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Annotation> {
+		const response = await this.annotationsCreateNewAnnotationRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will create an annotation.
-     * /annotations/create [POST]
-     */
-    async annotationsCreateNewAnnotation(requestParameters: AnnotationsCreateNewAnnotationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Annotation> {
-        const response = await this.annotationsCreateNewAnnotationRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * this will delete a specific annotation
+	 * /annotations/{annotation}/delete [POST]
+	 */
+	async annotationsDeleteSpecificAnnotationRaw(
+		requestParameters: AnnotationsDeleteSpecificAnnotationRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.annotation === null ||
+			requestParameters.annotation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"annotation",
+				"Required parameter requestParameters.annotation was null or undefined when calling annotationsDeleteSpecificAnnotation.",
+			);
+		}
 
-    /**
-     * this will delete a specific annotation
-     * /annotations/{annotation}/delete [POST]
-     */
-    async annotationsDeleteSpecificAnnotationRaw(requestParameters: AnnotationsDeleteSpecificAnnotationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.annotation === null || requestParameters.annotation === undefined) {
-            throw new runtime.RequiredError('annotation','Required parameter requestParameters.annotation was null or undefined when calling annotationsDeleteSpecificAnnotation.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/annotations/{annotation}/delete".replace(
+					`{${"annotation"}}`,
+					encodeURIComponent(String(requestParameters.annotation)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/annotations/{annotation}/delete`.replace(`{${"annotation"}}`, encodeURIComponent(String(requestParameters.annotation))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * this will delete a specific annotation
+	 * /annotations/{annotation}/delete [POST]
+	 */
+	async annotationsDeleteSpecificAnnotation(
+		requestParameters: AnnotationsDeleteSpecificAnnotationRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.annotationsDeleteSpecificAnnotationRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
 
-    /**
-     * this will delete a specific annotation
-     * /annotations/{annotation}/delete [POST]
-     */
-    async annotationsDeleteSpecificAnnotation(requestParameters: AnnotationsDeleteSpecificAnnotationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.annotationsDeleteSpecificAnnotationRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will get a snapshot of all the annotations.  This will take an optional filter as a query param.
+	 * /annotations [GET]
+	 */
+	async annotationsSnapshotRaw(
+		requestParameters: AnnotationsSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Annotations>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a snapshot of all the annotations.  This will take an optional filter as a query param.
-     * /annotations [GET]
-     */
-    async annotationsSnapshotRaw(requestParameters: AnnotationsSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Annotations>> {
-        const queryParameters: any = {};
+		if (requestParameters.annotationTypeFilter !== undefined) {
+			queryParameters["annotation_type_filter"] =
+				requestParameters.annotationTypeFilter;
+		}
 
-        if (requestParameters.annotationTypeFilter !== undefined) {
-            queryParameters['annotation_type_filter'] = requestParameters.annotationTypeFilter;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/annotations",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/annotations`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AnnotationsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AnnotationsFromJSON(jsonValue));
-    }
+	/**
+	 * This will get a snapshot of all the annotations.  This will take an optional filter as a query param.
+	 * /annotations [GET]
+	 */
+	async annotationsSnapshot(
+		requestParameters: AnnotationsSnapshotRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Annotations> {
+		const response = await this.annotationsSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will get a snapshot of all the annotations.  This will take an optional filter as a query param.
-     * /annotations [GET]
-     */
-    async annotationsSnapshot(requestParameters: AnnotationsSnapshotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Annotations> {
-        const response = await this.annotationsSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will search your annotations for a specific annotation  note: we will just search the annotation value
+	 * /annotations/search [POST]
+	 */
+	async searchAnnotationsRaw(
+		requestParameters: SearchAnnotationsRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedAnnotations>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will search your annotations for a specific annotation  note: we will just search the annotation value
-     * /annotations/search [POST]
-     */
-    async searchAnnotationsRaw(requestParameters: SearchAnnotationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedAnnotations>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/annotations/search",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SearchInputToJSON(requestParameters.searchInput),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/annotations/search`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SearchInputToJSON(requestParameters.searchInput),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedAnnotationsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedAnnotationsFromJSON(jsonValue));
-    }
-
-    /**
-     * This will search your annotations for a specific annotation  note: we will just search the annotation value
-     * /annotations/search [POST]
-     */
-    async searchAnnotations(requestParameters: SearchAnnotationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedAnnotations> {
-        const response = await this.searchAnnotationsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will search your annotations for a specific annotation  note: we will just search the annotation value
+	 * /annotations/search [POST]
+	 */
+	async searchAnnotations(
+		requestParameters: SearchAnnotationsRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedAnnotations> {
+		const response = await this.searchAnnotationsRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }
 
 /**
  * @export
  */
 export const AnnotationsSnapshotAnnotationTypeFilterEnum = {
-    Description: 'DESCRIPTION',
-    Comment: 'COMMENT',
-    Commentation: 'COMMENTATION',
-    Documentation: 'DOCUMENTATION',
-    Summarization: 'SUMMARIZATION',
-    Summary: 'SUMMARY',
-    Explanation: 'EXPLANATION',
-    GitCommit: 'GIT_COMMIT'
+	Description: "DESCRIPTION",
+	Comment: "COMMENT",
+	Commentation: "COMMENTATION",
+	Documentation: "DOCUMENTATION",
+	Summarization: "SUMMARIZATION",
+	Summary: "SUMMARY",
+	Explanation: "EXPLANATION",
+	GitCommit: "GIT_COMMIT",
 } as const;
-export type AnnotationsSnapshotAnnotationTypeFilterEnum = typeof AnnotationsSnapshotAnnotationTypeFilterEnum[keyof typeof AnnotationsSnapshotAnnotationTypeFilterEnum];
+export type AnnotationsSnapshotAnnotationTypeFilterEnum =
+	(typeof AnnotationsSnapshotAnnotationTypeFilterEnum)[keyof typeof AnnotationsSnapshotAnnotationTypeFilterEnum];

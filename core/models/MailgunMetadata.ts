@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * TODO add additional properties.
@@ -27,56 +26,58 @@ import {
  * @interface MailgunMetadata
  */
 export interface MailgunMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof MailgunMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the id given to us from mailgun when the email was sent successfully.
-     * @type {string}
-     * @memberof MailgunMetadata
-     */
-    messageId: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof MailgunMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the id given to us from mailgun when the email was sent successfully.
+	 * @type {string}
+	 * @memberof MailgunMetadata
+	 */
+	messageId: string;
 }
 
 /**
  * Check if a given object implements the MailgunMetadata interface.
  */
 export function instanceOfMailgunMetadata(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "messageId" in value;
+	let isInstance = true;
+	isInstance = isInstance && "messageId" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function MailgunMetadataFromJSON(json: any): MailgunMetadata {
-    return MailgunMetadataFromJSONTyped(json, false);
+	return MailgunMetadataFromJSONTyped(json, false);
 }
 
-export function MailgunMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailgunMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'messageId': json['messageId'],
-    };
+export function MailgunMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): MailgunMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		messageId: json["messageId"],
+	};
 }
 
 export function MailgunMetadataToJSON(value?: MailgunMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'messageId': value.messageId,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		messageId: value.messageId,
+	};
 }
-

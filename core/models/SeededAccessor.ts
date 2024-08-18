@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedUserProfile } from './FlattenedUserProfile';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedUserProfile } from "./FlattenedUserProfile.tsx";
 import {
-    FlattenedUserProfileFromJSON,
-    FlattenedUserProfileFromJSONTyped,
-    FlattenedUserProfileToJSON,
-} from './FlattenedUserProfile';
+	FlattenedUserProfileFromJSON,
+	FlattenedUserProfileToJSON,
+} from "./FlattenedUserProfile.tsx";
 
 /**
  * This is a pre-created accessor that simply takes an os id and an optional user(flattened)
@@ -32,73 +30,77 @@ import {
  * @interface SeededAccessor
  */
 export interface SeededAccessor {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededAccessor
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * this is an os id.
-     * @type {string}
-     * @memberof SeededAccessor
-     */
-    os: string;
-    /**
-     * 
-     * @type {FlattenedUserProfile}
-     * @memberof SeededAccessor
-     */
-    user?: FlattenedUserProfile;
-    /**
-     * this is the share that the asset is apart of.
-     * @type {string}
-     * @memberof SeededAccessor
-     */
-    share: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededAccessor
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * this is an os id.
+	 * @type {string}
+	 * @memberof SeededAccessor
+	 */
+	os: string;
+	/**
+	 *
+	 * @type {FlattenedUserProfile}
+	 * @memberof SeededAccessor
+	 */
+	user?: FlattenedUserProfile;
+	/**
+	 * this is the share that the asset is apart of.
+	 * @type {string}
+	 * @memberof SeededAccessor
+	 */
+	share: string;
 }
 
 /**
  * Check if a given object implements the SeededAccessor interface.
  */
 export function instanceOfSeededAccessor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "os" in value;
-    isInstance = isInstance && "share" in value;
+	let isInstance = true;
+	isInstance = isInstance && "os" in value;
+	isInstance = isInstance && "share" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededAccessorFromJSON(json: any): SeededAccessor {
-    return SeededAccessorFromJSONTyped(json, false);
+	return SeededAccessorFromJSONTyped(json, false);
 }
 
-export function SeededAccessorFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededAccessor {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'os': json['os'],
-        'user': !exists(json, 'user') ? undefined : FlattenedUserProfileFromJSON(json['user']),
-        'share': json['share'],
-    };
+export function SeededAccessorFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededAccessor {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		os: json["os"],
+		user: exists(json, "user")
+			? FlattenedUserProfileFromJSON(json["user"])
+			: undefined,
+		share: json["share"],
+	};
 }
 
 export function SeededAccessorToJSON(value?: SeededAccessor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'os': value.os,
-        'user': FlattenedUserProfileToJSON(value.user),
-        'share': value.share,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		os: value.os,
+		user: FlattenedUserProfileToJSON(value.user),
+		share: value.share,
+	};
 }
-

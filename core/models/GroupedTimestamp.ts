@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * A helper classs to wrap Date-Time Values with Useful Helper Properties
@@ -26,64 +25,66 @@ import {
  * @interface GroupedTimestamp
  */
 export interface GroupedTimestamp {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GroupedTimestamp
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Date}
-     * @memberof GroupedTimestamp
-     */
-    value: Date;
-    /**
-     * 
-     * @type {string}
-     * @memberof GroupedTimestamp
-     */
-    readable?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GroupedTimestamp
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Date}
+	 * @memberof GroupedTimestamp
+	 */
+	value: Date;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GroupedTimestamp
+	 */
+	readable?: string;
 }
 
 /**
  * Check if a given object implements the GroupedTimestamp interface.
  */
 export function instanceOfGroupedTimestamp(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "value" in value;
+	let isInstance = true;
+	isInstance = isInstance && "value" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function GroupedTimestampFromJSON(json: any): GroupedTimestamp {
-    return GroupedTimestampFromJSONTyped(json, false);
+	return GroupedTimestampFromJSONTyped(json, false);
 }
 
-export function GroupedTimestampFromJSONTyped(json: any, ignoreDiscriminator: boolean): GroupedTimestamp {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'value': (new Date(json['value'])),
-        'readable': !exists(json, 'readable') ? undefined : json['readable'],
-    };
+export function GroupedTimestampFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GroupedTimestamp {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		value: new Date(json["value"]),
+		readable: exists(json, "readable") ? json["readable"] : undefined,
+	};
 }
 
 export function GroupedTimestampToJSON(value?: GroupedTimestamp | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'value': (value.value.toISOString()),
-        'readable': value.readable,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		value: value.value.toISOString(),
+		readable: value.readable,
+	};
 }
-

@@ -12,103 +12,112 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { WindowDimensions } from './WindowDimensions';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { WindowDimensions } from "./WindowDimensions.tsx";
 import {
-    WindowDimensionsFromJSON,
-    WindowDimensionsFromJSONTyped,
-    WindowDimensionsToJSON,
-} from './WindowDimensions';
+	WindowDimensionsFromJSON,
+	WindowDimensionsToJSON,
+} from "./WindowDimensions.tsx";
 
 /**
  * This model is used for the dimensions of the copilot/feed/xyz window.
- * 
+ *
  * if dimensions/captured are null this means we do not have the dimensions for this given window.
- * 
+ *
  * TODO: consider adding 5 markers here for the qr codes(ie location of these as wel)
  * NOTE: will want to add type of calibration for this specific dimension(ie copilot/feed/xyz)
  * @export
  * @interface WorkstreamPatternEngineVisionCalibration
  */
 export interface WorkstreamPatternEngineVisionCalibration {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamPatternEngineVisionCalibration
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the name of the window(foreground window).(this will always be present)
-     * @type {string}
-     * @memberof WorkstreamPatternEngineVisionCalibration
-     */
-    foreground: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof WorkstreamPatternEngineVisionCalibration
-     */
-    captured?: GroupedTimestamp;
-    /**
-     * 
-     * @type {WindowDimensions}
-     * @memberof WorkstreamPatternEngineVisionCalibration
-     */
-    dimensions?: WindowDimensions;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamPatternEngineVisionCalibration
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the name of the window(foreground window).(this will always be present)
+	 * @type {string}
+	 * @memberof WorkstreamPatternEngineVisionCalibration
+	 */
+	foreground: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof WorkstreamPatternEngineVisionCalibration
+	 */
+	captured?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {WindowDimensions}
+	 * @memberof WorkstreamPatternEngineVisionCalibration
+	 */
+	dimensions?: WindowDimensions;
 }
 
 /**
  * Check if a given object implements the WorkstreamPatternEngineVisionCalibration interface.
  */
-export function instanceOfWorkstreamPatternEngineVisionCalibration(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "foreground" in value;
+export function instanceOfWorkstreamPatternEngineVisionCalibration(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "foreground" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamPatternEngineVisionCalibrationFromJSON(json: any): WorkstreamPatternEngineVisionCalibration {
-    return WorkstreamPatternEngineVisionCalibrationFromJSONTyped(json, false);
+export function WorkstreamPatternEngineVisionCalibrationFromJSON(
+	json: any,
+): WorkstreamPatternEngineVisionCalibration {
+	return WorkstreamPatternEngineVisionCalibrationFromJSONTyped(json, false);
 }
 
-export function WorkstreamPatternEngineVisionCalibrationFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamPatternEngineVisionCalibration {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'foreground': json['foreground'],
-        'captured': !exists(json, 'captured') ? undefined : GroupedTimestampFromJSON(json['captured']),
-        'dimensions': !exists(json, 'dimensions') ? undefined : WindowDimensionsFromJSON(json['dimensions']),
-    };
+export function WorkstreamPatternEngineVisionCalibrationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamPatternEngineVisionCalibration {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		foreground: json["foreground"],
+		captured: exists(json, "captured")
+			? GroupedTimestampFromJSON(json["captured"])
+			: undefined,
+		dimensions: exists(json, "dimensions")
+			? WindowDimensionsFromJSON(json["dimensions"])
+			: undefined,
+	};
 }
 
-export function WorkstreamPatternEngineVisionCalibrationToJSON(value?: WorkstreamPatternEngineVisionCalibration | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'foreground': value.foreground,
-        'captured': GroupedTimestampToJSON(value.captured),
-        'dimensions': WindowDimensionsToJSON(value.dimensions),
-    };
+export function WorkstreamPatternEngineVisionCalibrationToJSON(
+	value?: WorkstreamPatternEngineVisionCalibration | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		foreground: value.foreground,
+		captured: GroupedTimestampToJSON(value.captured),
+		dimensions: WindowDimensionsToJSON(value.dimensions),
+	};
 }
-

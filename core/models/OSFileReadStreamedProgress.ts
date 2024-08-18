@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ModelDownloadProgressStatusEnum } from './ModelDownloadProgressStatusEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ModelDownloadProgressStatusEnum } from "./ModelDownloadProgressStatusEnum.tsx";
 import {
-    ModelDownloadProgressStatusEnumFromJSON,
-    ModelDownloadProgressStatusEnumFromJSONTyped,
-    ModelDownloadProgressStatusEnumToJSON,
-} from './ModelDownloadProgressStatusEnum';
-import type { TransferableBytes } from './TransferableBytes';
+	ModelDownloadProgressStatusEnumFromJSON,
+	ModelDownloadProgressStatusEnumToJSON,
+} from "./ModelDownloadProgressStatusEnum.tsx";
+import type { TransferableBytes } from "./TransferableBytes.tsx";
 import {
-    TransferableBytesFromJSON,
-    TransferableBytesFromJSONTyped,
-    TransferableBytesToJSON,
-} from './TransferableBytes';
+	TransferableBytesFromJSON,
+	TransferableBytesToJSON,
+} from "./TransferableBytes.tsx";
 
 /**
  * This is a model to return stream progress for a file read.
@@ -38,90 +35,98 @@ import {
  * @interface OSFileReadStreamedProgress
  */
 export interface OSFileReadStreamedProgress {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSFileReadStreamedProgress
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ModelDownloadProgressStatusEnum}
-     * @memberof OSFileReadStreamedProgress
-     */
-    status: ModelDownloadProgressStatusEnum;
-    /**
-     * Optionally if the download is in progress you will receive a download percent(from 0-100).
-     * @type {number}
-     * @memberof OSFileReadStreamedProgress
-     */
-    percentage?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OSFileReadStreamedProgress
-     */
-    path: string;
-    /**
-     * This is a generated UUID that represents this current stream in progress(can be used to cancel this in the future)
-     * @type {string}
-     * @memberof OSFileReadStreamedProgress
-     */
-    id: string;
-    /**
-     * 
-     * @type {TransferableBytes}
-     * @memberof OSFileReadStreamedProgress
-     */
-    bytes?: TransferableBytes;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSFileReadStreamedProgress
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ModelDownloadProgressStatusEnum}
+	 * @memberof OSFileReadStreamedProgress
+	 */
+	status: ModelDownloadProgressStatusEnum;
+	/**
+	 * Optionally if the download is in progress you will receive a download percent(from 0-100).
+	 * @type {number}
+	 * @memberof OSFileReadStreamedProgress
+	 */
+	percentage?: number | null;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof OSFileReadStreamedProgress
+	 */
+	path: string;
+	/**
+	 * This is a generated UUID that represents this current stream in progress(can be used to cancel this in the future)
+	 * @type {string}
+	 * @memberof OSFileReadStreamedProgress
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {TransferableBytes}
+	 * @memberof OSFileReadStreamedProgress
+	 */
+	bytes?: TransferableBytes;
 }
 
 /**
  * Check if a given object implements the OSFileReadStreamedProgress interface.
  */
 export function instanceOfOSFileReadStreamedProgress(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "path" in value;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "status" in value;
+	isInstance = isInstance && "path" in value;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function OSFileReadStreamedProgressFromJSON(json: any): OSFileReadStreamedProgress {
-    return OSFileReadStreamedProgressFromJSONTyped(json, false);
+export function OSFileReadStreamedProgressFromJSON(
+	json: any,
+): OSFileReadStreamedProgress {
+	return OSFileReadStreamedProgressFromJSONTyped(json, false);
 }
 
-export function OSFileReadStreamedProgressFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSFileReadStreamedProgress {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'status': ModelDownloadProgressStatusEnumFromJSON(json['status']),
-        'percentage': !exists(json, 'percentage') ? undefined : json['percentage'],
-        'path': json['path'],
-        'id': json['id'],
-        'bytes': !exists(json, 'bytes') ? undefined : TransferableBytesFromJSON(json['bytes']),
-    };
+export function OSFileReadStreamedProgressFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSFileReadStreamedProgress {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		status: ModelDownloadProgressStatusEnumFromJSON(json["status"]),
+		percentage: exists(json, "percentage") ? json["percentage"] : undefined,
+		path: json["path"],
+		id: json["id"],
+		bytes: exists(json, "bytes")
+			? TransferableBytesFromJSON(json["bytes"])
+			: undefined,
+	};
 }
 
-export function OSFileReadStreamedProgressToJSON(value?: OSFileReadStreamedProgress | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'status': ModelDownloadProgressStatusEnumToJSON(value.status),
-        'percentage': value.percentage,
-        'path': value.path,
-        'id': value.id,
-        'bytes': TransferableBytesToJSON(value.bytes),
-    };
+export function OSFileReadStreamedProgressToJSON(
+	value?: OSFileReadStreamedProgress | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		status: ModelDownloadProgressStatusEnumToJSON(value.status),
+		percentage: value.percentage,
+		path: value.path,
+		id: value.id,
+		bytes: TransferableBytesToJSON(value.bytes),
+	};
 }
-

@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedPerson } from './SearchedPerson';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedPerson } from "./SearchedPerson.tsx";
 import {
-    SearchedPersonFromJSON,
-    SearchedPersonFromJSONTyped,
-    SearchedPersonToJSON,
-} from './SearchedPerson';
+	SearchedPersonFromJSON,
+	SearchedPersonToJSON,
+} from "./SearchedPerson.tsx";
 
 /**
  * This is the plural Model used to return many SearchedPerson.
@@ -32,56 +30,58 @@ import {
  * @interface SearchedPersons
  */
 export interface SearchedPersons {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedPersons
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedPerson>}
-     * @memberof SearchedPersons
-     */
-    iterable: Array<SearchedPerson>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedPersons
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedPerson>}
+	 * @memberof SearchedPersons
+	 */
+	iterable: SearchedPerson[];
 }
 
 /**
  * Check if a given object implements the SearchedPersons interface.
  */
 export function instanceOfSearchedPersons(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedPersonsFromJSON(json: any): SearchedPersons {
-    return SearchedPersonsFromJSONTyped(json, false);
+	return SearchedPersonsFromJSONTyped(json, false);
 }
 
-export function SearchedPersonsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedPersons {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedPersonFromJSON)),
-    };
+export function SearchedPersonsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedPersons {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SearchedPersonFromJSON),
+	};
 }
 
 export function SearchedPersonsToJSON(value?: SearchedPersons | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedPersonToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SearchedPersonToJSON),
+	};
 }
-

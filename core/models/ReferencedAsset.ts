@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAsset } from './FlattenedAsset';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAsset } from "./FlattenedAsset.tsx";
 import {
-    FlattenedAssetFromJSON,
-    FlattenedAssetFromJSONTyped,
-    FlattenedAssetToJSON,
-} from './FlattenedAsset';
+	FlattenedAssetFromJSON,
+	FlattenedAssetToJSON,
+} from "./FlattenedAsset.tsx";
 
 /**
  * A reference to a asset, which at minimum must have the asset's id. But in the case of a hydrated client API it may have a populated reference of type Asset.
@@ -32,64 +30,68 @@ import {
  * @interface ReferencedAsset
  */
 export interface ReferencedAsset {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedAsset
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedAsset
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedAsset}
-     * @memberof ReferencedAsset
-     */
-    reference?: FlattenedAsset;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedAsset
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedAsset
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedAsset}
+	 * @memberof ReferencedAsset
+	 */
+	reference?: FlattenedAsset;
 }
 
 /**
  * Check if a given object implements the ReferencedAsset interface.
  */
 export function instanceOfReferencedAsset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReferencedAssetFromJSON(json: any): ReferencedAsset {
-    return ReferencedAssetFromJSONTyped(json, false);
+	return ReferencedAssetFromJSONTyped(json, false);
 }
 
-export function ReferencedAssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedAsset {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedAssetFromJSON(json['reference']),
-    };
+export function ReferencedAssetFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedAsset {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedAssetFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
 export function ReferencedAssetToJSON(value?: ReferencedAsset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedAssetToJSON(value.reference),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedAssetToJSON(value.reference),
+	};
 }
-

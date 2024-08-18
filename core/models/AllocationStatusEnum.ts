@@ -12,30 +12,33 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This is a Generic status enumeration that will be used for the status of dns and pod or cloud.
  * @export
  */
 export const AllocationStatusEnum = {
-    Pending: 'PENDING',
-    Running: 'RUNNING',
-    Failed: 'FAILED',
-    Succeeded: 'SUCCEEDED',
-    Unknown: 'UNKNOWN'
+	Pending: "PENDING",
+	Running: "RUNNING",
+	Failed: "FAILED",
+	Succeeded: "SUCCEEDED",
+	Unknown: "UNKNOWN",
 } as const;
-export type AllocationStatusEnum = typeof AllocationStatusEnum[keyof typeof AllocationStatusEnum];
-
+export type AllocationStatusEnum =
+	(typeof AllocationStatusEnum)[keyof typeof AllocationStatusEnum];
 
 export function AllocationStatusEnumFromJSON(json: any): AllocationStatusEnum {
-    return AllocationStatusEnumFromJSONTyped(json, false);
+	return AllocationStatusEnumFromJSONTyped(json, false);
 }
 
-export function AllocationStatusEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): AllocationStatusEnum {
-    return json as AllocationStatusEnum;
+export function AllocationStatusEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AllocationStatusEnum {
+	return json as AllocationStatusEnum;
 }
 
-export function AllocationStatusEnumToJSON(value?: AllocationStatusEnum | null): any {
-    return value as any;
+export function AllocationStatusEnumToJSON(
+	value?: AllocationStatusEnum | null,
+): any {
+	return value as any;
 }
-

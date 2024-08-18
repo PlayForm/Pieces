@@ -12,95 +12,99 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
 
 /**
  * if you want a range between you can use from && to.
- * 
+ *
  * if you want anything before, use to and NO from.
- * 
+ *
  * if you want anything after, use from and NO to.
  * @export
  * @interface TimestampRange
  */
 export interface TimestampRange {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TimestampRange
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof TimestampRange
-     */
-    from?: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof TimestampRange
-     */
-    to?: GroupedTimestamp;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TimestampRange
-     */
-    between?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TimestampRange
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof TimestampRange
+	 */
+	from?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof TimestampRange
+	 */
+	to?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof TimestampRange
+	 */
+	between?: boolean;
 }
 
 /**
  * Check if a given object implements the TimestampRange interface.
  */
-export function instanceOfTimestampRange(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTimestampRange(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TimestampRangeFromJSON(json: any): TimestampRange {
-    return TimestampRangeFromJSONTyped(json, false);
+	return TimestampRangeFromJSONTyped(json, false);
 }
 
-export function TimestampRangeFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimestampRange {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'from': !exists(json, 'from') ? undefined : GroupedTimestampFromJSON(json['from']),
-        'to': !exists(json, 'to') ? undefined : GroupedTimestampFromJSON(json['to']),
-        'between': !exists(json, 'between') ? undefined : json['between'],
-    };
+export function TimestampRangeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TimestampRange {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		from: exists(json, "from")
+			? GroupedTimestampFromJSON(json["from"])
+			: undefined,
+		to: exists(json, "to")
+			? GroupedTimestampFromJSON(json["to"])
+			: undefined,
+		between: exists(json, "between") ? json["between"] : undefined,
+	};
 }
 
 export function TimestampRangeToJSON(value?: TimestampRange | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'from': GroupedTimestampToJSON(value.from),
-        'to': GroupedTimestampToJSON(value.to),
-        'between': value.between,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		from: GroupedTimestampToJSON(value.from),
+		to: GroupedTimestampToJSON(value.to),
+		between: value.between,
+	};
 }
-

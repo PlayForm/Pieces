@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will give specific information on task specific capibilites for GPU.
@@ -26,55 +25,63 @@ import {
  * @interface OSDeviceGPUHardwareCapabilitiesInformation
  */
 export interface OSDeviceGPUHardwareCapabilitiesInformation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSDeviceGPUHardwareCapabilitiesInformation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This will let us know if in the case we have a gpu and our gpu has the capabilities to use llms
-     * @type {boolean}
-     * @memberof OSDeviceGPUHardwareCapabilitiesInformation
-     */
-    llm?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSDeviceGPUHardwareCapabilitiesInformation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This will let us know if in the case we have a gpu and our gpu has the capabilities to use llms
+	 * @type {boolean}
+	 * @memberof OSDeviceGPUHardwareCapabilitiesInformation
+	 */
+	llm?: boolean;
 }
 
 /**
  * Check if a given object implements the OSDeviceGPUHardwareCapabilitiesInformation interface.
  */
-export function instanceOfOSDeviceGPUHardwareCapabilitiesInformation(value: object): boolean {
-    let isInstance = true;
+export function instanceOfOSDeviceGPUHardwareCapabilitiesInformation(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function OSDeviceGPUHardwareCapabilitiesInformationFromJSON(json: any): OSDeviceGPUHardwareCapabilitiesInformation {
-    return OSDeviceGPUHardwareCapabilitiesInformationFromJSONTyped(json, false);
+export function OSDeviceGPUHardwareCapabilitiesInformationFromJSON(
+	json: any,
+): OSDeviceGPUHardwareCapabilitiesInformation {
+	return OSDeviceGPUHardwareCapabilitiesInformationFromJSONTyped(json, false);
 }
 
-export function OSDeviceGPUHardwareCapabilitiesInformationFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSDeviceGPUHardwareCapabilitiesInformation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'llm': !exists(json, 'llm') ? undefined : json['llm'],
-    };
+export function OSDeviceGPUHardwareCapabilitiesInformationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSDeviceGPUHardwareCapabilitiesInformation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		llm: exists(json, "llm") ? json["llm"] : undefined,
+	};
 }
 
-export function OSDeviceGPUHardwareCapabilitiesInformationToJSON(value?: OSDeviceGPUHardwareCapabilitiesInformation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'llm': value.llm,
-    };
+export function OSDeviceGPUHardwareCapabilitiesInformationToJSON(
+	value?: OSDeviceGPUHardwareCapabilitiesInformation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		llm: value.llm,
+	};
 }
-

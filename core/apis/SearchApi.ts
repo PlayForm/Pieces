@@ -12,144 +12,178 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  SearchedAssets,
-  SeededAssetTags,
-} from '../models/index';
+import type { SearchedAssets, SeededAssetTags } from "../models/index.ts";
 import {
-    SearchedAssetsFromJSON,
-    SearchedAssetsToJSON,
-    SeededAssetTagsFromJSON,
-    SeededAssetTagsToJSON,
-} from '../models/index';
+	SearchedAssetsFromJSON,
+	SeededAssetTagsToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface FullTextSearchRequest {
-    query?: string;
-    pseudo?: boolean;
+	query?: string;
+	pseudo?: boolean;
 }
 
 export interface NeuralCodeSearchRequest {
-    query?: string;
-    pseudo?: boolean;
+	query?: string;
+	pseudo?: boolean;
 }
 
 export interface TagBasedSearchRequest {
-    pseudo?: boolean;
-    seededAssetTags?: SeededAssetTags;
+	pseudo?: boolean;
+	seededAssetTags?: SeededAssetTags;
 }
 
 /**
- * 
+ *
  */
 export class SearchApi extends runtime.BaseAPI {
+	/**
+	 * This will run FTS for exact search, and will NOT run fuzzy matching. This will only search the content within the
+	 * /search/full_text [GET]
+	 */
+	async fullTextSearchRaw(
+		requestParameters: FullTextSearchRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedAssets>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will run FTS for exact search, and will NOT run fuzzy matching. This will only search the content within the 
-     * /search/full_text [GET]
-     */
-    async fullTextSearchRaw(requestParameters: FullTextSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedAssets>> {
-        const queryParameters: any = {};
+		if (requestParameters.query !== undefined) {
+			queryParameters["query"] = requestParameters.query;
+		}
 
-        if (requestParameters.query !== undefined) {
-            queryParameters['query'] = requestParameters.query;
-        }
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
 
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/search/full_text",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/search/full_text`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedAssetsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedAssetsFromJSON(jsonValue));
-    }
+	/**
+	 * This will run FTS for exact search, and will NOT run fuzzy matching. This will only search the content within the
+	 * /search/full_text [GET]
+	 */
+	async fullTextSearch(
+		requestParameters: FullTextSearchRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedAssets> {
+		const response = await this.fullTextSearchRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will run FTS for exact search, and will NOT run fuzzy matching. This will only search the content within the 
-     * /search/full_text [GET]
-     */
-    async fullTextSearch(requestParameters: FullTextSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedAssets> {
-        const response = await this.fullTextSearchRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will run ncs on your assets. This will simply return FlattenedAssets, but will just be the assetuuids that match.
+	 * /search/neural_code [GET]
+	 */
+	async neuralCodeSearchRaw(
+		requestParameters: NeuralCodeSearchRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedAssets>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will run ncs on your assets. This will simply return FlattenedAssets, but will just be the assetuuids that match.
-     * /search/neural_code [GET]
-     */
-    async neuralCodeSearchRaw(requestParameters: NeuralCodeSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedAssets>> {
-        const queryParameters: any = {};
+		if (requestParameters.query !== undefined) {
+			queryParameters["query"] = requestParameters.query;
+		}
 
-        if (requestParameters.query !== undefined) {
-            queryParameters['query'] = requestParameters.query;
-        }
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
 
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/search/neural_code",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/search/neural_code`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedAssetsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedAssetsFromJSON(jsonValue));
-    }
+	/**
+	 * This will run ncs on your assets. This will simply return FlattenedAssets, but will just be the assetuuids that match.
+	 * /search/neural_code [GET]
+	 */
+	async neuralCodeSearch(
+		requestParameters: NeuralCodeSearchRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedAssets> {
+		const response = await this.neuralCodeSearchRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will run ncs on your assets. This will simply return FlattenedAssets, but will just be the assetuuids that match.
-     * /search/neural_code [GET]
-     */
-    async neuralCodeSearch(requestParameters: NeuralCodeSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedAssets> {
-        const response = await this.neuralCodeSearchRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will run our tag based search, and return the assets that best match your passed in tags. This will simply return FlattenedAssets, but will just be the assetuuids that match.
+	 * /search/tag_based [POST]
+	 */
+	async tagBasedSearchRaw(
+		requestParameters: TagBasedSearchRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedAssets>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will run our tag based search, and return the assets that best match your passed in tags. This will simply return FlattenedAssets, but will just be the assetuuids that match.
-     * /search/tag_based [POST]
-     */
-    async tagBasedSearchRaw(requestParameters: TagBasedSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedAssets>> {
-        const queryParameters: any = {};
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
 
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/search/tag_based",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededAssetTagsToJSON(requestParameters.seededAssetTags),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/search/tag_based`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededAssetTagsToJSON(requestParameters.seededAssetTags),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedAssetsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedAssetsFromJSON(jsonValue));
-    }
-
-    /**
-     * This will run our tag based search, and return the assets that best match your passed in tags. This will simply return FlattenedAssets, but will just be the assetuuids that match.
-     * /search/tag_based [POST]
-     */
-    async tagBasedSearch(requestParameters: TagBasedSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedAssets> {
-        const response = await this.tagBasedSearchRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will run our tag based search, and return the assets that best match your passed in tags. This will simply return FlattenedAssets, but will just be the assetuuids that match.
+	 * /search/tag_based [POST]
+	 */
+	async tagBasedSearch(
+		requestParameters: TagBasedSearchRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedAssets> {
+		const response = await this.tagBasedSearchRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

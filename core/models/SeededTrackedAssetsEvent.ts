@@ -12,89 +12,101 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededTrackedAssetsEventMetadata } from './SeededTrackedAssetsEventMetadata';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededTrackedAssetsEventMetadata } from "./SeededTrackedAssetsEventMetadata.tsx";
 import {
-    SeededTrackedAssetsEventMetadataFromJSON,
-    SeededTrackedAssetsEventMetadataFromJSONTyped,
-    SeededTrackedAssetsEventMetadataToJSON,
-} from './SeededTrackedAssetsEventMetadata';
-import type { TrackedAssetsEventIdentifierDescriptionPairs } from './TrackedAssetsEventIdentifierDescriptionPairs';
+	SeededTrackedAssetsEventMetadataFromJSON,
+	SeededTrackedAssetsEventMetadataToJSON,
+} from "./SeededTrackedAssetsEventMetadata.tsx";
+import type { TrackedAssetsEventIdentifierDescriptionPairs } from "./TrackedAssetsEventIdentifierDescriptionPairs.tsx";
 import {
-    TrackedAssetsEventIdentifierDescriptionPairsFromJSON,
-    TrackedAssetsEventIdentifierDescriptionPairsFromJSONTyped,
-    TrackedAssetsEventIdentifierDescriptionPairsToJSON,
-} from './TrackedAssetsEventIdentifierDescriptionPairs';
+	TrackedAssetsEventIdentifierDescriptionPairsFromJSON,
+	TrackedAssetsEventIdentifierDescriptionPairsToJSON,
+} from "./TrackedAssetsEventIdentifierDescriptionPairs.tsx";
 
 /**
- * An seeded event model that can occur at the assets level i.e. search 
+ * An seeded event model that can occur at the assets level i.e. search
  * @export
  * @interface SeededTrackedAssetsEvent
  */
 export interface SeededTrackedAssetsEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededTrackedAssetsEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TrackedAssetsEventIdentifierDescriptionPairs}
-     * @memberof SeededTrackedAssetsEvent
-     */
-    identifierDescriptionPair?: TrackedAssetsEventIdentifierDescriptionPairs;
-    /**
-     * 
-     * @type {SeededTrackedAssetsEventMetadata}
-     * @memberof SeededTrackedAssetsEvent
-     */
-    metadata?: SeededTrackedAssetsEventMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededTrackedAssetsEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TrackedAssetsEventIdentifierDescriptionPairs}
+	 * @memberof SeededTrackedAssetsEvent
+	 */
+	identifierDescriptionPair?: TrackedAssetsEventIdentifierDescriptionPairs;
+	/**
+	 *
+	 * @type {SeededTrackedAssetsEventMetadata}
+	 * @memberof SeededTrackedAssetsEvent
+	 */
+	metadata?: SeededTrackedAssetsEventMetadata;
 }
 
 /**
  * Check if a given object implements the SeededTrackedAssetsEvent interface.
  */
-export function instanceOfSeededTrackedAssetsEvent(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededTrackedAssetsEvent(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededTrackedAssetsEventFromJSON(json: any): SeededTrackedAssetsEvent {
-    return SeededTrackedAssetsEventFromJSONTyped(json, false);
+export function SeededTrackedAssetsEventFromJSON(
+	json: any,
+): SeededTrackedAssetsEvent {
+	return SeededTrackedAssetsEventFromJSONTyped(json, false);
 }
 
-export function SeededTrackedAssetsEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededTrackedAssetsEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'identifierDescriptionPair': !exists(json, 'identifier_description_pair') ? undefined : TrackedAssetsEventIdentifierDescriptionPairsFromJSON(json['identifier_description_pair']),
-        'metadata': !exists(json, 'metadata') ? undefined : SeededTrackedAssetsEventMetadataFromJSON(json['metadata']),
-    };
+export function SeededTrackedAssetsEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededTrackedAssetsEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		identifierDescriptionPair: exists(json, "identifier_description_pair")
+			? TrackedAssetsEventIdentifierDescriptionPairsFromJSON(
+					json["identifier_description_pair"],
+				)
+			: undefined,
+		metadata: exists(json, "metadata")
+			? SeededTrackedAssetsEventMetadataFromJSON(json["metadata"])
+			: undefined,
+	};
 }
 
-export function SeededTrackedAssetsEventToJSON(value?: SeededTrackedAssetsEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'identifier_description_pair': TrackedAssetsEventIdentifierDescriptionPairsToJSON(value.identifierDescriptionPair),
-        'metadata': SeededTrackedAssetsEventMetadataToJSON(value.metadata),
-    };
+export function SeededTrackedAssetsEventToJSON(
+	value?: SeededTrackedAssetsEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		identifier_description_pair:
+			TrackedAssetsEventIdentifierDescriptionPairsToJSON(
+				value.identifierDescriptionPair,
+			),
+		metadata: SeededTrackedAssetsEventMetadataToJSON(value.metadata),
+	};
 }
-

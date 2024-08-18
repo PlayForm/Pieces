@@ -12,85 +12,87 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { DiscoveredSensitive } from './DiscoveredSensitive';
+import { exists } from "../runtime.ts";
+import type { DiscoveredSensitive } from "./DiscoveredSensitive.tsx";
 import {
-    DiscoveredSensitiveFromJSON,
-    DiscoveredSensitiveFromJSONTyped,
-    DiscoveredSensitiveToJSON,
-} from './DiscoveredSensitive';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	DiscoveredSensitiveFromJSON,
+	DiscoveredSensitiveToJSON,
+} from "./DiscoveredSensitive.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface DiscoveredSensitives
  */
 export interface DiscoveredSensitives {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DiscoveredSensitives
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<DiscoveredSensitive>}
-     * @memberof DiscoveredSensitives
-     */
-    iterable: Array<DiscoveredSensitive>;
-    /**
-     * 
-     * @type {string}
-     * @memberof DiscoveredSensitives
-     */
-    application: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DiscoveredSensitives
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<DiscoveredSensitive>}
+	 * @memberof DiscoveredSensitives
+	 */
+	iterable: DiscoveredSensitive[];
+	/**
+	 *
+	 * @type {string}
+	 * @memberof DiscoveredSensitives
+	 */
+	application: string;
 }
 
 /**
  * Check if a given object implements the DiscoveredSensitives interface.
  */
 export function instanceOfDiscoveredSensitives(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
-    isInstance = isInstance && "application" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
+	isInstance = isInstance && "application" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function DiscoveredSensitivesFromJSON(json: any): DiscoveredSensitives {
-    return DiscoveredSensitivesFromJSONTyped(json, false);
+	return DiscoveredSensitivesFromJSONTyped(json, false);
 }
 
-export function DiscoveredSensitivesFromJSONTyped(json: any, ignoreDiscriminator: boolean): DiscoveredSensitives {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(DiscoveredSensitiveFromJSON)),
-        'application': json['application'],
-    };
+export function DiscoveredSensitivesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DiscoveredSensitives {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(DiscoveredSensitiveFromJSON),
+		application: json["application"],
+	};
 }
 
-export function DiscoveredSensitivesToJSON(value?: DiscoveredSensitives | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(DiscoveredSensitiveToJSON)),
-        'application': value.application,
-    };
+export function DiscoveredSensitivesToJSON(
+	value?: DiscoveredSensitives | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(DiscoveredSensitiveToJSON),
+		application: value.application,
+	};
 }
-

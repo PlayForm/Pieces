@@ -12,73 +12,82 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This task is for modifying a bit of code, IE modify this code to do xyz.
- * 
+ *
  * This is a class so that we can add optional properties in the future.
- * 
+ *
  * Note: the snippet && language that needs to be modified should be within the QGPTQuestionInput.relevant
  * @export
  * @interface QGPTTaskPipelineForCodeModification
  */
 export interface QGPTTaskPipelineForCodeModification {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTTaskPipelineForCodeModification
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the instruction that we will use to modify this snippet.
-     * @type {string}
-     * @memberof QGPTTaskPipelineForCodeModification
-     */
-    instruction?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTTaskPipelineForCodeModification
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the instruction that we will use to modify this snippet.
+	 * @type {string}
+	 * @memberof QGPTTaskPipelineForCodeModification
+	 */
+	instruction?: string;
 }
 
 /**
  * Check if a given object implements the QGPTTaskPipelineForCodeModification interface.
  */
-export function instanceOfQGPTTaskPipelineForCodeModification(value: object): boolean {
-    let isInstance = true;
+export function instanceOfQGPTTaskPipelineForCodeModification(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function QGPTTaskPipelineForCodeModificationFromJSON(json: any): QGPTTaskPipelineForCodeModification {
-    return QGPTTaskPipelineForCodeModificationFromJSONTyped(json, false);
+export function QGPTTaskPipelineForCodeModificationFromJSON(
+	json: any,
+): QGPTTaskPipelineForCodeModification {
+	return QGPTTaskPipelineForCodeModificationFromJSONTyped(json, false);
 }
 
-export function QGPTTaskPipelineForCodeModificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTTaskPipelineForCodeModification {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'instruction': !exists(json, 'instruction') ? undefined : json['instruction'],
-    };
+export function QGPTTaskPipelineForCodeModificationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTTaskPipelineForCodeModification {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		instruction: exists(json, "instruction")
+			? json["instruction"]
+			: undefined,
+	};
 }
 
-export function QGPTTaskPipelineForCodeModificationToJSON(value?: QGPTTaskPipelineForCodeModification | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'instruction': value.instruction,
-    };
+export function QGPTTaskPipelineForCodeModificationToJSON(
+	value?: QGPTTaskPipelineForCodeModification | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		instruction: value.instruction,
+	};
 }
-

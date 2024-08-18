@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedConversationMessage } from './FlattenedConversationMessage';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedConversationMessage } from "./FlattenedConversationMessage.tsx";
 import {
-    FlattenedConversationMessageFromJSON,
-    FlattenedConversationMessageFromJSONTyped,
-    FlattenedConversationMessageToJSON,
-} from './FlattenedConversationMessage';
+	FlattenedConversationMessageFromJSON,
+	FlattenedConversationMessageToJSON,
+} from "./FlattenedConversationMessage.tsx";
 
 /**
  * This is a DAG-Safe Minimal version of a ConversationMessage.
@@ -32,64 +30,74 @@ import {
  * @interface ReferencedConversationMessage
  */
 export interface ReferencedConversationMessage {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedConversationMessage
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedConversationMessage
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedConversationMessage}
-     * @memberof ReferencedConversationMessage
-     */
-    reference?: FlattenedConversationMessage;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedConversationMessage
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedConversationMessage
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedConversationMessage}
+	 * @memberof ReferencedConversationMessage
+	 */
+	reference?: FlattenedConversationMessage;
 }
 
 /**
  * Check if a given object implements the ReferencedConversationMessage interface.
  */
-export function instanceOfReferencedConversationMessage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+export function instanceOfReferencedConversationMessage(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ReferencedConversationMessageFromJSON(json: any): ReferencedConversationMessage {
-    return ReferencedConversationMessageFromJSONTyped(json, false);
+export function ReferencedConversationMessageFromJSON(
+	json: any,
+): ReferencedConversationMessage {
+	return ReferencedConversationMessageFromJSONTyped(json, false);
 }
 
-export function ReferencedConversationMessageFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedConversationMessage {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedConversationMessageFromJSON(json['reference']),
-    };
+export function ReferencedConversationMessageFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedConversationMessage {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedConversationMessageFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
-export function ReferencedConversationMessageToJSON(value?: ReferencedConversationMessage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedConversationMessageToJSON(value.reference),
-    };
+export function ReferencedConversationMessageToJSON(
+	value?: ReferencedConversationMessage | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedConversationMessageToJSON(value.reference),
+	};
 }
-

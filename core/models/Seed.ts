@@ -12,142 +12,136 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededAnchor } from './SeededAnchor';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededAnchor } from "./SeededAnchor.tsx";
+import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
+import type { SeededAsset } from "./SeededAsset.tsx";
+import { SeededAssetFromJSON, SeededAssetToJSON } from "./SeededAsset.tsx";
+import type { SeededPerson } from "./SeededPerson.tsx";
+import { SeededPersonFromJSON, SeededPersonToJSON } from "./SeededPerson.tsx";
+import type { SeededWebsite } from "./SeededWebsite.tsx";
 import {
-    SeededAnchorFromJSON,
-    SeededAnchorFromJSONTyped,
-    SeededAnchorToJSON,
-} from './SeededAnchor';
-import type { SeededAsset } from './SeededAsset';
-import {
-    SeededAssetFromJSON,
-    SeededAssetFromJSONTyped,
-    SeededAssetToJSON,
-} from './SeededAsset';
-import type { SeededPerson } from './SeededPerson';
-import {
-    SeededPersonFromJSON,
-    SeededPersonFromJSONTyped,
-    SeededPersonToJSON,
-} from './SeededPerson';
-import type { SeededWebsite } from './SeededWebsite';
-import {
-    SeededWebsiteFromJSON,
-    SeededWebsiteFromJSONTyped,
-    SeededWebsiteToJSON,
-} from './SeededWebsite';
+	SeededWebsiteFromJSON,
+	SeededWebsiteToJSON,
+} from "./SeededWebsite.tsx";
 
 /**
  * A seed Model used to wrap a format or asset
- * 
+ *
  * Note: we will expand this now to support additional paramerters.
- * 
+ *
  * Note: however if create an asset, only pass in the asset, not passing in an asset in this case will cause the endpoint to fail.
- * 
+ *
  * TODO: for a breaking change update the type enum here to add support for the additional materials or remove it entirely.
  * @export
  * @interface Seed
  */
 export interface Seed {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Seed
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededAsset}
-     * @memberof Seed
-     */
-    asset?: SeededAsset;
-    /**
-     * 
-     * @type {SeededPerson}
-     * @memberof Seed
-     */
-    person?: SeededPerson;
-    /**
-     * 
-     * @type {SeededAnchor}
-     * @memberof Seed
-     */
-    anchor?: SeededAnchor;
-    /**
-     * 
-     * @type {SeededWebsite}
-     * @memberof Seed
-     */
-    website?: SeededWebsite;
-    /**
-     * 
-     * @type {string}
-     * @memberof Seed
-     */
-    type?: SeedTypeEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Seed
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededAsset}
+	 * @memberof Seed
+	 */
+	asset?: SeededAsset;
+	/**
+	 *
+	 * @type {SeededPerson}
+	 * @memberof Seed
+	 */
+	person?: SeededPerson;
+	/**
+	 *
+	 * @type {SeededAnchor}
+	 * @memberof Seed
+	 */
+	anchor?: SeededAnchor;
+	/**
+	 *
+	 * @type {SeededWebsite}
+	 * @memberof Seed
+	 */
+	website?: SeededWebsite;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Seed
+	 */
+	type?: SeedTypeEnum;
 }
-
 
 /**
  * @export
  */
 export const SeedTypeEnum = {
-    Format: 'SEEDED_FORMAT',
-    Asset: 'SEEDED_ASSET'
+	Format: "SEEDED_FORMAT",
+	Asset: "SEEDED_ASSET",
 } as const;
-export type SeedTypeEnum = typeof SeedTypeEnum[keyof typeof SeedTypeEnum];
-
+export type SeedTypeEnum = (typeof SeedTypeEnum)[keyof typeof SeedTypeEnum];
 
 /**
  * Check if a given object implements the Seed interface.
  */
-export function instanceOfSeed(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeed(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeedFromJSON(json: any): Seed {
-    return SeedFromJSONTyped(json, false);
+	return SeedFromJSONTyped(json, false);
 }
 
-export function SeedFromJSONTyped(json: any, ignoreDiscriminator: boolean): Seed {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': !exists(json, 'asset') ? undefined : SeededAssetFromJSON(json['asset']),
-        'person': !exists(json, 'person') ? undefined : SeededPersonFromJSON(json['person']),
-        'anchor': !exists(json, 'anchor') ? undefined : SeededAnchorFromJSON(json['anchor']),
-        'website': !exists(json, 'website') ? undefined : SeededWebsiteFromJSON(json['website']),
-        'type': !exists(json, 'type') ? undefined : json['type'],
-    };
+export function SeedFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Seed {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: exists(json, "asset")
+			? SeededAssetFromJSON(json["asset"])
+			: undefined,
+		person: exists(json, "person")
+			? SeededPersonFromJSON(json["person"])
+			: undefined,
+		anchor: exists(json, "anchor")
+			? SeededAnchorFromJSON(json["anchor"])
+			: undefined,
+		website: exists(json, "website")
+			? SeededWebsiteFromJSON(json["website"])
+			: undefined,
+		type: exists(json, "type") ? json["type"] : undefined,
+	};
 }
 
 export function SeedToJSON(value?: Seed | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': SeededAssetToJSON(value.asset),
-        'person': SeededPersonToJSON(value.person),
-        'anchor': SeededAnchorToJSON(value.anchor),
-        'website': SeededWebsiteToJSON(value.website),
-        'type': value.type,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: SeededAssetToJSON(value.asset),
+		person: SeededPersonToJSON(value.person),
+		anchor: SeededAnchorToJSON(value.anchor),
+		website: SeededWebsiteToJSON(value.website),
+		type: value.type,
+	};
 }
-

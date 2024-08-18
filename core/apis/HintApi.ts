@@ -12,212 +12,320 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Hint,
-  SeededScoreIncrement,
-} from '../models/index';
+import type { Hint, SeededScoreIncrement } from "../models/index.ts";
 import {
-    HintFromJSON,
-    HintToJSON,
-    SeededScoreIncrementFromJSON,
-    SeededScoreIncrementToJSON,
-} from '../models/index';
+	HintFromJSON,
+	HintToJSON,
+	SeededScoreIncrementToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface HintAssociateAssetRequest {
-    hint: string;
-    asset: string;
+	hint: string;
+	asset: string;
 }
 
 export interface HintDisassociateAssetRequest {
-    hint: string;
-    asset: string;
+	hint: string;
+	asset: string;
 }
 
 export interface HintScoresIncrementRequest {
-    hint: string;
-    seededScoreIncrement?: SeededScoreIncrement;
+	hint: string;
+	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface HintSpecificHintSnapshotRequest {
-    hint: string;
+	hint: string;
 }
 
 export interface HintUpdateRequest {
-    hint?: Hint;
+	hint?: Hint;
 }
 
 /**
- * 
+ *
  */
 export class HintApi extends runtime.BaseAPI {
+	/**
+	 * associates a hint and an asset. It performs the same action as the asset equivalent.
+	 * /hint/{hint}/assets/associate/{asset} [POST]
+	 */
+	async hintAssociateAssetRaw(
+		requestParameters: HintAssociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.hint === null ||
+			requestParameters.hint === undefined
+		) {
+			throw new runtime.RequiredError(
+				"hint",
+				"Required parameter requestParameters.hint was null or undefined when calling hintAssociateAsset.",
+			);
+		}
 
-    /**
-     * associates a hint and an asset. It performs the same action as the asset equivalent.
-     * /hint/{hint}/assets/associate/{asset} [POST]
-     */
-    async hintAssociateAssetRaw(requestParameters: HintAssociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.hint === null || requestParameters.hint === undefined) {
-            throw new runtime.RequiredError('hint','Required parameter requestParameters.hint was null or undefined when calling hintAssociateAsset.');
-        }
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling hintAssociateAsset.",
+			);
+		}
 
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling hintAssociateAsset.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/hint/{hint}/assets/associate/{asset}"
+					.replace(
+						`{${"hint"}}`,
+						encodeURIComponent(String(requestParameters.hint)),
+					)
+					.replace(
+						`{${"asset"}}`,
+						encodeURIComponent(String(requestParameters.asset)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hint/{hint}/assets/associate/{asset}`.replace(`{${"hint"}}`, encodeURIComponent(String(requestParameters.hint))).replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * associates a hint and an asset. It performs the same action as the asset equivalent.
+	 * /hint/{hint}/assets/associate/{asset} [POST]
+	 */
+	async hintAssociateAsset(
+		requestParameters: HintAssociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.hintAssociateAssetRaw(requestParameters, initOverrides);
+	}
 
-    /**
-     * associates a hint and an asset. It performs the same action as the asset equivalent.
-     * /hint/{hint}/assets/associate/{asset} [POST]
-     */
-    async hintAssociateAsset(requestParameters: HintAssociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.hintAssociateAssetRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * Disassociates a hint from an asset. It performs the same action as the asset equivalent.
+	 * /hint/{hint}/assets/disassociate/{asset} [POST]
+	 */
+	async hintDisassociateAssetRaw(
+		requestParameters: HintDisassociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.hint === null ||
+			requestParameters.hint === undefined
+		) {
+			throw new runtime.RequiredError(
+				"hint",
+				"Required parameter requestParameters.hint was null or undefined when calling hintDisassociateAsset.",
+			);
+		}
 
-    /**
-     * Disassociates a hint from an asset. It performs the same action as the asset equivalent.
-     * /hint/{hint}/assets/disassociate/{asset} [POST]
-     */
-    async hintDisassociateAssetRaw(requestParameters: HintDisassociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.hint === null || requestParameters.hint === undefined) {
-            throw new runtime.RequiredError('hint','Required parameter requestParameters.hint was null or undefined when calling hintDisassociateAsset.');
-        }
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling hintDisassociateAsset.",
+			);
+		}
 
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling hintDisassociateAsset.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/hint/{hint}/assets/disassociate/{asset}"
+					.replace(
+						`{${"hint"}}`,
+						encodeURIComponent(String(requestParameters.hint)),
+					)
+					.replace(
+						`{${"asset"}}`,
+						encodeURIComponent(String(requestParameters.asset)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hint/{hint}/assets/disassociate/{asset}`.replace(`{${"hint"}}`, encodeURIComponent(String(requestParameters.hint))).replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * Disassociates a hint from an asset. It performs the same action as the asset equivalent.
+	 * /hint/{hint}/assets/disassociate/{asset} [POST]
+	 */
+	async hintDisassociateAsset(
+		requestParameters: HintDisassociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.hintDisassociateAssetRaw(requestParameters, initOverrides);
+	}
 
-    /**
-     * Disassociates a hint from an asset. It performs the same action as the asset equivalent.
-     * /hint/{hint}/assets/disassociate/{asset} [POST]
-     */
-    async hintDisassociateAsset(requestParameters: HintDisassociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.hintDisassociateAssetRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
+	 * \'/hint/{hint}/scores/increment\' [POST]
+	 */
+	async hintScoresIncrementRaw(
+		requestParameters: HintScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.hint === null ||
+			requestParameters.hint === undefined
+		) {
+			throw new runtime.RequiredError(
+				"hint",
+				"Required parameter requestParameters.hint was null or undefined when calling hintScoresIncrement.",
+			);
+		}
 
-    /**
-     * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
-     * \'/hint/{hint}/scores/increment\' [POST]
-     */
-    async hintScoresIncrementRaw(requestParameters: HintScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.hint === null || requestParameters.hint === undefined) {
-            throw new runtime.RequiredError('hint','Required parameter requestParameters.hint was null or undefined when calling hintScoresIncrement.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/hint/{hint}/scores/increment".replace(
+					`{${"hint"}}`,
+					encodeURIComponent(String(requestParameters.hint)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededScoreIncrementToJSON(
+					requestParameters.seededScoreIncrement,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hint/{hint}/scores/increment`.replace(`{${"hint"}}`, encodeURIComponent(String(requestParameters.hint))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededScoreIncrementToJSON(requestParameters.seededScoreIncrement),
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
+	 * \'/hint/{hint}/scores/increment\' [POST]
+	 */
+	async hintScoresIncrement(
+		requestParameters: HintScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.hintScoresIncrementRaw(requestParameters, initOverrides);
+	}
 
-    /**
-     * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
-     * \'/hint/{hint}/scores/increment\' [POST]
-     */
-    async hintScoresIncrement(requestParameters: HintScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.hintScoresIncrementRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will get a snapshot of a specific hint.
+	 * /hint/{hint} [POST]
+	 */
+	async hintSpecificHintSnapshotRaw(
+		requestParameters: HintSpecificHintSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Hint>> {
+		if (
+			requestParameters.hint === null ||
+			requestParameters.hint === undefined
+		) {
+			throw new runtime.RequiredError(
+				"hint",
+				"Required parameter requestParameters.hint was null or undefined when calling hintSpecificHintSnapshot.",
+			);
+		}
 
-    /**
-     * This will get a snapshot of a specific hint.
-     * /hint/{hint} [POST]
-     */
-    async hintSpecificHintSnapshotRaw(requestParameters: HintSpecificHintSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Hint>> {
-        if (requestParameters.hint === null || requestParameters.hint === undefined) {
-            throw new runtime.RequiredError('hint','Required parameter requestParameters.hint was null or undefined when calling hintSpecificHintSnapshot.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/hint/{hint}".replace(
+					`{${"hint"}}`,
+					encodeURIComponent(String(requestParameters.hint)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hint/{hint}`.replace(`{${"hint"}}`, encodeURIComponent(String(requestParameters.hint))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			HintFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => HintFromJSON(jsonValue));
-    }
+	/**
+	 * This will get a snapshot of a specific hint.
+	 * /hint/{hint} [POST]
+	 */
+	async hintSpecificHintSnapshot(
+		requestParameters: HintSpecificHintSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Hint> {
+		const response = await this.hintSpecificHintSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will get a snapshot of a specific hint.
-     * /hint/{hint} [POST]
-     */
-    async hintSpecificHintSnapshot(requestParameters: HintSpecificHintSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Hint> {
-        const response = await this.hintSpecificHintSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will update a specific hint.
+	 * /hint/update [POST]
+	 */
+	async hintUpdateRaw(
+		requestParameters: HintUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Hint>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will update a specific hint.
-     * /hint/update [POST]
-     */
-    async hintUpdateRaw(requestParameters: HintUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Hint>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/hint/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: HintToJSON(requestParameters.hint),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hint/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: HintToJSON(requestParameters.hint),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			HintFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => HintFromJSON(jsonValue));
-    }
-
-    /**
-     * This will update a specific hint.
-     * /hint/update [POST]
-     */
-    async hintUpdate(requestParameters: HintUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Hint> {
-        const response = await this.hintUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will update a specific hint.
+	 * /hint/update [POST]
+	 */
+	async hintUpdate(
+		requestParameters: HintUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Hint> {
+		const response = await this.hintUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

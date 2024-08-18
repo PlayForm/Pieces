@@ -12,76 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { OCRAnalysis } from './OCRAnalysis';
-import {
-    OCRAnalysisFromJSON,
-    OCRAnalysisFromJSONTyped,
-    OCRAnalysisToJSON,
-} from './OCRAnalysis';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { OCRAnalysis } from "./OCRAnalysis.tsx";
+import { OCRAnalysisFromJSON, OCRAnalysisToJSON } from "./OCRAnalysis.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface OCRAnalyses
  */
 export interface OCRAnalyses {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OCRAnalyses
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<OCRAnalysis>}
-     * @memberof OCRAnalyses
-     */
-    iterable: Array<OCRAnalysis>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OCRAnalyses
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<OCRAnalysis>}
+	 * @memberof OCRAnalyses
+	 */
+	iterable: OCRAnalysis[];
 }
 
 /**
  * Check if a given object implements the OCRAnalyses interface.
  */
 export function instanceOfOCRAnalyses(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function OCRAnalysesFromJSON(json: any): OCRAnalyses {
-    return OCRAnalysesFromJSONTyped(json, false);
+	return OCRAnalysesFromJSONTyped(json, false);
 }
 
-export function OCRAnalysesFromJSONTyped(json: any, ignoreDiscriminator: boolean): OCRAnalyses {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(OCRAnalysisFromJSON)),
-    };
+export function OCRAnalysesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OCRAnalyses {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(OCRAnalysisFromJSON),
+	};
 }
 
 export function OCRAnalysesToJSON(value?: OCRAnalyses | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(OCRAnalysisToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(OCRAnalysisToJSON),
+	};
 }
-

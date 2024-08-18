@@ -12,75 +12,81 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GraphicalOCRStatistics } from './GraphicalOCRStatistics';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GraphicalOCRStatistics } from "./GraphicalOCRStatistics.tsx";
 import {
-    GraphicalOCRStatisticsFromJSON,
-    GraphicalOCRStatisticsFromJSONTyped,
-    GraphicalOCRStatisticsToJSON,
-} from './GraphicalOCRStatistics';
+	GraphicalOCRStatisticsFromJSON,
+	GraphicalOCRStatisticsToJSON,
+} from "./GraphicalOCRStatistics.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface GraphicalOCRProcessing
  */
 export interface GraphicalOCRProcessing {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GraphicalOCRProcessing
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GraphicalOCRStatistics}
-     * @memberof GraphicalOCRProcessing
-     */
-    statistics?: GraphicalOCRStatistics;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GraphicalOCRProcessing
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GraphicalOCRStatistics}
+	 * @memberof GraphicalOCRProcessing
+	 */
+	statistics?: GraphicalOCRStatistics;
 }
 
 /**
  * Check if a given object implements the GraphicalOCRProcessing interface.
  */
-export function instanceOfGraphicalOCRProcessing(value: object): boolean {
-    let isInstance = true;
+export function instanceOfGraphicalOCRProcessing(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function GraphicalOCRProcessingFromJSON(json: any): GraphicalOCRProcessing {
-    return GraphicalOCRProcessingFromJSONTyped(json, false);
+export function GraphicalOCRProcessingFromJSON(
+	json: any,
+): GraphicalOCRProcessing {
+	return GraphicalOCRProcessingFromJSONTyped(json, false);
 }
 
-export function GraphicalOCRProcessingFromJSONTyped(json: any, ignoreDiscriminator: boolean): GraphicalOCRProcessing {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'statistics': !exists(json, 'statistics') ? undefined : GraphicalOCRStatisticsFromJSON(json['statistics']),
-    };
+export function GraphicalOCRProcessingFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GraphicalOCRProcessing {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		statistics: exists(json, "statistics")
+			? GraphicalOCRStatisticsFromJSON(json["statistics"])
+			: undefined,
+	};
 }
 
-export function GraphicalOCRProcessingToJSON(value?: GraphicalOCRProcessing | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'statistics': GraphicalOCRStatisticsToJSON(value.statistics),
-    };
+export function GraphicalOCRProcessingToJSON(
+	value?: GraphicalOCRProcessing | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		statistics: GraphicalOCRStatisticsToJSON(value.statistics),
+	};
 }
-

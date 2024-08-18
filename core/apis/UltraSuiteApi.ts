@@ -12,57 +12,62 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Asset,
-  SeededUltraSuiteAsset,
-} from '../models/index';
-import {
-    AssetFromJSON,
-    AssetToJSON,
-    SeededUltraSuiteAssetFromJSON,
-    SeededUltraSuiteAssetToJSON,
-} from '../models/index';
+import type { Asset, SeededUltraSuiteAsset } from "../models/index.ts";
+import { AssetFromJSON, SeededUltraSuiteAssetToJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface AssetsCreateUltraSuiteAssetRequest {
-    seededUltraSuiteAsset?: SeededUltraSuiteAsset;
+	seededUltraSuiteAsset?: SeededUltraSuiteAsset;
 }
 
 /**
- * 
+ *
  */
 export class UltraSuiteApi extends runtime.BaseAPI {
+	/**
+	 * This Endpoint will create an Asset that is sent from UltraSuite.
+	 * /ultra_suite/assets/create [POST]
+	 */
+	async assetsCreateUltraSuiteAssetRaw(
+		requestParameters: AssetsCreateUltraSuiteAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Asset>> {
+		const queryParameters: any = {};
 
-    /**
-     * This Endpoint will create an Asset that is sent from UltraSuite.
-     * /ultra_suite/assets/create [POST]
-     */
-    async assetsCreateUltraSuiteAssetRaw(requestParameters: AssetsCreateUltraSuiteAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Asset>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/ultra_suite/assets/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededUltraSuiteAssetToJSON(
+					requestParameters.seededUltraSuiteAsset,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/ultra_suite/assets/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededUltraSuiteAssetToJSON(requestParameters.seededUltraSuiteAsset),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetFromJSON(jsonValue));
-    }
-
-    /**
-     * This Endpoint will create an Asset that is sent from UltraSuite.
-     * /ultra_suite/assets/create [POST]
-     */
-    async assetsCreateUltraSuiteAsset(requestParameters: AssetsCreateUltraSuiteAssetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Asset> {
-        const response = await this.assetsCreateUltraSuiteAssetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This Endpoint will create an Asset that is sent from UltraSuite.
+	 * /ultra_suite/assets/create [POST]
+	 */
+	async assetsCreateUltraSuiteAsset(
+		requestParameters: AssetsCreateUltraSuiteAssetRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Asset> {
+		const response = await this.assetsCreateUltraSuiteAssetRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

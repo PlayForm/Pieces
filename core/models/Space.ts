@@ -12,62 +12,62 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { exists } from "../runtime.ts";
 /**
  * This is used in the TrackedAssetsEventSearchMetadata
  * @export
  * @interface Space
  */
 export interface Space {
-    /**
-     * This is the size of your current catalog.(number of assets)
-     * @type {number}
-     * @memberof Space
-     */
-    size?: number;
-    /**
-     * this is the number in ms it took to run search.
-     * @type {number}
-     * @memberof Space
-     */
-    duration?: number;
+	/**
+	 * This is the size of your current catalog.(number of assets)
+	 * @type {number}
+	 * @memberof Space
+	 */
+	size?: number;
+	/**
+	 * this is the number in ms it took to run search.
+	 * @type {number}
+	 * @memberof Space
+	 */
+	duration?: number;
 }
 
 /**
  * Check if a given object implements the Space interface.
  */
-export function instanceOfSpace(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSpace(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SpaceFromJSON(json: any): Space {
-    return SpaceFromJSONTyped(json, false);
+	return SpaceFromJSONTyped(json, false);
 }
 
-export function SpaceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Space {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'size': !exists(json, 'size') ? undefined : json['size'],
-        'duration': !exists(json, 'duration') ? undefined : json['duration'],
-    };
+export function SpaceFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Space {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		size: exists(json, "size") ? json["size"] : undefined,
+		duration: exists(json, "duration") ? json["duration"] : undefined,
+	};
 }
 
 export function SpaceToJSON(value?: Space | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'size': value.size,
-        'duration': value.duration,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		size: value.size,
+		duration: value.duration,
+	};
 }
-

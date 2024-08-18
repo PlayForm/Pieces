@@ -12,88 +12,108 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  SeededWorkstreamSuggestionsRefresh,
-  WorkstreamSuggestions,
-  WorkstreamSuggestionsRefresh,
-} from '../models/index';
+	SeededWorkstreamSuggestionsRefresh,
+	WorkstreamSuggestions,
+	WorkstreamSuggestionsRefresh,
+} from "../models/index.ts";
 import {
-    SeededWorkstreamSuggestionsRefreshFromJSON,
-    SeededWorkstreamSuggestionsRefreshToJSON,
-    WorkstreamSuggestionsFromJSON,
-    WorkstreamSuggestionsToJSON,
-    WorkstreamSuggestionsRefreshFromJSON,
-    WorkstreamSuggestionsRefreshToJSON,
-} from '../models/index';
+	SeededWorkstreamSuggestionsRefreshToJSON,
+	WorkstreamSuggestionsFromJSON,
+	WorkstreamSuggestionsRefreshFromJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface WorkstreamSuggestionsRefreshRequest {
-    seededWorkstreamSuggestionsRefresh?: SeededWorkstreamSuggestionsRefresh;
+	seededWorkstreamSuggestionsRefresh?: SeededWorkstreamSuggestionsRefresh;
 }
 
 /**
- * 
+ *
  */
 export class WorkstreamApi extends runtime.BaseAPI {
+	/**
+	 * This will trigger a refresh(recalculation) of the suggestions items.
+	 * /workstream/suggestions/refresh [POST]
+	 */
+	async workstreamSuggestionsRefreshRaw(
+		requestParameters: WorkstreamSuggestionsRefreshRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<WorkstreamSuggestionsRefresh>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will trigger a refresh(recalculation) of the suggestions items.
-     * /workstream/suggestions/refresh [POST]
-     */
-    async workstreamSuggestionsRefreshRaw(requestParameters: WorkstreamSuggestionsRefreshRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkstreamSuggestionsRefresh>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/workstream/suggestions/refresh",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededWorkstreamSuggestionsRefreshToJSON(
+					requestParameters.seededWorkstreamSuggestionsRefresh,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/workstream/suggestions/refresh`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededWorkstreamSuggestionsRefreshToJSON(requestParameters.seededWorkstreamSuggestionsRefresh),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			WorkstreamSuggestionsRefreshFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorkstreamSuggestionsRefreshFromJSON(jsonValue));
-    }
+	/**
+	 * This will trigger a refresh(recalculation) of the suggestions items.
+	 * /workstream/suggestions/refresh [POST]
+	 */
+	async workstreamSuggestionsRefresh(
+		requestParameters: WorkstreamSuggestionsRefreshRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<WorkstreamSuggestionsRefresh> {
+		const response = await this.workstreamSuggestionsRefreshRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will trigger a refresh(recalculation) of the suggestions items.
-     * /workstream/suggestions/refresh [POST]
-     */
-    async workstreamSuggestionsRefresh(requestParameters: WorkstreamSuggestionsRefreshRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkstreamSuggestionsRefresh> {
-        const response = await this.workstreamSuggestionsRefreshRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * Provides a WebSocket connection that emits changes to your workstream suggestions.
+	 * /workstream/suggestions/stream [WS]
+	 */
+	async workstreamSuggestionsStreamRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<WorkstreamSuggestions>> {
+		const queryParameters: any = {};
 
-    /**
-     * Provides a WebSocket connection that emits changes to your workstream suggestions.
-     * /workstream/suggestions/stream [WS]
-     */
-    async workstreamSuggestionsStreamRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkstreamSuggestions>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/workstream/suggestions/stream",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/workstream/suggestions/stream`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			WorkstreamSuggestionsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorkstreamSuggestionsFromJSON(jsonValue));
-    }
-
-    /**
-     * Provides a WebSocket connection that emits changes to your workstream suggestions.
-     * /workstream/suggestions/stream [WS]
-     */
-    async workstreamSuggestionsStream(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkstreamSuggestions> {
-        const response = await this.workstreamSuggestionsStreamRaw(initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * Provides a WebSocket connection that emits changes to your workstream suggestions.
+	 * /workstream/suggestions/stream [WS]
+	 */
+	async workstreamSuggestionsStream(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<WorkstreamSuggestions> {
+		const response =
+			await this.workstreamSuggestionsStreamRaw(initOverrides);
+		return await response.value();
+	}
 }

@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * Model for monitoring and evaluating the suggested save feature
@@ -26,116 +25,122 @@ import {
  * @interface TLPCodeFragmentSuggestedSave
  */
 export interface TLPCodeFragmentSuggestedSave {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    asset: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    user: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    model: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    created: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    os: string;
-    /**
-     * context from where suggestion came from
-     * @type {string}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    context?: string;
-    /**
-     * maximum similarity score
-     * @type {number}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    score?: number;
-    /**
-     * number of candidates
-     * @type {number}
-     * @memberof TLPCodeFragmentSuggestedSave
-     */
-    candidates?: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	asset: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	user: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	model: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	created: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	os: string;
+	/**
+	 * context from where suggestion came from
+	 * @type {string}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	context?: string;
+	/**
+	 * maximum similarity score
+	 * @type {number}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	score?: number;
+	/**
+	 * number of candidates
+	 * @type {number}
+	 * @memberof TLPCodeFragmentSuggestedSave
+	 */
+	candidates?: number;
 }
 
 /**
  * Check if a given object implements the TLPCodeFragmentSuggestedSave interface.
  */
 export function instanceOfTLPCodeFragmentSuggestedSave(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "asset" in value;
-    isInstance = isInstance && "user" in value;
-    isInstance = isInstance && "model" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "os" in value;
+	let isInstance = true;
+	isInstance = isInstance && "asset" in value;
+	isInstance = isInstance && "user" in value;
+	isInstance = isInstance && "model" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "os" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeFragmentSuggestedSaveFromJSON(json: any): TLPCodeFragmentSuggestedSave {
-    return TLPCodeFragmentSuggestedSaveFromJSONTyped(json, false);
+export function TLPCodeFragmentSuggestedSaveFromJSON(
+	json: any,
+): TLPCodeFragmentSuggestedSave {
+	return TLPCodeFragmentSuggestedSaveFromJSONTyped(json, false);
 }
 
-export function TLPCodeFragmentSuggestedSaveFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFragmentSuggestedSave {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': json['asset'],
-        'user': json['user'],
-        'model': json['model'],
-        'created': json['created'],
-        'os': json['os'],
-        'context': !exists(json, 'context') ? undefined : json['context'],
-        'score': !exists(json, 'score') ? undefined : json['score'],
-        'candidates': !exists(json, 'candidates') ? undefined : json['candidates'],
-    };
+export function TLPCodeFragmentSuggestedSaveFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFragmentSuggestedSave {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: json["asset"],
+		user: json["user"],
+		model: json["model"],
+		created: json["created"],
+		os: json["os"],
+		context: exists(json, "context") ? json["context"] : undefined,
+		score: exists(json, "score") ? json["score"] : undefined,
+		candidates: exists(json, "candidates") ? json["candidates"] : undefined,
+	};
 }
 
-export function TLPCodeFragmentSuggestedSaveToJSON(value?: TLPCodeFragmentSuggestedSave | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': value.asset,
-        'user': value.user,
-        'model': value.model,
-        'created': value.created,
-        'os': value.os,
-        'context': value.context,
-        'score': value.score,
-        'candidates': value.candidates,
-    };
+export function TLPCodeFragmentSuggestedSaveToJSON(
+	value?: TLPCodeFragmentSuggestedSave | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: value.asset,
+		user: value.user,
+		model: value.model,
+		created: value.created,
+		os: value.os,
+		context: value.context,
+		score: value.score,
+		candidates: value.candidates,
+	};
 }
-

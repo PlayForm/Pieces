@@ -12,162 +12,161 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAnchors } from './FlattenedAnchors';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
-    FlattenedAnchorsFromJSON,
-    FlattenedAnchorsFromJSONTyped,
-    FlattenedAnchorsToJSON,
-} from './FlattenedAnchors';
-import type { MechanismEnum } from './MechanismEnum';
+	FlattenedAnchorsFromJSON,
+	FlattenedAnchorsToJSON,
+} from "./FlattenedAnchors.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { PersonAccess } from './PersonAccess';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { PersonAccess } from "./PersonAccess.tsx";
+import { PersonAccessFromJSON, PersonAccessToJSON } from "./PersonAccess.tsx";
+import type { PersonModel } from "./PersonModel.tsx";
+import { PersonModelFromJSON, PersonModelToJSON } from "./PersonModel.tsx";
+import type { PersonType } from "./PersonType.tsx";
+import { PersonTypeFromJSON, PersonTypeToJSON } from "./PersonType.tsx";
+import type { SeededAnnotation } from "./SeededAnnotation.tsx";
 import {
-    PersonAccessFromJSON,
-    PersonAccessFromJSONTyped,
-    PersonAccessToJSON,
-} from './PersonAccess';
-import type { PersonModel } from './PersonModel';
-import {
-    PersonModelFromJSON,
-    PersonModelFromJSONTyped,
-    PersonModelToJSON,
-} from './PersonModel';
-import type { PersonType } from './PersonType';
-import {
-    PersonTypeFromJSON,
-    PersonTypeFromJSONTyped,
-    PersonTypeToJSON,
-} from './PersonType';
-import type { SeededAnnotation } from './SeededAnnotation';
-import {
-    SeededAnnotationFromJSON,
-    SeededAnnotationFromJSONTyped,
-    SeededAnnotationToJSON,
-} from './SeededAnnotation';
+	SeededAnnotationFromJSON,
+	SeededAnnotationToJSON,
+} from "./SeededAnnotation.tsx";
 
 /**
  * This is a per-cursor to a full person.
- * 
+ *
  * Will throw an error, if asset is passed in but acces.scope is undefined.
- * 
+ *
  * can optionally pass in our mechanism here, as the default will be manual unless specified.
- * 
+ *
  * TODO consider updating these asset, format to referenced Models
- * 
+ *
  * Note: model, access, mechanism will only be added if the asset is passed in.
  * @export
  * @interface SeededPerson
  */
 export interface SeededPerson {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededPerson
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededPerson
-     */
-    asset?: string;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof SeededPerson
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * 
-     * @type {PersonAccess}
-     * @memberof SeededPerson
-     */
-    access?: PersonAccess;
-    /**
-     * 
-     * @type {PersonType}
-     * @memberof SeededPerson
-     */
-    type: PersonType;
-    /**
-     * 
-     * @type {PersonModel}
-     * @memberof SeededPerson
-     */
-    model?: PersonModel;
-    /**
-     * 
-     * @type {Array<SeededAnnotation>}
-     * @memberof SeededPerson
-     */
-    annotations?: Array<SeededAnnotation>;
-    /**
-     * 
-     * @type {FlattenedAnchors}
-     * @memberof SeededPerson
-     */
-    anchors?: FlattenedAnchors;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededPerson
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededPerson
+	 */
+	asset?: string;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof SeededPerson
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 *
+	 * @type {PersonAccess}
+	 * @memberof SeededPerson
+	 */
+	access?: PersonAccess;
+	/**
+	 *
+	 * @type {PersonType}
+	 * @memberof SeededPerson
+	 */
+	type: PersonType;
+	/**
+	 *
+	 * @type {PersonModel}
+	 * @memberof SeededPerson
+	 */
+	model?: PersonModel;
+	/**
+	 *
+	 * @type {Array<SeededAnnotation>}
+	 * @memberof SeededPerson
+	 */
+	annotations?: SeededAnnotation[];
+	/**
+	 *
+	 * @type {FlattenedAnchors}
+	 * @memberof SeededPerson
+	 */
+	anchors?: FlattenedAnchors;
 }
 
 /**
  * Check if a given object implements the SeededPerson interface.
  */
 export function instanceOfSeededPerson(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
+	let isInstance = true;
+	isInstance = isInstance && "type" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededPersonFromJSON(json: any): SeededPerson {
-    return SeededPersonFromJSONTyped(json, false);
+	return SeededPersonFromJSONTyped(json, false);
 }
 
-export function SeededPersonFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededPerson {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': !exists(json, 'asset') ? undefined : json['asset'],
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'access': !exists(json, 'access') ? undefined : PersonAccessFromJSON(json['access']),
-        'type': PersonTypeFromJSON(json['type']),
-        'model': !exists(json, 'model') ? undefined : PersonModelFromJSON(json['model']),
-        'annotations': !exists(json, 'annotations') ? undefined : ((json['annotations'] as Array<any>).map(SeededAnnotationFromJSON)),
-        'anchors': !exists(json, 'anchors') ? undefined : FlattenedAnchorsFromJSON(json['anchors']),
-    };
+export function SeededPersonFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededPerson {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: exists(json, "asset") ? json["asset"] : undefined,
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		access: exists(json, "access")
+			? PersonAccessFromJSON(json["access"])
+			: undefined,
+		type: PersonTypeFromJSON(json["type"]),
+		model: exists(json, "model")
+			? PersonModelFromJSON(json["model"])
+			: undefined,
+		annotations: exists(json, "annotations")
+			? (json["annotations"] as any[]).map(SeededAnnotationFromJSON)
+			: undefined,
+		anchors: exists(json, "anchors")
+			? FlattenedAnchorsFromJSON(json["anchors"])
+			: undefined,
+	};
 }
 
 export function SeededPersonToJSON(value?: SeededPerson | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': value.asset,
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'access': PersonAccessToJSON(value.access),
-        'type': PersonTypeToJSON(value.type),
-        'model': PersonModelToJSON(value.model),
-        'annotations': value.annotations === undefined ? undefined : ((value.annotations as Array<any>).map(SeededAnnotationToJSON)),
-        'anchors': FlattenedAnchorsToJSON(value.anchors),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: value.asset,
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		access: PersonAccessToJSON(value.access),
+		type: PersonTypeToJSON(value.type),
+		model: PersonModelToJSON(value.model),
+		annotations:
+			value.annotations === undefined
+				? undefined
+				: (value.annotations as any[]).map(SeededAnnotationToJSON),
+		anchors: FlattenedAnchorsToJSON(value.anchors),
+	};
 }
-

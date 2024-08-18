@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * These are all of the available event types that are permitted in an object pair notation.
@@ -26,65 +25,77 @@ import {
  * @interface TrackedAssetsEventIdentifierDescriptionPairs
  */
 export interface TrackedAssetsEventIdentifierDescriptionPairs {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TrackedAssetsEventIdentifierDescriptionPairs
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * A If the assets were searched
-     * @type {string}
-     * @memberof TrackedAssetsEventIdentifierDescriptionPairs
-     */
-    assetsSearched?: TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TrackedAssetsEventIdentifierDescriptionPairs
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * A If the assets were searched
+	 * @type {string}
+	 * @memberof TrackedAssetsEventIdentifierDescriptionPairs
+	 */
+	assetsSearched?: TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum;
 }
-
 
 /**
  * @export
  */
 export const TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum = {
-    AssetsWereSearched: 'assets_were_searched'
+	AssetsWereSearched: "assets_were_searched",
 } as const;
-export type TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum = typeof TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum[keyof typeof TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum];
-
+export type TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum =
+	(typeof TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum)[keyof typeof TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum];
 
 /**
  * Check if a given object implements the TrackedAssetsEventIdentifierDescriptionPairs interface.
  */
-export function instanceOfTrackedAssetsEventIdentifierDescriptionPairs(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTrackedAssetsEventIdentifierDescriptionPairs(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TrackedAssetsEventIdentifierDescriptionPairsFromJSON(json: any): TrackedAssetsEventIdentifierDescriptionPairs {
-    return TrackedAssetsEventIdentifierDescriptionPairsFromJSONTyped(json, false);
+export function TrackedAssetsEventIdentifierDescriptionPairsFromJSON(
+	json: any,
+): TrackedAssetsEventIdentifierDescriptionPairs {
+	return TrackedAssetsEventIdentifierDescriptionPairsFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function TrackedAssetsEventIdentifierDescriptionPairsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedAssetsEventIdentifierDescriptionPairs {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'assetsSearched': !exists(json, 'assets_searched') ? undefined : json['assets_searched'],
-    };
+export function TrackedAssetsEventIdentifierDescriptionPairsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedAssetsEventIdentifierDescriptionPairs {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		assetsSearched: exists(json, "assets_searched")
+			? json["assets_searched"]
+			: undefined,
+	};
 }
 
-export function TrackedAssetsEventIdentifierDescriptionPairsToJSON(value?: TrackedAssetsEventIdentifierDescriptionPairs | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'assets_searched': value.assetsSearched,
-    };
+export function TrackedAssetsEventIdentifierDescriptionPairsToJSON(
+	value?: TrackedAssetsEventIdentifierDescriptionPairs | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		assets_searched: value.assetsSearched,
+	};
 }
-

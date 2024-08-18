@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a detected External Application that comes from our endpoint that will get a snapshot of the installed applications on your machine.
@@ -26,64 +25,70 @@ import {
  * @interface DetectedExternalApplication
  */
 export interface DetectedExternalApplication {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DetectedExternalApplication
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * this is the name of the application
-     * @type {string}
-     * @memberof DetectedExternalApplication
-     */
-    name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DetectedExternalApplication
-     */
-    version?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DetectedExternalApplication
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * this is the name of the application
+	 * @type {string}
+	 * @memberof DetectedExternalApplication
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof DetectedExternalApplication
+	 */
+	version?: string;
 }
 
 /**
  * Check if a given object implements the DetectedExternalApplication interface.
  */
 export function instanceOfDetectedExternalApplication(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
+	let isInstance = true;
+	isInstance = isInstance && "name" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function DetectedExternalApplicationFromJSON(json: any): DetectedExternalApplication {
-    return DetectedExternalApplicationFromJSONTyped(json, false);
+export function DetectedExternalApplicationFromJSON(
+	json: any,
+): DetectedExternalApplication {
+	return DetectedExternalApplicationFromJSONTyped(json, false);
 }
 
-export function DetectedExternalApplicationFromJSONTyped(json: any, ignoreDiscriminator: boolean): DetectedExternalApplication {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'name': json['name'],
-        'version': !exists(json, 'version') ? undefined : json['version'],
-    };
+export function DetectedExternalApplicationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DetectedExternalApplication {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		name: json["name"],
+		version: exists(json, "version") ? json["version"] : undefined,
+	};
 }
 
-export function DetectedExternalApplicationToJSON(value?: DetectedExternalApplication | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'name': value.name,
-        'version': value.version,
-    };
+export function DetectedExternalApplicationToJSON(
+	value?: DetectedExternalApplication | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		name: value.name,
+		version: value.version,
+	};
 }
-

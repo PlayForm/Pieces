@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a model that will hold relavent information in relation to a keyboard(including shortcuts) analytics event (usage).
@@ -26,65 +25,69 @@ import {
  * @interface TrackedKeyboardEvent
  */
 export interface TrackedKeyboardEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TrackedKeyboardEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * this is a description of the event, optional.
-     * @type {string}
-     * @memberof TrackedKeyboardEvent
-     */
-    description: string;
-    /**
-     * this is an array of of ascii values that represent numerics on your keyboard.
-     * @type {Array<number>}
-     * @memberof TrackedKeyboardEvent
-     */
-    shortcut: Array<number>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TrackedKeyboardEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * this is a description of the event, optional.
+	 * @type {string}
+	 * @memberof TrackedKeyboardEvent
+	 */
+	description: string;
+	/**
+	 * this is an array of of ascii values that represent numerics on your keyboard.
+	 * @type {Array<number>}
+	 * @memberof TrackedKeyboardEvent
+	 */
+	shortcut: number[];
 }
 
 /**
  * Check if a given object implements the TrackedKeyboardEvent interface.
  */
 export function instanceOfTrackedKeyboardEvent(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "shortcut" in value;
+	let isInstance = true;
+	isInstance = isInstance && "description" in value;
+	isInstance = isInstance && "shortcut" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TrackedKeyboardEventFromJSON(json: any): TrackedKeyboardEvent {
-    return TrackedKeyboardEventFromJSONTyped(json, false);
+	return TrackedKeyboardEventFromJSONTyped(json, false);
 }
 
-export function TrackedKeyboardEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedKeyboardEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'description': json['description'],
-        'shortcut': json['shortcut'],
-    };
+export function TrackedKeyboardEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedKeyboardEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		description: json["description"],
+		shortcut: json["shortcut"],
+	};
 }
 
-export function TrackedKeyboardEventToJSON(value?: TrackedKeyboardEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'description': value.description,
-        'shortcut': value.shortcut,
-    };
+export function TrackedKeyboardEventToJSON(
+	value?: TrackedKeyboardEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		description: value.description,
+		shortcut: value.shortcut,
+	};
 }
-

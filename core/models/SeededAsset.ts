@@ -12,164 +12,160 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { AvailableFormats } from "./AvailableFormats.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { AvailableFormats } from './AvailableFormats';
+	AvailableFormatsFromJSON,
+	AvailableFormatsToJSON,
+} from "./AvailableFormats.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AvailableFormatsFromJSON,
-    AvailableFormatsFromJSONTyped,
-    AvailableFormatsToJSON,
-} from './AvailableFormats';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededAssetEnrichment } from "./SeededAssetEnrichment.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededAssetEnrichment } from './SeededAssetEnrichment';
+	SeededAssetEnrichmentFromJSON,
+	SeededAssetEnrichmentToJSON,
+} from "./SeededAssetEnrichment.tsx";
+import type { SeededAssetMetadata } from "./SeededAssetMetadata.tsx";
 import {
-    SeededAssetEnrichmentFromJSON,
-    SeededAssetEnrichmentFromJSONTyped,
-    SeededAssetEnrichmentToJSON,
-} from './SeededAssetEnrichment';
-import type { SeededAssetMetadata } from './SeededAssetMetadata';
-import {
-    SeededAssetMetadataFromJSON,
-    SeededAssetMetadataFromJSONTyped,
-    SeededAssetMetadataToJSON,
-} from './SeededAssetMetadata';
-import type { SeededFormat } from './SeededFormat';
-import {
-    SeededFormatFromJSON,
-    SeededFormatFromJSONTyped,
-    SeededFormatToJSON,
-} from './SeededFormat';
+	SeededAssetMetadataFromJSON,
+	SeededAssetMetadataToJSON,
+} from "./SeededAssetMetadata.tsx";
+import type { SeededFormat } from "./SeededFormat.tsx";
+import { SeededFormatFromJSON, SeededFormatToJSON } from "./SeededFormat.tsx";
 
 /**
  * This is seed data that will be come an asset.
- * 
+ *
  * discovered: if set to true this seededAsset was discovered using one of our discovery endpoints.
- * 
+ *
  * pseudo: if this is an asset that a user did NOT explicitly save.
- * 
+ *
  * available: This is a model that is used within our '/assets/draft' endpoint that will emitt a seed with all the available format that one can generate based on the original seed that was passed in. ie if a png was passed in, we may  say that there is a text/code format available. If available formats is passed into the '/assets/create' we will short curcuit certain operations to speed up the process, for instance, if we determine that there is no text within this image then there is no sense in running ocr.
- * 
+ *
  * @export
  * @interface SeededAsset
  */
 export interface SeededAsset {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededAsset
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededAssetMetadata}
-     * @memberof SeededAsset
-     */
-    metadata?: SeededAssetMetadata;
-    /**
-     * 
-     * @type {Application}
-     * @memberof SeededAsset
-     */
-    application: Application;
-    /**
-     * 
-     * @type {SeededFormat}
-     * @memberof SeededAsset
-     */
-    format: SeededFormat;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededAsset
-     */
-    discovered?: boolean;
-    /**
-     * 
-     * @type {AvailableFormats}
-     * @memberof SeededAsset
-     */
-    available?: AvailableFormats;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededAsset
-     */
-    pseudo?: boolean;
-    /**
-     * 
-     * @type {SeededAssetEnrichment}
-     * @memberof SeededAsset
-     */
-    enrichment?: SeededAssetEnrichment;
-    /**
-     * This will let us know if this asset was generated as a 'demo' snippet
-     * @type {boolean}
-     * @memberof SeededAsset
-     */
-    demo?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededAsset
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededAssetMetadata}
+	 * @memberof SeededAsset
+	 */
+	metadata?: SeededAssetMetadata;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof SeededAsset
+	 */
+	application: Application;
+	/**
+	 *
+	 * @type {SeededFormat}
+	 * @memberof SeededAsset
+	 */
+	format: SeededFormat;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededAsset
+	 */
+	discovered?: boolean;
+	/**
+	 *
+	 * @type {AvailableFormats}
+	 * @memberof SeededAsset
+	 */
+	available?: AvailableFormats;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededAsset
+	 */
+	pseudo?: boolean;
+	/**
+	 *
+	 * @type {SeededAssetEnrichment}
+	 * @memberof SeededAsset
+	 */
+	enrichment?: SeededAssetEnrichment;
+	/**
+	 * This will let us know if this asset was generated as a 'demo' snippet
+	 * @type {boolean}
+	 * @memberof SeededAsset
+	 */
+	demo?: boolean;
 }
 
 /**
  * Check if a given object implements the SeededAsset interface.
  */
 export function instanceOfSeededAsset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "application" in value;
-    isInstance = isInstance && "format" in value;
+	let isInstance = true;
+	isInstance = isInstance && "application" in value;
+	isInstance = isInstance && "format" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededAssetFromJSON(json: any): SeededAsset {
-    return SeededAssetFromJSONTyped(json, false);
+	return SeededAssetFromJSONTyped(json, false);
 }
 
-export function SeededAssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededAsset {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'metadata': !exists(json, 'metadata') ? undefined : SeededAssetMetadataFromJSON(json['metadata']),
-        'application': ApplicationFromJSON(json['application']),
-        'format': SeededFormatFromJSON(json['format']),
-        'discovered': !exists(json, 'discovered') ? undefined : json['discovered'],
-        'available': !exists(json, 'available') ? undefined : AvailableFormatsFromJSON(json['available']),
-        'pseudo': !exists(json, 'pseudo') ? undefined : json['pseudo'],
-        'enrichment': !exists(json, 'enrichment') ? undefined : SeededAssetEnrichmentFromJSON(json['enrichment']),
-        'demo': !exists(json, 'demo') ? undefined : json['demo'],
-    };
+export function SeededAssetFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededAsset {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		metadata: exists(json, "metadata")
+			? SeededAssetMetadataFromJSON(json["metadata"])
+			: undefined,
+		application: ApplicationFromJSON(json["application"]),
+		format: SeededFormatFromJSON(json["format"]),
+		discovered: exists(json, "discovered") ? json["discovered"] : undefined,
+		available: exists(json, "available")
+			? AvailableFormatsFromJSON(json["available"])
+			: undefined,
+		pseudo: exists(json, "pseudo") ? json["pseudo"] : undefined,
+		enrichment: exists(json, "enrichment")
+			? SeededAssetEnrichmentFromJSON(json["enrichment"])
+			: undefined,
+		demo: exists(json, "demo") ? json["demo"] : undefined,
+	};
 }
 
 export function SeededAssetToJSON(value?: SeededAsset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'metadata': SeededAssetMetadataToJSON(value.metadata),
-        'application': ApplicationToJSON(value.application),
-        'format': SeededFormatToJSON(value.format),
-        'discovered': value.discovered,
-        'available': AvailableFormatsToJSON(value.available),
-        'pseudo': value.pseudo,
-        'enrichment': SeededAssetEnrichmentToJSON(value.enrichment),
-        'demo': value.demo,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		metadata: SeededAssetMetadataToJSON(value.metadata),
+		application: ApplicationToJSON(value.application),
+		format: SeededFormatToJSON(value.format),
+		discovered: value.discovered,
+		available: AvailableFormatsToJSON(value.available),
+		pseudo: value.pseudo,
+		enrichment: SeededAssetEnrichmentToJSON(value.enrichment),
+		demo: value.demo,
+	};
 }
-

@@ -12,76 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Accessor } from './Accessor';
+import { exists } from "../runtime.ts";
+import type { Accessor } from "./Accessor.tsx";
+import { AccessorFromJSON, AccessorToJSON } from "./Accessor.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AccessorFromJSON,
-    AccessorFromJSONTyped,
-    AccessorToJSON,
-} from './Accessor';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface Accessors
  */
 export interface Accessors {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Accessors
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Accessor>}
-     * @memberof Accessors
-     */
-    iterable: Array<Accessor>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Accessors
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Accessor>}
+	 * @memberof Accessors
+	 */
+	iterable: Accessor[];
 }
 
 /**
  * Check if a given object implements the Accessors interface.
  */
 export function instanceOfAccessors(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AccessorsFromJSON(json: any): Accessors {
-    return AccessorsFromJSONTyped(json, false);
+	return AccessorsFromJSONTyped(json, false);
 }
 
-export function AccessorsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Accessors {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(AccessorFromJSON)),
-    };
+export function AccessorsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Accessors {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(AccessorFromJSON),
+	};
 }
 
 export function AccessorsToJSON(value?: Accessors | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(AccessorToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(AccessorToJSON),
+	};
 }
-

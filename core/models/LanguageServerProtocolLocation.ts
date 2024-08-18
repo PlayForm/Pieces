@@ -12,89 +12,95 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { LanguageServerProtocolLocationRange } from './LanguageServerProtocolLocationRange';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { LanguageServerProtocolLocationRange } from "./LanguageServerProtocolLocationRange.tsx";
 import {
-    LanguageServerProtocolLocationRangeFromJSON,
-    LanguageServerProtocolLocationRangeFromJSONTyped,
-    LanguageServerProtocolLocationRangeToJSON,
-} from './LanguageServerProtocolLocationRange';
+	LanguageServerProtocolLocationRangeFromJSON,
+	LanguageServerProtocolLocationRangeToJSON,
+} from "./LanguageServerProtocolLocationRange.tsx";
 
 /**
  * modeled after this (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#location)
- * 
+ *
  * uri: is jsut a file path
- * 
+ *
  * range: here is the location of where this item is within the file.
  * @export
  * @interface LanguageServerProtocolLocation
  */
 export interface LanguageServerProtocolLocation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof LanguageServerProtocolLocation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof LanguageServerProtocolLocation
-     */
-    uri: string;
-    /**
-     * 
-     * @type {LanguageServerProtocolLocationRange}
-     * @memberof LanguageServerProtocolLocation
-     */
-    range: LanguageServerProtocolLocationRange;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof LanguageServerProtocolLocation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof LanguageServerProtocolLocation
+	 */
+	uri: string;
+	/**
+	 *
+	 * @type {LanguageServerProtocolLocationRange}
+	 * @memberof LanguageServerProtocolLocation
+	 */
+	range: LanguageServerProtocolLocationRange;
 }
 
 /**
  * Check if a given object implements the LanguageServerProtocolLocation interface.
  */
-export function instanceOfLanguageServerProtocolLocation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "uri" in value;
-    isInstance = isInstance && "range" in value;
+export function instanceOfLanguageServerProtocolLocation(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "uri" in value;
+	isInstance = isInstance && "range" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function LanguageServerProtocolLocationFromJSON(json: any): LanguageServerProtocolLocation {
-    return LanguageServerProtocolLocationFromJSONTyped(json, false);
+export function LanguageServerProtocolLocationFromJSON(
+	json: any,
+): LanguageServerProtocolLocation {
+	return LanguageServerProtocolLocationFromJSONTyped(json, false);
 }
 
-export function LanguageServerProtocolLocationFromJSONTyped(json: any, ignoreDiscriminator: boolean): LanguageServerProtocolLocation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'uri': json['uri'],
-        'range': LanguageServerProtocolLocationRangeFromJSON(json['range']),
-    };
+export function LanguageServerProtocolLocationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): LanguageServerProtocolLocation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		uri: json["uri"],
+		range: LanguageServerProtocolLocationRangeFromJSON(json["range"]),
+	};
 }
 
-export function LanguageServerProtocolLocationToJSON(value?: LanguageServerProtocolLocation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'uri': value.uri,
-        'range': LanguageServerProtocolLocationRangeToJSON(value.range),
-    };
+export function LanguageServerProtocolLocationToJSON(
+	value?: LanguageServerProtocolLocation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		uri: value.uri,
+		range: LanguageServerProtocolLocationRangeToJSON(value.range),
+	};
 }
-

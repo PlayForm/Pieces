@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * An Seeded Asset specific to MacOS which takes in a Value, and Application
@@ -32,64 +27,68 @@ import {
  * @interface SeededMacOSAsset
  */
 export interface SeededMacOSAsset {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededMacOSAsset
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Application}
-     * @memberof SeededMacOSAsset
-     */
-    application?: Application;
-    /**
-     * The value of the text that you want to save as an asset.
-     * @type {string}
-     * @memberof SeededMacOSAsset
-     */
-    value: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededMacOSAsset
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof SeededMacOSAsset
+	 */
+	application?: Application;
+	/**
+	 * The value of the text that you want to save as an asset.
+	 * @type {string}
+	 * @memberof SeededMacOSAsset
+	 */
+	value: string;
 }
 
 /**
  * Check if a given object implements the SeededMacOSAsset interface.
  */
 export function instanceOfSeededMacOSAsset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "value" in value;
+	let isInstance = true;
+	isInstance = isInstance && "value" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededMacOSAssetFromJSON(json: any): SeededMacOSAsset {
-    return SeededMacOSAssetFromJSONTyped(json, false);
+	return SeededMacOSAssetFromJSONTyped(json, false);
 }
 
-export function SeededMacOSAssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededMacOSAsset {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'application': !exists(json, 'application') ? undefined : ApplicationFromJSON(json['application']),
-        'value': json['value'],
-    };
+export function SeededMacOSAssetFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededMacOSAsset {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		application: exists(json, "application")
+			? ApplicationFromJSON(json["application"])
+			: undefined,
+		value: json["value"],
+	};
 }
 
 export function SeededMacOSAssetToJSON(value?: SeededMacOSAsset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'application': ApplicationToJSON(value.application),
-        'value': value.value,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		application: ApplicationToJSON(value.application),
+		value: value.value,
+	};
 }
-

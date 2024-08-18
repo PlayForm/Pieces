@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a nice microclass to help with managing the size of a File or Fragment in a readable way for UI's
@@ -26,65 +25,67 @@ import {
  * @interface ByteDescriptor
  */
 export interface ByteDescriptor {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ByteDescriptor
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof ByteDescriptor
-     */
-    value: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ByteDescriptor
-     */
-    readable: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ByteDescriptor
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ByteDescriptor
+	 */
+	value: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ByteDescriptor
+	 */
+	readable: string;
 }
 
 /**
  * Check if a given object implements the ByteDescriptor interface.
  */
 export function instanceOfByteDescriptor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "value" in value;
-    isInstance = isInstance && "readable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "value" in value;
+	isInstance = isInstance && "readable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ByteDescriptorFromJSON(json: any): ByteDescriptor {
-    return ByteDescriptorFromJSONTyped(json, false);
+	return ByteDescriptorFromJSONTyped(json, false);
 }
 
-export function ByteDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): ByteDescriptor {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'value': json['value'],
-        'readable': json['readable'],
-    };
+export function ByteDescriptorFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ByteDescriptor {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		value: json["value"],
+		readable: json["readable"],
+	};
 }
 
 export function ByteDescriptorToJSON(value?: ByteDescriptor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'value': value.value,
-        'readable': value.readable,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		value: value.value,
+		readable: value.readable,
+	};
 }
-

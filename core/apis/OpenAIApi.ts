@@ -12,57 +12,68 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  OpenAIModelsListInput,
-  OpenAIModelsListOutput,
-} from '../models/index';
+	OpenAIModelsListInput,
+	OpenAIModelsListOutput,
+} from "../models/index.ts";
 import {
-    OpenAIModelsListInputFromJSON,
-    OpenAIModelsListInputToJSON,
-    OpenAIModelsListOutputFromJSON,
-    OpenAIModelsListOutputToJSON,
-} from '../models/index';
+	OpenAIModelsListInputToJSON,
+	OpenAIModelsListOutputFromJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface OpenAiModelsListRequest {
-    openAIModelsListInput?: OpenAIModelsListInput;
+	openAIModelsListInput?: OpenAIModelsListInput;
 }
 
 /**
- * 
+ *
  */
 export class OpenAIApi extends runtime.BaseAPI {
+	/**
+	 * This will get a list of all of your Models from OpenAI w/ you user.auth0.openAI.apiKey.  if the user is unauthenticated or if the openAI key doesnt exist or if it is invalid we will return a 401.  Requires internet as this will ping out to OpenAI\'s server to get the models.
+	 * /open_ai/models/list [POST]
+	 */
+	async openAiModelsListRaw(
+		requestParameters: OpenAiModelsListRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<OpenAIModelsListOutput>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a list of all of your Models from OpenAI w/ you user.auth0.openAI.apiKey.  if the user is unauthenticated or if the openAI key doesnt exist or if it is invalid we will return a 401.  Requires internet as this will ping out to OpenAI\'s server to get the models.
-     * /open_ai/models/list [POST]
-     */
-    async openAiModelsListRaw(requestParameters: OpenAiModelsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OpenAIModelsListOutput>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/open_ai/models/list",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: OpenAIModelsListInputToJSON(
+					requestParameters.openAIModelsListInput,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/open_ai/models/list`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: OpenAIModelsListInputToJSON(requestParameters.openAIModelsListInput),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			OpenAIModelsListOutputFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OpenAIModelsListOutputFromJSON(jsonValue));
-    }
-
-    /**
-     * This will get a list of all of your Models from OpenAI w/ you user.auth0.openAI.apiKey.  if the user is unauthenticated or if the openAI key doesnt exist or if it is invalid we will return a 401.  Requires internet as this will ping out to OpenAI\'s server to get the models.
-     * /open_ai/models/list [POST]
-     */
-    async openAiModelsList(requestParameters: OpenAiModelsListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OpenAIModelsListOutput> {
-        const response = await this.openAiModelsListRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will get a list of all of your Models from OpenAI w/ you user.auth0.openAI.apiKey.  if the user is unauthenticated or if the openAI key doesnt exist or if it is invalid we will return a 401.  Requires internet as this will ping out to OpenAI\'s server to get the models.
+	 * /open_ai/models/list [POST]
+	 */
+	async openAiModelsList(
+		requestParameters: OpenAiModelsListRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<OpenAIModelsListOutput> {
+		const response = await this.openAiModelsListRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

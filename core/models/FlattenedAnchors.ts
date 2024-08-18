@@ -12,98 +12,94 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedAnchor } from './ReferencedAnchor';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedAnchor } from "./ReferencedAnchor.tsx";
 import {
-    ReferencedAnchorFromJSON,
-    ReferencedAnchorFromJSONTyped,
-    ReferencedAnchorToJSON,
-} from './ReferencedAnchor';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedAnchorFromJSON,
+	ReferencedAnchorToJSON,
+} from "./ReferencedAnchor.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface FlattenedAnchors
  */
 export interface FlattenedAnchors {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedAnchors
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedAnchor>}
-     * @memberof FlattenedAnchors
-     */
-    iterable: Array<ReferencedAnchor>;
-    /**
-     * This is a Map<String, int> where the the key is an Anchor id.
-     * @type {{ [key: string]: number; }}
-     * @memberof FlattenedAnchors
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedAnchors
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedAnchors
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedAnchor>}
+	 * @memberof FlattenedAnchors
+	 */
+	iterable: ReferencedAnchor[];
+	/**
+	 * This is a Map<String, int> where the the key is an Anchor id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof FlattenedAnchors
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedAnchors
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedAnchors interface.
  */
 export function instanceOfFlattenedAnchors(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedAnchorsFromJSON(json: any): FlattenedAnchors {
-    return FlattenedAnchorsFromJSONTyped(json, false);
+	return FlattenedAnchorsFromJSONTyped(json, false);
 }
 
-export function FlattenedAnchorsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedAnchors {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedAnchorFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedAnchorsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedAnchors {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ReferencedAnchorFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function FlattenedAnchorsToJSON(value?: FlattenedAnchors | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedAnchorToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedAnchorToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Asset } from './Asset';
+import { exists } from "../runtime.ts";
+import type { Asset } from "./Asset.tsx";
+import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AssetFromJSON,
-    AssetFromJSONTyped,
-    AssetToJSON,
-} from './Asset';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * A base class for a collection of assets and some additional meta properties. Fully Populated with Formats internally (not just uuid's).
@@ -38,72 +29,74 @@ import {
  * @interface Assets
  */
 export interface Assets {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Assets
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Asset>}
-     * @memberof Assets
-     */
-    iterable: Array<Asset>;
-    /**
-     * This is a Map<String, int> where the the key is an asset id.
-     * @type {{ [key: string]: number; }}
-     * @memberof Assets
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof Assets
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Assets
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Asset>}
+	 * @memberof Assets
+	 */
+	iterable: Asset[];
+	/**
+	 * This is a Map<String, int> where the the key is an asset id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof Assets
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Assets
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the Assets interface.
  */
 export function instanceOfAssets(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AssetsFromJSON(json: any): Assets {
-    return AssetsFromJSONTyped(json, false);
+	return AssetsFromJSONTyped(json, false);
 }
 
-export function AssetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Assets {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(AssetFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function AssetsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Assets {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(AssetFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function AssetsToJSON(value?: Assets | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(AssetToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(AssetToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

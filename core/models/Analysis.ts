@@ -12,111 +12,111 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { CodeAnalysis } from './CodeAnalysis';
+import { exists } from "../runtime.ts";
+import type { CodeAnalysis } from "./CodeAnalysis.tsx";
+import { CodeAnalysisFromJSON, CodeAnalysisToJSON } from "./CodeAnalysis.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    CodeAnalysisFromJSON,
-    CodeAnalysisFromJSONTyped,
-    CodeAnalysisToJSON,
-} from './CodeAnalysis';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ImageAnalysis } from "./ImageAnalysis.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ImageAnalysis } from './ImageAnalysis';
-import {
-    ImageAnalysisFromJSON,
-    ImageAnalysisFromJSONTyped,
-    ImageAnalysisToJSON,
-} from './ImageAnalysis';
+	ImageAnalysisFromJSON,
+	ImageAnalysisToJSON,
+} from "./ImageAnalysis.tsx";
 
 /**
  * This the the MlAnalysis Object, that will go on a format.
- * 
+ *
  * this will hold all the different analysis models!
- * 
+ *
  * ** keep format just a uuid for now **
  * @export
  * @interface Analysis
  */
 export interface Analysis {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Analysis
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {CodeAnalysis}
-     * @memberof Analysis
-     */
-    code?: CodeAnalysis;
-    /**
-     * 
-     * @type {string}
-     * @memberof Analysis
-     */
-    id: string;
-    /**
-     * this is a reference to the format that it belongs too.
-     * @type {string}
-     * @memberof Analysis
-     */
-    format: string;
-    /**
-     * 
-     * @type {ImageAnalysis}
-     * @memberof Analysis
-     */
-    image?: ImageAnalysis;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Analysis
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {CodeAnalysis}
+	 * @memberof Analysis
+	 */
+	code?: CodeAnalysis;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Analysis
+	 */
+	id: string;
+	/**
+	 * this is a reference to the format that it belongs too.
+	 * @type {string}
+	 * @memberof Analysis
+	 */
+	format: string;
+	/**
+	 *
+	 * @type {ImageAnalysis}
+	 * @memberof Analysis
+	 */
+	image?: ImageAnalysis;
 }
 
 /**
  * Check if a given object implements the Analysis interface.
  */
 export function instanceOfAnalysis(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "format" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "format" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AnalysisFromJSON(json: any): Analysis {
-    return AnalysisFromJSONTyped(json, false);
+	return AnalysisFromJSONTyped(json, false);
 }
 
-export function AnalysisFromJSONTyped(json: any, ignoreDiscriminator: boolean): Analysis {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'code': !exists(json, 'code') ? undefined : CodeAnalysisFromJSON(json['code']),
-        'id': json['id'],
-        'format': json['format'],
-        'image': !exists(json, 'image') ? undefined : ImageAnalysisFromJSON(json['image']),
-    };
+export function AnalysisFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Analysis {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		code: exists(json, "code")
+			? CodeAnalysisFromJSON(json["code"])
+			: undefined,
+		id: json["id"],
+		format: json["format"],
+		image: exists(json, "image")
+			? ImageAnalysisFromJSON(json["image"])
+			: undefined,
+	};
 }
 
 export function AnalysisToJSON(value?: Analysis | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'code': CodeAnalysisToJSON(value.code),
-        'id': value.id,
-        'format': value.format,
-        'image': ImageAnalysisToJSON(value.image),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		code: CodeAnalysisToJSON(value.code),
+		id: value.id,
+		format: value.format,
+		image: ImageAnalysisToJSON(value.image),
+	};
 }
-

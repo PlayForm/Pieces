@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Recipients } from './Recipients';
-import {
-    RecipientsFromJSON,
-    RecipientsFromJSONTyped,
-    RecipientsToJSON,
-} from './Recipients';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Recipients } from "./Recipients.tsx";
+import { RecipientsFromJSON, RecipientsToJSON } from "./Recipients.tsx";
 
 /**
  * This is the minimum information needed to distribute a Piece to a Gist.
@@ -32,80 +27,90 @@ import {
  * @interface SeededGitHubGistDistribution
  */
 export interface SeededGitHubGistDistribution {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededGitHubGistDistribution
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Recipients}
-     * @memberof SeededGitHubGistDistribution
-     */
-    recipients?: Recipients;
-    /**
-     * we will default to true
-     * @type {boolean}
-     * @memberof SeededGitHubGistDistribution
-     */
-    _public?: boolean;
-    /**
-     * This is the description of the Gist Distribution
-     * @type {string}
-     * @memberof SeededGitHubGistDistribution
-     */
-    description?: string;
-    /**
-     * This is the name of the gist you will add.
-     * @type {string}
-     * @memberof SeededGitHubGistDistribution
-     */
-    name: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededGitHubGistDistribution
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Recipients}
+	 * @memberof SeededGitHubGistDistribution
+	 */
+	recipients?: Recipients;
+	/**
+	 * we will default to true
+	 * @type {boolean}
+	 * @memberof SeededGitHubGistDistribution
+	 */
+	_public?: boolean;
+	/**
+	 * This is the description of the Gist Distribution
+	 * @type {string}
+	 * @memberof SeededGitHubGistDistribution
+	 */
+	description?: string;
+	/**
+	 * This is the name of the gist you will add.
+	 * @type {string}
+	 * @memberof SeededGitHubGistDistribution
+	 */
+	name: string;
 }
 
 /**
  * Check if a given object implements the SeededGitHubGistDistribution interface.
  */
 export function instanceOfSeededGitHubGistDistribution(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
+	let isInstance = true;
+	isInstance = isInstance && "name" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededGitHubGistDistributionFromJSON(json: any): SeededGitHubGistDistribution {
-    return SeededGitHubGistDistributionFromJSONTyped(json, false);
+export function SeededGitHubGistDistributionFromJSON(
+	json: any,
+): SeededGitHubGistDistribution {
+	return SeededGitHubGistDistributionFromJSONTyped(json, false);
 }
 
-export function SeededGitHubGistDistributionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededGitHubGistDistribution {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'recipients': !exists(json, 'recipients') ? undefined : RecipientsFromJSON(json['recipients']),
-        '_public': !exists(json, 'public') ? undefined : json['public'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'name': json['name'],
-    };
+export function SeededGitHubGistDistributionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededGitHubGistDistribution {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		recipients: exists(json, "recipients")
+			? RecipientsFromJSON(json["recipients"])
+			: undefined,
+		_public: exists(json, "public") ? json["public"] : undefined,
+		description: exists(json, "description")
+			? json["description"]
+			: undefined,
+		name: json["name"],
+	};
 }
 
-export function SeededGitHubGistDistributionToJSON(value?: SeededGitHubGistDistribution | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'recipients': RecipientsToJSON(value.recipients),
-        'public': value._public,
-        'description': value.description,
-        'name': value.name,
-    };
+export function SeededGitHubGistDistributionToJSON(
+	value?: SeededGitHubGistDistribution | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		recipients: RecipientsToJSON(value.recipients),
+		public: value._public,
+		description: value.description,
+		name: value.name,
+	};
 }
-

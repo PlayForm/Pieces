@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a returnable for the metrics/formats/ordered
@@ -26,56 +25,58 @@ import {
  * @interface OrderedMetrics
  */
 export interface OrderedMetrics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OrderedMetrics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof OrderedMetrics
-     */
-    ordered: Array<string>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OrderedMetrics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<string>}
+	 * @memberof OrderedMetrics
+	 */
+	ordered: string[];
 }
 
 /**
  * Check if a given object implements the OrderedMetrics interface.
  */
 export function instanceOfOrderedMetrics(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "ordered" in value;
+	let isInstance = true;
+	isInstance = isInstance && "ordered" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function OrderedMetricsFromJSON(json: any): OrderedMetrics {
-    return OrderedMetricsFromJSONTyped(json, false);
+	return OrderedMetricsFromJSONTyped(json, false);
 }
 
-export function OrderedMetricsFromJSONTyped(json: any, ignoreDiscriminator: boolean): OrderedMetrics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'ordered': json['ordered'],
-    };
+export function OrderedMetricsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OrderedMetrics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		ordered: json["ordered"],
+	};
 }
 
 export function OrderedMetricsToJSON(value?: OrderedMetrics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'ordered': value.ordered,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		ordered: value.ordered,
+	};
 }
-

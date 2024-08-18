@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedWorkstreamSummary } from './FlattenedWorkstreamSummary';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedWorkstreamSummary } from "./FlattenedWorkstreamSummary.tsx";
 import {
-    FlattenedWorkstreamSummaryFromJSON,
-    FlattenedWorkstreamSummaryFromJSONTyped,
-    FlattenedWorkstreamSummaryToJSON,
-} from './FlattenedWorkstreamSummary';
+	FlattenedWorkstreamSummaryFromJSON,
+	FlattenedWorkstreamSummaryToJSON,
+} from "./FlattenedWorkstreamSummary.tsx";
 
 /**
  * this is a referenced minimal version of a WorkstreamSummary typically just our uuid.
@@ -32,64 +30,72 @@ import {
  * @interface ReferencedWorkstreamSummary
  */
 export interface ReferencedWorkstreamSummary {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedWorkstreamSummary
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedWorkstreamSummary
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedWorkstreamSummary}
-     * @memberof ReferencedWorkstreamSummary
-     */
-    reference?: FlattenedWorkstreamSummary;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedWorkstreamSummary
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedWorkstreamSummary
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamSummary}
+	 * @memberof ReferencedWorkstreamSummary
+	 */
+	reference?: FlattenedWorkstreamSummary;
 }
 
 /**
  * Check if a given object implements the ReferencedWorkstreamSummary interface.
  */
 export function instanceOfReferencedWorkstreamSummary(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ReferencedWorkstreamSummaryFromJSON(json: any): ReferencedWorkstreamSummary {
-    return ReferencedWorkstreamSummaryFromJSONTyped(json, false);
+export function ReferencedWorkstreamSummaryFromJSON(
+	json: any,
+): ReferencedWorkstreamSummary {
+	return ReferencedWorkstreamSummaryFromJSONTyped(json, false);
 }
 
-export function ReferencedWorkstreamSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedWorkstreamSummary {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedWorkstreamSummaryFromJSON(json['reference']),
-    };
+export function ReferencedWorkstreamSummaryFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedWorkstreamSummary {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedWorkstreamSummaryFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
-export function ReferencedWorkstreamSummaryToJSON(value?: ReferencedWorkstreamSummary | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedWorkstreamSummaryToJSON(value.reference),
-    };
+export function ReferencedWorkstreamSummaryToJSON(
+	value?: ReferencedWorkstreamSummary | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedWorkstreamSummaryToJSON(value.reference),
+	};
 }
-

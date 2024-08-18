@@ -12,122 +12,123 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is use as the score for an asset.
- * 
+ *
  * Manual: will be the raw sum of the asset activity events ranks with mechanismEnum == manual
  * Automatic: will be the raw sum of the asset activity events ranks with mechanismEnum == automatic
  * @export
  * @interface Score
  */
 export interface Score {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Score
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * These are points assigned via manual user driven events.
-     * @type {number}
-     * @memberof Score
-     */
-    manual: number;
-    /**
-     * These are point assigned via automatic activity events.
-     * @type {number}
-     * @memberof Score
-     */
-    automatic: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Score
-     */
-    priority?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Score
-     */
-    reuse?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Score
-     */
-    update?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Score
-     */
-    reference?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Score
-     */
-    searched?: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Score
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * These are points assigned via manual user driven events.
+	 * @type {number}
+	 * @memberof Score
+	 */
+	manual: number;
+	/**
+	 * These are point assigned via automatic activity events.
+	 * @type {number}
+	 * @memberof Score
+	 */
+	automatic: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Score
+	 */
+	priority?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Score
+	 */
+	reuse?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Score
+	 */
+	update?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Score
+	 */
+	reference?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Score
+	 */
+	searched?: number;
 }
 
 /**
  * Check if a given object implements the Score interface.
  */
 export function instanceOfScore(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "manual" in value;
-    isInstance = isInstance && "automatic" in value;
+	let isInstance = true;
+	isInstance = isInstance && "manual" in value;
+	isInstance = isInstance && "automatic" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ScoreFromJSON(json: any): Score {
-    return ScoreFromJSONTyped(json, false);
+	return ScoreFromJSONTyped(json, false);
 }
 
-export function ScoreFromJSONTyped(json: any, ignoreDiscriminator: boolean): Score {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'manual': json['manual'],
-        'automatic': json['automatic'],
-        'priority': !exists(json, 'priority') ? undefined : json['priority'],
-        'reuse': !exists(json, 'reuse') ? undefined : json['reuse'],
-        'update': !exists(json, 'update') ? undefined : json['update'],
-        'reference': !exists(json, 'reference') ? undefined : json['reference'],
-        'searched': !exists(json, 'searched') ? undefined : json['searched'],
-    };
+export function ScoreFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Score {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		manual: json["manual"],
+		automatic: json["automatic"],
+		priority: exists(json, "priority") ? json["priority"] : undefined,
+		reuse: exists(json, "reuse") ? json["reuse"] : undefined,
+		update: exists(json, "update") ? json["update"] : undefined,
+		reference: exists(json, "reference") ? json["reference"] : undefined,
+		searched: exists(json, "searched") ? json["searched"] : undefined,
+	};
 }
 
 export function ScoreToJSON(value?: Score | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'manual': value.manual,
-        'automatic': value.automatic,
-        'priority': value.priority,
-        'reuse': value.reuse,
-        'update': value.update,
-        'reference': value.reference,
-        'searched': value.searched,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		manual: value.manual,
+		automatic: value.automatic,
+		priority: value.priority,
+		reuse: value.reuse,
+		update: value.update,
+		reference: value.reference,
+		searched: value.searched,
+	};
 }
-

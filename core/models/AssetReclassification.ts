@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Asset } from './Asset';
+import { exists } from "../runtime.ts";
+import type { Asset } from "./Asset.tsx";
+import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
+import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
 import {
-    AssetFromJSON,
-    AssetFromJSONTyped,
-    AssetToJSON,
-} from './Asset';
-import type { ClassificationSpecificEnum } from './ClassificationSpecificEnum';
+	ClassificationSpecificEnumFromJSON,
+	ClassificationSpecificEnumToJSON,
+} from "./ClassificationSpecificEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ClassificationSpecificEnumFromJSON,
-    ClassificationSpecificEnumFromJSONTyped,
-    ClassificationSpecificEnumToJSON,
-} from './ClassificationSpecificEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a model that will represent the miminum properties required to update the classification of this asset.
@@ -38,65 +32,71 @@ import {
  * @interface AssetReclassification
  */
 export interface AssetReclassification {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AssetReclassification
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ClassificationSpecificEnum}
-     * @memberof AssetReclassification
-     */
-    ext: ClassificationSpecificEnum;
-    /**
-     * 
-     * @type {Asset}
-     * @memberof AssetReclassification
-     */
-    asset: Asset;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AssetReclassification
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ClassificationSpecificEnum}
+	 * @memberof AssetReclassification
+	 */
+	ext: ClassificationSpecificEnum;
+	/**
+	 *
+	 * @type {Asset}
+	 * @memberof AssetReclassification
+	 */
+	asset: Asset;
 }
 
 /**
  * Check if a given object implements the AssetReclassification interface.
  */
 export function instanceOfAssetReclassification(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "ext" in value;
-    isInstance = isInstance && "asset" in value;
+	let isInstance = true;
+	isInstance = isInstance && "ext" in value;
+	isInstance = isInstance && "asset" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function AssetReclassificationFromJSON(json: any): AssetReclassification {
-    return AssetReclassificationFromJSONTyped(json, false);
+export function AssetReclassificationFromJSON(
+	json: any,
+): AssetReclassification {
+	return AssetReclassificationFromJSONTyped(json, false);
 }
 
-export function AssetReclassificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): AssetReclassification {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'ext': ClassificationSpecificEnumFromJSON(json['ext']),
-        'asset': AssetFromJSON(json['asset']),
-    };
+export function AssetReclassificationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AssetReclassification {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		ext: ClassificationSpecificEnumFromJSON(json["ext"]),
+		asset: AssetFromJSON(json["asset"]),
+	};
 }
 
-export function AssetReclassificationToJSON(value?: AssetReclassification | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'ext': ClassificationSpecificEnumToJSON(value.ext),
-        'asset': AssetToJSON(value.asset),
-    };
+export function AssetReclassificationToJSON(
+	value?: AssetReclassification | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		ext: ClassificationSpecificEnumToJSON(value.ext),
+		asset: AssetToJSON(value.asset),
+	};
 }
-

@@ -12,85 +12,93 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededDiscoverableSensitive } from './SeededDiscoverableSensitive';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededDiscoverableSensitive } from "./SeededDiscoverableSensitive.tsx";
 import {
-    SeededDiscoverableSensitiveFromJSON,
-    SeededDiscoverableSensitiveFromJSONTyped,
-    SeededDiscoverableSensitiveToJSON,
-} from './SeededDiscoverableSensitive';
+	SeededDiscoverableSensitiveFromJSON,
+	SeededDiscoverableSensitiveToJSON,
+} from "./SeededDiscoverableSensitive.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededDiscoverableSensitives
  */
 export interface SeededDiscoverableSensitives {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededDiscoverableSensitives
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SeededDiscoverableSensitive>}
-     * @memberof SeededDiscoverableSensitives
-     */
-    iterable: Array<SeededDiscoverableSensitive>;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededDiscoverableSensitives
-     */
-    application: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededDiscoverableSensitives
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SeededDiscoverableSensitive>}
+	 * @memberof SeededDiscoverableSensitives
+	 */
+	iterable: SeededDiscoverableSensitive[];
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededDiscoverableSensitives
+	 */
+	application: string;
 }
 
 /**
  * Check if a given object implements the SeededDiscoverableSensitives interface.
  */
 export function instanceOfSeededDiscoverableSensitives(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
-    isInstance = isInstance && "application" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
+	isInstance = isInstance && "application" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededDiscoverableSensitivesFromJSON(json: any): SeededDiscoverableSensitives {
-    return SeededDiscoverableSensitivesFromJSONTyped(json, false);
+export function SeededDiscoverableSensitivesFromJSON(
+	json: any,
+): SeededDiscoverableSensitives {
+	return SeededDiscoverableSensitivesFromJSONTyped(json, false);
 }
 
-export function SeededDiscoverableSensitivesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededDiscoverableSensitives {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SeededDiscoverableSensitiveFromJSON)),
-        'application': json['application'],
-    };
+export function SeededDiscoverableSensitivesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededDiscoverableSensitives {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			SeededDiscoverableSensitiveFromJSON,
+		),
+		application: json["application"],
+	};
 }
 
-export function SeededDiscoverableSensitivesToJSON(value?: SeededDiscoverableSensitives | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SeededDiscoverableSensitiveToJSON)),
-        'application': value.application,
-    };
+export function SeededDiscoverableSensitivesToJSON(
+	value?: SeededDiscoverableSensitives | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			SeededDiscoverableSensitiveToJSON,
+		),
+		application: value.application,
+	};
 }
-

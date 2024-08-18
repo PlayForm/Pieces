@@ -12,64 +12,74 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is for the users that wants to have contextualized code conversations around their workstream materials, meaning conversations around code with Context provided,
  * as well as workstream information ie information gathered from the WPE.
- * 
+ *
  * This is a class so that we can add optional properties in the future.
  * @export
  * @interface QGPTConversationPipelineForContextualizedCodeWorkstreamDialog
  */
 export interface QGPTConversationPipelineForContextualizedCodeWorkstreamDialog {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTConversationPipelineForContextualizedCodeWorkstreamDialog
-     */
-    schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTConversationPipelineForContextualizedCodeWorkstreamDialog
+	 */
+	schema?: EmbeddedModelSchema;
 }
 
 /**
  * Check if a given object implements the QGPTConversationPipelineForContextualizedCodeWorkstreamDialog interface.
  */
-export function instanceOfQGPTConversationPipelineForContextualizedCodeWorkstreamDialog(value: object): boolean {
-    let isInstance = true;
+export function instanceOfQGPTConversationPipelineForContextualizedCodeWorkstreamDialog(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function QGPTConversationPipelineForContextualizedCodeWorkstreamDialogFromJSON(json: any): QGPTConversationPipelineForContextualizedCodeWorkstreamDialog {
-    return QGPTConversationPipelineForContextualizedCodeWorkstreamDialogFromJSONTyped(json, false);
+export function QGPTConversationPipelineForContextualizedCodeWorkstreamDialogFromJSON(
+	json: any,
+): QGPTConversationPipelineForContextualizedCodeWorkstreamDialog {
+	return QGPTConversationPipelineForContextualizedCodeWorkstreamDialogFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function QGPTConversationPipelineForContextualizedCodeWorkstreamDialogFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTConversationPipelineForContextualizedCodeWorkstreamDialog {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-    };
+export function QGPTConversationPipelineForContextualizedCodeWorkstreamDialogFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTConversationPipelineForContextualizedCodeWorkstreamDialog {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+	};
 }
 
-export function QGPTConversationPipelineForContextualizedCodeWorkstreamDialogToJSON(value?: QGPTConversationPipelineForContextualizedCodeWorkstreamDialog | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-    };
+export function QGPTConversationPipelineForContextualizedCodeWorkstreamDialogToJSON(
+	value?: QGPTConversationPipelineForContextualizedCodeWorkstreamDialog | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+	};
 }
-

@@ -12,76 +12,75 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededTag } from './SeededTag';
-import {
-    SeededTagFromJSON,
-    SeededTagFromJSONTyped,
-    SeededTagToJSON,
-} from './SeededTag';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededTag } from "./SeededTag.tsx";
+import { SeededTagFromJSON, SeededTagToJSON } from "./SeededTag.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface DiscoveredRelatedTag
  */
 export interface DiscoveredRelatedTag {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DiscoveredRelatedTag
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededTag}
-     * @memberof DiscoveredRelatedTag
-     */
-    seed: SeededTag;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DiscoveredRelatedTag
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededTag}
+	 * @memberof DiscoveredRelatedTag
+	 */
+	seed: SeededTag;
 }
 
 /**
  * Check if a given object implements the DiscoveredRelatedTag interface.
  */
 export function instanceOfDiscoveredRelatedTag(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "seed" in value;
+	let isInstance = true;
+	isInstance = isInstance && "seed" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function DiscoveredRelatedTagFromJSON(json: any): DiscoveredRelatedTag {
-    return DiscoveredRelatedTagFromJSONTyped(json, false);
+	return DiscoveredRelatedTagFromJSONTyped(json, false);
 }
 
-export function DiscoveredRelatedTagFromJSONTyped(json: any, ignoreDiscriminator: boolean): DiscoveredRelatedTag {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'seed': SeededTagFromJSON(json['seed']),
-    };
+export function DiscoveredRelatedTagFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DiscoveredRelatedTag {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		seed: SeededTagFromJSON(json["seed"]),
+	};
 }
 
-export function DiscoveredRelatedTagToJSON(value?: DiscoveredRelatedTag | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'seed': SeededTagToJSON(value.seed),
-    };
+export function DiscoveredRelatedTagToJSON(
+	value?: DiscoveredRelatedTag | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		seed: SeededTagToJSON(value.seed),
+	};
 }
-

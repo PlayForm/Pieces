@@ -12,100 +12,102 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { exists } from "../runtime.ts";
 /**
  * Contains info retrieved from the identity provider with which the user originally authenticates. Users may also link their profile to multiple identity providers; those identities will then also appear in this array. The contents of an individual identity provider object varies by provider, but it will typically include the following.
  * Link: [https://auth0.com/docs/rules/user-object-in-rules]
- * 
+ *
  * Currently left out:
  * - profile_data: (Object) User information associated with the connection. When profiles are linked, it is populated with the associated user info for secondary accounts.
  * @export
  * @interface Auth0Identity
  */
 export interface Auth0Identity {
-    /**
-     * Name of the Auth0 connection used to authenticate the user.
-     * 
-     * @type {string}
-     * @memberof Auth0Identity
-     */
-    connection?: string;
-    /**
-     * Indicates whether the connection is a social one.
-     * 
-     * @type {boolean}
-     * @memberof Auth0Identity
-     */
-    isSocial?: boolean;
-    /**
-     * mapped from user_id  -> id
-     * @type {string}
-     * @memberof Auth0Identity
-     */
-    provider?: string;
-    /**
-     * User's unique identifier for this connection/provider.
-     * @type {string}
-     * @memberof Auth0Identity
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Auth0Identity
-     */
-    accessToken?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof Auth0Identity
-     */
-    expiresIn?: number;
+	/**
+	 * Name of the Auth0 connection used to authenticate the user.
+	 *
+	 * @type {string}
+	 * @memberof Auth0Identity
+	 */
+	connection?: string;
+	/**
+	 * Indicates whether the connection is a social one.
+	 *
+	 * @type {boolean}
+	 * @memberof Auth0Identity
+	 */
+	isSocial?: boolean;
+	/**
+	 * mapped from user_id  -> id
+	 * @type {string}
+	 * @memberof Auth0Identity
+	 */
+	provider?: string;
+	/**
+	 * User's unique identifier for this connection/provider.
+	 * @type {string}
+	 * @memberof Auth0Identity
+	 */
+	userId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Auth0Identity
+	 */
+	accessToken?: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Auth0Identity
+	 */
+	expiresIn?: number;
 }
 
 /**
  * Check if a given object implements the Auth0Identity interface.
  */
-export function instanceOfAuth0Identity(value: object): boolean {
-    let isInstance = true;
+export function instanceOfAuth0Identity(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function Auth0IdentityFromJSON(json: any): Auth0Identity {
-    return Auth0IdentityFromJSONTyped(json, false);
+	return Auth0IdentityFromJSONTyped(json, false);
 }
 
-export function Auth0IdentityFromJSONTyped(json: any, ignoreDiscriminator: boolean): Auth0Identity {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'connection': !exists(json, 'connection') ? undefined : json['connection'],
-        'isSocial': !exists(json, 'isSocial') ? undefined : json['isSocial'],
-        'provider': !exists(json, 'provider') ? undefined : json['provider'],
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
-        'accessToken': !exists(json, 'access_token') ? undefined : json['access_token'],
-        'expiresIn': !exists(json, 'expires_in') ? undefined : json['expires_in'],
-    };
+export function Auth0IdentityFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Auth0Identity {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		connection: exists(json, "connection") ? json["connection"] : undefined,
+		isSocial: exists(json, "isSocial") ? json["isSocial"] : undefined,
+		provider: exists(json, "provider") ? json["provider"] : undefined,
+		userId: exists(json, "user_id") ? json["user_id"] : undefined,
+		accessToken: exists(json, "access_token")
+			? json["access_token"]
+			: undefined,
+		expiresIn: exists(json, "expires_in") ? json["expires_in"] : undefined,
+	};
 }
 
 export function Auth0IdentityToJSON(value?: Auth0Identity | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'connection': value.connection,
-        'isSocial': value.isSocial,
-        'provider': value.provider,
-        'user_id': value.userId,
-        'access_token': value.accessToken,
-        'expires_in': value.expiresIn,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		connection: value.connection,
+		isSocial: value.isSocial,
+		provider: value.provider,
+		user_id: value.userId,
+		access_token: value.accessToken,
+		expires_in: value.expiresIn,
+	};
 }
-

@@ -12,182 +12,234 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  Person,
-  Persons,
-  SearchInput,
-  SearchedPersons,
-  SeededPerson,
-} from '../models/index';
+	Person,
+	Persons,
+	SearchInput,
+	SearchedPersons,
+	SeededPerson,
+} from "../models/index.ts";
 import {
-    PersonFromJSON,
-    PersonToJSON,
-    PersonsFromJSON,
-    PersonsToJSON,
-    SearchInputFromJSON,
-    SearchInputToJSON,
-    SearchedPersonsFromJSON,
-    SearchedPersonsToJSON,
-    SeededPersonFromJSON,
-    SeededPersonToJSON,
-} from '../models/index';
+	PersonFromJSON,
+	PersonsFromJSON,
+	SearchInputToJSON,
+	SearchedPersonsFromJSON,
+	SeededPersonToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface PersonsCreateNewPersonRequest {
-    transferables?: boolean;
-    seededPerson?: SeededPerson;
+	transferables?: boolean;
+	seededPerson?: SeededPerson;
 }
 
 export interface PersonsDeletePersonRequest {
-    person: string;
+	person: string;
 }
 
 export interface PersonsSnapshotRequest {
-    transferables?: boolean;
+	transferables?: boolean;
 }
 
 export interface SearchPersonsRequest {
-    transferables?: boolean;
-    searchInput?: SearchInput;
+	transferables?: boolean;
+	searchInput?: SearchInput;
 }
 
 /**
- * 
+ *
  */
 export class PersonsApi extends runtime.BaseAPI {
+	/**
+	 * This will create a new person.
+	 * /persons/create [POST]
+	 */
+	async personsCreateNewPersonRaw(
+		requestParameters: PersonsCreateNewPersonRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Person>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will create a new person.
-     * /persons/create [POST]
-     */
-    async personsCreateNewPersonRaw(requestParameters: PersonsCreateNewPersonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Person>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/persons/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededPersonToJSON(requestParameters.seededPerson),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/persons/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededPersonToJSON(requestParameters.seededPerson),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			PersonFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
-    }
+	/**
+	 * This will create a new person.
+	 * /persons/create [POST]
+	 */
+	async personsCreateNewPerson(
+		requestParameters: PersonsCreateNewPersonRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Person> {
+		const response = await this.personsCreateNewPersonRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will create a new person.
-     * /persons/create [POST]
-     */
-    async personsCreateNewPerson(requestParameters: PersonsCreateNewPersonRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Person> {
-        const response = await this.personsCreateNewPersonRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will delete a specific person.
+	 * /persons/{person}/delete [POST]
+	 */
+	async personsDeletePersonRaw(
+		requestParameters: PersonsDeletePersonRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personsDeletePerson.",
+			);
+		}
 
-    /**
-     * This will delete a specific person.
-     * /persons/{person}/delete [POST]
-     */
-    async personsDeletePersonRaw(requestParameters: PersonsDeletePersonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personsDeletePerson.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/persons/{person}/delete".replace(
+					`{${"person"}}`,
+					encodeURIComponent(String(requestParameters.person)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/persons/{person}/delete`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * This will delete a specific person.
+	 * /persons/{person}/delete [POST]
+	 */
+	async personsDeletePerson(
+		requestParameters: PersonsDeletePersonRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personsDeletePersonRaw(requestParameters, initOverrides);
+	}
 
-    /**
-     * This will delete a specific person.
-     * /persons/{person}/delete [POST]
-     */
-    async personsDeletePerson(requestParameters: PersonsDeletePersonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personsDeletePersonRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will get a snapshot of all of your people
+	 * /persons [GET]
+	 */
+	async personsSnapshotRaw(
+		requestParameters: PersonsSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Persons>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a snapshot of all of your people
-     * /persons [GET]
-     */
-    async personsSnapshotRaw(requestParameters: PersonsSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Persons>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/persons",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/persons`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			PersonsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PersonsFromJSON(jsonValue));
-    }
+	/**
+	 * This will get a snapshot of all of your people
+	 * /persons [GET]
+	 */
+	async personsSnapshot(
+		requestParameters: PersonsSnapshotRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Persons> {
+		const response = await this.personsSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will get a snapshot of all of your people
-     * /persons [GET]
-     */
-    async personsSnapshot(requestParameters: PersonsSnapshotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Persons> {
-        const response = await this.personsSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will search your persons for a specific person  note: we will search, name, email, and username
+	 * /persons/search [POST]
+	 */
+	async searchPersonsRaw(
+		requestParameters: SearchPersonsRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedPersons>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will search your persons for a specific person  note: we will search, name, email, and username
-     * /persons/search [POST]
-     */
-    async searchPersonsRaw(requestParameters: SearchPersonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedPersons>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/persons/search",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SearchInputToJSON(requestParameters.searchInput),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/persons/search`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SearchInputToJSON(requestParameters.searchInput),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedPersonsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedPersonsFromJSON(jsonValue));
-    }
-
-    /**
-     * This will search your persons for a specific person  note: we will search, name, email, and username
-     * /persons/search [POST]
-     */
-    async searchPersons(requestParameters: SearchPersonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedPersons> {
-        const response = await this.searchPersonsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will search your persons for a specific person  note: we will search, name, email, and username
+	 * /persons/search [POST]
+	 */
+	async searchPersons(
+		requestParameters: SearchPersonsRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedPersons> {
+		const response = await this.searchPersonsRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

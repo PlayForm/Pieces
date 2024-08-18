@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { OSAppletEnum } from './OSAppletEnum';
-import {
-    OSAppletEnumFromJSON,
-    OSAppletEnumFromJSONTyped,
-    OSAppletEnumToJSON,
-} from './OSAppletEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { OSAppletEnum } from "./OSAppletEnum.tsx";
+import { OSAppletEnumFromJSON, OSAppletEnumToJSON } from "./OSAppletEnum.tsx";
 
 /**
  * Note: parent is optional here in the case that (parent here is the integration that wants the module launched(VSCode))
@@ -38,72 +29,80 @@ import {
  * @interface InactiveOSServerApplet
  */
 export interface InactiveOSServerApplet {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof InactiveOSServerApplet
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Application}
-     * @memberof InactiveOSServerApplet
-     */
-    parent?: Application;
-    /**
-     * This is the port number in which we want to serve the copilot at.
-     * @type {number}
-     * @memberof InactiveOSServerApplet
-     */
-    port?: number | null;
-    /**
-     * 
-     * @type {OSAppletEnum}
-     * @memberof InactiveOSServerApplet
-     */
-    type: OSAppletEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof InactiveOSServerApplet
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof InactiveOSServerApplet
+	 */
+	parent?: Application;
+	/**
+	 * This is the port number in which we want to serve the copilot at.
+	 * @type {number}
+	 * @memberof InactiveOSServerApplet
+	 */
+	port?: number | null;
+	/**
+	 *
+	 * @type {OSAppletEnum}
+	 * @memberof InactiveOSServerApplet
+	 */
+	type: OSAppletEnum;
 }
 
 /**
  * Check if a given object implements the InactiveOSServerApplet interface.
  */
 export function instanceOfInactiveOSServerApplet(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
+	let isInstance = true;
+	isInstance = isInstance && "type" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function InactiveOSServerAppletFromJSON(json: any): InactiveOSServerApplet {
-    return InactiveOSServerAppletFromJSONTyped(json, false);
+export function InactiveOSServerAppletFromJSON(
+	json: any,
+): InactiveOSServerApplet {
+	return InactiveOSServerAppletFromJSONTyped(json, false);
 }
 
-export function InactiveOSServerAppletFromJSONTyped(json: any, ignoreDiscriminator: boolean): InactiveOSServerApplet {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'parent': !exists(json, 'parent') ? undefined : ApplicationFromJSON(json['parent']),
-        'port': !exists(json, 'port') ? undefined : json['port'],
-        'type': OSAppletEnumFromJSON(json['type']),
-    };
+export function InactiveOSServerAppletFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): InactiveOSServerApplet {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		parent: exists(json, "parent")
+			? ApplicationFromJSON(json["parent"])
+			: undefined,
+		port: exists(json, "port") ? json["port"] : undefined,
+		type: OSAppletEnumFromJSON(json["type"]),
+	};
 }
 
-export function InactiveOSServerAppletToJSON(value?: InactiveOSServerApplet | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'parent': ApplicationToJSON(value.parent),
-        'port': value.port,
-        'type': OSAppletEnumToJSON(value.type),
-    };
+export function InactiveOSServerAppletToJSON(
+	value?: InactiveOSServerApplet | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		parent: ApplicationToJSON(value.parent),
+		port: value.port,
+		type: OSAppletEnumToJSON(value.type),
+	};
 }
-

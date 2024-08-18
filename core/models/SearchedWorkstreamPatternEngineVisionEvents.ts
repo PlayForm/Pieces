@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedWorkstreamPatternEngineVisionEvent } from './SearchedWorkstreamPatternEngineVisionEvent';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedWorkstreamPatternEngineVisionEvent } from "./SearchedWorkstreamPatternEngineVisionEvent.tsx";
 import {
-    SearchedWorkstreamPatternEngineVisionEventFromJSON,
-    SearchedWorkstreamPatternEngineVisionEventFromJSONTyped,
-    SearchedWorkstreamPatternEngineVisionEventToJSON,
-} from './SearchedWorkstreamPatternEngineVisionEvent';
+	SearchedWorkstreamPatternEngineVisionEventFromJSON,
+	SearchedWorkstreamPatternEngineVisionEventToJSON,
+} from "./SearchedWorkstreamPatternEngineVisionEvent.tsx";
 
 /**
  * This will return a list of the returned events.
@@ -32,56 +30,71 @@ import {
  * @interface SearchedWorkstreamPatternEngineVisionEvents
  */
 export interface SearchedWorkstreamPatternEngineVisionEvents {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvents
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedWorkstreamPatternEngineVisionEvent>}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvents
-     */
-    iterable: Array<SearchedWorkstreamPatternEngineVisionEvent>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvents
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedWorkstreamPatternEngineVisionEvent>}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvents
+	 */
+	iterable: SearchedWorkstreamPatternEngineVisionEvent[];
 }
 
 /**
  * Check if a given object implements the SearchedWorkstreamPatternEngineVisionEvents interface.
  */
-export function instanceOfSearchedWorkstreamPatternEngineVisionEvents(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+export function instanceOfSearchedWorkstreamPatternEngineVisionEvents(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SearchedWorkstreamPatternEngineVisionEventsFromJSON(json: any): SearchedWorkstreamPatternEngineVisionEvents {
-    return SearchedWorkstreamPatternEngineVisionEventsFromJSONTyped(json, false);
+export function SearchedWorkstreamPatternEngineVisionEventsFromJSON(
+	json: any,
+): SearchedWorkstreamPatternEngineVisionEvents {
+	return SearchedWorkstreamPatternEngineVisionEventsFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function SearchedWorkstreamPatternEngineVisionEventsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedWorkstreamPatternEngineVisionEvents {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedWorkstreamPatternEngineVisionEventFromJSON)),
-    };
+export function SearchedWorkstreamPatternEngineVisionEventsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedWorkstreamPatternEngineVisionEvents {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			SearchedWorkstreamPatternEngineVisionEventFromJSON,
+		),
+	};
 }
 
-export function SearchedWorkstreamPatternEngineVisionEventsToJSON(value?: SearchedWorkstreamPatternEngineVisionEvents | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedWorkstreamPatternEngineVisionEventToJSON)),
-    };
+export function SearchedWorkstreamPatternEngineVisionEventsToJSON(
+	value?: SearchedWorkstreamPatternEngineVisionEvents | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			SearchedWorkstreamPatternEngineVisionEventToJSON,
+		),
+	};
 }
-

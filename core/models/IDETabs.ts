@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { IDETab } from './IDETab';
-import {
-    IDETabFromJSON,
-    IDETabFromJSONTyped,
-    IDETabToJSON,
-} from './IDETab';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { IDETab } from "./IDETab.tsx";
+import { IDETabFromJSON, IDETabToJSON } from "./IDETab.tsx";
 
 /**
  * This is a plural representation of a IDETab
@@ -32,56 +27,58 @@ import {
  * @interface IDETabs
  */
 export interface IDETabs {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof IDETabs
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<IDETab>}
-     * @memberof IDETabs
-     */
-    iterable: Array<IDETab>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof IDETabs
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<IDETab>}
+	 * @memberof IDETabs
+	 */
+	iterable: IDETab[];
 }
 
 /**
  * Check if a given object implements the IDETabs interface.
  */
 export function instanceOfIDETabs(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function IDETabsFromJSON(json: any): IDETabs {
-    return IDETabsFromJSONTyped(json, false);
+	return IDETabsFromJSONTyped(json, false);
 }
 
-export function IDETabsFromJSONTyped(json: any, ignoreDiscriminator: boolean): IDETabs {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(IDETabFromJSON)),
-    };
+export function IDETabsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): IDETabs {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(IDETabFromJSON),
+	};
 }
 
 export function IDETabsToJSON(value?: IDETabs | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(IDETabToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(IDETabToJSON),
+	};
 }
-

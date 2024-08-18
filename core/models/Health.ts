@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { OSHealth } from './OSHealth';
-import {
-    OSHealthFromJSON,
-    OSHealthFromJSONTyped,
-    OSHealthToJSON,
-} from './OSHealth';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { OSHealth } from "./OSHealth.tsx";
+import { OSHealthFromJSON, OSHealthToJSON } from "./OSHealth.tsx";
 
 /**
  * This is a health model used to determine the "health" of the os server and cloud server(Coming Soon). READONLY Model.
@@ -32,56 +27,58 @@ import {
  * @interface Health
  */
 export interface Health {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Health
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {OSHealth}
-     * @memberof Health
-     */
-    os: OSHealth;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Health
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {OSHealth}
+	 * @memberof Health
+	 */
+	os: OSHealth;
 }
 
 /**
  * Check if a given object implements the Health interface.
  */
 export function instanceOfHealth(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "os" in value;
+	let isInstance = true;
+	isInstance = isInstance && "os" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function HealthFromJSON(json: any): Health {
-    return HealthFromJSONTyped(json, false);
+	return HealthFromJSONTyped(json, false);
 }
 
-export function HealthFromJSONTyped(json: any, ignoreDiscriminator: boolean): Health {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'os': OSHealthFromJSON(json['os']),
-    };
+export function HealthFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Health {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		os: OSHealthFromJSON(json["os"]),
+	};
 }
 
 export function HealthToJSON(value?: Health | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'os': OSHealthToJSON(value.os),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		os: OSHealthToJSON(value.os),
+	};
 }
-

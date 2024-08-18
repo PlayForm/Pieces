@@ -12,103 +12,113 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GraphicalImageProcessing } from './GraphicalImageProcessing';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GraphicalImageProcessing } from "./GraphicalImageProcessing.tsx";
 import {
-    GraphicalImageProcessingFromJSON,
-    GraphicalImageProcessingFromJSONTyped,
-    GraphicalImageProcessingToJSON,
-} from './GraphicalImageProcessing';
-import type { GraphicalOCRProcessing } from './GraphicalOCRProcessing';
+	GraphicalImageProcessingFromJSON,
+	GraphicalImageProcessingToJSON,
+} from "./GraphicalImageProcessing.tsx";
+import type { GraphicalOCRProcessing } from "./GraphicalOCRProcessing.tsx";
 import {
-    GraphicalOCRProcessingFromJSON,
-    GraphicalOCRProcessingFromJSONTyped,
-    GraphicalOCRProcessingToJSON,
-} from './GraphicalOCRProcessing';
-import type { GraphicalSVGStatistics } from './GraphicalSVGStatistics';
+	GraphicalOCRProcessingFromJSON,
+	GraphicalOCRProcessingToJSON,
+} from "./GraphicalOCRProcessing.tsx";
+import type { GraphicalSVGStatistics } from "./GraphicalSVGStatistics.tsx";
 import {
-    GraphicalSVGStatisticsFromJSON,
-    GraphicalSVGStatisticsFromJSONTyped,
-    GraphicalSVGStatisticsToJSON,
-} from './GraphicalSVGStatistics';
+	GraphicalSVGStatisticsFromJSON,
+	GraphicalSVGStatisticsToJSON,
+} from "./GraphicalSVGStatistics.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface GraphicalMachineLearningProcessingEvent
  */
 export interface GraphicalMachineLearningProcessingEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GraphicalMachineLearningProcessingEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GraphicalOCRProcessing}
-     * @memberof GraphicalMachineLearningProcessingEvent
-     */
-    ocr?: GraphicalOCRProcessing;
-    /**
-     * 
-     * @type {GraphicalImageProcessing}
-     * @memberof GraphicalMachineLearningProcessingEvent
-     */
-    image?: GraphicalImageProcessing;
-    /**
-     * 
-     * @type {GraphicalSVGStatistics}
-     * @memberof GraphicalMachineLearningProcessingEvent
-     */
-    svg?: GraphicalSVGStatistics;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GraphicalMachineLearningProcessingEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GraphicalOCRProcessing}
+	 * @memberof GraphicalMachineLearningProcessingEvent
+	 */
+	ocr?: GraphicalOCRProcessing;
+	/**
+	 *
+	 * @type {GraphicalImageProcessing}
+	 * @memberof GraphicalMachineLearningProcessingEvent
+	 */
+	image?: GraphicalImageProcessing;
+	/**
+	 *
+	 * @type {GraphicalSVGStatistics}
+	 * @memberof GraphicalMachineLearningProcessingEvent
+	 */
+	svg?: GraphicalSVGStatistics;
 }
 
 /**
  * Check if a given object implements the GraphicalMachineLearningProcessingEvent interface.
  */
-export function instanceOfGraphicalMachineLearningProcessingEvent(value: object): boolean {
-    let isInstance = true;
+export function instanceOfGraphicalMachineLearningProcessingEvent(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function GraphicalMachineLearningProcessingEventFromJSON(json: any): GraphicalMachineLearningProcessingEvent {
-    return GraphicalMachineLearningProcessingEventFromJSONTyped(json, false);
+export function GraphicalMachineLearningProcessingEventFromJSON(
+	json: any,
+): GraphicalMachineLearningProcessingEvent {
+	return GraphicalMachineLearningProcessingEventFromJSONTyped(json, false);
 }
 
-export function GraphicalMachineLearningProcessingEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): GraphicalMachineLearningProcessingEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'ocr': !exists(json, 'ocr') ? undefined : GraphicalOCRProcessingFromJSON(json['ocr']),
-        'image': !exists(json, 'image') ? undefined : GraphicalImageProcessingFromJSON(json['image']),
-        'svg': !exists(json, 'svg') ? undefined : GraphicalSVGStatisticsFromJSON(json['svg']),
-    };
+export function GraphicalMachineLearningProcessingEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GraphicalMachineLearningProcessingEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		ocr: exists(json, "ocr")
+			? GraphicalOCRProcessingFromJSON(json["ocr"])
+			: undefined,
+		image: exists(json, "image")
+			? GraphicalImageProcessingFromJSON(json["image"])
+			: undefined,
+		svg: exists(json, "svg")
+			? GraphicalSVGStatisticsFromJSON(json["svg"])
+			: undefined,
+	};
 }
 
-export function GraphicalMachineLearningProcessingEventToJSON(value?: GraphicalMachineLearningProcessingEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'ocr': GraphicalOCRProcessingToJSON(value.ocr),
-        'image': GraphicalImageProcessingToJSON(value.image),
-        'svg': GraphicalSVGStatisticsToJSON(value.svg),
-    };
+export function GraphicalMachineLearningProcessingEventToJSON(
+	value?: GraphicalMachineLearningProcessingEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		ocr: GraphicalOCRProcessingToJSON(value.ocr),
+		image: GraphicalImageProcessingToJSON(value.image),
+		svg: GraphicalSVGStatisticsToJSON(value.svg),
+	};
 }
-

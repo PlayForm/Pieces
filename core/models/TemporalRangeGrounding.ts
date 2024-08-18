@@ -12,65 +12,70 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { FlattenedRanges } from './FlattenedRanges';
+import { exists } from "../runtime.ts";
+import type { FlattenedRanges } from "./FlattenedRanges.tsx";
 import {
-    FlattenedRangesFromJSON,
-    FlattenedRangesFromJSONTyped,
-    FlattenedRangesToJSON,
-} from './FlattenedRanges';
+	FlattenedRangesFromJSON,
+	FlattenedRangesToJSON,
+} from "./FlattenedRanges.tsx";
 
 /**
  * This is used in the QGPT flow as well as within the conversation.
- * 
+ *
  * This will let us know grounding's that you want us to use within a given time range(s).
- * 
+ *
  * workstreams: is used to describe workstreams context. (specific to the "workstream mapper" - name subject to change)
  * @export
  * @interface TemporalRangeGrounding
  */
 export interface TemporalRangeGrounding {
-    /**
-     * 
-     * @type {FlattenedRanges}
-     * @memberof TemporalRangeGrounding
-     */
-    workstreams?: FlattenedRanges;
+	/**
+	 *
+	 * @type {FlattenedRanges}
+	 * @memberof TemporalRangeGrounding
+	 */
+	workstreams?: FlattenedRanges;
 }
 
 /**
  * Check if a given object implements the TemporalRangeGrounding interface.
  */
-export function instanceOfTemporalRangeGrounding(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTemporalRangeGrounding(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TemporalRangeGroundingFromJSON(json: any): TemporalRangeGrounding {
-    return TemporalRangeGroundingFromJSONTyped(json, false);
+export function TemporalRangeGroundingFromJSON(
+	json: any,
+): TemporalRangeGrounding {
+	return TemporalRangeGroundingFromJSONTyped(json, false);
 }
 
-export function TemporalRangeGroundingFromJSONTyped(json: any, ignoreDiscriminator: boolean): TemporalRangeGrounding {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'workstreams': !exists(json, 'workstreams') ? undefined : FlattenedRangesFromJSON(json['workstreams']),
-    };
+export function TemporalRangeGroundingFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TemporalRangeGrounding {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		workstreams: exists(json, "workstreams")
+			? FlattenedRangesFromJSON(json["workstreams"])
+			: undefined,
+	};
 }
 
-export function TemporalRangeGroundingToJSON(value?: TemporalRangeGrounding | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'workstreams': FlattenedRangesToJSON(value.workstreams),
-    };
+export function TemporalRangeGroundingToJSON(
+	value?: TemporalRangeGrounding | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		workstreams: FlattenedRangesToJSON(value.workstreams),
+	};
 }
-

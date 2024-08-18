@@ -12,107 +12,108 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededClassification } from './SeededClassification';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededClassification } from "./SeededClassification.tsx";
 import {
-    SeededClassificationFromJSON,
-    SeededClassificationFromJSONTyped,
-    SeededClassificationToJSON,
-} from './SeededClassification';
-import type { SeededFile } from './SeededFile';
+	SeededClassificationFromJSON,
+	SeededClassificationToJSON,
+} from "./SeededClassification.tsx";
+import type { SeededFile } from "./SeededFile.tsx";
+import { SeededFileFromJSON, SeededFileToJSON } from "./SeededFile.tsx";
+import type { SeededFragment } from "./SeededFragment.tsx";
 import {
-    SeededFileFromJSON,
-    SeededFileFromJSONTyped,
-    SeededFileToJSON,
-} from './SeededFile';
-import type { SeededFragment } from './SeededFragment';
-import {
-    SeededFragmentFromJSON,
-    SeededFragmentFromJSONTyped,
-    SeededFragmentToJSON,
-} from './SeededFragment';
+	SeededFragmentFromJSON,
+	SeededFragmentToJSON,
+} from "./SeededFragment.tsx";
 
 /**
  * This is seeded data that will be come a format.
- * 
+ *
  * We will throw an Error if, 1) file and fragment are both defined, 2) file and fragment are both null.
- * 
+ *
  * if this is being used within the /assets/create endpoint or the /{application}/create endpoint, we will not take the classificaiton into account, as it is only used in the syntax highlighting related endpoints.That being said if you do want to override your classification, please look at the metadata within the file or the fragment.
  * @export
  * @interface SeededFormat
  */
 export interface SeededFormat {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededFormat
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededFile}
-     * @memberof SeededFormat
-     */
-    file?: SeededFile;
-    /**
-     * 
-     * @type {SeededFragment}
-     * @memberof SeededFormat
-     */
-    fragment?: SeededFragment;
-    /**
-     * 
-     * @type {SeededClassification}
-     * @memberof SeededFormat
-     */
-    classification?: SeededClassification;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededFormat
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededFile}
+	 * @memberof SeededFormat
+	 */
+	file?: SeededFile;
+	/**
+	 *
+	 * @type {SeededFragment}
+	 * @memberof SeededFormat
+	 */
+	fragment?: SeededFragment;
+	/**
+	 *
+	 * @type {SeededClassification}
+	 * @memberof SeededFormat
+	 */
+	classification?: SeededClassification;
 }
 
 /**
  * Check if a given object implements the SeededFormat interface.
  */
-export function instanceOfSeededFormat(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededFormat(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededFormatFromJSON(json: any): SeededFormat {
-    return SeededFormatFromJSONTyped(json, false);
+	return SeededFormatFromJSONTyped(json, false);
 }
 
-export function SeededFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededFormat {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'file': !exists(json, 'file') ? undefined : SeededFileFromJSON(json['file']),
-        'fragment': !exists(json, 'fragment') ? undefined : SeededFragmentFromJSON(json['fragment']),
-        'classification': !exists(json, 'classification') ? undefined : SeededClassificationFromJSON(json['classification']),
-    };
+export function SeededFormatFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededFormat {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		file: exists(json, "file")
+			? SeededFileFromJSON(json["file"])
+			: undefined,
+		fragment: exists(json, "fragment")
+			? SeededFragmentFromJSON(json["fragment"])
+			: undefined,
+		classification: exists(json, "classification")
+			? SeededClassificationFromJSON(json["classification"])
+			: undefined,
+	};
 }
 
 export function SeededFormatToJSON(value?: SeededFormat | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'file': SeededFileToJSON(value.file),
-        'fragment': SeededFragmentToJSON(value.fragment),
-        'classification': SeededClassificationToJSON(value.classification),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		file: SeededFileToJSON(value.file),
+		fragment: SeededFragmentToJSON(value.fragment),
+		classification: SeededClassificationToJSON(value.classification),
+	};
 }
-

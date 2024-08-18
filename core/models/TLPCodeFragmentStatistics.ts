@@ -12,75 +12,83 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TLPCodeFragmentDescriptiveStatistics } from './TLPCodeFragmentDescriptiveStatistics';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TLPCodeFragmentDescriptiveStatistics } from "./TLPCodeFragmentDescriptiveStatistics.tsx";
 import {
-    TLPCodeFragmentDescriptiveStatisticsFromJSON,
-    TLPCodeFragmentDescriptiveStatisticsFromJSONTyped,
-    TLPCodeFragmentDescriptiveStatisticsToJSON,
-} from './TLPCodeFragmentDescriptiveStatistics';
+	TLPCodeFragmentDescriptiveStatisticsFromJSON,
+	TLPCodeFragmentDescriptiveStatisticsToJSON,
+} from "./TLPCodeFragmentDescriptiveStatistics.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface TLPCodeFragmentStatistics
  */
 export interface TLPCodeFragmentStatistics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeFragmentStatistics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TLPCodeFragmentDescriptiveStatistics}
-     * @memberof TLPCodeFragmentStatistics
-     */
-    descriptive?: TLPCodeFragmentDescriptiveStatistics;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeFragmentStatistics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TLPCodeFragmentDescriptiveStatistics}
+	 * @memberof TLPCodeFragmentStatistics
+	 */
+	descriptive?: TLPCodeFragmentDescriptiveStatistics;
 }
 
 /**
  * Check if a given object implements the TLPCodeFragmentStatistics interface.
  */
-export function instanceOfTLPCodeFragmentStatistics(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTLPCodeFragmentStatistics(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeFragmentStatisticsFromJSON(json: any): TLPCodeFragmentStatistics {
-    return TLPCodeFragmentStatisticsFromJSONTyped(json, false);
+export function TLPCodeFragmentStatisticsFromJSON(
+	json: any,
+): TLPCodeFragmentStatistics {
+	return TLPCodeFragmentStatisticsFromJSONTyped(json, false);
 }
 
-export function TLPCodeFragmentStatisticsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFragmentStatistics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'descriptive': !exists(json, 'descriptive') ? undefined : TLPCodeFragmentDescriptiveStatisticsFromJSON(json['descriptive']),
-    };
+export function TLPCodeFragmentStatisticsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFragmentStatistics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		descriptive: exists(json, "descriptive")
+			? TLPCodeFragmentDescriptiveStatisticsFromJSON(json["descriptive"])
+			: undefined,
+	};
 }
 
-export function TLPCodeFragmentStatisticsToJSON(value?: TLPCodeFragmentStatistics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'descriptive': TLPCodeFragmentDescriptiveStatisticsToJSON(value.descriptive),
-    };
+export function TLPCodeFragmentStatisticsToJSON(
+	value?: TLPCodeFragmentStatistics | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		descriptive: TLPCodeFragmentDescriptiveStatisticsToJSON(
+			value.descriptive,
+		),
+	};
 }
-

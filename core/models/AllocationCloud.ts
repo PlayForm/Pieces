@@ -12,150 +12,150 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AllocationCloudStatus } from './AllocationCloudStatus';
+import { exists } from "../runtime.ts";
+import type { AllocationCloudStatus } from "./AllocationCloudStatus.tsx";
 import {
-    AllocationCloudStatusFromJSON,
-    AllocationCloudStatusFromJSONTyped,
-    AllocationCloudStatusToJSON,
-} from './AllocationCloudStatus';
-import type { AllocationCloudUrls } from './AllocationCloudUrls';
+	AllocationCloudStatusFromJSON,
+	AllocationCloudStatusToJSON,
+} from "./AllocationCloudStatus.tsx";
+import type { AllocationCloudUrls } from "./AllocationCloudUrls.tsx";
 import {
-    AllocationCloudUrlsFromJSON,
-    AllocationCloudUrlsFromJSONTyped,
-    AllocationCloudUrlsToJSON,
-} from './AllocationCloudUrls';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AllocationCloudUrlsFromJSON,
+	AllocationCloudUrlsToJSON,
+} from "./AllocationCloudUrls.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
 
 /**
  * update && version: will be present only if your cloud was successfully spun up && running.
- * 
+ *
  * updated: is the last time this was updated.
  * @export
  * @interface AllocationCloud
  */
 export interface AllocationCloud {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AllocationCloud
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is a uuid that represents this cloud.(this is the same as the userid)
-     * @type {string}
-     * @memberof AllocationCloud
-     */
-    id: string;
-    /**
-     * this is your useruuid.
-     * @type {string}
-     * @memberof AllocationCloud
-     */
-    user: string;
-    /**
-     * 
-     * @type {AllocationCloudUrls}
-     * @memberof AllocationCloud
-     */
-    urls: AllocationCloudUrls;
-    /**
-     * 
-     * @type {AllocationCloudStatus}
-     * @memberof AllocationCloud
-     */
-    status: AllocationCloudStatus;
-    /**
-     * This is the project that this is attached to.
-     * @type {string}
-     * @memberof AllocationCloud
-     */
-    project: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof AllocationCloud
-     */
-    updated?: GroupedTimestamp;
-    /**
-     * this is the current version of the server.
-     * @type {string}
-     * @memberof AllocationCloud
-     */
-    version?: string;
-    /**
-     * this is the region where the project is defined.
-     * @type {string}
-     * @memberof AllocationCloud
-     */
-    region?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AllocationCloud
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is a uuid that represents this cloud.(this is the same as the userid)
+	 * @type {string}
+	 * @memberof AllocationCloud
+	 */
+	id: string;
+	/**
+	 * this is your useruuid.
+	 * @type {string}
+	 * @memberof AllocationCloud
+	 */
+	user: string;
+	/**
+	 *
+	 * @type {AllocationCloudUrls}
+	 * @memberof AllocationCloud
+	 */
+	urls: AllocationCloudUrls;
+	/**
+	 *
+	 * @type {AllocationCloudStatus}
+	 * @memberof AllocationCloud
+	 */
+	status: AllocationCloudStatus;
+	/**
+	 * This is the project that this is attached to.
+	 * @type {string}
+	 * @memberof AllocationCloud
+	 */
+	project: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof AllocationCloud
+	 */
+	updated?: GroupedTimestamp;
+	/**
+	 * this is the current version of the server.
+	 * @type {string}
+	 * @memberof AllocationCloud
+	 */
+	version?: string;
+	/**
+	 * this is the region where the project is defined.
+	 * @type {string}
+	 * @memberof AllocationCloud
+	 */
+	region?: string;
 }
 
 /**
  * Check if a given object implements the AllocationCloud interface.
  */
 export function instanceOfAllocationCloud(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "user" in value;
-    isInstance = isInstance && "urls" in value;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "project" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "user" in value;
+	isInstance = isInstance && "urls" in value;
+	isInstance = isInstance && "status" in value;
+	isInstance = isInstance && "project" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AllocationCloudFromJSON(json: any): AllocationCloud {
-    return AllocationCloudFromJSONTyped(json, false);
+	return AllocationCloudFromJSONTyped(json, false);
 }
 
-export function AllocationCloudFromJSONTyped(json: any, ignoreDiscriminator: boolean): AllocationCloud {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'user': json['user'],
-        'urls': AllocationCloudUrlsFromJSON(json['urls']),
-        'status': AllocationCloudStatusFromJSON(json['status']),
-        'project': json['project'],
-        'updated': !exists(json, 'updated') ? undefined : GroupedTimestampFromJSON(json['updated']),
-        'version': !exists(json, 'version') ? undefined : json['version'],
-        'region': !exists(json, 'region') ? undefined : json['region'],
-    };
+export function AllocationCloudFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AllocationCloud {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		user: json["user"],
+		urls: AllocationCloudUrlsFromJSON(json["urls"]),
+		status: AllocationCloudStatusFromJSON(json["status"]),
+		project: json["project"],
+		updated: exists(json, "updated")
+			? GroupedTimestampFromJSON(json["updated"])
+			: undefined,
+		version: exists(json, "version") ? json["version"] : undefined,
+		region: exists(json, "region") ? json["region"] : undefined,
+	};
 }
 
 export function AllocationCloudToJSON(value?: AllocationCloud | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'user': value.user,
-        'urls': AllocationCloudUrlsToJSON(value.urls),
-        'status': AllocationCloudStatusToJSON(value.status),
-        'project': value.project,
-        'updated': GroupedTimestampToJSON(value.updated),
-        'version': value.version,
-        'region': value.region,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		user: value.user,
+		urls: AllocationCloudUrlsToJSON(value.urls),
+		status: AllocationCloudStatusToJSON(value.status),
+		project: value.project,
+		updated: GroupedTimestampToJSON(value.updated),
+		version: value.version,
+		region: value.region,
+	};
 }
-

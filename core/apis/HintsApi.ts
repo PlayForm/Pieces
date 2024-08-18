@@ -12,169 +12,216 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  Hint,
-  Hints,
-  SearchInput,
-  SearchedHints,
-  SeededHint,
-} from '../models/index';
+	Hint,
+	Hints,
+	SearchInput,
+	SearchedHints,
+	SeededHint,
+} from "../models/index.ts";
 import {
-    HintFromJSON,
-    HintToJSON,
-    HintsFromJSON,
-    HintsToJSON,
-    SearchInputFromJSON,
-    SearchInputToJSON,
-    SearchedHintsFromJSON,
-    SearchedHintsToJSON,
-    SeededHintFromJSON,
-    SeededHintToJSON,
-} from '../models/index';
+	HintFromJSON,
+	HintsFromJSON,
+	SearchInputToJSON,
+	SearchedHintsFromJSON,
+	SeededHintToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface HintsCreateNewHintRequest {
-    seededHint?: SeededHint;
+	seededHint?: SeededHint;
 }
 
 export interface HintsDeleteSpecificHintRequest {
-    hint: string;
+	hint: string;
 }
 
 export interface SearchHintsRequest {
-    transferables?: boolean;
-    searchInput?: SearchInput;
+	transferables?: boolean;
+	searchInput?: SearchInput;
 }
 
 /**
- * 
+ *
  */
 export class HintsApi extends runtime.BaseAPI {
+	/**
+	 * This will create a hint.
+	 * /hints/create [POST]
+	 */
+	async hintsCreateNewHintRaw(
+		requestParameters: HintsCreateNewHintRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Hint>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will create a hint.
-     * /hints/create [POST]
-     */
-    async hintsCreateNewHintRaw(requestParameters: HintsCreateNewHintRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Hint>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/hints/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededHintToJSON(requestParameters.seededHint),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hints/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededHintToJSON(requestParameters.seededHint),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			HintFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => HintFromJSON(jsonValue));
-    }
+	/**
+	 * This will create a hint.
+	 * /hints/create [POST]
+	 */
+	async hintsCreateNewHint(
+		requestParameters: HintsCreateNewHintRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Hint> {
+		const response = await this.hintsCreateNewHintRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will create a hint.
-     * /hints/create [POST]
-     */
-    async hintsCreateNewHint(requestParameters: HintsCreateNewHintRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Hint> {
-        const response = await this.hintsCreateNewHintRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will delete a specific hint.
+	 * /hints/{hint}/delete [POST]
+	 */
+	async hintsDeleteSpecificHintRaw(
+		requestParameters: HintsDeleteSpecificHintRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.hint === null ||
+			requestParameters.hint === undefined
+		) {
+			throw new runtime.RequiredError(
+				"hint",
+				"Required parameter requestParameters.hint was null or undefined when calling hintsDeleteSpecificHint.",
+			);
+		}
 
-    /**
-     * This will delete a specific hint.
-     * /hints/{hint}/delete [POST]
-     */
-    async hintsDeleteSpecificHintRaw(requestParameters: HintsDeleteSpecificHintRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.hint === null || requestParameters.hint === undefined) {
-            throw new runtime.RequiredError('hint','Required parameter requestParameters.hint was null or undefined when calling hintsDeleteSpecificHint.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/hints/{hint}/delete".replace(
+					`{${"hint"}}`,
+					encodeURIComponent(String(requestParameters.hint)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hints/{hint}/delete`.replace(`{${"hint"}}`, encodeURIComponent(String(requestParameters.hint))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * This will delete a specific hint.
+	 * /hints/{hint}/delete [POST]
+	 */
+	async hintsDeleteSpecificHint(
+		requestParameters: HintsDeleteSpecificHintRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.hintsDeleteSpecificHintRaw(requestParameters, initOverrides);
+	}
 
-    /**
-     * This will delete a specific hint.
-     * /hints/{hint}/delete [POST]
-     */
-    async hintsDeleteSpecificHint(requestParameters: HintsDeleteSpecificHintRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.hintsDeleteSpecificHintRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will get a snapshot of all of the hints.
+	 * /hints [GET]
+	 */
+	async hintsSnapshotRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Hints>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a snapshot of all of the hints.
-     * /hints [GET]
-     */
-    async hintsSnapshotRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Hints>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/hints",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hints`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			HintsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => HintsFromJSON(jsonValue));
-    }
+	/**
+	 * This will get a snapshot of all of the hints.
+	 * /hints [GET]
+	 */
+	async hintsSnapshot(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Hints> {
+		const response = await this.hintsSnapshotRaw(initOverrides);
+		return await response.value();
+	}
 
-    /**
-     * This will get a snapshot of all of the hints.
-     * /hints [GET]
-     */
-    async hintsSnapshot(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Hints> {
-        const response = await this.hintsSnapshotRaw(initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will search your hints for a specific hint  note: we will just search the hint value
+	 * /hints/search [POST]
+	 */
+	async searchHintsRaw(
+		requestParameters: SearchHintsRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedHints>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will search your hints for a specific hint  note: we will just search the hint value
-     * /hints/search [POST]
-     */
-    async searchHintsRaw(requestParameters: SearchHintsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedHints>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/hints/search",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SearchInputToJSON(requestParameters.searchInput),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/hints/search`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SearchInputToJSON(requestParameters.searchInput),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedHintsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedHintsFromJSON(jsonValue));
-    }
-
-    /**
-     * This will search your hints for a specific hint  note: we will just search the hint value
-     * /hints/search [POST]
-     */
-    async searchHints(requestParameters: SearchHintsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedHints> {
-        const response = await this.searchHintsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will search your hints for a specific hint  note: we will just search the hint value
+	 * /hints/search [POST]
+	 */
+	async searchHints(
+		requestParameters: SearchHintsRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedHints> {
+		const response = await this.searchHintsRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

@@ -12,108 +12,112 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ClassificationSpecificEnum } from './ClassificationSpecificEnum';
+import { exists } from "../runtime.ts";
+import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
 import {
-    ClassificationSpecificEnumFromJSON,
-    ClassificationSpecificEnumFromJSONTyped,
-    ClassificationSpecificEnumToJSON,
-} from './ClassificationSpecificEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ClassificationSpecificEnumFromJSON,
+	ClassificationSpecificEnumToJSON,
+} from "./ClassificationSpecificEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededFormat } from './SeededFormat';
-import {
-    SeededFormatFromJSON,
-    SeededFormatFromJSONTyped,
-    SeededFormatToJSON,
-} from './SeededFormat';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededFormat } from "./SeededFormat.tsx";
+import { SeededFormatFromJSON, SeededFormatToJSON } from "./SeededFormat.tsx";
 
 /**
  * A SeededUEAsset is the minimum data sent from UE required to create an asset within Pieces.
- * 
+ *
  * Fragment & file are both optional properties however we will throw an internal error if both fragment and file are passed through or if both are undefined.
  * @export
  * @interface SeededUltraSuiteAsset
  */
 export interface SeededUltraSuiteAsset {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededUltraSuiteAsset
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * (optional) name is the name of the file
-     * @type {string}
-     * @memberof SeededUltraSuiteAsset
-     */
-    name?: string;
-    /**
-     * 
-     * @type {ClassificationSpecificEnum}
-     * @memberof SeededUltraSuiteAsset
-     */
-    ext?: ClassificationSpecificEnum;
-    /**
-     * 
-     * @type {SeededFormat}
-     * @memberof SeededUltraSuiteAsset
-     */
-    format: SeededFormat;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededUltraSuiteAsset
-     */
-    description?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededUltraSuiteAsset
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * (optional) name is the name of the file
+	 * @type {string}
+	 * @memberof SeededUltraSuiteAsset
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {ClassificationSpecificEnum}
+	 * @memberof SeededUltraSuiteAsset
+	 */
+	ext?: ClassificationSpecificEnum;
+	/**
+	 *
+	 * @type {SeededFormat}
+	 * @memberof SeededUltraSuiteAsset
+	 */
+	format: SeededFormat;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededUltraSuiteAsset
+	 */
+	description?: string;
 }
 
 /**
  * Check if a given object implements the SeededUltraSuiteAsset interface.
  */
 export function instanceOfSeededUltraSuiteAsset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
+	let isInstance = true;
+	isInstance = isInstance && "format" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededUltraSuiteAssetFromJSON(json: any): SeededUltraSuiteAsset {
-    return SeededUltraSuiteAssetFromJSONTyped(json, false);
+export function SeededUltraSuiteAssetFromJSON(
+	json: any,
+): SeededUltraSuiteAsset {
+	return SeededUltraSuiteAssetFromJSONTyped(json, false);
 }
 
-export function SeededUltraSuiteAssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededUltraSuiteAsset {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'ext': !exists(json, 'ext') ? undefined : ClassificationSpecificEnumFromJSON(json['ext']),
-        'format': SeededFormatFromJSON(json['format']),
-        'description': !exists(json, 'description') ? undefined : json['description'],
-    };
+export function SeededUltraSuiteAssetFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededUltraSuiteAsset {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		name: exists(json, "name") ? json["name"] : undefined,
+		ext: exists(json, "ext")
+			? ClassificationSpecificEnumFromJSON(json["ext"])
+			: undefined,
+		format: SeededFormatFromJSON(json["format"]),
+		description: exists(json, "description")
+			? json["description"]
+			: undefined,
+	};
 }
 
-export function SeededUltraSuiteAssetToJSON(value?: SeededUltraSuiteAsset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'name': value.name,
-        'ext': ClassificationSpecificEnumToJSON(value.ext),
-        'format': SeededFormatToJSON(value.format),
-        'description': value.description,
-    };
+export function SeededUltraSuiteAssetToJSON(
+	value?: SeededUltraSuiteAsset | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		name: value.name,
+		ext: ClassificationSpecificEnumToJSON(value.ext),
+		format: SeededFormatToJSON(value.format),
+		description: value.description,
+	};
 }
-

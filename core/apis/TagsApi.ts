@@ -12,223 +12,289 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  ExistentMetadata,
-  ExistingMetadata,
-  SearchInput,
-  SearchedTags,
-  SeededTag,
-  Tag,
-  Tags,
-} from '../models/index';
+	ExistentMetadata,
+	ExistingMetadata,
+	SearchInput,
+	SearchedTags,
+	SeededTag,
+	Tag,
+	Tags,
+} from "../models/index.ts";
 import {
-    ExistentMetadataFromJSON,
-    ExistentMetadataToJSON,
-    ExistingMetadataFromJSON,
-    ExistingMetadataToJSON,
-    SearchInputFromJSON,
-    SearchInputToJSON,
-    SearchedTagsFromJSON,
-    SearchedTagsToJSON,
-    SeededTagFromJSON,
-    SeededTagToJSON,
-    TagFromJSON,
-    TagToJSON,
-    TagsFromJSON,
-    TagsToJSON,
-} from '../models/index';
+	ExistentMetadataToJSON,
+	ExistingMetadataFromJSON,
+	SearchInputToJSON,
+	SearchedTagsFromJSON,
+	SeededTagToJSON,
+	TagFromJSON,
+	TagsFromJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface SearchTagsRequest {
-    transferables?: boolean;
-    searchInput?: SearchInput;
+	transferables?: boolean;
+	searchInput?: SearchInput;
 }
 
 export interface TagsCreateNewTagRequest {
-    transferables?: boolean;
-    seededTag?: SeededTag;
+	transferables?: boolean;
+	seededTag?: SeededTag;
 }
 
 export interface TagsDeleteSpecificTagRequest {
-    tag: string;
+	tag: string;
 }
 
 export interface TagsExistsRequest {
-    existentMetadata?: ExistentMetadata;
+	existentMetadata?: ExistentMetadata;
 }
 
 export interface TagsSnapshotRequest {
-    transferables?: boolean;
+	transferables?: boolean;
 }
 
 /**
- * 
+ *
  */
 export class TagsApi extends runtime.BaseAPI {
+	/**
+	 * This will search your tags for a specific tag
+	 * /tags/search [POST]
+	 */
+	async searchTagsRaw(
+		requestParameters: SearchTagsRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedTags>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will search your tags for a specific tag
-     * /tags/search [POST]
-     */
-    async searchTagsRaw(requestParameters: SearchTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedTags>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/tags/search",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SearchInputToJSON(requestParameters.searchInput),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/tags/search`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SearchInputToJSON(requestParameters.searchInput),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedTagsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedTagsFromJSON(jsonValue));
-    }
+	/**
+	 * This will search your tags for a specific tag
+	 * /tags/search [POST]
+	 */
+	async searchTags(
+		requestParameters: SearchTagsRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedTags> {
+		const response = await this.searchTagsRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will search your tags for a specific tag
-     * /tags/search [POST]
-     */
-    async searchTags(requestParameters: SearchTagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedTags> {
-        const response = await this.searchTagsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will create a new tag.
+	 * /tags/create [POST]
+	 */
+	async tagsCreateNewTagRaw(
+		requestParameters: TagsCreateNewTagRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Tag>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will create a new tag.
-     * /tags/create [POST]
-     */
-    async tagsCreateNewTagRaw(requestParameters: TagsCreateNewTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/tags/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededTagToJSON(requestParameters.seededTag),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/tags/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededTagToJSON(requestParameters.seededTag),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			TagFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
-    }
+	/**
+	 * This will create a new tag.
+	 * /tags/create [POST]
+	 */
+	async tagsCreateNewTag(
+		requestParameters: TagsCreateNewTagRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Tag> {
+		const response = await this.tagsCreateNewTagRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will create a new tag.
-     * /tags/create [POST]
-     */
-    async tagsCreateNewTag(requestParameters: TagsCreateNewTagRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
-        const response = await this.tagsCreateNewTagRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will delete a specific tag.
+	 * /tags/{tag}/delete [POST]
+	 */
+	async tagsDeleteSpecificTagRaw(
+		requestParameters: TagsDeleteSpecificTagRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.tag === null ||
+			requestParameters.tag === undefined
+		) {
+			throw new runtime.RequiredError(
+				"tag",
+				"Required parameter requestParameters.tag was null or undefined when calling tagsDeleteSpecificTag.",
+			);
+		}
 
-    /**
-     * This will delete a specific tag.
-     * /tags/{tag}/delete [POST]
-     */
-    async tagsDeleteSpecificTagRaw(requestParameters: TagsDeleteSpecificTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.tag === null || requestParameters.tag === undefined) {
-            throw new runtime.RequiredError('tag','Required parameter requestParameters.tag was null or undefined when calling tagsDeleteSpecificTag.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/tags/{tag}/delete".replace(
+					`{${"tag"}}`,
+					encodeURIComponent(String(requestParameters.tag)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/tags/{tag}/delete`.replace(`{${"tag"}}`, encodeURIComponent(String(requestParameters.tag))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * This will delete a specific tag.
+	 * /tags/{tag}/delete [POST]
+	 */
+	async tagsDeleteSpecificTag(
+		requestParameters: TagsDeleteSpecificTagRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.tagsDeleteSpecificTagRaw(requestParameters, initOverrides);
+	}
 
-    /**
-     * This will delete a specific tag.
-     * /tags/{tag}/delete [POST]
-     */
-    async tagsDeleteSpecificTag(requestParameters: TagsDeleteSpecificTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.tagsDeleteSpecificTagRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will check all of the tags in our database to see if this specific provided tag actually exists, if not we will just return a null tag in the output.
+	 * /tags/exists [POST]
+	 */
+	async tagsExistsRaw(
+		requestParameters: TagsExistsRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<ExistingMetadata>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will check all of the tags in our database to see if this specific provided tag actually exists, if not we will just return a null tag in the output.
-     * /tags/exists [POST]
-     */
-    async tagsExistsRaw(requestParameters: TagsExistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExistingMetadata>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/tags/exists",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: ExistentMetadataToJSON(
+					requestParameters.existentMetadata,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/tags/exists`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ExistentMetadataToJSON(requestParameters.existentMetadata),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ExistingMetadataFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ExistingMetadataFromJSON(jsonValue));
-    }
+	/**
+	 * This will check all of the tags in our database to see if this specific provided tag actually exists, if not we will just return a null tag in the output.
+	 * /tags/exists [POST]
+	 */
+	async tagsExists(
+		requestParameters: TagsExistsRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<ExistingMetadata> {
+		const response = await this.tagsExistsRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will check all of the tags in our database to see if this specific provided tag actually exists, if not we will just return a null tag in the output.
-     * /tags/exists [POST]
-     */
-    async tagsExists(requestParameters: TagsExistsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExistingMetadata> {
-        const response = await this.tagsExistsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will get a snapshot of all of your tags.
+	 * /tags [GET]
+	 */
+	async tagsSnapshotRaw(
+		requestParameters: TagsSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Tags>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a snapshot of all of your tags.
-     * /tags [GET]
-     */
-    async tagsSnapshotRaw(requestParameters: TagsSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tags>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/tags",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/tags`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			TagsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TagsFromJSON(jsonValue));
-    }
-
-    /**
-     * This will get a snapshot of all of your tags.
-     * /tags [GET]
-     */
-    async tagsSnapshot(requestParameters: TagsSnapshotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tags> {
-        const response = await this.tagsSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will get a snapshot of all of your tags.
+	 * /tags [GET]
+	 */
+	async tagsSnapshot(
+		requestParameters: TagsSnapshotRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Tags> {
+		const response = await this.tagsSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

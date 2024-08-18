@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededDistribution } from './SeededDistribution';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededDistribution } from "./SeededDistribution.tsx";
 import {
-    SeededDistributionFromJSON,
-    SeededDistributionFromJSONTyped,
-    SeededDistributionToJSON,
-} from './SeededDistribution';
+	SeededDistributionFromJSON,
+	SeededDistributionToJSON,
+} from "./SeededDistribution.tsx";
 
 /**
  * This is the plural version of a SeededDistribution that is not referenced just yet.
@@ -32,56 +30,60 @@ import {
  * @interface SeededDistributions
  */
 export interface SeededDistributions {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededDistributions
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SeededDistribution>}
-     * @memberof SeededDistributions
-     */
-    iterable: Array<SeededDistribution>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededDistributions
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SeededDistribution>}
+	 * @memberof SeededDistributions
+	 */
+	iterable: SeededDistribution[];
 }
 
 /**
  * Check if a given object implements the SeededDistributions interface.
  */
 export function instanceOfSeededDistributions(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededDistributionsFromJSON(json: any): SeededDistributions {
-    return SeededDistributionsFromJSONTyped(json, false);
+	return SeededDistributionsFromJSONTyped(json, false);
 }
 
-export function SeededDistributionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededDistributions {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SeededDistributionFromJSON)),
-    };
+export function SeededDistributionsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededDistributions {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SeededDistributionFromJSON),
+	};
 }
 
-export function SeededDistributionsToJSON(value?: SeededDistributions | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SeededDistributionToJSON)),
-    };
+export function SeededDistributionsToJSON(
+	value?: SeededDistributions | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SeededDistributionToJSON),
+	};
 }
-

@@ -12,71 +12,72 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the model for the PiecesOS specific settings.
- * 
+ *
  * autoboot: refers to both the bootup of POS on the system login, default is false
  * @export
  * @interface OSServerSettings
  */
 export interface OSServerSettings {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSServerSettings
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OSServerSettings
-     */
-    autoboot?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSServerSettings
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof OSServerSettings
+	 */
+	autoboot?: boolean;
 }
 
 /**
  * Check if a given object implements the OSServerSettings interface.
  */
-export function instanceOfOSServerSettings(value: object): boolean {
-    let isInstance = true;
+export function instanceOfOSServerSettings(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function OSServerSettingsFromJSON(json: any): OSServerSettings {
-    return OSServerSettingsFromJSONTyped(json, false);
+	return OSServerSettingsFromJSONTyped(json, false);
 }
 
-export function OSServerSettingsFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSServerSettings {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'autoboot': !exists(json, 'autoboot') ? undefined : json['autoboot'],
-    };
+export function OSServerSettingsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSServerSettings {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		autoboot: exists(json, "autoboot") ? json["autoboot"] : undefined,
+	};
 }
 
 export function OSServerSettingsToJSON(value?: OSServerSettings | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'autoboot': value.autoboot,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		autoboot: value.autoboot,
+	};
 }
-

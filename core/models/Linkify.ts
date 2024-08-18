@@ -12,135 +12,126 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AccessEnum } from './AccessEnum';
+import { exists } from "../runtime.ts";
+import type { AccessEnum } from "./AccessEnum.tsx";
+import { AccessEnumFromJSON, AccessEnumToJSON } from "./AccessEnum.tsx";
+import type { Asset } from "./Asset.tsx";
+import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AccessEnumFromJSON,
-    AccessEnumFromJSONTyped,
-    AccessEnumToJSON,
-} from './AccessEnum';
-import type { Asset } from './Asset';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Seed } from "./Seed.tsx";
+import { SeedFromJSON, SeedToJSON } from "./Seed.tsx";
+import type { SeededDistributions } from "./SeededDistributions.tsx";
 import {
-    AssetFromJSON,
-    AssetFromJSONTyped,
-    AssetToJSON,
-} from './Asset';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Seed } from './Seed';
-import {
-    SeedFromJSON,
-    SeedFromJSONTyped,
-    SeedToJSON,
-} from './Seed';
-import type { SeededDistributions } from './SeededDistributions';
-import {
-    SeededDistributionsFromJSON,
-    SeededDistributionsFromJSONTyped,
-    SeededDistributionsToJSON,
-} from './SeededDistributions';
-import type { SeededUser } from './SeededUser';
-import {
-    SeededUserFromJSON,
-    SeededUserFromJSONTyped,
-    SeededUserToJSON,
-} from './SeededUser';
+	SeededDistributionsFromJSON,
+	SeededDistributionsToJSON,
+} from "./SeededDistributions.tsx";
+import type { SeededUser } from "./SeededUser.tsx";
+import { SeededUserFromJSON, SeededUserToJSON } from "./SeededUser.tsx";
 
 /**
  * This is the incoming linkify model.
- * 
+ *
  * if access is PRIVATE then please provide and array of users to enable the link for.
- * 
+ *
  * @export
  * @interface Linkify
  */
 export interface Linkify {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Linkify
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Seed}
-     * @memberof Linkify
-     */
-    seed?: Seed;
-    /**
-     * 
-     * @type {Asset}
-     * @memberof Linkify
-     */
-    asset?: Asset;
-    /**
-     * this is an array of users.
-     * @type {Array<SeededUser>}
-     * @memberof Linkify
-     */
-    users?: Array<SeededUser>;
-    /**
-     * 
-     * @type {AccessEnum}
-     * @memberof Linkify
-     */
-    access: AccessEnum;
-    /**
-     * 
-     * @type {SeededDistributions}
-     * @memberof Linkify
-     */
-    distributions?: SeededDistributions;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Linkify
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Seed}
+	 * @memberof Linkify
+	 */
+	seed?: Seed;
+	/**
+	 *
+	 * @type {Asset}
+	 * @memberof Linkify
+	 */
+	asset?: Asset;
+	/**
+	 * this is an array of users.
+	 * @type {Array<SeededUser>}
+	 * @memberof Linkify
+	 */
+	users?: SeededUser[];
+	/**
+	 *
+	 * @type {AccessEnum}
+	 * @memberof Linkify
+	 */
+	access: AccessEnum;
+	/**
+	 *
+	 * @type {SeededDistributions}
+	 * @memberof Linkify
+	 */
+	distributions?: SeededDistributions;
 }
 
 /**
  * Check if a given object implements the Linkify interface.
  */
 export function instanceOfLinkify(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "access" in value;
+	let isInstance = true;
+	isInstance = isInstance && "access" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function LinkifyFromJSON(json: any): Linkify {
-    return LinkifyFromJSONTyped(json, false);
+	return LinkifyFromJSONTyped(json, false);
 }
 
-export function LinkifyFromJSONTyped(json: any, ignoreDiscriminator: boolean): Linkify {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'seed': !exists(json, 'seed') ? undefined : SeedFromJSON(json['seed']),
-        'asset': !exists(json, 'asset') ? undefined : AssetFromJSON(json['asset']),
-        'users': !exists(json, 'users') ? undefined : ((json['users'] as Array<any>).map(SeededUserFromJSON)),
-        'access': AccessEnumFromJSON(json['access']),
-        'distributions': !exists(json, 'distributions') ? undefined : SeededDistributionsFromJSON(json['distributions']),
-    };
+export function LinkifyFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Linkify {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		seed: exists(json, "seed") ? SeedFromJSON(json["seed"]) : undefined,
+		asset: exists(json, "asset") ? AssetFromJSON(json["asset"]) : undefined,
+		users: exists(json, "users")
+			? (json["users"] as any[]).map(SeededUserFromJSON)
+			: undefined,
+		access: AccessEnumFromJSON(json["access"]),
+		distributions: exists(json, "distributions")
+			? SeededDistributionsFromJSON(json["distributions"])
+			: undefined,
+	};
 }
 
 export function LinkifyToJSON(value?: Linkify | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'seed': SeedToJSON(value.seed),
-        'asset': AssetToJSON(value.asset),
-        'users': value.users === undefined ? undefined : ((value.users as Array<any>).map(SeededUserToJSON)),
-        'access': AccessEnumToJSON(value.access),
-        'distributions': SeededDistributionsToJSON(value.distributions),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		seed: SeedToJSON(value.seed),
+		asset: AssetToJSON(value.asset),
+		users:
+			value.users === undefined
+				? undefined
+				: (value.users as any[]).map(SeededUserToJSON),
+		access: AccessEnumToJSON(value.access),
+		distributions: SeededDistributionsToJSON(value.distributions),
+	};
 }
-

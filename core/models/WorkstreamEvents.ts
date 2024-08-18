@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Score } from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import type { WorkstreamEvent } from "./WorkstreamEvent.tsx";
 import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
-import type { WorkstreamEvent } from './WorkstreamEvent';
-import {
-    WorkstreamEventFromJSON,
-    WorkstreamEventFromJSONTyped,
-    WorkstreamEventToJSON,
-} from './WorkstreamEvent';
+	WorkstreamEventFromJSON,
+	WorkstreamEventToJSON,
+} from "./WorkstreamEvent.tsx";
 
 /**
  * This is a collection of many Shadow Activity events.
@@ -38,72 +32,74 @@ import {
  * @interface WorkstreamEvents
  */
 export interface WorkstreamEvents {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamEvents
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<WorkstreamEvent>}
-     * @memberof WorkstreamEvents
-     */
-    iterable: Array<WorkstreamEvent>;
-    /**
-     * This is a Map<String, int> where the the key is an activity id.
-     * @type {{ [key: string]: number; }}
-     * @memberof WorkstreamEvents
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof WorkstreamEvents
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamEvents
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<WorkstreamEvent>}
+	 * @memberof WorkstreamEvents
+	 */
+	iterable: WorkstreamEvent[];
+	/**
+	 * This is a Map<String, int> where the the key is an activity id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof WorkstreamEvents
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof WorkstreamEvents
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the WorkstreamEvents interface.
  */
 export function instanceOfWorkstreamEvents(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function WorkstreamEventsFromJSON(json: any): WorkstreamEvents {
-    return WorkstreamEventsFromJSONTyped(json, false);
+	return WorkstreamEventsFromJSONTyped(json, false);
 }
 
-export function WorkstreamEventsFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamEvents {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(WorkstreamEventFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function WorkstreamEventsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamEvents {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(WorkstreamEventFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function WorkstreamEventsToJSON(value?: WorkstreamEvents | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(WorkstreamEventToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(WorkstreamEventToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

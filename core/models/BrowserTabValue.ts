@@ -12,118 +12,127 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { BrowserSelection } from './BrowserSelection';
+import { exists } from "../runtime.ts";
+import type { BrowserSelection } from "./BrowserSelection.tsx";
 import {
-    BrowserSelectionFromJSON,
-    BrowserSelectionFromJSONTyped,
-    BrowserSelectionToJSON,
-} from './BrowserSelection';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	BrowserSelectionFromJSON,
+	BrowserSelectionToJSON,
+} from "./BrowserSelection.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TransferableString } from './TransferableString';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TransferableString } from "./TransferableString.tsx";
 import {
-    TransferableStringFromJSON,
-    TransferableStringFromJSONTyped,
-    TransferableStringToJSON,
-} from './TransferableString';
+	TransferableStringFromJSON,
+	TransferableStringToJSON,
+} from "./TransferableString.tsx";
 
 /**
  * snippet: these are extracted code blocks
  * selection: here is a copy/paste/selection
- * 
+ *
  * note: recommended that you pass in the md version of the webpage
- * 
+ *
  * note: please dont pass in all three html,md,text, just pass in 1.
  * @export
  * @interface BrowserTabValue
  */
 export interface BrowserTabValue {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof BrowserTabValue
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof BrowserTabValue
-     */
-    html?: TransferableString;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof BrowserTabValue
-     */
-    md?: TransferableString;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof BrowserTabValue
-     */
-    text?: TransferableString;
-    /**
-     * 
-     * @type {BrowserSelection}
-     * @memberof BrowserTabValue
-     */
-    snippet?: BrowserSelection;
-    /**
-     * 
-     * @type {BrowserSelection}
-     * @memberof BrowserTabValue
-     */
-    selection?: BrowserSelection;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof BrowserTabValue
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof BrowserTabValue
+	 */
+	html?: TransferableString;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof BrowserTabValue
+	 */
+	md?: TransferableString;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof BrowserTabValue
+	 */
+	text?: TransferableString;
+	/**
+	 *
+	 * @type {BrowserSelection}
+	 * @memberof BrowserTabValue
+	 */
+	snippet?: BrowserSelection;
+	/**
+	 *
+	 * @type {BrowserSelection}
+	 * @memberof BrowserTabValue
+	 */
+	selection?: BrowserSelection;
 }
 
 /**
  * Check if a given object implements the BrowserTabValue interface.
  */
-export function instanceOfBrowserTabValue(value: object): boolean {
-    let isInstance = true;
+export function instanceOfBrowserTabValue(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function BrowserTabValueFromJSON(json: any): BrowserTabValue {
-    return BrowserTabValueFromJSONTyped(json, false);
+	return BrowserTabValueFromJSONTyped(json, false);
 }
 
-export function BrowserTabValueFromJSONTyped(json: any, ignoreDiscriminator: boolean): BrowserTabValue {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'html': !exists(json, 'html') ? undefined : TransferableStringFromJSON(json['html']),
-        'md': !exists(json, 'md') ? undefined : TransferableStringFromJSON(json['md']),
-        'text': !exists(json, 'text') ? undefined : TransferableStringFromJSON(json['text']),
-        'snippet': !exists(json, 'snippet') ? undefined : BrowserSelectionFromJSON(json['snippet']),
-        'selection': !exists(json, 'selection') ? undefined : BrowserSelectionFromJSON(json['selection']),
-    };
+export function BrowserTabValueFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): BrowserTabValue {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		html: exists(json, "html")
+			? TransferableStringFromJSON(json["html"])
+			: undefined,
+		md: exists(json, "md")
+			? TransferableStringFromJSON(json["md"])
+			: undefined,
+		text: exists(json, "text")
+			? TransferableStringFromJSON(json["text"])
+			: undefined,
+		snippet: exists(json, "snippet")
+			? BrowserSelectionFromJSON(json["snippet"])
+			: undefined,
+		selection: exists(json, "selection")
+			? BrowserSelectionFromJSON(json["selection"])
+			: undefined,
+	};
 }
 
 export function BrowserTabValueToJSON(value?: BrowserTabValue | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'html': TransferableStringToJSON(value.html),
-        'md': TransferableStringToJSON(value.md),
-        'text': TransferableStringToJSON(value.text),
-        'snippet': BrowserSelectionToJSON(value.snippet),
-        'selection': BrowserSelectionToJSON(value.selection),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		html: TransferableStringToJSON(value.html),
+		md: TransferableStringToJSON(value.md),
+		text: TransferableStringToJSON(value.text),
+		snippet: BrowserSelectionToJSON(value.snippet),
+		selection: BrowserSelectionToJSON(value.selection),
+	};
 }
-

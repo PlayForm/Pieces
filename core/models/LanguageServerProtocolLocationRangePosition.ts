@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * modeled after this (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#position)
@@ -26,65 +25,76 @@ import {
  * @interface LanguageServerProtocolLocationRangePosition
  */
 export interface LanguageServerProtocolLocationRangePosition {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof LanguageServerProtocolLocationRangePosition
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof LanguageServerProtocolLocationRangePosition
-     */
-    line: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LanguageServerProtocolLocationRangePosition
-     */
-    character: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof LanguageServerProtocolLocationRangePosition
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof LanguageServerProtocolLocationRangePosition
+	 */
+	line: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof LanguageServerProtocolLocationRangePosition
+	 */
+	character: number;
 }
 
 /**
  * Check if a given object implements the LanguageServerProtocolLocationRangePosition interface.
  */
-export function instanceOfLanguageServerProtocolLocationRangePosition(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "line" in value;
-    isInstance = isInstance && "character" in value;
+export function instanceOfLanguageServerProtocolLocationRangePosition(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "line" in value;
+	isInstance = isInstance && "character" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function LanguageServerProtocolLocationRangePositionFromJSON(json: any): LanguageServerProtocolLocationRangePosition {
-    return LanguageServerProtocolLocationRangePositionFromJSONTyped(json, false);
+export function LanguageServerProtocolLocationRangePositionFromJSON(
+	json: any,
+): LanguageServerProtocolLocationRangePosition {
+	return LanguageServerProtocolLocationRangePositionFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function LanguageServerProtocolLocationRangePositionFromJSONTyped(json: any, ignoreDiscriminator: boolean): LanguageServerProtocolLocationRangePosition {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'line': json['line'],
-        'character': json['character'],
-    };
+export function LanguageServerProtocolLocationRangePositionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): LanguageServerProtocolLocationRangePosition {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		line: json["line"],
+		character: json["character"],
+	};
 }
 
-export function LanguageServerProtocolLocationRangePositionToJSON(value?: LanguageServerProtocolLocationRangePosition | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'line': value.line,
-        'character': value.character,
-    };
+export function LanguageServerProtocolLocationRangePositionToJSON(
+	value?: LanguageServerProtocolLocationRangePosition | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		line: value.line,
+		character: value.character,
+	};
 }
-

@@ -12,79 +12,83 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededWorkstreamEvent } from './SeededWorkstreamEvent';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededWorkstreamEvent } from "./SeededWorkstreamEvent.tsx";
 import {
-    SeededWorkstreamEventFromJSON,
-    SeededWorkstreamEventFromJSONTyped,
-    SeededWorkstreamEventToJSON,
-} from './SeededWorkstreamEvent';
+	SeededWorkstreamEventFromJSON,
+	SeededWorkstreamEventToJSON,
+} from "./SeededWorkstreamEvent.tsx";
 
 /**
  * This is used as the input in the Context ingestion endpoint for the feed.
- * 
+ *
  * This will take in a required seed, this will get created as an internal WorkstreamEvent until we determine
  * internally that this event is relevant and will then attach it to a WorkstreamSummary and it will get moved over to a WorkstreamEvent.
  * @export
  * @interface SeededWorkstreamIngestion
  */
 export interface SeededWorkstreamIngestion {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededWorkstreamIngestion
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededWorkstreamEvent}
-     * @memberof SeededWorkstreamIngestion
-     */
-    event: SeededWorkstreamEvent;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededWorkstreamIngestion
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededWorkstreamEvent}
+	 * @memberof SeededWorkstreamIngestion
+	 */
+	event: SeededWorkstreamEvent;
 }
 
 /**
  * Check if a given object implements the SeededWorkstreamIngestion interface.
  */
 export function instanceOfSeededWorkstreamIngestion(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "event" in value;
+	let isInstance = true;
+	isInstance = isInstance && "event" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededWorkstreamIngestionFromJSON(json: any): SeededWorkstreamIngestion {
-    return SeededWorkstreamIngestionFromJSONTyped(json, false);
+export function SeededWorkstreamIngestionFromJSON(
+	json: any,
+): SeededWorkstreamIngestion {
+	return SeededWorkstreamIngestionFromJSONTyped(json, false);
 }
 
-export function SeededWorkstreamIngestionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededWorkstreamIngestion {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'event': SeededWorkstreamEventFromJSON(json['event']),
-    };
+export function SeededWorkstreamIngestionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededWorkstreamIngestion {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		event: SeededWorkstreamEventFromJSON(json["event"]),
+	};
 }
 
-export function SeededWorkstreamIngestionToJSON(value?: SeededWorkstreamIngestion | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'event': SeededWorkstreamEventToJSON(value.event),
-    };
+export function SeededWorkstreamIngestionToJSON(
+	value?: SeededWorkstreamIngestion | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		event: SeededWorkstreamEventToJSON(value.event),
+	};
 }
-

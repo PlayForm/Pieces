@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Seed } from './Seed';
-import {
-    SeedFromJSON,
-    SeedFromJSONTyped,
-    SeedToJSON,
-} from './Seed';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Seed } from "./Seed.tsx";
+import { SeedFromJSON, SeedToJSON } from "./Seed.tsx";
 
 /**
  * This is a plural model for multiple Seed.
@@ -32,56 +27,58 @@ import {
  * @interface Seeds
  */
 export interface Seeds {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Seeds
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Seed>}
-     * @memberof Seeds
-     */
-    iterable: Array<Seed>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Seeds
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Seed>}
+	 * @memberof Seeds
+	 */
+	iterable: Seed[];
 }
 
 /**
  * Check if a given object implements the Seeds interface.
  */
 export function instanceOfSeeds(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeedsFromJSON(json: any): Seeds {
-    return SeedsFromJSONTyped(json, false);
+	return SeedsFromJSONTyped(json, false);
 }
 
-export function SeedsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Seeds {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SeedFromJSON)),
-    };
+export function SeedsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Seeds {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SeedFromJSON),
+	};
 }
 
 export function SeedsToJSON(value?: Seeds | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SeedToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SeedToJSON),
+	};
 }
-

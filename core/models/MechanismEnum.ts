@@ -12,38 +12,38 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This will let us know how an asset was uploaded.
- * 
+ *
  * MANUAL: this is an event such as a user driven send to pieces, or a paste to pieces.
- * 
+ *
  * RECOMMENDED: This is an event that was initiall recommended via the suggestion flow, and a user decided totake the recommendation.
- * 
+ *
  * AUTOMATIC: This is not user driven at all and the asset was automatically uploaded via the suggestion flow. or other methods.
- * 
+ *
  * INTERNAL: This is an undelete able enum used for internal use only.
  * @export
  */
 export const MechanismEnum = {
-    Manual: 'MANUAL',
-    Recommended: 'RECOMMENDED',
-    Automatic: 'AUTOMATIC',
-    Internal: 'INTERNAL',
-    Deleted: 'DELETED'
+	Manual: "MANUAL",
+	Recommended: "RECOMMENDED",
+	Automatic: "AUTOMATIC",
+	Internal: "INTERNAL",
+	Deleted: "DELETED",
 } as const;
-export type MechanismEnum = typeof MechanismEnum[keyof typeof MechanismEnum];
-
+export type MechanismEnum = (typeof MechanismEnum)[keyof typeof MechanismEnum];
 
 export function MechanismEnumFromJSON(json: any): MechanismEnum {
-    return MechanismEnumFromJSONTyped(json, false);
+	return MechanismEnumFromJSONTyped(json, false);
 }
 
-export function MechanismEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): MechanismEnum {
-    return json as MechanismEnum;
+export function MechanismEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): MechanismEnum {
+	return json as MechanismEnum;
 }
 
 export function MechanismEnumToJSON(value?: MechanismEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedWebsite } from './ReferencedWebsite';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedWebsite } from "./ReferencedWebsite.tsx";
 import {
-    ReferencedWebsiteFromJSON,
-    ReferencedWebsiteFromJSONTyped,
-    ReferencedWebsiteToJSON,
-} from './ReferencedWebsite';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedWebsiteFromJSON,
+	ReferencedWebsiteToJSON,
+} from "./ReferencedWebsite.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a specific model for related websites to an asset.[DAG SAFE]
@@ -38,72 +32,74 @@ import {
  * @interface FlattenedWebsites
  */
 export interface FlattenedWebsites {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedWebsites
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedWebsite>}
-     * @memberof FlattenedWebsites
-     */
-    iterable: Array<ReferencedWebsite>;
-    /**
-     * This is a Map<String, int> where the the key is an website id.
-     * @type {{ [key: string]: number; }}
-     * @memberof FlattenedWebsites
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedWebsites
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedWebsites
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedWebsite>}
+	 * @memberof FlattenedWebsites
+	 */
+	iterable: ReferencedWebsite[];
+	/**
+	 * This is a Map<String, int> where the the key is an website id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof FlattenedWebsites
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedWebsites
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedWebsites interface.
  */
 export function instanceOfFlattenedWebsites(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedWebsitesFromJSON(json: any): FlattenedWebsites {
-    return FlattenedWebsitesFromJSONTyped(json, false);
+	return FlattenedWebsitesFromJSONTyped(json, false);
 }
 
-export function FlattenedWebsitesFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedWebsites {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedWebsiteFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedWebsitesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedWebsites {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ReferencedWebsiteFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function FlattenedWebsitesToJSON(value?: FlattenedWebsites | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedWebsiteToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedWebsiteToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

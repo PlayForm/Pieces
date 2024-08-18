@@ -12,121 +12,127 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ByteDescriptor } from './ByteDescriptor';
+import { exists } from "../runtime.ts";
+import type { ByteDescriptor } from "./ByteDescriptor.tsx";
 import {
-    ByteDescriptorFromJSON,
-    ByteDescriptorFromJSONTyped,
-    ByteDescriptorToJSON,
-} from './ByteDescriptor';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ByteDescriptorFromJSON,
+	ByteDescriptorToJSON,
+} from "./ByteDescriptor.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will return is the given path was verified/ or it was invalid.
- * 
+ *
  * and if it is valid if it is a file/folder
- * 
+ *
  * note: file/directory are both null.
  * @export
  * @interface VerifiedOSFilesystemPath
  */
 export interface VerifiedOSFilesystemPath {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof VerifiedOSFilesystemPath
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof VerifiedOSFilesystemPath
-     */
-    path: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof VerifiedOSFilesystemPath
-     */
-    file?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof VerifiedOSFilesystemPath
-     */
-    directory?: boolean;
-    /**
-     * This means if the path(file/folder) exists on the machine.
-     * @type {boolean}
-     * @memberof VerifiedOSFilesystemPath
-     */
-    verified: boolean;
-    /**
-     * This means that attempting to access the file was not aloud(ie no permission)
-     * @type {boolean}
-     * @memberof VerifiedOSFilesystemPath
-     */
-    denied?: boolean;
-    /**
-     * 
-     * @type {ByteDescriptor}
-     * @memberof VerifiedOSFilesystemPath
-     */
-    bytes?: ByteDescriptor;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof VerifiedOSFilesystemPath
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof VerifiedOSFilesystemPath
+	 */
+	path: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof VerifiedOSFilesystemPath
+	 */
+	file?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof VerifiedOSFilesystemPath
+	 */
+	directory?: boolean;
+	/**
+	 * This means if the path(file/folder) exists on the machine.
+	 * @type {boolean}
+	 * @memberof VerifiedOSFilesystemPath
+	 */
+	verified: boolean;
+	/**
+	 * This means that attempting to access the file was not aloud(ie no permission)
+	 * @type {boolean}
+	 * @memberof VerifiedOSFilesystemPath
+	 */
+	denied?: boolean;
+	/**
+	 *
+	 * @type {ByteDescriptor}
+	 * @memberof VerifiedOSFilesystemPath
+	 */
+	bytes?: ByteDescriptor;
 }
 
 /**
  * Check if a given object implements the VerifiedOSFilesystemPath interface.
  */
 export function instanceOfVerifiedOSFilesystemPath(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "path" in value;
-    isInstance = isInstance && "verified" in value;
+	let isInstance = true;
+	isInstance = isInstance && "path" in value;
+	isInstance = isInstance && "verified" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function VerifiedOSFilesystemPathFromJSON(json: any): VerifiedOSFilesystemPath {
-    return VerifiedOSFilesystemPathFromJSONTyped(json, false);
+export function VerifiedOSFilesystemPathFromJSON(
+	json: any,
+): VerifiedOSFilesystemPath {
+	return VerifiedOSFilesystemPathFromJSONTyped(json, false);
 }
 
-export function VerifiedOSFilesystemPathFromJSONTyped(json: any, ignoreDiscriminator: boolean): VerifiedOSFilesystemPath {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'path': json['path'],
-        'file': !exists(json, 'file') ? undefined : json['file'],
-        'directory': !exists(json, 'directory') ? undefined : json['directory'],
-        'verified': json['verified'],
-        'denied': !exists(json, 'denied') ? undefined : json['denied'],
-        'bytes': !exists(json, 'bytes') ? undefined : ByteDescriptorFromJSON(json['bytes']),
-    };
+export function VerifiedOSFilesystemPathFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): VerifiedOSFilesystemPath {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		path: json["path"],
+		file: exists(json, "file") ? json["file"] : undefined,
+		directory: exists(json, "directory") ? json["directory"] : undefined,
+		verified: json["verified"],
+		denied: exists(json, "denied") ? json["denied"] : undefined,
+		bytes: exists(json, "bytes")
+			? ByteDescriptorFromJSON(json["bytes"])
+			: undefined,
+	};
 }
 
-export function VerifiedOSFilesystemPathToJSON(value?: VerifiedOSFilesystemPath | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'path': value.path,
-        'file': value.file,
-        'directory': value.directory,
-        'verified': value.verified,
-        'denied': value.denied,
-        'bytes': ByteDescriptorToJSON(value.bytes),
-    };
+export function VerifiedOSFilesystemPathToJSON(
+	value?: VerifiedOSFilesystemPath | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		path: value.path,
+		file: value.file,
+		directory: value.directory,
+		verified: value.verified,
+		denied: value.denied,
+		bytes: ByteDescriptorToJSON(value.bytes),
+	};
 }
-

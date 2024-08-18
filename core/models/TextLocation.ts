@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a generic model that is used for text location.
@@ -26,74 +25,76 @@ import {
  * @interface TextLocation
  */
 export interface TextLocation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TextLocation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * this is the value that was found.
-     * @type {string}
-     * @memberof TextLocation
-     */
-    text: string;
-    /**
-     * this is the start index within the original string.
-     * @type {number}
-     * @memberof TextLocation
-     */
-    start: number;
-    /**
-     * this is the end index within the original string.
-     * @type {number}
-     * @memberof TextLocation
-     */
-    end: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TextLocation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * this is the value that was found.
+	 * @type {string}
+	 * @memberof TextLocation
+	 */
+	text: string;
+	/**
+	 * this is the start index within the original string.
+	 * @type {number}
+	 * @memberof TextLocation
+	 */
+	start: number;
+	/**
+	 * this is the end index within the original string.
+	 * @type {number}
+	 * @memberof TextLocation
+	 */
+	end: number;
 }
 
 /**
  * Check if a given object implements the TextLocation interface.
  */
 export function instanceOfTextLocation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "text" in value;
-    isInstance = isInstance && "start" in value;
-    isInstance = isInstance && "end" in value;
+	let isInstance = true;
+	isInstance = isInstance && "text" in value;
+	isInstance = isInstance && "start" in value;
+	isInstance = isInstance && "end" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TextLocationFromJSON(json: any): TextLocation {
-    return TextLocationFromJSONTyped(json, false);
+	return TextLocationFromJSONTyped(json, false);
 }
 
-export function TextLocationFromJSONTyped(json: any, ignoreDiscriminator: boolean): TextLocation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'text': json['text'],
-        'start': json['start'],
-        'end': json['end'],
-    };
+export function TextLocationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TextLocation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		text: json["text"],
+		start: json["start"],
+		end: json["end"],
+	};
 }
 
 export function TextLocationToJSON(value?: TextLocation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'text': value.text,
-        'start': value.start,
-        'end': value.end,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		text: value.text,
+		start: value.start,
+		end: value.end,
+	};
 }
-

@@ -12,91 +12,94 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { PersonAccessScopedEnum } from './PersonAccessScopedEnum';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { PersonAccessScopedEnum } from "./PersonAccessScopedEnum.tsx";
 import {
-    PersonAccessScopedEnumFromJSON,
-    PersonAccessScopedEnumFromJSONTyped,
-    PersonAccessScopedEnumToJSON,
-} from './PersonAccessScopedEnum';
+	PersonAccessScopedEnumFromJSON,
+	PersonAccessScopedEnumToJSON,
+} from "./PersonAccessScopedEnum.tsx";
 
 /**
  * if scoped is provided will let us know what level of permission(access) this specific person has in relation to what scope.(collection, asset,...etc)
- * 
+ *
  * in the future will expand to global (with its own enumeration for a global entire project/cloud scope)
  * @export
  * @interface PersonAccess
  */
 export interface PersonAccess {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof PersonAccess
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {PersonAccessScopedEnum}
-     * @memberof PersonAccess
-     */
-    scoped?: PersonAccessScopedEnum;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof PersonAccess
-     */
-    deleted?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof PersonAccess
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {PersonAccessScopedEnum}
+	 * @memberof PersonAccess
+	 */
+	scoped?: PersonAccessScopedEnum;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof PersonAccess
+	 */
+	deleted?: GroupedTimestamp;
 }
 
 /**
  * Check if a given object implements the PersonAccess interface.
  */
-export function instanceOfPersonAccess(value: object): boolean {
-    let isInstance = true;
+export function instanceOfPersonAccess(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function PersonAccessFromJSON(json: any): PersonAccess {
-    return PersonAccessFromJSONTyped(json, false);
+	return PersonAccessFromJSONTyped(json, false);
 }
 
-export function PersonAccessFromJSONTyped(json: any, ignoreDiscriminator: boolean): PersonAccess {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'scoped': !exists(json, 'scoped') ? undefined : PersonAccessScopedEnumFromJSON(json['scoped']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-    };
+export function PersonAccessFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): PersonAccess {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		scoped: exists(json, "scoped")
+			? PersonAccessScopedEnumFromJSON(json["scoped"])
+			: undefined,
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+	};
 }
 
 export function PersonAccessToJSON(value?: PersonAccess | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'scoped': PersonAccessScopedEnumToJSON(value.scoped),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		scoped: PersonAccessScopedEnumToJSON(value.scoped),
+		deleted: GroupedTimestampToJSON(value.deleted),
+	};
 }
-

@@ -12,27 +12,28 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This is an enum used to differentiate the different between different anchors. Used in the Anchor data model.
  * @export
  */
 export const AnchorTypeEnum = {
-    File: 'FILE',
-    Directory: 'DIRECTORY'
+	File: "FILE",
+	Directory: "DIRECTORY",
 } as const;
-export type AnchorTypeEnum = typeof AnchorTypeEnum[keyof typeof AnchorTypeEnum];
-
+export type AnchorTypeEnum =
+	(typeof AnchorTypeEnum)[keyof typeof AnchorTypeEnum];
 
 export function AnchorTypeEnumFromJSON(json: any): AnchorTypeEnum {
-    return AnchorTypeEnumFromJSONTyped(json, false);
+	return AnchorTypeEnumFromJSONTyped(json, false);
 }
 
-export function AnchorTypeEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): AnchorTypeEnum {
-    return json as AnchorTypeEnum;
+export function AnchorTypeEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AnchorTypeEnum {
+	return json as AnchorTypeEnum;
 }
 
 export function AnchorTypeEnumToJSON(value?: AnchorTypeEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

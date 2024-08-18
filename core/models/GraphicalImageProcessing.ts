@@ -12,75 +12,81 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GraphicalImageStatistics } from './GraphicalImageStatistics';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GraphicalImageStatistics } from "./GraphicalImageStatistics.tsx";
 import {
-    GraphicalImageStatisticsFromJSON,
-    GraphicalImageStatisticsFromJSONTyped,
-    GraphicalImageStatisticsToJSON,
-} from './GraphicalImageStatistics';
+	GraphicalImageStatisticsFromJSON,
+	GraphicalImageStatisticsToJSON,
+} from "./GraphicalImageStatistics.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface GraphicalImageProcessing
  */
 export interface GraphicalImageProcessing {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GraphicalImageProcessing
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GraphicalImageStatistics}
-     * @memberof GraphicalImageProcessing
-     */
-    statistics?: GraphicalImageStatistics;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GraphicalImageProcessing
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GraphicalImageStatistics}
+	 * @memberof GraphicalImageProcessing
+	 */
+	statistics?: GraphicalImageStatistics;
 }
 
 /**
  * Check if a given object implements the GraphicalImageProcessing interface.
  */
-export function instanceOfGraphicalImageProcessing(value: object): boolean {
-    let isInstance = true;
+export function instanceOfGraphicalImageProcessing(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function GraphicalImageProcessingFromJSON(json: any): GraphicalImageProcessing {
-    return GraphicalImageProcessingFromJSONTyped(json, false);
+export function GraphicalImageProcessingFromJSON(
+	json: any,
+): GraphicalImageProcessing {
+	return GraphicalImageProcessingFromJSONTyped(json, false);
 }
 
-export function GraphicalImageProcessingFromJSONTyped(json: any, ignoreDiscriminator: boolean): GraphicalImageProcessing {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'statistics': !exists(json, 'statistics') ? undefined : GraphicalImageStatisticsFromJSON(json['statistics']),
-    };
+export function GraphicalImageProcessingFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GraphicalImageProcessing {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		statistics: exists(json, "statistics")
+			? GraphicalImageStatisticsFromJSON(json["statistics"])
+			: undefined,
+	};
 }
 
-export function GraphicalImageProcessingToJSON(value?: GraphicalImageProcessing | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'statistics': GraphicalImageStatisticsToJSON(value.statistics),
-    };
+export function GraphicalImageProcessingToJSON(
+	value?: GraphicalImageProcessing | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		statistics: GraphicalImageStatisticsToJSON(value.statistics),
+	};
 }
-

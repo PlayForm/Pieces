@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedConversationMessages } from './FlattenedConversationMessages';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
-    FlattenedConversationMessagesFromJSON,
-    FlattenedConversationMessagesFromJSONTyped,
-    FlattenedConversationMessagesToJSON,
-} from './FlattenedConversationMessages';
-import type { TemporalRangeGrounding } from './TemporalRangeGrounding';
+	FlattenedConversationMessagesFromJSON,
+	FlattenedConversationMessagesToJSON,
+} from "./FlattenedConversationMessages.tsx";
+import type { TemporalRangeGrounding } from "./TemporalRangeGrounding.tsx";
 import {
-    TemporalRangeGroundingFromJSON,
-    TemporalRangeGroundingFromJSONTyped,
-    TemporalRangeGroundingToJSON,
-} from './TemporalRangeGrounding';
+	TemporalRangeGroundingFromJSON,
+	TemporalRangeGroundingToJSON,
+} from "./TemporalRangeGrounding.tsx";
 
 /**
  * This is the context used for grounding the ml models with reguard to a conversation.
@@ -38,63 +35,73 @@ import {
  * @interface ConversationGrounding
  */
 export interface ConversationGrounding {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ConversationGrounding
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {FlattenedConversationMessages}
-     * @memberof ConversationGrounding
-     */
-    messages?: FlattenedConversationMessages;
-    /**
-     * 
-     * @type {TemporalRangeGrounding}
-     * @memberof ConversationGrounding
-     */
-    temporal?: TemporalRangeGrounding;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ConversationGrounding
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {FlattenedConversationMessages}
+	 * @memberof ConversationGrounding
+	 */
+	messages?: FlattenedConversationMessages;
+	/**
+	 *
+	 * @type {TemporalRangeGrounding}
+	 * @memberof ConversationGrounding
+	 */
+	temporal?: TemporalRangeGrounding;
 }
 
 /**
  * Check if a given object implements the ConversationGrounding interface.
  */
-export function instanceOfConversationGrounding(value: object): boolean {
-    let isInstance = true;
+export function instanceOfConversationGrounding(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ConversationGroundingFromJSON(json: any): ConversationGrounding {
-    return ConversationGroundingFromJSONTyped(json, false);
+export function ConversationGroundingFromJSON(
+	json: any,
+): ConversationGrounding {
+	return ConversationGroundingFromJSONTyped(json, false);
 }
 
-export function ConversationGroundingFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationGrounding {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'messages': !exists(json, 'messages') ? undefined : FlattenedConversationMessagesFromJSON(json['messages']),
-        'temporal': !exists(json, 'temporal') ? undefined : TemporalRangeGroundingFromJSON(json['temporal']),
-    };
+export function ConversationGroundingFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ConversationGrounding {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		messages: exists(json, "messages")
+			? FlattenedConversationMessagesFromJSON(json["messages"])
+			: undefined,
+		temporal: exists(json, "temporal")
+			? TemporalRangeGroundingFromJSON(json["temporal"])
+			: undefined,
+	};
 }
 
-export function ConversationGroundingToJSON(value?: ConversationGrounding | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'messages': FlattenedConversationMessagesToJSON(value.messages),
-        'temporal': TemporalRangeGroundingToJSON(value.temporal),
-    };
+export function ConversationGroundingToJSON(
+	value?: ConversationGrounding | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		messages: FlattenedConversationMessagesToJSON(value.messages),
+		temporal: TemporalRangeGroundingToJSON(value.temporal),
+	};
 }
-

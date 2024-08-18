@@ -12,29 +12,34 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * modeled of of https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#diagnosticSeverity
  * @export
  */
 export const LanguageServerProtocolSeverityEnum = {
-    Error: 'ERROR',
-    Warning: 'WARNING',
-    Information: 'INFORMATION',
-    Hint: 'HINT'
+	Error: "ERROR",
+	Warning: "WARNING",
+	Information: "INFORMATION",
+	Hint: "HINT",
 } as const;
-export type LanguageServerProtocolSeverityEnum = typeof LanguageServerProtocolSeverityEnum[keyof typeof LanguageServerProtocolSeverityEnum];
+export type LanguageServerProtocolSeverityEnum =
+	(typeof LanguageServerProtocolSeverityEnum)[keyof typeof LanguageServerProtocolSeverityEnum];
 
-
-export function LanguageServerProtocolSeverityEnumFromJSON(json: any): LanguageServerProtocolSeverityEnum {
-    return LanguageServerProtocolSeverityEnumFromJSONTyped(json, false);
+export function LanguageServerProtocolSeverityEnumFromJSON(
+	json: any,
+): LanguageServerProtocolSeverityEnum {
+	return LanguageServerProtocolSeverityEnumFromJSONTyped(json, false);
 }
 
-export function LanguageServerProtocolSeverityEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): LanguageServerProtocolSeverityEnum {
-    return json as LanguageServerProtocolSeverityEnum;
+export function LanguageServerProtocolSeverityEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): LanguageServerProtocolSeverityEnum {
+	return json as LanguageServerProtocolSeverityEnum;
 }
 
-export function LanguageServerProtocolSeverityEnumToJSON(value?: LanguageServerProtocolSeverityEnum | null): any {
-    return value as any;
+export function LanguageServerProtocolSeverityEnumToJSON(
+	value?: LanguageServerProtocolSeverityEnum | null,
+): any {
+	return value as any;
 }
-

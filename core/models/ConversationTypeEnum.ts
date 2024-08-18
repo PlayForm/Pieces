@@ -12,26 +12,29 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This is a type of conversation, for now just COPILOT.
  * @export
  */
 export const ConversationTypeEnum = {
-    Copilot: 'COPILOT'
+	Copilot: "COPILOT",
 } as const;
-export type ConversationTypeEnum = typeof ConversationTypeEnum[keyof typeof ConversationTypeEnum];
-
+export type ConversationTypeEnum =
+	(typeof ConversationTypeEnum)[keyof typeof ConversationTypeEnum];
 
 export function ConversationTypeEnumFromJSON(json: any): ConversationTypeEnum {
-    return ConversationTypeEnumFromJSONTyped(json, false);
+	return ConversationTypeEnumFromJSONTyped(json, false);
 }
 
-export function ConversationTypeEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationTypeEnum {
-    return json as ConversationTypeEnum;
+export function ConversationTypeEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ConversationTypeEnum {
+	return json as ConversationTypeEnum;
 }
 
-export function ConversationTypeEnumToJSON(value?: ConversationTypeEnum | null): any {
-    return value as any;
+export function ConversationTypeEnumToJSON(
+	value?: ConversationTypeEnum | null,
+): any {
+	return value as any;
 }
-

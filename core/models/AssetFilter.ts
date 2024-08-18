@@ -12,151 +12,155 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AssetFilterPhrase } from './AssetFilterPhrase';
+import { exists } from "../runtime.ts";
+import type { AssetFilterPhrase } from "./AssetFilterPhrase.tsx";
 import {
-    AssetFilterPhraseFromJSON,
-    AssetFilterPhraseFromJSONTyped,
-    AssetFilterPhraseToJSON,
-} from './AssetFilterPhrase';
-import type { AssetFilterTimestamp } from './AssetFilterTimestamp';
+	AssetFilterPhraseFromJSON,
+	AssetFilterPhraseToJSON,
+} from "./AssetFilterPhrase.tsx";
+import type { AssetFilterTimestamp } from "./AssetFilterTimestamp.tsx";
 import {
-    AssetFilterTimestampFromJSON,
-    AssetFilterTimestampFromJSONTyped,
-    AssetFilterTimestampToJSON,
-} from './AssetFilterTimestamp';
-import type { AssetFilters } from './AssetFilters';
+	AssetFilterTimestampFromJSON,
+	AssetFilterTimestampToJSON,
+} from "./AssetFilterTimestamp.tsx";
+import type { AssetFilters } from "./AssetFilters.tsx";
+import { AssetFiltersFromJSON, AssetFiltersToJSON } from "./AssetFilters.tsx";
+import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
 import {
-    AssetFiltersFromJSON,
-    AssetFiltersFromJSONTyped,
-    AssetFiltersToJSON,
-} from './AssetFilters';
-import type { ClassificationSpecificEnum } from './ClassificationSpecificEnum';
+	ClassificationSpecificEnumFromJSON,
+	ClassificationSpecificEnumToJSON,
+} from "./ClassificationSpecificEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ClassificationSpecificEnumFromJSON,
-    ClassificationSpecificEnumFromJSONTyped,
-    ClassificationSpecificEnumToJSON,
-} from './ClassificationSpecificEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * ** in the future, consider adding an optional bool's called nextAnd, nextOr which will say that the next filter will be  AND behavor or OR behavior.
- * 
+ *
  * "operations": here is is an optional property to allow or behavior,(we will only allow 1 level deep of or's), if or is not passed in then it is just simply ignored. If or is passed in then we will be or'd together with the top level filter and considered extras. default behavior for operations is and, however yoour can specifiy OR operations as well.
  * @export
  * @interface AssetFilter
  */
 export interface AssetFilter {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AssetFilter
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ClassificationSpecificEnum}
-     * @memberof AssetFilter
-     */
-    classification?: ClassificationSpecificEnum;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof AssetFilter
-     */
-    tags?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof AssetFilter
-     */
-    websites?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof AssetFilter
-     */
-    persons?: Array<string>;
-    /**
-     * 
-     * @type {AssetFilterPhrase}
-     * @memberof AssetFilter
-     */
-    phrase?: AssetFilterPhrase;
-    /**
-     * 
-     * @type {AssetFilterTimestamp}
-     * @memberof AssetFilter
-     */
-    created?: AssetFilterTimestamp;
-    /**
-     * 
-     * @type {AssetFilterTimestamp}
-     * @memberof AssetFilter
-     */
-    updated?: AssetFilterTimestamp;
-    /**
-     * 
-     * @type {AssetFilters}
-     * @memberof AssetFilter
-     */
-    operations?: AssetFilters;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AssetFilter
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ClassificationSpecificEnum}
+	 * @memberof AssetFilter
+	 */
+	classification?: ClassificationSpecificEnum;
+	/**
+	 *
+	 * @type {Array<string>}
+	 * @memberof AssetFilter
+	 */
+	tags?: string[];
+	/**
+	 *
+	 * @type {Array<string>}
+	 * @memberof AssetFilter
+	 */
+	websites?: string[];
+	/**
+	 *
+	 * @type {Array<string>}
+	 * @memberof AssetFilter
+	 */
+	persons?: string[];
+	/**
+	 *
+	 * @type {AssetFilterPhrase}
+	 * @memberof AssetFilter
+	 */
+	phrase?: AssetFilterPhrase;
+	/**
+	 *
+	 * @type {AssetFilterTimestamp}
+	 * @memberof AssetFilter
+	 */
+	created?: AssetFilterTimestamp;
+	/**
+	 *
+	 * @type {AssetFilterTimestamp}
+	 * @memberof AssetFilter
+	 */
+	updated?: AssetFilterTimestamp;
+	/**
+	 *
+	 * @type {AssetFilters}
+	 * @memberof AssetFilter
+	 */
+	operations?: AssetFilters;
 }
 
 /**
  * Check if a given object implements the AssetFilter interface.
  */
-export function instanceOfAssetFilter(value: object): boolean {
-    let isInstance = true;
+export function instanceOfAssetFilter(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AssetFilterFromJSON(json: any): AssetFilter {
-    return AssetFilterFromJSONTyped(json, false);
+	return AssetFilterFromJSONTyped(json, false);
 }
 
-export function AssetFilterFromJSONTyped(json: any, ignoreDiscriminator: boolean): AssetFilter {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'classification': !exists(json, 'classification') ? undefined : ClassificationSpecificEnumFromJSON(json['classification']),
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
-        'websites': !exists(json, 'websites') ? undefined : json['websites'],
-        'persons': !exists(json, 'persons') ? undefined : json['persons'],
-        'phrase': !exists(json, 'phrase') ? undefined : AssetFilterPhraseFromJSON(json['phrase']),
-        'created': !exists(json, 'created') ? undefined : AssetFilterTimestampFromJSON(json['created']),
-        'updated': !exists(json, 'updated') ? undefined : AssetFilterTimestampFromJSON(json['updated']),
-        'operations': !exists(json, 'operations') ? undefined : AssetFiltersFromJSON(json['operations']),
-    };
+export function AssetFilterFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AssetFilter {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		classification: exists(json, "classification")
+			? ClassificationSpecificEnumFromJSON(json["classification"])
+			: undefined,
+		tags: exists(json, "tags") ? json["tags"] : undefined,
+		websites: exists(json, "websites") ? json["websites"] : undefined,
+		persons: exists(json, "persons") ? json["persons"] : undefined,
+		phrase: exists(json, "phrase")
+			? AssetFilterPhraseFromJSON(json["phrase"])
+			: undefined,
+		created: exists(json, "created")
+			? AssetFilterTimestampFromJSON(json["created"])
+			: undefined,
+		updated: exists(json, "updated")
+			? AssetFilterTimestampFromJSON(json["updated"])
+			: undefined,
+		operations: exists(json, "operations")
+			? AssetFiltersFromJSON(json["operations"])
+			: undefined,
+	};
 }
 
 export function AssetFilterToJSON(value?: AssetFilter | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'classification': ClassificationSpecificEnumToJSON(value.classification),
-        'tags': value.tags,
-        'websites': value.websites,
-        'persons': value.persons,
-        'phrase': AssetFilterPhraseToJSON(value.phrase),
-        'created': AssetFilterTimestampToJSON(value.created),
-        'updated': AssetFilterTimestampToJSON(value.updated),
-        'operations': AssetFiltersToJSON(value.operations),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		classification: ClassificationSpecificEnumToJSON(value.classification),
+		tags: value.tags,
+		websites: value.websites,
+		persons: value.persons,
+		phrase: AssetFilterPhraseToJSON(value.phrase),
+		created: AssetFilterTimestampToJSON(value.created),
+		updated: AssetFilterTimestampToJSON(value.updated),
+		operations: AssetFiltersToJSON(value.operations),
+	};
 }
-

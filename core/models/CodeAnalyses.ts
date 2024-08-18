@@ -12,76 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { CodeAnalysis } from './CodeAnalysis';
+import { exists } from "../runtime.ts";
+import type { CodeAnalysis } from "./CodeAnalysis.tsx";
+import { CodeAnalysisFromJSON, CodeAnalysisToJSON } from "./CodeAnalysis.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    CodeAnalysisFromJSON,
-    CodeAnalysisFromJSONTyped,
-    CodeAnalysisToJSON,
-} from './CodeAnalysis';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface CodeAnalyses
  */
 export interface CodeAnalyses {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof CodeAnalyses
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<CodeAnalysis>}
-     * @memberof CodeAnalyses
-     */
-    iterable: Array<CodeAnalysis>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof CodeAnalyses
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<CodeAnalysis>}
+	 * @memberof CodeAnalyses
+	 */
+	iterable: CodeAnalysis[];
 }
 
 /**
  * Check if a given object implements the CodeAnalyses interface.
  */
 export function instanceOfCodeAnalyses(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function CodeAnalysesFromJSON(json: any): CodeAnalyses {
-    return CodeAnalysesFromJSONTyped(json, false);
+	return CodeAnalysesFromJSONTyped(json, false);
 }
 
-export function CodeAnalysesFromJSONTyped(json: any, ignoreDiscriminator: boolean): CodeAnalyses {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(CodeAnalysisFromJSON)),
-    };
+export function CodeAnalysesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): CodeAnalyses {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(CodeAnalysisFromJSON),
+	};
 }
 
 export function CodeAnalysesToJSON(value?: CodeAnalyses | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(CodeAnalysisToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(CodeAnalysisToJSON),
+	};
 }
-

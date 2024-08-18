@@ -12,100 +12,98 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Backup } from './Backup';
+import { exists } from "../runtime.ts";
+import type { Backup } from "./Backup.tsx";
+import { BackupFromJSON, BackupToJSON } from "./Backup.tsx";
+import type { BackupStatusEnum } from "./BackupStatusEnum.tsx";
 import {
-    BackupFromJSON,
-    BackupFromJSONTyped,
-    BackupToJSON,
-} from './Backup';
-import type { BackupStatusEnum } from './BackupStatusEnum';
+	BackupStatusEnumFromJSON,
+	BackupStatusEnumToJSON,
+} from "./BackupStatusEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    BackupStatusEnumFromJSON,
-    BackupStatusEnumFromJSONTyped,
-    BackupStatusEnumToJSON,
-} from './BackupStatusEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * TODO add more description to this.
- * 
+ *
  * can eventually add a number that display the percent downloaded an so on.(this is called percent 0-100)
  * @export
  * @interface BackupStatus
  */
 export interface BackupStatus {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof BackupStatus
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {BackupStatusEnum}
-     * @memberof BackupStatus
-     */
-    value?: BackupStatusEnum;
-    /**
-     * Optionally if the download is in progress you will receive a download percent(from 0-100).
-     * @type {number}
-     * @memberof BackupStatus
-     */
-    percentage?: number | null;
-    /**
-     * 
-     * @type {Backup}
-     * @memberof BackupStatus
-     */
-    backup: Backup;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof BackupStatus
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {BackupStatusEnum}
+	 * @memberof BackupStatus
+	 */
+	value?: BackupStatusEnum;
+	/**
+	 * Optionally if the download is in progress you will receive a download percent(from 0-100).
+	 * @type {number}
+	 * @memberof BackupStatus
+	 */
+	percentage?: number | null;
+	/**
+	 *
+	 * @type {Backup}
+	 * @memberof BackupStatus
+	 */
+	backup: Backup;
 }
 
 /**
  * Check if a given object implements the BackupStatus interface.
  */
 export function instanceOfBackupStatus(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "backup" in value;
+	let isInstance = true;
+	isInstance = isInstance && "backup" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function BackupStatusFromJSON(json: any): BackupStatus {
-    return BackupStatusFromJSONTyped(json, false);
+	return BackupStatusFromJSONTyped(json, false);
 }
 
-export function BackupStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): BackupStatus {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'value': !exists(json, 'value') ? undefined : BackupStatusEnumFromJSON(json['value']),
-        'percentage': !exists(json, 'percentage') ? undefined : json['percentage'],
-        'backup': BackupFromJSON(json['backup']),
-    };
+export function BackupStatusFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): BackupStatus {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		value: exists(json, "value")
+			? BackupStatusEnumFromJSON(json["value"])
+			: undefined,
+		percentage: exists(json, "percentage") ? json["percentage"] : undefined,
+		backup: BackupFromJSON(json["backup"]),
+	};
 }
 
 export function BackupStatusToJSON(value?: BackupStatus | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'value': BackupStatusEnumToJSON(value.value),
-        'percentage': value.percentage,
-        'backup': BackupToJSON(value.backup),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		value: BackupStatusEnumToJSON(value.value),
+		percentage: value.percentage,
+		backup: BackupToJSON(value.backup),
+	};
 }
-

@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { InteractedAsset } from './InteractedAsset';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { InteractedAsset } from "./InteractedAsset.tsx";
 import {
-    InteractedAssetFromJSON,
-    InteractedAssetFromJSONTyped,
-    InteractedAssetToJSON,
-} from './InteractedAsset';
+	InteractedAssetFromJSON,
+	InteractedAssetToJSON,
+} from "./InteractedAsset.tsx";
 
 /**
  * A model which contains a list of InteractedAssets with potentially additional properties.
@@ -32,56 +30,58 @@ import {
  * @interface InteractedAssets
  */
 export interface InteractedAssets {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof InteractedAssets
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<InteractedAsset>}
-     * @memberof InteractedAssets
-     */
-    iterable: Array<InteractedAsset>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof InteractedAssets
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<InteractedAsset>}
+	 * @memberof InteractedAssets
+	 */
+	iterable: InteractedAsset[];
 }
 
 /**
  * Check if a given object implements the InteractedAssets interface.
  */
 export function instanceOfInteractedAssets(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function InteractedAssetsFromJSON(json: any): InteractedAssets {
-    return InteractedAssetsFromJSONTyped(json, false);
+	return InteractedAssetsFromJSONTyped(json, false);
 }
 
-export function InteractedAssetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): InteractedAssets {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(InteractedAssetFromJSON)),
-    };
+export function InteractedAssetsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): InteractedAssets {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(InteractedAssetFromJSON),
+	};
 }
 
 export function InteractedAssetsToJSON(value?: InteractedAssets | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(InteractedAssetToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(InteractedAssetToJSON),
+	};
 }
-

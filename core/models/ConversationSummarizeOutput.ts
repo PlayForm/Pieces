@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedAnnotation } from './ReferencedAnnotation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedAnnotation } from "./ReferencedAnnotation.tsx";
 import {
-    ReferencedAnnotationFromJSON,
-    ReferencedAnnotationFromJSONTyped,
-    ReferencedAnnotationToJSON,
-} from './ReferencedAnnotation';
-import type { ReferencedConversation } from './ReferencedConversation';
+	ReferencedAnnotationFromJSON,
+	ReferencedAnnotationToJSON,
+} from "./ReferencedAnnotation.tsx";
+import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
-    ReferencedConversationFromJSON,
-    ReferencedConversationFromJSONTyped,
-    ReferencedConversationToJSON,
-} from './ReferencedConversation';
+	ReferencedConversationFromJSON,
+	ReferencedConversationToJSON,
+} from "./ReferencedConversation.tsx";
 
 /**
  * This is the output model for "/conversation/{conversation}/summarize
@@ -38,65 +35,71 @@ import {
  * @interface ConversationSummarizeOutput
  */
 export interface ConversationSummarizeOutput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ConversationSummarizeOutput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ReferencedConversation}
-     * @memberof ConversationSummarizeOutput
-     */
-    conversation: ReferencedConversation;
-    /**
-     * 
-     * @type {ReferencedAnnotation}
-     * @memberof ConversationSummarizeOutput
-     */
-    annotation: ReferencedAnnotation;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ConversationSummarizeOutput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ReferencedConversation}
+	 * @memberof ConversationSummarizeOutput
+	 */
+	conversation: ReferencedConversation;
+	/**
+	 *
+	 * @type {ReferencedAnnotation}
+	 * @memberof ConversationSummarizeOutput
+	 */
+	annotation: ReferencedAnnotation;
 }
 
 /**
  * Check if a given object implements the ConversationSummarizeOutput interface.
  */
 export function instanceOfConversationSummarizeOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conversation" in value;
-    isInstance = isInstance && "annotation" in value;
+	let isInstance = true;
+	isInstance = isInstance && "conversation" in value;
+	isInstance = isInstance && "annotation" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ConversationSummarizeOutputFromJSON(json: any): ConversationSummarizeOutput {
-    return ConversationSummarizeOutputFromJSONTyped(json, false);
+export function ConversationSummarizeOutputFromJSON(
+	json: any,
+): ConversationSummarizeOutput {
+	return ConversationSummarizeOutputFromJSONTyped(json, false);
 }
 
-export function ConversationSummarizeOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationSummarizeOutput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'conversation': ReferencedConversationFromJSON(json['conversation']),
-        'annotation': ReferencedAnnotationFromJSON(json['annotation']),
-    };
+export function ConversationSummarizeOutputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ConversationSummarizeOutput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		conversation: ReferencedConversationFromJSON(json["conversation"]),
+		annotation: ReferencedAnnotationFromJSON(json["annotation"]),
+	};
 }
 
-export function ConversationSummarizeOutputToJSON(value?: ConversationSummarizeOutput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'conversation': ReferencedConversationToJSON(value.conversation),
-        'annotation': ReferencedAnnotationToJSON(value.annotation),
-    };
+export function ConversationSummarizeOutputToJSON(
+	value?: ConversationSummarizeOutput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		conversation: ReferencedConversationToJSON(value.conversation),
+		annotation: ReferencedAnnotationToJSON(value.annotation),
+	};
 }
-

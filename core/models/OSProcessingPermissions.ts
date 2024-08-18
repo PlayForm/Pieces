@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * These are the permissions relating to the vision models.
@@ -26,63 +25,71 @@ import {
  * @interface OSProcessingPermissions
  */
 export interface OSProcessingPermissions {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSProcessingPermissions
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * if true it is granted, if not then it is not granted.
-     * @type {boolean}
-     * @memberof OSProcessingPermissions
-     */
-    vision?: boolean;
-    /**
-     * if true it is granted, if not then it is not granted.
-     * @type {boolean}
-     * @memberof OSProcessingPermissions
-     */
-    accessibility?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSProcessingPermissions
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * if true it is granted, if not then it is not granted.
+	 * @type {boolean}
+	 * @memberof OSProcessingPermissions
+	 */
+	vision?: boolean;
+	/**
+	 * if true it is granted, if not then it is not granted.
+	 * @type {boolean}
+	 * @memberof OSProcessingPermissions
+	 */
+	accessibility?: boolean;
 }
 
 /**
  * Check if a given object implements the OSProcessingPermissions interface.
  */
-export function instanceOfOSProcessingPermissions(value: object): boolean {
-    let isInstance = true;
+export function instanceOfOSProcessingPermissions(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function OSProcessingPermissionsFromJSON(json: any): OSProcessingPermissions {
-    return OSProcessingPermissionsFromJSONTyped(json, false);
+export function OSProcessingPermissionsFromJSON(
+	json: any,
+): OSProcessingPermissions {
+	return OSProcessingPermissionsFromJSONTyped(json, false);
 }
 
-export function OSProcessingPermissionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSProcessingPermissions {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'vision': !exists(json, 'vision') ? undefined : json['vision'],
-        'accessibility': !exists(json, 'accessibility') ? undefined : json['accessibility'],
-    };
+export function OSProcessingPermissionsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSProcessingPermissions {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		vision: exists(json, "vision") ? json["vision"] : undefined,
+		accessibility: exists(json, "accessibility")
+			? json["accessibility"]
+			: undefined,
+	};
 }
 
-export function OSProcessingPermissionsToJSON(value?: OSProcessingPermissions | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'vision': value.vision,
-        'accessibility': value.accessibility,
-    };
+export function OSProcessingPermissionsToJSON(
+	value?: OSProcessingPermissions | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		vision: value.vision,
+		accessibility: value.accessibility,
+	};
 }
-

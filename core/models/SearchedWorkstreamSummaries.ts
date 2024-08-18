@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedWorkstreamSummary } from './SearchedWorkstreamSummary';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedWorkstreamSummary } from "./SearchedWorkstreamSummary.tsx";
 import {
-    SearchedWorkstreamSummaryFromJSON,
-    SearchedWorkstreamSummaryFromJSONTyped,
-    SearchedWorkstreamSummaryToJSON,
-} from './SearchedWorkstreamSummary';
+	SearchedWorkstreamSummaryFromJSON,
+	SearchedWorkstreamSummaryToJSON,
+} from "./SearchedWorkstreamSummary.tsx";
 
 /**
  * This is the plural Model used to return many SearchedWorkstreamSummary.
@@ -32,56 +30,66 @@ import {
  * @interface SearchedWorkstreamSummaries
  */
 export interface SearchedWorkstreamSummaries {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedWorkstreamSummaries
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedWorkstreamSummary>}
-     * @memberof SearchedWorkstreamSummaries
-     */
-    iterable: Array<SearchedWorkstreamSummary>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedWorkstreamSummaries
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedWorkstreamSummary>}
+	 * @memberof SearchedWorkstreamSummaries
+	 */
+	iterable: SearchedWorkstreamSummary[];
 }
 
 /**
  * Check if a given object implements the SearchedWorkstreamSummaries interface.
  */
 export function instanceOfSearchedWorkstreamSummaries(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SearchedWorkstreamSummariesFromJSON(json: any): SearchedWorkstreamSummaries {
-    return SearchedWorkstreamSummariesFromJSONTyped(json, false);
+export function SearchedWorkstreamSummariesFromJSON(
+	json: any,
+): SearchedWorkstreamSummaries {
+	return SearchedWorkstreamSummariesFromJSONTyped(json, false);
 }
 
-export function SearchedWorkstreamSummariesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedWorkstreamSummaries {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedWorkstreamSummaryFromJSON)),
-    };
+export function SearchedWorkstreamSummariesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedWorkstreamSummaries {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			SearchedWorkstreamSummaryFromJSON,
+		),
+	};
 }
 
-export function SearchedWorkstreamSummariesToJSON(value?: SearchedWorkstreamSummaries | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedWorkstreamSummaryToJSON)),
-    };
+export function SearchedWorkstreamSummariesToJSON(
+	value?: SearchedWorkstreamSummaries | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			SearchedWorkstreamSummaryToJSON,
+		),
+	};
 }
-

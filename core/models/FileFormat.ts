@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TransferableBytes } from './TransferableBytes';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TransferableBytes } from "./TransferableBytes.tsx";
 import {
-    TransferableBytesFromJSON,
-    TransferableBytesFromJSONTyped,
-    TransferableBytesToJSON,
-} from './TransferableBytes';
-import type { TransferableString } from './TransferableString';
+	TransferableBytesFromJSON,
+	TransferableBytesToJSON,
+} from "./TransferableBytes.tsx";
+import type { TransferableString } from "./TransferableString.tsx";
 import {
-    TransferableStringFromJSON,
-    TransferableStringFromJSONTyped,
-    TransferableStringToJSON,
-} from './TransferableString';
+	TransferableStringFromJSON,
+	TransferableStringToJSON,
+} from "./TransferableString.tsx";
 
 /**
  * This describes a FileFormat. If you need meta data you can get all of that from your format wrapper.
@@ -38,63 +35,69 @@ import {
  * @interface FileFormat
  */
 export interface FileFormat {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FileFormat
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TransferableBytes}
-     * @memberof FileFormat
-     */
-    bytes?: TransferableBytes;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof FileFormat
-     */
-    string?: TransferableString;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FileFormat
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TransferableBytes}
+	 * @memberof FileFormat
+	 */
+	bytes?: TransferableBytes;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof FileFormat
+	 */
+	string?: TransferableString;
 }
 
 /**
  * Check if a given object implements the FileFormat interface.
  */
-export function instanceOfFileFormat(value: object): boolean {
-    let isInstance = true;
+export function instanceOfFileFormat(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FileFormatFromJSON(json: any): FileFormat {
-    return FileFormatFromJSONTyped(json, false);
+	return FileFormatFromJSONTyped(json, false);
 }
 
-export function FileFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): FileFormat {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'bytes': !exists(json, 'bytes') ? undefined : TransferableBytesFromJSON(json['bytes']),
-        'string': !exists(json, 'string') ? undefined : TransferableStringFromJSON(json['string']),
-    };
+export function FileFormatFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FileFormat {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		bytes: exists(json, "bytes")
+			? TransferableBytesFromJSON(json["bytes"])
+			: undefined,
+		string: exists(json, "string")
+			? TransferableStringFromJSON(json["string"])
+			: undefined,
+	};
 }
 
 export function FileFormatToJSON(value?: FileFormat | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'bytes': TransferableBytesToJSON(value.bytes),
-        'string': TransferableStringToJSON(value.string),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		bytes: TransferableBytesToJSON(value.bytes),
+		string: TransferableStringToJSON(value.string),
+	};
 }
-

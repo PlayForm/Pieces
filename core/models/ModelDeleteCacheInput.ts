@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the input model for '/model/{model}/delete/cache'
@@ -26,47 +25,53 @@ import {
  * @interface ModelDeleteCacheInput
  */
 export interface ModelDeleteCacheInput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ModelDeleteCacheInput
-     */
-    schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ModelDeleteCacheInput
+	 */
+	schema?: EmbeddedModelSchema;
 }
 
 /**
  * Check if a given object implements the ModelDeleteCacheInput interface.
  */
-export function instanceOfModelDeleteCacheInput(value: object): boolean {
-    let isInstance = true;
+export function instanceOfModelDeleteCacheInput(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ModelDeleteCacheInputFromJSON(json: any): ModelDeleteCacheInput {
-    return ModelDeleteCacheInputFromJSONTyped(json, false);
+export function ModelDeleteCacheInputFromJSON(
+	json: any,
+): ModelDeleteCacheInput {
+	return ModelDeleteCacheInputFromJSONTyped(json, false);
 }
 
-export function ModelDeleteCacheInputFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelDeleteCacheInput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-    };
+export function ModelDeleteCacheInputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ModelDeleteCacheInput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+	};
 }
 
-export function ModelDeleteCacheInputToJSON(value?: ModelDeleteCacheInput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-    };
+export function ModelDeleteCacheInputToJSON(
+	value?: ModelDeleteCacheInput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+	};
 }
-

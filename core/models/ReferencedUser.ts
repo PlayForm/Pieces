@@ -12,84 +12,86 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedUserProfile } from './FlattenedUserProfile';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedUserProfile } from "./FlattenedUserProfile.tsx";
 import {
-    FlattenedUserProfileFromJSON,
-    FlattenedUserProfileFromJSONTyped,
-    FlattenedUserProfileToJSON,
-} from './FlattenedUserProfile';
+	FlattenedUserProfileFromJSON,
+	FlattenedUserProfileToJSON,
+} from "./FlattenedUserProfile.tsx";
 
 /**
- * A object to reference a user's ID and optionally a FlattenedUserProfile Instance 
+ * A object to reference a user's ID and optionally a FlattenedUserProfile Instance
  * @export
  * @interface ReferencedUser
  */
 export interface ReferencedUser {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedUser
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedUser
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedUserProfile}
-     * @memberof ReferencedUser
-     */
-    reference?: FlattenedUserProfile;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedUser
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedUser
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedUserProfile}
+	 * @memberof ReferencedUser
+	 */
+	reference?: FlattenedUserProfile;
 }
 
 /**
  * Check if a given object implements the ReferencedUser interface.
  */
 export function instanceOfReferencedUser(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReferencedUserFromJSON(json: any): ReferencedUser {
-    return ReferencedUserFromJSONTyped(json, false);
+	return ReferencedUserFromJSONTyped(json, false);
 }
 
-export function ReferencedUserFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedUser {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedUserProfileFromJSON(json['reference']),
-    };
+export function ReferencedUserFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedUser {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedUserProfileFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
 export function ReferencedUserToJSON(value?: ReferencedUser | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedUserProfileToJSON(value.reference),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedUserProfileToJSON(value.reference),
+	};
 }
-

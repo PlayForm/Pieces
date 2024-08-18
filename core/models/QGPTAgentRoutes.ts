@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { QGPTAgentRelatedRoutes } from './QGPTAgentRelatedRoutes';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { QGPTAgentRelatedRoutes } from "./QGPTAgentRelatedRoutes.tsx";
 import {
-    QGPTAgentRelatedRoutesFromJSON,
-    QGPTAgentRelatedRoutesFromJSONTyped,
-    QGPTAgentRelatedRoutesToJSON,
-} from './QGPTAgentRelatedRoutes';
+	QGPTAgentRelatedRoutesFromJSON,
+	QGPTAgentRelatedRoutesToJSON,
+} from "./QGPTAgentRelatedRoutes.tsx";
 
 /**
  * This is apart of the Output and will let the plugin developer know if we reccomend to run specific agent functionality/routes.
@@ -33,55 +31,59 @@ import {
  * @interface QGPTAgentRoutes
  */
 export interface QGPTAgentRoutes {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTAgentRoutes
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {QGPTAgentRelatedRoutes}
-     * @memberof QGPTAgentRoutes
-     */
-    related?: QGPTAgentRelatedRoutes;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTAgentRoutes
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {QGPTAgentRelatedRoutes}
+	 * @memberof QGPTAgentRoutes
+	 */
+	related?: QGPTAgentRelatedRoutes;
 }
 
 /**
  * Check if a given object implements the QGPTAgentRoutes interface.
  */
-export function instanceOfQGPTAgentRoutes(value: object): boolean {
-    let isInstance = true;
+export function instanceOfQGPTAgentRoutes(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function QGPTAgentRoutesFromJSON(json: any): QGPTAgentRoutes {
-    return QGPTAgentRoutesFromJSONTyped(json, false);
+	return QGPTAgentRoutesFromJSONTyped(json, false);
 }
 
-export function QGPTAgentRoutesFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTAgentRoutes {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'related': !exists(json, 'related') ? undefined : QGPTAgentRelatedRoutesFromJSON(json['related']),
-    };
+export function QGPTAgentRoutesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTAgentRoutes {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		related: exists(json, "related")
+			? QGPTAgentRelatedRoutesFromJSON(json["related"])
+			: undefined,
+	};
 }
 
 export function QGPTAgentRoutesToJSON(value?: QGPTAgentRoutes | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'related': QGPTAgentRelatedRoutesToJSON(value.related),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		related: QGPTAgentRelatedRoutesToJSON(value.related),
+	};
 }
-

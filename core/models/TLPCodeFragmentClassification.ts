@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SystemExecutionInformation } from './SystemExecutionInformation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SystemExecutionInformation } from "./SystemExecutionInformation.tsx";
 import {
-    SystemExecutionInformationFromJSON,
-    SystemExecutionInformationFromJSONTyped,
-    SystemExecutionInformationToJSON,
-} from './SystemExecutionInformation';
-import type { TLPCodeFragmentClassificationMetadata } from './TLPCodeFragmentClassificationMetadata';
+	SystemExecutionInformationFromJSON,
+	SystemExecutionInformationToJSON,
+} from "./SystemExecutionInformation.tsx";
+import type { TLPCodeFragmentClassificationMetadata } from "./TLPCodeFragmentClassificationMetadata.tsx";
 import {
-    TLPCodeFragmentClassificationMetadataFromJSON,
-    TLPCodeFragmentClassificationMetadataFromJSONTyped,
-    TLPCodeFragmentClassificationMetadataToJSON,
-} from './TLPCodeFragmentClassificationMetadata';
+	TLPCodeFragmentClassificationMetadataFromJSON,
+	TLPCodeFragmentClassificationMetadataToJSON,
+} from "./TLPCodeFragmentClassificationMetadata.tsx";
 
 /**
  * Model for ML big query classification.
@@ -38,142 +35,156 @@ import {
  * @interface TLPCodeFragmentClassification
  */
 export interface TLPCodeFragmentClassification {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeFragmentClassification
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentClassification
-     */
-    asset: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentClassification
-     */
-    model: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentClassification
-     */
-    created: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentClassification
-     */
-    classification: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof TLPCodeFragmentClassification
-     */
-    probability: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentClassification
-     */
-    context: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentClassification
-     */
-    distribution?: string;
-    /**
-     * 
-     * @type {TLPCodeFragmentClassificationMetadata}
-     * @memberof TLPCodeFragmentClassification
-     */
-    metadata?: TLPCodeFragmentClassificationMetadata;
-    /**
-     * identifier for the user
-     * @type {string}
-     * @memberof TLPCodeFragmentClassification
-     */
-    user: string;
-    /**
-     * this is the time it takes to run this model.
-     * @type {number}
-     * @memberof TLPCodeFragmentClassification
-     */
-    latency?: number;
-    /**
-     * 
-     * @type {SystemExecutionInformation}
-     * @memberof TLPCodeFragmentClassification
-     */
-    system?: SystemExecutionInformation;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	asset: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	model: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	created: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	classification: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	probability: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	context: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	distribution?: string;
+	/**
+	 *
+	 * @type {TLPCodeFragmentClassificationMetadata}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	metadata?: TLPCodeFragmentClassificationMetadata;
+	/**
+	 * identifier for the user
+	 * @type {string}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	user: string;
+	/**
+	 * this is the time it takes to run this model.
+	 * @type {number}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	latency?: number;
+	/**
+	 *
+	 * @type {SystemExecutionInformation}
+	 * @memberof TLPCodeFragmentClassification
+	 */
+	system?: SystemExecutionInformation;
 }
 
 /**
  * Check if a given object implements the TLPCodeFragmentClassification interface.
  */
-export function instanceOfTLPCodeFragmentClassification(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "asset" in value;
-    isInstance = isInstance && "model" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "classification" in value;
-    isInstance = isInstance && "probability" in value;
-    isInstance = isInstance && "context" in value;
-    isInstance = isInstance && "user" in value;
+export function instanceOfTLPCodeFragmentClassification(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "asset" in value;
+	isInstance = isInstance && "model" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "classification" in value;
+	isInstance = isInstance && "probability" in value;
+	isInstance = isInstance && "context" in value;
+	isInstance = isInstance && "user" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeFragmentClassificationFromJSON(json: any): TLPCodeFragmentClassification {
-    return TLPCodeFragmentClassificationFromJSONTyped(json, false);
+export function TLPCodeFragmentClassificationFromJSON(
+	json: any,
+): TLPCodeFragmentClassification {
+	return TLPCodeFragmentClassificationFromJSONTyped(json, false);
 }
 
-export function TLPCodeFragmentClassificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFragmentClassification {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': json['asset'],
-        'model': json['model'],
-        'created': json['created'],
-        'classification': json['classification'],
-        'probability': json['probability'],
-        'context': json['context'],
-        'distribution': !exists(json, 'distribution') ? undefined : json['distribution'],
-        'metadata': !exists(json, 'metadata') ? undefined : TLPCodeFragmentClassificationMetadataFromJSON(json['metadata']),
-        'user': json['user'],
-        'latency': !exists(json, 'latency') ? undefined : json['latency'],
-        'system': !exists(json, 'system') ? undefined : SystemExecutionInformationFromJSON(json['system']),
-    };
+export function TLPCodeFragmentClassificationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFragmentClassification {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: json["asset"],
+		model: json["model"],
+		created: json["created"],
+		classification: json["classification"],
+		probability: json["probability"],
+		context: json["context"],
+		distribution: exists(json, "distribution")
+			? json["distribution"]
+			: undefined,
+		metadata: exists(json, "metadata")
+			? TLPCodeFragmentClassificationMetadataFromJSON(json["metadata"])
+			: undefined,
+		user: json["user"],
+		latency: exists(json, "latency") ? json["latency"] : undefined,
+		system: exists(json, "system")
+			? SystemExecutionInformationFromJSON(json["system"])
+			: undefined,
+	};
 }
 
-export function TLPCodeFragmentClassificationToJSON(value?: TLPCodeFragmentClassification | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': value.asset,
-        'model': value.model,
-        'created': value.created,
-        'classification': value.classification,
-        'probability': value.probability,
-        'context': value.context,
-        'distribution': value.distribution,
-        'metadata': TLPCodeFragmentClassificationMetadataToJSON(value.metadata),
-        'user': value.user,
-        'latency': value.latency,
-        'system': SystemExecutionInformationToJSON(value.system),
-    };
+export function TLPCodeFragmentClassificationToJSON(
+	value?: TLPCodeFragmentClassification | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: value.asset,
+		model: value.model,
+		created: value.created,
+		classification: value.classification,
+		probability: value.probability,
+		context: value.context,
+		distribution: value.distribution,
+		metadata: TLPCodeFragmentClassificationMetadataToJSON(value.metadata),
+		user: value.user,
+		latency: value.latency,
+		system: SystemExecutionInformationToJSON(value.system),
+	};
 }
-

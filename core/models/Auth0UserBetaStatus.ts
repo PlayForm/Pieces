@@ -12,79 +12,83 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnonymousTemporalRange } from './AnonymousTemporalRange';
+import { exists } from "../runtime.ts";
+import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
-    AnonymousTemporalRangeFromJSON,
-    AnonymousTemporalRangeFromJSONTyped,
-    AnonymousTemporalRangeToJSON,
-} from './AnonymousTemporalRange';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AnonymousTemporalRangeFromJSON,
+	AnonymousTemporalRangeToJSON,
+} from "./AnonymousTemporalRange.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * Note: continuous: this means that from this moment in time, the user is continuously opted into beta
- * 
+ *
  * otherwise we will use the from/to values provided.
- * 
+ *
  * Note: in order to opt out of vision, you will just end their beta w/ the updated with a to property that is effectively right now in time.
  * @export
  * @interface Auth0UserBetaStatus
  */
 export interface Auth0UserBetaStatus {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Auth0UserBetaStatus
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {AnonymousTemporalRange}
-     * @memberof Auth0UserBetaStatus
-     */
-    vision?: AnonymousTemporalRange;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Auth0UserBetaStatus
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {AnonymousTemporalRange}
+	 * @memberof Auth0UserBetaStatus
+	 */
+	vision?: AnonymousTemporalRange;
 }
 
 /**
  * Check if a given object implements the Auth0UserBetaStatus interface.
  */
-export function instanceOfAuth0UserBetaStatus(value: object): boolean {
-    let isInstance = true;
+export function instanceOfAuth0UserBetaStatus(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function Auth0UserBetaStatusFromJSON(json: any): Auth0UserBetaStatus {
-    return Auth0UserBetaStatusFromJSONTyped(json, false);
+	return Auth0UserBetaStatusFromJSONTyped(json, false);
 }
 
-export function Auth0UserBetaStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): Auth0UserBetaStatus {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'vision': !exists(json, 'vision') ? undefined : AnonymousTemporalRangeFromJSON(json['vision']),
-    };
+export function Auth0UserBetaStatusFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Auth0UserBetaStatus {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		vision: exists(json, "vision")
+			? AnonymousTemporalRangeFromJSON(json["vision"])
+			: undefined,
+	};
 }
 
-export function Auth0UserBetaStatusToJSON(value?: Auth0UserBetaStatus | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'vision': AnonymousTemporalRangeToJSON(value.vision),
-    };
+export function Auth0UserBetaStatusToJSON(
+	value?: Auth0UserBetaStatus | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		vision: AnonymousTemporalRangeToJSON(value.vision),
+	};
 }
-

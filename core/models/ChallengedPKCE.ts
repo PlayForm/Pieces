@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * A model that Generates A PKCE Challenge Object with the needed requirements.
@@ -26,102 +25,103 @@ import {
  * @interface ChallengedPKCE
  */
 export interface ChallengedPKCE {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ChallengedPKCE
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * An opaque value the clients adds to the initial request that Auth0 includes when redirecting the back to the client. This value must be used by the client to prevent CSRF attacks.
-     * @type {string}
-     * @memberof ChallengedPKCE
-     */
-    state: string;
-    /**
-     * A local key that is held as the comparator to state, thus they should be the same.
-     * @type {string}
-     * @memberof ChallengedPKCE
-     */
-    nonce: string;
-    /**
-     * Generated challenge from the code_verifier.
-     * @type {string}
-     * @memberof ChallengedPKCE
-     */
-    challenge: string;
-    /**
-     * Method used to generate the challenge. The PKCE spec defines two methods, S256 and plain, however, Auth0 supports only S256 since the latter is discouraged.
-     * @type {string}
-     * @memberof ChallengedPKCE
-     */
-    method: ChallengedPKCEMethodEnum;
-    /**
-     * Cryptographically random key that was used to generate the code_challenge passed to /authorize.
-     * @type {string}
-     * @memberof ChallengedPKCE
-     */
-    verifier: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ChallengedPKCE
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * An opaque value the clients adds to the initial request that Auth0 includes when redirecting the back to the client. This value must be used by the client to prevent CSRF attacks.
+	 * @type {string}
+	 * @memberof ChallengedPKCE
+	 */
+	state: string;
+	/**
+	 * A local key that is held as the comparator to state, thus they should be the same.
+	 * @type {string}
+	 * @memberof ChallengedPKCE
+	 */
+	nonce: string;
+	/**
+	 * Generated challenge from the code_verifier.
+	 * @type {string}
+	 * @memberof ChallengedPKCE
+	 */
+	challenge: string;
+	/**
+	 * Method used to generate the challenge. The PKCE spec defines two methods, S256 and plain, however, Auth0 supports only S256 since the latter is discouraged.
+	 * @type {string}
+	 * @memberof ChallengedPKCE
+	 */
+	method: ChallengedPKCEMethodEnum;
+	/**
+	 * Cryptographically random key that was used to generate the code_challenge passed to /authorize.
+	 * @type {string}
+	 * @memberof ChallengedPKCE
+	 */
+	verifier: string;
 }
-
 
 /**
  * @export
  */
 export const ChallengedPKCEMethodEnum = {
-    S256: 'S256'
+	S256: "S256",
 } as const;
-export type ChallengedPKCEMethodEnum = typeof ChallengedPKCEMethodEnum[keyof typeof ChallengedPKCEMethodEnum];
-
+export type ChallengedPKCEMethodEnum =
+	(typeof ChallengedPKCEMethodEnum)[keyof typeof ChallengedPKCEMethodEnum];
 
 /**
  * Check if a given object implements the ChallengedPKCE interface.
  */
 export function instanceOfChallengedPKCE(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "state" in value;
-    isInstance = isInstance && "nonce" in value;
-    isInstance = isInstance && "challenge" in value;
-    isInstance = isInstance && "method" in value;
-    isInstance = isInstance && "verifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "state" in value;
+	isInstance = isInstance && "nonce" in value;
+	isInstance = isInstance && "challenge" in value;
+	isInstance = isInstance && "method" in value;
+	isInstance = isInstance && "verifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ChallengedPKCEFromJSON(json: any): ChallengedPKCE {
-    return ChallengedPKCEFromJSONTyped(json, false);
+	return ChallengedPKCEFromJSONTyped(json, false);
 }
 
-export function ChallengedPKCEFromJSONTyped(json: any, ignoreDiscriminator: boolean): ChallengedPKCE {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'state': json['state'],
-        'nonce': json['nonce'],
-        'challenge': json['challenge'],
-        'method': json['method'],
-        'verifier': json['verifier'],
-    };
+export function ChallengedPKCEFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ChallengedPKCE {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		state: json["state"],
+		nonce: json["nonce"],
+		challenge: json["challenge"],
+		method: json["method"],
+		verifier: json["verifier"],
+	};
 }
 
 export function ChallengedPKCEToJSON(value?: ChallengedPKCE | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'state': value.state,
-        'nonce': value.nonce,
-        'challenge': value.challenge,
-        'method': value.method,
-        'verifier': value.verifier,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		state: value.state,
+		nonce: value.nonce,
+		challenge: value.challenge,
+		method: value.method,
+		verifier: value.verifier,
+	};
 }
-

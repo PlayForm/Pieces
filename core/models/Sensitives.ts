@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
-import type { Sensitive } from './Sensitive';
-import {
-    SensitiveFromJSON,
-    SensitiveFromJSONTyped,
-    SensitiveToJSON,
-} from './Sensitive';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import type { Sensitive } from "./Sensitive.tsx";
+import { SensitiveFromJSON, SensitiveToJSON } from "./Sensitive.tsx";
 
 /**
  * This is a model that represents many individual sensitive pieces of data.
@@ -38,64 +29,66 @@ import {
  * @interface Sensitives
  */
 export interface Sensitives {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Sensitives
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Sensitive>}
-     * @memberof Sensitives
-     */
-    iterable: Array<Sensitive>;
-    /**
-     * 
-     * @type {Score}
-     * @memberof Sensitives
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Sensitives
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Sensitive>}
+	 * @memberof Sensitives
+	 */
+	iterable: Sensitive[];
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Sensitives
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the Sensitives interface.
  */
 export function instanceOfSensitives(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SensitivesFromJSON(json: any): Sensitives {
-    return SensitivesFromJSONTyped(json, false);
+	return SensitivesFromJSONTyped(json, false);
 }
 
-export function SensitivesFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sensitives {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SensitiveFromJSON)),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function SensitivesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Sensitives {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SensitiveFromJSON),
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function SensitivesToJSON(value?: Sensitives | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SensitiveToJSON)),
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SensitiveToJSON),
+		score: ScoreToJSON(value.score),
+	};
 }
-

@@ -12,125 +12,127 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededAssetMetadata } from './SeededAssetMetadata';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededAssetMetadata } from "./SeededAssetMetadata.tsx";
 import {
-    SeededAssetMetadataFromJSON,
-    SeededAssetMetadataFromJSONTyped,
-    SeededAssetMetadataToJSON,
-} from './SeededAssetMetadata';
-import type { SeededFile } from './SeededFile';
+	SeededAssetMetadataFromJSON,
+	SeededAssetMetadataToJSON,
+} from "./SeededAssetMetadata.tsx";
+import type { SeededFile } from "./SeededFile.tsx";
+import { SeededFileFromJSON, SeededFileToJSON } from "./SeededFile.tsx";
+import type { SeededFragment } from "./SeededFragment.tsx";
 import {
-    SeededFileFromJSON,
-    SeededFileFromJSONTyped,
-    SeededFileToJSON,
-} from './SeededFile';
-import type { SeededFragment } from './SeededFragment';
+	SeededFragmentFromJSON,
+	SeededFragmentToJSON,
+} from "./SeededFragment.tsx";
+import type { TLPDirectedDiscoveryFilters } from "./TLPDirectedDiscoveryFilters.tsx";
 import {
-    SeededFragmentFromJSON,
-    SeededFragmentFromJSONTyped,
-    SeededFragmentToJSON,
-} from './SeededFragment';
-import type { TLPDirectedDiscoveryFilters } from './TLPDirectedDiscoveryFilters';
-import {
-    TLPDirectedDiscoveryFiltersFromJSON,
-    TLPDirectedDiscoveryFiltersFromJSONTyped,
-    TLPDirectedDiscoveryFiltersToJSON,
-} from './TLPDirectedDiscoveryFilters';
+	TLPDirectedDiscoveryFiltersFromJSON,
+	TLPDirectedDiscoveryFiltersToJSON,
+} from "./TLPDirectedDiscoveryFilters.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface DiscoveredAsset
  */
 export interface DiscoveredAsset {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DiscoveredAsset
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededFile}
-     * @memberof DiscoveredAsset
-     */
-    file?: SeededFile;
-    /**
-     * 
-     * @type {SeededFragment}
-     * @memberof DiscoveredAsset
-     */
-    fragment?: SeededFragment;
-    /**
-     * 
-     * @type {string}
-     * @memberof DiscoveredAsset
-     */
-    directory?: string;
-    /**
-     * 
-     * @type {SeededAssetMetadata}
-     * @memberof DiscoveredAsset
-     */
-    metadata?: SeededAssetMetadata;
-    /**
-     * 
-     * @type {TLPDirectedDiscoveryFilters}
-     * @memberof DiscoveredAsset
-     */
-    filters?: TLPDirectedDiscoveryFilters;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DiscoveredAsset
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededFile}
+	 * @memberof DiscoveredAsset
+	 */
+	file?: SeededFile;
+	/**
+	 *
+	 * @type {SeededFragment}
+	 * @memberof DiscoveredAsset
+	 */
+	fragment?: SeededFragment;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof DiscoveredAsset
+	 */
+	directory?: string;
+	/**
+	 *
+	 * @type {SeededAssetMetadata}
+	 * @memberof DiscoveredAsset
+	 */
+	metadata?: SeededAssetMetadata;
+	/**
+	 *
+	 * @type {TLPDirectedDiscoveryFilters}
+	 * @memberof DiscoveredAsset
+	 */
+	filters?: TLPDirectedDiscoveryFilters;
 }
 
 /**
  * Check if a given object implements the DiscoveredAsset interface.
  */
-export function instanceOfDiscoveredAsset(value: object): boolean {
-    let isInstance = true;
+export function instanceOfDiscoveredAsset(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function DiscoveredAssetFromJSON(json: any): DiscoveredAsset {
-    return DiscoveredAssetFromJSONTyped(json, false);
+	return DiscoveredAssetFromJSONTyped(json, false);
 }
 
-export function DiscoveredAssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): DiscoveredAsset {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'file': !exists(json, 'file') ? undefined : SeededFileFromJSON(json['file']),
-        'fragment': !exists(json, 'fragment') ? undefined : SeededFragmentFromJSON(json['fragment']),
-        'directory': !exists(json, 'directory') ? undefined : json['directory'],
-        'metadata': !exists(json, 'metadata') ? undefined : SeededAssetMetadataFromJSON(json['metadata']),
-        'filters': !exists(json, 'filters') ? undefined : TLPDirectedDiscoveryFiltersFromJSON(json['filters']),
-    };
+export function DiscoveredAssetFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DiscoveredAsset {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		file: exists(json, "file")
+			? SeededFileFromJSON(json["file"])
+			: undefined,
+		fragment: exists(json, "fragment")
+			? SeededFragmentFromJSON(json["fragment"])
+			: undefined,
+		directory: exists(json, "directory") ? json["directory"] : undefined,
+		metadata: exists(json, "metadata")
+			? SeededAssetMetadataFromJSON(json["metadata"])
+			: undefined,
+		filters: exists(json, "filters")
+			? TLPDirectedDiscoveryFiltersFromJSON(json["filters"])
+			: undefined,
+	};
 }
 
 export function DiscoveredAssetToJSON(value?: DiscoveredAsset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'file': SeededFileToJSON(value.file),
-        'fragment': SeededFragmentToJSON(value.fragment),
-        'directory': value.directory,
-        'metadata': SeededAssetMetadataToJSON(value.metadata),
-        'filters': TLPDirectedDiscoveryFiltersToJSON(value.filters),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		file: SeededFileToJSON(value.file),
+		fragment: SeededFragmentToJSON(value.fragment),
+		directory: value.directory,
+		metadata: SeededAssetMetadataToJSON(value.metadata),
+		filters: TLPDirectedDiscoveryFiltersToJSON(value.filters),
+	};
 }
-

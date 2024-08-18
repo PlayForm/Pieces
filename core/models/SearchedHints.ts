@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedHint } from './SearchedHint';
-import {
-    SearchedHintFromJSON,
-    SearchedHintFromJSONTyped,
-    SearchedHintToJSON,
-} from './SearchedHint';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedHint } from "./SearchedHint.tsx";
+import { SearchedHintFromJSON, SearchedHintToJSON } from "./SearchedHint.tsx";
 
 /**
  * This is the plural Model used to return many SearchedHint.
@@ -32,56 +27,58 @@ import {
  * @interface SearchedHints
  */
 export interface SearchedHints {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedHints
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedHint>}
-     * @memberof SearchedHints
-     */
-    iterable: Array<SearchedHint>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedHints
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedHint>}
+	 * @memberof SearchedHints
+	 */
+	iterable: SearchedHint[];
 }
 
 /**
  * Check if a given object implements the SearchedHints interface.
  */
 export function instanceOfSearchedHints(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedHintsFromJSON(json: any): SearchedHints {
-    return SearchedHintsFromJSONTyped(json, false);
+	return SearchedHintsFromJSONTyped(json, false);
 }
 
-export function SearchedHintsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedHints {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedHintFromJSON)),
-    };
+export function SearchedHintsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedHints {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SearchedHintFromJSON),
+	};
 }
 
 export function SearchedHintsToJSON(value?: SearchedHints | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedHintToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SearchedHintToJSON),
+	};
 }
-

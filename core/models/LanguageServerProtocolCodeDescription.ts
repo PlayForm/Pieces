@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * modeled off of (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeDescription)
@@ -26,56 +25,64 @@ import {
  * @interface LanguageServerProtocolCodeDescription
  */
 export interface LanguageServerProtocolCodeDescription {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof LanguageServerProtocolCodeDescription
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof LanguageServerProtocolCodeDescription
-     */
-    href: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof LanguageServerProtocolCodeDescription
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof LanguageServerProtocolCodeDescription
+	 */
+	href: string;
 }
 
 /**
  * Check if a given object implements the LanguageServerProtocolCodeDescription interface.
  */
-export function instanceOfLanguageServerProtocolCodeDescription(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "href" in value;
+export function instanceOfLanguageServerProtocolCodeDescription(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "href" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function LanguageServerProtocolCodeDescriptionFromJSON(json: any): LanguageServerProtocolCodeDescription {
-    return LanguageServerProtocolCodeDescriptionFromJSONTyped(json, false);
+export function LanguageServerProtocolCodeDescriptionFromJSON(
+	json: any,
+): LanguageServerProtocolCodeDescription {
+	return LanguageServerProtocolCodeDescriptionFromJSONTyped(json, false);
 }
 
-export function LanguageServerProtocolCodeDescriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): LanguageServerProtocolCodeDescription {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'href': json['href'],
-    };
+export function LanguageServerProtocolCodeDescriptionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): LanguageServerProtocolCodeDescription {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		href: json["href"],
+	};
 }
 
-export function LanguageServerProtocolCodeDescriptionToJSON(value?: LanguageServerProtocolCodeDescription | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'href': value.href,
-    };
+export function LanguageServerProtocolCodeDescriptionToJSON(
+	value?: LanguageServerProtocolCodeDescription | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		href: value.href,
+	};
 }
-

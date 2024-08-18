@@ -12,70 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface QGPTRepromptOutput
  */
 export interface QGPTRepromptOutput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTRepromptOutput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof QGPTRepromptOutput
-     */
-    query: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTRepromptOutput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof QGPTRepromptOutput
+	 */
+	query: string;
 }
 
 /**
  * Check if a given object implements the QGPTRepromptOutput interface.
  */
 export function instanceOfQGPTRepromptOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "query" in value;
+	let isInstance = true;
+	isInstance = isInstance && "query" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function QGPTRepromptOutputFromJSON(json: any): QGPTRepromptOutput {
-    return QGPTRepromptOutputFromJSONTyped(json, false);
+	return QGPTRepromptOutputFromJSONTyped(json, false);
 }
 
-export function QGPTRepromptOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTRepromptOutput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'query': json['query'],
-    };
+export function QGPTRepromptOutputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTRepromptOutput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		query: json["query"],
+	};
 }
 
-export function QGPTRepromptOutputToJSON(value?: QGPTRepromptOutput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'query': value.query,
-    };
+export function QGPTRepromptOutputToJSON(
+	value?: QGPTRepromptOutput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		query: value.query,
+	};
 }
-

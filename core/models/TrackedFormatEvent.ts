@@ -12,31 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TrackedFormat } from './TrackedFormat';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TrackedFormat } from "./TrackedFormat.tsx";
 import {
-    TrackedFormatFromJSON,
-    TrackedFormatFromJSONTyped,
-    TrackedFormatToJSON,
-} from './TrackedFormat';
-import type { TrackedFormatEventIdentifierDescriptionPairs } from './TrackedFormatEventIdentifierDescriptionPairs';
+	TrackedFormatFromJSON,
+	TrackedFormatToJSON,
+} from "./TrackedFormat.tsx";
+import type { TrackedFormatEventIdentifierDescriptionPairs } from "./TrackedFormatEventIdentifierDescriptionPairs.tsx";
 import {
-    TrackedFormatEventIdentifierDescriptionPairsFromJSON,
-    TrackedFormatEventIdentifierDescriptionPairsFromJSONTyped,
-    TrackedFormatEventIdentifierDescriptionPairsToJSON,
-} from './TrackedFormatEventIdentifierDescriptionPairs';
-import type { TrackedFormatEventMetadata } from './TrackedFormatEventMetadata';
+	TrackedFormatEventIdentifierDescriptionPairsFromJSON,
+	TrackedFormatEventIdentifierDescriptionPairsToJSON,
+} from "./TrackedFormatEventIdentifierDescriptionPairs.tsx";
+import type { TrackedFormatEventMetadata } from "./TrackedFormatEventMetadata.tsx";
 import {
-    TrackedFormatEventMetadataFromJSON,
-    TrackedFormatEventMetadataFromJSONTyped,
-    TrackedFormatEventMetadataToJSON,
-} from './TrackedFormatEventMetadata';
+	TrackedFormatEventMetadataFromJSON,
+	TrackedFormatEventMetadataToJSON,
+} from "./TrackedFormatEventMetadata.tsx";
 
 /**
  * This is a model that represents a generic event that we may want to track in relation to a format, for example beamed, copied, downloaded, and view. ** Note: This is the model that will get returned by our api, and is. Representative of a full TrackedFormat event. **
@@ -44,73 +40,85 @@ import {
  * @interface TrackedFormatEvent
  */
 export interface TrackedFormatEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TrackedFormatEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TrackedFormat}
-     * @memberof TrackedFormatEvent
-     */
-    format: TrackedFormat;
-    /**
-     * 
-     * @type {TrackedFormatEventIdentifierDescriptionPairs}
-     * @memberof TrackedFormatEvent
-     */
-    identifierDescriptionPair: TrackedFormatEventIdentifierDescriptionPairs;
-    /**
-     * 
-     * @type {TrackedFormatEventMetadata}
-     * @memberof TrackedFormatEvent
-     */
-    metadata?: TrackedFormatEventMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TrackedFormatEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TrackedFormat}
+	 * @memberof TrackedFormatEvent
+	 */
+	format: TrackedFormat;
+	/**
+	 *
+	 * @type {TrackedFormatEventIdentifierDescriptionPairs}
+	 * @memberof TrackedFormatEvent
+	 */
+	identifierDescriptionPair: TrackedFormatEventIdentifierDescriptionPairs;
+	/**
+	 *
+	 * @type {TrackedFormatEventMetadata}
+	 * @memberof TrackedFormatEvent
+	 */
+	metadata?: TrackedFormatEventMetadata;
 }
 
 /**
  * Check if a given object implements the TrackedFormatEvent interface.
  */
 export function instanceOfTrackedFormatEvent(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
-    isInstance = isInstance && "identifierDescriptionPair" in value;
+	let isInstance = true;
+	isInstance = isInstance && "format" in value;
+	isInstance = isInstance && "identifierDescriptionPair" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TrackedFormatEventFromJSON(json: any): TrackedFormatEvent {
-    return TrackedFormatEventFromJSONTyped(json, false);
+	return TrackedFormatEventFromJSONTyped(json, false);
 }
 
-export function TrackedFormatEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedFormatEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'format': TrackedFormatFromJSON(json[' format']),
-        'identifierDescriptionPair': TrackedFormatEventIdentifierDescriptionPairsFromJSON(json['identifier_description_pair']),
-        'metadata': !exists(json, 'metadata') ? undefined : TrackedFormatEventMetadataFromJSON(json['metadata']),
-    };
+export function TrackedFormatEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedFormatEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		format: TrackedFormatFromJSON(json[" format"]),
+		identifierDescriptionPair:
+			TrackedFormatEventIdentifierDescriptionPairsFromJSON(
+				json["identifier_description_pair"],
+			),
+		metadata: exists(json, "metadata")
+			? TrackedFormatEventMetadataFromJSON(json["metadata"])
+			: undefined,
+	};
 }
 
-export function TrackedFormatEventToJSON(value?: TrackedFormatEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        ' format': TrackedFormatToJSON(value.format),
-        'identifier_description_pair': TrackedFormatEventIdentifierDescriptionPairsToJSON(value.identifierDescriptionPair),
-        'metadata': TrackedFormatEventMetadataToJSON(value.metadata),
-    };
+export function TrackedFormatEventToJSON(
+	value?: TrackedFormatEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		" format": TrackedFormatToJSON(value.format),
+		identifier_description_pair:
+			TrackedFormatEventIdentifierDescriptionPairsToJSON(
+				value.identifierDescriptionPair,
+			),
+		metadata: TrackedFormatEventMetadataToJSON(value.metadata),
+	};
 }
-

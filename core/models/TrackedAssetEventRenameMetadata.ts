@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will give specific metadata need to determine what the rename was to/from.
@@ -26,65 +25,73 @@ import {
  * @interface TrackedAssetEventRenameMetadata
  */
 export interface TrackedAssetEventRenameMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TrackedAssetEventRenameMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof TrackedAssetEventRenameMetadata
-     */
-    previous: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TrackedAssetEventRenameMetadata
-     */
-    current: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TrackedAssetEventRenameMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TrackedAssetEventRenameMetadata
+	 */
+	previous: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TrackedAssetEventRenameMetadata
+	 */
+	current: string;
 }
 
 /**
  * Check if a given object implements the TrackedAssetEventRenameMetadata interface.
  */
-export function instanceOfTrackedAssetEventRenameMetadata(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "previous" in value;
-    isInstance = isInstance && "current" in value;
+export function instanceOfTrackedAssetEventRenameMetadata(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "previous" in value;
+	isInstance = isInstance && "current" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TrackedAssetEventRenameMetadataFromJSON(json: any): TrackedAssetEventRenameMetadata {
-    return TrackedAssetEventRenameMetadataFromJSONTyped(json, false);
+export function TrackedAssetEventRenameMetadataFromJSON(
+	json: any,
+): TrackedAssetEventRenameMetadata {
+	return TrackedAssetEventRenameMetadataFromJSONTyped(json, false);
 }
 
-export function TrackedAssetEventRenameMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedAssetEventRenameMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'previous': json['previous'],
-        'current': json['current'],
-    };
+export function TrackedAssetEventRenameMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedAssetEventRenameMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		previous: json["previous"],
+		current: json["current"],
+	};
 }
 
-export function TrackedAssetEventRenameMetadataToJSON(value?: TrackedAssetEventRenameMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'previous': value.previous,
-        'current': value.current,
-    };
+export function TrackedAssetEventRenameMetadataToJSON(
+	value?: TrackedAssetEventRenameMetadata | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		previous: value.previous,
+		current: value.current,
+	};
 }
-

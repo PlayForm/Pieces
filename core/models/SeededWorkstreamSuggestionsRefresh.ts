@@ -12,95 +12,99 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamEventContext } from "./WorkstreamEventContext.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamEventContext } from './WorkstreamEventContext';
-import {
-    WorkstreamEventContextFromJSON,
-    WorkstreamEventContextFromJSONTyped,
-    WorkstreamEventContextToJSON,
-} from './WorkstreamEventContext';
+	WorkstreamEventContextFromJSON,
+	WorkstreamEventContextToJSON,
+} from "./WorkstreamEventContext.tsx";
 
 /**
  * This is used in the input of the /workstream/feed/refresh
- * 
- * The application here will let us know if what scope you would like to refresh the stream for. IE an Application will 
+ *
+ * The application here will let us know if what scope you would like to refresh the stream for. IE an Application will
  * provide bias in the items that are displayed.
- * 
+ *
  * note: context can be used here to provide further bias to the suggestions.
  * @export
  * @interface SeededWorkstreamSuggestionsRefresh
  */
 export interface SeededWorkstreamSuggestionsRefresh {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededWorkstreamSuggestionsRefresh
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Application}
-     * @memberof SeededWorkstreamSuggestionsRefresh
-     */
-    application: Application;
-    /**
-     * 
-     * @type {WorkstreamEventContext}
-     * @memberof SeededWorkstreamSuggestionsRefresh
-     */
-    context?: WorkstreamEventContext;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededWorkstreamSuggestionsRefresh
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof SeededWorkstreamSuggestionsRefresh
+	 */
+	application: Application;
+	/**
+	 *
+	 * @type {WorkstreamEventContext}
+	 * @memberof SeededWorkstreamSuggestionsRefresh
+	 */
+	context?: WorkstreamEventContext;
 }
 
 /**
  * Check if a given object implements the SeededWorkstreamSuggestionsRefresh interface.
  */
-export function instanceOfSeededWorkstreamSuggestionsRefresh(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "application" in value;
+export function instanceOfSeededWorkstreamSuggestionsRefresh(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "application" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededWorkstreamSuggestionsRefreshFromJSON(json: any): SeededWorkstreamSuggestionsRefresh {
-    return SeededWorkstreamSuggestionsRefreshFromJSONTyped(json, false);
+export function SeededWorkstreamSuggestionsRefreshFromJSON(
+	json: any,
+): SeededWorkstreamSuggestionsRefresh {
+	return SeededWorkstreamSuggestionsRefreshFromJSONTyped(json, false);
 }
 
-export function SeededWorkstreamSuggestionsRefreshFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededWorkstreamSuggestionsRefresh {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'application': ApplicationFromJSON(json['application']),
-        'context': !exists(json, 'context') ? undefined : WorkstreamEventContextFromJSON(json['context']),
-    };
+export function SeededWorkstreamSuggestionsRefreshFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededWorkstreamSuggestionsRefresh {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		application: ApplicationFromJSON(json["application"]),
+		context: exists(json, "context")
+			? WorkstreamEventContextFromJSON(json["context"])
+			: undefined,
+	};
 }
 
-export function SeededWorkstreamSuggestionsRefreshToJSON(value?: SeededWorkstreamSuggestionsRefresh | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'application': ApplicationToJSON(value.application),
-        'context': WorkstreamEventContextToJSON(value.context),
-    };
+export function SeededWorkstreamSuggestionsRefreshToJSON(
+	value?: SeededWorkstreamSuggestionsRefresh | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		application: ApplicationToJSON(value.application),
+		context: WorkstreamEventContextToJSON(value.context),
+	};
 }
-

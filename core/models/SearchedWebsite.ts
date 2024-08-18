@@ -12,117 +12,116 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Website } from './Website';
-import {
-    WebsiteFromJSON,
-    WebsiteFromJSONTyped,
-    WebsiteToJSON,
-} from './Website';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Website } from "./Website.tsx";
+import { WebsiteFromJSON, WebsiteToJSON } from "./Website.tsx";
 
 /**
  * This is used for the Websites searching endpoint.
- * 
+ *
  * website here is only provided if transferables are set to true.
- * 
+ *
  * temporal: if this is provided this means that their material matched the input via a timestamp.
- * 
+ *
  * TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials
  * ie suggestion: WorkstreamSuggestions
  * @export
  * @interface SearchedWebsite
  */
 export interface SearchedWebsite {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedWebsite
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Website}
-     * @memberof SearchedWebsite
-     */
-    website?: Website;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedWebsite
-     */
-    exact: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchedWebsite
-     */
-    similarity: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedWebsite
-     */
-    temporal?: boolean;
-    /**
-     * This is the uuid of the website.
-     * @type {string}
-     * @memberof SearchedWebsite
-     */
-    identifier: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedWebsite
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Website}
+	 * @memberof SearchedWebsite
+	 */
+	website?: Website;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedWebsite
+	 */
+	exact: boolean;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SearchedWebsite
+	 */
+	similarity: number;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedWebsite
+	 */
+	temporal?: boolean;
+	/**
+	 * This is the uuid of the website.
+	 * @type {string}
+	 * @memberof SearchedWebsite
+	 */
+	identifier: string;
 }
 
 /**
  * Check if a given object implements the SearchedWebsite interface.
  */
 export function instanceOfSearchedWebsite(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "exact" in value;
-    isInstance = isInstance && "similarity" in value;
-    isInstance = isInstance && "identifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "exact" in value;
+	isInstance = isInstance && "similarity" in value;
+	isInstance = isInstance && "identifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedWebsiteFromJSON(json: any): SearchedWebsite {
-    return SearchedWebsiteFromJSONTyped(json, false);
+	return SearchedWebsiteFromJSONTyped(json, false);
 }
 
-export function SearchedWebsiteFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedWebsite {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'website': !exists(json, 'website') ? undefined : WebsiteFromJSON(json['website']),
-        'exact': json['exact'],
-        'similarity': json['similarity'],
-        'temporal': !exists(json, 'temporal') ? undefined : json['temporal'],
-        'identifier': json['identifier'],
-    };
+export function SearchedWebsiteFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedWebsite {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		website: exists(json, "website")
+			? WebsiteFromJSON(json["website"])
+			: undefined,
+		exact: json["exact"],
+		similarity: json["similarity"],
+		temporal: exists(json, "temporal") ? json["temporal"] : undefined,
+		identifier: json["identifier"],
+	};
 }
 
 export function SearchedWebsiteToJSON(value?: SearchedWebsite | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'website': WebsiteToJSON(value.website),
-        'exact': value.exact,
-        'similarity': value.similarity,
-        'temporal': value.temporal,
-        'identifier': value.identifier,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		website: WebsiteToJSON(value.website),
+		exact: value.exact,
+		similarity: value.similarity,
+		temporal: value.temporal,
+		identifier: value.identifier,
+	};
 }
-

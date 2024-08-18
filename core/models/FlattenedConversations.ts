@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedConversation } from './ReferencedConversation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
-    ReferencedConversationFromJSON,
-    ReferencedConversationFromJSONTyped,
-    ReferencedConversationToJSON,
-} from './ReferencedConversation';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedConversationFromJSON,
+	ReferencedConversationToJSON,
+} from "./ReferencedConversation.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * Flattened version of conversations.
@@ -38,72 +32,80 @@ import {
  * @interface FlattenedConversations
  */
 export interface FlattenedConversations {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedConversations
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedConversation>}
-     * @memberof FlattenedConversations
-     */
-    iterable: Array<ReferencedConversation>;
-    /**
-     * This is a Map<String, int> where the the key is an Conversation id.
-     * @type {{ [key: string]: number; }}
-     * @memberof FlattenedConversations
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedConversations
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedConversations
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedConversation>}
+	 * @memberof FlattenedConversations
+	 */
+	iterable: ReferencedConversation[];
+	/**
+	 * This is a Map<String, int> where the the key is an Conversation id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof FlattenedConversations
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedConversations
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedConversations interface.
  */
 export function instanceOfFlattenedConversations(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function FlattenedConversationsFromJSON(json: any): FlattenedConversations {
-    return FlattenedConversationsFromJSONTyped(json, false);
+export function FlattenedConversationsFromJSON(
+	json: any,
+): FlattenedConversations {
+	return FlattenedConversationsFromJSONTyped(json, false);
 }
 
-export function FlattenedConversationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedConversations {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedConversationFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedConversationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedConversations {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			ReferencedConversationFromJSON,
+		),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
-export function FlattenedConversationsToJSON(value?: FlattenedConversations | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedConversationToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+export function FlattenedConversationsToJSON(
+	value?: FlattenedConversations | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedConversationToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

@@ -12,136 +12,132 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Assets } from './Assets';
+import { exists } from "../runtime.ts";
+import type { Assets } from "./Assets.tsx";
+import { AssetsFromJSON, AssetsToJSON } from "./Assets.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AssetsFromJSON,
-    AssetsFromJSONTyped,
-    AssetsToJSON,
-} from './Assets';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReuseSuggestion } from "./ReuseSuggestion.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReuseSuggestion } from './ReuseSuggestion';
+	ReuseSuggestionFromJSON,
+	ReuseSuggestionToJSON,
+} from "./ReuseSuggestion.tsx";
+import type { SaveSuggestion } from "./SaveSuggestion.tsx";
 import {
-    ReuseSuggestionFromJSON,
-    ReuseSuggestionFromJSONTyped,
-    ReuseSuggestionToJSON,
-} from './ReuseSuggestion';
-import type { SaveSuggestion } from './SaveSuggestion';
+	SaveSuggestionFromJSON,
+	SaveSuggestionToJSON,
+} from "./SaveSuggestion.tsx";
+import type { SuggestionTarget } from "./SuggestionTarget.tsx";
 import {
-    SaveSuggestionFromJSON,
-    SaveSuggestionFromJSONTyped,
-    SaveSuggestionToJSON,
-} from './SaveSuggestion';
-import type { SuggestionTarget } from './SuggestionTarget';
-import {
-    SuggestionTargetFromJSON,
-    SuggestionTargetFromJSONTyped,
-    SuggestionTargetToJSON,
-} from './SuggestionTarget';
+	SuggestionTargetFromJSON,
+	SuggestionTargetToJSON,
+} from "./SuggestionTarget.tsx";
 
 /**
  * This is the model return by the connector's suggest endpoint.
- * 
+ *
  * Note:
  * assets are the assets that this target was ran against.
- * 
+ *
  * distribution is the distribution that we generated from comparing the target to the asset's vectors.(currently uuid(assetid) : value that is the difference between the asset and the target) **could potentially make an additional model here that is an array from most to least relevent.
- * 
+ *
  * *** distribution is required but we are currently unable to reflect that with our current dart generation.
  * @export
  * @interface Suggestion
  */
 export interface Suggestion {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Suggestion
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ReuseSuggestion}
-     * @memberof Suggestion
-     */
-    reuse: ReuseSuggestion;
-    /**
-     * 
-     * @type {SaveSuggestion}
-     * @memberof Suggestion
-     */
-    save: SaveSuggestion;
-    /**
-     * 
-     * @type {SuggestionTarget}
-     * @memberof Suggestion
-     */
-    target: SuggestionTarget;
-    /**
-     * 
-     * @type {Assets}
-     * @memberof Suggestion
-     */
-    assets: Assets;
-    /**
-     * 
-     * @type {{ [key: string]: number; }}
-     * @memberof Suggestion
-     */
-    distribution?: { [key: string]: number; };
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Suggestion
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ReuseSuggestion}
+	 * @memberof Suggestion
+	 */
+	reuse: ReuseSuggestion;
+	/**
+	 *
+	 * @type {SaveSuggestion}
+	 * @memberof Suggestion
+	 */
+	save: SaveSuggestion;
+	/**
+	 *
+	 * @type {SuggestionTarget}
+	 * @memberof Suggestion
+	 */
+	target: SuggestionTarget;
+	/**
+	 *
+	 * @type {Assets}
+	 * @memberof Suggestion
+	 */
+	assets: Assets;
+	/**
+	 *
+	 * @type {{ [key: string]: number; }}
+	 * @memberof Suggestion
+	 */
+	distribution?: { [key: string]: number };
 }
 
 /**
  * Check if a given object implements the Suggestion interface.
  */
 export function instanceOfSuggestion(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "reuse" in value;
-    isInstance = isInstance && "save" in value;
-    isInstance = isInstance && "target" in value;
-    isInstance = isInstance && "assets" in value;
+	let isInstance = true;
+	isInstance = isInstance && "reuse" in value;
+	isInstance = isInstance && "save" in value;
+	isInstance = isInstance && "target" in value;
+	isInstance = isInstance && "assets" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SuggestionFromJSON(json: any): Suggestion {
-    return SuggestionFromJSONTyped(json, false);
+	return SuggestionFromJSONTyped(json, false);
 }
 
-export function SuggestionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Suggestion {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'reuse': ReuseSuggestionFromJSON(json['reuse']),
-        'save': SaveSuggestionFromJSON(json['save']),
-        'target': SuggestionTargetFromJSON(json['target']),
-        'assets': AssetsFromJSON(json['assets']),
-        'distribution': !exists(json, 'distribution') ? undefined : json['distribution'],
-    };
+export function SuggestionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Suggestion {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		reuse: ReuseSuggestionFromJSON(json["reuse"]),
+		save: SaveSuggestionFromJSON(json["save"]),
+		target: SuggestionTargetFromJSON(json["target"]),
+		assets: AssetsFromJSON(json["assets"]),
+		distribution: exists(json, "distribution")
+			? json["distribution"]
+			: undefined,
+	};
 }
 
 export function SuggestionToJSON(value?: Suggestion | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'reuse': ReuseSuggestionToJSON(value.reuse),
-        'save': SaveSuggestionToJSON(value.save),
-        'target': SuggestionTargetToJSON(value.target),
-        'assets': AssetsToJSON(value.assets),
-        'distribution': value.distribution,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		reuse: ReuseSuggestionToJSON(value.reuse),
+		save: SaveSuggestionToJSON(value.save),
+		target: SuggestionTargetToJSON(value.target),
+		assets: AssetsToJSON(value.assets),
+		distribution: value.distribution,
+	};
 }
-

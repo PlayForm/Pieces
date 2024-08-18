@@ -12,105 +12,109 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Classification } from './Classification';
+import { exists } from "../runtime.ts";
+import type { Classification } from "./Classification.tsx";
 import {
-    ClassificationFromJSON,
-    ClassificationFromJSONTyped,
-    ClassificationToJSON,
-} from './Classification';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ClassificationFromJSON,
+	ClassificationToJSON,
+} from "./Classification.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { LanguageServerProtocolLocation } from './LanguageServerProtocolLocation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { LanguageServerProtocolLocation } from "./LanguageServerProtocolLocation.tsx";
 import {
-    LanguageServerProtocolLocationFromJSON,
-    LanguageServerProtocolLocationFromJSONTyped,
-    LanguageServerProtocolLocationToJSON,
-} from './LanguageServerProtocolLocation';
-import type { TransferableString } from './TransferableString';
+	LanguageServerProtocolLocationFromJSON,
+	LanguageServerProtocolLocationToJSON,
+} from "./LanguageServerProtocolLocation.tsx";
+import type { TransferableString } from "./TransferableString.tsx";
 import {
-    TransferableStringFromJSON,
-    TransferableStringFromJSONTyped,
-    TransferableStringToJSON,
-} from './TransferableString';
+	TransferableStringFromJSON,
+	TransferableStringToJSON,
+} from "./TransferableString.tsx";
 
 /**
  * This is a given bit of text/code that is selected in the IDE, this can be a copy/paste/selection
- * 
+ *
  * location: this is the given location provided by the LSP(might need to be a different object we will see)
  * @export
  * @interface IDESelection
  */
 export interface IDESelection {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof IDESelection
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {LanguageServerProtocolLocation}
-     * @memberof IDESelection
-     */
-    location?: LanguageServerProtocolLocation;
-    /**
-     * 
-     * @type {Classification}
-     * @memberof IDESelection
-     */
-    classification?: Classification;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof IDESelection
-     */
-    value?: TransferableString;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof IDESelection
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {LanguageServerProtocolLocation}
+	 * @memberof IDESelection
+	 */
+	location?: LanguageServerProtocolLocation;
+	/**
+	 *
+	 * @type {Classification}
+	 * @memberof IDESelection
+	 */
+	classification?: Classification;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof IDESelection
+	 */
+	value?: TransferableString;
 }
 
 /**
  * Check if a given object implements the IDESelection interface.
  */
-export function instanceOfIDESelection(value: object): boolean {
-    let isInstance = true;
+export function instanceOfIDESelection(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function IDESelectionFromJSON(json: any): IDESelection {
-    return IDESelectionFromJSONTyped(json, false);
+	return IDESelectionFromJSONTyped(json, false);
 }
 
-export function IDESelectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): IDESelection {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'location': !exists(json, 'location') ? undefined : LanguageServerProtocolLocationFromJSON(json['location']),
-        'classification': !exists(json, 'classification') ? undefined : ClassificationFromJSON(json['classification']),
-        'value': !exists(json, 'value') ? undefined : TransferableStringFromJSON(json['value']),
-    };
+export function IDESelectionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): IDESelection {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		location: exists(json, "location")
+			? LanguageServerProtocolLocationFromJSON(json["location"])
+			: undefined,
+		classification: exists(json, "classification")
+			? ClassificationFromJSON(json["classification"])
+			: undefined,
+		value: exists(json, "value")
+			? TransferableStringFromJSON(json["value"])
+			: undefined,
+	};
 }
 
 export function IDESelectionToJSON(value?: IDESelection | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'location': LanguageServerProtocolLocationToJSON(value.location),
-        'classification': ClassificationToJSON(value.classification),
-        'value': TransferableStringToJSON(value.value),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		location: LanguageServerProtocolLocationToJSON(value.location),
+		classification: ClassificationToJSON(value.classification),
+		value: TransferableStringToJSON(value.value),
+	};
 }
-

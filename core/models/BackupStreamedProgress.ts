@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Backup } from './Backup';
+import { exists } from "../runtime.ts";
+import type { Backup } from "./Backup.tsx";
+import { BackupFromJSON, BackupToJSON } from "./Backup.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    BackupFromJSON,
-    BackupFromJSONTyped,
-    BackupToJSON,
-} from './Backup';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ModelDownloadProgressStatusEnum } from "./ModelDownloadProgressStatusEnum.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ModelDownloadProgressStatusEnum } from './ModelDownloadProgressStatusEnum';
-import {
-    ModelDownloadProgressStatusEnumFromJSON,
-    ModelDownloadProgressStatusEnumFromJSONTyped,
-    ModelDownloadProgressStatusEnumToJSON,
-} from './ModelDownloadProgressStatusEnum';
+	ModelDownloadProgressStatusEnumFromJSON,
+	ModelDownloadProgressStatusEnumToJSON,
+} from "./ModelDownloadProgressStatusEnum.tsx";
 
 /**
  * This is a specific model to the /backups/create/streamed.
@@ -38,71 +32,81 @@ import {
  * @interface BackupStreamedProgress
  */
 export interface BackupStreamedProgress {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof BackupStreamedProgress
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ModelDownloadProgressStatusEnum}
-     * @memberof BackupStreamedProgress
-     */
-    status?: ModelDownloadProgressStatusEnum;
-    /**
-     * Optionally if the download is in progress you will recieve a download percent(from 0-100).
-     * @type {number}
-     * @memberof BackupStreamedProgress
-     */
-    percentage?: number | null;
-    /**
-     * 
-     * @type {Backup}
-     * @memberof BackupStreamedProgress
-     */
-    backup?: Backup;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof BackupStreamedProgress
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ModelDownloadProgressStatusEnum}
+	 * @memberof BackupStreamedProgress
+	 */
+	status?: ModelDownloadProgressStatusEnum;
+	/**
+	 * Optionally if the download is in progress you will recieve a download percent(from 0-100).
+	 * @type {number}
+	 * @memberof BackupStreamedProgress
+	 */
+	percentage?: number | null;
+	/**
+	 *
+	 * @type {Backup}
+	 * @memberof BackupStreamedProgress
+	 */
+	backup?: Backup;
 }
 
 /**
  * Check if a given object implements the BackupStreamedProgress interface.
  */
-export function instanceOfBackupStreamedProgress(value: object): boolean {
-    let isInstance = true;
+export function instanceOfBackupStreamedProgress(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function BackupStreamedProgressFromJSON(json: any): BackupStreamedProgress {
-    return BackupStreamedProgressFromJSONTyped(json, false);
+export function BackupStreamedProgressFromJSON(
+	json: any,
+): BackupStreamedProgress {
+	return BackupStreamedProgressFromJSONTyped(json, false);
 }
 
-export function BackupStreamedProgressFromJSONTyped(json: any, ignoreDiscriminator: boolean): BackupStreamedProgress {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'status': !exists(json, 'status') ? undefined : ModelDownloadProgressStatusEnumFromJSON(json['status']),
-        'percentage': !exists(json, 'percentage') ? undefined : json['percentage'],
-        'backup': !exists(json, 'backup') ? undefined : BackupFromJSON(json['backup']),
-    };
+export function BackupStreamedProgressFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): BackupStreamedProgress {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		status: exists(json, "status")
+			? ModelDownloadProgressStatusEnumFromJSON(json["status"])
+			: undefined,
+		percentage: exists(json, "percentage") ? json["percentage"] : undefined,
+		backup: exists(json, "backup")
+			? BackupFromJSON(json["backup"])
+			: undefined,
+	};
 }
 
-export function BackupStreamedProgressToJSON(value?: BackupStreamedProgress | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'status': ModelDownloadProgressStatusEnumToJSON(value.status),
-        'percentage': value.percentage,
-        'backup': BackupToJSON(value.backup),
-    };
+export function BackupStreamedProgressToJSON(
+	value?: BackupStreamedProgress | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		status: ModelDownloadProgressStatusEnumToJSON(value.status),
+		percentage: value.percentage,
+		backup: BackupToJSON(value.backup),
+	};
 }
-

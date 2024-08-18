@@ -12,97 +12,100 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { QGPTQuestionOutput } from './QGPTQuestionOutput';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { QGPTQuestionOutput } from "./QGPTQuestionOutput.tsx";
 import {
-    QGPTQuestionOutputFromJSON,
-    QGPTQuestionOutputFromJSONTyped,
-    QGPTQuestionOutputToJSON,
-} from './QGPTQuestionOutput';
-import type { RelevantQGPTSeeds } from './RelevantQGPTSeeds';
+	QGPTQuestionOutputFromJSON,
+	QGPTQuestionOutputToJSON,
+} from "./QGPTQuestionOutput.tsx";
+import type { RelevantQGPTSeeds } from "./RelevantQGPTSeeds.tsx";
 import {
-    RelevantQGPTSeedsFromJSON,
-    RelevantQGPTSeedsFromJSONTyped,
-    RelevantQGPTSeedsToJSON,
-} from './RelevantQGPTSeeds';
+	RelevantQGPTSeedsFromJSON,
+	RelevantQGPTSeedsToJSON,
+} from "./RelevantQGPTSeeds.tsx";
 
 /**
  * This is the returned value from /code_gpt/relevance.
- * 
+ *
  * This will return the snippets that we found are relevant to the query you provided.
- * 
+ *
  * (optional) answer: in the case you provided question: true, then we will also return to you the answer to your question.
- * 
+ *
  * Note:
  * - relevant: this is required property and will represent the relevant snippets, to your specific query.(NOTE: these snippet will all have respective id's and seed defined. even though id and seed are optional)
  * @export
  * @interface QGPTRelevanceOutput
  */
 export interface QGPTRelevanceOutput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTRelevanceOutput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {QGPTQuestionOutput}
-     * @memberof QGPTRelevanceOutput
-     */
-    answer?: QGPTQuestionOutput;
-    /**
-     * 
-     * @type {RelevantQGPTSeeds}
-     * @memberof QGPTRelevanceOutput
-     */
-    relevant: RelevantQGPTSeeds;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTRelevanceOutput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {QGPTQuestionOutput}
+	 * @memberof QGPTRelevanceOutput
+	 */
+	answer?: QGPTQuestionOutput;
+	/**
+	 *
+	 * @type {RelevantQGPTSeeds}
+	 * @memberof QGPTRelevanceOutput
+	 */
+	relevant: RelevantQGPTSeeds;
 }
 
 /**
  * Check if a given object implements the QGPTRelevanceOutput interface.
  */
 export function instanceOfQGPTRelevanceOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "relevant" in value;
+	let isInstance = true;
+	isInstance = isInstance && "relevant" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function QGPTRelevanceOutputFromJSON(json: any): QGPTRelevanceOutput {
-    return QGPTRelevanceOutputFromJSONTyped(json, false);
+	return QGPTRelevanceOutputFromJSONTyped(json, false);
 }
 
-export function QGPTRelevanceOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTRelevanceOutput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'answer': !exists(json, 'answer') ? undefined : QGPTQuestionOutputFromJSON(json['answer']),
-        'relevant': RelevantQGPTSeedsFromJSON(json['relevant']),
-    };
+export function QGPTRelevanceOutputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTRelevanceOutput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		answer: exists(json, "answer")
+			? QGPTQuestionOutputFromJSON(json["answer"])
+			: undefined,
+		relevant: RelevantQGPTSeedsFromJSON(json["relevant"]),
+	};
 }
 
-export function QGPTRelevanceOutputToJSON(value?: QGPTRelevanceOutput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'answer': QGPTQuestionOutputToJSON(value.answer),
-        'relevant': RelevantQGPTSeedsToJSON(value.relevant),
-    };
+export function QGPTRelevanceOutputToJSON(
+	value?: QGPTRelevanceOutput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		answer: QGPTQuestionOutputToJSON(value.answer),
+		relevant: RelevantQGPTSeedsToJSON(value.relevant),
+	};
 }
-

@@ -12,117 +12,116 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Sensitive } from './Sensitive';
-import {
-    SensitiveFromJSON,
-    SensitiveFromJSONTyped,
-    SensitiveToJSON,
-} from './Sensitive';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Sensitive } from "./Sensitive.tsx";
+import { SensitiveFromJSON, SensitiveToJSON } from "./Sensitive.tsx";
 
 /**
  * This is used for the Sensitives searching endpoint.
- * 
+ *
  * sensitive here is only provided if transferables are set to true.
- * 
+ *
  * temporal: if this is provided this means that their material matched the input via a timestamp.
- * 
+ *
  * TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials
  * ie suggestion: WorkstreamSuggestions
  * @export
  * @interface SearchedSensitive
  */
 export interface SearchedSensitive {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedSensitive
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Sensitive}
-     * @memberof SearchedSensitive
-     */
-    sensitive?: Sensitive;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedSensitive
-     */
-    exact: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchedSensitive
-     */
-    similarity: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedSensitive
-     */
-    temporal?: boolean;
-    /**
-     * This is the uuid of the sensitive.
-     * @type {string}
-     * @memberof SearchedSensitive
-     */
-    identifier: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedSensitive
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Sensitive}
+	 * @memberof SearchedSensitive
+	 */
+	sensitive?: Sensitive;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedSensitive
+	 */
+	exact: boolean;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SearchedSensitive
+	 */
+	similarity: number;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedSensitive
+	 */
+	temporal?: boolean;
+	/**
+	 * This is the uuid of the sensitive.
+	 * @type {string}
+	 * @memberof SearchedSensitive
+	 */
+	identifier: string;
 }
 
 /**
  * Check if a given object implements the SearchedSensitive interface.
  */
 export function instanceOfSearchedSensitive(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "exact" in value;
-    isInstance = isInstance && "similarity" in value;
-    isInstance = isInstance && "identifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "exact" in value;
+	isInstance = isInstance && "similarity" in value;
+	isInstance = isInstance && "identifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedSensitiveFromJSON(json: any): SearchedSensitive {
-    return SearchedSensitiveFromJSONTyped(json, false);
+	return SearchedSensitiveFromJSONTyped(json, false);
 }
 
-export function SearchedSensitiveFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedSensitive {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'sensitive': !exists(json, 'sensitive') ? undefined : SensitiveFromJSON(json['sensitive']),
-        'exact': json['exact'],
-        'similarity': json['similarity'],
-        'temporal': !exists(json, 'temporal') ? undefined : json['temporal'],
-        'identifier': json['identifier'],
-    };
+export function SearchedSensitiveFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedSensitive {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		sensitive: exists(json, "sensitive")
+			? SensitiveFromJSON(json["sensitive"])
+			: undefined,
+		exact: json["exact"],
+		similarity: json["similarity"],
+		temporal: exists(json, "temporal") ? json["temporal"] : undefined,
+		identifier: json["identifier"],
+	};
 }
 
 export function SearchedSensitiveToJSON(value?: SearchedSensitive | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'sensitive': SensitiveToJSON(value.sensitive),
-        'exact': value.exact,
-        'similarity': value.similarity,
-        'temporal': value.temporal,
-        'identifier': value.identifier,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		sensitive: SensitiveToJSON(value.sensitive),
+		exact: value.exact,
+		similarity: value.similarity,
+		temporal: value.temporal,
+		identifier: value.identifier,
+	};
 }
-

@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamPatternEngineVisionEvent } from './WorkstreamPatternEngineVisionEvent';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamPatternEngineVisionEvent } from "./WorkstreamPatternEngineVisionEvent.tsx";
 import {
-    WorkstreamPatternEngineVisionEventFromJSON,
-    WorkstreamPatternEngineVisionEventFromJSONTyped,
-    WorkstreamPatternEngineVisionEventToJSON,
-} from './WorkstreamPatternEngineVisionEvent';
+	WorkstreamPatternEngineVisionEventFromJSON,
+	WorkstreamPatternEngineVisionEventToJSON,
+} from "./WorkstreamPatternEngineVisionEvent.tsx";
 
 /**
  * This will return a list of the returned events.
@@ -32,96 +30,108 @@ import {
  * @interface SearchedWorkstreamPatternEngineVisionEvent
  */
 export interface SearchedWorkstreamPatternEngineVisionEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {WorkstreamPatternEngineVisionEvent}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvent
-     */
-    event?: WorkstreamPatternEngineVisionEvent;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvent
-     */
-    exact?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvent
-     */
-    similarity?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvent
-     */
-    temporal?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvent
-     */
-    application?: string;
-    /**
-     * This is the uuid of the event.
-     * @type {string}
-     * @memberof SearchedWorkstreamPatternEngineVisionEvent
-     */
-    identifier: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {WorkstreamPatternEngineVisionEvent}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvent
+	 */
+	event?: WorkstreamPatternEngineVisionEvent;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvent
+	 */
+	exact?: boolean;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvent
+	 */
+	similarity?: number;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvent
+	 */
+	temporal?: boolean;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvent
+	 */
+	application?: string;
+	/**
+	 * This is the uuid of the event.
+	 * @type {string}
+	 * @memberof SearchedWorkstreamPatternEngineVisionEvent
+	 */
+	identifier: string;
 }
 
 /**
  * Check if a given object implements the SearchedWorkstreamPatternEngineVisionEvent interface.
  */
-export function instanceOfSearchedWorkstreamPatternEngineVisionEvent(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "identifier" in value;
+export function instanceOfSearchedWorkstreamPatternEngineVisionEvent(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "identifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SearchedWorkstreamPatternEngineVisionEventFromJSON(json: any): SearchedWorkstreamPatternEngineVisionEvent {
-    return SearchedWorkstreamPatternEngineVisionEventFromJSONTyped(json, false);
+export function SearchedWorkstreamPatternEngineVisionEventFromJSON(
+	json: any,
+): SearchedWorkstreamPatternEngineVisionEvent {
+	return SearchedWorkstreamPatternEngineVisionEventFromJSONTyped(json, false);
 }
 
-export function SearchedWorkstreamPatternEngineVisionEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedWorkstreamPatternEngineVisionEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'event': !exists(json, 'event') ? undefined : WorkstreamPatternEngineVisionEventFromJSON(json['event']),
-        'exact': !exists(json, 'exact') ? undefined : json['exact'],
-        'similarity': !exists(json, 'similarity') ? undefined : json['similarity'],
-        'temporal': !exists(json, 'temporal') ? undefined : json['temporal'],
-        'application': !exists(json, 'application') ? undefined : json['application'],
-        'identifier': json['identifier'],
-    };
+export function SearchedWorkstreamPatternEngineVisionEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedWorkstreamPatternEngineVisionEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		event: exists(json, "event")
+			? WorkstreamPatternEngineVisionEventFromJSON(json["event"])
+			: undefined,
+		exact: exists(json, "exact") ? json["exact"] : undefined,
+		similarity: exists(json, "similarity") ? json["similarity"] : undefined,
+		temporal: exists(json, "temporal") ? json["temporal"] : undefined,
+		application: exists(json, "application")
+			? json["application"]
+			: undefined,
+		identifier: json["identifier"],
+	};
 }
 
-export function SearchedWorkstreamPatternEngineVisionEventToJSON(value?: SearchedWorkstreamPatternEngineVisionEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'event': WorkstreamPatternEngineVisionEventToJSON(value.event),
-        'exact': value.exact,
-        'similarity': value.similarity,
-        'temporal': value.temporal,
-        'application': value.application,
-        'identifier': value.identifier,
-    };
+export function SearchedWorkstreamPatternEngineVisionEventToJSON(
+	value?: SearchedWorkstreamPatternEngineVisionEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		event: WorkstreamPatternEngineVisionEventToJSON(value.event),
+		exact: value.exact,
+		similarity: value.similarity,
+		temporal: value.temporal,
+		application: value.application,
+		identifier: value.identifier,
+	};
 }
-

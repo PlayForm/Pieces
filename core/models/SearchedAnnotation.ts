@@ -12,117 +12,118 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Annotation } from './Annotation';
+import { exists } from "../runtime.ts";
+import type { Annotation } from "./Annotation.tsx";
+import { AnnotationFromJSON, AnnotationToJSON } from "./Annotation.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AnnotationFromJSON,
-    AnnotationFromJSONTyped,
-    AnnotationToJSON,
-} from './Annotation';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is used for the Annotation searching endpoint
- * 
+ *
  * annotation here is only provided if transferables are set to true.
- * 
+ *
  * temporal: if this is provided this means that their material matched the input via a timestamp.
- * 
+ *
  * TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials
  * ie suggestion: WorkstreamSuggestions
  * @export
  * @interface SearchedAnnotation
  */
 export interface SearchedAnnotation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedAnnotation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Annotation}
-     * @memberof SearchedAnnotation
-     */
-    annotation?: Annotation;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedAnnotation
-     */
-    exact: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchedAnnotation
-     */
-    similarity: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedAnnotation
-     */
-    temporal?: boolean;
-    /**
-     * This is the uuid of the annotation.
-     * @type {string}
-     * @memberof SearchedAnnotation
-     */
-    identifier: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedAnnotation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Annotation}
+	 * @memberof SearchedAnnotation
+	 */
+	annotation?: Annotation;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedAnnotation
+	 */
+	exact: boolean;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SearchedAnnotation
+	 */
+	similarity: number;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedAnnotation
+	 */
+	temporal?: boolean;
+	/**
+	 * This is the uuid of the annotation.
+	 * @type {string}
+	 * @memberof SearchedAnnotation
+	 */
+	identifier: string;
 }
 
 /**
  * Check if a given object implements the SearchedAnnotation interface.
  */
 export function instanceOfSearchedAnnotation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "exact" in value;
-    isInstance = isInstance && "similarity" in value;
-    isInstance = isInstance && "identifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "exact" in value;
+	isInstance = isInstance && "similarity" in value;
+	isInstance = isInstance && "identifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedAnnotationFromJSON(json: any): SearchedAnnotation {
-    return SearchedAnnotationFromJSONTyped(json, false);
+	return SearchedAnnotationFromJSONTyped(json, false);
 }
 
-export function SearchedAnnotationFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedAnnotation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'annotation': !exists(json, 'annotation') ? undefined : AnnotationFromJSON(json['annotation']),
-        'exact': json['exact'],
-        'similarity': json['similarity'],
-        'temporal': !exists(json, 'temporal') ? undefined : json['temporal'],
-        'identifier': json['identifier'],
-    };
+export function SearchedAnnotationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedAnnotation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		annotation: exists(json, "annotation")
+			? AnnotationFromJSON(json["annotation"])
+			: undefined,
+		exact: json["exact"],
+		similarity: json["similarity"],
+		temporal: exists(json, "temporal") ? json["temporal"] : undefined,
+		identifier: json["identifier"],
+	};
 }
 
-export function SearchedAnnotationToJSON(value?: SearchedAnnotation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'annotation': AnnotationToJSON(value.annotation),
-        'exact': value.exact,
-        'similarity': value.similarity,
-        'temporal': value.temporal,
-        'identifier': value.identifier,
-    };
+export function SearchedAnnotationToJSON(
+	value?: SearchedAnnotation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		annotation: AnnotationToJSON(value.annotation),
+		exact: value.exact,
+		similarity: value.similarity,
+		temporal: value.temporal,
+		identifier: value.identifier,
+	};
 }
-

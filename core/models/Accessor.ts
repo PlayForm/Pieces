@@ -12,113 +12,115 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedUserProfile } from './FlattenedUserProfile';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedUserProfile } from "./FlattenedUserProfile.tsx";
 import {
-    FlattenedUserProfileFromJSON,
-    FlattenedUserProfileFromJSONTyped,
-    FlattenedUserProfileToJSON,
-} from './FlattenedUserProfile';
+	FlattenedUserProfileFromJSON,
+	FlattenedUserProfileToJSON,
+} from "./FlattenedUserProfile.tsx";
 
 /**
  * This is used to determine who has accessed a share. and how many times.
- * 
+ *
  * The user here is the user that accessed this Piece.(optional) if undefined then this user was not logged in yet.
  * @export
  * @interface Accessor
  */
 export interface Accessor {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Accessor
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof Accessor
-     */
-    id: string;
-    /**
-     * this is an os id.
-     * @type {string}
-     * @memberof Accessor
-     */
-    os: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Accessor
-     */
-    share: string;
-    /**
-     * how many times this user accessed this piece.
-     * @type {number}
-     * @memberof Accessor
-     */
-    count: number;
-    /**
-     * 
-     * @type {FlattenedUserProfile}
-     * @memberof Accessor
-     */
-    user?: FlattenedUserProfile;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Accessor
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Accessor
+	 */
+	id: string;
+	/**
+	 * this is an os id.
+	 * @type {string}
+	 * @memberof Accessor
+	 */
+	os: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Accessor
+	 */
+	share: string;
+	/**
+	 * how many times this user accessed this piece.
+	 * @type {number}
+	 * @memberof Accessor
+	 */
+	count: number;
+	/**
+	 *
+	 * @type {FlattenedUserProfile}
+	 * @memberof Accessor
+	 */
+	user?: FlattenedUserProfile;
 }
 
 /**
  * Check if a given object implements the Accessor interface.
  */
 export function instanceOfAccessor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "os" in value;
-    isInstance = isInstance && "share" in value;
-    isInstance = isInstance && "count" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "os" in value;
+	isInstance = isInstance && "share" in value;
+	isInstance = isInstance && "count" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AccessorFromJSON(json: any): Accessor {
-    return AccessorFromJSONTyped(json, false);
+	return AccessorFromJSONTyped(json, false);
 }
 
-export function AccessorFromJSONTyped(json: any, ignoreDiscriminator: boolean): Accessor {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'os': json['os'],
-        'share': json['share'],
-        'count': json['count'],
-        'user': !exists(json, 'user') ? undefined : FlattenedUserProfileFromJSON(json['user']),
-    };
+export function AccessorFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Accessor {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		os: json["os"],
+		share: json["share"],
+		count: json["count"],
+		user: exists(json, "user")
+			? FlattenedUserProfileFromJSON(json["user"])
+			: undefined,
+	};
 }
 
 export function AccessorToJSON(value?: Accessor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'os': value.os,
-        'share': value.share,
-        'count': value.count,
-        'user': FlattenedUserProfileToJSON(value.user),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		os: value.os,
+		share: value.share,
+		count: value.count,
+		user: FlattenedUserProfileToJSON(value.user),
+	};
 }
-

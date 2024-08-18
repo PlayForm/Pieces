@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { PersonBasicType } from './PersonBasicType';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { PersonBasicType } from "./PersonBasicType.tsx";
 import {
-    PersonBasicTypeFromJSON,
-    PersonBasicTypeFromJSONTyped,
-    PersonBasicTypeToJSON,
-} from './PersonBasicType';
-import type { UserProfile } from './UserProfile';
-import {
-    UserProfileFromJSON,
-    UserProfileFromJSONTyped,
-    UserProfileToJSON,
-} from './UserProfile';
+	PersonBasicTypeFromJSON,
+	PersonBasicTypeToJSON,
+} from "./PersonBasicType.tsx";
+import type { UserProfile } from "./UserProfile.tsx";
+import { UserProfileFromJSON, UserProfileToJSON } from "./UserProfile.tsx";
 
 /**
  * basic or platform is absolutely required here.
@@ -40,63 +34,69 @@ import {
  * @interface PersonType
  */
 export interface PersonType {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof PersonType
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {PersonBasicType}
-     * @memberof PersonType
-     */
-    basic?: PersonBasicType;
-    /**
-     * 
-     * @type {UserProfile}
-     * @memberof PersonType
-     */
-    platform?: UserProfile;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof PersonType
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {PersonBasicType}
+	 * @memberof PersonType
+	 */
+	basic?: PersonBasicType;
+	/**
+	 *
+	 * @type {UserProfile}
+	 * @memberof PersonType
+	 */
+	platform?: UserProfile;
 }
 
 /**
  * Check if a given object implements the PersonType interface.
  */
-export function instanceOfPersonType(value: object): boolean {
-    let isInstance = true;
+export function instanceOfPersonType(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function PersonTypeFromJSON(json: any): PersonType {
-    return PersonTypeFromJSONTyped(json, false);
+	return PersonTypeFromJSONTyped(json, false);
 }
 
-export function PersonTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): PersonType {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'basic': !exists(json, 'basic') ? undefined : PersonBasicTypeFromJSON(json['basic']),
-        'platform': !exists(json, 'platform') ? undefined : UserProfileFromJSON(json['platform']),
-    };
+export function PersonTypeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): PersonType {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		basic: exists(json, "basic")
+			? PersonBasicTypeFromJSON(json["basic"])
+			: undefined,
+		platform: exists(json, "platform")
+			? UserProfileFromJSON(json["platform"])
+			: undefined,
+	};
 }
 
 export function PersonTypeToJSON(value?: PersonType | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'basic': PersonBasicTypeToJSON(value.basic),
-        'platform': UserProfileToJSON(value.platform),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		basic: PersonBasicTypeToJSON(value.basic),
+		platform: UserProfileToJSON(value.platform),
+	};
 }
-

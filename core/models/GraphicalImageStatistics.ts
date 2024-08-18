@@ -12,75 +12,83 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GraphicalImageDescriptiveStatistics } from './GraphicalImageDescriptiveStatistics';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GraphicalImageDescriptiveStatistics } from "./GraphicalImageDescriptiveStatistics.tsx";
 import {
-    GraphicalImageDescriptiveStatisticsFromJSON,
-    GraphicalImageDescriptiveStatisticsFromJSONTyped,
-    GraphicalImageDescriptiveStatisticsToJSON,
-} from './GraphicalImageDescriptiveStatistics';
+	GraphicalImageDescriptiveStatisticsFromJSON,
+	GraphicalImageDescriptiveStatisticsToJSON,
+} from "./GraphicalImageDescriptiveStatistics.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface GraphicalImageStatistics
  */
 export interface GraphicalImageStatistics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GraphicalImageStatistics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GraphicalImageDescriptiveStatistics}
-     * @memberof GraphicalImageStatistics
-     */
-    descriptive?: GraphicalImageDescriptiveStatistics;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GraphicalImageStatistics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GraphicalImageDescriptiveStatistics}
+	 * @memberof GraphicalImageStatistics
+	 */
+	descriptive?: GraphicalImageDescriptiveStatistics;
 }
 
 /**
  * Check if a given object implements the GraphicalImageStatistics interface.
  */
-export function instanceOfGraphicalImageStatistics(value: object): boolean {
-    let isInstance = true;
+export function instanceOfGraphicalImageStatistics(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function GraphicalImageStatisticsFromJSON(json: any): GraphicalImageStatistics {
-    return GraphicalImageStatisticsFromJSONTyped(json, false);
+export function GraphicalImageStatisticsFromJSON(
+	json: any,
+): GraphicalImageStatistics {
+	return GraphicalImageStatisticsFromJSONTyped(json, false);
 }
 
-export function GraphicalImageStatisticsFromJSONTyped(json: any, ignoreDiscriminator: boolean): GraphicalImageStatistics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'descriptive': !exists(json, 'descriptive') ? undefined : GraphicalImageDescriptiveStatisticsFromJSON(json['descriptive']),
-    };
+export function GraphicalImageStatisticsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GraphicalImageStatistics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		descriptive: exists(json, "descriptive")
+			? GraphicalImageDescriptiveStatisticsFromJSON(json["descriptive"])
+			: undefined,
+	};
 }
 
-export function GraphicalImageStatisticsToJSON(value?: GraphicalImageStatistics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'descriptive': GraphicalImageDescriptiveStatisticsToJSON(value.descriptive),
-    };
+export function GraphicalImageStatisticsToJSON(
+	value?: GraphicalImageStatistics | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		descriptive: GraphicalImageDescriptiveStatisticsToJSON(
+			value.descriptive,
+		),
+	};
 }
-

@@ -12,107 +12,109 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AssetFilterPhraseOptions } from './AssetFilterPhraseOptions';
+import { exists } from "../runtime.ts";
+import type { AssetFilterPhraseOptions } from "./AssetFilterPhraseOptions.tsx";
 import {
-    AssetFilterPhraseOptionsFromJSON,
-    AssetFilterPhraseOptionsFromJSONTyped,
-    AssetFilterPhraseOptionsToJSON,
-} from './AssetFilterPhraseOptions';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AssetFilterPhraseOptionsFromJSON,
+	AssetFilterPhraseOptionsToJSON,
+} from "./AssetFilterPhraseOptions.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface AssetFilterPhrase
  */
 export interface AssetFilterPhrase {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AssetFilterPhrase
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof AssetFilterPhrase
-     */
-    value?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AssetFilterPhrase
-     */
-    annotation?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AssetFilterPhrase
-     */
-    title?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AssetFilterPhrase
-     */
-    content?: boolean;
-    /**
-     * 
-     * @type {AssetFilterPhraseOptions}
-     * @memberof AssetFilterPhrase
-     */
-    options?: AssetFilterPhraseOptions;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AssetFilterPhrase
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof AssetFilterPhrase
+	 */
+	value?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof AssetFilterPhrase
+	 */
+	annotation?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof AssetFilterPhrase
+	 */
+	title?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof AssetFilterPhrase
+	 */
+	content?: boolean;
+	/**
+	 *
+	 * @type {AssetFilterPhraseOptions}
+	 * @memberof AssetFilterPhrase
+	 */
+	options?: AssetFilterPhraseOptions;
 }
 
 /**
  * Check if a given object implements the AssetFilterPhrase interface.
  */
-export function instanceOfAssetFilterPhrase(value: object): boolean {
-    let isInstance = true;
+export function instanceOfAssetFilterPhrase(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AssetFilterPhraseFromJSON(json: any): AssetFilterPhrase {
-    return AssetFilterPhraseFromJSONTyped(json, false);
+	return AssetFilterPhraseFromJSONTyped(json, false);
 }
 
-export function AssetFilterPhraseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AssetFilterPhrase {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'value': !exists(json, 'value') ? undefined : json['value'],
-        'annotation': !exists(json, 'annotation') ? undefined : json['annotation'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
-        'content': !exists(json, 'content') ? undefined : json['content'],
-        'options': !exists(json, 'options') ? undefined : AssetFilterPhraseOptionsFromJSON(json['options']),
-    };
+export function AssetFilterPhraseFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AssetFilterPhrase {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		value: exists(json, "value") ? json["value"] : undefined,
+		annotation: exists(json, "annotation") ? json["annotation"] : undefined,
+		title: exists(json, "title") ? json["title"] : undefined,
+		content: exists(json, "content") ? json["content"] : undefined,
+		options: exists(json, "options")
+			? AssetFilterPhraseOptionsFromJSON(json["options"])
+			: undefined,
+	};
 }
 
 export function AssetFilterPhraseToJSON(value?: AssetFilterPhrase | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'value': value.value,
-        'annotation': value.annotation,
-        'title': value.title,
-        'content': value.content,
-        'options': AssetFilterPhraseOptionsToJSON(value.options),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		value: value.value,
+		annotation: value.annotation,
+		title: value.title,
+		content: value.content,
+		options: AssetFilterPhraseOptionsToJSON(value.options),
+	};
 }
-

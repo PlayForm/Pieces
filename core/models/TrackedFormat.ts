@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Classification } from './Classification';
+import { exists } from "../runtime.ts";
+import type { Classification } from "./Classification.tsx";
 import {
-    ClassificationFromJSON,
-    ClassificationFromJSONTyped,
-    ClassificationToJSON,
-} from './Classification';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ClassificationFromJSON,
+	ClassificationToJSON,
+} from "./Classification.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Role } from './Role';
-import {
-    RoleFromJSON,
-    RoleFromJSONTyped,
-    RoleToJSON,
-} from './Role';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Role } from "./Role.tsx";
+import { RoleFromJSON, RoleToJSON } from "./Role.tsx";
 
 /**
  * A minimal format to send to Mixpanel
@@ -38,101 +32,103 @@ import {
  * @interface TrackedFormat
  */
 export interface TrackedFormat {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TrackedFormat
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * The UUID of the format
-     * @type {string}
-     * @memberof TrackedFormat
-     */
-    id: string;
-    /**
-     * 
-     * @type {Classification}
-     * @memberof TrackedFormat
-     */
-    classification: Classification;
-    /**
-     * 
-     * @type {Role}
-     * @memberof TrackedFormat
-     */
-    role: Role;
-    /**
-     * The UUID of the asset associated
-     * @type {string}
-     * @memberof TrackedFormat
-     */
-    asset: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TrackedFormat
-     */
-    fragment: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TrackedFormat
-     */
-    file: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TrackedFormat
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * The UUID of the format
+	 * @type {string}
+	 * @memberof TrackedFormat
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {Classification}
+	 * @memberof TrackedFormat
+	 */
+	classification: Classification;
+	/**
+	 *
+	 * @type {Role}
+	 * @memberof TrackedFormat
+	 */
+	role: Role;
+	/**
+	 * The UUID of the asset associated
+	 * @type {string}
+	 * @memberof TrackedFormat
+	 */
+	asset: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof TrackedFormat
+	 */
+	fragment: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof TrackedFormat
+	 */
+	file: boolean;
 }
 
 /**
  * Check if a given object implements the TrackedFormat interface.
  */
 export function instanceOfTrackedFormat(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "classification" in value;
-    isInstance = isInstance && "role" in value;
-    isInstance = isInstance && "asset" in value;
-    isInstance = isInstance && "fragment" in value;
-    isInstance = isInstance && "file" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "classification" in value;
+	isInstance = isInstance && "role" in value;
+	isInstance = isInstance && "asset" in value;
+	isInstance = isInstance && "fragment" in value;
+	isInstance = isInstance && "file" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TrackedFormatFromJSON(json: any): TrackedFormat {
-    return TrackedFormatFromJSONTyped(json, false);
+	return TrackedFormatFromJSONTyped(json, false);
 }
 
-export function TrackedFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedFormat {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'classification': ClassificationFromJSON(json['classification']),
-        'role': RoleFromJSON(json['role']),
-        'asset': json['asset'],
-        'fragment': json['fragment'],
-        'file': json['file'],
-    };
+export function TrackedFormatFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedFormat {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		classification: ClassificationFromJSON(json["classification"]),
+		role: RoleFromJSON(json["role"]),
+		asset: json["asset"],
+		fragment: json["fragment"],
+		file: json["file"],
+	};
 }
 
 export function TrackedFormatToJSON(value?: TrackedFormat | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'classification': ClassificationToJSON(value.classification),
-        'role': RoleToJSON(value.role),
-        'asset': value.asset,
-        'fragment': value.fragment,
-        'file': value.file,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		classification: ClassificationToJSON(value.classification),
+		role: RoleToJSON(value.role),
+		asset: value.asset,
+		fragment: value.fragment,
+		file: value.file,
+	};
 }
-

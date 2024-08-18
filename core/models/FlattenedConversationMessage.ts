@@ -12,61 +12,46 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ConversationMessageSentimentEnum } from './ConversationMessageSentimentEnum';
+import { exists } from "../runtime.ts";
+import type { ConversationMessageSentimentEnum } from "./ConversationMessageSentimentEnum.tsx";
 import {
-    ConversationMessageSentimentEnumFromJSON,
-    ConversationMessageSentimentEnumFromJSONTyped,
-    ConversationMessageSentimentEnumToJSON,
-} from './ConversationMessageSentimentEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ConversationMessageSentimentEnumFromJSON,
+	ConversationMessageSentimentEnumToJSON,
+} from "./ConversationMessageSentimentEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAnnotations } from './FlattenedAnnotations';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
-    FlattenedAnnotationsFromJSON,
-    FlattenedAnnotationsFromJSONTyped,
-    FlattenedAnnotationsToJSON,
-} from './FlattenedAnnotations';
-import type { FragmentFormat } from './FragmentFormat';
+	FlattenedAnnotationsFromJSON,
+	FlattenedAnnotationsToJSON,
+} from "./FlattenedAnnotations.tsx";
+import type { FragmentFormat } from "./FragmentFormat.tsx";
 import {
-    FragmentFormatFromJSON,
-    FragmentFormatFromJSONTyped,
-    FragmentFormatToJSON,
-} from './FragmentFormat';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	FragmentFormatFromJSON,
+	FragmentFormatToJSON,
+} from "./FragmentFormat.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { Model } from './Model';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { Model } from "./Model.tsx";
+import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
+import type { QGPTConversationMessageRoleEnum } from "./QGPTConversationMessageRoleEnum.tsx";
 import {
-    ModelFromJSON,
-    ModelFromJSONTyped,
-    ModelToJSON,
-} from './Model';
-import type { QGPTConversationMessageRoleEnum } from './QGPTConversationMessageRoleEnum';
+	QGPTConversationMessageRoleEnumFromJSON,
+	QGPTConversationMessageRoleEnumToJSON,
+} from "./QGPTConversationMessageRoleEnum.tsx";
+import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
-    QGPTConversationMessageRoleEnumFromJSON,
-    QGPTConversationMessageRoleEnumFromJSONTyped,
-    QGPTConversationMessageRoleEnumToJSON,
-} from './QGPTConversationMessageRoleEnum';
-import type { ReferencedConversation } from './ReferencedConversation';
-import {
-    ReferencedConversationFromJSON,
-    ReferencedConversationFromJSONTyped,
-    ReferencedConversationToJSON,
-} from './ReferencedConversation';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedConversationFromJSON,
+	ReferencedConversationToJSON,
+} from "./ReferencedConversation.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a flattened DAG safe version of a ConversationMessage.
@@ -74,140 +59,154 @@ import {
  * @interface FlattenedConversationMessage
  */
 export interface FlattenedConversationMessage {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedConversationMessage
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedConversationMessage
-     */
-    id: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedConversationMessage
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedConversationMessage
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedConversationMessage
-     */
-    deleted?: GroupedTimestamp;
-    /**
-     * 
-     * @type {Model}
-     * @memberof FlattenedConversationMessage
-     */
-    model?: Model;
-    /**
-     * 
-     * @type {FragmentFormat}
-     * @memberof FlattenedConversationMessage
-     */
-    fragment?: FragmentFormat;
-    /**
-     * 
-     * @type {ReferencedConversation}
-     * @memberof FlattenedConversationMessage
-     */
-    conversation: ReferencedConversation;
-    /**
-     * 
-     * @type {ConversationMessageSentimentEnum}
-     * @memberof FlattenedConversationMessage
-     */
-    sentiment?: ConversationMessageSentimentEnum;
-    /**
-     * 
-     * @type {QGPTConversationMessageRoleEnum}
-     * @memberof FlattenedConversationMessage
-     */
-    role: QGPTConversationMessageRoleEnum;
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedConversationMessage
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {FlattenedAnnotations}
-     * @memberof FlattenedConversationMessage
-     */
-    annotations?: FlattenedAnnotations;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedConversationMessage
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedConversationMessage
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedConversationMessage
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedConversationMessage
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedConversationMessage
+	 */
+	deleted?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {Model}
+	 * @memberof FlattenedConversationMessage
+	 */
+	model?: Model;
+	/**
+	 *
+	 * @type {FragmentFormat}
+	 * @memberof FlattenedConversationMessage
+	 */
+	fragment?: FragmentFormat;
+	/**
+	 *
+	 * @type {ReferencedConversation}
+	 * @memberof FlattenedConversationMessage
+	 */
+	conversation: ReferencedConversation;
+	/**
+	 *
+	 * @type {ConversationMessageSentimentEnum}
+	 * @memberof FlattenedConversationMessage
+	 */
+	sentiment?: ConversationMessageSentimentEnum;
+	/**
+	 *
+	 * @type {QGPTConversationMessageRoleEnum}
+	 * @memberof FlattenedConversationMessage
+	 */
+	role: QGPTConversationMessageRoleEnum;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedConversationMessage
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {FlattenedAnnotations}
+	 * @memberof FlattenedConversationMessage
+	 */
+	annotations?: FlattenedAnnotations;
 }
 
 /**
  * Check if a given object implements the FlattenedConversationMessage interface.
  */
 export function instanceOfFlattenedConversationMessage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
-    isInstance = isInstance && "conversation" in value;
-    isInstance = isInstance && "role" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
+	isInstance = isInstance && "conversation" in value;
+	isInstance = isInstance && "role" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function FlattenedConversationMessageFromJSON(json: any): FlattenedConversationMessage {
-    return FlattenedConversationMessageFromJSONTyped(json, false);
+export function FlattenedConversationMessageFromJSON(
+	json: any,
+): FlattenedConversationMessage {
+	return FlattenedConversationMessageFromJSONTyped(json, false);
 }
 
-export function FlattenedConversationMessageFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedConversationMessage {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-        'model': !exists(json, 'model') ? undefined : ModelFromJSON(json['model']),
-        'fragment': !exists(json, 'fragment') ? undefined : FragmentFormatFromJSON(json['fragment']),
-        'conversation': ReferencedConversationFromJSON(json['conversation']),
-        'sentiment': !exists(json, 'sentiment') ? undefined : ConversationMessageSentimentEnumFromJSON(json['sentiment']),
-        'role': QGPTConversationMessageRoleEnumFromJSON(json['role']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'annotations': !exists(json, 'annotations') ? undefined : FlattenedAnnotationsFromJSON(json['annotations']),
-    };
+export function FlattenedConversationMessageFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedConversationMessage {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+		model: exists(json, "model") ? ModelFromJSON(json["model"]) : undefined,
+		fragment: exists(json, "fragment")
+			? FragmentFormatFromJSON(json["fragment"])
+			: undefined,
+		conversation: ReferencedConversationFromJSON(json["conversation"]),
+		sentiment: exists(json, "sentiment")
+			? ConversationMessageSentimentEnumFromJSON(json["sentiment"])
+			: undefined,
+		role: QGPTConversationMessageRoleEnumFromJSON(json["role"]),
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		annotations: exists(json, "annotations")
+			? FlattenedAnnotationsFromJSON(json["annotations"])
+			: undefined,
+	};
 }
 
-export function FlattenedConversationMessageToJSON(value?: FlattenedConversationMessage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-        'model': ModelToJSON(value.model),
-        'fragment': FragmentFormatToJSON(value.fragment),
-        'conversation': ReferencedConversationToJSON(value.conversation),
-        'sentiment': ConversationMessageSentimentEnumToJSON(value.sentiment),
-        'role': QGPTConversationMessageRoleEnumToJSON(value.role),
-        'score': ScoreToJSON(value.score),
-        'annotations': FlattenedAnnotationsToJSON(value.annotations),
-    };
+export function FlattenedConversationMessageToJSON(
+	value?: FlattenedConversationMessage | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		deleted: GroupedTimestampToJSON(value.deleted),
+		model: ModelToJSON(value.model),
+		fragment: FragmentFormatToJSON(value.fragment),
+		conversation: ReferencedConversationToJSON(value.conversation),
+		sentiment: ConversationMessageSentimentEnumToJSON(value.sentiment),
+		role: QGPTConversationMessageRoleEnumToJSON(value.role),
+		score: ScoreToJSON(value.score),
+		annotations: FlattenedAnnotationsToJSON(value.annotations),
+	};
 }
-

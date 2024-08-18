@@ -12,36 +12,32 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { ReferencedWorkstreamSummary } from './ReferencedWorkstreamSummary';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { ReferencedWorkstreamSummary } from "./ReferencedWorkstreamSummary.tsx";
 import {
-    ReferencedWorkstreamSummaryFromJSON,
-    ReferencedWorkstreamSummaryFromJSONTyped,
-    ReferencedWorkstreamSummaryToJSON,
-} from './ReferencedWorkstreamSummary';
-import type { SeededRangeConversationAssociation } from './SeededRangeConversationAssociation';
+	ReferencedWorkstreamSummaryFromJSON,
+	ReferencedWorkstreamSummaryToJSON,
+} from "./ReferencedWorkstreamSummary.tsx";
+import type { SeededRangeConversationAssociation } from "./SeededRangeConversationAssociation.tsx";
 import {
-    SeededRangeConversationAssociationFromJSON,
-    SeededRangeConversationAssociationFromJSONTyped,
-    SeededRangeConversationAssociationToJSON,
-} from './SeededRangeConversationAssociation';
+	SeededRangeConversationAssociationFromJSON,
+	SeededRangeConversationAssociationToJSON,
+} from "./SeededRangeConversationAssociation.tsx";
 
 /**
  * This is a preIdentified version of a Range.
- * 
- * conversation: this is here to specify the relationship that we want to set up with the Range. 
+ *
+ * conversation: this is here to specify the relationship that we want to set up with the Range.
  * IE for this case we want to associate a Range with a Conversation.grounding.temporal.workstream. Otherwise, if this
  * was a conversation we would have no way to know what relationship that we want to set up on the conversation w/ the range.
  * (because this will be set up for many relationShip opportunities that have different functionalities)
@@ -49,87 +45,99 @@ import {
  * @interface SeededRange
  */
 export interface SeededRange {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededRange
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof SeededRange
-     */
-    to?: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof SeededRange
-     */
-    from?: GroupedTimestamp;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededRange
-     */
-    between?: boolean;
-    /**
-     * 
-     * @type {ReferencedWorkstreamSummary}
-     * @memberof SeededRange
-     */
-    summary?: ReferencedWorkstreamSummary;
-    /**
-     * 
-     * @type {SeededRangeConversationAssociation}
-     * @memberof SeededRange
-     */
-    conversation?: SeededRangeConversationAssociation;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededRange
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof SeededRange
+	 */
+	to?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof SeededRange
+	 */
+	from?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededRange
+	 */
+	between?: boolean;
+	/**
+	 *
+	 * @type {ReferencedWorkstreamSummary}
+	 * @memberof SeededRange
+	 */
+	summary?: ReferencedWorkstreamSummary;
+	/**
+	 *
+	 * @type {SeededRangeConversationAssociation}
+	 * @memberof SeededRange
+	 */
+	conversation?: SeededRangeConversationAssociation;
 }
 
 /**
  * Check if a given object implements the SeededRange interface.
  */
-export function instanceOfSeededRange(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededRange(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededRangeFromJSON(json: any): SeededRange {
-    return SeededRangeFromJSONTyped(json, false);
+	return SeededRangeFromJSONTyped(json, false);
 }
 
-export function SeededRangeFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededRange {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'to': !exists(json, 'to') ? undefined : GroupedTimestampFromJSON(json['to']),
-        'from': !exists(json, 'from') ? undefined : GroupedTimestampFromJSON(json['from']),
-        'between': !exists(json, 'between') ? undefined : json['between'],
-        'summary': !exists(json, 'summary') ? undefined : ReferencedWorkstreamSummaryFromJSON(json['summary']),
-        'conversation': !exists(json, 'conversation') ? undefined : SeededRangeConversationAssociationFromJSON(json['conversation']),
-    };
+export function SeededRangeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededRange {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		to: exists(json, "to")
+			? GroupedTimestampFromJSON(json["to"])
+			: undefined,
+		from: exists(json, "from")
+			? GroupedTimestampFromJSON(json["from"])
+			: undefined,
+		between: exists(json, "between") ? json["between"] : undefined,
+		summary: exists(json, "summary")
+			? ReferencedWorkstreamSummaryFromJSON(json["summary"])
+			: undefined,
+		conversation: exists(json, "conversation")
+			? SeededRangeConversationAssociationFromJSON(json["conversation"])
+			: undefined,
+	};
 }
 
 export function SeededRangeToJSON(value?: SeededRange | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'to': GroupedTimestampToJSON(value.to),
-        'from': GroupedTimestampToJSON(value.from),
-        'between': value.between,
-        'summary': ReferencedWorkstreamSummaryToJSON(value.summary),
-        'conversation': SeededRangeConversationAssociationToJSON(value.conversation),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		to: GroupedTimestampToJSON(value.to),
+		from: GroupedTimestampToJSON(value.from),
+		between: value.between,
+		summary: ReferencedWorkstreamSummaryToJSON(value.summary),
+		conversation: SeededRangeConversationAssociationToJSON(
+			value.conversation,
+		),
+	};
 }
-

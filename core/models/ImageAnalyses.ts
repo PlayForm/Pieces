@@ -12,76 +12,76 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ImageAnalysis } from './ImageAnalysis';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ImageAnalysis } from "./ImageAnalysis.tsx";
 import {
-    ImageAnalysisFromJSON,
-    ImageAnalysisFromJSONTyped,
-    ImageAnalysisToJSON,
-} from './ImageAnalysis';
+	ImageAnalysisFromJSON,
+	ImageAnalysisToJSON,
+} from "./ImageAnalysis.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface ImageAnalyses
  */
 export interface ImageAnalyses {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ImageAnalyses
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ImageAnalysis>}
-     * @memberof ImageAnalyses
-     */
-    iterable: Array<ImageAnalysis>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ImageAnalyses
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ImageAnalysis>}
+	 * @memberof ImageAnalyses
+	 */
+	iterable: ImageAnalysis[];
 }
 
 /**
  * Check if a given object implements the ImageAnalyses interface.
  */
 export function instanceOfImageAnalyses(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ImageAnalysesFromJSON(json: any): ImageAnalyses {
-    return ImageAnalysesFromJSONTyped(json, false);
+	return ImageAnalysesFromJSONTyped(json, false);
 }
 
-export function ImageAnalysesFromJSONTyped(json: any, ignoreDiscriminator: boolean): ImageAnalyses {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ImageAnalysisFromJSON)),
-    };
+export function ImageAnalysesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ImageAnalyses {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ImageAnalysisFromJSON),
+	};
 }
 
 export function ImageAnalysesToJSON(value?: ImageAnalyses | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ImageAnalysisToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ImageAnalysisToJSON),
+	};
 }
-

@@ -12,69 +12,74 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface TLPCodeDirectoryAnalytics
  */
 export interface TLPCodeDirectoryAnalytics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeDirectoryAnalytics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeDirectoryAnalytics
-     */
-    id?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeDirectoryAnalytics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeDirectoryAnalytics
+	 */
+	id?: string;
 }
 
 /**
  * Check if a given object implements the TLPCodeDirectoryAnalytics interface.
  */
-export function instanceOfTLPCodeDirectoryAnalytics(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTLPCodeDirectoryAnalytics(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeDirectoryAnalyticsFromJSON(json: any): TLPCodeDirectoryAnalytics {
-    return TLPCodeDirectoryAnalyticsFromJSONTyped(json, false);
+export function TLPCodeDirectoryAnalyticsFromJSON(
+	json: any,
+): TLPCodeDirectoryAnalytics {
+	return TLPCodeDirectoryAnalyticsFromJSONTyped(json, false);
 }
 
-export function TLPCodeDirectoryAnalyticsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeDirectoryAnalytics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': !exists(json, 'id') ? undefined : json['id'],
-    };
+export function TLPCodeDirectoryAnalyticsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeDirectoryAnalytics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: exists(json, "id") ? json["id"] : undefined,
+	};
 }
 
-export function TLPCodeDirectoryAnalyticsToJSON(value?: TLPCodeDirectoryAnalytics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-    };
+export function TLPCodeDirectoryAnalyticsToJSON(
+	value?: TLPCodeDirectoryAnalytics | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+	};
 }
-

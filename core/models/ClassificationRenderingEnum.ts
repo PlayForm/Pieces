@@ -12,28 +12,33 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * Specifically supported renderings...usually between generic types
  * @export
  */
 export const ClassificationRenderingEnum = {
-    Html: 'HTML',
-    TwentyFourBitAnsiEscapedSequences: 'TWENTY_FOUR_BIT_ANSI_ESCAPED_SEQUENCES',
-    HighlightJsHtml: 'HIGHLIGHT_JS_HTML'
+	Html: "HTML",
+	TwentyFourBitAnsiEscapedSequences: "TWENTY_FOUR_BIT_ANSI_ESCAPED_SEQUENCES",
+	HighlightJsHtml: "HIGHLIGHT_JS_HTML",
 } as const;
-export type ClassificationRenderingEnum = typeof ClassificationRenderingEnum[keyof typeof ClassificationRenderingEnum];
+export type ClassificationRenderingEnum =
+	(typeof ClassificationRenderingEnum)[keyof typeof ClassificationRenderingEnum];
 
-
-export function ClassificationRenderingEnumFromJSON(json: any): ClassificationRenderingEnum {
-    return ClassificationRenderingEnumFromJSONTyped(json, false);
+export function ClassificationRenderingEnumFromJSON(
+	json: any,
+): ClassificationRenderingEnum {
+	return ClassificationRenderingEnumFromJSONTyped(json, false);
 }
 
-export function ClassificationRenderingEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): ClassificationRenderingEnum {
-    return json as ClassificationRenderingEnum;
+export function ClassificationRenderingEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ClassificationRenderingEnum {
+	return json as ClassificationRenderingEnum;
 }
 
-export function ClassificationRenderingEnumToJSON(value?: ClassificationRenderingEnum | null): any {
-    return value as any;
+export function ClassificationRenderingEnumToJSON(
+	value?: ClassificationRenderingEnum | null,
+): any {
+	return value as any;
 }
-

@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will be a simple model with a score and a text value that will represent the value returned for this answer.
@@ -26,65 +25,69 @@ import {
  * @interface QGPTQuestionAnswer
  */
 export interface QGPTQuestionAnswer {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTQuestionAnswer
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the score from 0-1 on how good this answer is.
-     * @type {number}
-     * @memberof QGPTQuestionAnswer
-     */
-    score: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof QGPTQuestionAnswer
-     */
-    text: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTQuestionAnswer
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the score from 0-1 on how good this answer is.
+	 * @type {number}
+	 * @memberof QGPTQuestionAnswer
+	 */
+	score: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof QGPTQuestionAnswer
+	 */
+	text: string;
 }
 
 /**
  * Check if a given object implements the QGPTQuestionAnswer interface.
  */
 export function instanceOfQGPTQuestionAnswer(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "score" in value;
-    isInstance = isInstance && "text" in value;
+	let isInstance = true;
+	isInstance = isInstance && "score" in value;
+	isInstance = isInstance && "text" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function QGPTQuestionAnswerFromJSON(json: any): QGPTQuestionAnswer {
-    return QGPTQuestionAnswerFromJSONTyped(json, false);
+	return QGPTQuestionAnswerFromJSONTyped(json, false);
 }
 
-export function QGPTQuestionAnswerFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTQuestionAnswer {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'score': json['score'],
-        'text': json['text'],
-    };
+export function QGPTQuestionAnswerFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTQuestionAnswer {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		score: json["score"],
+		text: json["text"],
+	};
 }
 
-export function QGPTQuestionAnswerToJSON(value?: QGPTQuestionAnswer | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'score': value.score,
-        'text': value.text,
-    };
+export function QGPTQuestionAnswerToJSON(
+	value?: QGPTQuestionAnswer | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		score: value.score,
+		text: value.text,
+	};
 }
-

@@ -12,75 +12,81 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GraphicalOCRDescriptiveStatistics } from './GraphicalOCRDescriptiveStatistics';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GraphicalOCRDescriptiveStatistics } from "./GraphicalOCRDescriptiveStatistics.tsx";
 import {
-    GraphicalOCRDescriptiveStatisticsFromJSON,
-    GraphicalOCRDescriptiveStatisticsFromJSONTyped,
-    GraphicalOCRDescriptiveStatisticsToJSON,
-} from './GraphicalOCRDescriptiveStatistics';
+	GraphicalOCRDescriptiveStatisticsFromJSON,
+	GraphicalOCRDescriptiveStatisticsToJSON,
+} from "./GraphicalOCRDescriptiveStatistics.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface GraphicalOCRStatistics
  */
 export interface GraphicalOCRStatistics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GraphicalOCRStatistics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GraphicalOCRDescriptiveStatistics}
-     * @memberof GraphicalOCRStatistics
-     */
-    descriptive?: GraphicalOCRDescriptiveStatistics;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GraphicalOCRStatistics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GraphicalOCRDescriptiveStatistics}
+	 * @memberof GraphicalOCRStatistics
+	 */
+	descriptive?: GraphicalOCRDescriptiveStatistics;
 }
 
 /**
  * Check if a given object implements the GraphicalOCRStatistics interface.
  */
-export function instanceOfGraphicalOCRStatistics(value: object): boolean {
-    let isInstance = true;
+export function instanceOfGraphicalOCRStatistics(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function GraphicalOCRStatisticsFromJSON(json: any): GraphicalOCRStatistics {
-    return GraphicalOCRStatisticsFromJSONTyped(json, false);
+export function GraphicalOCRStatisticsFromJSON(
+	json: any,
+): GraphicalOCRStatistics {
+	return GraphicalOCRStatisticsFromJSONTyped(json, false);
 }
 
-export function GraphicalOCRStatisticsFromJSONTyped(json: any, ignoreDiscriminator: boolean): GraphicalOCRStatistics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'descriptive': !exists(json, 'descriptive') ? undefined : GraphicalOCRDescriptiveStatisticsFromJSON(json['descriptive']),
-    };
+export function GraphicalOCRStatisticsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GraphicalOCRStatistics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		descriptive: exists(json, "descriptive")
+			? GraphicalOCRDescriptiveStatisticsFromJSON(json["descriptive"])
+			: undefined,
+	};
 }
 
-export function GraphicalOCRStatisticsToJSON(value?: GraphicalOCRStatistics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'descriptive': GraphicalOCRDescriptiveStatisticsToJSON(value.descriptive),
-    };
+export function GraphicalOCRStatisticsToJSON(
+	value?: GraphicalOCRStatistics | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		descriptive: GraphicalOCRDescriptiveStatisticsToJSON(value.descriptive),
+	};
 }
-

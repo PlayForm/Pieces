@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedTag } from './SearchedTag';
-import {
-    SearchedTagFromJSON,
-    SearchedTagFromJSONTyped,
-    SearchedTagToJSON,
-} from './SearchedTag';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedTag } from "./SearchedTag.tsx";
+import { SearchedTagFromJSON, SearchedTagToJSON } from "./SearchedTag.tsx";
 
 /**
  * This is the plural Model used to return many searchedTags.
@@ -32,56 +27,58 @@ import {
  * @interface SearchedTags
  */
 export interface SearchedTags {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedTags
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedTag>}
-     * @memberof SearchedTags
-     */
-    iterable: Array<SearchedTag>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedTags
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedTag>}
+	 * @memberof SearchedTags
+	 */
+	iterable: SearchedTag[];
 }
 
 /**
  * Check if a given object implements the SearchedTags interface.
  */
 export function instanceOfSearchedTags(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedTagsFromJSON(json: any): SearchedTags {
-    return SearchedTagsFromJSONTyped(json, false);
+	return SearchedTagsFromJSONTyped(json, false);
 }
 
-export function SearchedTagsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedTags {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedTagFromJSON)),
-    };
+export function SearchedTagsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedTags {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SearchedTagFromJSON),
+	};
 }
 
 export function SearchedTagsToJSON(value?: SearchedTags | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedTagToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SearchedTagToJSON),
+	};
 }
-

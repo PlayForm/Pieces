@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededDiscoverableAsset } from './SeededDiscoverableAsset';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededDiscoverableAsset } from "./SeededDiscoverableAsset.tsx";
 import {
-    SeededDiscoverableAssetFromJSON,
-    SeededDiscoverableAssetFromJSONTyped,
-    SeededDiscoverableAssetToJSON,
-} from './SeededDiscoverableAsset';
-import type { TLPDirectedDiscoveryFilters } from './TLPDirectedDiscoveryFilters';
+	SeededDiscoverableAssetFromJSON,
+	SeededDiscoverableAssetToJSON,
+} from "./SeededDiscoverableAsset.tsx";
+import type { TLPDirectedDiscoveryFilters } from "./TLPDirectedDiscoveryFilters.tsx";
 import {
-    TLPDirectedDiscoveryFiltersFromJSON,
-    TLPDirectedDiscoveryFiltersFromJSONTyped,
-    TLPDirectedDiscoveryFiltersToJSON,
-} from './TLPDirectedDiscoveryFilters';
+	TLPDirectedDiscoveryFiltersFromJSON,
+	TLPDirectedDiscoveryFiltersToJSON,
+} from "./TLPDirectedDiscoveryFilters.tsx";
 
 /**
  * Assumption: filters imposed in this model can be overwritten by passing them in SeededDiscoverableAsset
@@ -38,73 +35,83 @@ import {
  * @interface SeededDiscoverableAssets
  */
 export interface SeededDiscoverableAssets {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededDiscoverableAssets
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * application id.
-     * @type {string}
-     * @memberof SeededDiscoverableAssets
-     */
-    application: string;
-    /**
-     * This is an iterable of already snippitized snippets that we will compare && cluster.
-     * @type {Array<SeededDiscoverableAsset>}
-     * @memberof SeededDiscoverableAssets
-     */
-    iterable: Array<SeededDiscoverableAsset>;
-    /**
-     * 
-     * @type {TLPDirectedDiscoveryFilters}
-     * @memberof SeededDiscoverableAssets
-     */
-    filters?: TLPDirectedDiscoveryFilters;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededDiscoverableAssets
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * application id.
+	 * @type {string}
+	 * @memberof SeededDiscoverableAssets
+	 */
+	application: string;
+	/**
+	 * This is an iterable of already snippitized snippets that we will compare && cluster.
+	 * @type {Array<SeededDiscoverableAsset>}
+	 * @memberof SeededDiscoverableAssets
+	 */
+	iterable: SeededDiscoverableAsset[];
+	/**
+	 *
+	 * @type {TLPDirectedDiscoveryFilters}
+	 * @memberof SeededDiscoverableAssets
+	 */
+	filters?: TLPDirectedDiscoveryFilters;
 }
 
 /**
  * Check if a given object implements the SeededDiscoverableAssets interface.
  */
 export function instanceOfSeededDiscoverableAssets(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "application" in value;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "application" in value;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededDiscoverableAssetsFromJSON(json: any): SeededDiscoverableAssets {
-    return SeededDiscoverableAssetsFromJSONTyped(json, false);
+export function SeededDiscoverableAssetsFromJSON(
+	json: any,
+): SeededDiscoverableAssets {
+	return SeededDiscoverableAssetsFromJSONTyped(json, false);
 }
 
-export function SeededDiscoverableAssetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededDiscoverableAssets {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'application': json['application'],
-        'iterable': ((json['iterable'] as Array<any>).map(SeededDiscoverableAssetFromJSON)),
-        'filters': !exists(json, 'filters') ? undefined : TLPDirectedDiscoveryFiltersFromJSON(json['filters']),
-    };
+export function SeededDiscoverableAssetsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededDiscoverableAssets {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		application: json["application"],
+		iterable: (json["iterable"] as any[]).map(
+			SeededDiscoverableAssetFromJSON,
+		),
+		filters: exists(json, "filters")
+			? TLPDirectedDiscoveryFiltersFromJSON(json["filters"])
+			: undefined,
+	};
 }
 
-export function SeededDiscoverableAssetsToJSON(value?: SeededDiscoverableAssets | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'application': value.application,
-        'iterable': ((value.iterable as Array<any>).map(SeededDiscoverableAssetToJSON)),
-        'filters': TLPDirectedDiscoveryFiltersToJSON(value.filters),
-    };
+export function SeededDiscoverableAssetsToJSON(
+	value?: SeededDiscoverableAssets | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		application: value.application,
+		iterable: (value.iterable as any[]).map(SeededDiscoverableAssetToJSON),
+		filters: TLPDirectedDiscoveryFiltersToJSON(value.filters),
+	};
 }
-

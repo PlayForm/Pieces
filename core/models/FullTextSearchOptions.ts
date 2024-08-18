@@ -12,79 +12,84 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * similarity: you will want to pass in a value from 0-1. (where 1 is exact and 0 is everything)
- * 
+ *
  * exact: (optional) this will default to false, which will run a fuzzy search, unless set to true.
  * @export
  * @interface FullTextSearchOptions
  */
 export interface FullTextSearchOptions {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FullTextSearchOptions
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof FullTextSearchOptions
-     */
-    similarity?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FullTextSearchOptions
-     */
-    exact?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FullTextSearchOptions
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof FullTextSearchOptions
+	 */
+	similarity?: number | null;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof FullTextSearchOptions
+	 */
+	exact?: boolean;
 }
 
 /**
  * Check if a given object implements the FullTextSearchOptions interface.
  */
-export function instanceOfFullTextSearchOptions(value: object): boolean {
-    let isInstance = true;
+export function instanceOfFullTextSearchOptions(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function FullTextSearchOptionsFromJSON(json: any): FullTextSearchOptions {
-    return FullTextSearchOptionsFromJSONTyped(json, false);
+export function FullTextSearchOptionsFromJSON(
+	json: any,
+): FullTextSearchOptions {
+	return FullTextSearchOptionsFromJSONTyped(json, false);
 }
 
-export function FullTextSearchOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FullTextSearchOptions {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'similarity': !exists(json, 'similarity') ? undefined : json['similarity'],
-        'exact': !exists(json, 'exact') ? undefined : json['exact'],
-    };
+export function FullTextSearchOptionsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FullTextSearchOptions {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		similarity: exists(json, "similarity") ? json["similarity"] : undefined,
+		exact: exists(json, "exact") ? json["exact"] : undefined,
+	};
 }
 
-export function FullTextSearchOptionsToJSON(value?: FullTextSearchOptions | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'similarity': value.similarity,
-        'exact': value.exact,
-    };
+export function FullTextSearchOptionsToJSON(
+	value?: FullTextSearchOptions | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		similarity: value.similarity,
+		exact: value.exact,
+	};
 }
-

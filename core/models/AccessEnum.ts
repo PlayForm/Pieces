@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const AccessEnum = {
-    Public: 'PUBLIC',
-    Private: 'PRIVATE'
+	Public: "PUBLIC",
+	Private: "PRIVATE",
 } as const;
-export type AccessEnum = typeof AccessEnum[keyof typeof AccessEnum];
-
+export type AccessEnum = (typeof AccessEnum)[keyof typeof AccessEnum];
 
 export function AccessEnumFromJSON(json: any): AccessEnum {
-    return AccessEnumFromJSONTyped(json, false);
+	return AccessEnumFromJSONTyped(json, false);
 }
 
-export function AccessEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccessEnum {
-    return json as AccessEnum;
+export function AccessEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AccessEnum {
+	return json as AccessEnum;
 }
 
 export function AccessEnumToJSON(value?: AccessEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

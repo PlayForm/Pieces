@@ -12,155 +12,201 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Activity,
-  FlattenedActivities,
-} from '../models/index';
+import type { Activity, FlattenedActivities } from "../models/index.ts";
 import {
-    ActivityFromJSON,
-    ActivityToJSON,
-    FlattenedActivitiesFromJSON,
-    FlattenedActivitiesToJSON,
-} from '../models/index';
+	ActivityFromJSON,
+	ActivityToJSON,
+	FlattenedActivitiesFromJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface ActivitiesSpecificActivitySnapshotRequest {
-    activity: string;
-    transferables?: boolean;
+	activity: string;
+	transferables?: boolean;
 }
 
 export interface ActivityIdentifiersSnapshotRequest {
-    pseudo?: boolean;
-    activityFilterEnum?: ActivityIdentifiersSnapshotActivityFilterEnumEnum;
+	pseudo?: boolean;
+	activityFilterEnum?: ActivityIdentifiersSnapshotActivityFilterEnumEnum;
 }
 
 export interface ActivityUpdateRequest {
-    transferables?: boolean;
-    activity?: Activity;
+	transferables?: boolean;
+	activity?: Activity;
 }
 
 /**
- * 
+ *
  */
 export class ActivityApi extends runtime.BaseAPI {
+	/**
+	 * This will attempt to get a specific activity.
+	 * /activity/{activity} [GET]
+	 */
+	async activitiesSpecificActivitySnapshotRaw(
+		requestParameters: ActivitiesSpecificActivitySnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Activity>> {
+		if (
+			requestParameters.activity === null ||
+			requestParameters.activity === undefined
+		) {
+			throw new runtime.RequiredError(
+				"activity",
+				"Required parameter requestParameters.activity was null or undefined when calling activitiesSpecificActivitySnapshot.",
+			);
+		}
 
-    /**
-     * This will attempt to get a specific activity.
-     * /activity/{activity} [GET]
-     */
-    async activitiesSpecificActivitySnapshotRaw(requestParameters: ActivitiesSpecificActivitySnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Activity>> {
-        if (requestParameters.activity === null || requestParameters.activity === undefined) {
-            throw new runtime.RequiredError('activity','Required parameter requestParameters.activity was null or undefined when calling activitiesSpecificActivitySnapshot.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/activity/{activity}".replace(
+					`{${"activity"}}`,
+					encodeURIComponent(String(requestParameters.activity)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/activity/{activity}`.replace(`{${"activity"}}`, encodeURIComponent(String(requestParameters.activity))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ActivityFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ActivityFromJSON(jsonValue));
-    }
+	/**
+	 * This will attempt to get a specific activity.
+	 * /activity/{activity} [GET]
+	 */
+	async activitiesSpecificActivitySnapshot(
+		requestParameters: ActivitiesSpecificActivitySnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Activity> {
+		const response = await this.activitiesSpecificActivitySnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will attempt to get a specific activity.
-     * /activity/{activity} [GET]
-     */
-    async activitiesSpecificActivitySnapshot(requestParameters: ActivitiesSpecificActivitySnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Activity> {
-        const response = await this.activitiesSpecificActivitySnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This is going to return all the identifiers of the activity event in order of most recent -> oldest.
+	 * /activity/identifiers [GET]
+	 */
+	async activityIdentifiersSnapshotRaw(
+		requestParameters: ActivityIdentifiersSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<FlattenedActivities>> {
+		const queryParameters: any = {};
 
-    /**
-     * This is going to return all the identifiers of the activity event in order of most recent -> oldest.
-     * /activity/identifiers [GET]
-     */
-    async activityIdentifiersSnapshotRaw(requestParameters: ActivityIdentifiersSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlattenedActivities>> {
-        const queryParameters: any = {};
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
 
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
+		if (requestParameters.activityFilterEnum !== undefined) {
+			queryParameters["activity_filter_enum"] =
+				requestParameters.activityFilterEnum;
+		}
 
-        if (requestParameters.activityFilterEnum !== undefined) {
-            queryParameters['activity_filter_enum'] = requestParameters.activityFilterEnum;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/activity/identifiers",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/activity/identifiers`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			FlattenedActivitiesFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FlattenedActivitiesFromJSON(jsonValue));
-    }
+	/**
+	 * This is going to return all the identifiers of the activity event in order of most recent -> oldest.
+	 * /activity/identifiers [GET]
+	 */
+	async activityIdentifiersSnapshot(
+		requestParameters: ActivityIdentifiersSnapshotRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<FlattenedActivities> {
+		const response = await this.activityIdentifiersSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This is going to return all the identifiers of the activity event in order of most recent -> oldest.
-     * /activity/identifiers [GET]
-     */
-    async activityIdentifiersSnapshot(requestParameters: ActivityIdentifiersSnapshotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlattenedActivities> {
-        const response = await this.activityIdentifiersSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * this will update a specific activity.
+	 * /activity/update [POST]
+	 */
+	async activityUpdateRaw(
+		requestParameters: ActivityUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Activity>> {
+		const queryParameters: any = {};
 
-    /**
-     * this will update a specific activity.
-     * /activity/update [POST]
-     */
-    async activityUpdateRaw(requestParameters: ActivityUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Activity>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/activity/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: ActivityToJSON(requestParameters.activity),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/activity/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ActivityToJSON(requestParameters.activity),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ActivityFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ActivityFromJSON(jsonValue));
-    }
-
-    /**
-     * this will update a specific activity.
-     * /activity/update [POST]
-     */
-    async activityUpdate(requestParameters: ActivityUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Activity> {
-        const response = await this.activityUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * this will update a specific activity.
+	 * /activity/update [POST]
+	 */
+	async activityUpdate(
+		requestParameters: ActivityUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Activity> {
+		const response = await this.activityUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }
 
 /**
  * @export
  */
 export const ActivityIdentifiersSnapshotActivityFilterEnumEnum = {
-    Created: 'CREATED',
-    Updated: 'UPDATED',
-    Deleted: 'DELETED',
-    Referenced: 'REFERENCED'
+	Created: "CREATED",
+	Updated: "UPDATED",
+	Deleted: "DELETED",
+	Referenced: "REFERENCED",
 } as const;
-export type ActivityIdentifiersSnapshotActivityFilterEnumEnum = typeof ActivityIdentifiersSnapshotActivityFilterEnumEnum[keyof typeof ActivityIdentifiersSnapshotActivityFilterEnumEnum];
+export type ActivityIdentifiersSnapshotActivityFilterEnumEnum =
+	(typeof ActivityIdentifiersSnapshotActivityFilterEnumEnum)[keyof typeof ActivityIdentifiersSnapshotActivityFilterEnumEnum];

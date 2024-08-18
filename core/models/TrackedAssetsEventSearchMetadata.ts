@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TrackedAssetsEventSearchMetadataResults } from './TrackedAssetsEventSearchMetadataResults';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TrackedAssetsEventSearchMetadataResults } from "./TrackedAssetsEventSearchMetadataResults.tsx";
 import {
-    TrackedAssetsEventSearchMetadataResultsFromJSON,
-    TrackedAssetsEventSearchMetadataResultsFromJSONTyped,
-    TrackedAssetsEventSearchMetadataResultsToJSON,
-} from './TrackedAssetsEventSearchMetadataResults';
+	TrackedAssetsEventSearchMetadataResultsFromJSON,
+	TrackedAssetsEventSearchMetadataResultsToJSON,
+} from "./TrackedAssetsEventSearchMetadataResults.tsx";
 
 /**
  * Metadata attached to a search event on an Asset
@@ -32,63 +30,73 @@ import {
  * @interface TrackedAssetsEventSearchMetadata
  */
 export interface TrackedAssetsEventSearchMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TrackedAssetsEventSearchMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * The search query itself
-     * @type {string}
-     * @memberof TrackedAssetsEventSearchMetadata
-     */
-    query?: string;
-    /**
-     * 
-     * @type {TrackedAssetsEventSearchMetadataResults}
-     * @memberof TrackedAssetsEventSearchMetadata
-     */
-    results?: TrackedAssetsEventSearchMetadataResults;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TrackedAssetsEventSearchMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * The search query itself
+	 * @type {string}
+	 * @memberof TrackedAssetsEventSearchMetadata
+	 */
+	query?: string;
+	/**
+	 *
+	 * @type {TrackedAssetsEventSearchMetadataResults}
+	 * @memberof TrackedAssetsEventSearchMetadata
+	 */
+	results?: TrackedAssetsEventSearchMetadataResults;
 }
 
 /**
  * Check if a given object implements the TrackedAssetsEventSearchMetadata interface.
  */
-export function instanceOfTrackedAssetsEventSearchMetadata(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTrackedAssetsEventSearchMetadata(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TrackedAssetsEventSearchMetadataFromJSON(json: any): TrackedAssetsEventSearchMetadata {
-    return TrackedAssetsEventSearchMetadataFromJSONTyped(json, false);
+export function TrackedAssetsEventSearchMetadataFromJSON(
+	json: any,
+): TrackedAssetsEventSearchMetadata {
+	return TrackedAssetsEventSearchMetadataFromJSONTyped(json, false);
 }
 
-export function TrackedAssetsEventSearchMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedAssetsEventSearchMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'query': !exists(json, 'query') ? undefined : json['query'],
-        'results': !exists(json, 'results') ? undefined : TrackedAssetsEventSearchMetadataResultsFromJSON(json['results']),
-    };
+export function TrackedAssetsEventSearchMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedAssetsEventSearchMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		query: exists(json, "query") ? json["query"] : undefined,
+		results: exists(json, "results")
+			? TrackedAssetsEventSearchMetadataResultsFromJSON(json["results"])
+			: undefined,
+	};
 }
 
-export function TrackedAssetsEventSearchMetadataToJSON(value?: TrackedAssetsEventSearchMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'query': value.query,
-        'results': TrackedAssetsEventSearchMetadataResultsToJSON(value.results),
-    };
+export function TrackedAssetsEventSearchMetadataToJSON(
+	value?: TrackedAssetsEventSearchMetadata | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		query: value.query,
+		results: TrackedAssetsEventSearchMetadataResultsToJSON(value.results),
+	};
 }
-

@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * Model for collecting descriptive statistics of images uploaded to Pieces
@@ -26,109 +25,117 @@ import {
  * @interface GraphicalImageDescriptiveStatistics
  */
 export interface GraphicalImageDescriptiveStatistics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GraphicalImageDescriptiveStatistics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof GraphicalImageDescriptiveStatistics
-     */
-    width: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GraphicalImageDescriptiveStatistics
-     */
-    height: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GraphicalImageDescriptiveStatistics
-     */
-    channels: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GraphicalImageDescriptiveStatistics
-     */
-    asset: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GraphicalImageDescriptiveStatistics
-     */
-    user?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GraphicalImageDescriptiveStatistics
-     */
-    created: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GraphicalImageDescriptiveStatistics
-     */
-    os: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GraphicalImageDescriptiveStatistics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GraphicalImageDescriptiveStatistics
+	 */
+	width: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GraphicalImageDescriptiveStatistics
+	 */
+	height: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GraphicalImageDescriptiveStatistics
+	 */
+	channels: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GraphicalImageDescriptiveStatistics
+	 */
+	asset: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GraphicalImageDescriptiveStatistics
+	 */
+	user?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GraphicalImageDescriptiveStatistics
+	 */
+	created: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GraphicalImageDescriptiveStatistics
+	 */
+	os: string;
 }
 
 /**
  * Check if a given object implements the GraphicalImageDescriptiveStatistics interface.
  */
-export function instanceOfGraphicalImageDescriptiveStatistics(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "width" in value;
-    isInstance = isInstance && "height" in value;
-    isInstance = isInstance && "channels" in value;
-    isInstance = isInstance && "asset" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "os" in value;
+export function instanceOfGraphicalImageDescriptiveStatistics(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "width" in value;
+	isInstance = isInstance && "height" in value;
+	isInstance = isInstance && "channels" in value;
+	isInstance = isInstance && "asset" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "os" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function GraphicalImageDescriptiveStatisticsFromJSON(json: any): GraphicalImageDescriptiveStatistics {
-    return GraphicalImageDescriptiveStatisticsFromJSONTyped(json, false);
+export function GraphicalImageDescriptiveStatisticsFromJSON(
+	json: any,
+): GraphicalImageDescriptiveStatistics {
+	return GraphicalImageDescriptiveStatisticsFromJSONTyped(json, false);
 }
 
-export function GraphicalImageDescriptiveStatisticsFromJSONTyped(json: any, ignoreDiscriminator: boolean): GraphicalImageDescriptiveStatistics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'width': json['width'],
-        'height': json['height'],
-        'channels': json['channels'],
-        'asset': json['asset'],
-        'user': !exists(json, 'user') ? undefined : json['user'],
-        'created': json['created'],
-        'os': json['os'],
-    };
+export function GraphicalImageDescriptiveStatisticsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GraphicalImageDescriptiveStatistics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		width: json["width"],
+		height: json["height"],
+		channels: json["channels"],
+		asset: json["asset"],
+		user: exists(json, "user") ? json["user"] : undefined,
+		created: json["created"],
+		os: json["os"],
+	};
 }
 
-export function GraphicalImageDescriptiveStatisticsToJSON(value?: GraphicalImageDescriptiveStatistics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'width': value.width,
-        'height': value.height,
-        'channels': value.channels,
-        'asset': value.asset,
-        'user': value.user,
-        'created': value.created,
-        'os': value.os,
-    };
+export function GraphicalImageDescriptiveStatisticsToJSON(
+	value?: GraphicalImageDescriptiveStatistics | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		width: value.width,
+		height: value.height,
+		channels: value.channels,
+		asset: value.asset,
+		user: value.user,
+		created: value.created,
+		os: value.os,
+	};
 }
-

@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { IDESelection } from './IDESelection';
-import {
-    IDESelectionFromJSON,
-    IDESelectionFromJSONTyped,
-    IDESelectionToJSON,
-} from './IDESelection';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { IDESelection } from "./IDESelection.tsx";
+import { IDESelectionFromJSON, IDESelectionToJSON } from "./IDESelection.tsx";
 
 /**
  * Plural model that represent many selections in the browser
@@ -32,56 +27,58 @@ import {
  * @interface IDESelections
  */
 export interface IDESelections {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof IDESelections
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<IDESelection>}
-     * @memberof IDESelections
-     */
-    iterable: Array<IDESelection>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof IDESelections
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<IDESelection>}
+	 * @memberof IDESelections
+	 */
+	iterable: IDESelection[];
 }
 
 /**
  * Check if a given object implements the IDESelections interface.
  */
 export function instanceOfIDESelections(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function IDESelectionsFromJSON(json: any): IDESelections {
-    return IDESelectionsFromJSONTyped(json, false);
+	return IDESelectionsFromJSONTyped(json, false);
 }
 
-export function IDESelectionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): IDESelections {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(IDESelectionFromJSON)),
-    };
+export function IDESelectionsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): IDESelections {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(IDESelectionFromJSON),
+	};
 }
 
 export function IDESelectionsToJSON(value?: IDESelections | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(IDESelectionToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(IDESelectionToJSON),
+	};
 }
-

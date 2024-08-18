@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Format } from './Format';
-import {
-    FormatFromJSON,
-    FormatFromJSONTyped,
-    FormatToJSON,
-} from './Format';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Format } from "./Format.tsx";
+import { FormatFromJSON, FormatToJSON } from "./Format.tsx";
 
 /**
  * A base class for a collection of formats and some additional meta properties.
@@ -32,56 +27,58 @@ import {
  * @interface Formats
  */
 export interface Formats {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Formats
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Format>}
-     * @memberof Formats
-     */
-    iterable: Array<Format>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Formats
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Format>}
+	 * @memberof Formats
+	 */
+	iterable: Format[];
 }
 
 /**
  * Check if a given object implements the Formats interface.
  */
 export function instanceOfFormats(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FormatsFromJSON(json: any): Formats {
-    return FormatsFromJSONTyped(json, false);
+	return FormatsFromJSONTyped(json, false);
 }
 
-export function FormatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Formats {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(FormatFromJSON)),
-    };
+export function FormatsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Formats {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(FormatFromJSON),
+	};
 }
 
 export function FormatsToJSON(value?: Formats | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(FormatToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(FormatToJSON),
+	};
 }
-

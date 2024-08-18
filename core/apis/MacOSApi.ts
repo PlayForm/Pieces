@@ -12,57 +12,62 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Asset,
-  SeededMacOSAsset,
-} from '../models/index';
-import {
-    AssetFromJSON,
-    AssetToJSON,
-    SeededMacOSAssetFromJSON,
-    SeededMacOSAssetToJSON,
-} from '../models/index';
+import type { Asset, SeededMacOSAsset } from "../models/index.ts";
+import { AssetFromJSON, SeededMacOSAssetToJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface AssetsCreateNewAssetFromMacosRequest {
-    seededMacOSAsset?: SeededMacOSAsset;
+	seededMacOSAsset?: SeededMacOSAsset;
 }
 
 /**
- * 
+ *
  */
 export class MacOSApi extends runtime.BaseAPI {
+	/**
+	 * Exposes an endpoint for the MacOS Services plugin to send over MacOS Specific Data
+	 * /macos/assets/create [Post]
+	 */
+	async assetsCreateNewAssetFromMacosRaw(
+		requestParameters: AssetsCreateNewAssetFromMacosRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Asset>> {
+		const queryParameters: any = {};
 
-    /**
-     * Exposes an endpoint for the MacOS Services plugin to send over MacOS Specific Data
-     * /macos/assets/create [Post]
-     */
-    async assetsCreateNewAssetFromMacosRaw(requestParameters: AssetsCreateNewAssetFromMacosRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Asset>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/macos/assets/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededMacOSAssetToJSON(
+					requestParameters.seededMacOSAsset,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/macos/assets/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededMacOSAssetToJSON(requestParameters.seededMacOSAsset),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AssetFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AssetFromJSON(jsonValue));
-    }
-
-    /**
-     * Exposes an endpoint for the MacOS Services plugin to send over MacOS Specific Data
-     * /macos/assets/create [Post]
-     */
-    async assetsCreateNewAssetFromMacos(requestParameters: AssetsCreateNewAssetFromMacosRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Asset> {
-        const response = await this.assetsCreateNewAssetFromMacosRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * Exposes an endpoint for the MacOS Services plugin to send over MacOS Specific Data
+	 * /macos/assets/create [Post]
+	 */
+	async assetsCreateNewAssetFromMacos(
+		requestParameters: AssetsCreateNewAssetFromMacosRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Asset> {
+		const response = await this.assetsCreateNewAssetFromMacosRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

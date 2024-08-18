@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Classification } from './Classification';
+import { exists } from "../runtime.ts";
+import type { Classification } from "./Classification.tsx";
 import {
-    ClassificationFromJSON,
-    ClassificationFromJSONTyped,
-    ClassificationToJSON,
-} from './Classification';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ClassificationFromJSON,
+	ClassificationToJSON,
+} from "./Classification.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TransferableString } from './TransferableString';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TransferableString } from "./TransferableString.tsx";
 import {
-    TransferableStringFromJSON,
-    TransferableStringFromJSONTyped,
-    TransferableStringToJSON,
-} from './TransferableString';
+	TransferableStringFromJSON,
+	TransferableStringToJSON,
+} from "./TransferableString.tsx";
 
 /**
  * This is a given bit of text/code that is selected in the browser, this can be a copy/paste/selection
@@ -38,65 +35,67 @@ import {
  * @interface BrowserSelection
  */
 export interface BrowserSelection {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof BrowserSelection
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Classification}
-     * @memberof BrowserSelection
-     */
-    classification: Classification;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof BrowserSelection
-     */
-    value: TransferableString;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof BrowserSelection
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Classification}
+	 * @memberof BrowserSelection
+	 */
+	classification: Classification;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof BrowserSelection
+	 */
+	value: TransferableString;
 }
 
 /**
  * Check if a given object implements the BrowserSelection interface.
  */
 export function instanceOfBrowserSelection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "classification" in value;
-    isInstance = isInstance && "value" in value;
+	let isInstance = true;
+	isInstance = isInstance && "classification" in value;
+	isInstance = isInstance && "value" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function BrowserSelectionFromJSON(json: any): BrowserSelection {
-    return BrowserSelectionFromJSONTyped(json, false);
+	return BrowserSelectionFromJSONTyped(json, false);
 }
 
-export function BrowserSelectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): BrowserSelection {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'classification': ClassificationFromJSON(json['classification']),
-        'value': TransferableStringFromJSON(json['value']),
-    };
+export function BrowserSelectionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): BrowserSelection {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		classification: ClassificationFromJSON(json["classification"]),
+		value: TransferableStringFromJSON(json["value"]),
+	};
 }
 
 export function BrowserSelectionToJSON(value?: BrowserSelection | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'classification': ClassificationToJSON(value.classification),
-        'value': TransferableStringToJSON(value.value),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		classification: ClassificationToJSON(value.classification),
+		value: TransferableStringToJSON(value.value),
+	};
 }
-

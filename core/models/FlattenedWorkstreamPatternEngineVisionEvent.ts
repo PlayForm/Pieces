@@ -12,87 +12,96 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
 
 /**
  * This is a flattened version of the WorkstreamPatternEngineVisionEvent, where the referenced to other materials are also flattened(DAG Safe)
- * 
+ *
  * Note: TODO later add textual and need to correspond w/ both transferables as well as the FlattenedMaterial
  * @export
  * @interface FlattenedWorkstreamPatternEngineVisionEvent
  */
 export interface FlattenedWorkstreamPatternEngineVisionEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedWorkstreamPatternEngineVisionEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedWorkstreamPatternEngineVisionEvent
-     */
-    id: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedWorkstreamPatternEngineVisionEvent
-     */
-    created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedWorkstreamPatternEngineVisionEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedWorkstreamPatternEngineVisionEvent
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedWorkstreamPatternEngineVisionEvent
+	 */
+	created: GroupedTimestamp;
 }
 
 /**
  * Check if a given object implements the FlattenedWorkstreamPatternEngineVisionEvent interface.
  */
-export function instanceOfFlattenedWorkstreamPatternEngineVisionEvent(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
+export function instanceOfFlattenedWorkstreamPatternEngineVisionEvent(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "created" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function FlattenedWorkstreamPatternEngineVisionEventFromJSON(json: any): FlattenedWorkstreamPatternEngineVisionEvent {
-    return FlattenedWorkstreamPatternEngineVisionEventFromJSONTyped(json, false);
+export function FlattenedWorkstreamPatternEngineVisionEventFromJSON(
+	json: any,
+): FlattenedWorkstreamPatternEngineVisionEvent {
+	return FlattenedWorkstreamPatternEngineVisionEventFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function FlattenedWorkstreamPatternEngineVisionEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedWorkstreamPatternEngineVisionEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'created': GroupedTimestampFromJSON(json['created']),
-    };
+export function FlattenedWorkstreamPatternEngineVisionEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedWorkstreamPatternEngineVisionEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		created: GroupedTimestampFromJSON(json["created"]),
+	};
 }
 
-export function FlattenedWorkstreamPatternEngineVisionEventToJSON(value?: FlattenedWorkstreamPatternEngineVisionEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'created': GroupedTimestampToJSON(value.created),
-    };
+export function FlattenedWorkstreamPatternEngineVisionEventToJSON(
+	value?: FlattenedWorkstreamPatternEngineVisionEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		created: GroupedTimestampToJSON(value.created),
+	};
 }
-

@@ -12,26 +12,31 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This is a Semantic Version Enum that will reflect the Semantic version of the api.
  * @export
  */
 export const EmbeddedModelSchemaSemanticVersionEnum = {
-    Major0Minor0Patch1: 'MAJOR_0_MINOR_0_PATCH_1'
+	Major0Minor0Patch1: "MAJOR_0_MINOR_0_PATCH_1",
 } as const;
-export type EmbeddedModelSchemaSemanticVersionEnum = typeof EmbeddedModelSchemaSemanticVersionEnum[keyof typeof EmbeddedModelSchemaSemanticVersionEnum];
+export type EmbeddedModelSchemaSemanticVersionEnum =
+	(typeof EmbeddedModelSchemaSemanticVersionEnum)[keyof typeof EmbeddedModelSchemaSemanticVersionEnum];
 
-
-export function EmbeddedModelSchemaSemanticVersionEnumFromJSON(json: any): EmbeddedModelSchemaSemanticVersionEnum {
-    return EmbeddedModelSchemaSemanticVersionEnumFromJSONTyped(json, false);
+export function EmbeddedModelSchemaSemanticVersionEnumFromJSON(
+	json: any,
+): EmbeddedModelSchemaSemanticVersionEnum {
+	return EmbeddedModelSchemaSemanticVersionEnumFromJSONTyped(json, false);
 }
 
-export function EmbeddedModelSchemaSemanticVersionEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmbeddedModelSchemaSemanticVersionEnum {
-    return json as EmbeddedModelSchemaSemanticVersionEnum;
+export function EmbeddedModelSchemaSemanticVersionEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): EmbeddedModelSchemaSemanticVersionEnum {
+	return json as EmbeddedModelSchemaSemanticVersionEnum;
 }
 
-export function EmbeddedModelSchemaSemanticVersionEnumToJSON(value?: EmbeddedModelSchemaSemanticVersionEnum | null): any {
-    return value as any;
+export function EmbeddedModelSchemaSemanticVersionEnumToJSON(
+	value?: EmbeddedModelSchemaSemanticVersionEnum | null,
+): any {
+	return value as any;
 }
-

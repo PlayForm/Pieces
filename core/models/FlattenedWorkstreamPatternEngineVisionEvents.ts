@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedWorkstreamPatternEngineVisionEvent } from './ReferencedWorkstreamPatternEngineVisionEvent';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedWorkstreamPatternEngineVisionEvent } from "./ReferencedWorkstreamPatternEngineVisionEvent.tsx";
 import {
-    ReferencedWorkstreamPatternEngineVisionEventFromJSON,
-    ReferencedWorkstreamPatternEngineVisionEventFromJSONTyped,
-    ReferencedWorkstreamPatternEngineVisionEventToJSON,
-} from './ReferencedWorkstreamPatternEngineVisionEvent';
+	ReferencedWorkstreamPatternEngineVisionEventFromJSON,
+	ReferencedWorkstreamPatternEngineVisionEventToJSON,
+} from "./ReferencedWorkstreamPatternEngineVisionEvent.tsx";
 
 /**
  * This is a plural snapshot of all of the events within WPE qdrant(Referenced)
@@ -32,56 +30,71 @@ import {
  * @interface FlattenedWorkstreamPatternEngineVisionEvents
  */
 export interface FlattenedWorkstreamPatternEngineVisionEvents {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedWorkstreamPatternEngineVisionEvents
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedWorkstreamPatternEngineVisionEvent>}
-     * @memberof FlattenedWorkstreamPatternEngineVisionEvents
-     */
-    iterable: Array<ReferencedWorkstreamPatternEngineVisionEvent>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedWorkstreamPatternEngineVisionEvents
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedWorkstreamPatternEngineVisionEvent>}
+	 * @memberof FlattenedWorkstreamPatternEngineVisionEvents
+	 */
+	iterable: ReferencedWorkstreamPatternEngineVisionEvent[];
 }
 
 /**
  * Check if a given object implements the FlattenedWorkstreamPatternEngineVisionEvents interface.
  */
-export function instanceOfFlattenedWorkstreamPatternEngineVisionEvents(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+export function instanceOfFlattenedWorkstreamPatternEngineVisionEvents(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function FlattenedWorkstreamPatternEngineVisionEventsFromJSON(json: any): FlattenedWorkstreamPatternEngineVisionEvents {
-    return FlattenedWorkstreamPatternEngineVisionEventsFromJSONTyped(json, false);
+export function FlattenedWorkstreamPatternEngineVisionEventsFromJSON(
+	json: any,
+): FlattenedWorkstreamPatternEngineVisionEvents {
+	return FlattenedWorkstreamPatternEngineVisionEventsFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function FlattenedWorkstreamPatternEngineVisionEventsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedWorkstreamPatternEngineVisionEvents {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedWorkstreamPatternEngineVisionEventFromJSON)),
-    };
+export function FlattenedWorkstreamPatternEngineVisionEventsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedWorkstreamPatternEngineVisionEvents {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			ReferencedWorkstreamPatternEngineVisionEventFromJSON,
+		),
+	};
 }
 
-export function FlattenedWorkstreamPatternEngineVisionEventsToJSON(value?: FlattenedWorkstreamPatternEngineVisionEvents | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedWorkstreamPatternEngineVisionEventToJSON)),
-    };
+export function FlattenedWorkstreamPatternEngineVisionEventsToJSON(
+	value?: FlattenedWorkstreamPatternEngineVisionEvents | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			ReferencedWorkstreamPatternEngineVisionEventToJSON,
+		),
+	};
 }
-

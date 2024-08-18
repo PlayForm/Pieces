@@ -12,159 +12,164 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnchorTypeEnum } from './AnchorTypeEnum';
+import { exists } from "../runtime.ts";
+import type { AnchorTypeEnum } from "./AnchorTypeEnum.tsx";
 import {
-    AnchorTypeEnumFromJSON,
-    AnchorTypeEnumFromJSONTyped,
-    AnchorTypeEnumToJSON,
-} from './AnchorTypeEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AnchorTypeEnumFromJSON,
+	AnchorTypeEnumToJSON,
+} from "./AnchorTypeEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedPersons } from './FlattenedPersons';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
-    FlattenedPersonsFromJSON,
-    FlattenedPersonsFromJSONTyped,
-    FlattenedPersonsToJSON,
-} from './FlattenedPersons';
-import type { PlatformEnum } from './PlatformEnum';
+	FlattenedPersonsFromJSON,
+	FlattenedPersonsToJSON,
+} from "./FlattenedPersons.tsx";
+import type { PlatformEnum } from "./PlatformEnum.tsx";
+import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
+import type { SeededAnnotation } from "./SeededAnnotation.tsx";
 import {
-    PlatformEnumFromJSON,
-    PlatformEnumFromJSONTyped,
-    PlatformEnumToJSON,
-} from './PlatformEnum';
-import type { SeededAnnotation } from './SeededAnnotation';
-import {
-    SeededAnnotationFromJSON,
-    SeededAnnotationFromJSONTyped,
-    SeededAnnotationToJSON,
-} from './SeededAnnotation';
+	SeededAnnotationFromJSON,
+	SeededAnnotationToJSON,
+} from "./SeededAnnotation.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededAnchor
  */
 export interface SeededAnchor {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededAnchor
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {AnchorTypeEnum}
-     * @memberof SeededAnchor
-     */
-    type: AnchorTypeEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededAnchor
-     */
-    watch?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededAnchor
-     */
-    fullpath: string;
-    /**
-     * You may associate a SeededAnchor with an asset
-     * @type {string}
-     * @memberof SeededAnchor
-     */
-    asset?: string;
-    /**
-     * 
-     * @type {PlatformEnum}
-     * @memberof SeededAnchor
-     */
-    platform?: PlatformEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededAnchor
-     */
-    name?: string;
-    /**
-     * 
-     * @type {Array<SeededAnnotation>}
-     * @memberof SeededAnchor
-     */
-    annotations?: Array<SeededAnnotation>;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededAnchor
-     */
-    conversation?: string;
-    /**
-     * 
-     * @type {FlattenedPersons}
-     * @memberof SeededAnchor
-     */
-    persons?: FlattenedPersons;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededAnchor
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {AnchorTypeEnum}
+	 * @memberof SeededAnchor
+	 */
+	type: AnchorTypeEnum;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededAnchor
+	 */
+	watch?: boolean;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededAnchor
+	 */
+	fullpath: string;
+	/**
+	 * You may associate a SeededAnchor with an asset
+	 * @type {string}
+	 * @memberof SeededAnchor
+	 */
+	asset?: string;
+	/**
+	 *
+	 * @type {PlatformEnum}
+	 * @memberof SeededAnchor
+	 */
+	platform?: PlatformEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededAnchor
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {Array<SeededAnnotation>}
+	 * @memberof SeededAnchor
+	 */
+	annotations?: SeededAnnotation[];
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededAnchor
+	 */
+	conversation?: string;
+	/**
+	 *
+	 * @type {FlattenedPersons}
+	 * @memberof SeededAnchor
+	 */
+	persons?: FlattenedPersons;
 }
 
 /**
  * Check if a given object implements the SeededAnchor interface.
  */
 export function instanceOfSeededAnchor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "fullpath" in value;
+	let isInstance = true;
+	isInstance = isInstance && "type" in value;
+	isInstance = isInstance && "fullpath" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededAnchorFromJSON(json: any): SeededAnchor {
-    return SeededAnchorFromJSONTyped(json, false);
+	return SeededAnchorFromJSONTyped(json, false);
 }
 
-export function SeededAnchorFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededAnchor {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'type': AnchorTypeEnumFromJSON(json['type']),
-        'watch': !exists(json, 'watch') ? undefined : json['watch'],
-        'fullpath': json['fullpath'],
-        'asset': !exists(json, 'asset') ? undefined : json['asset'],
-        'platform': !exists(json, 'platform') ? undefined : PlatformEnumFromJSON(json['platform']),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'annotations': !exists(json, 'annotations') ? undefined : ((json['annotations'] as Array<any>).map(SeededAnnotationFromJSON)),
-        'conversation': !exists(json, 'conversation') ? undefined : json['conversation'],
-        'persons': !exists(json, 'persons') ? undefined : FlattenedPersonsFromJSON(json['persons']),
-    };
+export function SeededAnchorFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededAnchor {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		type: AnchorTypeEnumFromJSON(json["type"]),
+		watch: exists(json, "watch") ? json["watch"] : undefined,
+		fullpath: json["fullpath"],
+		asset: exists(json, "asset") ? json["asset"] : undefined,
+		platform: exists(json, "platform")
+			? PlatformEnumFromJSON(json["platform"])
+			: undefined,
+		name: exists(json, "name") ? json["name"] : undefined,
+		annotations: exists(json, "annotations")
+			? (json["annotations"] as any[]).map(SeededAnnotationFromJSON)
+			: undefined,
+		conversation: exists(json, "conversation")
+			? json["conversation"]
+			: undefined,
+		persons: exists(json, "persons")
+			? FlattenedPersonsFromJSON(json["persons"])
+			: undefined,
+	};
 }
 
 export function SeededAnchorToJSON(value?: SeededAnchor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'type': AnchorTypeEnumToJSON(value.type),
-        'watch': value.watch,
-        'fullpath': value.fullpath,
-        'asset': value.asset,
-        'platform': PlatformEnumToJSON(value.platform),
-        'name': value.name,
-        'annotations': value.annotations === undefined ? undefined : ((value.annotations as Array<any>).map(SeededAnnotationToJSON)),
-        'conversation': value.conversation,
-        'persons': FlattenedPersonsToJSON(value.persons),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		type: AnchorTypeEnumToJSON(value.type),
+		watch: value.watch,
+		fullpath: value.fullpath,
+		asset: value.asset,
+		platform: PlatformEnumToJSON(value.platform),
+		name: value.name,
+		annotations:
+			value.annotations === undefined
+				? undefined
+				: (value.annotations as any[]).map(SeededAnnotationToJSON),
+		conversation: value.conversation,
+		persons: FlattenedPersonsToJSON(value.persons),
+	};
 }
-

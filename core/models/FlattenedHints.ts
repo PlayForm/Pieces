@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedHint } from './ReferencedHint';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedHint } from "./ReferencedHint.tsx";
 import {
-    ReferencedHintFromJSON,
-    ReferencedHintFromJSONTyped,
-    ReferencedHintToJSON,
-} from './ReferencedHint';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedHintFromJSON,
+	ReferencedHintToJSON,
+} from "./ReferencedHint.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is the flattened Version of plural hints.
@@ -38,72 +32,74 @@ import {
  * @interface FlattenedHints
  */
 export interface FlattenedHints {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedHints
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedHint>}
-     * @memberof FlattenedHints
-     */
-    iterable: Array<ReferencedHint>;
-    /**
-     * This is a Map<String, int> where the the key is an hint id.
-     * @type {{ [key: string]: number; }}
-     * @memberof FlattenedHints
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedHints
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedHints
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedHint>}
+	 * @memberof FlattenedHints
+	 */
+	iterable: ReferencedHint[];
+	/**
+	 * This is a Map<String, int> where the the key is an hint id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof FlattenedHints
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedHints
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedHints interface.
  */
 export function instanceOfFlattenedHints(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedHintsFromJSON(json: any): FlattenedHints {
-    return FlattenedHintsFromJSONTyped(json, false);
+	return FlattenedHintsFromJSONTyped(json, false);
 }
 
-export function FlattenedHintsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedHints {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedHintFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedHintsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedHints {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ReferencedHintFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function FlattenedHintsToJSON(value?: FlattenedHints | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedHintToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedHintToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

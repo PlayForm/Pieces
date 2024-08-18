@@ -12,121 +12,125 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { MechanismEnum } from './MechanismEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
 
 /**
  * This is the minimum information required to create a website for a specific asset.
- * 
+ *
  * you can optionally add an asset, or person id to attach this website directly to it
- * 
+ *
  * TODO consider updating these asset,format to referenced Models
  * @export
  * @interface SeededWebsite
  */
 export interface SeededWebsite {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededWebsite
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the specific asset that this website is going to get attached to!!
-     * @type {string}
-     * @memberof SeededWebsite
-     */
-    asset?: string;
-    /**
-     * This is the specific conversation that this website is going to get attached to!!
-     * @type {string}
-     * @memberof SeededWebsite
-     */
-    conversation?: string;
-    /**
-     * this is the url of the website.
-     * @type {string}
-     * @memberof SeededWebsite
-     */
-    url: string;
-    /**
-     * name of the website.(customizable and updateable as well.)
-     * @type {string}
-     * @memberof SeededWebsite
-     */
-    name: string;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof SeededWebsite
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * this is a uuid of a person that we are going to add the website too.
-     * @type {string}
-     * @memberof SeededWebsite
-     */
-    person?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededWebsite
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the specific asset that this website is going to get attached to!!
+	 * @type {string}
+	 * @memberof SeededWebsite
+	 */
+	asset?: string;
+	/**
+	 * This is the specific conversation that this website is going to get attached to!!
+	 * @type {string}
+	 * @memberof SeededWebsite
+	 */
+	conversation?: string;
+	/**
+	 * this is the url of the website.
+	 * @type {string}
+	 * @memberof SeededWebsite
+	 */
+	url: string;
+	/**
+	 * name of the website.(customizable and updateable as well.)
+	 * @type {string}
+	 * @memberof SeededWebsite
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof SeededWebsite
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 * this is a uuid of a person that we are going to add the website too.
+	 * @type {string}
+	 * @memberof SeededWebsite
+	 */
+	person?: string;
 }
 
 /**
  * Check if a given object implements the SeededWebsite interface.
  */
 export function instanceOfSeededWebsite(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "url" in value;
-    isInstance = isInstance && "name" in value;
+	let isInstance = true;
+	isInstance = isInstance && "url" in value;
+	isInstance = isInstance && "name" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededWebsiteFromJSON(json: any): SeededWebsite {
-    return SeededWebsiteFromJSONTyped(json, false);
+	return SeededWebsiteFromJSONTyped(json, false);
 }
 
-export function SeededWebsiteFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededWebsite {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': !exists(json, 'asset') ? undefined : json['asset'],
-        'conversation': !exists(json, 'conversation') ? undefined : json['conversation'],
-        'url': json['url'],
-        'name': json['name'],
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'person': !exists(json, 'person') ? undefined : json['person'],
-    };
+export function SeededWebsiteFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededWebsite {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: exists(json, "asset") ? json["asset"] : undefined,
+		conversation: exists(json, "conversation")
+			? json["conversation"]
+			: undefined,
+		url: json["url"],
+		name: json["name"],
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		person: exists(json, "person") ? json["person"] : undefined,
+	};
 }
 
 export function SeededWebsiteToJSON(value?: SeededWebsite | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': value.asset,
-        'conversation': value.conversation,
-        'url': value.url,
-        'name': value.name,
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'person': value.person,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: value.asset,
+		conversation: value.conversation,
+		url: value.url,
+		name: value.name,
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		person: value.person,
+	};
 }
-

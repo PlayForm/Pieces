@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededTrackedApplication } from './SeededTrackedApplication';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededTrackedApplication } from "./SeededTrackedApplication.tsx";
 import {
-    SeededTrackedApplicationFromJSON,
-    SeededTrackedApplicationFromJSONTyped,
-    SeededTrackedApplicationToJSON,
-} from './SeededTrackedApplication';
+	SeededTrackedApplicationFromJSON,
+	SeededTrackedApplicationToJSON,
+} from "./SeededTrackedApplication.tsx";
 
 /**
  * A model that is passed to the context API at bootup
@@ -32,56 +30,62 @@ import {
  * @interface SeededConnectorConnection
  */
 export interface SeededConnectorConnection {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededConnectorConnection
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededTrackedApplication}
-     * @memberof SeededConnectorConnection
-     */
-    application: SeededTrackedApplication;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededConnectorConnection
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededTrackedApplication}
+	 * @memberof SeededConnectorConnection
+	 */
+	application: SeededTrackedApplication;
 }
 
 /**
  * Check if a given object implements the SeededConnectorConnection interface.
  */
 export function instanceOfSeededConnectorConnection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "application" in value;
+	let isInstance = true;
+	isInstance = isInstance && "application" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededConnectorConnectionFromJSON(json: any): SeededConnectorConnection {
-    return SeededConnectorConnectionFromJSONTyped(json, false);
+export function SeededConnectorConnectionFromJSON(
+	json: any,
+): SeededConnectorConnection {
+	return SeededConnectorConnectionFromJSONTyped(json, false);
 }
 
-export function SeededConnectorConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededConnectorConnection {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'application': SeededTrackedApplicationFromJSON(json['application']),
-    };
+export function SeededConnectorConnectionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededConnectorConnection {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		application: SeededTrackedApplicationFromJSON(json["application"]),
+	};
 }
 
-export function SeededConnectorConnectionToJSON(value?: SeededConnectorConnection | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'application': SeededTrackedApplicationToJSON(value.application),
-    };
+export function SeededConnectorConnectionToJSON(
+	value?: SeededConnectorConnection | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		application: SeededTrackedApplicationToJSON(value.application),
+	};
 }
-

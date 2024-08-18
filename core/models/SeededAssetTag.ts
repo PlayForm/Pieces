@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { MechanismEnum } from './MechanismEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { TagCategoryEnum } from './TagCategoryEnum';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { TagCategoryEnum } from "./TagCategoryEnum.tsx";
 import {
-    TagCategoryEnumFromJSON,
-    TagCategoryEnumFromJSONTyped,
-    TagCategoryEnumToJSON,
-} from './TagCategoryEnum';
+	TagCategoryEnumFromJSON,
+	TagCategoryEnumToJSON,
+} from "./TagCategoryEnum.tsx";
 
 /**
  * This is similar to an SeededTag, where this is the minimum information of a tag, but this can get added to a seededAsset,  where you may not yet have an asset id.
@@ -38,72 +35,78 @@ import {
  * @interface SeededAssetTag
  */
 export interface SeededAssetTag {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededAssetTag
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * this is the text that represents the tag.
-     * @type {string}
-     * @memberof SeededAssetTag
-     */
-    text: string;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof SeededAssetTag
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * 
-     * @type {TagCategoryEnum}
-     * @memberof SeededAssetTag
-     */
-    category?: TagCategoryEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededAssetTag
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * this is the text that represents the tag.
+	 * @type {string}
+	 * @memberof SeededAssetTag
+	 */
+	text: string;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof SeededAssetTag
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 *
+	 * @type {TagCategoryEnum}
+	 * @memberof SeededAssetTag
+	 */
+	category?: TagCategoryEnum;
 }
 
 /**
  * Check if a given object implements the SeededAssetTag interface.
  */
 export function instanceOfSeededAssetTag(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "text" in value;
+	let isInstance = true;
+	isInstance = isInstance && "text" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededAssetTagFromJSON(json: any): SeededAssetTag {
-    return SeededAssetTagFromJSONTyped(json, false);
+	return SeededAssetTagFromJSONTyped(json, false);
 }
 
-export function SeededAssetTagFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededAssetTag {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'text': json['text'],
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'category': !exists(json, 'category') ? undefined : TagCategoryEnumFromJSON(json['category']),
-    };
+export function SeededAssetTagFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededAssetTag {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		text: json["text"],
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		category: exists(json, "category")
+			? TagCategoryEnumFromJSON(json["category"])
+			: undefined,
+	};
 }
 
 export function SeededAssetTagToJSON(value?: SeededAssetTag | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'text': value.text,
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'category': TagCategoryEnumToJSON(value.category),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		text: value.text,
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		category: TagCategoryEnumToJSON(value.category),
+	};
 }
-

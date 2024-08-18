@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ApplicationNameEnum } from './ApplicationNameEnum';
+import { exists } from "../runtime.ts";
+import type { ApplicationNameEnum } from "./ApplicationNameEnum.tsx";
 import {
-    ApplicationNameEnumFromJSON,
-    ApplicationNameEnumFromJSONTyped,
-    ApplicationNameEnumToJSON,
-} from './ApplicationNameEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ApplicationNameEnumFromJSON,
+	ApplicationNameEnumToJSON,
+} from "./ApplicationNameEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { PlatformEnum } from './PlatformEnum';
-import {
-    PlatformEnumFromJSON,
-    PlatformEnumFromJSONTyped,
-    PlatformEnumToJSON,
-} from './PlatformEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { PlatformEnum } from "./PlatformEnum.tsx";
+import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
 
 /**
  * A Model to describe what application a format/analytics event originated.
@@ -38,91 +32,97 @@ import {
  * @interface TrackedApplication
  */
 export interface TrackedApplication {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TrackedApplication
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * The ID of the tracked application.
-     * @type {string}
-     * @memberof TrackedApplication
-     */
-    id: string;
-    /**
-     * 
-     * @type {ApplicationNameEnum}
-     * @memberof TrackedApplication
-     */
-    name: ApplicationNameEnum;
-    /**
-     * This is the specific version number 0.0.0
-     * @type {string}
-     * @memberof TrackedApplication
-     */
-    version: string;
-    /**
-     * 
-     * @type {PlatformEnum}
-     * @memberof TrackedApplication
-     */
-    platform: PlatformEnum;
-    /**
-     * This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.
-     * @type {boolean}
-     * @memberof TrackedApplication
-     */
-    automaticUnload?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TrackedApplication
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * The ID of the tracked application.
+	 * @type {string}
+	 * @memberof TrackedApplication
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {ApplicationNameEnum}
+	 * @memberof TrackedApplication
+	 */
+	name: ApplicationNameEnum;
+	/**
+	 * This is the specific version number 0.0.0
+	 * @type {string}
+	 * @memberof TrackedApplication
+	 */
+	version: string;
+	/**
+	 *
+	 * @type {PlatformEnum}
+	 * @memberof TrackedApplication
+	 */
+	platform: PlatformEnum;
+	/**
+	 * This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.
+	 * @type {boolean}
+	 * @memberof TrackedApplication
+	 */
+	automaticUnload?: boolean;
 }
 
 /**
  * Check if a given object implements the TrackedApplication interface.
  */
 export function instanceOfTrackedApplication(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "version" in value;
-    isInstance = isInstance && "platform" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "name" in value;
+	isInstance = isInstance && "version" in value;
+	isInstance = isInstance && "platform" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TrackedApplicationFromJSON(json: any): TrackedApplication {
-    return TrackedApplicationFromJSONTyped(json, false);
+	return TrackedApplicationFromJSONTyped(json, false);
 }
 
-export function TrackedApplicationFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedApplication {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'name': ApplicationNameEnumFromJSON(json['name']),
-        'version': json['version'],
-        'platform': PlatformEnumFromJSON(json['platform']),
-        'automaticUnload': !exists(json, 'automaticUnload') ? undefined : json['automaticUnload'],
-    };
+export function TrackedApplicationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedApplication {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		name: ApplicationNameEnumFromJSON(json["name"]),
+		version: json["version"],
+		platform: PlatformEnumFromJSON(json["platform"]),
+		automaticUnload: exists(json, "automaticUnload")
+			? json["automaticUnload"]
+			: undefined,
+	};
 }
 
-export function TrackedApplicationToJSON(value?: TrackedApplication | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'name': ApplicationNameEnumToJSON(value.name),
-        'version': value.version,
-        'platform': PlatformEnumToJSON(value.platform),
-        'automaticUnload': value.automaticUnload,
-    };
+export function TrackedApplicationToJSON(
+	value?: TrackedApplication | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		name: ApplicationNameEnumToJSON(value.name),
+		version: value.version,
+		platform: PlatformEnumToJSON(value.platform),
+		automaticUnload: value.automaticUnload,
+	};
 }
-

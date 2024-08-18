@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { StreamedIdentifier } from './StreamedIdentifier';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { StreamedIdentifier } from "./StreamedIdentifier.tsx";
 import {
-    StreamedIdentifierFromJSON,
-    StreamedIdentifierFromJSONTyped,
-    StreamedIdentifierToJSON,
-} from './StreamedIdentifier';
+	StreamedIdentifierFromJSON,
+	StreamedIdentifierToJSON,
+} from "./StreamedIdentifier.tsx";
 
 /**
  * This is currently only used within /assets/steam/identifiers && /conversations/steam/identifiers but can be used with other as well, if we want to expand this class. && expand the StreamedIdentifier class.
@@ -32,56 +30,60 @@ import {
  * @interface StreamedIdentifiers
  */
 export interface StreamedIdentifiers {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof StreamedIdentifiers
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<StreamedIdentifier>}
-     * @memberof StreamedIdentifiers
-     */
-    iterable: Array<StreamedIdentifier>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof StreamedIdentifiers
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<StreamedIdentifier>}
+	 * @memberof StreamedIdentifiers
+	 */
+	iterable: StreamedIdentifier[];
 }
 
 /**
  * Check if a given object implements the StreamedIdentifiers interface.
  */
 export function instanceOfStreamedIdentifiers(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function StreamedIdentifiersFromJSON(json: any): StreamedIdentifiers {
-    return StreamedIdentifiersFromJSONTyped(json, false);
+	return StreamedIdentifiersFromJSONTyped(json, false);
 }
 
-export function StreamedIdentifiersFromJSONTyped(json: any, ignoreDiscriminator: boolean): StreamedIdentifiers {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(StreamedIdentifierFromJSON)),
-    };
+export function StreamedIdentifiersFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): StreamedIdentifiers {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(StreamedIdentifierFromJSON),
+	};
 }
 
-export function StreamedIdentifiersToJSON(value?: StreamedIdentifiers | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(StreamedIdentifierToJSON)),
-    };
+export function StreamedIdentifiersToJSON(
+	value?: StreamedIdentifiers | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(StreamedIdentifierToJSON),
+	};
 }
-

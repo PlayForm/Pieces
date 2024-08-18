@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Format } from './Format';
-import {
-    FormatFromJSON,
-    FormatFromJSONTyped,
-    FormatToJSON,
-} from './Format';
-import type { Model } from './Model';
-import {
-    ModelFromJSON,
-    ModelFromJSONTyped,
-    ModelToJSON,
-} from './Model';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Format } from "./Format.tsx";
+import { FormatFromJSON, FormatToJSON } from "./Format.tsx";
+import type { Model } from "./Model.tsx";
+import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
 
 /**
  * This is the data collected during the ocr analysis of an image.
@@ -38,92 +29,94 @@ import {
  * @interface OCRAnalysis
  */
 export interface OCRAnalysis {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OCRAnalysis
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof OCRAnalysis
-     */
-    id: string;
-    /**
-     * 
-     * @type {Format}
-     * @memberof OCRAnalysis
-     */
-    raw: Format;
-    /**
-     * 
-     * @type {Format}
-     * @memberof OCRAnalysis
-     */
-    hocr: Format;
-    /**
-     * this is a reference the the imageAnalysis.
-     * @type {string}
-     * @memberof OCRAnalysis
-     */
-    image: string;
-    /**
-     * 
-     * @type {Model}
-     * @memberof OCRAnalysis
-     */
-    model: Model;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OCRAnalysis
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof OCRAnalysis
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {Format}
+	 * @memberof OCRAnalysis
+	 */
+	raw: Format;
+	/**
+	 *
+	 * @type {Format}
+	 * @memberof OCRAnalysis
+	 */
+	hocr: Format;
+	/**
+	 * this is a reference the the imageAnalysis.
+	 * @type {string}
+	 * @memberof OCRAnalysis
+	 */
+	image: string;
+	/**
+	 *
+	 * @type {Model}
+	 * @memberof OCRAnalysis
+	 */
+	model: Model;
 }
 
 /**
  * Check if a given object implements the OCRAnalysis interface.
  */
 export function instanceOfOCRAnalysis(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "raw" in value;
-    isInstance = isInstance && "hocr" in value;
-    isInstance = isInstance && "image" in value;
-    isInstance = isInstance && "model" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "raw" in value;
+	isInstance = isInstance && "hocr" in value;
+	isInstance = isInstance && "image" in value;
+	isInstance = isInstance && "model" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function OCRAnalysisFromJSON(json: any): OCRAnalysis {
-    return OCRAnalysisFromJSONTyped(json, false);
+	return OCRAnalysisFromJSONTyped(json, false);
 }
 
-export function OCRAnalysisFromJSONTyped(json: any, ignoreDiscriminator: boolean): OCRAnalysis {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'raw': FormatFromJSON(json['raw']),
-        'hocr': FormatFromJSON(json['hocr']),
-        'image': json['image'],
-        'model': ModelFromJSON(json['model']),
-    };
+export function OCRAnalysisFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OCRAnalysis {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		raw: FormatFromJSON(json["raw"]),
+		hocr: FormatFromJSON(json["hocr"]),
+		image: json["image"],
+		model: ModelFromJSON(json["model"]),
+	};
 }
 
 export function OCRAnalysisToJSON(value?: OCRAnalysis | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'raw': FormatToJSON(value.raw),
-        'hocr': FormatToJSON(value.hocr),
-        'image': value.image,
-        'model': ModelToJSON(value.model),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		raw: FormatToJSON(value.raw),
+		hocr: FormatToJSON(value.hocr),
+		image: value.image,
+		model: ModelToJSON(value.model),
+	};
 }
-

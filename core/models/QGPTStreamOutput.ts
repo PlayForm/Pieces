@@ -12,41 +12,36 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { QGPTAgentRoutes } from './QGPTAgentRoutes';
+import { exists } from "../runtime.ts";
+import type { QGPTAgentRoutes } from "./QGPTAgentRoutes.tsx";
 import {
-    QGPTAgentRoutesFromJSON,
-    QGPTAgentRoutesFromJSONTyped,
-    QGPTAgentRoutesToJSON,
-} from './QGPTAgentRoutes';
-import type { QGPTQuestionOutput } from './QGPTQuestionOutput';
+	QGPTAgentRoutesFromJSON,
+	QGPTAgentRoutesToJSON,
+} from "./QGPTAgentRoutes.tsx";
+import type { QGPTQuestionOutput } from "./QGPTQuestionOutput.tsx";
 import {
-    QGPTQuestionOutputFromJSON,
-    QGPTQuestionOutputFromJSONTyped,
-    QGPTQuestionOutputToJSON,
-} from './QGPTQuestionOutput';
-import type { QGPTRelevanceOutput } from './QGPTRelevanceOutput';
+	QGPTQuestionOutputFromJSON,
+	QGPTQuestionOutputToJSON,
+} from "./QGPTQuestionOutput.tsx";
+import type { QGPTRelevanceOutput } from "./QGPTRelevanceOutput.tsx";
 import {
-    QGPTRelevanceOutputFromJSON,
-    QGPTRelevanceOutputFromJSONTyped,
-    QGPTRelevanceOutputToJSON,
-} from './QGPTRelevanceOutput';
-import type { QGPTStreamEnum } from './QGPTStreamEnum';
+	QGPTRelevanceOutputFromJSON,
+	QGPTRelevanceOutputToJSON,
+} from "./QGPTRelevanceOutput.tsx";
+import type { QGPTStreamEnum } from "./QGPTStreamEnum.tsx";
 import {
-    QGPTStreamEnumFromJSON,
-    QGPTStreamEnumFromJSONTyped,
-    QGPTStreamEnumToJSON,
-} from './QGPTStreamEnum';
-import type { QGPTStreamedOutputExtractedMaterials } from './QGPTStreamedOutputExtractedMaterials';
+	QGPTStreamEnumFromJSON,
+	QGPTStreamEnumToJSON,
+} from "./QGPTStreamEnum.tsx";
+import type { QGPTStreamedOutputExtractedMaterials } from "./QGPTStreamedOutputExtractedMaterials.tsx";
 import {
-    QGPTStreamedOutputExtractedMaterialsFromJSON,
-    QGPTStreamedOutputExtractedMaterialsFromJSONTyped,
-    QGPTStreamedOutputExtractedMaterialsToJSON,
-} from './QGPTStreamedOutputExtractedMaterials';
+	QGPTStreamedOutputExtractedMaterialsFromJSON,
+	QGPTStreamedOutputExtractedMaterialsToJSON,
+} from "./QGPTStreamedOutputExtractedMaterials.tsx";
 
 /**
  * This is the out for the /qgpt/stream endpoint.
- * 
+ *
  * 200: success
  * 401: invalid authentication/api key
  * 429: Rate limit/Quota exceeded
@@ -56,112 +51,124 @@ import {
  * @interface QGPTStreamOutput
  */
 export interface QGPTStreamOutput {
-    /**
-     * This is the id used to represent the stream of response. this will always be present. We will use the value passed inby the client, or we will generate one.
-     * @type {string}
-     * @memberof QGPTStreamOutput
-     */
-    request?: string;
-    /**
-     * 
-     * @type {QGPTRelevanceOutput}
-     * @memberof QGPTStreamOutput
-     */
-    relevance?: QGPTRelevanceOutput;
-    /**
-     * 
-     * @type {QGPTQuestionOutput}
-     * @memberof QGPTStreamOutput
-     */
-    question?: QGPTQuestionOutput;
-    /**
-     * 
-     * @type {QGPTStreamEnum}
-     * @memberof QGPTStreamOutput
-     */
-    status?: QGPTStreamEnum;
-    /**
-     * This is the ID of a predefined persisted conversation, if this is not present we will create a new conversation for the input/output.(in the case of a question)
-     * @type {string}
-     * @memberof QGPTStreamOutput
-     */
-    conversation: string;
-    /**
-     * This will be provided
-     * @type {number}
-     * @memberof QGPTStreamOutput
-     */
-    statusCode?: number | null;
-    /**
-     * optional error message is the status code is NOT 200
-     * @type {string}
-     * @memberof QGPTStreamOutput
-     */
-    errorMessage?: string;
-    /**
-     * 
-     * @type {QGPTAgentRoutes}
-     * @memberof QGPTStreamOutput
-     */
-    agentRoutes?: QGPTAgentRoutes;
-    /**
-     * 
-     * @type {QGPTStreamedOutputExtractedMaterials}
-     * @memberof QGPTStreamOutput
-     */
-    extracted?: QGPTStreamedOutputExtractedMaterials;
+	/**
+	 * This is the id used to represent the stream of response. this will always be present. We will use the value passed inby the client, or we will generate one.
+	 * @type {string}
+	 * @memberof QGPTStreamOutput
+	 */
+	request?: string;
+	/**
+	 *
+	 * @type {QGPTRelevanceOutput}
+	 * @memberof QGPTStreamOutput
+	 */
+	relevance?: QGPTRelevanceOutput;
+	/**
+	 *
+	 * @type {QGPTQuestionOutput}
+	 * @memberof QGPTStreamOutput
+	 */
+	question?: QGPTQuestionOutput;
+	/**
+	 *
+	 * @type {QGPTStreamEnum}
+	 * @memberof QGPTStreamOutput
+	 */
+	status?: QGPTStreamEnum;
+	/**
+	 * This is the ID of a predefined persisted conversation, if this is not present we will create a new conversation for the input/output.(in the case of a question)
+	 * @type {string}
+	 * @memberof QGPTStreamOutput
+	 */
+	conversation: string;
+	/**
+	 * This will be provided
+	 * @type {number}
+	 * @memberof QGPTStreamOutput
+	 */
+	statusCode?: number | null;
+	/**
+	 * optional error message is the status code is NOT 200
+	 * @type {string}
+	 * @memberof QGPTStreamOutput
+	 */
+	errorMessage?: string;
+	/**
+	 *
+	 * @type {QGPTAgentRoutes}
+	 * @memberof QGPTStreamOutput
+	 */
+	agentRoutes?: QGPTAgentRoutes;
+	/**
+	 *
+	 * @type {QGPTStreamedOutputExtractedMaterials}
+	 * @memberof QGPTStreamOutput
+	 */
+	extracted?: QGPTStreamedOutputExtractedMaterials;
 }
 
 /**
  * Check if a given object implements the QGPTStreamOutput interface.
  */
 export function instanceOfQGPTStreamOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conversation" in value;
+	let isInstance = true;
+	isInstance = isInstance && "conversation" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function QGPTStreamOutputFromJSON(json: any): QGPTStreamOutput {
-    return QGPTStreamOutputFromJSONTyped(json, false);
+	return QGPTStreamOutputFromJSONTyped(json, false);
 }
 
-export function QGPTStreamOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTStreamOutput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'request': !exists(json, 'request') ? undefined : json['request'],
-        'relevance': !exists(json, 'relevance') ? undefined : QGPTRelevanceOutputFromJSON(json['relevance']),
-        'question': !exists(json, 'question') ? undefined : QGPTQuestionOutputFromJSON(json['question']),
-        'status': !exists(json, 'status') ? undefined : QGPTStreamEnumFromJSON(json['status']),
-        'conversation': json['conversation'],
-        'statusCode': !exists(json, 'statusCode') ? undefined : json['statusCode'],
-        'errorMessage': !exists(json, 'errorMessage') ? undefined : json['errorMessage'],
-        'agentRoutes': !exists(json, 'agentRoutes') ? undefined : QGPTAgentRoutesFromJSON(json['agentRoutes']),
-        'extracted': !exists(json, 'extracted') ? undefined : QGPTStreamedOutputExtractedMaterialsFromJSON(json['extracted']),
-    };
+export function QGPTStreamOutputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTStreamOutput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		request: exists(json, "request") ? json["request"] : undefined,
+		relevance: exists(json, "relevance")
+			? QGPTRelevanceOutputFromJSON(json["relevance"])
+			: undefined,
+		question: exists(json, "question")
+			? QGPTQuestionOutputFromJSON(json["question"])
+			: undefined,
+		status: exists(json, "status")
+			? QGPTStreamEnumFromJSON(json["status"])
+			: undefined,
+		conversation: json["conversation"],
+		statusCode: exists(json, "statusCode") ? json["statusCode"] : undefined,
+		errorMessage: exists(json, "errorMessage")
+			? json["errorMessage"]
+			: undefined,
+		agentRoutes: exists(json, "agentRoutes")
+			? QGPTAgentRoutesFromJSON(json["agentRoutes"])
+			: undefined,
+		extracted: exists(json, "extracted")
+			? QGPTStreamedOutputExtractedMaterialsFromJSON(json["extracted"])
+			: undefined,
+	};
 }
 
 export function QGPTStreamOutputToJSON(value?: QGPTStreamOutput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'request': value.request,
-        'relevance': QGPTRelevanceOutputToJSON(value.relevance),
-        'question': QGPTQuestionOutputToJSON(value.question),
-        'status': QGPTStreamEnumToJSON(value.status),
-        'conversation': value.conversation,
-        'statusCode': value.statusCode,
-        'errorMessage': value.errorMessage,
-        'agentRoutes': QGPTAgentRoutesToJSON(value.agentRoutes),
-        'extracted': QGPTStreamedOutputExtractedMaterialsToJSON(value.extracted),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		request: value.request,
+		relevance: QGPTRelevanceOutputToJSON(value.relevance),
+		question: QGPTQuestionOutputToJSON(value.question),
+		status: QGPTStreamEnumToJSON(value.status),
+		conversation: value.conversation,
+		statusCode: value.statusCode,
+		errorMessage: value.errorMessage,
+		agentRoutes: QGPTAgentRoutesToJSON(value.agentRoutes),
+		extracted: QGPTStreamedOutputExtractedMaterialsToJSON(value.extracted),
+	};
 }
-

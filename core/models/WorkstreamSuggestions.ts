@@ -12,95 +12,103 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamSuggestion } from './WorkstreamSuggestion';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamSuggestion } from "./WorkstreamSuggestion.tsx";
 import {
-    WorkstreamSuggestionFromJSON,
-    WorkstreamSuggestionFromJSONTyped,
-    WorkstreamSuggestionToJSON,
-} from './WorkstreamSuggestion';
-import type { WorkstreamSuggestionType } from './WorkstreamSuggestionType';
+	WorkstreamSuggestionFromJSON,
+	WorkstreamSuggestionToJSON,
+} from "./WorkstreamSuggestion.tsx";
+import type { WorkstreamSuggestionType } from "./WorkstreamSuggestionType.tsx";
 import {
-    WorkstreamSuggestionTypeFromJSON,
-    WorkstreamSuggestionTypeFromJSONTyped,
-    WorkstreamSuggestionTypeToJSON,
-} from './WorkstreamSuggestionType';
+	WorkstreamSuggestionTypeFromJSON,
+	WorkstreamSuggestionTypeToJSON,
+} from "./WorkstreamSuggestionType.tsx";
 
 /**
  * This is a list of the materials used in the workstream suggestions.
- * 
+ *
  * The feed will return a list of individual material that will be required to be fetched and re-referenced.(the materials that is.)
- * 
+ *
  * Considering if we want to have all the materaials just being referenced( ie ReferencedWebsite/ReferencedWorkstreamSummary/...xyz) && rebuilt
  * @export
  * @interface WorkstreamSuggestions
  */
 export interface WorkstreamSuggestions {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamSuggestions
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<WorkstreamSuggestion>}
-     * @memberof WorkstreamSuggestions
-     */
-    iterable: Array<WorkstreamSuggestion>;
-    /**
-     * This is iterable <WorkstreamSuggestionType>[] that gives the type of each of the items in the iterable.
-     * I.E. types[0] is the suggestion type of the item at iterable[0].
-     * @type {Array<WorkstreamSuggestionType>}
-     * @memberof WorkstreamSuggestions
-     */
-    types?: Array<WorkstreamSuggestionType>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamSuggestions
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<WorkstreamSuggestion>}
+	 * @memberof WorkstreamSuggestions
+	 */
+	iterable: WorkstreamSuggestion[];
+	/**
+	 * This is iterable <WorkstreamSuggestionType>[] that gives the type of each of the items in the iterable.
+	 * I.E. types[0] is the suggestion type of the item at iterable[0].
+	 * @type {Array<WorkstreamSuggestionType>}
+	 * @memberof WorkstreamSuggestions
+	 */
+	types?: WorkstreamSuggestionType[];
 }
 
 /**
  * Check if a given object implements the WorkstreamSuggestions interface.
  */
 export function instanceOfWorkstreamSuggestions(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamSuggestionsFromJSON(json: any): WorkstreamSuggestions {
-    return WorkstreamSuggestionsFromJSONTyped(json, false);
+export function WorkstreamSuggestionsFromJSON(
+	json: any,
+): WorkstreamSuggestions {
+	return WorkstreamSuggestionsFromJSONTyped(json, false);
 }
 
-export function WorkstreamSuggestionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamSuggestions {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(WorkstreamSuggestionFromJSON)),
-        'types': !exists(json, 'types') ? undefined : ((json['types'] as Array<any>).map(WorkstreamSuggestionTypeFromJSON)),
-    };
+export function WorkstreamSuggestionsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamSuggestions {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(WorkstreamSuggestionFromJSON),
+		types: exists(json, "types")
+			? (json["types"] as any[]).map(WorkstreamSuggestionTypeFromJSON)
+			: undefined,
+	};
 }
 
-export function WorkstreamSuggestionsToJSON(value?: WorkstreamSuggestions | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(WorkstreamSuggestionToJSON)),
-        'types': value.types === undefined ? undefined : ((value.types as Array<any>).map(WorkstreamSuggestionTypeToJSON)),
-    };
+export function WorkstreamSuggestionsToJSON(
+	value?: WorkstreamSuggestions | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(WorkstreamSuggestionToJSON),
+		types:
+			value.types === undefined
+				? undefined
+				: (value.types as any[]).map(WorkstreamSuggestionTypeToJSON),
+	};
 }
-

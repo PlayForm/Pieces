@@ -12,96 +12,97 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * Bytes is a Model for A FileFormat. Raw and file are the only 2 that are currently supported. Raw and file are an array of integers that represent the file.Typical conversion UTF8 -> array[int] or UTF8 -> array[bytes(in hexidecimal)] -> array[int]. Either way you convert is up to you but the type we need here is an array of integers.
- * 
+ *
  * [NOT IMPLEMENTED] base64, base64_url, data_url
  * [IMPLEMENTED] raw
  * @export
  * @interface TransferableBytes
  */
 export interface TransferableBytes {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TransferableBytes
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * IMPLEMENTED
-     * @type {Array<number>}
-     * @memberof TransferableBytes
-     */
-    raw?: Array<number>;
-    /**
-     * NOT IMPLEMENTED
-     * @type {Array<number>}
-     * @memberof TransferableBytes
-     */
-    base64?: Array<number>;
-    /**
-     * NOT IMPLEMENTED
-     * @type {Array<number>}
-     * @memberof TransferableBytes
-     */
-    base64Url?: Array<number>;
-    /**
-     * NOT IMPLEMENTED
-     * @type {Array<number>}
-     * @memberof TransferableBytes
-     */
-    dataUrl?: Array<number>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TransferableBytes
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * IMPLEMENTED
+	 * @type {Array<number>}
+	 * @memberof TransferableBytes
+	 */
+	raw?: number[];
+	/**
+	 * NOT IMPLEMENTED
+	 * @type {Array<number>}
+	 * @memberof TransferableBytes
+	 */
+	base64?: number[];
+	/**
+	 * NOT IMPLEMENTED
+	 * @type {Array<number>}
+	 * @memberof TransferableBytes
+	 */
+	base64Url?: number[];
+	/**
+	 * NOT IMPLEMENTED
+	 * @type {Array<number>}
+	 * @memberof TransferableBytes
+	 */
+	dataUrl?: number[];
 }
 
 /**
  * Check if a given object implements the TransferableBytes interface.
  */
-export function instanceOfTransferableBytes(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTransferableBytes(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TransferableBytesFromJSON(json: any): TransferableBytes {
-    return TransferableBytesFromJSONTyped(json, false);
+	return TransferableBytesFromJSONTyped(json, false);
 }
 
-export function TransferableBytesFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransferableBytes {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'raw': !exists(json, 'raw') ? undefined : json['raw'],
-        'base64': !exists(json, 'base64') ? undefined : json['base64'],
-        'base64Url': !exists(json, 'base64_url') ? undefined : json['base64_url'],
-        'dataUrl': !exists(json, 'data_url') ? undefined : json['data_url'],
-    };
+export function TransferableBytesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TransferableBytes {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		raw: exists(json, "raw") ? json["raw"] : undefined,
+		base64: exists(json, "base64") ? json["base64"] : undefined,
+		base64Url: exists(json, "base64_url") ? json["base64_url"] : undefined,
+		dataUrl: exists(json, "data_url") ? json["data_url"] : undefined,
+	};
 }
 
 export function TransferableBytesToJSON(value?: TransferableBytes | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'raw': value.raw,
-        'base64': value.base64,
-        'base64_url': value.base64Url,
-        'data_url': value.dataUrl,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		raw: value.raw,
+		base64: value.base64,
+		base64_url: value.base64Url,
+		data_url: value.dataUrl,
+	};
 }
-

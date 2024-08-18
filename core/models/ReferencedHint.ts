@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedHint } from './FlattenedHint';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedHint } from "./FlattenedHint.tsx";
 import {
-    FlattenedHintFromJSON,
-    FlattenedHintFromJSONTyped,
-    FlattenedHintToJSON,
-} from './FlattenedHint';
+	FlattenedHintFromJSON,
+	FlattenedHintToJSON,
+} from "./FlattenedHint.tsx";
 
 /**
  * This is the referenced version of a hint, main used for the uuid.
@@ -32,64 +30,68 @@ import {
  * @interface ReferencedHint
  */
 export interface ReferencedHint {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedHint
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedHint
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedHint}
-     * @memberof ReferencedHint
-     */
-    reference?: FlattenedHint;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedHint
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedHint
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedHint}
+	 * @memberof ReferencedHint
+	 */
+	reference?: FlattenedHint;
 }
 
 /**
  * Check if a given object implements the ReferencedHint interface.
  */
 export function instanceOfReferencedHint(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReferencedHintFromJSON(json: any): ReferencedHint {
-    return ReferencedHintFromJSONTyped(json, false);
+	return ReferencedHintFromJSONTyped(json, false);
 }
 
-export function ReferencedHintFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedHint {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedHintFromJSON(json['reference']),
-    };
+export function ReferencedHintFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedHint {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedHintFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
 export function ReferencedHintToJSON(value?: ReferencedHint | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedHintToJSON(value.reference),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedHintToJSON(value.reference),
+	};
 }
-

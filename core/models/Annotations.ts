@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Annotation } from './Annotation';
+import { exists } from "../runtime.ts";
+import type { Annotation } from "./Annotation.tsx";
+import { AnnotationFromJSON, AnnotationToJSON } from "./Annotation.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AnnotationFromJSON,
-    AnnotationFromJSONTyped,
-    AnnotationToJSON,
-} from './Annotation';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is the plural of Annotation
@@ -38,72 +29,74 @@ import {
  * @interface Annotations
  */
 export interface Annotations {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Annotations
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Annotation>}
-     * @memberof Annotations
-     */
-    iterable: Array<Annotation>;
-    /**
-     * This is a Map<String, int> where the the key is an annotation id.
-     * @type {{ [key: string]: number; }}
-     * @memberof Annotations
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof Annotations
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Annotations
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Annotation>}
+	 * @memberof Annotations
+	 */
+	iterable: Annotation[];
+	/**
+	 * This is a Map<String, int> where the the key is an annotation id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof Annotations
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Annotations
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the Annotations interface.
  */
 export function instanceOfAnnotations(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AnnotationsFromJSON(json: any): Annotations {
-    return AnnotationsFromJSONTyped(json, false);
+	return AnnotationsFromJSONTyped(json, false);
 }
 
-export function AnnotationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Annotations {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(AnnotationFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function AnnotationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Annotations {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(AnnotationFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function AnnotationsToJSON(value?: Annotations | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(AnnotationToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(AnnotationToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

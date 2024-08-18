@@ -12,79 +12,89 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamPatternEngineVisionCalibration } from './WorkstreamPatternEngineVisionCalibration';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamPatternEngineVisionCalibration } from "./WorkstreamPatternEngineVisionCalibration.tsx";
 import {
-    WorkstreamPatternEngineVisionCalibrationFromJSON,
-    WorkstreamPatternEngineVisionCalibrationFromJSONTyped,
-    WorkstreamPatternEngineVisionCalibrationToJSON,
-} from './WorkstreamPatternEngineVisionCalibration';
+	WorkstreamPatternEngineVisionCalibrationFromJSON,
+	WorkstreamPatternEngineVisionCalibrationToJSON,
+} from "./WorkstreamPatternEngineVisionCalibration.tsx";
 
 /**
  * TODO: description
  * This the plural of a single copilot Capture.
- * 
+ *
  * This will return all the the given copilot captures
  * @export
  * @interface WorkstreamPatternEngineVisionCalibrations
  */
 export interface WorkstreamPatternEngineVisionCalibrations {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamPatternEngineVisionCalibrations
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<WorkstreamPatternEngineVisionCalibration>}
-     * @memberof WorkstreamPatternEngineVisionCalibrations
-     */
-    iterable: Array<WorkstreamPatternEngineVisionCalibration>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamPatternEngineVisionCalibrations
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<WorkstreamPatternEngineVisionCalibration>}
+	 * @memberof WorkstreamPatternEngineVisionCalibrations
+	 */
+	iterable: WorkstreamPatternEngineVisionCalibration[];
 }
 
 /**
  * Check if a given object implements the WorkstreamPatternEngineVisionCalibrations interface.
  */
-export function instanceOfWorkstreamPatternEngineVisionCalibrations(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+export function instanceOfWorkstreamPatternEngineVisionCalibrations(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamPatternEngineVisionCalibrationsFromJSON(json: any): WorkstreamPatternEngineVisionCalibrations {
-    return WorkstreamPatternEngineVisionCalibrationsFromJSONTyped(json, false);
+export function WorkstreamPatternEngineVisionCalibrationsFromJSON(
+	json: any,
+): WorkstreamPatternEngineVisionCalibrations {
+	return WorkstreamPatternEngineVisionCalibrationsFromJSONTyped(json, false);
 }
 
-export function WorkstreamPatternEngineVisionCalibrationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamPatternEngineVisionCalibrations {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(WorkstreamPatternEngineVisionCalibrationFromJSON)),
-    };
+export function WorkstreamPatternEngineVisionCalibrationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamPatternEngineVisionCalibrations {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			WorkstreamPatternEngineVisionCalibrationFromJSON,
+		),
+	};
 }
 
-export function WorkstreamPatternEngineVisionCalibrationsToJSON(value?: WorkstreamPatternEngineVisionCalibrations | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(WorkstreamPatternEngineVisionCalibrationToJSON)),
-    };
+export function WorkstreamPatternEngineVisionCalibrationsToJSON(
+	value?: WorkstreamPatternEngineVisionCalibrations | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			WorkstreamPatternEngineVisionCalibrationToJSON,
+		),
+	};
 }
-

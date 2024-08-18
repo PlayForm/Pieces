@@ -12,69 +12,79 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededRangeConversationGroundingTemporalAssociation
  */
 export interface SeededRangeConversationGroundingTemporalAssociation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededRangeConversationGroundingTemporalAssociation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededRangeConversationGroundingTemporalAssociation
-     */
-    workstream?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededRangeConversationGroundingTemporalAssociation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededRangeConversationGroundingTemporalAssociation
+	 */
+	workstream?: boolean;
 }
 
 /**
  * Check if a given object implements the SeededRangeConversationGroundingTemporalAssociation interface.
  */
-export function instanceOfSeededRangeConversationGroundingTemporalAssociation(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededRangeConversationGroundingTemporalAssociation(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededRangeConversationGroundingTemporalAssociationFromJSON(json: any): SeededRangeConversationGroundingTemporalAssociation {
-    return SeededRangeConversationGroundingTemporalAssociationFromJSONTyped(json, false);
+export function SeededRangeConversationGroundingTemporalAssociationFromJSON(
+	json: any,
+): SeededRangeConversationGroundingTemporalAssociation {
+	return SeededRangeConversationGroundingTemporalAssociationFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function SeededRangeConversationGroundingTemporalAssociationFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededRangeConversationGroundingTemporalAssociation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'workstream': !exists(json, 'workstream') ? undefined : json['workstream'],
-    };
+export function SeededRangeConversationGroundingTemporalAssociationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededRangeConversationGroundingTemporalAssociation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		workstream: exists(json, "workstream") ? json["workstream"] : undefined,
+	};
 }
 
-export function SeededRangeConversationGroundingTemporalAssociationToJSON(value?: SeededRangeConversationGroundingTemporalAssociation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'workstream': value.workstream,
-    };
+export function SeededRangeConversationGroundingTemporalAssociationToJSON(
+	value?: SeededRangeConversationGroundingTemporalAssociation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		workstream: value.workstream,
+	};
 }
-

@@ -12,72 +12,77 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the input model for '/machine_learning/text/technical_language/parsers/segmentation'
- * 
+ *
  * This will take the unsegmentedText here!
  * @export
  * @interface UnsegmentedTechnicalLanguage
  */
 export interface UnsegmentedTechnicalLanguage {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof UnsegmentedTechnicalLanguage
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof UnsegmentedTechnicalLanguage
-     */
-    value: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof UnsegmentedTechnicalLanguage
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof UnsegmentedTechnicalLanguage
+	 */
+	value: string;
 }
 
 /**
  * Check if a given object implements the UnsegmentedTechnicalLanguage interface.
  */
 export function instanceOfUnsegmentedTechnicalLanguage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "value" in value;
+	let isInstance = true;
+	isInstance = isInstance && "value" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function UnsegmentedTechnicalLanguageFromJSON(json: any): UnsegmentedTechnicalLanguage {
-    return UnsegmentedTechnicalLanguageFromJSONTyped(json, false);
+export function UnsegmentedTechnicalLanguageFromJSON(
+	json: any,
+): UnsegmentedTechnicalLanguage {
+	return UnsegmentedTechnicalLanguageFromJSONTyped(json, false);
 }
 
-export function UnsegmentedTechnicalLanguageFromJSONTyped(json: any, ignoreDiscriminator: boolean): UnsegmentedTechnicalLanguage {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'value': json['value'],
-    };
+export function UnsegmentedTechnicalLanguageFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): UnsegmentedTechnicalLanguage {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		value: json["value"],
+	};
 }
 
-export function UnsegmentedTechnicalLanguageToJSON(value?: UnsegmentedTechnicalLanguage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'value': value.value,
-    };
+export function UnsegmentedTechnicalLanguageToJSON(
+	value?: UnsegmentedTechnicalLanguage | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		value: value.value,
+	};
 }
-

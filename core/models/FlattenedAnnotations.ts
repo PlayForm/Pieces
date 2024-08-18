@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedAnnotation } from './ReferencedAnnotation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedAnnotation } from "./ReferencedAnnotation.tsx";
 import {
-    ReferencedAnnotationFromJSON,
-    ReferencedAnnotationFromJSONTyped,
-    ReferencedAnnotationToJSON,
-} from './ReferencedAnnotation';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedAnnotationFromJSON,
+	ReferencedAnnotationToJSON,
+} from "./ReferencedAnnotation.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a flattened plural of Annotation, typically this will just be a list of uuids.
@@ -38,72 +32,76 @@ import {
  * @interface FlattenedAnnotations
  */
 export interface FlattenedAnnotations {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedAnnotations
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedAnnotation>}
-     * @memberof FlattenedAnnotations
-     */
-    iterable: Array<ReferencedAnnotation>;
-    /**
-     * This is a Map<String, int> where the the key is an annotation id.
-     * @type {{ [key: string]: number; }}
-     * @memberof FlattenedAnnotations
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedAnnotations
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedAnnotations
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedAnnotation>}
+	 * @memberof FlattenedAnnotations
+	 */
+	iterable: ReferencedAnnotation[];
+	/**
+	 * This is a Map<String, int> where the the key is an annotation id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof FlattenedAnnotations
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedAnnotations
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedAnnotations interface.
  */
 export function instanceOfFlattenedAnnotations(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedAnnotationsFromJSON(json: any): FlattenedAnnotations {
-    return FlattenedAnnotationsFromJSONTyped(json, false);
+	return FlattenedAnnotationsFromJSONTyped(json, false);
 }
 
-export function FlattenedAnnotationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedAnnotations {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedAnnotationFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedAnnotationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedAnnotations {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ReferencedAnnotationFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
-export function FlattenedAnnotationsToJSON(value?: FlattenedAnnotations | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedAnnotationToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+export function FlattenedAnnotationsToJSON(
+	value?: FlattenedAnnotations | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedAnnotationToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

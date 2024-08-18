@@ -12,85 +12,91 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ModelDownloadProgressStatusEnum } from './ModelDownloadProgressStatusEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ModelDownloadProgressStatusEnum } from "./ModelDownloadProgressStatusEnum.tsx";
 import {
-    ModelDownloadProgressStatusEnumFromJSON,
-    ModelDownloadProgressStatusEnumFromJSONTyped,
-    ModelDownloadProgressStatusEnumToJSON,
-} from './ModelDownloadProgressStatusEnum';
+	ModelDownloadProgressStatusEnumFromJSON,
+	ModelDownloadProgressStatusEnumToJSON,
+} from "./ModelDownloadProgressStatusEnum.tsx";
 
 /**
  * This is the model that is sent over our ws for streaming the progress of a model that is being downloaded.
- * 
+ *
  * can eventually add a number that display the percent downloaded an so on.(this is called percent 0-100)
  * @export
  * @interface ModelDownloadProgress
  */
 export interface ModelDownloadProgress {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ModelDownloadProgress
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ModelDownloadProgressStatusEnum}
-     * @memberof ModelDownloadProgress
-     */
-    status?: ModelDownloadProgressStatusEnum;
-    /**
-     * Optionally if the download is in progress you will recieve a download percent(from 0-100).
-     * @type {number}
-     * @memberof ModelDownloadProgress
-     */
-    percentage?: number | null;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ModelDownloadProgress
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ModelDownloadProgressStatusEnum}
+	 * @memberof ModelDownloadProgress
+	 */
+	status?: ModelDownloadProgressStatusEnum;
+	/**
+	 * Optionally if the download is in progress you will recieve a download percent(from 0-100).
+	 * @type {number}
+	 * @memberof ModelDownloadProgress
+	 */
+	percentage?: number | null;
 }
 
 /**
  * Check if a given object implements the ModelDownloadProgress interface.
  */
-export function instanceOfModelDownloadProgress(value: object): boolean {
-    let isInstance = true;
+export function instanceOfModelDownloadProgress(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ModelDownloadProgressFromJSON(json: any): ModelDownloadProgress {
-    return ModelDownloadProgressFromJSONTyped(json, false);
+export function ModelDownloadProgressFromJSON(
+	json: any,
+): ModelDownloadProgress {
+	return ModelDownloadProgressFromJSONTyped(json, false);
 }
 
-export function ModelDownloadProgressFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelDownloadProgress {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'status': !exists(json, 'status') ? undefined : ModelDownloadProgressStatusEnumFromJSON(json['status']),
-        'percentage': !exists(json, 'percentage') ? undefined : json['percentage'],
-    };
+export function ModelDownloadProgressFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ModelDownloadProgress {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		status: exists(json, "status")
+			? ModelDownloadProgressStatusEnumFromJSON(json["status"])
+			: undefined,
+		percentage: exists(json, "percentage") ? json["percentage"] : undefined,
+	};
 }
 
-export function ModelDownloadProgressToJSON(value?: ModelDownloadProgress | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'status': ModelDownloadProgressStatusEnumToJSON(value.status),
-        'percentage': value.percentage,
-    };
+export function ModelDownloadProgressToJSON(
+	value?: ModelDownloadProgress | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		status: ModelDownloadProgressStatusEnumToJSON(value.status),
+		percentage: value.percentage,
+	};
 }
-

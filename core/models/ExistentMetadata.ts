@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a shared output model for all the exists endpoints:
@@ -28,56 +27,58 @@ import {
  * @interface ExistentMetadata
  */
 export interface ExistentMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ExistentMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExistentMetadata
-     */
-    value: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ExistentMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExistentMetadata
+	 */
+	value: string;
 }
 
 /**
  * Check if a given object implements the ExistentMetadata interface.
  */
 export function instanceOfExistentMetadata(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "value" in value;
+	let isInstance = true;
+	isInstance = isInstance && "value" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ExistentMetadataFromJSON(json: any): ExistentMetadata {
-    return ExistentMetadataFromJSONTyped(json, false);
+	return ExistentMetadataFromJSONTyped(json, false);
 }
 
-export function ExistentMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExistentMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'value': json['value'],
-    };
+export function ExistentMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExistentMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		value: json["value"],
+	};
 }
 
 export function ExistentMetadataToJSON(value?: ExistentMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'value': value.value,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		value: value.value,
+	};
 }
-

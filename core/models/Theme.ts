@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will describe the theme that belongs to a user.
@@ -26,56 +25,58 @@ import {
  * @interface Theme
  */
 export interface Theme {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Theme
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Theme
-     */
-    dark: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Theme
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof Theme
+	 */
+	dark: boolean;
 }
 
 /**
  * Check if a given object implements the Theme interface.
  */
 export function instanceOfTheme(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "dark" in value;
+	let isInstance = true;
+	isInstance = isInstance && "dark" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ThemeFromJSON(json: any): Theme {
-    return ThemeFromJSONTyped(json, false);
+	return ThemeFromJSONTyped(json, false);
 }
 
-export function ThemeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Theme {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'dark': json['dark'],
-    };
+export function ThemeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Theme {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		dark: json["dark"],
+	};
 }
 
 export function ThemeToJSON(value?: Theme | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'dark': value.dark,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		dark: value.dark,
+	};
 }
-

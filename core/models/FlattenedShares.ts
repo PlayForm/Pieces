@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedShare } from './FlattenedShare';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedShare } from "./FlattenedShare.tsx";
 import {
-    FlattenedShareFromJSON,
-    FlattenedShareFromJSONTyped,
-    FlattenedShareToJSON,
-} from './FlattenedShare';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	FlattenedShareFromJSON,
+	FlattenedShareToJSON,
+} from "./FlattenedShare.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is just an iterable of our individual share models.
@@ -38,64 +32,66 @@ import {
  * @interface FlattenedShares
  */
 export interface FlattenedShares {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedShares
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<FlattenedShare>}
-     * @memberof FlattenedShares
-     */
-    iterable: Array<FlattenedShare>;
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedShares
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedShares
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<FlattenedShare>}
+	 * @memberof FlattenedShares
+	 */
+	iterable: FlattenedShare[];
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedShares
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedShares interface.
  */
 export function instanceOfFlattenedShares(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedSharesFromJSON(json: any): FlattenedShares {
-    return FlattenedSharesFromJSONTyped(json, false);
+	return FlattenedSharesFromJSONTyped(json, false);
 }
 
-export function FlattenedSharesFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedShares {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(FlattenedShareFromJSON)),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedSharesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedShares {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(FlattenedShareFromJSON),
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function FlattenedSharesToJSON(value?: FlattenedShares | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(FlattenedShareToJSON)),
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(FlattenedShareToJSON),
+		score: ScoreToJSON(value.score),
+	};
 }
-

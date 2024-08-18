@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamPatternEngineVisionEvent } from './WorkstreamPatternEngineVisionEvent';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamPatternEngineVisionEvent } from "./WorkstreamPatternEngineVisionEvent.tsx";
 import {
-    WorkstreamPatternEngineVisionEventFromJSON,
-    WorkstreamPatternEngineVisionEventFromJSONTyped,
-    WorkstreamPatternEngineVisionEventToJSON,
-} from './WorkstreamPatternEngineVisionEvent';
+	WorkstreamPatternEngineVisionEventFromJSON,
+	WorkstreamPatternEngineVisionEventToJSON,
+} from "./WorkstreamPatternEngineVisionEvent.tsx";
 
 /**
  * This is a plural snapshot of all of the events within WPE qdrant
@@ -32,56 +30,68 @@ import {
  * @interface WorkstreamPatternEngineVisionEvents
  */
 export interface WorkstreamPatternEngineVisionEvents {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamPatternEngineVisionEvents
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<WorkstreamPatternEngineVisionEvent>}
-     * @memberof WorkstreamPatternEngineVisionEvents
-     */
-    iterable: Array<WorkstreamPatternEngineVisionEvent>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamPatternEngineVisionEvents
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<WorkstreamPatternEngineVisionEvent>}
+	 * @memberof WorkstreamPatternEngineVisionEvents
+	 */
+	iterable: WorkstreamPatternEngineVisionEvent[];
 }
 
 /**
  * Check if a given object implements the WorkstreamPatternEngineVisionEvents interface.
  */
-export function instanceOfWorkstreamPatternEngineVisionEvents(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+export function instanceOfWorkstreamPatternEngineVisionEvents(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamPatternEngineVisionEventsFromJSON(json: any): WorkstreamPatternEngineVisionEvents {
-    return WorkstreamPatternEngineVisionEventsFromJSONTyped(json, false);
+export function WorkstreamPatternEngineVisionEventsFromJSON(
+	json: any,
+): WorkstreamPatternEngineVisionEvents {
+	return WorkstreamPatternEngineVisionEventsFromJSONTyped(json, false);
 }
 
-export function WorkstreamPatternEngineVisionEventsFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamPatternEngineVisionEvents {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(WorkstreamPatternEngineVisionEventFromJSON)),
-    };
+export function WorkstreamPatternEngineVisionEventsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamPatternEngineVisionEvents {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			WorkstreamPatternEngineVisionEventFromJSON,
+		),
+	};
 }
 
-export function WorkstreamPatternEngineVisionEventsToJSON(value?: WorkstreamPatternEngineVisionEvents | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(WorkstreamPatternEngineVisionEventToJSON)),
-    };
+export function WorkstreamPatternEngineVisionEventsToJSON(
+	value?: WorkstreamPatternEngineVisionEvents | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			WorkstreamPatternEngineVisionEventToJSON,
+		),
+	};
 }
-

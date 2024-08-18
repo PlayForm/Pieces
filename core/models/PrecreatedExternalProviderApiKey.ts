@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Auth0OpenAIUserMetadata } from './Auth0OpenAIUserMetadata';
+import { exists } from "../runtime.ts";
+import type { Auth0OpenAIUserMetadata } from "./Auth0OpenAIUserMetadata.tsx";
 import {
-    Auth0OpenAIUserMetadataFromJSON,
-    Auth0OpenAIUserMetadataFromJSONTyped,
-    Auth0OpenAIUserMetadataToJSON,
-} from './Auth0OpenAIUserMetadata';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	Auth0OpenAIUserMetadataFromJSON,
+	Auth0OpenAIUserMetadataToJSON,
+} from "./Auth0OpenAIUserMetadata.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the input model for /external_provider/api_key/create
@@ -32,64 +30,74 @@ import {
  * @interface PrecreatedExternalProviderApiKey
  */
 export interface PrecreatedExternalProviderApiKey {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof PrecreatedExternalProviderApiKey
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the ID of the User.
-     * @type {string}
-     * @memberof PrecreatedExternalProviderApiKey
-     */
-    user: string;
-    /**
-     * 
-     * @type {Auth0OpenAIUserMetadata}
-     * @memberof PrecreatedExternalProviderApiKey
-     */
-    openAI?: Auth0OpenAIUserMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof PrecreatedExternalProviderApiKey
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the ID of the User.
+	 * @type {string}
+	 * @memberof PrecreatedExternalProviderApiKey
+	 */
+	user: string;
+	/**
+	 *
+	 * @type {Auth0OpenAIUserMetadata}
+	 * @memberof PrecreatedExternalProviderApiKey
+	 */
+	openAI?: Auth0OpenAIUserMetadata;
 }
 
 /**
  * Check if a given object implements the PrecreatedExternalProviderApiKey interface.
  */
-export function instanceOfPrecreatedExternalProviderApiKey(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "user" in value;
+export function instanceOfPrecreatedExternalProviderApiKey(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "user" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function PrecreatedExternalProviderApiKeyFromJSON(json: any): PrecreatedExternalProviderApiKey {
-    return PrecreatedExternalProviderApiKeyFromJSONTyped(json, false);
+export function PrecreatedExternalProviderApiKeyFromJSON(
+	json: any,
+): PrecreatedExternalProviderApiKey {
+	return PrecreatedExternalProviderApiKeyFromJSONTyped(json, false);
 }
 
-export function PrecreatedExternalProviderApiKeyFromJSONTyped(json: any, ignoreDiscriminator: boolean): PrecreatedExternalProviderApiKey {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'user': json['user'],
-        'openAI': !exists(json, 'open_AI') ? undefined : Auth0OpenAIUserMetadataFromJSON(json['open_AI']),
-    };
+export function PrecreatedExternalProviderApiKeyFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): PrecreatedExternalProviderApiKey {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		user: json["user"],
+		openAI: exists(json, "open_AI")
+			? Auth0OpenAIUserMetadataFromJSON(json["open_AI"])
+			: undefined,
+	};
 }
 
-export function PrecreatedExternalProviderApiKeyToJSON(value?: PrecreatedExternalProviderApiKey | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'user': value.user,
-        'open_AI': Auth0OpenAIUserMetadataToJSON(value.openAI),
-    };
+export function PrecreatedExternalProviderApiKeyToJSON(
+	value?: PrecreatedExternalProviderApiKey | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		user: value.user,
+		open_AI: Auth0OpenAIUserMetadataToJSON(value.openAI),
+	};
 }
-

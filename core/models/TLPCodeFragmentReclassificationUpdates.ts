@@ -12,85 +12,91 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Classification } from './Classification';
+import { exists } from "../runtime.ts";
+import type { Classification } from "./Classification.tsx";
 import {
-    ClassificationFromJSON,
-    ClassificationFromJSONTyped,
-    ClassificationToJSON,
-} from './Classification';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ClassificationFromJSON,
+	ClassificationToJSON,
+} from "./Classification.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface TLPCodeFragmentReclassificationUpdates
  */
 export interface TLPCodeFragmentReclassificationUpdates {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeFragmentReclassificationUpdates
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Classification}
-     * @memberof TLPCodeFragmentReclassificationUpdates
-     */
-    previous: Classification;
-    /**
-     * 
-     * @type {Classification}
-     * @memberof TLPCodeFragmentReclassificationUpdates
-     */
-    current: Classification;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeFragmentReclassificationUpdates
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Classification}
+	 * @memberof TLPCodeFragmentReclassificationUpdates
+	 */
+	previous: Classification;
+	/**
+	 *
+	 * @type {Classification}
+	 * @memberof TLPCodeFragmentReclassificationUpdates
+	 */
+	current: Classification;
 }
 
 /**
  * Check if a given object implements the TLPCodeFragmentReclassificationUpdates interface.
  */
-export function instanceOfTLPCodeFragmentReclassificationUpdates(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "previous" in value;
-    isInstance = isInstance && "current" in value;
+export function instanceOfTLPCodeFragmentReclassificationUpdates(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "previous" in value;
+	isInstance = isInstance && "current" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeFragmentReclassificationUpdatesFromJSON(json: any): TLPCodeFragmentReclassificationUpdates {
-    return TLPCodeFragmentReclassificationUpdatesFromJSONTyped(json, false);
+export function TLPCodeFragmentReclassificationUpdatesFromJSON(
+	json: any,
+): TLPCodeFragmentReclassificationUpdates {
+	return TLPCodeFragmentReclassificationUpdatesFromJSONTyped(json, false);
 }
 
-export function TLPCodeFragmentReclassificationUpdatesFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFragmentReclassificationUpdates {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'previous': ClassificationFromJSON(json['previous']),
-        'current': ClassificationFromJSON(json['current']),
-    };
+export function TLPCodeFragmentReclassificationUpdatesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFragmentReclassificationUpdates {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		previous: ClassificationFromJSON(json["previous"]),
+		current: ClassificationFromJSON(json["current"]),
+	};
 }
 
-export function TLPCodeFragmentReclassificationUpdatesToJSON(value?: TLPCodeFragmentReclassificationUpdates | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'previous': ClassificationToJSON(value.previous),
-        'current': ClassificationToJSON(value.current),
-    };
+export function TLPCodeFragmentReclassificationUpdatesToJSON(
+	value?: TLPCodeFragmentReclassificationUpdates | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		previous: ClassificationToJSON(value.previous),
+		current: ClassificationToJSON(value.current),
+	};
 }
-

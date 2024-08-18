@@ -12,75 +12,82 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This task is for code_completion ie auto-complete.
- * 
+ *
  * This is a class so that we can add optional properties in the future.
- * 
+ *
  * context: This is additional snippet context within the file that will be useful for the autocompletion.(PLEASE ONLY pass in Seed.asset.format.fragment.string.raw for the context snippet values, and for the classificaiton pass in Seed.asset.format.classification)
- * 
+ *
  * Note: the snippet && language that needs to be Actually AutoCompleted should be within the QGPTQuestionInput.relevant.
  * @export
  * @interface QGPTTaskPipelineForCodeCompletion
  */
 export interface QGPTTaskPipelineForCodeCompletion {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTTaskPipelineForCodeCompletion
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof QGPTTaskPipelineForCodeCompletion
-     */
-    context?: Array<string>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTTaskPipelineForCodeCompletion
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<string>}
+	 * @memberof QGPTTaskPipelineForCodeCompletion
+	 */
+	context?: string[];
 }
 
 /**
  * Check if a given object implements the QGPTTaskPipelineForCodeCompletion interface.
  */
-export function instanceOfQGPTTaskPipelineForCodeCompletion(value: object): boolean {
-    let isInstance = true;
+export function instanceOfQGPTTaskPipelineForCodeCompletion(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function QGPTTaskPipelineForCodeCompletionFromJSON(json: any): QGPTTaskPipelineForCodeCompletion {
-    return QGPTTaskPipelineForCodeCompletionFromJSONTyped(json, false);
+export function QGPTTaskPipelineForCodeCompletionFromJSON(
+	json: any,
+): QGPTTaskPipelineForCodeCompletion {
+	return QGPTTaskPipelineForCodeCompletionFromJSONTyped(json, false);
 }
 
-export function QGPTTaskPipelineForCodeCompletionFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTTaskPipelineForCodeCompletion {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'context': !exists(json, 'context') ? undefined : json['context'],
-    };
+export function QGPTTaskPipelineForCodeCompletionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTTaskPipelineForCodeCompletion {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		context: exists(json, "context") ? json["context"] : undefined,
+	};
 }
 
-export function QGPTTaskPipelineForCodeCompletionToJSON(value?: QGPTTaskPipelineForCodeCompletion | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'context': value.context,
-    };
+export function QGPTTaskPipelineForCodeCompletionToJSON(
+	value?: QGPTTaskPipelineForCodeCompletion | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		context: value.context,
+	};
 }
-

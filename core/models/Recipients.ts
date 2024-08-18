@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { PersonBasicType } from './PersonBasicType';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { PersonBasicType } from "./PersonBasicType.tsx";
 import {
-    PersonBasicTypeFromJSON,
-    PersonBasicTypeFromJSONTyped,
-    PersonBasicTypeToJSON,
-} from './PersonBasicType';
+	PersonBasicTypeFromJSON,
+	PersonBasicTypeToJSON,
+} from "./PersonBasicType.tsx";
 
 /**
  * This an iterable of People that are attached to a specific distribution ie, slack, maigun, ...etc
@@ -32,56 +30,58 @@ import {
  * @interface Recipients
  */
 export interface Recipients {
-    /**
-     * 
-     * @type {Array<PersonBasicType>}
-     * @memberof Recipients
-     */
-    iterable: Array<PersonBasicType>;
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Recipients
-     */
-    schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<PersonBasicType>}
+	 * @memberof Recipients
+	 */
+	iterable: PersonBasicType[];
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Recipients
+	 */
+	schema?: EmbeddedModelSchema;
 }
 
 /**
  * Check if a given object implements the Recipients interface.
  */
 export function instanceOfRecipients(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function RecipientsFromJSON(json: any): Recipients {
-    return RecipientsFromJSONTyped(json, false);
+	return RecipientsFromJSONTyped(json, false);
 }
 
-export function RecipientsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Recipients {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'iterable': ((json['iterable'] as Array<any>).map(PersonBasicTypeFromJSON)),
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-    };
+export function RecipientsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Recipients {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		iterable: (json["iterable"] as any[]).map(PersonBasicTypeFromJSON),
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+	};
 }
 
 export function RecipientsToJSON(value?: Recipients | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'iterable': ((value.iterable as Array<any>).map(PersonBasicTypeToJSON)),
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		iterable: (value.iterable as any[]).map(PersonBasicTypeToJSON),
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+	};
 }
-

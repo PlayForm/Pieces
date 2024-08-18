@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Person } from './Person';
-import {
-    PersonFromJSON,
-    PersonFromJSONTyped,
-    PersonToJSON,
-} from './Person';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Person } from "./Person.tsx";
+import { PersonFromJSON, PersonToJSON } from "./Person.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is the plural of Person. will have top level meta about the person including an iterable of all the person.
@@ -38,72 +29,74 @@ import {
  * @interface Persons
  */
 export interface Persons {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Persons
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Person>}
-     * @memberof Persons
-     */
-    iterable: Array<Person>;
-    /**
-     * This is a Map<String, int> where the the key is an person id.
-     * @type {{ [key: string]: number; }}
-     * @memberof Persons
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof Persons
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Persons
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Person>}
+	 * @memberof Persons
+	 */
+	iterable: Person[];
+	/**
+	 * This is a Map<String, int> where the the key is an person id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof Persons
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Persons
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the Persons interface.
  */
 export function instanceOfPersons(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function PersonsFromJSON(json: any): Persons {
-    return PersonsFromJSONTyped(json, false);
+	return PersonsFromJSONTyped(json, false);
 }
 
-export function PersonsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Persons {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(PersonFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function PersonsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Persons {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(PersonFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function PersonsToJSON(value?: Persons | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(PersonToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(PersonToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

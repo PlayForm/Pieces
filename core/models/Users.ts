@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { UserProfile } from './UserProfile';
-import {
-    UserProfileFromJSON,
-    UserProfileFromJSONTyped,
-    UserProfileToJSON,
-} from './UserProfile';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { UserProfile } from "./UserProfile.tsx";
+import { UserProfileFromJSON, UserProfileToJSON } from "./UserProfile.tsx";
 
 /**
  * A base class for a collection of users and some additional meta properties.
@@ -32,55 +27,62 @@ import {
  * @interface Users
  */
 export interface Users {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Users
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<UserProfile>}
-     * @memberof Users
-     */
-    iterable?: Array<UserProfile>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Users
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<UserProfile>}
+	 * @memberof Users
+	 */
+	iterable?: UserProfile[];
 }
 
 /**
  * Check if a given object implements the Users interface.
  */
-export function instanceOfUsers(value: object): boolean {
-    let isInstance = true;
+export function instanceOfUsers(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function UsersFromJSON(json: any): Users {
-    return UsersFromJSONTyped(json, false);
+	return UsersFromJSONTyped(json, false);
 }
 
-export function UsersFromJSONTyped(json: any, ignoreDiscriminator: boolean): Users {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': !exists(json, 'iterable') ? undefined : ((json['iterable'] as Array<any>).map(UserProfileFromJSON)),
-    };
+export function UsersFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Users {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: exists(json, "iterable")
+			? (json["iterable"] as any[]).map(UserProfileFromJSON)
+			: undefined,
+	};
 }
 
 export function UsersToJSON(value?: Users | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': value.iterable === undefined ? undefined : ((value.iterable as Array<any>).map(UserProfileToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable:
+			value.iterable === undefined
+				? undefined
+				: (value.iterable as any[]).map(UserProfileToJSON),
+	};
 }
-

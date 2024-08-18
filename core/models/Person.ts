@@ -12,269 +12,277 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists, mapValues } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAnchors } from './FlattenedAnchors';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
-    FlattenedAnchorsFromJSON,
-    FlattenedAnchorsFromJSONTyped,
-    FlattenedAnchorsToJSON,
-} from './FlattenedAnchors';
-import type { FlattenedAnnotations } from './FlattenedAnnotations';
+	FlattenedAnchorsFromJSON,
+	FlattenedAnchorsToJSON,
+} from "./FlattenedAnchors.tsx";
+import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
-    FlattenedAnnotationsFromJSON,
-    FlattenedAnnotationsFromJSONTyped,
-    FlattenedAnnotationsToJSON,
-} from './FlattenedAnnotations';
-import type { FlattenedAssets } from './FlattenedAssets';
+	FlattenedAnnotationsFromJSON,
+	FlattenedAnnotationsToJSON,
+} from "./FlattenedAnnotations.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { FlattenedTags } from './FlattenedTags';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { FlattenedTags } from "./FlattenedTags.tsx";
 import {
-    FlattenedTagsFromJSON,
-    FlattenedTagsFromJSONTyped,
-    FlattenedTagsToJSON,
-} from './FlattenedTags';
-import type { FlattenedWebsites } from './FlattenedWebsites';
+	FlattenedTagsFromJSON,
+	FlattenedTagsToJSON,
+} from "./FlattenedTags.tsx";
+import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
-    FlattenedWebsitesFromJSON,
-    FlattenedWebsitesFromJSONTyped,
-    FlattenedWebsitesToJSON,
-} from './FlattenedWebsites';
-import type { FlattenedWorkstreamSummaries } from './FlattenedWorkstreamSummaries';
+	FlattenedWebsitesFromJSON,
+	FlattenedWebsitesToJSON,
+} from "./FlattenedWebsites.tsx";
+import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
-    FlattenedWorkstreamSummariesFromJSON,
-    FlattenedWorkstreamSummariesFromJSONTyped,
-    FlattenedWorkstreamSummariesToJSON,
-} from './FlattenedWorkstreamSummaries';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	FlattenedWorkstreamSummariesFromJSON,
+	FlattenedWorkstreamSummariesToJSON,
+} from "./FlattenedWorkstreamSummaries.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { MechanismEnum } from './MechanismEnum';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { PersonAccess } from './PersonAccess';
-import {
-    PersonAccessFromJSON,
-    PersonAccessFromJSONTyped,
-    PersonAccessToJSON,
-} from './PersonAccess';
-import type { PersonModel } from './PersonModel';
-import {
-    PersonModelFromJSON,
-    PersonModelFromJSONTyped,
-    PersonModelToJSON,
-} from './PersonModel';
-import type { PersonType } from './PersonType';
-import {
-    PersonTypeFromJSON,
-    PersonTypeFromJSONTyped,
-    PersonTypeToJSON,
-} from './PersonType';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { PersonAccess } from "./PersonAccess.tsx";
+import { PersonAccessFromJSON, PersonAccessToJSON } from "./PersonAccess.tsx";
+import type { PersonModel } from "./PersonModel.tsx";
+import { PersonModelFromJSON, PersonModelToJSON } from "./PersonModel.tsx";
+import type { PersonType } from "./PersonType.tsx";
+import { PersonTypeFromJSON, PersonTypeToJSON } from "./PersonType.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * if expiration is add then, after the alloted expiration date the user will only have view && comment only permissions. Only present in the case there is a scope such as a defined collection/asset...
- * 
+ *
  * if asset is passed then that means this person belongs to a scoped asset.
- * 
+ *
  * NOTE****: annotations here are annotations to describe the person!!! if in the future we want to add who wrote an annotation on and asset or soemthing like that, we will want to add a new field on here called authorships.
  * @export
  * @interface Person
  */
 export interface Person {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Person
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof Person
-     */
-    id: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Person
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Person
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Person
-     */
-    deleted?: GroupedTimestamp;
-    /**
-     * 
-     * @type {PersonType}
-     * @memberof Person
-     */
-    type: PersonType;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof Person
-     */
-    assets?: FlattenedAssets;
-    /**
-     * This is a Map<String, MechanismEnum> where the the key is an asset id.
-     * @type {{ [key: string]: MechanismEnum; }}
-     * @memberof Person
-     */
-    mechanisms?: { [key: string]: MechanismEnum; };
-    /**
-     * This is an optional value that will keep track of the number of times this has been interacted with.
-     * @type {number}
-     * @memberof Person
-     */
-    interactions?: number;
-    /**
-     * This is a Map<String, PersonAccess> where the the key is an asset id.
-     * @type {{ [key: string]: PersonAccess; }}
-     * @memberof Person
-     */
-    access?: { [key: string]: PersonAccess; };
-    /**
-     * 
-     * @type {FlattenedTags}
-     * @memberof Person
-     */
-    tags?: FlattenedTags;
-    /**
-     * 
-     * @type {FlattenedWebsites}
-     * @memberof Person
-     */
-    websites?: FlattenedWebsites;
-    /**
-     * This is a Map<String, PersonModel>, where the the key is an asset id.
-     * @type {{ [key: string]: PersonModel; }}
-     * @memberof Person
-     */
-    models?: { [key: string]: PersonModel; };
-    /**
-     * 
-     * @type {FlattenedAnnotations}
-     * @memberof Person
-     */
-    annotations?: FlattenedAnnotations;
-    /**
-     * 
-     * @type {Score}
-     * @memberof Person
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {FlattenedWorkstreamSummaries}
-     * @memberof Person
-     */
-    summaries?: FlattenedWorkstreamSummaries;
-    /**
-     * 
-     * @type {FlattenedAnchors}
-     * @memberof Person
-     */
-    anchors?: FlattenedAnchors;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Person
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Person
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Person
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Person
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Person
+	 */
+	deleted?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {PersonType}
+	 * @memberof Person
+	 */
+	type: PersonType;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof Person
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 * This is a Map<String, MechanismEnum> where the the key is an asset id.
+	 * @type {{ [key: string]: MechanismEnum; }}
+	 * @memberof Person
+	 */
+	mechanisms?: { [key: string]: MechanismEnum };
+	/**
+	 * This is an optional value that will keep track of the number of times this has been interacted with.
+	 * @type {number}
+	 * @memberof Person
+	 */
+	interactions?: number;
+	/**
+	 * This is a Map<String, PersonAccess> where the the key is an asset id.
+	 * @type {{ [key: string]: PersonAccess; }}
+	 * @memberof Person
+	 */
+	access?: { [key: string]: PersonAccess };
+	/**
+	 *
+	 * @type {FlattenedTags}
+	 * @memberof Person
+	 */
+	tags?: FlattenedTags;
+	/**
+	 *
+	 * @type {FlattenedWebsites}
+	 * @memberof Person
+	 */
+	websites?: FlattenedWebsites;
+	/**
+	 * This is a Map<String, PersonModel>, where the the key is an asset id.
+	 * @type {{ [key: string]: PersonModel; }}
+	 * @memberof Person
+	 */
+	models?: { [key: string]: PersonModel };
+	/**
+	 *
+	 * @type {FlattenedAnnotations}
+	 * @memberof Person
+	 */
+	annotations?: FlattenedAnnotations;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Person
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamSummaries}
+	 * @memberof Person
+	 */
+	summaries?: FlattenedWorkstreamSummaries;
+	/**
+	 *
+	 * @type {FlattenedAnchors}
+	 * @memberof Person
+	 */
+	anchors?: FlattenedAnchors;
 }
 
 /**
  * Check if a given object implements the Person interface.
  */
 export function instanceOfPerson(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
-    isInstance = isInstance && "type" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
+	isInstance = isInstance && "type" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function PersonFromJSON(json: any): Person {
-    return PersonFromJSONTyped(json, false);
+	return PersonFromJSONTyped(json, false);
 }
 
-export function PersonFromJSONTyped(json: any, ignoreDiscriminator: boolean): Person {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-        'type': PersonTypeFromJSON(json['type']),
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'mechanisms': !exists(json, 'mechanisms') ? undefined : (mapValues(json['mechanisms'], MechanismEnumFromJSON)),
-        'interactions': !exists(json, 'interactions') ? undefined : json['interactions'],
-        'access': !exists(json, 'access') ? undefined : (mapValues(json['access'], PersonAccessFromJSON)),
-        'tags': !exists(json, 'tags') ? undefined : FlattenedTagsFromJSON(json['tags']),
-        'websites': !exists(json, 'websites') ? undefined : FlattenedWebsitesFromJSON(json['websites']),
-        'models': !exists(json, 'models') ? undefined : (mapValues(json['models'], PersonModelFromJSON)),
-        'annotations': !exists(json, 'annotations') ? undefined : FlattenedAnnotationsFromJSON(json['annotations']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'summaries': !exists(json, 'summaries') ? undefined : FlattenedWorkstreamSummariesFromJSON(json['summaries']),
-        'anchors': !exists(json, 'anchors') ? undefined : FlattenedAnchorsFromJSON(json['anchors']),
-    };
+export function PersonFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Person {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+		type: PersonTypeFromJSON(json["type"]),
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		mechanisms: exists(json, "mechanisms")
+			? mapValues(json["mechanisms"], MechanismEnumFromJSON)
+			: undefined,
+		interactions: exists(json, "interactions")
+			? json["interactions"]
+			: undefined,
+		access: exists(json, "access")
+			? mapValues(json["access"], PersonAccessFromJSON)
+			: undefined,
+		tags: exists(json, "tags")
+			? FlattenedTagsFromJSON(json["tags"])
+			: undefined,
+		websites: exists(json, "websites")
+			? FlattenedWebsitesFromJSON(json["websites"])
+			: undefined,
+		models: exists(json, "models")
+			? mapValues(json["models"], PersonModelFromJSON)
+			: undefined,
+		annotations: exists(json, "annotations")
+			? FlattenedAnnotationsFromJSON(json["annotations"])
+			: undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		summaries: exists(json, "summaries")
+			? FlattenedWorkstreamSummariesFromJSON(json["summaries"])
+			: undefined,
+		anchors: exists(json, "anchors")
+			? FlattenedAnchorsFromJSON(json["anchors"])
+			: undefined,
+	};
 }
 
 export function PersonToJSON(value?: Person | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-        'type': PersonTypeToJSON(value.type),
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'mechanisms': value.mechanisms === undefined ? undefined : (mapValues(value.mechanisms, MechanismEnumToJSON)),
-        'interactions': value.interactions,
-        'access': value.access === undefined ? undefined : (mapValues(value.access, PersonAccessToJSON)),
-        'tags': FlattenedTagsToJSON(value.tags),
-        'websites': FlattenedWebsitesToJSON(value.websites),
-        'models': value.models === undefined ? undefined : (mapValues(value.models, PersonModelToJSON)),
-        'annotations': FlattenedAnnotationsToJSON(value.annotations),
-        'score': ScoreToJSON(value.score),
-        'summaries': FlattenedWorkstreamSummariesToJSON(value.summaries),
-        'anchors': FlattenedAnchorsToJSON(value.anchors),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		deleted: GroupedTimestampToJSON(value.deleted),
+		type: PersonTypeToJSON(value.type),
+		assets: FlattenedAssetsToJSON(value.assets),
+		mechanisms:
+			value.mechanisms === undefined
+				? undefined
+				: mapValues(value.mechanisms, MechanismEnumToJSON),
+		interactions: value.interactions,
+		access:
+			value.access === undefined
+				? undefined
+				: mapValues(value.access, PersonAccessToJSON),
+		tags: FlattenedTagsToJSON(value.tags),
+		websites: FlattenedWebsitesToJSON(value.websites),
+		models:
+			value.models === undefined
+				? undefined
+				: mapValues(value.models, PersonModelToJSON),
+		annotations: FlattenedAnnotationsToJSON(value.annotations),
+		score: ScoreToJSON(value.score),
+		summaries: FlattenedWorkstreamSummariesToJSON(value.summaries),
+		anchors: FlattenedAnchorsToJSON(value.anchors),
+	};
 }
-

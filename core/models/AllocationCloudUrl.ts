@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AllocationStatusEnum } from './AllocationStatusEnum';
+import { exists } from "../runtime.ts";
+import type { AllocationStatusEnum } from "./AllocationStatusEnum.tsx";
 import {
-    AllocationStatusEnumFromJSON,
-    AllocationStatusEnumFromJSONTyped,
-    AllocationStatusEnumToJSON,
-} from './AllocationStatusEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AllocationStatusEnumFromJSON,
+	AllocationStatusEnumToJSON,
+} from "./AllocationStatusEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is one of the 3 possible urls that will route to your cloud :).
@@ -32,65 +30,69 @@ import {
  * @interface AllocationCloudUrl
  */
 export interface AllocationCloudUrl {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AllocationCloudUrl
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {AllocationStatusEnum}
-     * @memberof AllocationCloudUrl
-     */
-    status: AllocationStatusEnum;
-    /**
-     * this is the base url that is used to communicat with your vpc.
-     * @type {string}
-     * @memberof AllocationCloudUrl
-     */
-    url: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AllocationCloudUrl
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {AllocationStatusEnum}
+	 * @memberof AllocationCloudUrl
+	 */
+	status: AllocationStatusEnum;
+	/**
+	 * this is the base url that is used to communicat with your vpc.
+	 * @type {string}
+	 * @memberof AllocationCloudUrl
+	 */
+	url: string;
 }
 
 /**
  * Check if a given object implements the AllocationCloudUrl interface.
  */
 export function instanceOfAllocationCloudUrl(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "url" in value;
+	let isInstance = true;
+	isInstance = isInstance && "status" in value;
+	isInstance = isInstance && "url" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AllocationCloudUrlFromJSON(json: any): AllocationCloudUrl {
-    return AllocationCloudUrlFromJSONTyped(json, false);
+	return AllocationCloudUrlFromJSONTyped(json, false);
 }
 
-export function AllocationCloudUrlFromJSONTyped(json: any, ignoreDiscriminator: boolean): AllocationCloudUrl {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'status': AllocationStatusEnumFromJSON(json['status']),
-        'url': json['url'],
-    };
+export function AllocationCloudUrlFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AllocationCloudUrl {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		status: AllocationStatusEnumFromJSON(json["status"]),
+		url: json["url"],
+	};
 }
 
-export function AllocationCloudUrlToJSON(value?: AllocationCloudUrl | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'status': AllocationStatusEnumToJSON(value.status),
-        'url': value.url,
-    };
+export function AllocationCloudUrlToJSON(
+	value?: AllocationCloudUrl | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		status: AllocationStatusEnumToJSON(value.status),
+		url: value.url,
+	};
 }
-

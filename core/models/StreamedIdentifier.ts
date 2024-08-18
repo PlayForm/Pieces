@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ReferencedAsset } from './ReferencedAsset';
+import { exists } from "../runtime.ts";
+import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
-    ReferencedAssetFromJSON,
-    ReferencedAssetFromJSONTyped,
-    ReferencedAssetToJSON,
-} from './ReferencedAsset';
-import type { ReferencedConversation } from './ReferencedConversation';
+	ReferencedAssetFromJSON,
+	ReferencedAssetToJSON,
+} from "./ReferencedAsset.tsx";
+import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
-    ReferencedConversationFromJSON,
-    ReferencedConversationFromJSONTyped,
-    ReferencedConversationToJSON,
-} from './ReferencedConversation';
+	ReferencedConversationFromJSON,
+	ReferencedConversationToJSON,
+} from "./ReferencedConversation.tsx";
 
 /**
  * This is currently only used within /assets/steam/identifiers && /conversations/steam/identifiers but can be used with other as well, if we want to expand this class.
@@ -32,63 +30,69 @@ import {
  * @interface StreamedIdentifier
  */
 export interface StreamedIdentifier {
-    /**
-     * 
-     * @type {ReferencedAsset}
-     * @memberof StreamedIdentifier
-     */
-    asset?: ReferencedAsset;
-    /**
-     * 
-     * @type {ReferencedConversation}
-     * @memberof StreamedIdentifier
-     */
-    conversation?: ReferencedConversation;
-    /**
-     * This is a specific bool that will let us know if we deleted an Identifierfrom the db.
-     * @type {boolean}
-     * @memberof StreamedIdentifier
-     */
-    deleted?: boolean;
+	/**
+	 *
+	 * @type {ReferencedAsset}
+	 * @memberof StreamedIdentifier
+	 */
+	asset?: ReferencedAsset;
+	/**
+	 *
+	 * @type {ReferencedConversation}
+	 * @memberof StreamedIdentifier
+	 */
+	conversation?: ReferencedConversation;
+	/**
+	 * This is a specific bool that will let us know if we deleted an Identifierfrom the db.
+	 * @type {boolean}
+	 * @memberof StreamedIdentifier
+	 */
+	deleted?: boolean;
 }
 
 /**
  * Check if a given object implements the StreamedIdentifier interface.
  */
-export function instanceOfStreamedIdentifier(value: object): boolean {
-    let isInstance = true;
+export function instanceOfStreamedIdentifier(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function StreamedIdentifierFromJSON(json: any): StreamedIdentifier {
-    return StreamedIdentifierFromJSONTyped(json, false);
+	return StreamedIdentifierFromJSONTyped(json, false);
 }
 
-export function StreamedIdentifierFromJSONTyped(json: any, ignoreDiscriminator: boolean): StreamedIdentifier {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'asset': !exists(json, 'asset') ? undefined : ReferencedAssetFromJSON(json['asset']),
-        'conversation': !exists(json, 'conversation') ? undefined : ReferencedConversationFromJSON(json['conversation']),
-        'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
-    };
+export function StreamedIdentifierFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): StreamedIdentifier {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		asset: exists(json, "asset")
+			? ReferencedAssetFromJSON(json["asset"])
+			: undefined,
+		conversation: exists(json, "conversation")
+			? ReferencedConversationFromJSON(json["conversation"])
+			: undefined,
+		deleted: exists(json, "deleted") ? json["deleted"] : undefined,
+	};
 }
 
-export function StreamedIdentifierToJSON(value?: StreamedIdentifier | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'asset': ReferencedAssetToJSON(value.asset),
-        'conversation': ReferencedConversationToJSON(value.conversation),
-        'deleted': value.deleted,
-    };
+export function StreamedIdentifierToJSON(
+	value?: StreamedIdentifier | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		asset: ReferencedAssetToJSON(value.asset),
+		conversation: ReferencedConversationToJSON(value.conversation),
+		deleted: value.deleted,
+	};
 }
-

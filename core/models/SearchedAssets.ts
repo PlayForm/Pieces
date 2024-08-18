@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedAsset } from './SearchedAsset';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedAsset } from "./SearchedAsset.tsx";
 import {
-    SearchedAssetFromJSON,
-    SearchedAssetFromJSONTyped,
-    SearchedAssetToJSON,
-} from './SearchedAsset';
+	SearchedAssetFromJSON,
+	SearchedAssetToJSON,
+} from "./SearchedAsset.tsx";
 
 /**
  * This is a modle that will return fro mthe search endpoint that will just contain an array of assets!
@@ -32,74 +30,76 @@ import {
  * @interface SearchedAssets
  */
 export interface SearchedAssets {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedAssets
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedAsset>}
-     * @memberof SearchedAssets
-     */
-    iterable: Array<SearchedAsset>;
-    /**
-     * the number of fuzzy/suggested search results.
-     * @type {number}
-     * @memberof SearchedAssets
-     */
-    suggested: number;
-    /**
-     * the number of exact results
-     * @type {number}
-     * @memberof SearchedAssets
-     */
-    exact: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedAssets
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedAsset>}
+	 * @memberof SearchedAssets
+	 */
+	iterable: SearchedAsset[];
+	/**
+	 * the number of fuzzy/suggested search results.
+	 * @type {number}
+	 * @memberof SearchedAssets
+	 */
+	suggested: number;
+	/**
+	 * the number of exact results
+	 * @type {number}
+	 * @memberof SearchedAssets
+	 */
+	exact: number;
 }
 
 /**
  * Check if a given object implements the SearchedAssets interface.
  */
 export function instanceOfSearchedAssets(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
-    isInstance = isInstance && "suggested" in value;
-    isInstance = isInstance && "exact" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
+	isInstance = isInstance && "suggested" in value;
+	isInstance = isInstance && "exact" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedAssetsFromJSON(json: any): SearchedAssets {
-    return SearchedAssetsFromJSONTyped(json, false);
+	return SearchedAssetsFromJSONTyped(json, false);
 }
 
-export function SearchedAssetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedAssets {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedAssetFromJSON)),
-        'suggested': json['suggested'],
-        'exact': json['exact'],
-    };
+export function SearchedAssetsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedAssets {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SearchedAssetFromJSON),
+		suggested: json["suggested"],
+		exact: json["exact"],
+	};
 }
 
 export function SearchedAssetsToJSON(value?: SearchedAssets | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedAssetToJSON)),
-        'suggested': value.suggested,
-        'exact': value.exact,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SearchedAssetToJSON),
+		suggested: value.suggested,
+		exact: value.exact,
+	};
 }
-

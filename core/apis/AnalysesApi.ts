@@ -12,55 +12,61 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Analyses,
-} from '../models/index';
-import {
-    AnalysesFromJSON,
-    AnalysesToJSON,
-} from '../models/index';
+import type { Analyses } from "../models/index.ts";
+import { AnalysesFromJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface AnalysesSnapshotRequest {
-    transferables?: boolean;
+	transferables?: boolean;
 }
 
 /**
- * 
+ *
  */
 export class AnalysesApi extends runtime.BaseAPI {
+	/**
+	 * This will get a snapshot of all of your analyses, that are all attached to formats. An analysis can optionally have an codeAnalysis or an optional imageAnalysis.
+	 * Your GET endpoint
+	 */
+	async analysesSnapshotRaw(
+		requestParameters: AnalysesSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Analyses>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a snapshot of all of your analyses, that are all attached to formats. An analysis can optionally have an codeAnalysis or an optional imageAnalysis.
-     * Your GET endpoint
-     */
-    async analysesSnapshotRaw(requestParameters: AnalysesSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Analyses>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/analyses",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/analyses`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AnalysesFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AnalysesFromJSON(jsonValue));
-    }
-
-    /**
-     * This will get a snapshot of all of your analyses, that are all attached to formats. An analysis can optionally have an codeAnalysis or an optional imageAnalysis.
-     * Your GET endpoint
-     */
-    async analysesSnapshot(requestParameters: AnalysesSnapshotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Analyses> {
-        const response = await this.analysesSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will get a snapshot of all of your analyses, that are all attached to formats. An analysis can optionally have an codeAnalysis or an optional imageAnalysis.
+	 * Your GET endpoint
+	 */
+	async analysesSnapshot(
+		requestParameters: AnalysesSnapshotRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Analyses> {
+		const response = await this.analysesSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

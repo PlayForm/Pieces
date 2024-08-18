@@ -12,63 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This type of conversation is reccomended to be provided when a user want generate code w/ context provided.
- * 
+ *
  * This is a class so that we can add optional properties in the future.
  * @export
  * @interface QGPTConversationPipelineForContextualizedCodeGeneration
  */
 export interface QGPTConversationPipelineForContextualizedCodeGeneration {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTConversationPipelineForContextualizedCodeGeneration
-     */
-    schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTConversationPipelineForContextualizedCodeGeneration
+	 */
+	schema?: EmbeddedModelSchema;
 }
 
 /**
  * Check if a given object implements the QGPTConversationPipelineForContextualizedCodeGeneration interface.
  */
-export function instanceOfQGPTConversationPipelineForContextualizedCodeGeneration(value: object): boolean {
-    let isInstance = true;
+export function instanceOfQGPTConversationPipelineForContextualizedCodeGeneration(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function QGPTConversationPipelineForContextualizedCodeGenerationFromJSON(json: any): QGPTConversationPipelineForContextualizedCodeGeneration {
-    return QGPTConversationPipelineForContextualizedCodeGenerationFromJSONTyped(json, false);
+export function QGPTConversationPipelineForContextualizedCodeGenerationFromJSON(
+	json: any,
+): QGPTConversationPipelineForContextualizedCodeGeneration {
+	return QGPTConversationPipelineForContextualizedCodeGenerationFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function QGPTConversationPipelineForContextualizedCodeGenerationFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTConversationPipelineForContextualizedCodeGeneration {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-    };
+export function QGPTConversationPipelineForContextualizedCodeGenerationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTConversationPipelineForContextualizedCodeGeneration {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+	};
 }
 
-export function QGPTConversationPipelineForContextualizedCodeGenerationToJSON(value?: QGPTConversationPipelineForContextualizedCodeGeneration | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-    };
+export function QGPTConversationPipelineForContextualizedCodeGenerationToJSON(
+	value?: QGPTConversationPipelineForContextualizedCodeGeneration | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+	};
 }
-

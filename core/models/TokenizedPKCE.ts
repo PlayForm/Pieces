@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the flow that mobile apps use to access an API. Use this endpoint to exchange an Authorization Code for a Token.
@@ -26,111 +25,112 @@ import {
  * @interface TokenizedPKCE
  */
 export interface TokenizedPKCE {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TokenizedPKCE
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.
-     * @type {string}
-     * @memberof TokenizedPKCE
-     */
-    grantType: TokenizedPKCEGrantTypeEnum;
-    /**
-     * Your application's Client ID.
-     * @type {string}
-     * @memberof TokenizedPKCE
-     */
-    clientId: string;
-    /**
-     * The Authorization Code received from the initial /authorize call.
-     * @type {string}
-     * @memberof TokenizedPKCE
-     */
-    code: string;
-    /**
-     * This is required only if it was set at the GET /authorize endpoint. The values must match.
-     * @type {string}
-     * @memberof TokenizedPKCE
-     */
-    redirectUri: string;
-    /**
-     * Cryptographically random key that was used to generate the code_challenge passed to /authorize.
-     * @type {string}
-     * @memberof TokenizedPKCE
-     */
-    codeVerifier: string;
-    /**
-     * The audience domain: i.e. https://pieces.us.auth0.com
-     * @type {string}
-     * @memberof TokenizedPKCE
-     */
-    audience?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TokenizedPKCE
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.
+	 * @type {string}
+	 * @memberof TokenizedPKCE
+	 */
+	grantType: TokenizedPKCEGrantTypeEnum;
+	/**
+	 * Your application's Client ID.
+	 * @type {string}
+	 * @memberof TokenizedPKCE
+	 */
+	clientId: string;
+	/**
+	 * The Authorization Code received from the initial /authorize call.
+	 * @type {string}
+	 * @memberof TokenizedPKCE
+	 */
+	code: string;
+	/**
+	 * This is required only if it was set at the GET /authorize endpoint. The values must match.
+	 * @type {string}
+	 * @memberof TokenizedPKCE
+	 */
+	redirectUri: string;
+	/**
+	 * Cryptographically random key that was used to generate the code_challenge passed to /authorize.
+	 * @type {string}
+	 * @memberof TokenizedPKCE
+	 */
+	codeVerifier: string;
+	/**
+	 * The audience domain: i.e. https://pieces.us.auth0.com
+	 * @type {string}
+	 * @memberof TokenizedPKCE
+	 */
+	audience?: string;
 }
-
 
 /**
  * @export
  */
 export const TokenizedPKCEGrantTypeEnum = {
-    RefreshToken: 'refresh_token',
-    AuthorizationCode: 'authorization_code'
+	RefreshToken: "refresh_token",
+	AuthorizationCode: "authorization_code",
 } as const;
-export type TokenizedPKCEGrantTypeEnum = typeof TokenizedPKCEGrantTypeEnum[keyof typeof TokenizedPKCEGrantTypeEnum];
-
+export type TokenizedPKCEGrantTypeEnum =
+	(typeof TokenizedPKCEGrantTypeEnum)[keyof typeof TokenizedPKCEGrantTypeEnum];
 
 /**
  * Check if a given object implements the TokenizedPKCE interface.
  */
 export function instanceOfTokenizedPKCE(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "grantType" in value;
-    isInstance = isInstance && "clientId" in value;
-    isInstance = isInstance && "code" in value;
-    isInstance = isInstance && "redirectUri" in value;
-    isInstance = isInstance && "codeVerifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "grantType" in value;
+	isInstance = isInstance && "clientId" in value;
+	isInstance = isInstance && "code" in value;
+	isInstance = isInstance && "redirectUri" in value;
+	isInstance = isInstance && "codeVerifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TokenizedPKCEFromJSON(json: any): TokenizedPKCE {
-    return TokenizedPKCEFromJSONTyped(json, false);
+	return TokenizedPKCEFromJSONTyped(json, false);
 }
 
-export function TokenizedPKCEFromJSONTyped(json: any, ignoreDiscriminator: boolean): TokenizedPKCE {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'grantType': json['grant_type'],
-        'clientId': json['client_id'],
-        'code': json['code'],
-        'redirectUri': json['redirect_uri'],
-        'codeVerifier': json['code_verifier'],
-        'audience': !exists(json, 'audience') ? undefined : json['audience'],
-    };
+export function TokenizedPKCEFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TokenizedPKCE {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		grantType: json["grant_type"],
+		clientId: json["client_id"],
+		code: json["code"],
+		redirectUri: json["redirect_uri"],
+		codeVerifier: json["code_verifier"],
+		audience: exists(json, "audience") ? json["audience"] : undefined,
+	};
 }
 
 export function TokenizedPKCEToJSON(value?: TokenizedPKCE | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'grant_type': value.grantType,
-        'client_id': value.clientId,
-        'code': value.code,
-        'redirect_uri': value.redirectUri,
-        'code_verifier': value.codeVerifier,
-        'audience': value.audience,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		grant_type: value.grantType,
+		client_id: value.clientId,
+		code: value.code,
+		redirect_uri: value.redirectUri,
+		code_verifier: value.codeVerifier,
+		audience: value.audience,
+	};
 }
-

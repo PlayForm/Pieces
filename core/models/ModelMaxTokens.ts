@@ -12,90 +12,91 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will describe the MaxTokens for an MLModel
- * 
+ *
  * total is required.
- * 
+ *
  * iff there is a differentiator with inputs/outputs, then we can also provide those as well.
  * @export
  * @interface ModelMaxTokens
  */
 export interface ModelMaxTokens {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ModelMaxTokens
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof ModelMaxTokens
-     */
-    total: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ModelMaxTokens
-     */
-    input?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ModelMaxTokens
-     */
-    output?: number | null;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ModelMaxTokens
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ModelMaxTokens
+	 */
+	total: number | null;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ModelMaxTokens
+	 */
+	input?: number | null;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ModelMaxTokens
+	 */
+	output?: number | null;
 }
 
 /**
  * Check if a given object implements the ModelMaxTokens interface.
  */
 export function instanceOfModelMaxTokens(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "total" in value;
+	let isInstance = true;
+	isInstance = isInstance && "total" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ModelMaxTokensFromJSON(json: any): ModelMaxTokens {
-    return ModelMaxTokensFromJSONTyped(json, false);
+	return ModelMaxTokensFromJSONTyped(json, false);
 }
 
-export function ModelMaxTokensFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelMaxTokens {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'total': json['total'],
-        'input': !exists(json, 'input') ? undefined : json['input'],
-        'output': !exists(json, 'output') ? undefined : json['output'],
-    };
+export function ModelMaxTokensFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ModelMaxTokens {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		total: json["total"],
+		input: exists(json, "input") ? json["input"] : undefined,
+		output: exists(json, "output") ? json["output"] : undefined,
+	};
 }
 
 export function ModelMaxTokensToJSON(value?: ModelMaxTokens | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'total': value.total,
-        'input': value.input,
-        'output': value.output,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		total: value.total,
+		input: value.input,
+		output: value.output,
+	};
 }
-

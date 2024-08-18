@@ -12,159 +12,160 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { MechanismEnum } from './MechanismEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { SensitiveCategoryEnum } from './SensitiveCategoryEnum';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { SensitiveCategoryEnum } from "./SensitiveCategoryEnum.tsx";
 import {
-    SensitiveCategoryEnumFromJSON,
-    SensitiveCategoryEnumFromJSONTyped,
-    SensitiveCategoryEnumToJSON,
-} from './SensitiveCategoryEnum';
-import type { SensitiveMetadata } from './SensitiveMetadata';
+	SensitiveCategoryEnumFromJSON,
+	SensitiveCategoryEnumToJSON,
+} from "./SensitiveCategoryEnum.tsx";
+import type { SensitiveMetadata } from "./SensitiveMetadata.tsx";
 import {
-    SensitiveMetadataFromJSON,
-    SensitiveMetadataFromJSONTyped,
-    SensitiveMetadataToJSON,
-} from './SensitiveMetadata';
-import type { SensitiveSeverityEnum } from './SensitiveSeverityEnum';
+	SensitiveMetadataFromJSON,
+	SensitiveMetadataToJSON,
+} from "./SensitiveMetadata.tsx";
+import type { SensitiveSeverityEnum } from "./SensitiveSeverityEnum.tsx";
 import {
-    SensitiveSeverityEnumFromJSON,
-    SensitiveSeverityEnumFromJSONTyped,
-    SensitiveSeverityEnumToJSON,
-} from './SensitiveSeverityEnum';
+	SensitiveSeverityEnumFromJSON,
+	SensitiveSeverityEnumToJSON,
+} from "./SensitiveSeverityEnum.tsx";
 
 /**
  * This is the seededSensitive, this does not have an id yet as we will add it on the server side.
- * 
+ *
  * can optionally pass in our mechanism here, as the default will be manual unless specified.
- * 
+ *
  * TODO consider updating these asset,format to referenced Models
  * @export
  * @interface SeededSensitive
  */
 export interface SeededSensitive {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededSensitive
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededSensitive
-     */
-    asset: string;
-    /**
-     * this is the string representative of the sensative piece of data.
-     * @type {string}
-     * @memberof SeededSensitive
-     */
-    text: string;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof SeededSensitive
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * 
-     * @type {SensitiveCategoryEnum}
-     * @memberof SeededSensitive
-     */
-    category: SensitiveCategoryEnum;
-    /**
-     * 
-     * @type {SensitiveSeverityEnum}
-     * @memberof SeededSensitive
-     */
-    severity: SensitiveSeverityEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededSensitive
-     */
-    name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededSensitive
-     */
-    description: string;
-    /**
-     * 
-     * @type {SensitiveMetadata}
-     * @memberof SeededSensitive
-     */
-    metadata?: SensitiveMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededSensitive
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededSensitive
+	 */
+	asset: string;
+	/**
+	 * this is the string representative of the sensative piece of data.
+	 * @type {string}
+	 * @memberof SeededSensitive
+	 */
+	text: string;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof SeededSensitive
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 *
+	 * @type {SensitiveCategoryEnum}
+	 * @memberof SeededSensitive
+	 */
+	category: SensitiveCategoryEnum;
+	/**
+	 *
+	 * @type {SensitiveSeverityEnum}
+	 * @memberof SeededSensitive
+	 */
+	severity: SensitiveSeverityEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededSensitive
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededSensitive
+	 */
+	description: string;
+	/**
+	 *
+	 * @type {SensitiveMetadata}
+	 * @memberof SeededSensitive
+	 */
+	metadata?: SensitiveMetadata;
 }
 
 /**
  * Check if a given object implements the SeededSensitive interface.
  */
 export function instanceOfSeededSensitive(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "asset" in value;
-    isInstance = isInstance && "text" in value;
-    isInstance = isInstance && "category" in value;
-    isInstance = isInstance && "severity" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
+	let isInstance = true;
+	isInstance = isInstance && "asset" in value;
+	isInstance = isInstance && "text" in value;
+	isInstance = isInstance && "category" in value;
+	isInstance = isInstance && "severity" in value;
+	isInstance = isInstance && "name" in value;
+	isInstance = isInstance && "description" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededSensitiveFromJSON(json: any): SeededSensitive {
-    return SeededSensitiveFromJSONTyped(json, false);
+	return SeededSensitiveFromJSONTyped(json, false);
 }
 
-export function SeededSensitiveFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededSensitive {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': json['asset'],
-        'text': json['text'],
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'category': SensitiveCategoryEnumFromJSON(json['category']),
-        'severity': SensitiveSeverityEnumFromJSON(json['severity']),
-        'name': json['name'],
-        'description': json['description'],
-        'metadata': !exists(json, 'metadata') ? undefined : SensitiveMetadataFromJSON(json['metadata']),
-    };
+export function SeededSensitiveFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededSensitive {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: json["asset"],
+		text: json["text"],
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		category: SensitiveCategoryEnumFromJSON(json["category"]),
+		severity: SensitiveSeverityEnumFromJSON(json["severity"]),
+		name: json["name"],
+		description: json["description"],
+		metadata: exists(json, "metadata")
+			? SensitiveMetadataFromJSON(json["metadata"])
+			: undefined,
+	};
 }
 
 export function SeededSensitiveToJSON(value?: SeededSensitive | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': value.asset,
-        'text': value.text,
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'category': SensitiveCategoryEnumToJSON(value.category),
-        'severity': SensitiveSeverityEnumToJSON(value.severity),
-        'name': value.name,
-        'description': value.description,
-        'metadata': SensitiveMetadataToJSON(value.metadata),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: value.asset,
+		text: value.text,
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		category: SensitiveCategoryEnumToJSON(value.category),
+		severity: SensitiveSeverityEnumToJSON(value.severity),
+		name: value.name,
+		description: value.description,
+		metadata: SensitiveMetadataToJSON(value.metadata),
+	};
 }
-

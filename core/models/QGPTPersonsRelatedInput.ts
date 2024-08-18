@@ -12,108 +12,112 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { QGPTConversation } from './QGPTConversation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { QGPTConversation } from "./QGPTConversation.tsx";
 import {
-    QGPTConversationFromJSON,
-    QGPTConversationFromJSONTyped,
-    QGPTConversationToJSON,
-} from './QGPTConversation';
-import type { Seed } from './Seed';
-import {
-    SeedFromJSON,
-    SeedFromJSONTyped,
-    SeedToJSON,
-} from './Seed';
+	QGPTConversationFromJSON,
+	QGPTConversationToJSON,
+} from "./QGPTConversation.tsx";
+import type { Seed } from "./Seed.tsx";
+import { SeedFromJSON, SeedToJSON } from "./Seed.tsx";
 
 /**
  * This is used for /qgpt/persons/related.
- * 
+ *
  * will accept a seed, or conversation all optionally.
- * 
+ *
  * @export
  * @interface QGPTPersonsRelatedInput
  */
 export interface QGPTPersonsRelatedInput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTPersonsRelatedInput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Seed}
-     * @memberof QGPTPersonsRelatedInput
-     */
-    seed?: Seed;
-    /**
-     * 
-     * @type {QGPTConversation}
-     * @memberof QGPTPersonsRelatedInput
-     */
-    conversation?: QGPTConversation;
-    /**
-     * optional application id
-     * @type {string}
-     * @memberof QGPTPersonsRelatedInput
-     */
-    application?: string;
-    /**
-     * optional model id
-     * @type {string}
-     * @memberof QGPTPersonsRelatedInput
-     */
-    model?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTPersonsRelatedInput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Seed}
+	 * @memberof QGPTPersonsRelatedInput
+	 */
+	seed?: Seed;
+	/**
+	 *
+	 * @type {QGPTConversation}
+	 * @memberof QGPTPersonsRelatedInput
+	 */
+	conversation?: QGPTConversation;
+	/**
+	 * optional application id
+	 * @type {string}
+	 * @memberof QGPTPersonsRelatedInput
+	 */
+	application?: string;
+	/**
+	 * optional model id
+	 * @type {string}
+	 * @memberof QGPTPersonsRelatedInput
+	 */
+	model?: string;
 }
 
 /**
  * Check if a given object implements the QGPTPersonsRelatedInput interface.
  */
-export function instanceOfQGPTPersonsRelatedInput(value: object): boolean {
-    let isInstance = true;
+export function instanceOfQGPTPersonsRelatedInput(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function QGPTPersonsRelatedInputFromJSON(json: any): QGPTPersonsRelatedInput {
-    return QGPTPersonsRelatedInputFromJSONTyped(json, false);
+export function QGPTPersonsRelatedInputFromJSON(
+	json: any,
+): QGPTPersonsRelatedInput {
+	return QGPTPersonsRelatedInputFromJSONTyped(json, false);
 }
 
-export function QGPTPersonsRelatedInputFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTPersonsRelatedInput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'seed': !exists(json, 'seed') ? undefined : SeedFromJSON(json['seed']),
-        'conversation': !exists(json, 'conversation') ? undefined : QGPTConversationFromJSON(json['conversation']),
-        'application': !exists(json, 'application') ? undefined : json['application'],
-        'model': !exists(json, 'model') ? undefined : json['model'],
-    };
+export function QGPTPersonsRelatedInputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTPersonsRelatedInput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		seed: exists(json, "seed") ? SeedFromJSON(json["seed"]) : undefined,
+		conversation: exists(json, "conversation")
+			? QGPTConversationFromJSON(json["conversation"])
+			: undefined,
+		application: exists(json, "application")
+			? json["application"]
+			: undefined,
+		model: exists(json, "model") ? json["model"] : undefined,
+	};
 }
 
-export function QGPTPersonsRelatedInputToJSON(value?: QGPTPersonsRelatedInput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'seed': SeedToJSON(value.seed),
-        'conversation': QGPTConversationToJSON(value.conversation),
-        'application': value.application,
-        'model': value.model,
-    };
+export function QGPTPersonsRelatedInputToJSON(
+	value?: QGPTPersonsRelatedInput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		seed: SeedToJSON(value.seed),
+		conversation: QGPTConversationToJSON(value.conversation),
+		application: value.application,
+		model: value.model,
+	};
 }
-

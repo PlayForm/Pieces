@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the input model for the /open_ai/models/list endpoint.
@@ -26,56 +25,62 @@ import {
  * @interface OpenAIModelsListInput
  */
 export interface OpenAIModelsListInput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OpenAIModelsListInput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof OpenAIModelsListInput
-     */
-    user: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OpenAIModelsListInput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof OpenAIModelsListInput
+	 */
+	user: string;
 }
 
 /**
  * Check if a given object implements the OpenAIModelsListInput interface.
  */
 export function instanceOfOpenAIModelsListInput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "user" in value;
+	let isInstance = true;
+	isInstance = isInstance && "user" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function OpenAIModelsListInputFromJSON(json: any): OpenAIModelsListInput {
-    return OpenAIModelsListInputFromJSONTyped(json, false);
+export function OpenAIModelsListInputFromJSON(
+	json: any,
+): OpenAIModelsListInput {
+	return OpenAIModelsListInputFromJSONTyped(json, false);
 }
 
-export function OpenAIModelsListInputFromJSONTyped(json: any, ignoreDiscriminator: boolean): OpenAIModelsListInput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'user': json['user'],
-    };
+export function OpenAIModelsListInputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OpenAIModelsListInput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		user: json["user"],
+	};
 }
 
-export function OpenAIModelsListInputToJSON(value?: OpenAIModelsListInput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'user': value.user,
-    };
+export function OpenAIModelsListInputToJSON(
+	value?: OpenAIModelsListInput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		user: value.user,
+	};
 }
-

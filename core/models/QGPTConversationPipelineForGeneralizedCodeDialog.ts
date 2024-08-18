@@ -12,63 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is for the users that wants to have generalized code conversations without any context.
- * 
+ *
  * This is a class so that we can add optional properties in the future.
  * @export
  * @interface QGPTConversationPipelineForGeneralizedCodeDialog
  */
 export interface QGPTConversationPipelineForGeneralizedCodeDialog {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTConversationPipelineForGeneralizedCodeDialog
-     */
-    schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTConversationPipelineForGeneralizedCodeDialog
+	 */
+	schema?: EmbeddedModelSchema;
 }
 
 /**
  * Check if a given object implements the QGPTConversationPipelineForGeneralizedCodeDialog interface.
  */
-export function instanceOfQGPTConversationPipelineForGeneralizedCodeDialog(value: object): boolean {
-    let isInstance = true;
+export function instanceOfQGPTConversationPipelineForGeneralizedCodeDialog(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function QGPTConversationPipelineForGeneralizedCodeDialogFromJSON(json: any): QGPTConversationPipelineForGeneralizedCodeDialog {
-    return QGPTConversationPipelineForGeneralizedCodeDialogFromJSONTyped(json, false);
+export function QGPTConversationPipelineForGeneralizedCodeDialogFromJSON(
+	json: any,
+): QGPTConversationPipelineForGeneralizedCodeDialog {
+	return QGPTConversationPipelineForGeneralizedCodeDialogFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function QGPTConversationPipelineForGeneralizedCodeDialogFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTConversationPipelineForGeneralizedCodeDialog {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-    };
+export function QGPTConversationPipelineForGeneralizedCodeDialogFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTConversationPipelineForGeneralizedCodeDialog {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+	};
 }
 
-export function QGPTConversationPipelineForGeneralizedCodeDialogToJSON(value?: QGPTConversationPipelineForGeneralizedCodeDialog | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-    };
+export function QGPTConversationPipelineForGeneralizedCodeDialogToJSON(
+	value?: QGPTConversationPipelineForGeneralizedCodeDialog | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+	};
 }
-

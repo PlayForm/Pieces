@@ -12,37 +12,32 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { MechanismEnum } from './MechanismEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { SensitiveCategoryEnum } from './SensitiveCategoryEnum';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { SensitiveCategoryEnum } from "./SensitiveCategoryEnum.tsx";
 import {
-    SensitiveCategoryEnumFromJSON,
-    SensitiveCategoryEnumFromJSONTyped,
-    SensitiveCategoryEnumToJSON,
-} from './SensitiveCategoryEnum';
-import type { SensitiveMetadata } from './SensitiveMetadata';
+	SensitiveCategoryEnumFromJSON,
+	SensitiveCategoryEnumToJSON,
+} from "./SensitiveCategoryEnum.tsx";
+import type { SensitiveMetadata } from "./SensitiveMetadata.tsx";
 import {
-    SensitiveMetadataFromJSON,
-    SensitiveMetadataFromJSONTyped,
-    SensitiveMetadataToJSON,
-} from './SensitiveMetadata';
-import type { SensitiveSeverityEnum } from './SensitiveSeverityEnum';
+	SensitiveMetadataFromJSON,
+	SensitiveMetadataToJSON,
+} from "./SensitiveMetadata.tsx";
+import type { SensitiveSeverityEnum } from "./SensitiveSeverityEnum.tsx";
 import {
-    SensitiveSeverityEnumFromJSON,
-    SensitiveSeverityEnumFromJSONTyped,
-    SensitiveSeverityEnumToJSON,
-} from './SensitiveSeverityEnum';
+	SensitiveSeverityEnumFromJSON,
+	SensitiveSeverityEnumToJSON,
+} from "./SensitiveSeverityEnum.tsx";
 
 /**
  * This is the SeededDiscoverableSensitive, this has every property that the seededSensitive has except this one is all optionally passed in. and will override our classification if provided.
@@ -50,113 +45,129 @@ import {
  * @interface SeededDiscoverableSensitive
  */
 export interface SeededDiscoverableSensitive {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededDiscoverableSensitive
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededDiscoverableSensitive
-     */
-    asset: string;
-    /**
-     * this is the string representative of the sensative piece of data.
-     * @type {string}
-     * @memberof SeededDiscoverableSensitive
-     */
-    text: string;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof SeededDiscoverableSensitive
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * 
-     * @type {SensitiveCategoryEnum}
-     * @memberof SeededDiscoverableSensitive
-     */
-    category?: SensitiveCategoryEnum;
-    /**
-     * 
-     * @type {SensitiveSeverityEnum}
-     * @memberof SeededDiscoverableSensitive
-     */
-    severity?: SensitiveSeverityEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededDiscoverableSensitive
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededDiscoverableSensitive
-     */
-    description?: string;
-    /**
-     * 
-     * @type {SensitiveMetadata}
-     * @memberof SeededDiscoverableSensitive
-     */
-    metadata?: SensitiveMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	asset: string;
+	/**
+	 * this is the string representative of the sensative piece of data.
+	 * @type {string}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	text: string;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 *
+	 * @type {SensitiveCategoryEnum}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	category?: SensitiveCategoryEnum;
+	/**
+	 *
+	 * @type {SensitiveSeverityEnum}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	severity?: SensitiveSeverityEnum;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	description?: string;
+	/**
+	 *
+	 * @type {SensitiveMetadata}
+	 * @memberof SeededDiscoverableSensitive
+	 */
+	metadata?: SensitiveMetadata;
 }
 
 /**
  * Check if a given object implements the SeededDiscoverableSensitive interface.
  */
 export function instanceOfSeededDiscoverableSensitive(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "asset" in value;
-    isInstance = isInstance && "text" in value;
+	let isInstance = true;
+	isInstance = isInstance && "asset" in value;
+	isInstance = isInstance && "text" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededDiscoverableSensitiveFromJSON(json: any): SeededDiscoverableSensitive {
-    return SeededDiscoverableSensitiveFromJSONTyped(json, false);
+export function SeededDiscoverableSensitiveFromJSON(
+	json: any,
+): SeededDiscoverableSensitive {
+	return SeededDiscoverableSensitiveFromJSONTyped(json, false);
 }
 
-export function SeededDiscoverableSensitiveFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededDiscoverableSensitive {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': json['asset'],
-        'text': json['text'],
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'category': !exists(json, 'category') ? undefined : SensitiveCategoryEnumFromJSON(json['category']),
-        'severity': !exists(json, 'severity') ? undefined : SensitiveSeverityEnumFromJSON(json['severity']),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'metadata': !exists(json, 'metadata') ? undefined : SensitiveMetadataFromJSON(json['metadata']),
-    };
+export function SeededDiscoverableSensitiveFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededDiscoverableSensitive {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: json["asset"],
+		text: json["text"],
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		category: exists(json, "category")
+			? SensitiveCategoryEnumFromJSON(json["category"])
+			: undefined,
+		severity: exists(json, "severity")
+			? SensitiveSeverityEnumFromJSON(json["severity"])
+			: undefined,
+		name: exists(json, "name") ? json["name"] : undefined,
+		description: exists(json, "description")
+			? json["description"]
+			: undefined,
+		metadata: exists(json, "metadata")
+			? SensitiveMetadataFromJSON(json["metadata"])
+			: undefined,
+	};
 }
 
-export function SeededDiscoverableSensitiveToJSON(value?: SeededDiscoverableSensitive | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': value.asset,
-        'text': value.text,
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'category': SensitiveCategoryEnumToJSON(value.category),
-        'severity': SensitiveSeverityEnumToJSON(value.severity),
-        'name': value.name,
-        'description': value.description,
-        'metadata': SensitiveMetadataToJSON(value.metadata),
-    };
+export function SeededDiscoverableSensitiveToJSON(
+	value?: SeededDiscoverableSensitive | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: value.asset,
+		text: value.text,
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		category: SensitiveCategoryEnumToJSON(value.category),
+		severity: SensitiveSeverityEnumToJSON(value.severity),
+		name: value.name,
+		description: value.description,
+		metadata: SensitiveMetadataToJSON(value.metadata),
+	};
 }
-

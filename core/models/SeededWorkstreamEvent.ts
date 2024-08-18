@@ -12,43 +12,31 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedWorkstreamSummary } from "./ReferencedWorkstreamSummary.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedWorkstreamSummary } from './ReferencedWorkstreamSummary';
+	ReferencedWorkstreamSummaryFromJSON,
+	ReferencedWorkstreamSummaryToJSON,
+} from "./ReferencedWorkstreamSummary.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import type { WorkstreamEventContext } from "./WorkstreamEventContext.tsx";
 import {
-    ReferencedWorkstreamSummaryFromJSON,
-    ReferencedWorkstreamSummaryFromJSONTyped,
-    ReferencedWorkstreamSummaryToJSON,
-} from './ReferencedWorkstreamSummary';
-import type { Score } from './Score';
+	WorkstreamEventContextFromJSON,
+	WorkstreamEventContextToJSON,
+} from "./WorkstreamEventContext.tsx";
+import type { WorkstreamEventTrigger } from "./WorkstreamEventTrigger.tsx";
 import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
-import type { WorkstreamEventContext } from './WorkstreamEventContext';
-import {
-    WorkstreamEventContextFromJSON,
-    WorkstreamEventContextFromJSONTyped,
-    WorkstreamEventContextToJSON,
-} from './WorkstreamEventContext';
-import type { WorkstreamEventTrigger } from './WorkstreamEventTrigger';
-import {
-    WorkstreamEventTriggerFromJSON,
-    WorkstreamEventTriggerFromJSONTyped,
-    WorkstreamEventTriggerToJSON,
-} from './WorkstreamEventTrigger';
+	WorkstreamEventTriggerFromJSON,
+	WorkstreamEventTriggerToJSON,
+} from "./WorkstreamEventTrigger.tsx";
 
 /**
  * This is a precreated version of a WorkstreamEvent event, this will be used ingested into PiecesOS and PiecesOS will do all the magic to transform this into relevant data show in the workstream feed.
@@ -56,97 +44,109 @@ import {
  * @interface SeededWorkstreamEvent
  */
 export interface SeededWorkstreamEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededWorkstreamEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Score}
-     * @memberof SeededWorkstreamEvent
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {Application}
-     * @memberof SeededWorkstreamEvent
-     */
-    application: Application;
-    /**
-     * 
-     * @type {WorkstreamEventTrigger}
-     * @memberof SeededWorkstreamEvent
-     */
-    trigger: WorkstreamEventTrigger;
-    /**
-     * 
-     * @type {WorkstreamEventContext}
-     * @memberof SeededWorkstreamEvent
-     */
-    context?: WorkstreamEventContext;
-    /**
-     * 
-     * @type {ReferencedWorkstreamSummary}
-     * @memberof SeededWorkstreamEvent
-     */
-    summary?: ReferencedWorkstreamSummary;
-    /**
-     * This is used to override the event identifier, if this was an event that was originally in the internal events collection.
-     * @type {string}
-     * @memberof SeededWorkstreamEvent
-     */
-    internalIdentifier?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededWorkstreamEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof SeededWorkstreamEvent
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof SeededWorkstreamEvent
+	 */
+	application: Application;
+	/**
+	 *
+	 * @type {WorkstreamEventTrigger}
+	 * @memberof SeededWorkstreamEvent
+	 */
+	trigger: WorkstreamEventTrigger;
+	/**
+	 *
+	 * @type {WorkstreamEventContext}
+	 * @memberof SeededWorkstreamEvent
+	 */
+	context?: WorkstreamEventContext;
+	/**
+	 *
+	 * @type {ReferencedWorkstreamSummary}
+	 * @memberof SeededWorkstreamEvent
+	 */
+	summary?: ReferencedWorkstreamSummary;
+	/**
+	 * This is used to override the event identifier, if this was an event that was originally in the internal events collection.
+	 * @type {string}
+	 * @memberof SeededWorkstreamEvent
+	 */
+	internalIdentifier?: string;
 }
 
 /**
  * Check if a given object implements the SeededWorkstreamEvent interface.
  */
 export function instanceOfSeededWorkstreamEvent(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "application" in value;
-    isInstance = isInstance && "trigger" in value;
+	let isInstance = true;
+	isInstance = isInstance && "application" in value;
+	isInstance = isInstance && "trigger" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededWorkstreamEventFromJSON(json: any): SeededWorkstreamEvent {
-    return SeededWorkstreamEventFromJSONTyped(json, false);
+export function SeededWorkstreamEventFromJSON(
+	json: any,
+): SeededWorkstreamEvent {
+	return SeededWorkstreamEventFromJSONTyped(json, false);
 }
 
-export function SeededWorkstreamEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededWorkstreamEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'application': ApplicationFromJSON(json['application']),
-        'trigger': WorkstreamEventTriggerFromJSON(json['trigger']),
-        'context': !exists(json, 'context') ? undefined : WorkstreamEventContextFromJSON(json['context']),
-        'summary': !exists(json, 'summary') ? undefined : ReferencedWorkstreamSummaryFromJSON(json['summary']),
-        'internalIdentifier': !exists(json, 'internal_identifier') ? undefined : json['internal_identifier'],
-    };
+export function SeededWorkstreamEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededWorkstreamEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		application: ApplicationFromJSON(json["application"]),
+		trigger: WorkstreamEventTriggerFromJSON(json["trigger"]),
+		context: exists(json, "context")
+			? WorkstreamEventContextFromJSON(json["context"])
+			: undefined,
+		summary: exists(json, "summary")
+			? ReferencedWorkstreamSummaryFromJSON(json["summary"])
+			: undefined,
+		internalIdentifier: exists(json, "internal_identifier")
+			? json["internal_identifier"]
+			: undefined,
+	};
 }
 
-export function SeededWorkstreamEventToJSON(value?: SeededWorkstreamEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'score': ScoreToJSON(value.score),
-        'application': ApplicationToJSON(value.application),
-        'trigger': WorkstreamEventTriggerToJSON(value.trigger),
-        'context': WorkstreamEventContextToJSON(value.context),
-        'summary': ReferencedWorkstreamSummaryToJSON(value.summary),
-        'internal_identifier': value.internalIdentifier,
-    };
+export function SeededWorkstreamEventToJSON(
+	value?: SeededWorkstreamEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		score: ScoreToJSON(value.score),
+		application: ApplicationToJSON(value.application),
+		trigger: WorkstreamEventTriggerToJSON(value.trigger),
+		context: WorkstreamEventContextToJSON(value.context),
+		summary: ReferencedWorkstreamSummaryToJSON(value.summary),
+		internal_identifier: value.internalIdentifier,
+	};
 }
-

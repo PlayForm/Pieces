@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * NOTE: this can me a union type here.. (integer | string;) so we need to get a bit creative
@@ -26,71 +25,81 @@ import {
  * @interface LanguageServerProtocolCode
  */
 export interface LanguageServerProtocolCode {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof LanguageServerProtocolCode
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof LanguageServerProtocolCode
-     */
-    codeInteger?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LanguageServerProtocolCode
-     */
-    codeString?: string;
-    /**
-     * This is a Map<String, String>, basically just a json object for additional data if int/string will not work
-     * @type {{ [key: string]: string; }}
-     * @memberof LanguageServerProtocolCode
-     */
-    rawJson?: { [key: string]: string; };
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof LanguageServerProtocolCode
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof LanguageServerProtocolCode
+	 */
+	codeInteger?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof LanguageServerProtocolCode
+	 */
+	codeString?: string;
+	/**
+	 * This is a Map<String, String>, basically just a json object for additional data if int/string will not work
+	 * @type {{ [key: string]: string; }}
+	 * @memberof LanguageServerProtocolCode
+	 */
+	rawJson?: { [key: string]: string };
 }
 
 /**
  * Check if a given object implements the LanguageServerProtocolCode interface.
  */
-export function instanceOfLanguageServerProtocolCode(value: object): boolean {
-    let isInstance = true;
+export function instanceOfLanguageServerProtocolCode(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function LanguageServerProtocolCodeFromJSON(json: any): LanguageServerProtocolCode {
-    return LanguageServerProtocolCodeFromJSONTyped(json, false);
+export function LanguageServerProtocolCodeFromJSON(
+	json: any,
+): LanguageServerProtocolCode {
+	return LanguageServerProtocolCodeFromJSONTyped(json, false);
 }
 
-export function LanguageServerProtocolCodeFromJSONTyped(json: any, ignoreDiscriminator: boolean): LanguageServerProtocolCode {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'codeInteger': !exists(json, 'code_integer') ? undefined : json['code_integer'],
-        'codeString': !exists(json, 'code_string') ? undefined : json['code_string'],
-        'rawJson': !exists(json, 'raw_json') ? undefined : json['raw_json'],
-    };
+export function LanguageServerProtocolCodeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): LanguageServerProtocolCode {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		codeInteger: exists(json, "code_integer")
+			? json["code_integer"]
+			: undefined,
+		codeString: exists(json, "code_string")
+			? json["code_string"]
+			: undefined,
+		rawJson: exists(json, "raw_json") ? json["raw_json"] : undefined,
+	};
 }
 
-export function LanguageServerProtocolCodeToJSON(value?: LanguageServerProtocolCode | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'code_integer': value.codeInteger,
-        'code_string': value.codeString,
-        'raw_json': value.rawJson,
-    };
+export function LanguageServerProtocolCodeToJSON(
+	value?: LanguageServerProtocolCode | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		code_integer: value.codeInteger,
+		code_string: value.codeString,
+		raw_json: value.rawJson,
+	};
 }
-

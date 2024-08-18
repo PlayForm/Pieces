@@ -12,31 +12,24 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededFile } from './SeededFile';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededFile } from "./SeededFile.tsx";
+import { SeededFileFromJSON, SeededFileToJSON } from "./SeededFile.tsx";
+import type { SeededFragment } from "./SeededFragment.tsx";
 import {
-    SeededFileFromJSON,
-    SeededFileFromJSONTyped,
-    SeededFileToJSON,
-} from './SeededFile';
-import type { SeededFragment } from './SeededFragment';
+	SeededFragmentFromJSON,
+	SeededFragmentToJSON,
+} from "./SeededFragment.tsx";
+import type { TLPDirectedDiscoveryFilters } from "./TLPDirectedDiscoveryFilters.tsx";
 import {
-    SeededFragmentFromJSON,
-    SeededFragmentFromJSONTyped,
-    SeededFragmentToJSON,
-} from './SeededFragment';
-import type { TLPDirectedDiscoveryFilters } from './TLPDirectedDiscoveryFilters';
-import {
-    TLPDirectedDiscoveryFiltersFromJSON,
-    TLPDirectedDiscoveryFiltersFromJSONTyped,
-    TLPDirectedDiscoveryFiltersToJSON,
-} from './TLPDirectedDiscoveryFilters';
+	TLPDirectedDiscoveryFiltersFromJSON,
+	TLPDirectedDiscoveryFiltersToJSON,
+} from "./TLPDirectedDiscoveryFilters.tsx";
 
 /**
  * Assumption: filters applied in this model will overwrite filters passed in SeededDiscoverableAssets
@@ -44,79 +37,91 @@ import {
  * @interface SeededDiscoverableAsset
  */
 export interface SeededDiscoverableAsset {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededDiscoverableAsset
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededFile}
-     * @memberof SeededDiscoverableAsset
-     */
-    file?: SeededFile;
-    /**
-     * 
-     * @type {SeededFragment}
-     * @memberof SeededDiscoverableAsset
-     */
-    fragment?: SeededFragment;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededDiscoverableAsset
-     */
-    directory?: string;
-    /**
-     * 
-     * @type {TLPDirectedDiscoveryFilters}
-     * @memberof SeededDiscoverableAsset
-     */
-    filters?: TLPDirectedDiscoveryFilters;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededDiscoverableAsset
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededFile}
+	 * @memberof SeededDiscoverableAsset
+	 */
+	file?: SeededFile;
+	/**
+	 *
+	 * @type {SeededFragment}
+	 * @memberof SeededDiscoverableAsset
+	 */
+	fragment?: SeededFragment;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededDiscoverableAsset
+	 */
+	directory?: string;
+	/**
+	 *
+	 * @type {TLPDirectedDiscoveryFilters}
+	 * @memberof SeededDiscoverableAsset
+	 */
+	filters?: TLPDirectedDiscoveryFilters;
 }
 
 /**
  * Check if a given object implements the SeededDiscoverableAsset interface.
  */
-export function instanceOfSeededDiscoverableAsset(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededDiscoverableAsset(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededDiscoverableAssetFromJSON(json: any): SeededDiscoverableAsset {
-    return SeededDiscoverableAssetFromJSONTyped(json, false);
+export function SeededDiscoverableAssetFromJSON(
+	json: any,
+): SeededDiscoverableAsset {
+	return SeededDiscoverableAssetFromJSONTyped(json, false);
 }
 
-export function SeededDiscoverableAssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededDiscoverableAsset {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'file': !exists(json, 'file') ? undefined : SeededFileFromJSON(json['file']),
-        'fragment': !exists(json, 'fragment') ? undefined : SeededFragmentFromJSON(json['fragment']),
-        'directory': !exists(json, 'directory') ? undefined : json['directory'],
-        'filters': !exists(json, 'filters') ? undefined : TLPDirectedDiscoveryFiltersFromJSON(json['filters']),
-    };
+export function SeededDiscoverableAssetFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededDiscoverableAsset {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		file: exists(json, "file")
+			? SeededFileFromJSON(json["file"])
+			: undefined,
+		fragment: exists(json, "fragment")
+			? SeededFragmentFromJSON(json["fragment"])
+			: undefined,
+		directory: exists(json, "directory") ? json["directory"] : undefined,
+		filters: exists(json, "filters")
+			? TLPDirectedDiscoveryFiltersFromJSON(json["filters"])
+			: undefined,
+	};
 }
 
-export function SeededDiscoverableAssetToJSON(value?: SeededDiscoverableAsset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'file': SeededFileToJSON(value.file),
-        'fragment': SeededFragmentToJSON(value.fragment),
-        'directory': value.directory,
-        'filters': TLPDirectedDiscoveryFiltersToJSON(value.filters),
-    };
+export function SeededDiscoverableAssetToJSON(
+	value?: SeededDiscoverableAsset | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		file: SeededFileToJSON(value.file),
+		fragment: SeededFragmentToJSON(value.fragment),
+		directory: value.directory,
+		filters: TLPDirectedDiscoveryFiltersToJSON(value.filters),
+	};
 }
-

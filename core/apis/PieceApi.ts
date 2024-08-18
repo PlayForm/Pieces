@@ -12,56 +12,68 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
+import * as runtime from "../runtime.ts";
 
 export interface HtmlShareRequest {
-    p: string;
+	p: string;
 }
 
 /**
- * 
+ *
  */
 export class PieceApi extends runtime.BaseAPI {
+	/**
+	 * This is a cloud only Api. This will get a preview of your publically accessble Piece.
+	 * / [GET]
+	 */
+	async htmlShareRaw(
+		requestParameters: HtmlShareRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<string>> {
+		if (requestParameters.p === null || requestParameters.p === undefined) {
+			throw new runtime.RequiredError(
+				"p",
+				"Required parameter requestParameters.p was null or undefined when calling htmlShare.",
+			);
+		}
 
-    /**
-     * This is a cloud only Api. This will get a preview of your publically accessble Piece.
-     * / [GET]
-     */
-    async htmlShareRaw(requestParameters: HtmlShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        if (requestParameters.p === null || requestParameters.p === undefined) {
-            throw new runtime.RequiredError('p','Required parameter requestParameters.p was null or undefined when calling htmlShare.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		if (requestParameters.p !== undefined) {
+			queryParameters["p"] = requestParameters.p;
+		}
 
-        if (requestParameters.p !== undefined) {
-            queryParameters['p'] = requestParameters.p;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		if (this.isJsonMime(response.headers.get("content-type"))) {
+			return new runtime.JSONApiResponse<string>(response);
+		} else {
+			return new runtime.TextApiResponse(response) as any;
+		}
+	}
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * This is a cloud only Api. This will get a preview of your publically accessble Piece.
-     * / [GET]
-     */
-    async htmlShare(requestParameters: HtmlShareRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.htmlShareRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This is a cloud only Api. This will get a preview of your publically accessble Piece.
+	 * / [GET]
+	 */
+	async htmlShare(
+		requestParameters: HtmlShareRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<string> {
+		const response = await this.htmlShareRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

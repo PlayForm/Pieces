@@ -12,117 +12,123 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ConversationMessage } from './ConversationMessage';
+import { exists } from "../runtime.ts";
+import type { ConversationMessage } from "./ConversationMessage.tsx";
 import {
-    ConversationMessageFromJSON,
-    ConversationMessageFromJSONTyped,
-    ConversationMessageToJSON,
-} from './ConversationMessage';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ConversationMessageFromJSON,
+	ConversationMessageToJSON,
+} from "./ConversationMessage.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is used for the ConversationMessages searching endpoint && the specific Conversation search && ConversationsSearch
- * 
+ *
  * conversation here is only provided if transferables are set to true.
- * 
+ *
  * temporal: if this is provided this means that their material matched the input via a timestamp.
- * 
+ *
  * TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials
  * ie suggestion: WorkstreamSuggestions
  * @export
  * @interface SearchedConversationMessage
  */
 export interface SearchedConversationMessage {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedConversationMessage
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ConversationMessage}
-     * @memberof SearchedConversationMessage
-     */
-    message?: ConversationMessage;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedConversationMessage
-     */
-    exact: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchedConversationMessage
-     */
-    similarity: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedConversationMessage
-     */
-    temporal?: boolean;
-    /**
-     * This is the uuid of the ConversationMessage.
-     * @type {string}
-     * @memberof SearchedConversationMessage
-     */
-    identifier: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedConversationMessage
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ConversationMessage}
+	 * @memberof SearchedConversationMessage
+	 */
+	message?: ConversationMessage;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedConversationMessage
+	 */
+	exact: boolean;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SearchedConversationMessage
+	 */
+	similarity: number;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedConversationMessage
+	 */
+	temporal?: boolean;
+	/**
+	 * This is the uuid of the ConversationMessage.
+	 * @type {string}
+	 * @memberof SearchedConversationMessage
+	 */
+	identifier: string;
 }
 
 /**
  * Check if a given object implements the SearchedConversationMessage interface.
  */
 export function instanceOfSearchedConversationMessage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "exact" in value;
-    isInstance = isInstance && "similarity" in value;
-    isInstance = isInstance && "identifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "exact" in value;
+	isInstance = isInstance && "similarity" in value;
+	isInstance = isInstance && "identifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SearchedConversationMessageFromJSON(json: any): SearchedConversationMessage {
-    return SearchedConversationMessageFromJSONTyped(json, false);
+export function SearchedConversationMessageFromJSON(
+	json: any,
+): SearchedConversationMessage {
+	return SearchedConversationMessageFromJSONTyped(json, false);
 }
 
-export function SearchedConversationMessageFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedConversationMessage {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'message': !exists(json, 'message') ? undefined : ConversationMessageFromJSON(json['message']),
-        'exact': json['exact'],
-        'similarity': json['similarity'],
-        'temporal': !exists(json, 'temporal') ? undefined : json['temporal'],
-        'identifier': json['identifier'],
-    };
+export function SearchedConversationMessageFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedConversationMessage {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		message: exists(json, "message")
+			? ConversationMessageFromJSON(json["message"])
+			: undefined,
+		exact: json["exact"],
+		similarity: json["similarity"],
+		temporal: exists(json, "temporal") ? json["temporal"] : undefined,
+		identifier: json["identifier"],
+	};
 }
 
-export function SearchedConversationMessageToJSON(value?: SearchedConversationMessage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'message': ConversationMessageToJSON(value.message),
-        'exact': value.exact,
-        'similarity': value.similarity,
-        'temporal': value.temporal,
-        'identifier': value.identifier,
-    };
+export function SearchedConversationMessageToJSON(
+	value?: SearchedConversationMessage | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		message: ConversationMessageToJSON(value.message),
+		exact: value.exact,
+		similarity: value.similarity,
+		temporal: value.temporal,
+		identifier: value.identifier,
+	};
 }
-

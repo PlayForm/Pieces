@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will let us know specific hardware information related to the CPU.
@@ -26,63 +25,71 @@ import {
  * @interface OSDeviceCPUHardwareInformation
  */
 export interface OSDeviceCPUHardwareInformation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSDeviceCPUHardwareInformation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof OSDeviceCPUHardwareInformation
-     */
-    name?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OSDeviceCPUHardwareInformation
-     */
-    memory?: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSDeviceCPUHardwareInformation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof OSDeviceCPUHardwareInformation
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof OSDeviceCPUHardwareInformation
+	 */
+	memory?: number;
 }
 
 /**
  * Check if a given object implements the OSDeviceCPUHardwareInformation interface.
  */
-export function instanceOfOSDeviceCPUHardwareInformation(value: object): boolean {
-    let isInstance = true;
+export function instanceOfOSDeviceCPUHardwareInformation(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function OSDeviceCPUHardwareInformationFromJSON(json: any): OSDeviceCPUHardwareInformation {
-    return OSDeviceCPUHardwareInformationFromJSONTyped(json, false);
+export function OSDeviceCPUHardwareInformationFromJSON(
+	json: any,
+): OSDeviceCPUHardwareInformation {
+	return OSDeviceCPUHardwareInformationFromJSONTyped(json, false);
 }
 
-export function OSDeviceCPUHardwareInformationFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSDeviceCPUHardwareInformation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'memory': !exists(json, 'memory') ? undefined : json['memory'],
-    };
+export function OSDeviceCPUHardwareInformationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSDeviceCPUHardwareInformation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		name: exists(json, "name") ? json["name"] : undefined,
+		memory: exists(json, "memory") ? json["memory"] : undefined,
+	};
 }
 
-export function OSDeviceCPUHardwareInformationToJSON(value?: OSDeviceCPUHardwareInformation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'name': value.name,
-        'memory': value.memory,
-    };
+export function OSDeviceCPUHardwareInformationToJSON(
+	value?: OSDeviceCPUHardwareInformation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		name: value.name,
+		memory: value.memory,
+	};
 }
-

@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will lets us know about specific dependencies that we are looking for on the device that are needed for specific tasks.
@@ -26,56 +25,64 @@ import {
  * @interface OSDeviceDependenciesInformation
  */
 export interface OSDeviceDependenciesInformation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSDeviceDependenciesInformation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This will let us know if vulkan is present = true or not there ==false
-     * @type {boolean}
-     * @memberof OSDeviceDependenciesInformation
-     */
-    vulkan: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSDeviceDependenciesInformation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This will let us know if vulkan is present = true or not there ==false
+	 * @type {boolean}
+	 * @memberof OSDeviceDependenciesInformation
+	 */
+	vulkan: boolean;
 }
 
 /**
  * Check if a given object implements the OSDeviceDependenciesInformation interface.
  */
-export function instanceOfOSDeviceDependenciesInformation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "vulkan" in value;
+export function instanceOfOSDeviceDependenciesInformation(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "vulkan" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function OSDeviceDependenciesInformationFromJSON(json: any): OSDeviceDependenciesInformation {
-    return OSDeviceDependenciesInformationFromJSONTyped(json, false);
+export function OSDeviceDependenciesInformationFromJSON(
+	json: any,
+): OSDeviceDependenciesInformation {
+	return OSDeviceDependenciesInformationFromJSONTyped(json, false);
 }
 
-export function OSDeviceDependenciesInformationFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSDeviceDependenciesInformation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'vulkan': json['vulkan'],
-    };
+export function OSDeviceDependenciesInformationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSDeviceDependenciesInformation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		vulkan: json["vulkan"],
+	};
 }
 
-export function OSDeviceDependenciesInformationToJSON(value?: OSDeviceDependenciesInformation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'vulkan': value.vulkan,
-    };
+export function OSDeviceDependenciesInformationToJSON(
+	value?: OSDeviceDependenciesInformation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		vulkan: value.vulkan,
+	};
 }
-

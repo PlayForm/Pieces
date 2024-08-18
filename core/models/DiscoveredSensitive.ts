@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededSensitive } from './SeededSensitive';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededSensitive } from "./SeededSensitive.tsx";
 import {
-    SeededSensitiveFromJSON,
-    SeededSensitiveFromJSONTyped,
-    SeededSensitiveToJSON,
-} from './SeededSensitive';
+	SeededSensitiveFromJSON,
+	SeededSensitiveToJSON,
+} from "./SeededSensitive.tsx";
 
 /**
  * This will return a discoveredSensitive, with a seed that can be used to create if automatic is set to false. and will provide the original text provided.
@@ -32,65 +30,69 @@ import {
  * @interface DiscoveredSensitive
  */
 export interface DiscoveredSensitive {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DiscoveredSensitive
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededSensitive}
-     * @memberof DiscoveredSensitive
-     */
-    seed: SeededSensitive;
-    /**
-     * 
-     * @type {string}
-     * @memberof DiscoveredSensitive
-     */
-    text: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DiscoveredSensitive
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededSensitive}
+	 * @memberof DiscoveredSensitive
+	 */
+	seed: SeededSensitive;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof DiscoveredSensitive
+	 */
+	text: string;
 }
 
 /**
  * Check if a given object implements the DiscoveredSensitive interface.
  */
 export function instanceOfDiscoveredSensitive(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "seed" in value;
-    isInstance = isInstance && "text" in value;
+	let isInstance = true;
+	isInstance = isInstance && "seed" in value;
+	isInstance = isInstance && "text" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function DiscoveredSensitiveFromJSON(json: any): DiscoveredSensitive {
-    return DiscoveredSensitiveFromJSONTyped(json, false);
+	return DiscoveredSensitiveFromJSONTyped(json, false);
 }
 
-export function DiscoveredSensitiveFromJSONTyped(json: any, ignoreDiscriminator: boolean): DiscoveredSensitive {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'seed': SeededSensitiveFromJSON(json['seed']),
-        'text': json['text'],
-    };
+export function DiscoveredSensitiveFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DiscoveredSensitive {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		seed: SeededSensitiveFromJSON(json["seed"]),
+		text: json["text"],
+	};
 }
 
-export function DiscoveredSensitiveToJSON(value?: DiscoveredSensitive | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'seed': SeededSensitiveToJSON(value.seed),
-        'text': value.text,
-    };
+export function DiscoveredSensitiveToJSON(
+	value?: DiscoveredSensitive | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		seed: SeededSensitiveToJSON(value.seed),
+		text: value.text,
+	};
 }
-

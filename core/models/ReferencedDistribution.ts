@@ -12,84 +12,90 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedDistribution } from './FlattenedDistribution';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedDistribution } from "./FlattenedDistribution.tsx";
 import {
-    FlattenedDistributionFromJSON,
-    FlattenedDistributionFromJSONTyped,
-    FlattenedDistributionToJSON,
-} from './FlattenedDistribution';
+	FlattenedDistributionFromJSON,
+	FlattenedDistributionToJSON,
+} from "./FlattenedDistribution.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface ReferencedDistribution
  */
 export interface ReferencedDistribution {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedDistribution
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedDistribution
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedDistribution}
-     * @memberof ReferencedDistribution
-     */
-    reference?: FlattenedDistribution;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedDistribution
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedDistribution
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedDistribution}
+	 * @memberof ReferencedDistribution
+	 */
+	reference?: FlattenedDistribution;
 }
 
 /**
  * Check if a given object implements the ReferencedDistribution interface.
  */
 export function instanceOfReferencedDistribution(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ReferencedDistributionFromJSON(json: any): ReferencedDistribution {
-    return ReferencedDistributionFromJSONTyped(json, false);
+export function ReferencedDistributionFromJSON(
+	json: any,
+): ReferencedDistribution {
+	return ReferencedDistributionFromJSONTyped(json, false);
 }
 
-export function ReferencedDistributionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedDistribution {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedDistributionFromJSON(json['reference']),
-    };
+export function ReferencedDistributionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedDistribution {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedDistributionFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
-export function ReferencedDistributionToJSON(value?: ReferencedDistribution | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedDistributionToJSON(value.reference),
-    };
+export function ReferencedDistributionToJSON(
+	value?: ReferencedDistribution | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedDistributionToJSON(value.reference),
+	};
 }
-

@@ -12,47 +12,48 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Relationships,
-} from '../models/index';
-import {
-    RelationshipsFromJSON,
-    RelationshipsToJSON,
-} from '../models/index';
+import type { Relationships } from "../models/index.ts";
+import { RelationshipsFromJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 /**
- * 
+ *
  */
 export class RelationshipsApi extends runtime.BaseAPI {
+	/**
+	 * This will return all of the relationships that exists within your pieces db.
+	 * /relationships [GET]
+	 */
+	async relationshipsSnapshotRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Relationships>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will return all of the relationships that exists within your pieces db.
-     * /relationships [GET]
-     */
-    async relationshipsSnapshotRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Relationships>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/relationships",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/relationships`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			RelationshipsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RelationshipsFromJSON(jsonValue));
-    }
-
-    /**
-     * This will return all of the relationships that exists within your pieces db.
-     * /relationships [GET]
-     */
-    async relationshipsSnapshot(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Relationships> {
-        const response = await this.relationshipsSnapshotRaw(initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will return all of the relationships that exists within your pieces db.
+	 * /relationships [GET]
+	 */
+	async relationshipsSnapshot(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Relationships> {
+		const response = await this.relationshipsSnapshotRaw(initOverrides);
+		return await response.value();
+	}
 }

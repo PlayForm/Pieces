@@ -12,85 +12,95 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededDiscoverableRelatedTag } from './SeededDiscoverableRelatedTag';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededDiscoverableRelatedTag } from "./SeededDiscoverableRelatedTag.tsx";
 import {
-    SeededDiscoverableRelatedTagFromJSON,
-    SeededDiscoverableRelatedTagFromJSONTyped,
-    SeededDiscoverableRelatedTagToJSON,
-} from './SeededDiscoverableRelatedTag';
+	SeededDiscoverableRelatedTagFromJSON,
+	SeededDiscoverableRelatedTagToJSON,
+} from "./SeededDiscoverableRelatedTag.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededDiscoverableRelatedTags
  */
 export interface SeededDiscoverableRelatedTags {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededDiscoverableRelatedTags
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SeededDiscoverableRelatedTag>}
-     * @memberof SeededDiscoverableRelatedTags
-     */
-    iterable: Array<SeededDiscoverableRelatedTag>;
-    /**
-     * This is the application id that this request is sent from.
-     * @type {string}
-     * @memberof SeededDiscoverableRelatedTags
-     */
-    application: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededDiscoverableRelatedTags
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SeededDiscoverableRelatedTag>}
+	 * @memberof SeededDiscoverableRelatedTags
+	 */
+	iterable: SeededDiscoverableRelatedTag[];
+	/**
+	 * This is the application id that this request is sent from.
+	 * @type {string}
+	 * @memberof SeededDiscoverableRelatedTags
+	 */
+	application: string;
 }
 
 /**
  * Check if a given object implements the SeededDiscoverableRelatedTags interface.
  */
-export function instanceOfSeededDiscoverableRelatedTags(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
-    isInstance = isInstance && "application" in value;
+export function instanceOfSeededDiscoverableRelatedTags(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
+	isInstance = isInstance && "application" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededDiscoverableRelatedTagsFromJSON(json: any): SeededDiscoverableRelatedTags {
-    return SeededDiscoverableRelatedTagsFromJSONTyped(json, false);
+export function SeededDiscoverableRelatedTagsFromJSON(
+	json: any,
+): SeededDiscoverableRelatedTags {
+	return SeededDiscoverableRelatedTagsFromJSONTyped(json, false);
 }
 
-export function SeededDiscoverableRelatedTagsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededDiscoverableRelatedTags {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SeededDiscoverableRelatedTagFromJSON)),
-        'application': json['application'],
-    };
+export function SeededDiscoverableRelatedTagsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededDiscoverableRelatedTags {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			SeededDiscoverableRelatedTagFromJSON,
+		),
+		application: json["application"],
+	};
 }
 
-export function SeededDiscoverableRelatedTagsToJSON(value?: SeededDiscoverableRelatedTags | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SeededDiscoverableRelatedTagToJSON)),
-        'application': value.application,
-    };
+export function SeededDiscoverableRelatedTagsToJSON(
+	value?: SeededDiscoverableRelatedTags | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			SeededDiscoverableRelatedTagToJSON,
+		),
+		application: value.application,
+	};
 }
-

@@ -12,69 +12,72 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface TLPCodeFileAnalytics
  */
 export interface TLPCodeFileAnalytics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeFileAnalytics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFileAnalytics
-     */
-    id?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeFileAnalytics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFileAnalytics
+	 */
+	id?: string;
 }
 
 /**
  * Check if a given object implements the TLPCodeFileAnalytics interface.
  */
-export function instanceOfTLPCodeFileAnalytics(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTLPCodeFileAnalytics(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function TLPCodeFileAnalyticsFromJSON(json: any): TLPCodeFileAnalytics {
-    return TLPCodeFileAnalyticsFromJSONTyped(json, false);
+	return TLPCodeFileAnalyticsFromJSONTyped(json, false);
 }
 
-export function TLPCodeFileAnalyticsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFileAnalytics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': !exists(json, 'id') ? undefined : json['id'],
-    };
+export function TLPCodeFileAnalyticsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFileAnalytics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: exists(json, "id") ? json["id"] : undefined,
+	};
 }
 
-export function TLPCodeFileAnalyticsToJSON(value?: TLPCodeFileAnalytics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-    };
+export function TLPCodeFileAnalyticsToJSON(
+	value?: TLPCodeFileAnalytics | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+	};
 }
-

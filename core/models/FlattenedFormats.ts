@@ -12,79 +12,79 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedFormat } from './ReferencedFormat';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedFormat } from "./ReferencedFormat.tsx";
 import {
-    ReferencedFormatFromJSON,
-    ReferencedFormatFromJSONTyped,
-    ReferencedFormatToJSON,
-} from './ReferencedFormat';
+	ReferencedFormatFromJSON,
+	ReferencedFormatToJSON,
+} from "./ReferencedFormat.tsx";
 
 /**
  * A collection of Formats specific to the authenticated user. [DAG Compatible - Directed Acyclic Graph Data Structure]
- * 
+ *
  * FlattenedFormats prevent Cycles in Reference because all outbound references are strings as opposed to crosspollinated objects.
- * 
+ *
  * @export
  * @interface FlattenedFormats
  */
 export interface FlattenedFormats {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedFormats
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedFormat>}
-     * @memberof FlattenedFormats
-     */
-    iterable: Array<ReferencedFormat>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedFormats
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedFormat>}
+	 * @memberof FlattenedFormats
+	 */
+	iterable: ReferencedFormat[];
 }
 
 /**
  * Check if a given object implements the FlattenedFormats interface.
  */
 export function instanceOfFlattenedFormats(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedFormatsFromJSON(json: any): FlattenedFormats {
-    return FlattenedFormatsFromJSONTyped(json, false);
+	return FlattenedFormatsFromJSONTyped(json, false);
 }
 
-export function FlattenedFormatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedFormats {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedFormatFromJSON)),
-    };
+export function FlattenedFormatsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedFormats {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ReferencedFormatFromJSON),
+	};
 }
 
 export function FlattenedFormatsToJSON(value?: FlattenedFormats | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedFormatToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedFormatToJSON),
+	};
 }
-

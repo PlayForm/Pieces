@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Asset } from './Asset';
+import { exists } from "../runtime.ts";
+import type { Asset } from "./Asset.tsx";
+import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AssetFromJSON,
-    AssetFromJSONTyped,
-    AssetToJSON,
-} from './Asset';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedMatchEnum } from "./SearchedMatchEnum.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedMatchEnum } from './SearchedMatchEnum';
-import {
-    SearchedMatchEnumFromJSON,
-    SearchedMatchEnumFromJSONTyped,
-    SearchedMatchEnumToJSON,
-} from './SearchedMatchEnum';
+	SearchedMatchEnumFromJSON,
+	SearchedMatchEnumToJSON,
+} from "./SearchedMatchEnum.tsx";
 
 /**
  * This is a modle that will represent a searched asset!
@@ -38,99 +32,101 @@ import {
  * @interface SearchedAsset
  */
 export interface SearchedAsset {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedAsset
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Asset}
-     * @memberof SearchedAsset
-     */
-    asset?: Asset;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedAsset
-     */
-    exact: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchedAsset
-     */
-    score: number;
-    /**
-     * 
-     * @type {SearchedMatchEnum}
-     * @memberof SearchedAsset
-     */
-    match: SearchedMatchEnum;
-    /**
-     * This is the uuid of the asset.
-     * @type {string}
-     * @memberof SearchedAsset
-     */
-    identifier: string;
-    /**
-     * If this is a pseudo asset that was also returned.
-     * @type {boolean}
-     * @memberof SearchedAsset
-     */
-    pseudo?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedAsset
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Asset}
+	 * @memberof SearchedAsset
+	 */
+	asset?: Asset;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedAsset
+	 */
+	exact: boolean;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SearchedAsset
+	 */
+	score: number;
+	/**
+	 *
+	 * @type {SearchedMatchEnum}
+	 * @memberof SearchedAsset
+	 */
+	match: SearchedMatchEnum;
+	/**
+	 * This is the uuid of the asset.
+	 * @type {string}
+	 * @memberof SearchedAsset
+	 */
+	identifier: string;
+	/**
+	 * If this is a pseudo asset that was also returned.
+	 * @type {boolean}
+	 * @memberof SearchedAsset
+	 */
+	pseudo?: boolean;
 }
 
 /**
  * Check if a given object implements the SearchedAsset interface.
  */
 export function instanceOfSearchedAsset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "exact" in value;
-    isInstance = isInstance && "score" in value;
-    isInstance = isInstance && "match" in value;
-    isInstance = isInstance && "identifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "exact" in value;
+	isInstance = isInstance && "score" in value;
+	isInstance = isInstance && "match" in value;
+	isInstance = isInstance && "identifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedAssetFromJSON(json: any): SearchedAsset {
-    return SearchedAssetFromJSONTyped(json, false);
+	return SearchedAssetFromJSONTyped(json, false);
 }
 
-export function SearchedAssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedAsset {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': !exists(json, 'asset') ? undefined : AssetFromJSON(json['asset']),
-        'exact': json['exact'],
-        'score': json['score'],
-        'match': SearchedMatchEnumFromJSON(json['match']),
-        'identifier': json['identifier'],
-        'pseudo': !exists(json, 'pseudo') ? undefined : json['pseudo'],
-    };
+export function SearchedAssetFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedAsset {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: exists(json, "asset") ? AssetFromJSON(json["asset"]) : undefined,
+		exact: json["exact"],
+		score: json["score"],
+		match: SearchedMatchEnumFromJSON(json["match"]),
+		identifier: json["identifier"],
+		pseudo: exists(json, "pseudo") ? json["pseudo"] : undefined,
+	};
 }
 
 export function SearchedAssetToJSON(value?: SearchedAsset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': AssetToJSON(value.asset),
-        'exact': value.exact,
-        'score': value.score,
-        'match': SearchedMatchEnumToJSON(value.match),
-        'identifier': value.identifier,
-        'pseudo': value.pseudo,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: AssetToJSON(value.asset),
+		exact: value.exact,
+		score: value.score,
+		match: SearchedMatchEnumToJSON(value.match),
+		identifier: value.identifier,
+		pseudo: value.pseudo,
+	};
 }
-

@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedSensitive } from './ReferencedSensitive';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedSensitive } from "./ReferencedSensitive.tsx";
 import {
-    ReferencedSensitiveFromJSON,
-    ReferencedSensitiveFromJSONTyped,
-    ReferencedSensitiveToJSON,
-} from './ReferencedSensitive';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedSensitiveFromJSON,
+	ReferencedSensitiveToJSON,
+} from "./ReferencedSensitive.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a flattened representation of multiple sensitive pieces of data.
@@ -38,64 +32,68 @@ import {
  * @interface FlattenedSensitives
  */
 export interface FlattenedSensitives {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedSensitives
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedSensitive>}
-     * @memberof FlattenedSensitives
-     */
-    iterable: Array<ReferencedSensitive>;
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedSensitives
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedSensitives
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedSensitive>}
+	 * @memberof FlattenedSensitives
+	 */
+	iterable: ReferencedSensitive[];
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedSensitives
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedSensitives interface.
  */
 export function instanceOfFlattenedSensitives(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedSensitivesFromJSON(json: any): FlattenedSensitives {
-    return FlattenedSensitivesFromJSONTyped(json, false);
+	return FlattenedSensitivesFromJSONTyped(json, false);
 }
 
-export function FlattenedSensitivesFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedSensitives {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedSensitiveFromJSON)),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedSensitivesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedSensitives {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ReferencedSensitiveFromJSON),
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
-export function FlattenedSensitivesToJSON(value?: FlattenedSensitives | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedSensitiveToJSON)),
-        'score': ScoreToJSON(value.score),
-    };
+export function FlattenedSensitivesToJSON(
+	value?: FlattenedSensitives | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedSensitiveToJSON),
+		score: ScoreToJSON(value.score),
+	};
 }
-

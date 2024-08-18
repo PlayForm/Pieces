@@ -12,124 +12,129 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Classification } from './Classification';
+import { exists } from "../runtime.ts";
+import type { Classification } from "./Classification.tsx";
 import {
-    ClassificationFromJSON,
-    ClassificationFromJSONTyped,
-    ClassificationToJSON,
-} from './Classification';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ClassificationFromJSON,
+	ClassificationToJSON,
+} from "./Classification.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { PersonBasicType } from './PersonBasicType';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { PersonBasicType } from "./PersonBasicType.tsx";
 import {
-    PersonBasicTypeFromJSON,
-    PersonBasicTypeFromJSONTyped,
-    PersonBasicTypeToJSON,
-} from './PersonBasicType';
-import type { TransferableString } from './TransferableString';
+	PersonBasicTypeFromJSON,
+	PersonBasicTypeToJSON,
+} from "./PersonBasicType.tsx";
+import type { TransferableString } from "./TransferableString.tsx";
 import {
-    TransferableStringFromJSON,
-    TransferableStringFromJSONTyped,
-    TransferableStringToJSON,
-} from './TransferableString';
+	TransferableStringFromJSON,
+	TransferableStringToJSON,
+} from "./TransferableString.tsx";
 
 /**
  * A DocumentContributor is a preseeded representation of a Person
- * 
+ *
  * This can be used in the case of the browser, or in the IDE
- * 
+ *
  * If they are apart of an IDE, we can in the future provide git information (IE add a Git object for their commits)
- * 
+ *
  * person: this is most important part which is the email/name xyz
  * @export
  * @interface DocumentContributor
  */
 export interface DocumentContributor {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DocumentContributor
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Classification}
-     * @memberof DocumentContributor
-     */
-    classification?: Classification;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof DocumentContributor
-     */
-    value?: TransferableString;
-    /**
-     * 
-     * @type {PersonBasicType}
-     * @memberof DocumentContributor
-     */
-    person: PersonBasicType;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof DocumentContributor
-     */
-    updated?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DocumentContributor
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Classification}
+	 * @memberof DocumentContributor
+	 */
+	classification?: Classification;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof DocumentContributor
+	 */
+	value?: TransferableString;
+	/**
+	 *
+	 * @type {PersonBasicType}
+	 * @memberof DocumentContributor
+	 */
+	person: PersonBasicType;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof DocumentContributor
+	 */
+	updated?: GroupedTimestamp;
 }
 
 /**
  * Check if a given object implements the DocumentContributor interface.
  */
 export function instanceOfDocumentContributor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "person" in value;
+	let isInstance = true;
+	isInstance = isInstance && "person" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function DocumentContributorFromJSON(json: any): DocumentContributor {
-    return DocumentContributorFromJSONTyped(json, false);
+	return DocumentContributorFromJSONTyped(json, false);
 }
 
-export function DocumentContributorFromJSONTyped(json: any, ignoreDiscriminator: boolean): DocumentContributor {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'classification': !exists(json, 'classification') ? undefined : ClassificationFromJSON(json['classification']),
-        'value': !exists(json, 'value') ? undefined : TransferableStringFromJSON(json['value']),
-        'person': PersonBasicTypeFromJSON(json['person']),
-        'updated': !exists(json, 'updated') ? undefined : GroupedTimestampFromJSON(json['updated']),
-    };
+export function DocumentContributorFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DocumentContributor {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		classification: exists(json, "classification")
+			? ClassificationFromJSON(json["classification"])
+			: undefined,
+		value: exists(json, "value")
+			? TransferableStringFromJSON(json["value"])
+			: undefined,
+		person: PersonBasicTypeFromJSON(json["person"]),
+		updated: exists(json, "updated")
+			? GroupedTimestampFromJSON(json["updated"])
+			: undefined,
+	};
 }
 
-export function DocumentContributorToJSON(value?: DocumentContributor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'classification': ClassificationToJSON(value.classification),
-        'value': TransferableStringToJSON(value.value),
-        'person': PersonBasicTypeToJSON(value.person),
-        'updated': GroupedTimestampToJSON(value.updated),
-    };
+export function DocumentContributorToJSON(
+	value?: DocumentContributor | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		classification: ClassificationToJSON(value.classification),
+		value: TransferableStringToJSON(value.value),
+		person: PersonBasicTypeToJSON(value.person),
+		updated: GroupedTimestampToJSON(value.updated),
+	};
 }
-

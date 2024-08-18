@@ -12,162 +12,159 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { PlatformEnum } from './PlatformEnum';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { PlatformEnum } from "./PlatformEnum.tsx";
+import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
+import type { ReferencedAnchor } from "./ReferencedAnchor.tsx";
 import {
-    PlatformEnumFromJSON,
-    PlatformEnumFromJSONTyped,
-    PlatformEnumToJSON,
-} from './PlatformEnum';
-import type { ReferencedAnchor } from './ReferencedAnchor';
-import {
-    ReferencedAnchorFromJSON,
-    ReferencedAnchorFromJSONTyped,
-    ReferencedAnchorToJSON,
-} from './ReferencedAnchor';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedAnchorFromJSON,
+	ReferencedAnchorToJSON,
+} from "./ReferencedAnchor.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface FlattenedAnchorPoint
  */
 export interface FlattenedAnchorPoint {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedAnchorPoint
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedAnchorPoint
-     */
-    id: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FlattenedAnchorPoint
-     */
-    verified?: boolean;
-    /**
-     * This is the text of the path.
-     * @type {string}
-     * @memberof FlattenedAnchorPoint
-     */
-    fullpath: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedAnchorPoint
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedAnchorPoint
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedAnchorPoint
-     */
-    deleted?: GroupedTimestamp;
-    /**
-     * 
-     * @type {PlatformEnum}
-     * @memberof FlattenedAnchorPoint
-     */
-    platform?: PlatformEnum;
-    /**
-     * 
-     * @type {ReferencedAnchor}
-     * @memberof FlattenedAnchorPoint
-     */
-    anchor: ReferencedAnchor;
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedAnchorPoint
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	verified?: boolean;
+	/**
+	 * This is the text of the path.
+	 * @type {string}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	fullpath: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	deleted?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {PlatformEnum}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	platform?: PlatformEnum;
+	/**
+	 *
+	 * @type {ReferencedAnchor}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	anchor: ReferencedAnchor;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedAnchorPoint
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedAnchorPoint interface.
  */
 export function instanceOfFlattenedAnchorPoint(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "fullpath" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
-    isInstance = isInstance && "anchor" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "fullpath" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
+	isInstance = isInstance && "anchor" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedAnchorPointFromJSON(json: any): FlattenedAnchorPoint {
-    return FlattenedAnchorPointFromJSONTyped(json, false);
+	return FlattenedAnchorPointFromJSONTyped(json, false);
 }
 
-export function FlattenedAnchorPointFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedAnchorPoint {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'verified': !exists(json, 'verified') ? undefined : json['verified'],
-        'fullpath': json['fullpath'],
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-        'platform': !exists(json, 'platform') ? undefined : PlatformEnumFromJSON(json['platform']),
-        'anchor': ReferencedAnchorFromJSON(json['anchor']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedAnchorPointFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedAnchorPoint {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		verified: exists(json, "verified") ? json["verified"] : undefined,
+		fullpath: json["fullpath"],
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+		platform: exists(json, "platform")
+			? PlatformEnumFromJSON(json["platform"])
+			: undefined,
+		anchor: ReferencedAnchorFromJSON(json["anchor"]),
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
-export function FlattenedAnchorPointToJSON(value?: FlattenedAnchorPoint | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'verified': value.verified,
-        'fullpath': value.fullpath,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-        'platform': PlatformEnumToJSON(value.platform),
-        'anchor': ReferencedAnchorToJSON(value.anchor),
-        'score': ScoreToJSON(value.score),
-    };
+export function FlattenedAnchorPointToJSON(
+	value?: FlattenedAnchorPoint | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		verified: value.verified,
+		fullpath: value.fullpath,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		deleted: GroupedTimestampToJSON(value.deleted),
+		platform: PlatformEnumToJSON(value.platform),
+		anchor: ReferencedAnchorToJSON(value.anchor),
+		score: ScoreToJSON(value.score),
+	};
 }
-

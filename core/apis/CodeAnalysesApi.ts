@@ -12,47 +12,48 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  CodeAnalyses,
-} from '../models/index';
-import {
-    CodeAnalysesFromJSON,
-    CodeAnalysesToJSON,
-} from '../models/index';
+import type { CodeAnalyses } from "../models/index.ts";
+import { CodeAnalysesFromJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 /**
- * 
+ *
  */
 export class CodeAnalysesApi extends runtime.BaseAPI {
+	/**
+	 * This will get a snapshot of all of your code analyses, a code analysis is attached to an analysis.
+	 * Your GET endpoint
+	 */
+	async codeAnalysesSnapshotRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<CodeAnalyses>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a snapshot of all of your code analyses, a code analysis is attached to an analysis.
-     * Your GET endpoint
-     */
-    async codeAnalysesSnapshotRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CodeAnalyses>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/code_analyses",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/code_analyses`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			CodeAnalysesFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CodeAnalysesFromJSON(jsonValue));
-    }
-
-    /**
-     * This will get a snapshot of all of your code analyses, a code analysis is attached to an analysis.
-     * Your GET endpoint
-     */
-    async codeAnalysesSnapshot(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CodeAnalyses> {
-        const response = await this.codeAnalysesSnapshotRaw(initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will get a snapshot of all of your code analyses, a code analysis is attached to an analysis.
+	 * Your GET endpoint
+	 */
+	async codeAnalysesSnapshot(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<CodeAnalyses> {
+		const response = await this.codeAnalysesSnapshotRaw(initOverrides);
+		return await response.value();
+	}
 }

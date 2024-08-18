@@ -12,95 +12,100 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a specific Model for the SeededAsset that will enable the developer to modify the enrichment levels of persons, tags, websites.
- * 
+ *
  * These enrichment levels will guarentee that the # of people/tags/websites do not eceeed the provided value, but will not guarentee a minimum.
  * @export
  * @interface SeededAssetEnrichment
  */
 export interface SeededAssetEnrichment {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededAssetEnrichment
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof SeededAssetEnrichment
-     */
-    tags?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SeededAssetEnrichment
-     */
-    websites?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SeededAssetEnrichment
-     */
-    persons?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SeededAssetEnrichment
-     */
-    hints?: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededAssetEnrichment
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SeededAssetEnrichment
+	 */
+	tags?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SeededAssetEnrichment
+	 */
+	websites?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SeededAssetEnrichment
+	 */
+	persons?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SeededAssetEnrichment
+	 */
+	hints?: number;
 }
 
 /**
  * Check if a given object implements the SeededAssetEnrichment interface.
  */
-export function instanceOfSeededAssetEnrichment(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededAssetEnrichment(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededAssetEnrichmentFromJSON(json: any): SeededAssetEnrichment {
-    return SeededAssetEnrichmentFromJSONTyped(json, false);
+export function SeededAssetEnrichmentFromJSON(
+	json: any,
+): SeededAssetEnrichment {
+	return SeededAssetEnrichmentFromJSONTyped(json, false);
 }
 
-export function SeededAssetEnrichmentFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededAssetEnrichment {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
-        'websites': !exists(json, 'websites') ? undefined : json['websites'],
-        'persons': !exists(json, 'persons') ? undefined : json['persons'],
-        'hints': !exists(json, 'hints') ? undefined : json['hints'],
-    };
+export function SeededAssetEnrichmentFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededAssetEnrichment {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		tags: exists(json, "tags") ? json["tags"] : undefined,
+		websites: exists(json, "websites") ? json["websites"] : undefined,
+		persons: exists(json, "persons") ? json["persons"] : undefined,
+		hints: exists(json, "hints") ? json["hints"] : undefined,
+	};
 }
 
-export function SeededAssetEnrichmentToJSON(value?: SeededAssetEnrichment | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'tags': value.tags,
-        'websites': value.websites,
-        'persons': value.persons,
-        'hints': value.hints,
-    };
+export function SeededAssetEnrichmentToJSON(
+	value?: SeededAssetEnrichment | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		tags: value.tags,
+		websites: value.websites,
+		persons: value.persons,
+		hints: value.hints,
+	};
 }
-

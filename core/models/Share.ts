@@ -12,207 +12,198 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AccessEnum } from './AccessEnum';
+import { exists } from "../runtime.ts";
+import type { AccessEnum } from "./AccessEnum.tsx";
+import { AccessEnumFromJSON, AccessEnumToJSON } from "./AccessEnum.tsx";
+import type { Accessors } from "./Accessors.tsx";
+import { AccessorsFromJSON, AccessorsToJSON } from "./Accessors.tsx";
+import type { Distributions } from "./Distributions.tsx";
 import {
-    AccessEnumFromJSON,
-    AccessEnumFromJSONTyped,
-    AccessEnumToJSON,
-} from './AccessEnum';
-import type { Accessors } from './Accessors';
+	DistributionsFromJSON,
+	DistributionsToJSON,
+} from "./Distributions.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AccessorsFromJSON,
-    AccessorsFromJSONTyped,
-    AccessorsToJSON,
-} from './Accessors';
-import type { Distributions } from './Distributions';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAsset } from "./FlattenedAsset.tsx";
 import {
-    DistributionsFromJSON,
-    DistributionsFromJSONTyped,
-    DistributionsToJSON,
-} from './Distributions';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	FlattenedAssetFromJSON,
+	FlattenedAssetToJSON,
+} from "./FlattenedAsset.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAsset } from './FlattenedAsset';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    FlattenedAssetFromJSON,
-    FlattenedAssetFromJSONTyped,
-    FlattenedAssetToJSON,
-} from './FlattenedAsset';
-import type { FlattenedAssets } from './FlattenedAssets';
-import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { GroupedTimestamp } from './GroupedTimestamp';
-import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This represents what information that is relavent to anything and every sharing related. v1 will look very bare and will add more and more data as we go!
- * 
+ *
  * if user is undefined && access is public then we have an asset that is publicly available.
  * @export
  * @interface Share
  */
 export interface Share {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Share
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the uuid that represents this share model.
-     * @type {string}
-     * @memberof Share
-     */
-    id: string;
-    /**
-     * this is the uuid of the user that the share is created for.
-     * @type {string}
-     * @memberof Share
-     */
-    user?: string;
-    /**
-     * 
-     * @type {FlattenedAsset}
-     * @memberof Share
-     */
-    asset?: FlattenedAsset;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof Share
-     */
-    assets?: FlattenedAssets;
-    /**
-     * This is the prebuilt link.
-     * @type {string}
-     * @memberof Share
-     */
-    link: string;
-    /**
-     * 
-     * @type {AccessEnum}
-     * @memberof Share
-     */
-    access: AccessEnum;
-    /**
-     * 
-     * @type {Accessors}
-     * @memberof Share
-     */
-    accessors: Accessors;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Share
-     */
-    created: GroupedTimestamp;
-    /**
-     * This is a shortened version of our uuid.
-     * @type {string}
-     * @memberof Share
-     */
-    _short: string;
-    /**
-     * this is an optional name we can give to the link, ie ?p=JAVASCRIPT or what ever the user wants as long as it is available.
-     * @type {string}
-     * @memberof Share
-     */
-    name?: string;
-    /**
-     * 
-     * @type {Distributions}
-     * @memberof Share
-     */
-    distributions?: Distributions;
-    /**
-     * 
-     * @type {Score}
-     * @memberof Share
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Share
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the uuid that represents this share model.
+	 * @type {string}
+	 * @memberof Share
+	 */
+	id: string;
+	/**
+	 * this is the uuid of the user that the share is created for.
+	 * @type {string}
+	 * @memberof Share
+	 */
+	user?: string;
+	/**
+	 *
+	 * @type {FlattenedAsset}
+	 * @memberof Share
+	 */
+	asset?: FlattenedAsset;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof Share
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 * This is the prebuilt link.
+	 * @type {string}
+	 * @memberof Share
+	 */
+	link: string;
+	/**
+	 *
+	 * @type {AccessEnum}
+	 * @memberof Share
+	 */
+	access: AccessEnum;
+	/**
+	 *
+	 * @type {Accessors}
+	 * @memberof Share
+	 */
+	accessors: Accessors;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Share
+	 */
+	created: GroupedTimestamp;
+	/**
+	 * This is a shortened version of our uuid.
+	 * @type {string}
+	 * @memberof Share
+	 */
+	_short: string;
+	/**
+	 * this is an optional name we can give to the link, ie ?p=JAVASCRIPT or what ever the user wants as long as it is available.
+	 * @type {string}
+	 * @memberof Share
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {Distributions}
+	 * @memberof Share
+	 */
+	distributions?: Distributions;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Share
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the Share interface.
  */
 export function instanceOfShare(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "link" in value;
-    isInstance = isInstance && "access" in value;
-    isInstance = isInstance && "accessors" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "_short" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "link" in value;
+	isInstance = isInstance && "access" in value;
+	isInstance = isInstance && "accessors" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "_short" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ShareFromJSON(json: any): Share {
-    return ShareFromJSONTyped(json, false);
+	return ShareFromJSONTyped(json, false);
 }
 
-export function ShareFromJSONTyped(json: any, ignoreDiscriminator: boolean): Share {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'user': !exists(json, 'user') ? undefined : json['user'],
-        'asset': !exists(json, 'asset') ? undefined : FlattenedAssetFromJSON(json['asset']),
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'link': json['link'],
-        'access': AccessEnumFromJSON(json['access']),
-        'accessors': AccessorsFromJSON(json['accessors']),
-        'created': GroupedTimestampFromJSON(json['created']),
-        '_short': json['short'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'distributions': !exists(json, 'distributions') ? undefined : DistributionsFromJSON(json['distributions']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function ShareFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Share {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		user: exists(json, "user") ? json["user"] : undefined,
+		asset: exists(json, "asset")
+			? FlattenedAssetFromJSON(json["asset"])
+			: undefined,
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		link: json["link"],
+		access: AccessEnumFromJSON(json["access"]),
+		accessors: AccessorsFromJSON(json["accessors"]),
+		created: GroupedTimestampFromJSON(json["created"]),
+		_short: json["short"],
+		name: exists(json, "name") ? json["name"] : undefined,
+		distributions: exists(json, "distributions")
+			? DistributionsFromJSON(json["distributions"])
+			: undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function ShareToJSON(value?: Share | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'user': value.user,
-        'asset': FlattenedAssetToJSON(value.asset),
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'link': value.link,
-        'access': AccessEnumToJSON(value.access),
-        'accessors': AccessorsToJSON(value.accessors),
-        'created': GroupedTimestampToJSON(value.created),
-        'short': value._short,
-        'name': value.name,
-        'distributions': DistributionsToJSON(value.distributions),
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		user: value.user,
+		asset: FlattenedAssetToJSON(value.asset),
+		assets: FlattenedAssetsToJSON(value.assets),
+		link: value.link,
+		access: AccessEnumToJSON(value.access),
+		accessors: AccessorsToJSON(value.accessors),
+		created: GroupedTimestampToJSON(value.created),
+		short: value._short,
+		name: value.name,
+		distributions: DistributionsToJSON(value.distributions),
+		score: ScoreToJSON(value.score),
+	};
 }
-

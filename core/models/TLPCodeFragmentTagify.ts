@@ -12,75 +12,81 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TLPCodeSnippetTagifyCode } from './TLPCodeSnippetTagifyCode';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TLPCodeSnippetTagifyCode } from "./TLPCodeSnippetTagifyCode.tsx";
 import {
-    TLPCodeSnippetTagifyCodeFromJSON,
-    TLPCodeSnippetTagifyCodeFromJSONTyped,
-    TLPCodeSnippetTagifyCodeToJSON,
-} from './TLPCodeSnippetTagifyCode';
+	TLPCodeSnippetTagifyCodeFromJSON,
+	TLPCodeSnippetTagifyCodeToJSON,
+} from "./TLPCodeSnippetTagifyCode.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface TLPCodeFragmentTagify
  */
 export interface TLPCodeFragmentTagify {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeFragmentTagify
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TLPCodeSnippetTagifyCode}
-     * @memberof TLPCodeFragmentTagify
-     */
-    code?: TLPCodeSnippetTagifyCode;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeFragmentTagify
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TLPCodeSnippetTagifyCode}
+	 * @memberof TLPCodeFragmentTagify
+	 */
+	code?: TLPCodeSnippetTagifyCode;
 }
 
 /**
  * Check if a given object implements the TLPCodeFragmentTagify interface.
  */
-export function instanceOfTLPCodeFragmentTagify(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTLPCodeFragmentTagify(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeFragmentTagifyFromJSON(json: any): TLPCodeFragmentTagify {
-    return TLPCodeFragmentTagifyFromJSONTyped(json, false);
+export function TLPCodeFragmentTagifyFromJSON(
+	json: any,
+): TLPCodeFragmentTagify {
+	return TLPCodeFragmentTagifyFromJSONTyped(json, false);
 }
 
-export function TLPCodeFragmentTagifyFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFragmentTagify {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'code': !exists(json, 'code') ? undefined : TLPCodeSnippetTagifyCodeFromJSON(json['code']),
-    };
+export function TLPCodeFragmentTagifyFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFragmentTagify {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		code: exists(json, "code")
+			? TLPCodeSnippetTagifyCodeFromJSON(json["code"])
+			: undefined,
+	};
 }
 
-export function TLPCodeFragmentTagifyToJSON(value?: TLPCodeFragmentTagify | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'code': TLPCodeSnippetTagifyCodeToJSON(value.code),
-    };
+export function TLPCodeFragmentTagifyToJSON(
+	value?: TLPCodeFragmentTagify | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		code: TLPCodeSnippetTagifyCodeToJSON(value.code),
+	};
 }
-

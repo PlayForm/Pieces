@@ -12,117 +12,114 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Hint } from './Hint';
-import {
-    HintFromJSON,
-    HintFromJSONTyped,
-    HintToJSON,
-} from './Hint';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Hint } from "./Hint.tsx";
+import { HintFromJSON, HintToJSON } from "./Hint.tsx";
 
 /**
  * This is used for the Hint searching endpoint
- * 
+ *
  * hint here is only provided if transferables are set to true.
- * 
+ *
  * temporal: if this is provided this means that their material matched the input via a timestamp.
- * 
+ *
  * TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials
  * ie suggestion: WorkstreamSuggestions
  * @export
  * @interface SearchedHint
  */
 export interface SearchedHint {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedHint
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Hint}
-     * @memberof SearchedHint
-     */
-    hint?: Hint;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedHint
-     */
-    exact: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchedHint
-     */
-    similarity: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedHint
-     */
-    temporal?: boolean;
-    /**
-     * This is the uuid of the hint.
-     * @type {string}
-     * @memberof SearchedHint
-     */
-    identifier: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedHint
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Hint}
+	 * @memberof SearchedHint
+	 */
+	hint?: Hint;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedHint
+	 */
+	exact: boolean;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SearchedHint
+	 */
+	similarity: number;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedHint
+	 */
+	temporal?: boolean;
+	/**
+	 * This is the uuid of the hint.
+	 * @type {string}
+	 * @memberof SearchedHint
+	 */
+	identifier: string;
 }
 
 /**
  * Check if a given object implements the SearchedHint interface.
  */
 export function instanceOfSearchedHint(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "exact" in value;
-    isInstance = isInstance && "similarity" in value;
-    isInstance = isInstance && "identifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "exact" in value;
+	isInstance = isInstance && "similarity" in value;
+	isInstance = isInstance && "identifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedHintFromJSON(json: any): SearchedHint {
-    return SearchedHintFromJSONTyped(json, false);
+	return SearchedHintFromJSONTyped(json, false);
 }
 
-export function SearchedHintFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedHint {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'hint': !exists(json, 'hint') ? undefined : HintFromJSON(json['hint']),
-        'exact': json['exact'],
-        'similarity': json['similarity'],
-        'temporal': !exists(json, 'temporal') ? undefined : json['temporal'],
-        'identifier': json['identifier'],
-    };
+export function SearchedHintFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedHint {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		hint: exists(json, "hint") ? HintFromJSON(json["hint"]) : undefined,
+		exact: json["exact"],
+		similarity: json["similarity"],
+		temporal: exists(json, "temporal") ? json["temporal"] : undefined,
+		identifier: json["identifier"],
+	};
 }
 
 export function SearchedHintToJSON(value?: SearchedHint | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'hint': HintToJSON(value.hint),
-        'exact': value.exact,
-        'similarity': value.similarity,
-        'temporal': value.temporal,
-        'identifier': value.identifier,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		hint: HintToJSON(value.hint),
+		exact: value.exact,
+		similarity: value.similarity,
+		temporal: value.temporal,
+		identifier: value.identifier,
+	};
 }
-

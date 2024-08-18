@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { BrowserTabValue } from './BrowserTabValue';
+import { exists } from "../runtime.ts";
+import type { BrowserTabValue } from "./BrowserTabValue.tsx";
 import {
-    BrowserTabValueFromJSON,
-    BrowserTabValueFromJSONTyped,
-    BrowserTabValueToJSON,
-} from './BrowserTabValue';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	BrowserTabValueFromJSON,
+	BrowserTabValueToJSON,
+} from "./BrowserTabValue.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * Plural model that represent many tabs
@@ -32,56 +30,58 @@ import {
  * @interface BrowserTabValues
  */
 export interface BrowserTabValues {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof BrowserTabValues
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<BrowserTabValue>}
-     * @memberof BrowserTabValues
-     */
-    iterable: Array<BrowserTabValue>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof BrowserTabValues
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<BrowserTabValue>}
+	 * @memberof BrowserTabValues
+	 */
+	iterable: BrowserTabValue[];
 }
 
 /**
  * Check if a given object implements the BrowserTabValues interface.
  */
 export function instanceOfBrowserTabValues(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function BrowserTabValuesFromJSON(json: any): BrowserTabValues {
-    return BrowserTabValuesFromJSONTyped(json, false);
+	return BrowserTabValuesFromJSONTyped(json, false);
 }
 
-export function BrowserTabValuesFromJSONTyped(json: any, ignoreDiscriminator: boolean): BrowserTabValues {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(BrowserTabValueFromJSON)),
-    };
+export function BrowserTabValuesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): BrowserTabValues {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(BrowserTabValueFromJSON),
+	};
 }
 
 export function BrowserTabValuesToJSON(value?: BrowserTabValues | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(BrowserTabValueToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(BrowserTabValueToJSON),
+	};
 }
-

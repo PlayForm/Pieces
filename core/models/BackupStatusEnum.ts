@@ -12,32 +12,33 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * Enum used for the status of creating a backup or restoring a backup.
  * @export
  */
 export const BackupStatusEnum = {
-    Initialized: 'INITIALIZED',
-    InProgress: 'IN-PROGRESS',
-    Completed: 'COMPLETED',
-    Failed: 'FAILED',
-    Unknown: 'UNKNOWN',
-    Canceled: 'CANCELED',
-    Reset: 'RESET'
+	Initialized: "INITIALIZED",
+	InProgress: "IN-PROGRESS",
+	Completed: "COMPLETED",
+	Failed: "FAILED",
+	Unknown: "UNKNOWN",
+	Canceled: "CANCELED",
+	Reset: "RESET",
 } as const;
-export type BackupStatusEnum = typeof BackupStatusEnum[keyof typeof BackupStatusEnum];
-
+export type BackupStatusEnum =
+	(typeof BackupStatusEnum)[keyof typeof BackupStatusEnum];
 
 export function BackupStatusEnumFromJSON(json: any): BackupStatusEnum {
-    return BackupStatusEnumFromJSONTyped(json, false);
+	return BackupStatusEnumFromJSONTyped(json, false);
 }
 
-export function BackupStatusEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): BackupStatusEnum {
-    return json as BackupStatusEnum;
+export function BackupStatusEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): BackupStatusEnum {
+	return json as BackupStatusEnum;
 }
 
 export function BackupStatusEnumToJSON(value?: BackupStatusEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

@@ -12,99 +12,103 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AllocationCloudUrl } from './AllocationCloudUrl';
+import { exists } from "../runtime.ts";
+import type { AllocationCloudUrl } from "./AllocationCloudUrl.tsx";
 import {
-    AllocationCloudUrlFromJSON,
-    AllocationCloudUrlFromJSONTyped,
-    AllocationCloudUrlToJSON,
-} from './AllocationCloudUrl';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AllocationCloudUrlFromJSON,
+	AllocationCloudUrlToJSON,
+} from "./AllocationCloudUrl.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * you will have at minimum 2 urls,
- * 
+ *
  * base: is the default url of your cloud.
- * 
+ *
  * id: is the branded url, uuid.pieces.cloud.
- * 
+ *
  * (optional) vanity: is the custom branded url, mark.pieces.cloud
  * @export
  * @interface AllocationCloudUrls
  */
 export interface AllocationCloudUrls {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AllocationCloudUrls
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {AllocationCloudUrl}
-     * @memberof AllocationCloudUrls
-     */
-    base: AllocationCloudUrl;
-    /**
-     * 
-     * @type {AllocationCloudUrl}
-     * @memberof AllocationCloudUrls
-     */
-    id: AllocationCloudUrl;
-    /**
-     * 
-     * @type {AllocationCloudUrl}
-     * @memberof AllocationCloudUrls
-     */
-    vanity?: AllocationCloudUrl;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AllocationCloudUrls
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {AllocationCloudUrl}
+	 * @memberof AllocationCloudUrls
+	 */
+	base: AllocationCloudUrl;
+	/**
+	 *
+	 * @type {AllocationCloudUrl}
+	 * @memberof AllocationCloudUrls
+	 */
+	id: AllocationCloudUrl;
+	/**
+	 *
+	 * @type {AllocationCloudUrl}
+	 * @memberof AllocationCloudUrls
+	 */
+	vanity?: AllocationCloudUrl;
 }
 
 /**
  * Check if a given object implements the AllocationCloudUrls interface.
  */
 export function instanceOfAllocationCloudUrls(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "base" in value;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "base" in value;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AllocationCloudUrlsFromJSON(json: any): AllocationCloudUrls {
-    return AllocationCloudUrlsFromJSONTyped(json, false);
+	return AllocationCloudUrlsFromJSONTyped(json, false);
 }
 
-export function AllocationCloudUrlsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AllocationCloudUrls {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'base': AllocationCloudUrlFromJSON(json['base']),
-        'id': AllocationCloudUrlFromJSON(json['id']),
-        'vanity': !exists(json, 'vanity') ? undefined : AllocationCloudUrlFromJSON(json['vanity']),
-    };
+export function AllocationCloudUrlsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AllocationCloudUrls {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		base: AllocationCloudUrlFromJSON(json["base"]),
+		id: AllocationCloudUrlFromJSON(json["id"]),
+		vanity: exists(json, "vanity")
+			? AllocationCloudUrlFromJSON(json["vanity"])
+			: undefined,
+	};
 }
 
-export function AllocationCloudUrlsToJSON(value?: AllocationCloudUrls | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'base': AllocationCloudUrlToJSON(value.base),
-        'id': AllocationCloudUrlToJSON(value.id),
-        'vanity': AllocationCloudUrlToJSON(value.vanity),
-    };
+export function AllocationCloudUrlsToJSON(
+	value?: AllocationCloudUrls | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		base: AllocationCloudUrlToJSON(value.base),
+		id: AllocationCloudUrlToJSON(value.id),
+		vanity: AllocationCloudUrlToJSON(value.vanity),
+	};
 }
-

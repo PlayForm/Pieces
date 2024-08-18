@@ -12,542 +12,898 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Person,
-  SeededScoreIncrement,
-} from '../models/index';
+import type { Person, SeededScoreIncrement } from "../models/index.ts";
 import {
-    PersonFromJSON,
-    PersonToJSON,
-    SeededScoreIncrementFromJSON,
-    SeededScoreIncrementToJSON,
-} from '../models/index';
+	PersonFromJSON,
+	PersonToJSON,
+	SeededScoreIncrementToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface PersonAssociateAnchorRequest {
-    person: string;
-    anchor: string;
+	person: string;
+	anchor: string;
 }
 
 export interface PersonAssociateAssetRequest {
-    person: string;
-    asset: string;
+	person: string;
+	asset: string;
 }
 
 export interface PersonAssociateTagRequest {
-    person: string;
-    tag: string;
+	person: string;
+	tag: string;
 }
 
 export interface PersonAssociateWebsiteRequest {
-    person: string;
-    website: string;
+	person: string;
+	website: string;
 }
 
 export interface PersonAssociateWorkstreamSummaryRequest {
-    person: string;
-    workstreamSummary: string;
+	person: string;
+	workstreamSummary: string;
 }
 
 export interface PersonDisassociateAnchorRequest {
-    person: string;
-    anchor: string;
+	person: string;
+	anchor: string;
 }
 
 export interface PersonDisassociateAssetRequest {
-    person: string;
-    asset: string;
+	person: string;
+	asset: string;
 }
 
 export interface PersonDisassociateTagRequest {
-    person: string;
-    tag: string;
+	person: string;
+	tag: string;
 }
 
 export interface PersonDisassociateWebsiteRequest {
-    person: string;
-    website: string;
+	person: string;
+	website: string;
 }
 
 export interface PersonDisassociateWorkstreamSummaryRequest {
-    person: string;
-    workstreamSummary: string;
+	person: string;
+	workstreamSummary: string;
 }
 
 export interface PersonScoresIncrementRequest {
-    person: string;
-    seededScoreIncrement?: SeededScoreIncrement;
+	person: string;
+	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface PersonSnapshotRequest {
-    person: string;
-    transferables?: boolean;
+	person: string;
+	transferables?: boolean;
 }
 
 export interface UpdatePersonRequest {
-    transferables?: boolean;
-    person?: Person;
+	transferables?: boolean;
+	person?: Person;
 }
 
 /**
- * 
+ *
  */
 export class PersonApi extends runtime.BaseAPI {
-
-    /**
-     * associates a person and an anchor. It performs the same action as the anchor equivalent.
-     * /person/{person}/anchors/associate/{anchor} [POST]
-     */
-    async personAssociateAnchorRaw(requestParameters: PersonAssociateAnchorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personAssociateAnchor.');
-        }
-
-        if (requestParameters.anchor === null || requestParameters.anchor === undefined) {
-            throw new runtime.RequiredError('anchor','Required parameter requestParameters.anchor was null or undefined when calling personAssociateAnchor.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/anchors/associate/{anchor}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"anchor"}}`, encodeURIComponent(String(requestParameters.anchor))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * associates a person and an anchor. It performs the same action as the anchor equivalent.
-     * /person/{person}/anchors/associate/{anchor} [POST]
-     */
-    async personAssociateAnchor(requestParameters: PersonAssociateAnchorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personAssociateAnchorRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * associates a person and an asset. It performs the same action as the asset equivalent.
-     * /person/{person}/assets/associate/{asset} [POST]
-     */
-    async personAssociateAssetRaw(requestParameters: PersonAssociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personAssociateAsset.');
-        }
-
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling personAssociateAsset.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/assets/associate/{asset}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * associates a person and an asset. It performs the same action as the asset equivalent.
-     * /person/{person}/assets/associate/{asset} [POST]
-     */
-    async personAssociateAsset(requestParameters: PersonAssociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personAssociateAssetRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * associates a tag and a person. It performs the same action as the tag equivalent.
-     * /person/{person}/tags/associate/{tag} [POST]
-     */
-    async personAssociateTagRaw(requestParameters: PersonAssociateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personAssociateTag.');
-        }
-
-        if (requestParameters.tag === null || requestParameters.tag === undefined) {
-            throw new runtime.RequiredError('tag','Required parameter requestParameters.tag was null or undefined when calling personAssociateTag.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/tags/associate/{tag}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"tag"}}`, encodeURIComponent(String(requestParameters.tag))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * associates a tag and a person. It performs the same action as the tag equivalent.
-     * /person/{person}/tags/associate/{tag} [POST]
-     */
-    async personAssociateTag(requestParameters: PersonAssociateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personAssociateTagRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * associates a website and a person. It performs the same action as the website equivalent.
-     * /person/{person}/websites/associate/{website} [POST]
-     */
-    async personAssociateWebsiteRaw(requestParameters: PersonAssociateWebsiteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personAssociateWebsite.');
-        }
-
-        if (requestParameters.website === null || requestParameters.website === undefined) {
-            throw new runtime.RequiredError('website','Required parameter requestParameters.website was null or undefined when calling personAssociateWebsite.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/websites/associate/{website}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"website"}}`, encodeURIComponent(String(requestParameters.website))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * associates a website and a person. It performs the same action as the website equivalent.
-     * /person/{person}/websites/associate/{website} [POST]
-     */
-    async personAssociateWebsite(requestParameters: PersonAssociateWebsiteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personAssociateWebsiteRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * This will associate a person with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
-     * /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
-     */
-    async personAssociateWorkstreamSummaryRaw(requestParameters: PersonAssociateWorkstreamSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personAssociateWorkstreamSummary.');
-        }
-
-        if (requestParameters.workstreamSummary === null || requestParameters.workstreamSummary === undefined) {
-            throw new runtime.RequiredError('workstreamSummary','Required parameter requestParameters.workstreamSummary was null or undefined when calling personAssociateWorkstreamSummary.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/workstream_summaries/associate/{workstream_summary}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"workstream_summary"}}`, encodeURIComponent(String(requestParameters.workstreamSummary))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * This will associate a person with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
-     * /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
-     */
-    async personAssociateWorkstreamSummary(requestParameters: PersonAssociateWorkstreamSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personAssociateWorkstreamSummaryRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Disassociates a person from an achor. It performs the same action as the anchor equivalent.
-     * /person/{person}/anchors/disassociate/{anchor} [POST]
-     */
-    async personDisassociateAnchorRaw(requestParameters: PersonDisassociateAnchorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personDisassociateAnchor.');
-        }
-
-        if (requestParameters.anchor === null || requestParameters.anchor === undefined) {
-            throw new runtime.RequiredError('anchor','Required parameter requestParameters.anchor was null or undefined when calling personDisassociateAnchor.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/anchors/disassociate/{anchor}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"anchor"}}`, encodeURIComponent(String(requestParameters.anchor))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Disassociates a person from an achor. It performs the same action as the anchor equivalent.
-     * /person/{person}/anchors/disassociate/{anchor} [POST]
-     */
-    async personDisassociateAnchor(requestParameters: PersonDisassociateAnchorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personDisassociateAnchorRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Disassociates a person from an asset. It performs the same action as the asset equivalent.
-     * /person/{person}/assets/disassociate/{asset} [POST]
-     */
-    async personDisassociateAssetRaw(requestParameters: PersonDisassociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personDisassociateAsset.');
-        }
-
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling personDisassociateAsset.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/assets/disassociate/{asset}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Disassociates a person from an asset. It performs the same action as the asset equivalent.
-     * /person/{person}/assets/disassociate/{asset} [POST]
-     */
-    async personDisassociateAsset(requestParameters: PersonDisassociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personDisassociateAssetRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Disassociates a person from a tag. It performs the same action as the tag equivalent.
-     * /person/{person}/tags/disassociate/{tag} [POST]
-     */
-    async personDisassociateTagRaw(requestParameters: PersonDisassociateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personDisassociateTag.');
-        }
-
-        if (requestParameters.tag === null || requestParameters.tag === undefined) {
-            throw new runtime.RequiredError('tag','Required parameter requestParameters.tag was null or undefined when calling personDisassociateTag.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/tags/disassociate/{tag}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"tag"}}`, encodeURIComponent(String(requestParameters.tag))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Disassociates a person from a tag. It performs the same action as the tag equivalent.
-     * /person/{person}/tags/disassociate/{tag} [POST]
-     */
-    async personDisassociateTag(requestParameters: PersonDisassociateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personDisassociateTagRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Disassociates a person from a website. It performs the same action as the website equivalent.
-     * /person/{person}/websites/disassociate/{website} [POST]
-     */
-    async personDisassociateWebsiteRaw(requestParameters: PersonDisassociateWebsiteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personDisassociateWebsite.');
-        }
-
-        if (requestParameters.website === null || requestParameters.website === undefined) {
-            throw new runtime.RequiredError('website','Required parameter requestParameters.website was null or undefined when calling personDisassociateWebsite.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/websites/disassociate/{website}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"website"}}`, encodeURIComponent(String(requestParameters.website))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Disassociates a person from a website. It performs the same action as the website equivalent.
-     * /person/{person}/websites/disassociate/{website} [POST]
-     */
-    async personDisassociateWebsite(requestParameters: PersonDisassociateWebsiteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personDisassociateWebsiteRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * This will enable us to disassociate an person from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
-     * /person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
-     */
-    async personDisassociateWorkstreamSummaryRaw(requestParameters: PersonDisassociateWorkstreamSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personDisassociateWorkstreamSummary.');
-        }
-
-        if (requestParameters.workstreamSummary === null || requestParameters.workstreamSummary === undefined) {
-            throw new runtime.RequiredError('workstreamSummary','Required parameter requestParameters.workstreamSummary was null or undefined when calling personDisassociateWorkstreamSummary.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}/workstream_summaries/disassociate/{workstream_summary}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))).replace(`{${"workstream_summary"}}`, encodeURIComponent(String(requestParameters.workstreamSummary))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * This will enable us to disassociate an person from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
-     * /person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
-     */
-    async personDisassociateWorkstreamSummary(requestParameters: PersonDisassociateWorkstreamSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personDisassociateWorkstreamSummaryRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
-     * \'/person/{person}/scores/increment\' [POST]
-     */
-    async personScoresIncrementRaw(requestParameters: PersonScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personScoresIncrement.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/person/{person}/scores/increment`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededScoreIncrementToJSON(requestParameters.seededScoreIncrement),
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
-     * \'/person/{person}/scores/increment\' [POST]
-     */
-    async personScoresIncrement(requestParameters: PersonScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.personScoresIncrementRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * This will get a snapshot of a specific person
-     * /person/{person} [GET]
-     */
-    async personSnapshotRaw(requestParameters: PersonSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Person>> {
-        if (requestParameters.person === null || requestParameters.person === undefined) {
-            throw new runtime.RequiredError('person','Required parameter requestParameters.person was null or undefined when calling personSnapshot.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/person/{person}`.replace(`{${"person"}}`, encodeURIComponent(String(requestParameters.person))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
-    }
-
-    /**
-     * This will get a snapshot of a specific person
-     * /person/{person} [GET]
-     */
-    async personSnapshot(requestParameters: PersonSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Person> {
-        const response = await this.personSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * This will update a specific person
-     * /person/update [POST]
-     */
-    async updatePersonRaw(requestParameters: UpdatePersonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Person>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/person/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PersonToJSON(requestParameters.person),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
-    }
-
-    /**
-     * This will update a specific person
-     * /person/update [POST]
-     */
-    async updatePerson(requestParameters: UpdatePersonRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Person> {
-        const response = await this.updatePersonRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * associates a person and an anchor. It performs the same action as the anchor equivalent.
+	 * /person/{person}/anchors/associate/{anchor} [POST]
+	 */
+	async personAssociateAnchorRaw(
+		requestParameters: PersonAssociateAnchorRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personAssociateAnchor.",
+			);
+		}
+
+		if (
+			requestParameters.anchor === null ||
+			requestParameters.anchor === undefined
+		) {
+			throw new runtime.RequiredError(
+				"anchor",
+				"Required parameter requestParameters.anchor was null or undefined when calling personAssociateAnchor.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/anchors/associate/{anchor}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"anchor"}}`,
+						encodeURIComponent(String(requestParameters.anchor)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * associates a person and an anchor. It performs the same action as the anchor equivalent.
+	 * /person/{person}/anchors/associate/{anchor} [POST]
+	 */
+	async personAssociateAnchor(
+		requestParameters: PersonAssociateAnchorRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personAssociateAnchorRaw(requestParameters, initOverrides);
+	}
+
+	/**
+	 * associates a person and an asset. It performs the same action as the asset equivalent.
+	 * /person/{person}/assets/associate/{asset} [POST]
+	 */
+	async personAssociateAssetRaw(
+		requestParameters: PersonAssociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personAssociateAsset.",
+			);
+		}
+
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling personAssociateAsset.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/assets/associate/{asset}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"asset"}}`,
+						encodeURIComponent(String(requestParameters.asset)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * associates a person and an asset. It performs the same action as the asset equivalent.
+	 * /person/{person}/assets/associate/{asset} [POST]
+	 */
+	async personAssociateAsset(
+		requestParameters: PersonAssociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personAssociateAssetRaw(requestParameters, initOverrides);
+	}
+
+	/**
+	 * associates a tag and a person. It performs the same action as the tag equivalent.
+	 * /person/{person}/tags/associate/{tag} [POST]
+	 */
+	async personAssociateTagRaw(
+		requestParameters: PersonAssociateTagRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personAssociateTag.",
+			);
+		}
+
+		if (
+			requestParameters.tag === null ||
+			requestParameters.tag === undefined
+		) {
+			throw new runtime.RequiredError(
+				"tag",
+				"Required parameter requestParameters.tag was null or undefined when calling personAssociateTag.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/tags/associate/{tag}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"tag"}}`,
+						encodeURIComponent(String(requestParameters.tag)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * associates a tag and a person. It performs the same action as the tag equivalent.
+	 * /person/{person}/tags/associate/{tag} [POST]
+	 */
+	async personAssociateTag(
+		requestParameters: PersonAssociateTagRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personAssociateTagRaw(requestParameters, initOverrides);
+	}
+
+	/**
+	 * associates a website and a person. It performs the same action as the website equivalent.
+	 * /person/{person}/websites/associate/{website} [POST]
+	 */
+	async personAssociateWebsiteRaw(
+		requestParameters: PersonAssociateWebsiteRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personAssociateWebsite.",
+			);
+		}
+
+		if (
+			requestParameters.website === null ||
+			requestParameters.website === undefined
+		) {
+			throw new runtime.RequiredError(
+				"website",
+				"Required parameter requestParameters.website was null or undefined when calling personAssociateWebsite.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/websites/associate/{website}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"website"}}`,
+						encodeURIComponent(String(requestParameters.website)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * associates a website and a person. It performs the same action as the website equivalent.
+	 * /person/{person}/websites/associate/{website} [POST]
+	 */
+	async personAssociateWebsite(
+		requestParameters: PersonAssociateWebsiteRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personAssociateWebsiteRaw(requestParameters, initOverrides);
+	}
+
+	/**
+	 * This will associate a person with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+	 * /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
+	 */
+	async personAssociateWorkstreamSummaryRaw(
+		requestParameters: PersonAssociateWorkstreamSummaryRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personAssociateWorkstreamSummary.",
+			);
+		}
+
+		if (
+			requestParameters.workstreamSummary === null ||
+			requestParameters.workstreamSummary === undefined
+		) {
+			throw new runtime.RequiredError(
+				"workstreamSummary",
+				"Required parameter requestParameters.workstreamSummary was null or undefined when calling personAssociateWorkstreamSummary.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/workstream_summaries/associate/{workstream_summary}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"workstream_summary"}}`,
+						encodeURIComponent(
+							String(requestParameters.workstreamSummary),
+						),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * This will associate a person with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+	 * /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
+	 */
+	async personAssociateWorkstreamSummary(
+		requestParameters: PersonAssociateWorkstreamSummaryRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personAssociateWorkstreamSummaryRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Disassociates a person from an achor. It performs the same action as the anchor equivalent.
+	 * /person/{person}/anchors/disassociate/{anchor} [POST]
+	 */
+	async personDisassociateAnchorRaw(
+		requestParameters: PersonDisassociateAnchorRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personDisassociateAnchor.",
+			);
+		}
+
+		if (
+			requestParameters.anchor === null ||
+			requestParameters.anchor === undefined
+		) {
+			throw new runtime.RequiredError(
+				"anchor",
+				"Required parameter requestParameters.anchor was null or undefined when calling personDisassociateAnchor.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/anchors/disassociate/{anchor}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"anchor"}}`,
+						encodeURIComponent(String(requestParameters.anchor)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Disassociates a person from an achor. It performs the same action as the anchor equivalent.
+	 * /person/{person}/anchors/disassociate/{anchor} [POST]
+	 */
+	async personDisassociateAnchor(
+		requestParameters: PersonDisassociateAnchorRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personDisassociateAnchorRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Disassociates a person from an asset. It performs the same action as the asset equivalent.
+	 * /person/{person}/assets/disassociate/{asset} [POST]
+	 */
+	async personDisassociateAssetRaw(
+		requestParameters: PersonDisassociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personDisassociateAsset.",
+			);
+		}
+
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling personDisassociateAsset.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/assets/disassociate/{asset}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"asset"}}`,
+						encodeURIComponent(String(requestParameters.asset)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Disassociates a person from an asset. It performs the same action as the asset equivalent.
+	 * /person/{person}/assets/disassociate/{asset} [POST]
+	 */
+	async personDisassociateAsset(
+		requestParameters: PersonDisassociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personDisassociateAssetRaw(requestParameters, initOverrides);
+	}
+
+	/**
+	 * Disassociates a person from a tag. It performs the same action as the tag equivalent.
+	 * /person/{person}/tags/disassociate/{tag} [POST]
+	 */
+	async personDisassociateTagRaw(
+		requestParameters: PersonDisassociateTagRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personDisassociateTag.",
+			);
+		}
+
+		if (
+			requestParameters.tag === null ||
+			requestParameters.tag === undefined
+		) {
+			throw new runtime.RequiredError(
+				"tag",
+				"Required parameter requestParameters.tag was null or undefined when calling personDisassociateTag.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/tags/disassociate/{tag}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"tag"}}`,
+						encodeURIComponent(String(requestParameters.tag)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Disassociates a person from a tag. It performs the same action as the tag equivalent.
+	 * /person/{person}/tags/disassociate/{tag} [POST]
+	 */
+	async personDisassociateTag(
+		requestParameters: PersonDisassociateTagRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personDisassociateTagRaw(requestParameters, initOverrides);
+	}
+
+	/**
+	 * Disassociates a person from a website. It performs the same action as the website equivalent.
+	 * /person/{person}/websites/disassociate/{website} [POST]
+	 */
+	async personDisassociateWebsiteRaw(
+		requestParameters: PersonDisassociateWebsiteRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personDisassociateWebsite.",
+			);
+		}
+
+		if (
+			requestParameters.website === null ||
+			requestParameters.website === undefined
+		) {
+			throw new runtime.RequiredError(
+				"website",
+				"Required parameter requestParameters.website was null or undefined when calling personDisassociateWebsite.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/websites/disassociate/{website}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"website"}}`,
+						encodeURIComponent(String(requestParameters.website)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Disassociates a person from a website. It performs the same action as the website equivalent.
+	 * /person/{person}/websites/disassociate/{website} [POST]
+	 */
+	async personDisassociateWebsite(
+		requestParameters: PersonDisassociateWebsiteRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personDisassociateWebsiteRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * This will enable us to disassociate an person from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+	 * /person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
+	 */
+	async personDisassociateWorkstreamSummaryRaw(
+		requestParameters: PersonDisassociateWorkstreamSummaryRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personDisassociateWorkstreamSummary.",
+			);
+		}
+
+		if (
+			requestParameters.workstreamSummary === null ||
+			requestParameters.workstreamSummary === undefined
+		) {
+			throw new runtime.RequiredError(
+				"workstreamSummary",
+				"Required parameter requestParameters.workstreamSummary was null or undefined when calling personDisassociateWorkstreamSummary.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/workstream_summaries/disassociate/{workstream_summary}"
+					.replace(
+						`{${"person"}}`,
+						encodeURIComponent(String(requestParameters.person)),
+					)
+					.replace(
+						`{${"workstream_summary"}}`,
+						encodeURIComponent(
+							String(requestParameters.workstreamSummary),
+						),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * This will enable us to disassociate an person from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+	 * /person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
+	 */
+	async personDisassociateWorkstreamSummary(
+		requestParameters: PersonDisassociateWorkstreamSummaryRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personDisassociateWorkstreamSummaryRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
+	 * \'/person/{person}/scores/increment\' [POST]
+	 */
+	async personScoresIncrementRaw(
+		requestParameters: PersonScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personScoresIncrement.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/person/{person}/scores/increment".replace(
+					`{${"person"}}`,
+					encodeURIComponent(String(requestParameters.person)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededScoreIncrementToJSON(
+					requestParameters.seededScoreIncrement,
+				),
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
+	 * \'/person/{person}/scores/increment\' [POST]
+	 */
+	async personScoresIncrement(
+		requestParameters: PersonScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.personScoresIncrementRaw(requestParameters, initOverrides);
+	}
+
+	/**
+	 * This will get a snapshot of a specific person
+	 * /person/{person} [GET]
+	 */
+	async personSnapshotRaw(
+		requestParameters: PersonSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Person>> {
+		if (
+			requestParameters.person === null ||
+			requestParameters.person === undefined
+		) {
+			throw new runtime.RequiredError(
+				"person",
+				"Required parameter requestParameters.person was null or undefined when calling personSnapshot.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/person/{person}".replace(
+					`{${"person"}}`,
+					encodeURIComponent(String(requestParameters.person)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			PersonFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * This will get a snapshot of a specific person
+	 * /person/{person} [GET]
+	 */
+	async personSnapshot(
+		requestParameters: PersonSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Person> {
+		const response = await this.personSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * This will update a specific person
+	 * /person/update [POST]
+	 */
+	async updatePersonRaw(
+		requestParameters: UpdatePersonRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Person>> {
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/person/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: PersonToJSON(requestParameters.person),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			PersonFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * This will update a specific person
+	 * /person/update [POST]
+	 */
+	async updatePerson(
+		requestParameters: UpdatePersonRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Person> {
+		const response = await this.updatePersonRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

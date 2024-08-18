@@ -12,79 +12,64 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnnotationTypeEnum } from './AnnotationTypeEnum';
+import { exists } from "../runtime.ts";
+import type { AnnotationTypeEnum } from "./AnnotationTypeEnum.tsx";
 import {
-    AnnotationTypeEnumFromJSON,
-    AnnotationTypeEnumFromJSONTyped,
-    AnnotationTypeEnumToJSON,
-} from './AnnotationTypeEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AnnotationTypeEnumFromJSON,
+	AnnotationTypeEnumToJSON,
+} from "./AnnotationTypeEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedConversationMessages } from './FlattenedConversationMessages';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
-    FlattenedConversationMessagesFromJSON,
-    FlattenedConversationMessagesFromJSONTyped,
-    FlattenedConversationMessagesToJSON,
-} from './FlattenedConversationMessages';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	FlattenedConversationMessagesFromJSON,
+	FlattenedConversationMessagesToJSON,
+} from "./FlattenedConversationMessages.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { MechanismEnum } from './MechanismEnum';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { ReferencedAnchor } from './ReferencedAnchor';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { ReferencedAnchor } from "./ReferencedAnchor.tsx";
 import {
-    ReferencedAnchorFromJSON,
-    ReferencedAnchorFromJSONTyped,
-    ReferencedAnchorToJSON,
-} from './ReferencedAnchor';
-import type { ReferencedAsset } from './ReferencedAsset';
+	ReferencedAnchorFromJSON,
+	ReferencedAnchorToJSON,
+} from "./ReferencedAnchor.tsx";
+import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
-    ReferencedAssetFromJSON,
-    ReferencedAssetFromJSONTyped,
-    ReferencedAssetToJSON,
-} from './ReferencedAsset';
-import type { ReferencedConversation } from './ReferencedConversation';
+	ReferencedAssetFromJSON,
+	ReferencedAssetToJSON,
+} from "./ReferencedAsset.tsx";
+import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
-    ReferencedConversationFromJSON,
-    ReferencedConversationFromJSONTyped,
-    ReferencedConversationToJSON,
-} from './ReferencedConversation';
-import type { ReferencedModel } from './ReferencedModel';
+	ReferencedConversationFromJSON,
+	ReferencedConversationToJSON,
+} from "./ReferencedConversation.tsx";
+import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
-    ReferencedModelFromJSON,
-    ReferencedModelFromJSONTyped,
-    ReferencedModelToJSON,
-} from './ReferencedModel';
-import type { ReferencedPerson } from './ReferencedPerson';
+	ReferencedModelFromJSON,
+	ReferencedModelToJSON,
+} from "./ReferencedModel.tsx";
+import type { ReferencedPerson } from "./ReferencedPerson.tsx";
 import {
-    ReferencedPersonFromJSON,
-    ReferencedPersonFromJSONTyped,
-    ReferencedPersonToJSON,
-} from './ReferencedPerson';
-import type { ReferencedWorkstreamSummary } from './ReferencedWorkstreamSummary';
+	ReferencedPersonFromJSON,
+	ReferencedPersonToJSON,
+} from "./ReferencedPerson.tsx";
+import type { ReferencedWorkstreamSummary } from "./ReferencedWorkstreamSummary.tsx";
 import {
-    ReferencedWorkstreamSummaryFromJSON,
-    ReferencedWorkstreamSummaryFromJSONTyped,
-    ReferencedWorkstreamSummaryToJSON,
-} from './ReferencedWorkstreamSummary';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedWorkstreamSummaryFromJSON,
+	ReferencedWorkstreamSummaryToJSON,
+} from "./ReferencedWorkstreamSummary.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is the flattened Version of the annotation, IMPORTANT: when referencing these, ONLY Take the UUID, do NOT polinate(ie w/ asset/person/model) the FlattenedAnnotation as it can create an infinite loop.
@@ -92,188 +77,210 @@ import {
  * @interface FlattenedAnnotation
  */
 export interface FlattenedAnnotation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedAnnotation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedAnnotation
-     */
-    id: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedAnnotation
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedAnnotation
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedAnnotation
-     */
-    deleted?: GroupedTimestamp;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof FlattenedAnnotation
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * 
-     * @type {ReferencedAsset}
-     * @memberof FlattenedAnnotation
-     */
-    asset?: ReferencedAsset;
-    /**
-     * 
-     * @type {ReferencedPerson}
-     * @memberof FlattenedAnnotation
-     */
-    person?: ReferencedPerson;
-    /**
-     * 
-     * @type {AnnotationTypeEnum}
-     * @memberof FlattenedAnnotation
-     */
-    type: AnnotationTypeEnum;
-    /**
-     * This is the text of the annotation.
-     * @type {string}
-     * @memberof FlattenedAnnotation
-     */
-    text: string;
-    /**
-     * 
-     * @type {ReferencedModel}
-     * @memberof FlattenedAnnotation
-     */
-    model?: ReferencedModel;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FlattenedAnnotation
-     */
-    pseudo?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FlattenedAnnotation
-     */
-    favorited?: boolean;
-    /**
-     * 
-     * @type {ReferencedAnchor}
-     * @memberof FlattenedAnnotation
-     */
-    anchor?: ReferencedAnchor;
-    /**
-     * 
-     * @type {ReferencedConversation}
-     * @memberof FlattenedAnnotation
-     */
-    conversation?: ReferencedConversation;
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedAnnotation
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {FlattenedConversationMessages}
-     * @memberof FlattenedAnnotation
-     */
-    messages?: FlattenedConversationMessages;
-    /**
-     * 
-     * @type {ReferencedWorkstreamSummary}
-     * @memberof FlattenedAnnotation
-     */
-    summary?: ReferencedWorkstreamSummary;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedAnnotation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedAnnotation
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedAnnotation
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedAnnotation
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedAnnotation
+	 */
+	deleted?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof FlattenedAnnotation
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 *
+	 * @type {ReferencedAsset}
+	 * @memberof FlattenedAnnotation
+	 */
+	asset?: ReferencedAsset;
+	/**
+	 *
+	 * @type {ReferencedPerson}
+	 * @memberof FlattenedAnnotation
+	 */
+	person?: ReferencedPerson;
+	/**
+	 *
+	 * @type {AnnotationTypeEnum}
+	 * @memberof FlattenedAnnotation
+	 */
+	type: AnnotationTypeEnum;
+	/**
+	 * This is the text of the annotation.
+	 * @type {string}
+	 * @memberof FlattenedAnnotation
+	 */
+	text: string;
+	/**
+	 *
+	 * @type {ReferencedModel}
+	 * @memberof FlattenedAnnotation
+	 */
+	model?: ReferencedModel;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof FlattenedAnnotation
+	 */
+	pseudo?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof FlattenedAnnotation
+	 */
+	favorited?: boolean;
+	/**
+	 *
+	 * @type {ReferencedAnchor}
+	 * @memberof FlattenedAnnotation
+	 */
+	anchor?: ReferencedAnchor;
+	/**
+	 *
+	 * @type {ReferencedConversation}
+	 * @memberof FlattenedAnnotation
+	 */
+	conversation?: ReferencedConversation;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedAnnotation
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {FlattenedConversationMessages}
+	 * @memberof FlattenedAnnotation
+	 */
+	messages?: FlattenedConversationMessages;
+	/**
+	 *
+	 * @type {ReferencedWorkstreamSummary}
+	 * @memberof FlattenedAnnotation
+	 */
+	summary?: ReferencedWorkstreamSummary;
 }
 
 /**
  * Check if a given object implements the FlattenedAnnotation interface.
  */
 export function instanceOfFlattenedAnnotation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "text" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
+	isInstance = isInstance && "type" in value;
+	isInstance = isInstance && "text" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedAnnotationFromJSON(json: any): FlattenedAnnotation {
-    return FlattenedAnnotationFromJSONTyped(json, false);
+	return FlattenedAnnotationFromJSONTyped(json, false);
 }
 
-export function FlattenedAnnotationFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedAnnotation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'asset': !exists(json, 'asset') ? undefined : ReferencedAssetFromJSON(json['asset']),
-        'person': !exists(json, 'person') ? undefined : ReferencedPersonFromJSON(json['person']),
-        'type': AnnotationTypeEnumFromJSON(json['type']),
-        'text': json['text'],
-        'model': !exists(json, 'model') ? undefined : ReferencedModelFromJSON(json['model']),
-        'pseudo': !exists(json, 'pseudo') ? undefined : json['pseudo'],
-        'favorited': !exists(json, 'favorited') ? undefined : json['favorited'],
-        'anchor': !exists(json, 'anchor') ? undefined : ReferencedAnchorFromJSON(json['anchor']),
-        'conversation': !exists(json, 'conversation') ? undefined : ReferencedConversationFromJSON(json['conversation']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'messages': !exists(json, 'messages') ? undefined : FlattenedConversationMessagesFromJSON(json['messages']),
-        'summary': !exists(json, 'summary') ? undefined : ReferencedWorkstreamSummaryFromJSON(json['summary']),
-    };
+export function FlattenedAnnotationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedAnnotation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		asset: exists(json, "asset")
+			? ReferencedAssetFromJSON(json["asset"])
+			: undefined,
+		person: exists(json, "person")
+			? ReferencedPersonFromJSON(json["person"])
+			: undefined,
+		type: AnnotationTypeEnumFromJSON(json["type"]),
+		text: json["text"],
+		model: exists(json, "model")
+			? ReferencedModelFromJSON(json["model"])
+			: undefined,
+		pseudo: exists(json, "pseudo") ? json["pseudo"] : undefined,
+		favorited: exists(json, "favorited") ? json["favorited"] : undefined,
+		anchor: exists(json, "anchor")
+			? ReferencedAnchorFromJSON(json["anchor"])
+			: undefined,
+		conversation: exists(json, "conversation")
+			? ReferencedConversationFromJSON(json["conversation"])
+			: undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		messages: exists(json, "messages")
+			? FlattenedConversationMessagesFromJSON(json["messages"])
+			: undefined,
+		summary: exists(json, "summary")
+			? ReferencedWorkstreamSummaryFromJSON(json["summary"])
+			: undefined,
+	};
 }
 
-export function FlattenedAnnotationToJSON(value?: FlattenedAnnotation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'asset': ReferencedAssetToJSON(value.asset),
-        'person': ReferencedPersonToJSON(value.person),
-        'type': AnnotationTypeEnumToJSON(value.type),
-        'text': value.text,
-        'model': ReferencedModelToJSON(value.model),
-        'pseudo': value.pseudo,
-        'favorited': value.favorited,
-        'anchor': ReferencedAnchorToJSON(value.anchor),
-        'conversation': ReferencedConversationToJSON(value.conversation),
-        'score': ScoreToJSON(value.score),
-        'messages': FlattenedConversationMessagesToJSON(value.messages),
-        'summary': ReferencedWorkstreamSummaryToJSON(value.summary),
-    };
+export function FlattenedAnnotationToJSON(
+	value?: FlattenedAnnotation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		deleted: GroupedTimestampToJSON(value.deleted),
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		asset: ReferencedAssetToJSON(value.asset),
+		person: ReferencedPersonToJSON(value.person),
+		type: AnnotationTypeEnumToJSON(value.type),
+		text: value.text,
+		model: ReferencedModelToJSON(value.model),
+		pseudo: value.pseudo,
+		favorited: value.favorited,
+		anchor: ReferencedAnchorToJSON(value.anchor),
+		conversation: ReferencedConversationToJSON(value.conversation),
+		score: ScoreToJSON(value.score),
+		messages: FlattenedConversationMessagesToJSON(value.messages),
+		summary: ReferencedWorkstreamSummaryToJSON(value.summary),
+	};
 }
-

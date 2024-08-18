@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the specific event that represent the Shadow Activity ie the copy/paste ...xyz
@@ -26,159 +25,173 @@ import {
  * @interface WorkstreamEventTrigger
  */
 export interface WorkstreamEventTrigger {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamEventTrigger
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * this is a sort of check-in event(ie when ever your application is in the forground on there is an interaction)
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    checkIn?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    copy?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    paste?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    fileOpen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    fileClose?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    tabSwitch?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    tabClose?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    tabOpen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    tabEnter?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    tabLeave?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    urlChanged?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    applicationEnter?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    applicationLeave?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamEventTrigger
-     */
-    applicationSwitch?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * this is a sort of check-in event(ie when ever your application is in the forground on there is an interaction)
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	checkIn?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	copy?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	paste?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	fileOpen?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	fileClose?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	tabSwitch?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	tabClose?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	tabOpen?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	tabEnter?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	tabLeave?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	urlChanged?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	applicationEnter?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	applicationLeave?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamEventTrigger
+	 */
+	applicationSwitch?: boolean;
 }
 
 /**
  * Check if a given object implements the WorkstreamEventTrigger interface.
  */
-export function instanceOfWorkstreamEventTrigger(value: object): boolean {
-    let isInstance = true;
+export function instanceOfWorkstreamEventTrigger(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamEventTriggerFromJSON(json: any): WorkstreamEventTrigger {
-    return WorkstreamEventTriggerFromJSONTyped(json, false);
+export function WorkstreamEventTriggerFromJSON(
+	json: any,
+): WorkstreamEventTrigger {
+	return WorkstreamEventTriggerFromJSONTyped(json, false);
 }
 
-export function WorkstreamEventTriggerFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamEventTrigger {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'checkIn': !exists(json, 'check_in') ? undefined : json['check_in'],
-        'copy': !exists(json, 'copy') ? undefined : json['copy'],
-        'paste': !exists(json, 'paste') ? undefined : json['paste'],
-        'fileOpen': !exists(json, 'file_open') ? undefined : json['file_open'],
-        'fileClose': !exists(json, 'file_close') ? undefined : json['file_close'],
-        'tabSwitch': !exists(json, 'tab_switch') ? undefined : json['tab_switch'],
-        'tabClose': !exists(json, 'tab_close') ? undefined : json['tab_close'],
-        'tabOpen': !exists(json, 'tab_open') ? undefined : json['tab_open'],
-        'tabEnter': !exists(json, 'tab_enter') ? undefined : json['tab_enter'],
-        'tabLeave': !exists(json, 'tab_leave') ? undefined : json['tab_leave'],
-        'urlChanged': !exists(json, 'url_changed') ? undefined : json['url_changed'],
-        'applicationEnter': !exists(json, 'application_enter') ? undefined : json['application_enter'],
-        'applicationLeave': !exists(json, 'application_leave') ? undefined : json['application_leave'],
-        'applicationSwitch': !exists(json, 'application_switch') ? undefined : json['application_switch'],
-    };
+export function WorkstreamEventTriggerFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamEventTrigger {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		checkIn: exists(json, "check_in") ? json["check_in"] : undefined,
+		copy: exists(json, "copy") ? json["copy"] : undefined,
+		paste: exists(json, "paste") ? json["paste"] : undefined,
+		fileOpen: exists(json, "file_open") ? json["file_open"] : undefined,
+		fileClose: exists(json, "file_close") ? json["file_close"] : undefined,
+		tabSwitch: exists(json, "tab_switch") ? json["tab_switch"] : undefined,
+		tabClose: exists(json, "tab_close") ? json["tab_close"] : undefined,
+		tabOpen: exists(json, "tab_open") ? json["tab_open"] : undefined,
+		tabEnter: exists(json, "tab_enter") ? json["tab_enter"] : undefined,
+		tabLeave: exists(json, "tab_leave") ? json["tab_leave"] : undefined,
+		urlChanged: exists(json, "url_changed")
+			? json["url_changed"]
+			: undefined,
+		applicationEnter: exists(json, "application_enter")
+			? json["application_enter"]
+			: undefined,
+		applicationLeave: exists(json, "application_leave")
+			? json["application_leave"]
+			: undefined,
+		applicationSwitch: exists(json, "application_switch")
+			? json["application_switch"]
+			: undefined,
+	};
 }
 
-export function WorkstreamEventTriggerToJSON(value?: WorkstreamEventTrigger | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'check_in': value.checkIn,
-        'copy': value.copy,
-        'paste': value.paste,
-        'file_open': value.fileOpen,
-        'file_close': value.fileClose,
-        'tab_switch': value.tabSwitch,
-        'tab_close': value.tabClose,
-        'tab_open': value.tabOpen,
-        'tab_enter': value.tabEnter,
-        'tab_leave': value.tabLeave,
-        'url_changed': value.urlChanged,
-        'application_enter': value.applicationEnter,
-        'application_leave': value.applicationLeave,
-        'application_switch': value.applicationSwitch,
-    };
+export function WorkstreamEventTriggerToJSON(
+	value?: WorkstreamEventTrigger | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		check_in: value.checkIn,
+		copy: value.copy,
+		paste: value.paste,
+		file_open: value.fileOpen,
+		file_close: value.fileClose,
+		tab_switch: value.tabSwitch,
+		tab_close: value.tabClose,
+		tab_open: value.tabOpen,
+		tab_enter: value.tabEnter,
+		tab_leave: value.tabLeave,
+		url_changed: value.urlChanged,
+		application_enter: value.applicationEnter,
+		application_leave: value.applicationLeave,
+		application_switch: value.applicationSwitch,
+	};
 }
-

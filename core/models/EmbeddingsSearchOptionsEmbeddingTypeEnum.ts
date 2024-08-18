@@ -12,27 +12,32 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * TODO
  * @export
  */
 export const EmbeddingsSearchOptionsEmbeddingTypeEnum = {
-    Jina: 'JINA',
-    Ncs: 'NCS'
+	Jina: "JINA",
+	Ncs: "NCS",
 } as const;
-export type EmbeddingsSearchOptionsEmbeddingTypeEnum = typeof EmbeddingsSearchOptionsEmbeddingTypeEnum[keyof typeof EmbeddingsSearchOptionsEmbeddingTypeEnum];
+export type EmbeddingsSearchOptionsEmbeddingTypeEnum =
+	(typeof EmbeddingsSearchOptionsEmbeddingTypeEnum)[keyof typeof EmbeddingsSearchOptionsEmbeddingTypeEnum];
 
-
-export function EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSON(json: any): EmbeddingsSearchOptionsEmbeddingTypeEnum {
-    return EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSONTyped(json, false);
+export function EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSON(
+	json: any,
+): EmbeddingsSearchOptionsEmbeddingTypeEnum {
+	return EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSONTyped(json, false);
 }
 
-export function EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmbeddingsSearchOptionsEmbeddingTypeEnum {
-    return json as EmbeddingsSearchOptionsEmbeddingTypeEnum;
+export function EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): EmbeddingsSearchOptionsEmbeddingTypeEnum {
+	return json as EmbeddingsSearchOptionsEmbeddingTypeEnum;
 }
 
-export function EmbeddingsSearchOptionsEmbeddingTypeEnumToJSON(value?: EmbeddingsSearchOptionsEmbeddingTypeEnum | null): any {
-    return value as any;
+export function EmbeddingsSearchOptionsEmbeddingTypeEnumToJSON(
+	value?: EmbeddingsSearchOptionsEmbeddingTypeEnum | null,
+): any {
+	return value as any;
 }
-

@@ -12,352 +12,388 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { exists } from "../runtime.ts";
 /**
  * All of these will be optional.
- * 
+ *
  * Will support ProfileData from all our social providers.
  * @export
  * @interface ExternalProviderProfileData
  */
 export interface ExternalProviderProfileData {
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    picture?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    nickname?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    email?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ExternalProviderProfileData
-     */
-    emailVerified?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    nodeId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    gravatarId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    htmlUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    followersUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    followingUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    gistsUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    starredUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    subscriptionsUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    organizationsUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    reposUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    eventsUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    receivedEventsUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    type?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ExternalProviderProfileData
-     */
-    siteAdmin?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    company?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    blog?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    anchor?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ExternalProviderProfileData
-     */
-    hireable?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    bio?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    twitterUsername?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    publicRepos?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    publicGists?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    followers?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    following?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    createdAt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalProviderProfileData
-     */
-    updatedAt?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    privateGists?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    totalPrivateRepos?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    ownedPrivateRepos?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    diskUsage?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExternalProviderProfileData
-     */
-    collaborators?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ExternalProviderProfileData
-     */
-    twoFactorAuthentication?: boolean;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	picture?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	nickname?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	email?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof ExternalProviderProfileData
+	 */
+	emailVerified?: boolean;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	nodeId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	gravatarId?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	url?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	htmlUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	followersUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	followingUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	gistsUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	starredUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	subscriptionsUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	organizationsUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	reposUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	eventsUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	receivedEventsUrl?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	type?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof ExternalProviderProfileData
+	 */
+	siteAdmin?: boolean;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	company?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	blog?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	anchor?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof ExternalProviderProfileData
+	 */
+	hireable?: boolean;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	bio?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	twitterUsername?: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	publicRepos?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	publicGists?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	followers?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	following?: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	createdAt?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ExternalProviderProfileData
+	 */
+	updatedAt?: string;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	privateGists?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	totalPrivateRepos?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	ownedPrivateRepos?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	diskUsage?: number;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ExternalProviderProfileData
+	 */
+	collaborators?: number;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof ExternalProviderProfileData
+	 */
+	twoFactorAuthentication?: boolean;
 }
 
 /**
  * Check if a given object implements the ExternalProviderProfileData interface.
  */
-export function instanceOfExternalProviderProfileData(value: object): boolean {
-    let isInstance = true;
+export function instanceOfExternalProviderProfileData(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ExternalProviderProfileDataFromJSON(json: any): ExternalProviderProfileData {
-    return ExternalProviderProfileDataFromJSONTyped(json, false);
+export function ExternalProviderProfileDataFromJSON(
+	json: any,
+): ExternalProviderProfileData {
+	return ExternalProviderProfileDataFromJSONTyped(json, false);
 }
 
-export function ExternalProviderProfileDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExternalProviderProfileData {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'picture': !exists(json, 'picture') ? undefined : json['picture'],
-        'nickname': !exists(json, 'nickname') ? undefined : json['nickname'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'emailVerified': !exists(json, 'email_verified') ? undefined : json['email_verified'],
-        'nodeId': !exists(json, 'node_id') ? undefined : json['node_id'],
-        'gravatarId': !exists(json, 'gravatar_id') ? undefined : json['gravatar_id'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'htmlUrl': !exists(json, 'html_url') ? undefined : json['html_url'],
-        'followersUrl': !exists(json, 'followers_url') ? undefined : json['followers_url'],
-        'followingUrl': !exists(json, 'following_url') ? undefined : json['following_url'],
-        'gistsUrl': !exists(json, 'gists_url') ? undefined : json['gists_url'],
-        'starredUrl': !exists(json, 'starred_url') ? undefined : json['starred_url'],
-        'subscriptionsUrl': !exists(json, 'subscriptions_url') ? undefined : json['subscriptions_url'],
-        'organizationsUrl': !exists(json, 'organizations_url') ? undefined : json['organizations_url'],
-        'reposUrl': !exists(json, 'repos_url') ? undefined : json['repos_url'],
-        'eventsUrl': !exists(json, 'events_url') ? undefined : json['events_url'],
-        'receivedEventsUrl': !exists(json, 'received_events_url') ? undefined : json['received_events_url'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'siteAdmin': !exists(json, 'site_admin') ? undefined : json['site_admin'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'blog': !exists(json, 'blog') ? undefined : json['blog'],
-        'anchor': !exists(json, 'anchor') ? undefined : json['anchor'],
-        'hireable': !exists(json, 'hireable') ? undefined : json['hireable'],
-        'bio': !exists(json, 'bio') ? undefined : json['bio'],
-        'twitterUsername': !exists(json, 'twitter_username') ? undefined : json['twitter_username'],
-        'publicRepos': !exists(json, 'public_repos') ? undefined : json['public_repos'],
-        'publicGists': !exists(json, 'public_gists') ? undefined : json['public_gists'],
-        'followers': !exists(json, 'followers') ? undefined : json['followers'],
-        'following': !exists(json, 'following') ? undefined : json['following'],
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
-        'privateGists': !exists(json, 'private_gists') ? undefined : json['private_gists'],
-        'totalPrivateRepos': !exists(json, 'total_private_repos') ? undefined : json['total_private_repos'],
-        'ownedPrivateRepos': !exists(json, 'owned_private_repos') ? undefined : json['owned_private_repos'],
-        'diskUsage': !exists(json, 'disk_usage') ? undefined : json['disk_usage'],
-        'collaborators': !exists(json, 'collaborators') ? undefined : json['collaborators'],
-        'twoFactorAuthentication': !exists(json, 'two_factor_authentication') ? undefined : json['two_factor_authentication'],
-    };
+export function ExternalProviderProfileDataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExternalProviderProfileData {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		name: exists(json, "name") ? json["name"] : undefined,
+		picture: exists(json, "picture") ? json["picture"] : undefined,
+		nickname: exists(json, "nickname") ? json["nickname"] : undefined,
+		email: exists(json, "email") ? json["email"] : undefined,
+		emailVerified: exists(json, "email_verified")
+			? json["email_verified"]
+			: undefined,
+		nodeId: exists(json, "node_id") ? json["node_id"] : undefined,
+		gravatarId: exists(json, "gravatar_id")
+			? json["gravatar_id"]
+			: undefined,
+		url: exists(json, "url") ? json["url"] : undefined,
+		htmlUrl: exists(json, "html_url") ? json["html_url"] : undefined,
+		followersUrl: exists(json, "followers_url")
+			? json["followers_url"]
+			: undefined,
+		followingUrl: exists(json, "following_url")
+			? json["following_url"]
+			: undefined,
+		gistsUrl: exists(json, "gists_url") ? json["gists_url"] : undefined,
+		starredUrl: exists(json, "starred_url")
+			? json["starred_url"]
+			: undefined,
+		subscriptionsUrl: exists(json, "subscriptions_url")
+			? json["subscriptions_url"]
+			: undefined,
+		organizationsUrl: exists(json, "organizations_url")
+			? json["organizations_url"]
+			: undefined,
+		reposUrl: exists(json, "repos_url") ? json["repos_url"] : undefined,
+		eventsUrl: exists(json, "events_url") ? json["events_url"] : undefined,
+		receivedEventsUrl: exists(json, "received_events_url")
+			? json["received_events_url"]
+			: undefined,
+		type: exists(json, "type") ? json["type"] : undefined,
+		siteAdmin: exists(json, "site_admin") ? json["site_admin"] : undefined,
+		company: exists(json, "company") ? json["company"] : undefined,
+		blog: exists(json, "blog") ? json["blog"] : undefined,
+		anchor: exists(json, "anchor") ? json["anchor"] : undefined,
+		hireable: exists(json, "hireable") ? json["hireable"] : undefined,
+		bio: exists(json, "bio") ? json["bio"] : undefined,
+		twitterUsername: exists(json, "twitter_username")
+			? json["twitter_username"]
+			: undefined,
+		publicRepos: exists(json, "public_repos")
+			? json["public_repos"]
+			: undefined,
+		publicGists: exists(json, "public_gists")
+			? json["public_gists"]
+			: undefined,
+		followers: exists(json, "followers") ? json["followers"] : undefined,
+		following: exists(json, "following") ? json["following"] : undefined,
+		createdAt: exists(json, "created_at") ? json["created_at"] : undefined,
+		updatedAt: exists(json, "updated_at") ? json["updated_at"] : undefined,
+		privateGists: exists(json, "private_gists")
+			? json["private_gists"]
+			: undefined,
+		totalPrivateRepos: exists(json, "total_private_repos")
+			? json["total_private_repos"]
+			: undefined,
+		ownedPrivateRepos: exists(json, "owned_private_repos")
+			? json["owned_private_repos"]
+			: undefined,
+		diskUsage: exists(json, "disk_usage") ? json["disk_usage"] : undefined,
+		collaborators: exists(json, "collaborators")
+			? json["collaborators"]
+			: undefined,
+		twoFactorAuthentication: exists(json, "two_factor_authentication")
+			? json["two_factor_authentication"]
+			: undefined,
+	};
 }
 
-export function ExternalProviderProfileDataToJSON(value?: ExternalProviderProfileData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'name': value.name,
-        'picture': value.picture,
-        'nickname': value.nickname,
-        'email': value.email,
-        'email_verified': value.emailVerified,
-        'node_id': value.nodeId,
-        'gravatar_id': value.gravatarId,
-        'url': value.url,
-        'html_url': value.htmlUrl,
-        'followers_url': value.followersUrl,
-        'following_url': value.followingUrl,
-        'gists_url': value.gistsUrl,
-        'starred_url': value.starredUrl,
-        'subscriptions_url': value.subscriptionsUrl,
-        'organizations_url': value.organizationsUrl,
-        'repos_url': value.reposUrl,
-        'events_url': value.eventsUrl,
-        'received_events_url': value.receivedEventsUrl,
-        'type': value.type,
-        'site_admin': value.siteAdmin,
-        'company': value.company,
-        'blog': value.blog,
-        'anchor': value.anchor,
-        'hireable': value.hireable,
-        'bio': value.bio,
-        'twitter_username': value.twitterUsername,
-        'public_repos': value.publicRepos,
-        'public_gists': value.publicGists,
-        'followers': value.followers,
-        'following': value.following,
-        'created_at': value.createdAt,
-        'updated_at': value.updatedAt,
-        'private_gists': value.privateGists,
-        'total_private_repos': value.totalPrivateRepos,
-        'owned_private_repos': value.ownedPrivateRepos,
-        'disk_usage': value.diskUsage,
-        'collaborators': value.collaborators,
-        'two_factor_authentication': value.twoFactorAuthentication,
-    };
+export function ExternalProviderProfileDataToJSON(
+	value?: ExternalProviderProfileData | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		name: value.name,
+		picture: value.picture,
+		nickname: value.nickname,
+		email: value.email,
+		email_verified: value.emailVerified,
+		node_id: value.nodeId,
+		gravatar_id: value.gravatarId,
+		url: value.url,
+		html_url: value.htmlUrl,
+		followers_url: value.followersUrl,
+		following_url: value.followingUrl,
+		gists_url: value.gistsUrl,
+		starred_url: value.starredUrl,
+		subscriptions_url: value.subscriptionsUrl,
+		organizations_url: value.organizationsUrl,
+		repos_url: value.reposUrl,
+		events_url: value.eventsUrl,
+		received_events_url: value.receivedEventsUrl,
+		type: value.type,
+		site_admin: value.siteAdmin,
+		company: value.company,
+		blog: value.blog,
+		anchor: value.anchor,
+		hireable: value.hireable,
+		bio: value.bio,
+		twitter_username: value.twitterUsername,
+		public_repos: value.publicRepos,
+		public_gists: value.publicGists,
+		followers: value.followers,
+		following: value.following,
+		created_at: value.createdAt,
+		updated_at: value.updatedAt,
+		private_gists: value.privateGists,
+		total_private_repos: value.totalPrivateRepos,
+		owned_private_repos: value.ownedPrivateRepos,
+		disk_usage: value.diskUsage,
+		collaborators: value.collaborators,
+		two_factor_authentication: value.twoFactorAuthentication,
+	};
 }
-

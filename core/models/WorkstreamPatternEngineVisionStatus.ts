@@ -12,87 +12,97 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnonymousTemporalRange } from './AnonymousTemporalRange';
+import { exists } from "../runtime.ts";
+import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
-    AnonymousTemporalRangeFromJSON,
-    AnonymousTemporalRangeFromJSONTyped,
-    AnonymousTemporalRangeToJSON,
-} from './AnonymousTemporalRange';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AnonymousTemporalRangeFromJSON,
+	AnonymousTemporalRangeToJSON,
+} from "./AnonymousTemporalRange.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * activation: can be active for forever w/ continous true, or it can be activated for the next couple hours
- * 
+ *
  * deactivation: here can be deactivated for forever w/ continuous true, or it can be deactivated for the next couple hours
- * 
+ *
  * Note: one or the other will be set and both are nullable.
  * @export
  * @interface WorkstreamPatternEngineVisionStatus
  */
 export interface WorkstreamPatternEngineVisionStatus {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamPatternEngineVisionStatus
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {AnonymousTemporalRange}
-     * @memberof WorkstreamPatternEngineVisionStatus
-     */
-    activation?: AnonymousTemporalRange;
-    /**
-     * 
-     * @type {AnonymousTemporalRange}
-     * @memberof WorkstreamPatternEngineVisionStatus
-     */
-    deactivation?: AnonymousTemporalRange;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamPatternEngineVisionStatus
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {AnonymousTemporalRange}
+	 * @memberof WorkstreamPatternEngineVisionStatus
+	 */
+	activation?: AnonymousTemporalRange;
+	/**
+	 *
+	 * @type {AnonymousTemporalRange}
+	 * @memberof WorkstreamPatternEngineVisionStatus
+	 */
+	deactivation?: AnonymousTemporalRange;
 }
 
 /**
  * Check if a given object implements the WorkstreamPatternEngineVisionStatus interface.
  */
-export function instanceOfWorkstreamPatternEngineVisionStatus(value: object): boolean {
-    let isInstance = true;
+export function instanceOfWorkstreamPatternEngineVisionStatus(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamPatternEngineVisionStatusFromJSON(json: any): WorkstreamPatternEngineVisionStatus {
-    return WorkstreamPatternEngineVisionStatusFromJSONTyped(json, false);
+export function WorkstreamPatternEngineVisionStatusFromJSON(
+	json: any,
+): WorkstreamPatternEngineVisionStatus {
+	return WorkstreamPatternEngineVisionStatusFromJSONTyped(json, false);
 }
 
-export function WorkstreamPatternEngineVisionStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamPatternEngineVisionStatus {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'activation': !exists(json, 'activation') ? undefined : AnonymousTemporalRangeFromJSON(json['activation']),
-        'deactivation': !exists(json, 'deactivation') ? undefined : AnonymousTemporalRangeFromJSON(json['deactivation']),
-    };
+export function WorkstreamPatternEngineVisionStatusFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamPatternEngineVisionStatus {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		activation: exists(json, "activation")
+			? AnonymousTemporalRangeFromJSON(json["activation"])
+			: undefined,
+		deactivation: exists(json, "deactivation")
+			? AnonymousTemporalRangeFromJSON(json["deactivation"])
+			: undefined,
+	};
 }
 
-export function WorkstreamPatternEngineVisionStatusToJSON(value?: WorkstreamPatternEngineVisionStatus | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'activation': AnonymousTemporalRangeToJSON(value.activation),
-        'deactivation': AnonymousTemporalRangeToJSON(value.deactivation),
-    };
+export function WorkstreamPatternEngineVisionStatusToJSON(
+	value?: WorkstreamPatternEngineVisionStatus | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		activation: AnonymousTemporalRangeToJSON(value.activation),
+		deactivation: AnonymousTemporalRangeToJSON(value.deactivation),
+	};
 }
-

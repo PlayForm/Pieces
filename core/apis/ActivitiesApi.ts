@@ -12,141 +12,180 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Activities,
-  Activity,
-  SeededActivity,
-} from '../models/index';
+import type { Activities, Activity, SeededActivity } from "../models/index.ts";
 import {
-    ActivitiesFromJSON,
-    ActivitiesToJSON,
-    ActivityFromJSON,
-    ActivityToJSON,
-    SeededActivityFromJSON,
-    SeededActivityToJSON,
-} from '../models/index';
+	ActivitiesFromJSON,
+	ActivityFromJSON,
+	SeededActivityToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface ActivitiesCreateNewActivityRequest {
-    transferables?: boolean;
-    seededActivity?: SeededActivity;
+	transferables?: boolean;
+	seededActivity?: SeededActivity;
 }
 
 export interface ActivitiesDeleteSpecificActivityRequest {
-    activity: string;
+	activity: string;
 }
 
 export interface ActivitiesSnapshotRequest {
-    transferables?: boolean;
-    pseudo?: boolean;
+	transferables?: boolean;
+	pseudo?: boolean;
 }
 
 /**
- * 
+ *
  */
 export class ActivitiesApi extends runtime.BaseAPI {
+	/**
+	 * This will create a new Activity.
+	 * /activities/create [POST]
+	 */
+	async activitiesCreateNewActivityRaw(
+		requestParameters: ActivitiesCreateNewActivityRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Activity>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will create a new Activity.
-     * /activities/create [POST]
-     */
-    async activitiesCreateNewActivityRaw(requestParameters: ActivitiesCreateNewActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Activity>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/activities/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededActivityToJSON(requestParameters.seededActivity),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/activities/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededActivityToJSON(requestParameters.seededActivity),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ActivityFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ActivityFromJSON(jsonValue));
-    }
+	/**
+	 * This will create a new Activity.
+	 * /activities/create [POST]
+	 */
+	async activitiesCreateNewActivity(
+		requestParameters: ActivitiesCreateNewActivityRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Activity> {
+		const response = await this.activitiesCreateNewActivityRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will create a new Activity.
-     * /activities/create [POST]
-     */
-    async activitiesCreateNewActivity(requestParameters: ActivitiesCreateNewActivityRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Activity> {
-        const response = await this.activitiesCreateNewActivityRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will delete a specific activity.  important note: if we delete an activity: that is going to be a generic or a specific/ we will also delete its counter part i.e the specific. and vise versa, this ensures that the references are always cleaned.
+	 * /activities/{activity}/delete [POST]
+	 */
+	async activitiesDeleteSpecificActivityRaw(
+		requestParameters: ActivitiesDeleteSpecificActivityRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.activity === null ||
+			requestParameters.activity === undefined
+		) {
+			throw new runtime.RequiredError(
+				"activity",
+				"Required parameter requestParameters.activity was null or undefined when calling activitiesDeleteSpecificActivity.",
+			);
+		}
 
-    /**
-     * This will delete a specific activity.  important note: if we delete an activity: that is going to be a generic or a specific/ we will also delete its counter part i.e the specific. and vise versa, this ensures that the references are always cleaned.
-     * /activities/{activity}/delete [POST]
-     */
-    async activitiesDeleteSpecificActivityRaw(requestParameters: ActivitiesDeleteSpecificActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.activity === null || requestParameters.activity === undefined) {
-            throw new runtime.RequiredError('activity','Required parameter requestParameters.activity was null or undefined when calling activitiesDeleteSpecificActivity.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/activities/{activity}/delete".replace(
+					`{${"activity"}}`,
+					encodeURIComponent(String(requestParameters.activity)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/activities/{activity}/delete`.replace(`{${"activity"}}`, encodeURIComponent(String(requestParameters.activity))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * This will delete a specific activity.  important note: if we delete an activity: that is going to be a generic or a specific/ we will also delete its counter part i.e the specific. and vise versa, this ensures that the references are always cleaned.
+	 * /activities/{activity}/delete [POST]
+	 */
+	async activitiesDeleteSpecificActivity(
+		requestParameters: ActivitiesDeleteSpecificActivityRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.activitiesDeleteSpecificActivityRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
 
-    /**
-     * This will delete a specific activity.  important note: if we delete an activity: that is going to be a generic or a specific/ we will also delete its counter part i.e the specific. and vise versa, this ensures that the references are always cleaned.
-     * /activities/{activity}/delete [POST]
-     */
-    async activitiesDeleteSpecificActivity(requestParameters: ActivitiesDeleteSpecificActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.activitiesDeleteSpecificActivityRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will get a snapshot of all of the activities
+	 * /activities [GET]
+	 */
+	async activitiesSnapshotRaw(
+		requestParameters: ActivitiesSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Activities>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a snapshot of all of the activities
-     * /activities [GET]
-     */
-    async activitiesSnapshotRaw(requestParameters: ActivitiesSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Activities>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		if (requestParameters.pseudo !== undefined) {
+			queryParameters["pseudo"] = requestParameters.pseudo;
+		}
 
-        if (requestParameters.pseudo !== undefined) {
-            queryParameters['pseudo'] = requestParameters.pseudo;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/activities",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/activities`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ActivitiesFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ActivitiesFromJSON(jsonValue));
-    }
-
-    /**
-     * This will get a snapshot of all of the activities
-     * /activities [GET]
-     */
-    async activitiesSnapshot(requestParameters: ActivitiesSnapshotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Activities> {
-        const response = await this.activitiesSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will get a snapshot of all of the activities
+	 * /activities [GET]
+	 */
+	async activitiesSnapshot(
+		requestParameters: ActivitiesSnapshotRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Activities> {
+		const response = await this.activitiesSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

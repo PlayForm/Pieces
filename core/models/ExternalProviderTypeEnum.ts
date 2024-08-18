@@ -12,37 +12,42 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This is an enum to describe the provider used to authenticate a user.
- * 
+ *
  * IMPORTANT NOT to modify tha values here unless they are explicitly mapped with auth0's provider values(example within cloud server)
- * 
+ *
  * 'waad': (windows azure active directory)
  * @export
  */
 export const ExternalProviderTypeEnum = {
-    Github: 'github',
-    Auth0: 'auth0',
-    GoogleOauth2: 'google-oauth2',
-    Bitbucket: 'bitbucket',
-    Linkedin: 'linkedin',
-    Twitter: 'twitter',
-    Facebook: 'facebook',
-    Waad: 'waad'
+	Github: "github",
+	Auth0: "auth0",
+	GoogleOauth2: "google-oauth2",
+	Bitbucket: "bitbucket",
+	Linkedin: "linkedin",
+	Twitter: "twitter",
+	Facebook: "facebook",
+	Waad: "waad",
 } as const;
-export type ExternalProviderTypeEnum = typeof ExternalProviderTypeEnum[keyof typeof ExternalProviderTypeEnum];
+export type ExternalProviderTypeEnum =
+	(typeof ExternalProviderTypeEnum)[keyof typeof ExternalProviderTypeEnum];
 
-
-export function ExternalProviderTypeEnumFromJSON(json: any): ExternalProviderTypeEnum {
-    return ExternalProviderTypeEnumFromJSONTyped(json, false);
+export function ExternalProviderTypeEnumFromJSON(
+	json: any,
+): ExternalProviderTypeEnum {
+	return ExternalProviderTypeEnumFromJSONTyped(json, false);
 }
 
-export function ExternalProviderTypeEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExternalProviderTypeEnum {
-    return json as ExternalProviderTypeEnum;
+export function ExternalProviderTypeEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExternalProviderTypeEnum {
+	return json as ExternalProviderTypeEnum;
 }
 
-export function ExternalProviderTypeEnumToJSON(value?: ExternalProviderTypeEnum | null): any {
-    return value as any;
+export function ExternalProviderTypeEnumToJSON(
+	value?: ExternalProviderTypeEnum | null,
+): any {
+	return value as any;
 }
-

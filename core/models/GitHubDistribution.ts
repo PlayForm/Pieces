@@ -12,75 +12,79 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GitHubGistDistribution } from './GitHubGistDistribution';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GitHubGistDistribution } from "./GitHubGistDistribution.tsx";
 import {
-    GitHubGistDistributionFromJSON,
-    GitHubGistDistributionFromJSONTyped,
-    GitHubGistDistributionToJSON,
-} from './GitHubGistDistribution';
+	GitHubGistDistributionFromJSON,
+	GitHubGistDistributionToJSON,
+} from "./GitHubGistDistribution.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface GitHubDistribution
  */
 export interface GitHubDistribution {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GitHubDistribution
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GitHubGistDistribution}
-     * @memberof GitHubDistribution
-     */
-    gist?: GitHubGistDistribution;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GitHubDistribution
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GitHubGistDistribution}
+	 * @memberof GitHubDistribution
+	 */
+	gist?: GitHubGistDistribution;
 }
 
 /**
  * Check if a given object implements the GitHubDistribution interface.
  */
-export function instanceOfGitHubDistribution(value: object): boolean {
-    let isInstance = true;
+export function instanceOfGitHubDistribution(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function GitHubDistributionFromJSON(json: any): GitHubDistribution {
-    return GitHubDistributionFromJSONTyped(json, false);
+	return GitHubDistributionFromJSONTyped(json, false);
 }
 
-export function GitHubDistributionFromJSONTyped(json: any, ignoreDiscriminator: boolean): GitHubDistribution {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'gist': !exists(json, 'gist') ? undefined : GitHubGistDistributionFromJSON(json['gist']),
-    };
+export function GitHubDistributionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GitHubDistribution {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		gist: exists(json, "gist")
+			? GitHubGistDistributionFromJSON(json["gist"])
+			: undefined,
+	};
 }
 
-export function GitHubDistributionToJSON(value?: GitHubDistribution | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'gist': GitHubGistDistributionToJSON(value.gist),
-    };
+export function GitHubDistributionToJSON(
+	value?: GitHubDistribution | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		gist: GitHubGistDistributionToJSON(value.gist),
+	};
 }
-

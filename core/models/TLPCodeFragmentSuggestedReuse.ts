@@ -12,69 +12,76 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface TLPCodeFragmentSuggestedReuse
  */
 export interface TLPCodeFragmentSuggestedReuse {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeFragmentSuggestedReuse
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentSuggestedReuse
-     */
-    id?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeFragmentSuggestedReuse
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentSuggestedReuse
+	 */
+	id?: string;
 }
 
 /**
  * Check if a given object implements the TLPCodeFragmentSuggestedReuse interface.
  */
-export function instanceOfTLPCodeFragmentSuggestedReuse(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTLPCodeFragmentSuggestedReuse(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeFragmentSuggestedReuseFromJSON(json: any): TLPCodeFragmentSuggestedReuse {
-    return TLPCodeFragmentSuggestedReuseFromJSONTyped(json, false);
+export function TLPCodeFragmentSuggestedReuseFromJSON(
+	json: any,
+): TLPCodeFragmentSuggestedReuse {
+	return TLPCodeFragmentSuggestedReuseFromJSONTyped(json, false);
 }
 
-export function TLPCodeFragmentSuggestedReuseFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFragmentSuggestedReuse {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': !exists(json, 'id') ? undefined : json['id'],
-    };
+export function TLPCodeFragmentSuggestedReuseFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFragmentSuggestedReuse {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: exists(json, "id") ? json["id"] : undefined,
+	};
 }
 
-export function TLPCodeFragmentSuggestedReuseToJSON(value?: TLPCodeFragmentSuggestedReuse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-    };
+export function TLPCodeFragmentSuggestedReuseToJSON(
+	value?: TLPCodeFragmentSuggestedReuse | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+	};
 }
-

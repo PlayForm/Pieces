@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a FlattenedUserProfile that includes information that is not sensative in relation to a user.
@@ -26,96 +25,100 @@ import {
  * @interface FlattenedUserProfile
  */
 export interface FlattenedUserProfile {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedUserProfile
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * this is the uuid that identifies a user.
-     * @type {string}
-     * @memberof FlattenedUserProfile
-     */
-    id: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedUserProfile
-     */
-    email?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedUserProfile
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedUserProfile
-     */
-    username?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedUserProfile
-     */
-    picture?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedUserProfile
-     */
-    vanityname?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedUserProfile
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * this is the uuid that identifies a user.
+	 * @type {string}
+	 * @memberof FlattenedUserProfile
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedUserProfile
+	 */
+	email?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedUserProfile
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedUserProfile
+	 */
+	username?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedUserProfile
+	 */
+	picture?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedUserProfile
+	 */
+	vanityname?: string;
 }
 
 /**
  * Check if a given object implements the FlattenedUserProfile interface.
  */
 export function instanceOfFlattenedUserProfile(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedUserProfileFromJSON(json: any): FlattenedUserProfile {
-    return FlattenedUserProfileFromJSONTyped(json, false);
+	return FlattenedUserProfileFromJSONTyped(json, false);
 }
 
-export function FlattenedUserProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedUserProfile {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'username': !exists(json, 'username') ? undefined : json['username'],
-        'picture': !exists(json, 'picture') ? undefined : json['picture'],
-        'vanityname': !exists(json, 'vanityname') ? undefined : json['vanityname'],
-    };
+export function FlattenedUserProfileFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedUserProfile {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		email: exists(json, "email") ? json["email"] : undefined,
+		name: exists(json, "name") ? json["name"] : undefined,
+		username: exists(json, "username") ? json["username"] : undefined,
+		picture: exists(json, "picture") ? json["picture"] : undefined,
+		vanityname: exists(json, "vanityname") ? json["vanityname"] : undefined,
+	};
 }
 
-export function FlattenedUserProfileToJSON(value?: FlattenedUserProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'email': value.email,
-        'name': value.name,
-        'username': value.username,
-        'picture': value.picture,
-        'vanityname': value.vanityname,
-    };
+export function FlattenedUserProfileToJSON(
+	value?: FlattenedUserProfile | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		email: value.email,
+		name: value.name,
+		username: value.username,
+		picture: value.picture,
+		vanityname: value.vanityname,
+	};
 }
-

@@ -12,62 +12,66 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { exists } from "../runtime.ts";
 /**
  * The redirect URI for you Auth 0 Service
  * @export
  * @interface Auth0Redirects
  */
 export interface Auth0Redirects {
-    /**
-     * Where the Auth0 redirects after the user is authorized
-     * @type {string}
-     * @memberof Auth0Redirects
-     */
-    authenticated?: string;
-    /**
-     * The redirect where a user returns once unauthenticated
-     * @type {string}
-     * @memberof Auth0Redirects
-     */
-    unauthenticated?: string;
+	/**
+	 * Where the Auth0 redirects after the user is authorized
+	 * @type {string}
+	 * @memberof Auth0Redirects
+	 */
+	authenticated?: string;
+	/**
+	 * The redirect where a user returns once unauthenticated
+	 * @type {string}
+	 * @memberof Auth0Redirects
+	 */
+	unauthenticated?: string;
 }
 
 /**
  * Check if a given object implements the Auth0Redirects interface.
  */
-export function instanceOfAuth0Redirects(value: object): boolean {
-    let isInstance = true;
+export function instanceOfAuth0Redirects(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function Auth0RedirectsFromJSON(json: any): Auth0Redirects {
-    return Auth0RedirectsFromJSONTyped(json, false);
+	return Auth0RedirectsFromJSONTyped(json, false);
 }
 
-export function Auth0RedirectsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Auth0Redirects {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'authenticated': !exists(json, 'authenticated') ? undefined : json['authenticated'],
-        'unauthenticated': !exists(json, 'unauthenticated') ? undefined : json['unauthenticated'],
-    };
+export function Auth0RedirectsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Auth0Redirects {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		authenticated: exists(json, "authenticated")
+			? json["authenticated"]
+			: undefined,
+		unauthenticated: exists(json, "unauthenticated")
+			? json["unauthenticated"]
+			: undefined,
+	};
 }
 
 export function Auth0RedirectsToJSON(value?: Auth0Redirects | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'authenticated': value.authenticated,
-        'unauthenticated': value.unauthenticated,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		authenticated: value.authenticated,
+		unauthenticated: value.unauthenticated,
+	};
 }
-

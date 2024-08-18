@@ -12,55 +12,44 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists, mapValues } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAssets } from './FlattenedAssets';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { FlattenedConversations } from './FlattenedConversations';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
-    FlattenedConversationsFromJSON,
-    FlattenedConversationsFromJSONTyped,
-    FlattenedConversationsToJSON,
-} from './FlattenedConversations';
-import type { FlattenedPersons } from './FlattenedPersons';
+	FlattenedConversationsFromJSON,
+	FlattenedConversationsToJSON,
+} from "./FlattenedConversations.tsx";
+import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
-    FlattenedPersonsFromJSON,
-    FlattenedPersonsFromJSONTyped,
-    FlattenedPersonsToJSON,
-} from './FlattenedPersons';
-import type { FlattenedWorkstreamSummaries } from './FlattenedWorkstreamSummaries';
+	FlattenedPersonsFromJSON,
+	FlattenedPersonsToJSON,
+} from "./FlattenedPersons.tsx";
+import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
-    FlattenedWorkstreamSummariesFromJSON,
-    FlattenedWorkstreamSummariesFromJSONTyped,
-    FlattenedWorkstreamSummariesToJSON,
-} from './FlattenedWorkstreamSummaries';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	FlattenedWorkstreamSummariesFromJSON,
+	FlattenedWorkstreamSummariesToJSON,
+} from "./FlattenedWorkstreamSummaries.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { MechanismEnum } from './MechanismEnum';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a specific model for related websites to an asset.
@@ -68,156 +57,175 @@ import {
  * @interface Website
  */
 export interface Website {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Website
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof Website
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof Website
-     */
-    assets?: FlattenedAssets;
-    /**
-     * this is the actual website url.
-     * @type {string}
-     * @memberof Website
-     */
-    url: string;
-    /**
-     * This is a name that is customized.
-     * @type {string}
-     * @memberof Website
-     */
-    name: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Website
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Website
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Website
-     */
-    deleted?: GroupedTimestamp;
-    /**
-     * This is a Map<String, MechanismEnum> where the the key is an asset id.
-     * @type {{ [key: string]: MechanismEnum; }}
-     * @memberof Website
-     */
-    mechanisms?: { [key: string]: MechanismEnum; };
-    /**
-     * This is an optional value that will keep track of the number of times this has been interacted with.
-     * @type {number}
-     * @memberof Website
-     */
-    interactions?: number;
-    /**
-     * 
-     * @type {FlattenedPersons}
-     * @memberof Website
-     */
-    persons?: FlattenedPersons;
-    /**
-     * 
-     * @type {FlattenedConversations}
-     * @memberof Website
-     */
-    conversations?: FlattenedConversations;
-    /**
-     * 
-     * @type {Score}
-     * @memberof Website
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {FlattenedWorkstreamSummaries}
-     * @memberof Website
-     */
-    summaries?: FlattenedWorkstreamSummaries;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Website
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Website
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof Website
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 * this is the actual website url.
+	 * @type {string}
+	 * @memberof Website
+	 */
+	url: string;
+	/**
+	 * This is a name that is customized.
+	 * @type {string}
+	 * @memberof Website
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Website
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Website
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Website
+	 */
+	deleted?: GroupedTimestamp;
+	/**
+	 * This is a Map<String, MechanismEnum> where the the key is an asset id.
+	 * @type {{ [key: string]: MechanismEnum; }}
+	 * @memberof Website
+	 */
+	mechanisms?: { [key: string]: MechanismEnum };
+	/**
+	 * This is an optional value that will keep track of the number of times this has been interacted with.
+	 * @type {number}
+	 * @memberof Website
+	 */
+	interactions?: number;
+	/**
+	 *
+	 * @type {FlattenedPersons}
+	 * @memberof Website
+	 */
+	persons?: FlattenedPersons;
+	/**
+	 *
+	 * @type {FlattenedConversations}
+	 * @memberof Website
+	 */
+	conversations?: FlattenedConversations;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Website
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamSummaries}
+	 * @memberof Website
+	 */
+	summaries?: FlattenedWorkstreamSummaries;
 }
 
 /**
  * Check if a given object implements the Website interface.
  */
 export function instanceOfWebsite(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "url" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "url" in value;
+	isInstance = isInstance && "name" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function WebsiteFromJSON(json: any): Website {
-    return WebsiteFromJSONTyped(json, false);
+	return WebsiteFromJSONTyped(json, false);
 }
 
-export function WebsiteFromJSONTyped(json: any, ignoreDiscriminator: boolean): Website {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'url': json['url'],
-        'name': json['name'],
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-        'mechanisms': !exists(json, 'mechanisms') ? undefined : (mapValues(json['mechanisms'], MechanismEnumFromJSON)),
-        'interactions': !exists(json, 'interactions') ? undefined : json['interactions'],
-        'persons': !exists(json, 'persons') ? undefined : FlattenedPersonsFromJSON(json['persons']),
-        'conversations': !exists(json, 'conversations') ? undefined : FlattenedConversationsFromJSON(json['conversations']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'summaries': !exists(json, 'summaries') ? undefined : FlattenedWorkstreamSummariesFromJSON(json['summaries']),
-    };
+export function WebsiteFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Website {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		url: json["url"],
+		name: json["name"],
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+		mechanisms: exists(json, "mechanisms")
+			? mapValues(json["mechanisms"], MechanismEnumFromJSON)
+			: undefined,
+		interactions: exists(json, "interactions")
+			? json["interactions"]
+			: undefined,
+		persons: exists(json, "persons")
+			? FlattenedPersonsFromJSON(json["persons"])
+			: undefined,
+		conversations: exists(json, "conversations")
+			? FlattenedConversationsFromJSON(json["conversations"])
+			: undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		summaries: exists(json, "summaries")
+			? FlattenedWorkstreamSummariesFromJSON(json["summaries"])
+			: undefined,
+	};
 }
 
 export function WebsiteToJSON(value?: Website | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'url': value.url,
-        'name': value.name,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-        'mechanisms': value.mechanisms === undefined ? undefined : (mapValues(value.mechanisms, MechanismEnumToJSON)),
-        'interactions': value.interactions,
-        'persons': FlattenedPersonsToJSON(value.persons),
-        'conversations': FlattenedConversationsToJSON(value.conversations),
-        'score': ScoreToJSON(value.score),
-        'summaries': FlattenedWorkstreamSummariesToJSON(value.summaries),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		assets: FlattenedAssetsToJSON(value.assets),
+		url: value.url,
+		name: value.name,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		deleted: GroupedTimestampToJSON(value.deleted),
+		mechanisms:
+			value.mechanisms === undefined
+				? undefined
+				: mapValues(value.mechanisms, MechanismEnumToJSON),
+		interactions: value.interactions,
+		persons: FlattenedPersonsToJSON(value.persons),
+		conversations: FlattenedConversationsToJSON(value.conversations),
+		score: ScoreToJSON(value.score),
+		summaries: FlattenedWorkstreamSummariesToJSON(value.summaries),
+	};
 }
-

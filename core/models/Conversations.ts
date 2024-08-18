@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Conversation } from './Conversation';
+import { exists } from "../runtime.ts";
+import type { Conversation } from "./Conversation.tsx";
+import { ConversationFromJSON, ConversationToJSON } from "./Conversation.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ConversationFromJSON,
-    ConversationFromJSONTyped,
-    ConversationToJSON,
-} from './Conversation';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a plural version of a Conversation.
@@ -38,72 +29,74 @@ import {
  * @interface Conversations
  */
 export interface Conversations {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Conversations
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Conversation>}
-     * @memberof Conversations
-     */
-    iterable: Array<Conversation>;
-    /**
-     * This is a Map<String, int> where the the key is an Conversation id.
-     * @type {{ [key: string]: number; }}
-     * @memberof Conversations
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof Conversations
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Conversations
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Conversation>}
+	 * @memberof Conversations
+	 */
+	iterable: Conversation[];
+	/**
+	 * This is a Map<String, int> where the the key is an Conversation id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof Conversations
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Conversations
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the Conversations interface.
  */
 export function instanceOfConversations(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ConversationsFromJSON(json: any): Conversations {
-    return ConversationsFromJSONTyped(json, false);
+	return ConversationsFromJSONTyped(json, false);
 }
 
-export function ConversationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Conversations {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ConversationFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function ConversationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Conversations {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ConversationFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function ConversationsToJSON(value?: Conversations | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ConversationToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ConversationToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

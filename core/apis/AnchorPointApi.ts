@@ -12,142 +12,195 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  AnchorPoint,
-  SeededScoreIncrement,
-} from '../models/index';
+import type { AnchorPoint, SeededScoreIncrement } from "../models/index.ts";
 import {
-    AnchorPointFromJSON,
-    AnchorPointToJSON,
-    SeededScoreIncrementFromJSON,
-    SeededScoreIncrementToJSON,
-} from '../models/index';
+	AnchorPointFromJSON,
+	AnchorPointToJSON,
+	SeededScoreIncrementToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface AnchorPointScoresIncrementRequest {
-    anchorPoint: string;
-    seededScoreIncrement?: SeededScoreIncrement;
+	anchorPoint: string;
+	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface AnchorPointSpecificAnchorPointSnapshotRequest {
-    anchorPoint: string;
-    transferables?: boolean;
+	anchorPoint: string;
+	transferables?: boolean;
 }
 
 export interface AnchorPointUpdateRequest {
-    transferables?: boolean;
-    anchorPoint?: AnchorPoint;
+	transferables?: boolean;
+	anchorPoint?: AnchorPoint;
 }
 
 /**
- * 
+ *
  */
 export class AnchorPointApi extends runtime.BaseAPI {
+	/**
+	 * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
+	 * \'/anchor_point/{anchor_point}/scores/increment\' [POST]
+	 */
+	async anchorPointScoresIncrementRaw(
+		requestParameters: AnchorPointScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.anchorPoint === null ||
+			requestParameters.anchorPoint === undefined
+		) {
+			throw new runtime.RequiredError(
+				"anchorPoint",
+				"Required parameter requestParameters.anchorPoint was null or undefined when calling anchorPointScoresIncrement.",
+			);
+		}
 
-    /**
-     * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
-     * \'/anchor_point/{anchor_point}/scores/increment\' [POST]
-     */
-    async anchorPointScoresIncrementRaw(requestParameters: AnchorPointScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.anchorPoint === null || requestParameters.anchorPoint === undefined) {
-            throw new runtime.RequiredError('anchorPoint','Required parameter requestParameters.anchorPoint was null or undefined when calling anchorPointScoresIncrement.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/anchor_point/{anchor_point}/scores/increment".replace(
+					`{${"anchor_point"}}`,
+					encodeURIComponent(String(requestParameters.anchorPoint)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededScoreIncrementToJSON(
+					requestParameters.seededScoreIncrement,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/anchor_point/{anchor_point}/scores/increment`.replace(`{${"anchor_point"}}`, encodeURIComponent(String(requestParameters.anchorPoint))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededScoreIncrementToJSON(requestParameters.seededScoreIncrement),
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
+	 * \'/anchor_point/{anchor_point}/scores/increment\' [POST]
+	 */
+	async anchorPointScoresIncrement(
+		requestParameters: AnchorPointScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.anchorPointScoresIncrementRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
 
-    /**
-     * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
-     * \'/anchor_point/{anchor_point}/scores/increment\' [POST]
-     */
-    async anchorPointScoresIncrement(requestParameters: AnchorPointScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.anchorPointScoresIncrementRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will get a snapshot of a single anchorPoint.
+	 * /anchor_point/{anchor_point} [GET]
+	 */
+	async anchorPointSpecificAnchorPointSnapshotRaw(
+		requestParameters: AnchorPointSpecificAnchorPointSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<AnchorPoint>> {
+		if (
+			requestParameters.anchorPoint === null ||
+			requestParameters.anchorPoint === undefined
+		) {
+			throw new runtime.RequiredError(
+				"anchorPoint",
+				"Required parameter requestParameters.anchorPoint was null or undefined when calling anchorPointSpecificAnchorPointSnapshot.",
+			);
+		}
 
-    /**
-     * This will get a snapshot of a single anchorPoint.
-     * /anchor_point/{anchor_point} [GET]
-     */
-    async anchorPointSpecificAnchorPointSnapshotRaw(requestParameters: AnchorPointSpecificAnchorPointSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AnchorPoint>> {
-        if (requestParameters.anchorPoint === null || requestParameters.anchorPoint === undefined) {
-            throw new runtime.RequiredError('anchorPoint','Required parameter requestParameters.anchorPoint was null or undefined when calling anchorPointSpecificAnchorPointSnapshot.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/anchor_point/{anchor_point}".replace(
+					`{${"anchor_point"}}`,
+					encodeURIComponent(String(requestParameters.anchorPoint)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/anchor_point/{anchor_point}`.replace(`{${"anchor_point"}}`, encodeURIComponent(String(requestParameters.anchorPoint))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AnchorPointFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AnchorPointFromJSON(jsonValue));
-    }
+	/**
+	 * This will get a snapshot of a single anchorPoint.
+	 * /anchor_point/{anchor_point} [GET]
+	 */
+	async anchorPointSpecificAnchorPointSnapshot(
+		requestParameters: AnchorPointSpecificAnchorPointSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<AnchorPoint> {
+		const response = await this.anchorPointSpecificAnchorPointSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will get a snapshot of a single anchorPoint.
-     * /anchor_point/{anchor_point} [GET]
-     */
-    async anchorPointSpecificAnchorPointSnapshot(requestParameters: AnchorPointSpecificAnchorPointSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AnchorPoint> {
-        const response = await this.anchorPointSpecificAnchorPointSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will update a specific anchorPoint.
+	 * /anchor_point/update [POST]
+	 */
+	async anchorPointUpdateRaw(
+		requestParameters: AnchorPointUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<AnchorPoint>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will update a specific anchorPoint.
-     * /anchor_point/update [POST]
-     */
-    async anchorPointUpdateRaw(requestParameters: AnchorPointUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AnchorPoint>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/anchor_point/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: AnchorPointToJSON(requestParameters.anchorPoint),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/anchor_point/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: AnchorPointToJSON(requestParameters.anchorPoint),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AnchorPointFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AnchorPointFromJSON(jsonValue));
-    }
-
-    /**
-     * This will update a specific anchorPoint.
-     * /anchor_point/update [POST]
-     */
-    async anchorPointUpdate(requestParameters: AnchorPointUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AnchorPoint> {
-        const response = await this.anchorPointUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will update a specific anchorPoint.
+	 * /anchor_point/update [POST]
+	 */
+	async anchorPointUpdate(
+		requestParameters: AnchorPointUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<AnchorPoint> {
+		const response = await this.anchorPointUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

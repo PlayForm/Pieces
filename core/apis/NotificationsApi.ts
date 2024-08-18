@@ -12,53 +12,54 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Notification,
-} from '../models/index';
-import {
-    NotificationFromJSON,
-    NotificationToJSON,
-} from '../models/index';
+import type { Notification } from "../models/index.ts";
+import { NotificationToJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface SendLocalNotificationRequest {
-    notification?: Notification;
+	notification?: Notification;
 }
 
 /**
- * 
+ *
  */
 export class NotificationsApi extends runtime.BaseAPI {
+	/**
+	 * Retrieves a snapshot of all available models.
+	 * Send notification
+	 */
+	async sendLocalNotificationRaw(
+		requestParameters: SendLocalNotificationRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		const queryParameters: any = {};
 
-    /**
-     * Retrieves a snapshot of all available models.
-     * Send notification
-     */
-    async sendLocalNotificationRaw(requestParameters: SendLocalNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/notifications/local/send",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: NotificationToJSON(requestParameters.notification),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/notifications/local/send`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: NotificationToJSON(requestParameters.notification),
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Retrieves a snapshot of all available models.
-     * Send notification
-     */
-    async sendLocalNotification(requestParameters: SendLocalNotificationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.sendLocalNotificationRaw(requestParameters, initOverrides);
-    }
-
+	/**
+	 * Retrieves a snapshot of all available models.
+	 * Send notification
+	 */
+	async sendLocalNotification(
+		requestParameters: SendLocalNotificationRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.sendLocalNotificationRaw(requestParameters, initOverrides);
+	}
 }

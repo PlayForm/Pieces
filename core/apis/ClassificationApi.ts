@@ -12,54 +12,60 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  SeededFormat,
-} from '../models/index';
-import {
-    SeededFormatFromJSON,
-    SeededFormatToJSON,
-} from '../models/index';
+import type { SeededFormat } from "../models/index.ts";
+import { SeededFormatFromJSON, SeededFormatToJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface ConvertGenericClassificationRequest {
-    seededFormat?: SeededFormat;
+	seededFormat?: SeededFormat;
 }
 
 /**
- * 
+ *
  */
 export class ClassificationApi extends runtime.BaseAPI {
+	/**
+	 * This endpoint converts on a best effort basis from one generic format to another, i.e. from Code to HLJS
+	 * Convert Generic Classification
+	 */
+	async convertGenericClassificationRaw(
+		requestParameters: ConvertGenericClassificationRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SeededFormat>> {
+		const queryParameters: any = {};
 
-    /**
-     * This endpoint converts on a best effort basis from one generic format to another, i.e. from Code to HLJS 
-     * Convert Generic Classification
-     */
-    async convertGenericClassificationRaw(requestParameters: ConvertGenericClassificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SeededFormat>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/classification/generic/convert",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededFormatToJSON(requestParameters.seededFormat),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/classification/generic/convert`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededFormatToJSON(requestParameters.seededFormat),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SeededFormatFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SeededFormatFromJSON(jsonValue));
-    }
-
-    /**
-     * This endpoint converts on a best effort basis from one generic format to another, i.e. from Code to HLJS 
-     * Convert Generic Classification
-     */
-    async convertGenericClassification(requestParameters: ConvertGenericClassificationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SeededFormat> {
-        const response = await this.convertGenericClassificationRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This endpoint converts on a best effort basis from one generic format to another, i.e. from Code to HLJS
+	 * Convert Generic Classification
+	 */
+	async convertGenericClassification(
+		requestParameters: ConvertGenericClassificationRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SeededFormat> {
+		const response = await this.convertGenericClassificationRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

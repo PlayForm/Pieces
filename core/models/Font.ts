@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will describe the font that the user sees.
@@ -26,56 +25,58 @@ import {
  * @interface Font
  */
 export interface Font {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Font
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof Font
-     */
-    size: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Font
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Font
+	 */
+	size: number;
 }
 
 /**
  * Check if a given object implements the Font interface.
  */
 export function instanceOfFont(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "size" in value;
+	let isInstance = true;
+	isInstance = isInstance && "size" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FontFromJSON(json: any): Font {
-    return FontFromJSONTyped(json, false);
+	return FontFromJSONTyped(json, false);
 }
 
-export function FontFromJSONTyped(json: any, ignoreDiscriminator: boolean): Font {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'size': json['size'],
-    };
+export function FontFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Font {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		size: json["size"],
+	};
 }
 
 export function FontToJSON(value?: Font | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'size': value.size,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		size: value.size,
+	};
 }
-

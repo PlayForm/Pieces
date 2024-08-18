@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnchorPoint } from './AnchorPoint';
+import { exists } from "../runtime.ts";
+import type { AnchorPoint } from "./AnchorPoint.tsx";
+import { AnchorPointFromJSON, AnchorPointToJSON } from "./AnchorPoint.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AnchorPointFromJSON,
-    AnchorPointFromJSONTyped,
-    AnchorPointToJSON,
-} from './AnchorPoint';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is the plural of AnchorPoint.
@@ -38,72 +29,74 @@ import {
  * @interface AnchorPoints
  */
 export interface AnchorPoints {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AnchorPoints
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<AnchorPoint>}
-     * @memberof AnchorPoints
-     */
-    iterable: Array<AnchorPoint>;
-    /**
-     * This is a Map<String, int> where the the key is an AnchorPoint id.
-     * @type {{ [key: string]: number; }}
-     * @memberof AnchorPoints
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof AnchorPoints
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AnchorPoints
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<AnchorPoint>}
+	 * @memberof AnchorPoints
+	 */
+	iterable: AnchorPoint[];
+	/**
+	 * This is a Map<String, int> where the the key is an AnchorPoint id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof AnchorPoints
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof AnchorPoints
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the AnchorPoints interface.
  */
 export function instanceOfAnchorPoints(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AnchorPointsFromJSON(json: any): AnchorPoints {
-    return AnchorPointsFromJSONTyped(json, false);
+	return AnchorPointsFromJSONTyped(json, false);
 }
 
-export function AnchorPointsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AnchorPoints {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(AnchorPointFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function AnchorPointsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AnchorPoints {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(AnchorPointFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function AnchorPointsToJSON(value?: AnchorPoints | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(AnchorPointToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(AnchorPointToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

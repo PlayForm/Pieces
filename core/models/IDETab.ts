@@ -12,183 +12,186 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnonymousTemporalRange } from './AnonymousTemporalRange';
+import { exists } from "../runtime.ts";
+import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
-    AnonymousTemporalRangeFromJSON,
-    AnonymousTemporalRangeFromJSONTyped,
-    AnonymousTemporalRangeToJSON,
-} from './AnonymousTemporalRange';
-import type { Classification } from './Classification';
+	AnonymousTemporalRangeFromJSON,
+	AnonymousTemporalRangeToJSON,
+} from "./AnonymousTemporalRange.tsx";
+import type { Classification } from "./Classification.tsx";
 import {
-    ClassificationFromJSON,
-    ClassificationFromJSONTyped,
-    ClassificationToJSON,
-} from './Classification';
-import type { DocumentContributors } from './DocumentContributors';
+	ClassificationFromJSON,
+	ClassificationToJSON,
+} from "./Classification.tsx";
+import type { DocumentContributors } from "./DocumentContributors.tsx";
 import {
-    DocumentContributorsFromJSON,
-    DocumentContributorsFromJSONTyped,
-    DocumentContributorsToJSON,
-} from './DocumentContributors';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	DocumentContributorsFromJSON,
+	DocumentContributorsToJSON,
+} from "./DocumentContributors.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { IDESelections } from './IDESelections';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { IDESelections } from "./IDESelections.tsx";
 import {
-    IDESelectionsFromJSON,
-    IDESelectionsFromJSONTyped,
-    IDESelectionsToJSON,
-} from './IDESelections';
-import type { LanguageServerProtocol } from './LanguageServerProtocol';
+	IDESelectionsFromJSON,
+	IDESelectionsToJSON,
+} from "./IDESelections.tsx";
+import type { LanguageServerProtocol } from "./LanguageServerProtocol.tsx";
 import {
-    LanguageServerProtocolFromJSON,
-    LanguageServerProtocolFromJSONTyped,
-    LanguageServerProtocolToJSON,
-} from './LanguageServerProtocol';
-import type { SeededAnchor } from './SeededAnchor';
+	LanguageServerProtocolFromJSON,
+	LanguageServerProtocolToJSON,
+} from "./LanguageServerProtocol.tsx";
+import type { SeededAnchor } from "./SeededAnchor.tsx";
+import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
+import type { TransferableString } from "./TransferableString.tsx";
 import {
-    SeededAnchorFromJSON,
-    SeededAnchorFromJSONTyped,
-    SeededAnchorToJSON,
-} from './SeededAnchor';
-import type { TransferableString } from './TransferableString';
-import {
-    TransferableStringFromJSON,
-    TransferableStringFromJSONTyped,
-    TransferableStringToJSON,
-} from './TransferableString';
+	TransferableStringFromJSON,
+	TransferableStringToJSON,
+} from "./TransferableString.tsx";
 
 /**
  * This is a representation of an IDE Tab
- * 
+ *
  * value: is the value of the entire file(that being said we do not recomment passing this over as we can read this file on PieceOS side of things)
  * classification: this is the classifcation of this file
- * 
+ *
  * selection: this is a represention of a copy/paste/selection of a bit of code
- * 
+ *
  * anchor: this is the file path
- * 
+ *
  * range: this is the duration that this user has been on this Tab
- * 
+ *
  * current: is a boolean that will let us know if this is the current active tab
- * 
+ *
  * contributors: is the people that are extracted via git
- * 
+ *
  * lsp: this is the languageserverprotocol this is used for may things such as error,stackstrces, mainly information extracted from the lang server
  * @export
  * @interface IDETab
  */
 export interface IDETab {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof IDETab
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof IDETab
-     */
-    value?: TransferableString;
-    /**
-     * 
-     * @type {Classification}
-     * @memberof IDETab
-     */
-    classification?: Classification;
-    /**
-     * 
-     * @type {IDESelections}
-     * @memberof IDETab
-     */
-    selections?: IDESelections;
-    /**
-     * 
-     * @type {SeededAnchor}
-     * @memberof IDETab
-     */
-    anchor: SeededAnchor;
-    /**
-     * 
-     * @type {AnonymousTemporalRange}
-     * @memberof IDETab
-     */
-    range?: AnonymousTemporalRange;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IDETab
-     */
-    current?: boolean;
-    /**
-     * 
-     * @type {DocumentContributors}
-     * @memberof IDETab
-     */
-    contributors?: DocumentContributors;
-    /**
-     * 
-     * @type {LanguageServerProtocol}
-     * @memberof IDETab
-     */
-    lsp?: LanguageServerProtocol;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof IDETab
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof IDETab
+	 */
+	value?: TransferableString;
+	/**
+	 *
+	 * @type {Classification}
+	 * @memberof IDETab
+	 */
+	classification?: Classification;
+	/**
+	 *
+	 * @type {IDESelections}
+	 * @memberof IDETab
+	 */
+	selections?: IDESelections;
+	/**
+	 *
+	 * @type {SeededAnchor}
+	 * @memberof IDETab
+	 */
+	anchor: SeededAnchor;
+	/**
+	 *
+	 * @type {AnonymousTemporalRange}
+	 * @memberof IDETab
+	 */
+	range?: AnonymousTemporalRange;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof IDETab
+	 */
+	current?: boolean;
+	/**
+	 *
+	 * @type {DocumentContributors}
+	 * @memberof IDETab
+	 */
+	contributors?: DocumentContributors;
+	/**
+	 *
+	 * @type {LanguageServerProtocol}
+	 * @memberof IDETab
+	 */
+	lsp?: LanguageServerProtocol;
 }
 
 /**
  * Check if a given object implements the IDETab interface.
  */
 export function instanceOfIDETab(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "anchor" in value;
+	let isInstance = true;
+	isInstance = isInstance && "anchor" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function IDETabFromJSON(json: any): IDETab {
-    return IDETabFromJSONTyped(json, false);
+	return IDETabFromJSONTyped(json, false);
 }
 
-export function IDETabFromJSONTyped(json: any, ignoreDiscriminator: boolean): IDETab {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'value': !exists(json, 'value') ? undefined : TransferableStringFromJSON(json['value']),
-        'classification': !exists(json, 'classification') ? undefined : ClassificationFromJSON(json['classification']),
-        'selections': !exists(json, 'selections') ? undefined : IDESelectionsFromJSON(json['selections']),
-        'anchor': SeededAnchorFromJSON(json['anchor']),
-        'range': !exists(json, 'range') ? undefined : AnonymousTemporalRangeFromJSON(json['range']),
-        'current': !exists(json, 'current') ? undefined : json['current'],
-        'contributors': !exists(json, 'contributors') ? undefined : DocumentContributorsFromJSON(json['contributors']),
-        'lsp': !exists(json, 'lsp') ? undefined : LanguageServerProtocolFromJSON(json['lsp']),
-    };
+export function IDETabFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): IDETab {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		value: exists(json, "value")
+			? TransferableStringFromJSON(json["value"])
+			: undefined,
+		classification: exists(json, "classification")
+			? ClassificationFromJSON(json["classification"])
+			: undefined,
+		selections: exists(json, "selections")
+			? IDESelectionsFromJSON(json["selections"])
+			: undefined,
+		anchor: SeededAnchorFromJSON(json["anchor"]),
+		range: exists(json, "range")
+			? AnonymousTemporalRangeFromJSON(json["range"])
+			: undefined,
+		current: exists(json, "current") ? json["current"] : undefined,
+		contributors: exists(json, "contributors")
+			? DocumentContributorsFromJSON(json["contributors"])
+			: undefined,
+		lsp: exists(json, "lsp")
+			? LanguageServerProtocolFromJSON(json["lsp"])
+			: undefined,
+	};
 }
 
 export function IDETabToJSON(value?: IDETab | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'value': TransferableStringToJSON(value.value),
-        'classification': ClassificationToJSON(value.classification),
-        'selections': IDESelectionsToJSON(value.selections),
-        'anchor': SeededAnchorToJSON(value.anchor),
-        'range': AnonymousTemporalRangeToJSON(value.range),
-        'current': value.current,
-        'contributors': DocumentContributorsToJSON(value.contributors),
-        'lsp': LanguageServerProtocolToJSON(value.lsp),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		value: TransferableStringToJSON(value.value),
+		classification: ClassificationToJSON(value.classification),
+		selections: IDESelectionsToJSON(value.selections),
+		anchor: SeededAnchorToJSON(value.anchor),
+		range: AnonymousTemporalRangeToJSON(value.range),
+		current: value.current,
+		contributors: DocumentContributorsToJSON(value.contributors),
+		lsp: LanguageServerProtocolToJSON(value.lsp),
+	};
 }
-

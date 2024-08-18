@@ -12,78 +12,88 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  FormatsMetrics,
-  OrderedMetrics,
-} from '../models/index';
+import type { FormatsMetrics, OrderedMetrics } from "../models/index.ts";
 import {
-    FormatsMetricsFromJSON,
-    FormatsMetricsToJSON,
-    OrderedMetricsFromJSON,
-    OrderedMetricsToJSON,
-} from '../models/index';
+	FormatsMetricsFromJSON,
+	OrderedMetricsFromJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 /**
- * 
+ *
  */
 export class MetricsApi extends runtime.BaseAPI {
+	/**
+	 * This is going to get a snapshot of our FormatsMetrics
+	 * /metrics/formats [GET]
+	 */
+	async getMetricsFormatsRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<FormatsMetrics>> {
+		const queryParameters: any = {};
 
-    /**
-     * This is going to get a snapshot of our FormatsMetrics
-     * /metrics/formats [GET]
-     */
-    async getMetricsFormatsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FormatsMetrics>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/metrics/formats",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/metrics/formats`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			FormatsMetricsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FormatsMetricsFromJSON(jsonValue));
-    }
+	/**
+	 * This is going to get a snapshot of our FormatsMetrics
+	 * /metrics/formats [GET]
+	 */
+	async getMetricsFormats(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<FormatsMetrics> {
+		const response = await this.getMetricsFormatsRaw(initOverrides);
+		return await response.value();
+	}
 
-    /**
-     * This is going to get a snapshot of our FormatsMetrics
-     * /metrics/formats [GET]
-     */
-    async getMetricsFormats(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FormatsMetrics> {
-        const response = await this.getMetricsFormatsRaw(initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will return a list of code formats in desc order from most to least formats uploaded.
+	 * /metrics/formats/ordered [GET]
+	 */
+	async metricsFormatsOrderedRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<OrderedMetrics>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will return a list of code formats in desc order from most to least formats uploaded.
-     * /metrics/formats/ordered [GET]
-     */
-    async metricsFormatsOrderedRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderedMetrics>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/metrics/formats/ordered",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/metrics/formats/ordered`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			OrderedMetricsFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OrderedMetricsFromJSON(jsonValue));
-    }
-
-    /**
-     * This will return a list of code formats in desc order from most to least formats uploaded.
-     * /metrics/formats/ordered [GET]
-     */
-    async metricsFormatsOrdered(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderedMetrics> {
-        const response = await this.metricsFormatsOrderedRaw(initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will return a list of code formats in desc order from most to least formats uploaded.
+	 * /metrics/formats/ordered [GET]
+	 */
+	async metricsFormatsOrdered(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<OrderedMetrics> {
+		const response = await this.metricsFormatsOrderedRaw(initOverrides);
+		return await response.value();
+	}
 }

@@ -12,75 +12,86 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs } from './AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs';
+import { exists } from "../runtime.ts";
+import type { AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs } from "./AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs.tsx";
 import {
-    AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsFromJSON,
-    AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsFromJSONTyped,
-    AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsToJSON,
-} from './AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsFromJSON,
+	AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsToJSON,
+} from "./AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededTrackedAdoptionEvent
  */
 export interface SeededTrackedAdoptionEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededTrackedAdoptionEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs}
-     * @memberof SeededTrackedAdoptionEvent
-     */
-    identifierDescriptionPair?: AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededTrackedAdoptionEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs}
+	 * @memberof SeededTrackedAdoptionEvent
+	 */
+	identifierDescriptionPair?: AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs;
 }
 
 /**
  * Check if a given object implements the SeededTrackedAdoptionEvent interface.
  */
-export function instanceOfSeededTrackedAdoptionEvent(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededTrackedAdoptionEvent(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededTrackedAdoptionEventFromJSON(json: any): SeededTrackedAdoptionEvent {
-    return SeededTrackedAdoptionEventFromJSONTyped(json, false);
+export function SeededTrackedAdoptionEventFromJSON(
+	json: any,
+): SeededTrackedAdoptionEvent {
+	return SeededTrackedAdoptionEventFromJSONTyped(json, false);
 }
 
-export function SeededTrackedAdoptionEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededTrackedAdoptionEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'identifierDescriptionPair': !exists(json, 'identifier_description_pair') ? undefined : AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsFromJSON(json['identifier_description_pair']),
-    };
+export function SeededTrackedAdoptionEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededTrackedAdoptionEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		identifierDescriptionPair: exists(json, "identifier_description_pair")
+			? AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsFromJSON(
+					json["identifier_description_pair"],
+				)
+			: undefined,
+	};
 }
 
-export function SeededTrackedAdoptionEventToJSON(value?: SeededTrackedAdoptionEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'identifier_description_pair': AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsToJSON(value.identifierDescriptionPair),
-    };
+export function SeededTrackedAdoptionEventToJSON(
+	value?: SeededTrackedAdoptionEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		identifier_description_pair:
+			AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsToJSON(
+				value.identifierDescriptionPair,
+			),
+	};
 }
-

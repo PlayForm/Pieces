@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { DiscoveredAssets } from './DiscoveredAssets';
+import { exists } from "../runtime.ts";
+import type { DiscoveredAssets } from "./DiscoveredAssets.tsx";
 import {
-    DiscoveredAssetsFromJSON,
-    DiscoveredAssetsFromJSONTyped,
-    DiscoveredAssetsToJSON,
-} from './DiscoveredAssets';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	DiscoveredAssetsFromJSON,
+	DiscoveredAssetsToJSON,
+} from "./DiscoveredAssets.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This will return assets that were extracted from the html webpage. This will contain the original url so you can double check the results wtih the results you passed in, but it will remain in the same order that it was passed in if used within the /discover/discover/html/webpage endpoint.
@@ -32,65 +30,71 @@ import {
  * @interface DiscoveredHtmlWebpage
  */
 export interface DiscoveredHtmlWebpage {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DiscoveredHtmlWebpage
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {DiscoveredAssets}
-     * @memberof DiscoveredHtmlWebpage
-     */
-    assets: DiscoveredAssets;
-    /**
-     * 
-     * @type {string}
-     * @memberof DiscoveredHtmlWebpage
-     */
-    url: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DiscoveredHtmlWebpage
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {DiscoveredAssets}
+	 * @memberof DiscoveredHtmlWebpage
+	 */
+	assets: DiscoveredAssets;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof DiscoveredHtmlWebpage
+	 */
+	url: string;
 }
 
 /**
  * Check if a given object implements the DiscoveredHtmlWebpage interface.
  */
 export function instanceOfDiscoveredHtmlWebpage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "assets" in value;
-    isInstance = isInstance && "url" in value;
+	let isInstance = true;
+	isInstance = isInstance && "assets" in value;
+	isInstance = isInstance && "url" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function DiscoveredHtmlWebpageFromJSON(json: any): DiscoveredHtmlWebpage {
-    return DiscoveredHtmlWebpageFromJSONTyped(json, false);
+export function DiscoveredHtmlWebpageFromJSON(
+	json: any,
+): DiscoveredHtmlWebpage {
+	return DiscoveredHtmlWebpageFromJSONTyped(json, false);
 }
 
-export function DiscoveredHtmlWebpageFromJSONTyped(json: any, ignoreDiscriminator: boolean): DiscoveredHtmlWebpage {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'assets': DiscoveredAssetsFromJSON(json['assets']),
-        'url': json['url'],
-    };
+export function DiscoveredHtmlWebpageFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DiscoveredHtmlWebpage {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		assets: DiscoveredAssetsFromJSON(json["assets"]),
+		url: json["url"],
+	};
 }
 
-export function DiscoveredHtmlWebpageToJSON(value?: DiscoveredHtmlWebpage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'assets': DiscoveredAssetsToJSON(value.assets),
-        'url': value.url,
-    };
+export function DiscoveredHtmlWebpageToJSON(
+	value?: DiscoveredHtmlWebpage | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		assets: DiscoveredAssetsToJSON(value.assets),
+		url: value.url,
+	};
 }
-

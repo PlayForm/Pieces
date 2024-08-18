@@ -12,79 +12,84 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { BrowserTabs } from './BrowserTabs';
+import { exists } from "../runtime.ts";
+import type { BrowserTabs } from "./BrowserTabs.tsx";
+import { BrowserTabsFromJSON, BrowserTabsToJSON } from "./BrowserTabs.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    BrowserTabsFromJSON,
-    BrowserTabsFromJSONTyped,
-    BrowserTabsToJSON,
-} from './BrowserTabs';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the given context for the browser,
- * 
+ *
  * a client can pass through many of the same tab if they would like,
- * 
+ *
  * note: however please try to only side 3 unique website/anchors
  * @export
  * @interface WorkstreamEventTriggerContextBrowser
  */
 export interface WorkstreamEventTriggerContextBrowser {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamEventTriggerContextBrowser
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {BrowserTabs}
-     * @memberof WorkstreamEventTriggerContextBrowser
-     */
-    tabs?: BrowserTabs;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamEventTriggerContextBrowser
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {BrowserTabs}
+	 * @memberof WorkstreamEventTriggerContextBrowser
+	 */
+	tabs?: BrowserTabs;
 }
 
 /**
  * Check if a given object implements the WorkstreamEventTriggerContextBrowser interface.
  */
-export function instanceOfWorkstreamEventTriggerContextBrowser(value: object): boolean {
-    let isInstance = true;
+export function instanceOfWorkstreamEventTriggerContextBrowser(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamEventTriggerContextBrowserFromJSON(json: any): WorkstreamEventTriggerContextBrowser {
-    return WorkstreamEventTriggerContextBrowserFromJSONTyped(json, false);
+export function WorkstreamEventTriggerContextBrowserFromJSON(
+	json: any,
+): WorkstreamEventTriggerContextBrowser {
+	return WorkstreamEventTriggerContextBrowserFromJSONTyped(json, false);
 }
 
-export function WorkstreamEventTriggerContextBrowserFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamEventTriggerContextBrowser {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'tabs': !exists(json, 'tabs') ? undefined : BrowserTabsFromJSON(json['tabs']),
-    };
+export function WorkstreamEventTriggerContextBrowserFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamEventTriggerContextBrowser {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		tabs: exists(json, "tabs")
+			? BrowserTabsFromJSON(json["tabs"])
+			: undefined,
+	};
 }
 
-export function WorkstreamEventTriggerContextBrowserToJSON(value?: WorkstreamEventTriggerContextBrowser | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'tabs': BrowserTabsToJSON(value.tabs),
-    };
+export function WorkstreamEventTriggerContextBrowserToJSON(
+	value?: WorkstreamEventTriggerContextBrowser | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		tabs: BrowserTabsToJSON(value.tabs),
+	};
 }
-

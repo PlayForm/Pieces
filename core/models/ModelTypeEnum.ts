@@ -12,28 +12,28 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This will describe the type of Model balanced, speed, accuracy...
  * @export
  */
 export const ModelTypeEnum = {
-    Balanced: 'BALANCED',
-    Speed: 'SPEED',
-    Accuracy: 'ACCURACY'
+	Balanced: "BALANCED",
+	Speed: "SPEED",
+	Accuracy: "ACCURACY",
 } as const;
-export type ModelTypeEnum = typeof ModelTypeEnum[keyof typeof ModelTypeEnum];
-
+export type ModelTypeEnum = (typeof ModelTypeEnum)[keyof typeof ModelTypeEnum];
 
 export function ModelTypeEnumFromJSON(json: any): ModelTypeEnum {
-    return ModelTypeEnumFromJSONTyped(json, false);
+	return ModelTypeEnumFromJSONTyped(json, false);
 }
 
-export function ModelTypeEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelTypeEnum {
-    return json as ModelTypeEnum;
+export function ModelTypeEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ModelTypeEnum {
+	return json as ModelTypeEnum;
 }
 
 export function ModelTypeEnumToJSON(value?: ModelTypeEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

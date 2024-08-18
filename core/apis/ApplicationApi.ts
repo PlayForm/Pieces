@@ -12,54 +12,60 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Application,
-} from '../models/index';
-import {
-    ApplicationFromJSON,
-    ApplicationToJSON,
-} from '../models/index';
+import type { Application } from "../models/index.ts";
+import { ApplicationFromJSON, ApplicationToJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface ApplicationUpdateRequest {
-    application?: Application;
+	application?: Application;
 }
 
 /**
- * 
+ *
  */
 export class ApplicationApi extends runtime.BaseAPI {
+	/**
+	 * This is an endpoint for updating an application.
+	 * /application/update [GET]
+	 */
+	async applicationUpdateRaw(
+		requestParameters: ApplicationUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Application>> {
+		const queryParameters: any = {};
 
-    /**
-     * This is an endpoint for updating an application.
-     * /application/update [GET]
-     */
-    async applicationUpdateRaw(requestParameters: ApplicationUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Application>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/application/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: ApplicationToJSON(requestParameters.application),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/application/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ApplicationToJSON(requestParameters.application),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ApplicationFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApplicationFromJSON(jsonValue));
-    }
-
-    /**
-     * This is an endpoint for updating an application.
-     * /application/update [GET]
-     */
-    async applicationUpdate(requestParameters: ApplicationUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Application> {
-        const response = await this.applicationUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This is an endpoint for updating an application.
+	 * /application/update [GET]
+	 */
+	async applicationUpdate(
+		requestParameters: ApplicationUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Application> {
+		const response = await this.applicationUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

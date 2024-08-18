@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { FlattenedAssets } from './FlattenedAssets';
+import { exists } from "../runtime.ts";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { Space } from './Space';
-import {
-    SpaceFromJSON,
-    SpaceFromJSONTyped,
-    SpaceToJSON,
-} from './Space';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { Space } from "./Space.tsx";
+import { SpaceFromJSON, SpaceToJSON } from "./Space.tsx";
 
 /**
  * Numbers related to search results
@@ -32,71 +27,79 @@ import {
  * @interface TrackedAssetsEventSearchMetadataResults
  */
 export interface TrackedAssetsEventSearchMetadataResults {
-    /**
-     * Total number of fuzzy results
-     * @type {number}
-     * @memberof TrackedAssetsEventSearchMetadataResults
-     */
-    fuzzy?: number;
-    /**
-     * Total number of exact results
-     * @type {number}
-     * @memberof TrackedAssetsEventSearchMetadataResults
-     */
-    exact?: number;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof TrackedAssetsEventSearchMetadataResults
-     */
-    assets?: FlattenedAssets;
-    /**
-     * 
-     * @type {Space}
-     * @memberof TrackedAssetsEventSearchMetadataResults
-     */
-    space?: Space;
+	/**
+	 * Total number of fuzzy results
+	 * @type {number}
+	 * @memberof TrackedAssetsEventSearchMetadataResults
+	 */
+	fuzzy?: number;
+	/**
+	 * Total number of exact results
+	 * @type {number}
+	 * @memberof TrackedAssetsEventSearchMetadataResults
+	 */
+	exact?: number;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof TrackedAssetsEventSearchMetadataResults
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 *
+	 * @type {Space}
+	 * @memberof TrackedAssetsEventSearchMetadataResults
+	 */
+	space?: Space;
 }
 
 /**
  * Check if a given object implements the TrackedAssetsEventSearchMetadataResults interface.
  */
-export function instanceOfTrackedAssetsEventSearchMetadataResults(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTrackedAssetsEventSearchMetadataResults(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TrackedAssetsEventSearchMetadataResultsFromJSON(json: any): TrackedAssetsEventSearchMetadataResults {
-    return TrackedAssetsEventSearchMetadataResultsFromJSONTyped(json, false);
+export function TrackedAssetsEventSearchMetadataResultsFromJSON(
+	json: any,
+): TrackedAssetsEventSearchMetadataResults {
+	return TrackedAssetsEventSearchMetadataResultsFromJSONTyped(json, false);
 }
 
-export function TrackedAssetsEventSearchMetadataResultsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedAssetsEventSearchMetadataResults {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'fuzzy': !exists(json, 'fuzzy') ? undefined : json['fuzzy'],
-        'exact': !exists(json, 'exact') ? undefined : json['exact'],
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'space': !exists(json, 'space') ? undefined : SpaceFromJSON(json['space']),
-    };
+export function TrackedAssetsEventSearchMetadataResultsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedAssetsEventSearchMetadataResults {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		fuzzy: exists(json, "fuzzy") ? json["fuzzy"] : undefined,
+		exact: exists(json, "exact") ? json["exact"] : undefined,
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		space: exists(json, "space") ? SpaceFromJSON(json["space"]) : undefined,
+	};
 }
 
-export function TrackedAssetsEventSearchMetadataResultsToJSON(value?: TrackedAssetsEventSearchMetadataResults | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'fuzzy': value.fuzzy,
-        'exact': value.exact,
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'space': SpaceToJSON(value.space),
-    };
+export function TrackedAssetsEventSearchMetadataResultsToJSON(
+	value?: TrackedAssetsEventSearchMetadataResults | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		fuzzy: value.fuzzy,
+		exact: value.exact,
+		assets: FlattenedAssetsToJSON(value.assets),
+		space: SpaceToJSON(value.space),
+	};
 }
-

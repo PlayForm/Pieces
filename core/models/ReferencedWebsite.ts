@@ -12,84 +12,86 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedWebsite } from './FlattenedWebsite';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedWebsite } from "./FlattenedWebsite.tsx";
 import {
-    FlattenedWebsiteFromJSON,
-    FlattenedWebsiteFromJSONTyped,
-    FlattenedWebsiteToJSON,
-} from './FlattenedWebsite';
+	FlattenedWebsiteFromJSON,
+	FlattenedWebsiteToJSON,
+} from "./FlattenedWebsite.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface ReferencedWebsite
  */
 export interface ReferencedWebsite {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedWebsite
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedWebsite
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedWebsite}
-     * @memberof ReferencedWebsite
-     */
-    reference?: FlattenedWebsite;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedWebsite
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedWebsite
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedWebsite}
+	 * @memberof ReferencedWebsite
+	 */
+	reference?: FlattenedWebsite;
 }
 
 /**
  * Check if a given object implements the ReferencedWebsite interface.
  */
 export function instanceOfReferencedWebsite(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReferencedWebsiteFromJSON(json: any): ReferencedWebsite {
-    return ReferencedWebsiteFromJSONTyped(json, false);
+	return ReferencedWebsiteFromJSONTyped(json, false);
 }
 
-export function ReferencedWebsiteFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedWebsite {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedWebsiteFromJSON(json['reference']),
-    };
+export function ReferencedWebsiteFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedWebsite {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedWebsiteFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
 export function ReferencedWebsiteToJSON(value?: ReferencedWebsite | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedWebsiteToJSON(value.reference),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedWebsiteToJSON(value.reference),
+	};
 }
-

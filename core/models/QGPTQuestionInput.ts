@@ -12,146 +12,151 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedConversationMessages } from './FlattenedConversationMessages';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
-    FlattenedConversationMessagesFromJSON,
-    FlattenedConversationMessagesFromJSONTyped,
-    FlattenedConversationMessagesToJSON,
-} from './FlattenedConversationMessages';
-import type { QGPTPromptPipeline } from './QGPTPromptPipeline';
+	FlattenedConversationMessagesFromJSON,
+	FlattenedConversationMessagesToJSON,
+} from "./FlattenedConversationMessages.tsx";
+import type { QGPTPromptPipeline } from "./QGPTPromptPipeline.tsx";
 import {
-    QGPTPromptPipelineFromJSON,
-    QGPTPromptPipelineFromJSONTyped,
-    QGPTPromptPipelineToJSON,
-} from './QGPTPromptPipeline';
-import type { RelevantQGPTSeeds } from './RelevantQGPTSeeds';
+	QGPTPromptPipelineFromJSON,
+	QGPTPromptPipelineToJSON,
+} from "./QGPTPromptPipeline.tsx";
+import type { RelevantQGPTSeeds } from "./RelevantQGPTSeeds.tsx";
 import {
-    RelevantQGPTSeedsFromJSON,
-    RelevantQGPTSeedsFromJSONTyped,
-    RelevantQGPTSeedsToJSON,
-} from './RelevantQGPTSeeds';
-import type { TemporalRangeGrounding } from './TemporalRangeGrounding';
+	RelevantQGPTSeedsFromJSON,
+	RelevantQGPTSeedsToJSON,
+} from "./RelevantQGPTSeeds.tsx";
+import type { TemporalRangeGrounding } from "./TemporalRangeGrounding.tsx";
 import {
-    TemporalRangeGroundingFromJSON,
-    TemporalRangeGroundingFromJSONTyped,
-    TemporalRangeGroundingToJSON,
-} from './TemporalRangeGrounding';
+	TemporalRangeGroundingFromJSON,
+	TemporalRangeGroundingToJSON,
+} from "./TemporalRangeGrounding.tsx";
 
 /**
  * This is the body input for the /code_gpt/question.
- * 
+ *
  * Note:
  * - each relevant seed, must require at minimum a Seed or an id used from the /code_gpt/relevance endpoint or we will throw an error.
  * @export
  * @interface QGPTQuestionInput
  */
 export interface QGPTQuestionInput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTQuestionInput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {RelevantQGPTSeeds}
-     * @memberof QGPTQuestionInput
-     */
-    relevant: RelevantQGPTSeeds;
-    /**
-     * This is the user asked question.
-     * @type {string}
-     * @memberof QGPTQuestionInput
-     */
-    query: string;
-    /**
-     * optional application id
-     * @type {string}
-     * @memberof QGPTQuestionInput
-     */
-    application?: string;
-    /**
-     * optional model id
-     * @type {string}
-     * @memberof QGPTQuestionInput
-     */
-    model?: string;
-    /**
-     * 
-     * @type {FlattenedConversationMessages}
-     * @memberof QGPTQuestionInput
-     */
-    messages?: FlattenedConversationMessages;
-    /**
-     * 
-     * @type {QGPTPromptPipeline}
-     * @memberof QGPTQuestionInput
-     */
-    pipeline?: QGPTPromptPipeline;
-    /**
-     * 
-     * @type {TemporalRangeGrounding}
-     * @memberof QGPTQuestionInput
-     */
-    temporal?: TemporalRangeGrounding;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTQuestionInput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {RelevantQGPTSeeds}
+	 * @memberof QGPTQuestionInput
+	 */
+	relevant: RelevantQGPTSeeds;
+	/**
+	 * This is the user asked question.
+	 * @type {string}
+	 * @memberof QGPTQuestionInput
+	 */
+	query: string;
+	/**
+	 * optional application id
+	 * @type {string}
+	 * @memberof QGPTQuestionInput
+	 */
+	application?: string;
+	/**
+	 * optional model id
+	 * @type {string}
+	 * @memberof QGPTQuestionInput
+	 */
+	model?: string;
+	/**
+	 *
+	 * @type {FlattenedConversationMessages}
+	 * @memberof QGPTQuestionInput
+	 */
+	messages?: FlattenedConversationMessages;
+	/**
+	 *
+	 * @type {QGPTPromptPipeline}
+	 * @memberof QGPTQuestionInput
+	 */
+	pipeline?: QGPTPromptPipeline;
+	/**
+	 *
+	 * @type {TemporalRangeGrounding}
+	 * @memberof QGPTQuestionInput
+	 */
+	temporal?: TemporalRangeGrounding;
 }
 
 /**
  * Check if a given object implements the QGPTQuestionInput interface.
  */
 export function instanceOfQGPTQuestionInput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "relevant" in value;
-    isInstance = isInstance && "query" in value;
+	let isInstance = true;
+	isInstance = isInstance && "relevant" in value;
+	isInstance = isInstance && "query" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function QGPTQuestionInputFromJSON(json: any): QGPTQuestionInput {
-    return QGPTQuestionInputFromJSONTyped(json, false);
+	return QGPTQuestionInputFromJSONTyped(json, false);
 }
 
-export function QGPTQuestionInputFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTQuestionInput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'relevant': RelevantQGPTSeedsFromJSON(json['relevant']),
-        'query': json['query'],
-        'application': !exists(json, 'application') ? undefined : json['application'],
-        'model': !exists(json, 'model') ? undefined : json['model'],
-        'messages': !exists(json, 'messages') ? undefined : FlattenedConversationMessagesFromJSON(json['messages']),
-        'pipeline': !exists(json, 'pipeline') ? undefined : QGPTPromptPipelineFromJSON(json['pipeline']),
-        'temporal': !exists(json, 'temporal') ? undefined : TemporalRangeGroundingFromJSON(json['temporal']),
-    };
+export function QGPTQuestionInputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTQuestionInput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		relevant: RelevantQGPTSeedsFromJSON(json["relevant"]),
+		query: json["query"],
+		application: exists(json, "application")
+			? json["application"]
+			: undefined,
+		model: exists(json, "model") ? json["model"] : undefined,
+		messages: exists(json, "messages")
+			? FlattenedConversationMessagesFromJSON(json["messages"])
+			: undefined,
+		pipeline: exists(json, "pipeline")
+			? QGPTPromptPipelineFromJSON(json["pipeline"])
+			: undefined,
+		temporal: exists(json, "temporal")
+			? TemporalRangeGroundingFromJSON(json["temporal"])
+			: undefined,
+	};
 }
 
 export function QGPTQuestionInputToJSON(value?: QGPTQuestionInput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'relevant': RelevantQGPTSeedsToJSON(value.relevant),
-        'query': value.query,
-        'application': value.application,
-        'model': value.model,
-        'messages': FlattenedConversationMessagesToJSON(value.messages),
-        'pipeline': QGPTPromptPipelineToJSON(value.pipeline),
-        'temporal': TemporalRangeGroundingToJSON(value.temporal),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		relevant: RelevantQGPTSeedsToJSON(value.relevant),
+		query: value.query,
+		application: value.application,
+		model: value.model,
+		messages: FlattenedConversationMessagesToJSON(value.messages),
+		pipeline: QGPTPromptPipelineToJSON(value.pipeline),
+		temporal: TemporalRangeGroundingToJSON(value.temporal),
+	};
 }
-

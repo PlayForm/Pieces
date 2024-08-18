@@ -12,76 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FormatMetric } from './FormatMetric';
-import {
-    FormatMetricFromJSON,
-    FormatMetricFromJSONTyped,
-    FormatMetricToJSON,
-} from './FormatMetric';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FormatMetric } from "./FormatMetric.tsx";
+import { FormatMetricFromJSON, FormatMetricToJSON } from "./FormatMetric.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface FormatsMetrics
  */
 export interface FormatsMetrics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FormatsMetrics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<FormatMetric>}
-     * @memberof FormatsMetrics
-     */
-    iterable: Array<FormatMetric>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FormatsMetrics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<FormatMetric>}
+	 * @memberof FormatsMetrics
+	 */
+	iterable: FormatMetric[];
 }
 
 /**
  * Check if a given object implements the FormatsMetrics interface.
  */
 export function instanceOfFormatsMetrics(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FormatsMetricsFromJSON(json: any): FormatsMetrics {
-    return FormatsMetricsFromJSONTyped(json, false);
+	return FormatsMetricsFromJSONTyped(json, false);
 }
 
-export function FormatsMetricsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatsMetrics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(FormatMetricFromJSON)),
-    };
+export function FormatsMetricsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FormatsMetrics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(FormatMetricFromJSON),
+	};
 }
 
 export function FormatsMetricsToJSON(value?: FormatsMetrics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(FormatMetricToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(FormatMetricToJSON),
+	};
 }
-

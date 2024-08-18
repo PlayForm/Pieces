@@ -12,37 +12,26 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Auth0Identity } from './Auth0Identity';
+import { exists } from "../runtime.ts";
+import type { Auth0Identity } from "./Auth0Identity.tsx";
 import {
-    Auth0IdentityFromJSON,
-    Auth0IdentityFromJSONTyped,
-    Auth0IdentityToJSON,
-} from './Auth0Identity';
-import type { Auth0Redirects } from './Auth0Redirects';
+	Auth0IdentityFromJSON,
+	Auth0IdentityToJSON,
+} from "./Auth0Identity.tsx";
+import type { Auth0Redirects } from "./Auth0Redirects.tsx";
 import {
-    Auth0RedirectsFromJSON,
-    Auth0RedirectsFromJSONTyped,
-    Auth0RedirectsToJSON,
-} from './Auth0Redirects';
-import type { Auth0User } from './Auth0User';
+	Auth0RedirectsFromJSON,
+	Auth0RedirectsToJSON,
+} from "./Auth0Redirects.tsx";
+import type { Auth0User } from "./Auth0User.tsx";
+import { Auth0UserFromJSON, Auth0UserToJSON } from "./Auth0User.tsx";
+import type { Auth0UserMetadata } from "./Auth0UserMetadata.tsx";
 import {
-    Auth0UserFromJSON,
-    Auth0UserFromJSONTyped,
-    Auth0UserToJSON,
-} from './Auth0User';
-import type { Auth0UserMetadata } from './Auth0UserMetadata';
-import {
-    Auth0UserMetadataFromJSON,
-    Auth0UserMetadataFromJSONTyped,
-    Auth0UserMetadataToJSON,
-} from './Auth0UserMetadata';
-import type { OAuthGroup } from './OAuthGroup';
-import {
-    OAuthGroupFromJSON,
-    OAuthGroupFromJSONTyped,
-    OAuthGroupToJSON,
-} from './OAuthGroup';
+	Auth0UserMetadataFromJSON,
+	Auth0UserMetadataToJSON,
+} from "./Auth0UserMetadata.tsx";
+import type { OAuthGroup } from "./OAuthGroup.tsx";
+import { OAuthGroupFromJSON, OAuthGroupToJSON } from "./OAuthGroup.tsx";
 
 /**
  * An object representing all of the properties that are available within a Auth0 PKCE Flow
@@ -50,116 +39,122 @@ import {
  * @interface Auth0
  */
 export interface Auth0 {
-    /**
-     * 
-     * @type {Auth0Identity}
-     * @memberof Auth0
-     */
-    identity?: Auth0Identity;
-    /**
-     * 
-     * @type {Auth0User}
-     * @memberof Auth0
-     */
-    user?: Auth0User;
-    /**
-     * 
-     * @type {Auth0UserMetadata}
-     * @memberof Auth0
-     */
-    metadata?: Auth0UserMetadata;
-    /**
-     * The domain of your Auth 0 Service
-     * @type {string}
-     * @memberof Auth0
-     */
-    domain: string;
-    /**
-     * The Client ID for your Auth0 Service
-     * @type {string}
-     * @memberof Auth0
-     */
-    client: string;
-    /**
-     * The Server Audience of your Auth0 Service
-     * @type {string}
-     * @memberof Auth0
-     */
-    audience: string;
-    /**
-     * 
-     * @type {Auth0Redirects}
-     * @memberof Auth0
-     */
-    redirects: Auth0Redirects;
-    /**
-     * 
-     * @type {OAuthGroup}
-     * @memberof Auth0
-     */
-    oAuth: OAuthGroup;
-    /**
-     * An optional namespace parameter to add an additional namespace
-     * @type {string}
-     * @memberof Auth0
-     */
-    namespace?: string;
+	/**
+	 *
+	 * @type {Auth0Identity}
+	 * @memberof Auth0
+	 */
+	identity?: Auth0Identity;
+	/**
+	 *
+	 * @type {Auth0User}
+	 * @memberof Auth0
+	 */
+	user?: Auth0User;
+	/**
+	 *
+	 * @type {Auth0UserMetadata}
+	 * @memberof Auth0
+	 */
+	metadata?: Auth0UserMetadata;
+	/**
+	 * The domain of your Auth 0 Service
+	 * @type {string}
+	 * @memberof Auth0
+	 */
+	domain: string;
+	/**
+	 * The Client ID for your Auth0 Service
+	 * @type {string}
+	 * @memberof Auth0
+	 */
+	client: string;
+	/**
+	 * The Server Audience of your Auth0 Service
+	 * @type {string}
+	 * @memberof Auth0
+	 */
+	audience: string;
+	/**
+	 *
+	 * @type {Auth0Redirects}
+	 * @memberof Auth0
+	 */
+	redirects: Auth0Redirects;
+	/**
+	 *
+	 * @type {OAuthGroup}
+	 * @memberof Auth0
+	 */
+	oAuth: OAuthGroup;
+	/**
+	 * An optional namespace parameter to add an additional namespace
+	 * @type {string}
+	 * @memberof Auth0
+	 */
+	namespace?: string;
 }
 
 /**
  * Check if a given object implements the Auth0 interface.
  */
 export function instanceOfAuth0(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "domain" in value;
-    isInstance = isInstance && "client" in value;
-    isInstance = isInstance && "audience" in value;
-    isInstance = isInstance && "redirects" in value;
-    isInstance = isInstance && "oAuth" in value;
+	let isInstance = true;
+	isInstance = isInstance && "domain" in value;
+	isInstance = isInstance && "client" in value;
+	isInstance = isInstance && "audience" in value;
+	isInstance = isInstance && "redirects" in value;
+	isInstance = isInstance && "oAuth" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function Auth0FromJSON(json: any): Auth0 {
-    return Auth0FromJSONTyped(json, false);
+	return Auth0FromJSONTyped(json, false);
 }
 
-export function Auth0FromJSONTyped(json: any, ignoreDiscriminator: boolean): Auth0 {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'identity': !exists(json, 'identity') ? undefined : Auth0IdentityFromJSON(json['identity']),
-        'user': !exists(json, 'user') ? undefined : Auth0UserFromJSON(json['user']),
-        'metadata': !exists(json, 'metadata') ? undefined : Auth0UserMetadataFromJSON(json['metadata']),
-        'domain': json['domain'],
-        'client': json['client'],
-        'audience': json['audience'],
-        'redirects': Auth0RedirectsFromJSON(json['redirects']),
-        'oAuth': OAuthGroupFromJSON(json['oAuth']),
-        'namespace': !exists(json, 'namespace') ? undefined : json['namespace'],
-    };
+export function Auth0FromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Auth0 {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		identity: exists(json, "identity")
+			? Auth0IdentityFromJSON(json["identity"])
+			: undefined,
+		user: exists(json, "user")
+			? Auth0UserFromJSON(json["user"])
+			: undefined,
+		metadata: exists(json, "metadata")
+			? Auth0UserMetadataFromJSON(json["metadata"])
+			: undefined,
+		domain: json["domain"],
+		client: json["client"],
+		audience: json["audience"],
+		redirects: Auth0RedirectsFromJSON(json["redirects"]),
+		oAuth: OAuthGroupFromJSON(json["oAuth"]),
+		namespace: exists(json, "namespace") ? json["namespace"] : undefined,
+	};
 }
 
 export function Auth0ToJSON(value?: Auth0 | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'identity': Auth0IdentityToJSON(value.identity),
-        'user': Auth0UserToJSON(value.user),
-        'metadata': Auth0UserMetadataToJSON(value.metadata),
-        'domain': value.domain,
-        'client': value.client,
-        'audience': value.audience,
-        'redirects': Auth0RedirectsToJSON(value.redirects),
-        'oAuth': OAuthGroupToJSON(value.oAuth),
-        'namespace': value.namespace,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		identity: Auth0IdentityToJSON(value.identity),
+		user: Auth0UserToJSON(value.user),
+		metadata: Auth0UserMetadataToJSON(value.metadata),
+		domain: value.domain,
+		client: value.client,
+		audience: value.audience,
+		redirects: Auth0RedirectsToJSON(value.redirects),
+		oAuth: OAuthGroupToJSON(value.oAuth),
+		namespace: value.namespace,
+	};
 }
-

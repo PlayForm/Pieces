@@ -12,89 +12,86 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Assets } from './Assets';
+import { exists } from "../runtime.ts";
+import type { Assets } from "./Assets.tsx";
+import { AssetsFromJSON, AssetsToJSON } from "./Assets.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AssetsFromJSON,
-    AssetsFromJSONTyped,
-    AssetsToJSON,
-} from './Assets';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the ReuseSuggestion. Mainly creating an additional model here because I imagine that we will want to add some additional data to this in the future (potentially with more numerical data that is emitted from the ML Models)
- * 
+ *
  * **Note: suggested is required here because we will want to say if we suggested to take this action of reuse or not.
- * 
+ *
  * ** Thoughts here. We could potentially return Assets: which would be an iterable of assets in most relavent order for the user to reuse if they want.
  * @export
  * @interface ReuseSuggestion
  */
 export interface ReuseSuggestion {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReuseSuggestion
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is a boolean, that will say if you should or should not take action.
-     * @type {boolean}
-     * @memberof ReuseSuggestion
-     */
-    suggested: boolean;
-    /**
-     * 
-     * @type {Assets}
-     * @memberof ReuseSuggestion
-     */
-    assets: Assets;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReuseSuggestion
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is a boolean, that will say if you should or should not take action.
+	 * @type {boolean}
+	 * @memberof ReuseSuggestion
+	 */
+	suggested: boolean;
+	/**
+	 *
+	 * @type {Assets}
+	 * @memberof ReuseSuggestion
+	 */
+	assets: Assets;
 }
 
 /**
  * Check if a given object implements the ReuseSuggestion interface.
  */
 export function instanceOfReuseSuggestion(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "suggested" in value;
-    isInstance = isInstance && "assets" in value;
+	let isInstance = true;
+	isInstance = isInstance && "suggested" in value;
+	isInstance = isInstance && "assets" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReuseSuggestionFromJSON(json: any): ReuseSuggestion {
-    return ReuseSuggestionFromJSONTyped(json, false);
+	return ReuseSuggestionFromJSONTyped(json, false);
 }
 
-export function ReuseSuggestionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReuseSuggestion {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'suggested': json['suggested'],
-        'assets': AssetsFromJSON(json['assets']),
-    };
+export function ReuseSuggestionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReuseSuggestion {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		suggested: json["suggested"],
+		assets: AssetsFromJSON(json["assets"]),
+	};
 }
 
 export function ReuseSuggestionToJSON(value?: ReuseSuggestion | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'suggested': value.suggested,
-        'assets': AssetsToJSON(value.assets),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		suggested: value.suggested,
+		assets: AssetsToJSON(value.assets),
+	};
 }
-

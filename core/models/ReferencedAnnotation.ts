@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAnnotation } from './FlattenedAnnotation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAnnotation } from "./FlattenedAnnotation.tsx";
 import {
-    FlattenedAnnotationFromJSON,
-    FlattenedAnnotationFromJSONTyped,
-    FlattenedAnnotationToJSON,
-} from './FlattenedAnnotation';
+	FlattenedAnnotationFromJSON,
+	FlattenedAnnotationToJSON,
+} from "./FlattenedAnnotation.tsx";
 
 /**
  * This is the referenced version of a annotation, main used for the uuid.
@@ -32,64 +30,70 @@ import {
  * @interface ReferencedAnnotation
  */
 export interface ReferencedAnnotation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedAnnotation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedAnnotation
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedAnnotation}
-     * @memberof ReferencedAnnotation
-     */
-    reference?: FlattenedAnnotation;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedAnnotation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedAnnotation
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedAnnotation}
+	 * @memberof ReferencedAnnotation
+	 */
+	reference?: FlattenedAnnotation;
 }
 
 /**
  * Check if a given object implements the ReferencedAnnotation interface.
  */
 export function instanceOfReferencedAnnotation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReferencedAnnotationFromJSON(json: any): ReferencedAnnotation {
-    return ReferencedAnnotationFromJSONTyped(json, false);
+	return ReferencedAnnotationFromJSONTyped(json, false);
 }
 
-export function ReferencedAnnotationFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedAnnotation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedAnnotationFromJSON(json['reference']),
-    };
+export function ReferencedAnnotationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedAnnotation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedAnnotationFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
-export function ReferencedAnnotationToJSON(value?: ReferencedAnnotation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedAnnotationToJSON(value.reference),
-    };
+export function ReferencedAnnotationToJSON(
+	value?: ReferencedAnnotation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedAnnotationToJSON(value.reference),
+	};
 }
-

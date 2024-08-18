@@ -12,19 +12,11 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { OAuthAccount } from './OAuthAccount';
-import {
-    OAuthAccountFromJSON,
-    OAuthAccountFromJSONTyped,
-    OAuthAccountToJSON,
-} from './OAuthAccount';
-import type { OAuthToken } from './OAuthToken';
-import {
-    OAuthTokenFromJSON,
-    OAuthTokenFromJSONTyped,
-    OAuthTokenToJSON,
-} from './OAuthToken';
+import { exists } from "../runtime.ts";
+import type { OAuthAccount } from "./OAuthAccount.tsx";
+import { OAuthAccountFromJSON, OAuthAccountToJSON } from "./OAuthAccount.tsx";
+import type { OAuthToken } from "./OAuthToken.tsx";
+import { OAuthTokenFromJSON, OAuthTokenToJSON } from "./OAuthToken.tsx";
 
 /**
  * A model to group all of the properties associated with OAuthGroup
@@ -32,55 +24,59 @@ import {
  * @interface OAuthGroup
  */
 export interface OAuthGroup {
-    /**
-     * 
-     * @type {OAuthToken}
-     * @memberof OAuthGroup
-     */
-    token?: OAuthToken;
-    /**
-     * 
-     * @type {OAuthAccount}
-     * @memberof OAuthGroup
-     */
-    account?: OAuthAccount;
+	/**
+	 *
+	 * @type {OAuthToken}
+	 * @memberof OAuthGroup
+	 */
+	token?: OAuthToken;
+	/**
+	 *
+	 * @type {OAuthAccount}
+	 * @memberof OAuthGroup
+	 */
+	account?: OAuthAccount;
 }
 
 /**
  * Check if a given object implements the OAuthGroup interface.
  */
-export function instanceOfOAuthGroup(value: object): boolean {
-    let isInstance = true;
+export function instanceOfOAuthGroup(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function OAuthGroupFromJSON(json: any): OAuthGroup {
-    return OAuthGroupFromJSONTyped(json, false);
+	return OAuthGroupFromJSONTyped(json, false);
 }
 
-export function OAuthGroupFromJSONTyped(json: any, ignoreDiscriminator: boolean): OAuthGroup {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'token': !exists(json, 'token') ? undefined : OAuthTokenFromJSON(json['token']),
-        'account': !exists(json, 'account') ? undefined : OAuthAccountFromJSON(json['account']),
-    };
+export function OAuthGroupFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OAuthGroup {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		token: exists(json, "token")
+			? OAuthTokenFromJSON(json["token"])
+			: undefined,
+		account: exists(json, "account")
+			? OAuthAccountFromJSON(json["account"])
+			: undefined,
+	};
 }
 
 export function OAuthGroupToJSON(value?: OAuthGroup | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'token': OAuthTokenToJSON(value.token),
-        'account': OAuthAccountToJSON(value.account),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		token: OAuthTokenToJSON(value.token),
+		account: OAuthAccountToJSON(value.account),
+	};
 }
-

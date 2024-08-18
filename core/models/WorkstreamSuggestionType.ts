@@ -12,182 +12,190 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { exists } from "../runtime.ts";
 /**
  * This is used to map the types of the iterable to given booleans of their respective material types
  * @export
  * @interface WorkstreamSuggestionType
  */
 export interface WorkstreamSuggestionType {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    schema?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    summary?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    asset?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    tag?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    website?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    anchor?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    conversation?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    person?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    seed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    seeds?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    summaries?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    assets?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    tags?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    websites?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    anchors?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    conversations?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof WorkstreamSuggestionType
-     */
-    persons?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	schema?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	summary?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	asset?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	tag?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	website?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	anchor?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	conversation?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	person?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	seed?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	seeds?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	summaries?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	assets?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	tags?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	websites?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	anchors?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	conversations?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof WorkstreamSuggestionType
+	 */
+	persons?: boolean;
 }
 
 /**
  * Check if a given object implements the WorkstreamSuggestionType interface.
  */
-export function instanceOfWorkstreamSuggestionType(value: object): boolean {
-    let isInstance = true;
+export function instanceOfWorkstreamSuggestionType(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamSuggestionTypeFromJSON(json: any): WorkstreamSuggestionType {
-    return WorkstreamSuggestionTypeFromJSONTyped(json, false);
+export function WorkstreamSuggestionTypeFromJSON(
+	json: any,
+): WorkstreamSuggestionType {
+	return WorkstreamSuggestionTypeFromJSONTyped(json, false);
 }
 
-export function WorkstreamSuggestionTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamSuggestionType {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : json['schema'],
-        'summary': !exists(json, 'summary') ? undefined : json['summary'],
-        'asset': !exists(json, 'asset') ? undefined : json['asset'],
-        'tag': !exists(json, 'tag') ? undefined : json['tag'],
-        'website': !exists(json, 'website') ? undefined : json['website'],
-        'anchor': !exists(json, 'anchor') ? undefined : json['anchor'],
-        'conversation': !exists(json, 'conversation') ? undefined : json['conversation'],
-        'person': !exists(json, 'person') ? undefined : json['person'],
-        'seed': !exists(json, 'seed') ? undefined : json['seed'],
-        'seeds': !exists(json, 'seeds') ? undefined : json['seeds'],
-        'summaries': !exists(json, 'summaries') ? undefined : json['summaries'],
-        'assets': !exists(json, 'assets') ? undefined : json['assets'],
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
-        'websites': !exists(json, 'websites') ? undefined : json['websites'],
-        'anchors': !exists(json, 'anchors') ? undefined : json['anchors'],
-        'conversations': !exists(json, 'conversations') ? undefined : json['conversations'],
-        'persons': !exists(json, 'persons') ? undefined : json['persons'],
-    };
+export function WorkstreamSuggestionTypeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamSuggestionType {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema") ? json["schema"] : undefined,
+		summary: exists(json, "summary") ? json["summary"] : undefined,
+		asset: exists(json, "asset") ? json["asset"] : undefined,
+		tag: exists(json, "tag") ? json["tag"] : undefined,
+		website: exists(json, "website") ? json["website"] : undefined,
+		anchor: exists(json, "anchor") ? json["anchor"] : undefined,
+		conversation: exists(json, "conversation")
+			? json["conversation"]
+			: undefined,
+		person: exists(json, "person") ? json["person"] : undefined,
+		seed: exists(json, "seed") ? json["seed"] : undefined,
+		seeds: exists(json, "seeds") ? json["seeds"] : undefined,
+		summaries: exists(json, "summaries") ? json["summaries"] : undefined,
+		assets: exists(json, "assets") ? json["assets"] : undefined,
+		tags: exists(json, "tags") ? json["tags"] : undefined,
+		websites: exists(json, "websites") ? json["websites"] : undefined,
+		anchors: exists(json, "anchors") ? json["anchors"] : undefined,
+		conversations: exists(json, "conversations")
+			? json["conversations"]
+			: undefined,
+		persons: exists(json, "persons") ? json["persons"] : undefined,
+	};
 }
 
-export function WorkstreamSuggestionTypeToJSON(value?: WorkstreamSuggestionType | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': value.schema,
-        'summary': value.summary,
-        'asset': value.asset,
-        'tag': value.tag,
-        'website': value.website,
-        'anchor': value.anchor,
-        'conversation': value.conversation,
-        'person': value.person,
-        'seed': value.seed,
-        'seeds': value.seeds,
-        'summaries': value.summaries,
-        'assets': value.assets,
-        'tags': value.tags,
-        'websites': value.websites,
-        'anchors': value.anchors,
-        'conversations': value.conversations,
-        'persons': value.persons,
-    };
+export function WorkstreamSuggestionTypeToJSON(
+	value?: WorkstreamSuggestionType | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: value.schema,
+		summary: value.summary,
+		asset: value.asset,
+		tag: value.tag,
+		website: value.website,
+		anchor: value.anchor,
+		conversation: value.conversation,
+		person: value.person,
+		seed: value.seed,
+		seeds: value.seeds,
+		summaries: value.summaries,
+		assets: value.assets,
+		tags: value.tags,
+		websites: value.websites,
+		anchors: value.anchors,
+		conversations: value.conversations,
+		persons: value.persons,
+	};
 }
-

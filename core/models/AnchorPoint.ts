@@ -12,162 +12,157 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { PlatformEnum } from './PlatformEnum';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { PlatformEnum } from "./PlatformEnum.tsx";
+import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
+import type { ReferencedAnchor } from "./ReferencedAnchor.tsx";
 import {
-    PlatformEnumFromJSON,
-    PlatformEnumFromJSONTyped,
-    PlatformEnumToJSON,
-} from './PlatformEnum';
-import type { ReferencedAnchor } from './ReferencedAnchor';
-import {
-    ReferencedAnchorFromJSON,
-    ReferencedAnchorFromJSONTyped,
-    ReferencedAnchorToJSON,
-} from './ReferencedAnchor';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedAnchorFromJSON,
+	ReferencedAnchorToJSON,
+} from "./ReferencedAnchor.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface AnchorPoint
  */
 export interface AnchorPoint {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AnchorPoint
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnchorPoint
-     */
-    id: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AnchorPoint
-     */
-    verified?: boolean;
-    /**
-     * This is the text of the path.
-     * @type {string}
-     * @memberof AnchorPoint
-     */
-    fullpath: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof AnchorPoint
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof AnchorPoint
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof AnchorPoint
-     */
-    deleted?: GroupedTimestamp;
-    /**
-     * 
-     * @type {PlatformEnum}
-     * @memberof AnchorPoint
-     */
-    platform?: PlatformEnum;
-    /**
-     * 
-     * @type {ReferencedAnchor}
-     * @memberof AnchorPoint
-     */
-    anchor: ReferencedAnchor;
-    /**
-     * 
-     * @type {Score}
-     * @memberof AnchorPoint
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AnchorPoint
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof AnchorPoint
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof AnchorPoint
+	 */
+	verified?: boolean;
+	/**
+	 * This is the text of the path.
+	 * @type {string}
+	 * @memberof AnchorPoint
+	 */
+	fullpath: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof AnchorPoint
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof AnchorPoint
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof AnchorPoint
+	 */
+	deleted?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {PlatformEnum}
+	 * @memberof AnchorPoint
+	 */
+	platform?: PlatformEnum;
+	/**
+	 *
+	 * @type {ReferencedAnchor}
+	 * @memberof AnchorPoint
+	 */
+	anchor: ReferencedAnchor;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof AnchorPoint
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the AnchorPoint interface.
  */
 export function instanceOfAnchorPoint(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "fullpath" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
-    isInstance = isInstance && "anchor" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "fullpath" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
+	isInstance = isInstance && "anchor" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AnchorPointFromJSON(json: any): AnchorPoint {
-    return AnchorPointFromJSONTyped(json, false);
+	return AnchorPointFromJSONTyped(json, false);
 }
 
-export function AnchorPointFromJSONTyped(json: any, ignoreDiscriminator: boolean): AnchorPoint {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'verified': !exists(json, 'verified') ? undefined : json['verified'],
-        'fullpath': json['fullpath'],
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-        'platform': !exists(json, 'platform') ? undefined : PlatformEnumFromJSON(json['platform']),
-        'anchor': ReferencedAnchorFromJSON(json['anchor']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function AnchorPointFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AnchorPoint {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		verified: exists(json, "verified") ? json["verified"] : undefined,
+		fullpath: json["fullpath"],
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+		platform: exists(json, "platform")
+			? PlatformEnumFromJSON(json["platform"])
+			: undefined,
+		anchor: ReferencedAnchorFromJSON(json["anchor"]),
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function AnchorPointToJSON(value?: AnchorPoint | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'verified': value.verified,
-        'fullpath': value.fullpath,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-        'platform': PlatformEnumToJSON(value.platform),
-        'anchor': ReferencedAnchorToJSON(value.anchor),
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		verified: value.verified,
+		fullpath: value.fullpath,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		deleted: GroupedTimestampToJSON(value.deleted),
+		platform: PlatformEnumToJSON(value.platform),
+		anchor: ReferencedAnchorToJSON(value.anchor),
+		score: ScoreToJSON(value.score),
+	};
 }
-

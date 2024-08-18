@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedWorkstreamPatternEngineVisionEvents } from './FlattenedWorkstreamPatternEngineVisionEvents';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedWorkstreamPatternEngineVisionEvents } from "./FlattenedWorkstreamPatternEngineVisionEvents.tsx";
 import {
-    FlattenedWorkstreamPatternEngineVisionEventsFromJSON,
-    FlattenedWorkstreamPatternEngineVisionEventsFromJSONTyped,
-    FlattenedWorkstreamPatternEngineVisionEventsToJSON,
-} from './FlattenedWorkstreamPatternEngineVisionEvents';
-import type { SearchInput } from './SearchInput';
-import {
-    SearchInputFromJSON,
-    SearchInputFromJSONTyped,
-    SearchInputToJSON,
-} from './SearchInput';
+	FlattenedWorkstreamPatternEngineVisionEventsFromJSON,
+	FlattenedWorkstreamPatternEngineVisionEventsToJSON,
+} from "./FlattenedWorkstreamPatternEngineVisionEvents.tsx";
+import type { SearchInput } from "./SearchInput.tsx";
+import { SearchInputFromJSON, SearchInputToJSON } from "./SearchInput.tsx";
 
 /**
  * note: recomended to use the search option here(where you can pass in workstream.
@@ -39,63 +33,82 @@ import {
  * @interface WorkstreamPatternEngineVisionEventDeletions
  */
 export interface WorkstreamPatternEngineVisionEventDeletions {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamPatternEngineVisionEventDeletions
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SearchInput}
-     * @memberof WorkstreamPatternEngineVisionEventDeletions
-     */
-    searchScope?: SearchInput;
-    /**
-     * 
-     * @type {FlattenedWorkstreamPatternEngineVisionEvents}
-     * @memberof WorkstreamPatternEngineVisionEventDeletions
-     */
-    identifiers?: FlattenedWorkstreamPatternEngineVisionEvents;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamPatternEngineVisionEventDeletions
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SearchInput}
+	 * @memberof WorkstreamPatternEngineVisionEventDeletions
+	 */
+	searchScope?: SearchInput;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamPatternEngineVisionEvents}
+	 * @memberof WorkstreamPatternEngineVisionEventDeletions
+	 */
+	identifiers?: FlattenedWorkstreamPatternEngineVisionEvents;
 }
 
 /**
  * Check if a given object implements the WorkstreamPatternEngineVisionEventDeletions interface.
  */
-export function instanceOfWorkstreamPatternEngineVisionEventDeletions(value: object): boolean {
-    let isInstance = true;
+export function instanceOfWorkstreamPatternEngineVisionEventDeletions(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamPatternEngineVisionEventDeletionsFromJSON(json: any): WorkstreamPatternEngineVisionEventDeletions {
-    return WorkstreamPatternEngineVisionEventDeletionsFromJSONTyped(json, false);
+export function WorkstreamPatternEngineVisionEventDeletionsFromJSON(
+	json: any,
+): WorkstreamPatternEngineVisionEventDeletions {
+	return WorkstreamPatternEngineVisionEventDeletionsFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function WorkstreamPatternEngineVisionEventDeletionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamPatternEngineVisionEventDeletions {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'searchScope': !exists(json, 'search_scope') ? undefined : SearchInputFromJSON(json['search_scope']),
-        'identifiers': !exists(json, 'identifiers') ? undefined : FlattenedWorkstreamPatternEngineVisionEventsFromJSON(json['identifiers']),
-    };
+export function WorkstreamPatternEngineVisionEventDeletionsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamPatternEngineVisionEventDeletions {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		searchScope: exists(json, "search_scope")
+			? SearchInputFromJSON(json["search_scope"])
+			: undefined,
+		identifiers: exists(json, "identifiers")
+			? FlattenedWorkstreamPatternEngineVisionEventsFromJSON(
+					json["identifiers"],
+				)
+			: undefined,
+	};
 }
 
-export function WorkstreamPatternEngineVisionEventDeletionsToJSON(value?: WorkstreamPatternEngineVisionEventDeletions | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'search_scope': SearchInputToJSON(value.searchScope),
-        'identifiers': FlattenedWorkstreamPatternEngineVisionEventsToJSON(value.identifiers),
-    };
+export function WorkstreamPatternEngineVisionEventDeletionsToJSON(
+	value?: WorkstreamPatternEngineVisionEventDeletions | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		search_scope: SearchInputToJSON(value.searchScope),
+		identifiers: FlattenedWorkstreamPatternEngineVisionEventsToJSON(
+			value.identifiers,
+		),
+	};
 }
-

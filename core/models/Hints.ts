@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Hint } from './Hint';
-import {
-    HintFromJSON,
-    HintFromJSONTyped,
-    HintToJSON,
-} from './Hint';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Hint } from "./Hint.tsx";
+import { HintFromJSON, HintToJSON } from "./Hint.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is the plural of a Hint.
@@ -38,72 +29,74 @@ import {
  * @interface Hints
  */
 export interface Hints {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Hints
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Hint>}
-     * @memberof Hints
-     */
-    iterable: Array<Hint>;
-    /**
-     * This is a Map<String, int> where the the key is an hint id.
-     * @type {{ [key: string]: number; }}
-     * @memberof Hints
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof Hints
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Hints
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Hint>}
+	 * @memberof Hints
+	 */
+	iterable: Hint[];
+	/**
+	 * This is a Map<String, int> where the the key is an hint id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof Hints
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Hints
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the Hints interface.
  */
 export function instanceOfHints(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function HintsFromJSON(json: any): Hints {
-    return HintsFromJSONTyped(json, false);
+	return HintsFromJSONTyped(json, false);
 }
 
-export function HintsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Hints {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(HintFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function HintsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Hints {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(HintFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function HintsToJSON(value?: Hints | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(HintToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(HintToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

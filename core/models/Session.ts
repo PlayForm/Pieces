@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+import { exists } from "../runtime.ts";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
 
 /**
  * This is a specific model that will let us know at what time this user was using the application.
@@ -26,65 +25,67 @@ import {
  * @interface Session
  */
 export interface Session {
-    /**
-     * The UUID of the current Session
-     * @type {string}
-     * @memberof Session
-     */
-    id: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Session
-     */
-    opened: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Session
-     */
-    closed?: GroupedTimestamp;
+	/**
+	 * The UUID of the current Session
+	 * @type {string}
+	 * @memberof Session
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Session
+	 */
+	opened: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Session
+	 */
+	closed?: GroupedTimestamp;
 }
 
 /**
  * Check if a given object implements the Session interface.
  */
 export function instanceOfSession(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "opened" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "opened" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SessionFromJSON(json: any): Session {
-    return SessionFromJSONTyped(json, false);
+	return SessionFromJSONTyped(json, false);
 }
 
-export function SessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Session {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'id': json['id'],
-        'opened': GroupedTimestampFromJSON(json['opened']),
-        'closed': !exists(json, 'closed') ? undefined : GroupedTimestampFromJSON(json['closed']),
-    };
+export function SessionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Session {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		id: json["id"],
+		opened: GroupedTimestampFromJSON(json["opened"]),
+		closed: exists(json, "closed")
+			? GroupedTimestampFromJSON(json["closed"])
+			: undefined,
+	};
 }
 
 export function SessionToJSON(value?: Session | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'id': value.id,
-        'opened': GroupedTimestampToJSON(value.opened),
-        'closed': GroupedTimestampToJSON(value.closed),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		id: value.id,
+		opened: GroupedTimestampToJSON(value.opened),
+		closed: GroupedTimestampToJSON(value.closed),
+	};
 }
-

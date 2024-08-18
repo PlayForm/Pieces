@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This describes the type of a node ie an asset, tag, website, format... ETC
  * @export
  */
 export const NodeTypeEnum = {
-    Tag: 'TAG',
-    Website: 'WEBSITE',
-    Format: 'FORMAT',
-    Asset: 'ASSET'
+	Tag: "TAG",
+	Website: "WEBSITE",
+	Format: "FORMAT",
+	Asset: "ASSET",
 } as const;
-export type NodeTypeEnum = typeof NodeTypeEnum[keyof typeof NodeTypeEnum];
-
+export type NodeTypeEnum = (typeof NodeTypeEnum)[keyof typeof NodeTypeEnum];
 
 export function NodeTypeEnumFromJSON(json: any): NodeTypeEnum {
-    return NodeTypeEnumFromJSONTyped(json, false);
+	return NodeTypeEnumFromJSONTyped(json, false);
 }
 
-export function NodeTypeEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): NodeTypeEnum {
-    return json as NodeTypeEnum;
+export function NodeTypeEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): NodeTypeEnum {
+	return json as NodeTypeEnum;
 }
 
 export function NodeTypeEnumToJSON(value?: NodeTypeEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

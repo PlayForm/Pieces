@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedConversationMessage } from './SearchedConversationMessage';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedConversationMessage } from "./SearchedConversationMessage.tsx";
 import {
-    SearchedConversationMessageFromJSON,
-    SearchedConversationMessageFromJSONTyped,
-    SearchedConversationMessageToJSON,
-} from './SearchedConversationMessage';
+	SearchedConversationMessageFromJSON,
+	SearchedConversationMessageToJSON,
+} from "./SearchedConversationMessage.tsx";
 
 /**
  * This is the plural Model used to return many SearchedConversationMessage.
@@ -32,56 +30,66 @@ import {
  * @interface SearchedConversationMessages
  */
 export interface SearchedConversationMessages {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedConversationMessages
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedConversationMessage>}
-     * @memberof SearchedConversationMessages
-     */
-    iterable: Array<SearchedConversationMessage>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedConversationMessages
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedConversationMessage>}
+	 * @memberof SearchedConversationMessages
+	 */
+	iterable: SearchedConversationMessage[];
 }
 
 /**
  * Check if a given object implements the SearchedConversationMessages interface.
  */
 export function instanceOfSearchedConversationMessages(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SearchedConversationMessagesFromJSON(json: any): SearchedConversationMessages {
-    return SearchedConversationMessagesFromJSONTyped(json, false);
+export function SearchedConversationMessagesFromJSON(
+	json: any,
+): SearchedConversationMessages {
+	return SearchedConversationMessagesFromJSONTyped(json, false);
 }
 
-export function SearchedConversationMessagesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedConversationMessages {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedConversationMessageFromJSON)),
-    };
+export function SearchedConversationMessagesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedConversationMessages {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			SearchedConversationMessageFromJSON,
+		),
+	};
 }
 
-export function SearchedConversationMessagesToJSON(value?: SearchedConversationMessages | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedConversationMessageToJSON)),
-    };
+export function SearchedConversationMessagesToJSON(
+	value?: SearchedConversationMessages | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			SearchedConversationMessageToJSON,
+		),
+	};
 }
-

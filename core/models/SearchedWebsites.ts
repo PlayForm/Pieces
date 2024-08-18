@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedWebsite } from './SearchedWebsite';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedWebsite } from "./SearchedWebsite.tsx";
 import {
-    SearchedWebsiteFromJSON,
-    SearchedWebsiteFromJSONTyped,
-    SearchedWebsiteToJSON,
-} from './SearchedWebsite';
+	SearchedWebsiteFromJSON,
+	SearchedWebsiteToJSON,
+} from "./SearchedWebsite.tsx";
 
 /**
  * This is the plural Model used to return many SearchedWebsite.
@@ -32,56 +30,58 @@ import {
  * @interface SearchedWebsites
  */
 export interface SearchedWebsites {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedWebsites
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedWebsite>}
-     * @memberof SearchedWebsites
-     */
-    iterable: Array<SearchedWebsite>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedWebsites
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedWebsite>}
+	 * @memberof SearchedWebsites
+	 */
+	iterable: SearchedWebsite[];
 }
 
 /**
  * Check if a given object implements the SearchedWebsites interface.
  */
 export function instanceOfSearchedWebsites(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedWebsitesFromJSON(json: any): SearchedWebsites {
-    return SearchedWebsitesFromJSONTyped(json, false);
+	return SearchedWebsitesFromJSONTyped(json, false);
 }
 
-export function SearchedWebsitesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedWebsites {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedWebsiteFromJSON)),
-    };
+export function SearchedWebsitesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedWebsites {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SearchedWebsiteFromJSON),
+	};
 }
 
 export function SearchedWebsitesToJSON(value?: SearchedWebsites | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedWebsiteToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SearchedWebsiteToJSON),
+	};
 }
-

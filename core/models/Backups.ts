@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Backup } from './Backup';
+import { exists } from "../runtime.ts";
+import type { Backup } from "./Backup.tsx";
+import { BackupFromJSON, BackupToJSON } from "./Backup.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    BackupFromJSON,
-    BackupFromJSONTyped,
-    BackupToJSON,
-} from './Backup';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a plural model of many Cloud Backups.
@@ -38,72 +29,74 @@ import {
  * @interface Backups
  */
 export interface Backups {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Backups
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Backup>}
-     * @memberof Backups
-     */
-    iterable: Array<Backup>;
-    /**
-     * This is a Map<String, int> where the the key is an website id.
-     * @type {{ [key: string]: number; }}
-     * @memberof Backups
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof Backups
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Backups
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Backup>}
+	 * @memberof Backups
+	 */
+	iterable: Backup[];
+	/**
+	 * This is a Map<String, int> where the the key is an website id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof Backups
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Backups
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the Backups interface.
  */
 export function instanceOfBackups(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function BackupsFromJSON(json: any): Backups {
-    return BackupsFromJSONTyped(json, false);
+	return BackupsFromJSONTyped(json, false);
 }
 
-export function BackupsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Backups {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(BackupFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function BackupsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Backups {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(BackupFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function BackupsToJSON(value?: Backups | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(BackupToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(BackupToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

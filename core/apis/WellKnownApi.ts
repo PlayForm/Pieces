@@ -12,76 +12,87 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
+import * as runtime from "../runtime.ts";
 
 /**
- * 
+ *
  */
 export class WellKnownApi extends runtime.BaseAPI {
+	/**
+	 * Retrieves the health status of the server.
+	 * /.well-known/health [GET]
+	 */
+	async getWellKnownHealthRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<string>> {
+		const queryParameters: any = {};
 
-    /**
-     * Retrieves the health status of the server.
-     * /.well-known/health [GET]
-     */
-    async getWellKnownHealthRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/.well-known/health",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/.well-known/health`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		if (this.isJsonMime(response.headers.get("content-type"))) {
+			return new runtime.JSONApiResponse<string>(response);
+		} else {
+			return new runtime.TextApiResponse(response) as any;
+		}
+	}
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
+	/**
+	 * Retrieves the health status of the server.
+	 * /.well-known/health [GET]
+	 */
+	async getWellKnownHealth(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<string> {
+		const response = await this.getWellKnownHealthRaw(initOverrides);
+		return await response.value();
+	}
 
-    /**
-     * Retrieves the health status of the server.
-     * /.well-known/health [GET]
-     */
-    async getWellKnownHealth(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.getWellKnownHealthRaw(initOverrides);
-        return await response.value();
-    }
+	/**
+	 * Retrieves the version of the server. It returns a string representing the current version.
+	 * /.well-known/version [Get]
+	 */
+	async getWellKnownVersionRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<string>> {
+		const queryParameters: any = {};
 
-    /**
-     * Retrieves the version of the server. It returns a string representing the current version.
-     * /.well-known/version [Get]
-     */
-    async getWellKnownVersionRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/.well-known/version",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/.well-known/version`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		if (this.isJsonMime(response.headers.get("content-type"))) {
+			return new runtime.JSONApiResponse<string>(response);
+		} else {
+			return new runtime.TextApiResponse(response) as any;
+		}
+	}
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * Retrieves the version of the server. It returns a string representing the current version.
-     * /.well-known/version [Get]
-     */
-    async getWellKnownVersion(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.getWellKnownVersionRaw(initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * Retrieves the version of the server. It returns a string representing the current version.
+	 * /.well-known/version [Get]
+	 */
+	async getWellKnownVersion(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<string> {
+		const response = await this.getWellKnownVersionRaw(initOverrides);
+		return await response.value();
+	}
 }

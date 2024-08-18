@@ -12,28 +12,29 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This lets us know what capabilites in relation to ml/ cloud infrastructure you are opting into.
  * @export
  */
 export const CapabilitiesEnum = {
-    Local: 'LOCAL',
-    Cloud: 'CLOUD',
-    Blended: 'BLENDED'
+	Local: "LOCAL",
+	Cloud: "CLOUD",
+	Blended: "BLENDED",
 } as const;
-export type CapabilitiesEnum = typeof CapabilitiesEnum[keyof typeof CapabilitiesEnum];
-
+export type CapabilitiesEnum =
+	(typeof CapabilitiesEnum)[keyof typeof CapabilitiesEnum];
 
 export function CapabilitiesEnumFromJSON(json: any): CapabilitiesEnum {
-    return CapabilitiesEnumFromJSONTyped(json, false);
+	return CapabilitiesEnumFromJSONTyped(json, false);
 }
 
-export function CapabilitiesEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): CapabilitiesEnum {
-    return json as CapabilitiesEnum;
+export function CapabilitiesEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): CapabilitiesEnum {
+	return json as CapabilitiesEnum;
 }
 
 export function CapabilitiesEnumToJSON(value?: CapabilitiesEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

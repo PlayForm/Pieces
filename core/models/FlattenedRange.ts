@@ -12,37 +12,29 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedConversations } from './FlattenedConversations';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
-    FlattenedConversationsFromJSON,
-    FlattenedConversationsFromJSONTyped,
-    FlattenedConversationsToJSON,
-} from './FlattenedConversations';
-import type { FlattenedWorkstreamSummaries } from './FlattenedWorkstreamSummaries';
+	FlattenedConversationsFromJSON,
+	FlattenedConversationsToJSON,
+} from "./FlattenedConversations.tsx";
+import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
-    FlattenedWorkstreamSummariesFromJSON,
-    FlattenedWorkstreamSummariesFromJSONTyped,
-    FlattenedWorkstreamSummariesToJSON,
-} from './FlattenedWorkstreamSummaries';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	FlattenedWorkstreamSummariesFromJSON,
+	FlattenedWorkstreamSummariesToJSON,
+} from "./FlattenedWorkstreamSummaries.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a DAG-Safe minimal representation of a Range.
@@ -50,122 +42,132 @@ import {
  * @interface FlattenedRange
  */
 export interface FlattenedRange {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedRange
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedRange
-     */
-    id: string;
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedRange
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedRange
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedRange
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedRange
-     */
-    to?: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedRange
-     */
-    from?: GroupedTimestamp;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FlattenedRange
-     */
-    between?: boolean;
-    /**
-     * 
-     * @type {FlattenedWorkstreamSummaries}
-     * @memberof FlattenedRange
-     */
-    summaries?: FlattenedWorkstreamSummaries;
-    /**
-     * 
-     * @type {FlattenedConversations}
-     * @memberof FlattenedRange
-     */
-    conversations?: FlattenedConversations;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedRange
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedRange
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedRange
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedRange
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedRange
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedRange
+	 */
+	to?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedRange
+	 */
+	from?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof FlattenedRange
+	 */
+	between?: boolean;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamSummaries}
+	 * @memberof FlattenedRange
+	 */
+	summaries?: FlattenedWorkstreamSummaries;
+	/**
+	 *
+	 * @type {FlattenedConversations}
+	 * @memberof FlattenedRange
+	 */
+	conversations?: FlattenedConversations;
 }
 
 /**
  * Check if a given object implements the FlattenedRange interface.
  */
 export function instanceOfFlattenedRange(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedRangeFromJSON(json: any): FlattenedRange {
-    return FlattenedRangeFromJSONTyped(json, false);
+	return FlattenedRangeFromJSONTyped(json, false);
 }
 
-export function FlattenedRangeFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedRange {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'to': !exists(json, 'to') ? undefined : GroupedTimestampFromJSON(json['to']),
-        'from': !exists(json, 'from') ? undefined : GroupedTimestampFromJSON(json['from']),
-        'between': !exists(json, 'between') ? undefined : json['between'],
-        'summaries': !exists(json, 'summaries') ? undefined : FlattenedWorkstreamSummariesFromJSON(json['summaries']),
-        'conversations': !exists(json, 'conversations') ? undefined : FlattenedConversationsFromJSON(json['conversations']),
-    };
+export function FlattenedRangeFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedRange {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		to: exists(json, "to")
+			? GroupedTimestampFromJSON(json["to"])
+			: undefined,
+		from: exists(json, "from")
+			? GroupedTimestampFromJSON(json["from"])
+			: undefined,
+		between: exists(json, "between") ? json["between"] : undefined,
+		summaries: exists(json, "summaries")
+			? FlattenedWorkstreamSummariesFromJSON(json["summaries"])
+			: undefined,
+		conversations: exists(json, "conversations")
+			? FlattenedConversationsFromJSON(json["conversations"])
+			: undefined,
+	};
 }
 
 export function FlattenedRangeToJSON(value?: FlattenedRange | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'score': ScoreToJSON(value.score),
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'to': GroupedTimestampToJSON(value.to),
-        'from': GroupedTimestampToJSON(value.from),
-        'between': value.between,
-        'summaries': FlattenedWorkstreamSummariesToJSON(value.summaries),
-        'conversations': FlattenedConversationsToJSON(value.conversations),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		score: ScoreToJSON(value.score),
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		to: GroupedTimestampToJSON(value.to),
+		from: GroupedTimestampToJSON(value.from),
+		between: value.between,
+		summaries: FlattenedWorkstreamSummariesToJSON(value.summaries),
+		conversations: FlattenedConversationsToJSON(value.conversations),
+	};
 }
-

@@ -12,70 +12,80 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { exists } from "../runtime.ts";
 /**
  * If an asset was created from a file attachment
  * @export
  * @interface TrackedAssetEventCreationMetadataFile
  */
 export interface TrackedAssetEventCreationMetadataFile {
-    /**
-     * Whether the file was pasted via the keyboard
-     * @type {boolean}
-     * @memberof TrackedAssetEventCreationMetadataFile
-     */
-    keyboard?: boolean;
-    /**
-     * Whether the file was dropped onto pieces
-     * @type {boolean}
-     * @memberof TrackedAssetEventCreationMetadataFile
-     */
-    dragAndDrop?: boolean;
-    /**
-     * Whether the file was attached via a button click
-     * @type {boolean}
-     * @memberof TrackedAssetEventCreationMetadataFile
-     */
-    interaction?: boolean;
+	/**
+	 * Whether the file was pasted via the keyboard
+	 * @type {boolean}
+	 * @memberof TrackedAssetEventCreationMetadataFile
+	 */
+	keyboard?: boolean;
+	/**
+	 * Whether the file was dropped onto pieces
+	 * @type {boolean}
+	 * @memberof TrackedAssetEventCreationMetadataFile
+	 */
+	dragAndDrop?: boolean;
+	/**
+	 * Whether the file was attached via a button click
+	 * @type {boolean}
+	 * @memberof TrackedAssetEventCreationMetadataFile
+	 */
+	interaction?: boolean;
 }
 
 /**
  * Check if a given object implements the TrackedAssetEventCreationMetadataFile interface.
  */
-export function instanceOfTrackedAssetEventCreationMetadataFile(value: object): boolean {
-    let isInstance = true;
+export function instanceOfTrackedAssetEventCreationMetadataFile(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TrackedAssetEventCreationMetadataFileFromJSON(json: any): TrackedAssetEventCreationMetadataFile {
-    return TrackedAssetEventCreationMetadataFileFromJSONTyped(json, false);
+export function TrackedAssetEventCreationMetadataFileFromJSON(
+	json: any,
+): TrackedAssetEventCreationMetadataFile {
+	return TrackedAssetEventCreationMetadataFileFromJSONTyped(json, false);
 }
 
-export function TrackedAssetEventCreationMetadataFileFromJSONTyped(json: any, ignoreDiscriminator: boolean): TrackedAssetEventCreationMetadataFile {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'keyboard': !exists(json, 'keyboard') ? undefined : json['keyboard'],
-        'dragAndDrop': !exists(json, 'drag_and_drop') ? undefined : json['drag_and_drop'],
-        'interaction': !exists(json, 'interaction') ? undefined : json['interaction'],
-    };
+export function TrackedAssetEventCreationMetadataFileFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TrackedAssetEventCreationMetadataFile {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		keyboard: exists(json, "keyboard") ? json["keyboard"] : undefined,
+		dragAndDrop: exists(json, "drag_and_drop")
+			? json["drag_and_drop"]
+			: undefined,
+		interaction: exists(json, "interaction")
+			? json["interaction"]
+			: undefined,
+	};
 }
 
-export function TrackedAssetEventCreationMetadataFileToJSON(value?: TrackedAssetEventCreationMetadataFile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'keyboard': value.keyboard,
-        'drag_and_drop': value.dragAndDrop,
-        'interaction': value.interaction,
-    };
+export function TrackedAssetEventCreationMetadataFileToJSON(
+	value?: TrackedAssetEventCreationMetadataFile | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		keyboard: value.keyboard,
+		drag_and_drop: value.dragAndDrop,
+		interaction: value.interaction,
+	};
 }
-

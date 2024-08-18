@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamPatternEngineVisionStatus } from './WorkstreamPatternEngineVisionStatus';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamPatternEngineVisionStatus } from "./WorkstreamPatternEngineVisionStatus.tsx";
 import {
-    WorkstreamPatternEngineVisionStatusFromJSON,
-    WorkstreamPatternEngineVisionStatusFromJSONTyped,
-    WorkstreamPatternEngineVisionStatusToJSON,
-} from './WorkstreamPatternEngineVisionStatus';
+	WorkstreamPatternEngineVisionStatusFromJSON,
+	WorkstreamPatternEngineVisionStatusToJSON,
+} from "./WorkstreamPatternEngineVisionStatus.tsx";
 
 /**
  * This will return the status for the Workstream pettern engine, specifically the activation/deactivation status
@@ -32,55 +30,65 @@ import {
  * @interface WorkstreamPatternEngineStatus
  */
 export interface WorkstreamPatternEngineStatus {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamPatternEngineStatus
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {WorkstreamPatternEngineVisionStatus}
-     * @memberof WorkstreamPatternEngineStatus
-     */
-    vision?: WorkstreamPatternEngineVisionStatus;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamPatternEngineStatus
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {WorkstreamPatternEngineVisionStatus}
+	 * @memberof WorkstreamPatternEngineStatus
+	 */
+	vision?: WorkstreamPatternEngineVisionStatus;
 }
 
 /**
  * Check if a given object implements the WorkstreamPatternEngineStatus interface.
  */
-export function instanceOfWorkstreamPatternEngineStatus(value: object): boolean {
-    let isInstance = true;
+export function instanceOfWorkstreamPatternEngineStatus(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamPatternEngineStatusFromJSON(json: any): WorkstreamPatternEngineStatus {
-    return WorkstreamPatternEngineStatusFromJSONTyped(json, false);
+export function WorkstreamPatternEngineStatusFromJSON(
+	json: any,
+): WorkstreamPatternEngineStatus {
+	return WorkstreamPatternEngineStatusFromJSONTyped(json, false);
 }
 
-export function WorkstreamPatternEngineStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamPatternEngineStatus {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'vision': !exists(json, 'vision') ? undefined : WorkstreamPatternEngineVisionStatusFromJSON(json['vision']),
-    };
+export function WorkstreamPatternEngineStatusFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamPatternEngineStatus {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		vision: exists(json, "vision")
+			? WorkstreamPatternEngineVisionStatusFromJSON(json["vision"])
+			: undefined,
+	};
 }
 
-export function WorkstreamPatternEngineStatusToJSON(value?: WorkstreamPatternEngineStatus | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'vision': WorkstreamPatternEngineVisionStatusToJSON(value.vision),
-    };
+export function WorkstreamPatternEngineStatusToJSON(
+	value?: WorkstreamPatternEngineStatus | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		vision: WorkstreamPatternEngineVisionStatusToJSON(value.vision),
+	};
 }
-

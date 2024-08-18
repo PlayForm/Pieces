@@ -12,90 +12,101 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedConversation } from './ReferencedConversation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
-    ReferencedConversationFromJSON,
-    ReferencedConversationFromJSONTyped,
-    ReferencedConversationToJSON,
-} from './ReferencedConversation';
-import type { SeededRangeConversationGroundingAssociation } from './SeededRangeConversationGroundingAssociation';
+	ReferencedConversationFromJSON,
+	ReferencedConversationToJSON,
+} from "./ReferencedConversation.tsx";
+import type { SeededRangeConversationGroundingAssociation } from "./SeededRangeConversationGroundingAssociation.tsx";
 import {
-    SeededRangeConversationGroundingAssociationFromJSON,
-    SeededRangeConversationGroundingAssociationFromJSONTyped,
-    SeededRangeConversationGroundingAssociationToJSON,
-} from './SeededRangeConversationGroundingAssociation';
+	SeededRangeConversationGroundingAssociationFromJSON,
+	SeededRangeConversationGroundingAssociationToJSON,
+} from "./SeededRangeConversationGroundingAssociation.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededRangeConversationAssociation
  */
 export interface SeededRangeConversationAssociation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededRangeConversationAssociation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ReferencedConversation}
-     * @memberof SeededRangeConversationAssociation
-     */
-    reference: ReferencedConversation;
-    /**
-     * 
-     * @type {SeededRangeConversationGroundingAssociation}
-     * @memberof SeededRangeConversationAssociation
-     */
-    grounding?: SeededRangeConversationGroundingAssociation;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededRangeConversationAssociation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ReferencedConversation}
+	 * @memberof SeededRangeConversationAssociation
+	 */
+	reference: ReferencedConversation;
+	/**
+	 *
+	 * @type {SeededRangeConversationGroundingAssociation}
+	 * @memberof SeededRangeConversationAssociation
+	 */
+	grounding?: SeededRangeConversationGroundingAssociation;
 }
 
 /**
  * Check if a given object implements the SeededRangeConversationAssociation interface.
  */
-export function instanceOfSeededRangeConversationAssociation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "reference" in value;
+export function instanceOfSeededRangeConversationAssociation(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "reference" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededRangeConversationAssociationFromJSON(json: any): SeededRangeConversationAssociation {
-    return SeededRangeConversationAssociationFromJSONTyped(json, false);
+export function SeededRangeConversationAssociationFromJSON(
+	json: any,
+): SeededRangeConversationAssociation {
+	return SeededRangeConversationAssociationFromJSONTyped(json, false);
 }
 
-export function SeededRangeConversationAssociationFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededRangeConversationAssociation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'reference': ReferencedConversationFromJSON(json['reference']),
-        'grounding': !exists(json, 'grounding') ? undefined : SeededRangeConversationGroundingAssociationFromJSON(json['grounding']),
-    };
+export function SeededRangeConversationAssociationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededRangeConversationAssociation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		reference: ReferencedConversationFromJSON(json["reference"]),
+		grounding: exists(json, "grounding")
+			? SeededRangeConversationGroundingAssociationFromJSON(
+					json["grounding"],
+				)
+			: undefined,
+	};
 }
 
-export function SeededRangeConversationAssociationToJSON(value?: SeededRangeConversationAssociation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'reference': ReferencedConversationToJSON(value.reference),
-        'grounding': SeededRangeConversationGroundingAssociationToJSON(value.grounding),
-    };
+export function SeededRangeConversationAssociationToJSON(
+	value?: SeededRangeConversationAssociation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		reference: ReferencedConversationToJSON(value.reference),
+		grounding: SeededRangeConversationGroundingAssociationToJSON(
+			value.grounding,
+		),
+	};
 }
-

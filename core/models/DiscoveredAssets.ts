@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { DiscoveredAsset } from './DiscoveredAsset';
+import { exists } from "../runtime.ts";
+import type { DiscoveredAsset } from "./DiscoveredAsset.tsx";
 import {
-    DiscoveredAssetFromJSON,
-    DiscoveredAssetFromJSONTyped,
-    DiscoveredAssetToJSON,
-} from './DiscoveredAsset';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	DiscoveredAssetFromJSON,
+	DiscoveredAssetToJSON,
+} from "./DiscoveredAsset.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is a plural Model that is used within the bulk upload flow in both cases of a file(&& needing snippitization) as well as if the fragments are passed in and they only need to be clustered.
@@ -32,65 +30,67 @@ import {
  * @interface DiscoveredAssets
  */
 export interface DiscoveredAssets {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DiscoveredAssets
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * application id.
-     * @type {string}
-     * @memberof DiscoveredAssets
-     */
-    application: string;
-    /**
-     * This is an iterable of already snippitized snippets that have been clustered.(These are assets that are going to be uploaded or at minimum the assets that we reccommend to upload)
-     * @type {Array<DiscoveredAsset>}
-     * @memberof DiscoveredAssets
-     */
-    iterable: Array<DiscoveredAsset>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DiscoveredAssets
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * application id.
+	 * @type {string}
+	 * @memberof DiscoveredAssets
+	 */
+	application: string;
+	/**
+	 * This is an iterable of already snippitized snippets that have been clustered.(These are assets that are going to be uploaded or at minimum the assets that we reccommend to upload)
+	 * @type {Array<DiscoveredAsset>}
+	 * @memberof DiscoveredAssets
+	 */
+	iterable: DiscoveredAsset[];
 }
 
 /**
  * Check if a given object implements the DiscoveredAssets interface.
  */
 export function instanceOfDiscoveredAssets(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "application" in value;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "application" in value;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function DiscoveredAssetsFromJSON(json: any): DiscoveredAssets {
-    return DiscoveredAssetsFromJSONTyped(json, false);
+	return DiscoveredAssetsFromJSONTyped(json, false);
 }
 
-export function DiscoveredAssetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): DiscoveredAssets {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'application': json['application'],
-        'iterable': ((json['iterable'] as Array<any>).map(DiscoveredAssetFromJSON)),
-    };
+export function DiscoveredAssetsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DiscoveredAssets {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		application: json["application"],
+		iterable: (json["iterable"] as any[]).map(DiscoveredAssetFromJSON),
+	};
 }
 
 export function DiscoveredAssetsToJSON(value?: DiscoveredAssets | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'application': value.application,
-        'iterable': ((value.iterable as Array<any>).map(DiscoveredAssetToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		application: value.application,
+		iterable: (value.iterable as any[]).map(DiscoveredAssetToJSON),
+	};
 }
-

@@ -12,31 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ExternalProviderProfileData } from './ExternalProviderProfileData';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ExternalProviderProfileData } from "./ExternalProviderProfileData.tsx";
 import {
-    ExternalProviderProfileDataFromJSON,
-    ExternalProviderProfileDataFromJSONTyped,
-    ExternalProviderProfileDataToJSON,
-} from './ExternalProviderProfileData';
-import type { ExternalProviderTypeEnum } from './ExternalProviderTypeEnum';
+	ExternalProviderProfileDataFromJSON,
+	ExternalProviderProfileDataToJSON,
+} from "./ExternalProviderProfileData.tsx";
+import type { ExternalProviderTypeEnum } from "./ExternalProviderTypeEnum.tsx";
 import {
-    ExternalProviderTypeEnumFromJSON,
-    ExternalProviderTypeEnumFromJSONTyped,
-    ExternalProviderTypeEnumToJSON,
-} from './ExternalProviderTypeEnum';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	ExternalProviderTypeEnumFromJSON,
+	ExternalProviderTypeEnumToJSON,
+} from "./ExternalProviderTypeEnum.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
 
 /**
  * I know that profileData and user_id have differeing casing but they are done because they map to Auth0's projeecties.
@@ -44,123 +40,129 @@ import {
  * @interface ExternalProvider
  */
 export interface ExternalProvider {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ExternalProvider
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ExternalProviderTypeEnum}
-     * @memberof ExternalProvider
-     */
-    type: ExternalProviderTypeEnum;
-    /**
-     * This is the user_id within the provider.
-     * @type {string}
-     * @memberof ExternalProvider
-     */
-    userId: string;
-    /**
-     * This is optional here, but will be present for BB, Github, and google.
-     * @type {string}
-     * @memberof ExternalProvider
-     */
-    accessToken?: string;
-    /**
-     * Some providers have an expiration on their access token. IE BB, Google, NOT Github.
-     * @type {number}
-     * @memberof ExternalProvider
-     */
-    expiresIn?: number;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof ExternalProvider
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof ExternalProvider
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {ExternalProviderProfileData}
-     * @memberof ExternalProvider
-     */
-    profileData?: ExternalProviderProfileData;
-    /**
-     * This is an optional field that will be provided onentreprise connections. ie is type == waad then connection might be PiecesApp. However is other cases,you my find your provider and connection is the exact same string. To decifer between the two, you can use the isSocial bool.
-     * @type {string}
-     * @memberof ExternalProvider
-     */
-    connection?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ExternalProvider
-     */
-    isSocial?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ExternalProvider
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ExternalProviderTypeEnum}
+	 * @memberof ExternalProvider
+	 */
+	type: ExternalProviderTypeEnum;
+	/**
+	 * This is the user_id within the provider.
+	 * @type {string}
+	 * @memberof ExternalProvider
+	 */
+	userId: string;
+	/**
+	 * This is optional here, but will be present for BB, Github, and google.
+	 * @type {string}
+	 * @memberof ExternalProvider
+	 */
+	accessToken?: string;
+	/**
+	 * Some providers have an expiration on their access token. IE BB, Google, NOT Github.
+	 * @type {number}
+	 * @memberof ExternalProvider
+	 */
+	expiresIn?: number;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof ExternalProvider
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof ExternalProvider
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {ExternalProviderProfileData}
+	 * @memberof ExternalProvider
+	 */
+	profileData?: ExternalProviderProfileData;
+	/**
+	 * This is an optional field that will be provided onentreprise connections. ie is type == waad then connection might be PiecesApp. However is other cases,you my find your provider and connection is the exact same string. To decifer between the two, you can use the isSocial bool.
+	 * @type {string}
+	 * @memberof ExternalProvider
+	 */
+	connection?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof ExternalProvider
+	 */
+	isSocial?: boolean;
 }
 
 /**
  * Check if a given object implements the ExternalProvider interface.
  */
 export function instanceOfExternalProvider(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
+	let isInstance = true;
+	isInstance = isInstance && "type" in value;
+	isInstance = isInstance && "userId" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ExternalProviderFromJSON(json: any): ExternalProvider {
-    return ExternalProviderFromJSONTyped(json, false);
+	return ExternalProviderFromJSONTyped(json, false);
 }
 
-export function ExternalProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExternalProvider {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'type': ExternalProviderTypeEnumFromJSON(json['type']),
-        'userId': json['user_id'],
-        'accessToken': !exists(json, 'access_token') ? undefined : json['access_token'],
-        'expiresIn': !exists(json, 'expires_in') ? undefined : json['expires_in'],
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'profileData': !exists(json, 'profileData') ? undefined : ExternalProviderProfileDataFromJSON(json['profileData']),
-        'connection': !exists(json, 'connection') ? undefined : json['connection'],
-        'isSocial': !exists(json, 'isSocial') ? undefined : json['isSocial'],
-    };
+export function ExternalProviderFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExternalProvider {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		type: ExternalProviderTypeEnumFromJSON(json["type"]),
+		userId: json["user_id"],
+		accessToken: exists(json, "access_token")
+			? json["access_token"]
+			: undefined,
+		expiresIn: exists(json, "expires_in") ? json["expires_in"] : undefined,
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		profileData: exists(json, "profileData")
+			? ExternalProviderProfileDataFromJSON(json["profileData"])
+			: undefined,
+		connection: exists(json, "connection") ? json["connection"] : undefined,
+		isSocial: exists(json, "isSocial") ? json["isSocial"] : undefined,
+	};
 }
 
 export function ExternalProviderToJSON(value?: ExternalProvider | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'type': ExternalProviderTypeEnumToJSON(value.type),
-        'user_id': value.userId,
-        'access_token': value.accessToken,
-        'expires_in': value.expiresIn,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'profileData': ExternalProviderProfileDataToJSON(value.profileData),
-        'connection': value.connection,
-        'isSocial': value.isSocial,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		type: ExternalProviderTypeEnumToJSON(value.type),
+		user_id: value.userId,
+		access_token: value.accessToken,
+		expires_in: value.expiresIn,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		profileData: ExternalProviderProfileDataToJSON(value.profileData),
+		connection: value.connection,
+		isSocial: value.isSocial,
+	};
 }
-

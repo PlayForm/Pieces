@@ -12,27 +12,32 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const FilterOperationTypeEnum = {
-    And: 'AND',
-    Or: 'OR'
+	And: "AND",
+	Or: "OR",
 } as const;
-export type FilterOperationTypeEnum = typeof FilterOperationTypeEnum[keyof typeof FilterOperationTypeEnum];
+export type FilterOperationTypeEnum =
+	(typeof FilterOperationTypeEnum)[keyof typeof FilterOperationTypeEnum];
 
-
-export function FilterOperationTypeEnumFromJSON(json: any): FilterOperationTypeEnum {
-    return FilterOperationTypeEnumFromJSONTyped(json, false);
+export function FilterOperationTypeEnumFromJSON(
+	json: any,
+): FilterOperationTypeEnum {
+	return FilterOperationTypeEnumFromJSONTyped(json, false);
 }
 
-export function FilterOperationTypeEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): FilterOperationTypeEnum {
-    return json as FilterOperationTypeEnum;
+export function FilterOperationTypeEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FilterOperationTypeEnum {
+	return json as FilterOperationTypeEnum;
 }
 
-export function FilterOperationTypeEnumToJSON(value?: FilterOperationTypeEnum | null): any {
-    return value as any;
+export function FilterOperationTypeEnumToJSON(
+	value?: FilterOperationTypeEnum | null,
+): any {
+	return value as any;
 }
-

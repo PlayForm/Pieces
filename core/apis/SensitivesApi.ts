@@ -12,169 +12,219 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  SearchInput,
-  SearchedSensitives,
-  SeededSensitive,
-  Sensitive,
-  Sensitives,
-} from '../models/index';
+	SearchInput,
+	SearchedSensitives,
+	SeededSensitive,
+	Sensitive,
+	Sensitives,
+} from "../models/index.ts";
 import {
-    SearchInputFromJSON,
-    SearchInputToJSON,
-    SearchedSensitivesFromJSON,
-    SearchedSensitivesToJSON,
-    SeededSensitiveFromJSON,
-    SeededSensitiveToJSON,
-    SensitiveFromJSON,
-    SensitiveToJSON,
-    SensitivesFromJSON,
-    SensitivesToJSON,
-} from '../models/index';
+	SearchInputToJSON,
+	SearchedSensitivesFromJSON,
+	SeededSensitiveToJSON,
+	SensitiveFromJSON,
+	SensitivesFromJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface SearchSensitivesRequest {
-    transferables?: boolean;
-    searchInput?: SearchInput;
+	transferables?: boolean;
+	searchInput?: SearchInput;
 }
 
 export interface SensitivesCreateNewSensitiveRequest {
-    seededSensitive?: SeededSensitive;
+	seededSensitive?: SeededSensitive;
 }
 
 export interface SensitivesDeleteSensitiveRequest {
-    sensitive: string;
+	sensitive: string;
 }
 
 /**
- * 
+ *
  */
 export class SensitivesApi extends runtime.BaseAPI {
+	/**
+	 * This will search your sensitives for a specific sensitive  note: we will search the value of the sensitive
+	 * /sensitives/search [POST]
+	 */
+	async searchSensitivesRaw(
+		requestParameters: SearchSensitivesRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedSensitives>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will search your sensitives for a specific sensitive  note: we will search the value of the sensitive
-     * /sensitives/search [POST]
-     */
-    async searchSensitivesRaw(requestParameters: SearchSensitivesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedSensitives>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/sensitives/search",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SearchInputToJSON(requestParameters.searchInput),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/sensitives/search`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SearchInputToJSON(requestParameters.searchInput),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedSensitivesFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedSensitivesFromJSON(jsonValue));
-    }
+	/**
+	 * This will search your sensitives for a specific sensitive  note: we will search the value of the sensitive
+	 * /sensitives/search [POST]
+	 */
+	async searchSensitives(
+		requestParameters: SearchSensitivesRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedSensitives> {
+		const response = await this.searchSensitivesRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will search your sensitives for a specific sensitive  note: we will search the value of the sensitive
-     * /sensitives/search [POST]
-     */
-    async searchSensitives(requestParameters: SearchSensitivesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedSensitives> {
-        const response = await this.searchSensitivesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will create a new sensitive model.
+	 * /sensitives/create [POST]
+	 */
+	async sensitivesCreateNewSensitiveRaw(
+		requestParameters: SensitivesCreateNewSensitiveRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Sensitive>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will create a new sensitive model.
-     * /sensitives/create [POST]
-     */
-    async sensitivesCreateNewSensitiveRaw(requestParameters: SensitivesCreateNewSensitiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Sensitive>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/sensitives/create",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededSensitiveToJSON(requestParameters.seededSensitive),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/sensitives/create`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededSensitiveToJSON(requestParameters.seededSensitive),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SensitiveFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SensitiveFromJSON(jsonValue));
-    }
+	/**
+	 * This will create a new sensitive model.
+	 * /sensitives/create [POST]
+	 */
+	async sensitivesCreateNewSensitive(
+		requestParameters: SensitivesCreateNewSensitiveRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Sensitive> {
+		const response = await this.sensitivesCreateNewSensitiveRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will create a new sensitive model.
-     * /sensitives/create [POST]
-     */
-    async sensitivesCreateNewSensitive(requestParameters: SensitivesCreateNewSensitiveRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Sensitive> {
-        const response = await this.sensitivesCreateNewSensitiveRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will delete a sensitive based on the sensitive uuid.
+	 * /sensitives/{sensitive}/delete [POST]
+	 */
+	async sensitivesDeleteSensitiveRaw(
+		requestParameters: SensitivesDeleteSensitiveRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.sensitive === null ||
+			requestParameters.sensitive === undefined
+		) {
+			throw new runtime.RequiredError(
+				"sensitive",
+				"Required parameter requestParameters.sensitive was null or undefined when calling sensitivesDeleteSensitive.",
+			);
+		}
 
-    /**
-     * This will delete a sensitive based on the sensitive uuid.
-     * /sensitives/{sensitive}/delete [POST]
-     */
-    async sensitivesDeleteSensitiveRaw(requestParameters: SensitivesDeleteSensitiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.sensitive === null || requestParameters.sensitive === undefined) {
-            throw new runtime.RequiredError('sensitive','Required parameter requestParameters.sensitive was null or undefined when calling sensitivesDeleteSensitive.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/sensitives/{sensitive}/delete".replace(
+					`{${"sensitive"}}`,
+					encodeURIComponent(String(requestParameters.sensitive)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/sensitives/{sensitive}/delete`.replace(`{${"sensitive"}}`, encodeURIComponent(String(requestParameters.sensitive))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * This will delete a sensitive based on the sensitive uuid.
+	 * /sensitives/{sensitive}/delete [POST]
+	 */
+	async sensitivesDeleteSensitive(
+		requestParameters: SensitivesDeleteSensitiveRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.sensitivesDeleteSensitiveRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
 
-    /**
-     * This will delete a sensitive based on the sensitive uuid.
-     * /sensitives/{sensitive}/delete [POST]
-     */
-    async sensitivesDeleteSensitive(requestParameters: SensitivesDeleteSensitiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.sensitivesDeleteSensitiveRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * This will get a snapshot of all of the sensitives.
+	 * /sensitives [GET]
+	 */
+	async sensitivesSnapshotRaw(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Sensitives>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will get a snapshot of all of the sensitives.
-     * /sensitives [GET]
-     */
-    async sensitivesSnapshotRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Sensitives>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/sensitives",
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/sensitives`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SensitivesFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SensitivesFromJSON(jsonValue));
-    }
-
-    /**
-     * This will get a snapshot of all of the sensitives.
-     * /sensitives [GET]
-     */
-    async sensitivesSnapshot(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Sensitives> {
-        const response = await this.sensitivesSnapshotRaw(initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will get a snapshot of all of the sensitives.
+	 * /sensitives [GET]
+	 */
+	async sensitivesSnapshot(
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Sensitives> {
+		const response = await this.sensitivesSnapshotRaw(initOverrides);
+		return await response.value();
+	}
 }

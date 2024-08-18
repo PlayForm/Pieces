@@ -12,49 +12,36 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedWorkstreamSummaries } from './FlattenedWorkstreamSummaries';
+	FlattenedWorkstreamSummariesFromJSON,
+	FlattenedWorkstreamSummariesToJSON,
+} from "./FlattenedWorkstreamSummaries.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    FlattenedWorkstreamSummariesFromJSON,
-    FlattenedWorkstreamSummariesFromJSONTyped,
-    FlattenedWorkstreamSummariesToJSON,
-} from './FlattenedWorkstreamSummaries';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import type { WorkstreamEventContext } from "./WorkstreamEventContext.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { Score } from './Score';
+	WorkstreamEventContextFromJSON,
+	WorkstreamEventContextToJSON,
+} from "./WorkstreamEventContext.tsx";
+import type { WorkstreamEventTrigger } from "./WorkstreamEventTrigger.tsx";
 import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
-import type { WorkstreamEventContext } from './WorkstreamEventContext';
-import {
-    WorkstreamEventContextFromJSON,
-    WorkstreamEventContextFromJSONTyped,
-    WorkstreamEventContextToJSON,
-} from './WorkstreamEventContext';
-import type { WorkstreamEventTrigger } from './WorkstreamEventTrigger';
-import {
-    WorkstreamEventTriggerFromJSON,
-    WorkstreamEventTriggerFromJSONTyped,
-    WorkstreamEventTriggerToJSON,
-} from './WorkstreamEventTrigger';
+	WorkstreamEventTriggerFromJSON,
+	WorkstreamEventTriggerToJSON,
+} from "./WorkstreamEventTrigger.tsx";
 
 /**
  * This is a singular (DAG Safe) version of a WorkstreamEvent.
@@ -62,116 +49,126 @@ import {
  * @interface FlattenedWorkstreamEvent
  */
 export interface FlattenedWorkstreamEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    id: string;
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {Application}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    application: Application;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {WorkstreamEventTrigger}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    trigger: WorkstreamEventTrigger;
-    /**
-     * 
-     * @type {WorkstreamEventContext}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    context?: WorkstreamEventContext;
-    /**
-     * 
-     * @type {FlattenedWorkstreamSummaries}
-     * @memberof FlattenedWorkstreamEvent
-     */
-    summaries?: FlattenedWorkstreamSummaries;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	application: Application;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {WorkstreamEventTrigger}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	trigger: WorkstreamEventTrigger;
+	/**
+	 *
+	 * @type {WorkstreamEventContext}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	context?: WorkstreamEventContext;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamSummaries}
+	 * @memberof FlattenedWorkstreamEvent
+	 */
+	summaries?: FlattenedWorkstreamSummaries;
 }
 
 /**
  * Check if a given object implements the FlattenedWorkstreamEvent interface.
  */
 export function instanceOfFlattenedWorkstreamEvent(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "application" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
-    isInstance = isInstance && "trigger" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "application" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
+	isInstance = isInstance && "trigger" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function FlattenedWorkstreamEventFromJSON(json: any): FlattenedWorkstreamEvent {
-    return FlattenedWorkstreamEventFromJSONTyped(json, false);
+export function FlattenedWorkstreamEventFromJSON(
+	json: any,
+): FlattenedWorkstreamEvent {
+	return FlattenedWorkstreamEventFromJSONTyped(json, false);
 }
 
-export function FlattenedWorkstreamEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedWorkstreamEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'application': ApplicationFromJSON(json['application']),
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'trigger': WorkstreamEventTriggerFromJSON(json['trigger']),
-        'context': !exists(json, 'context') ? undefined : WorkstreamEventContextFromJSON(json['context']),
-        'summaries': !exists(json, 'summaries') ? undefined : FlattenedWorkstreamSummariesFromJSON(json['summaries']),
-    };
+export function FlattenedWorkstreamEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedWorkstreamEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		application: ApplicationFromJSON(json["application"]),
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		trigger: WorkstreamEventTriggerFromJSON(json["trigger"]),
+		context: exists(json, "context")
+			? WorkstreamEventContextFromJSON(json["context"])
+			: undefined,
+		summaries: exists(json, "summaries")
+			? FlattenedWorkstreamSummariesFromJSON(json["summaries"])
+			: undefined,
+	};
 }
 
-export function FlattenedWorkstreamEventToJSON(value?: FlattenedWorkstreamEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'score': ScoreToJSON(value.score),
-        'application': ApplicationToJSON(value.application),
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'trigger': WorkstreamEventTriggerToJSON(value.trigger),
-        'context': WorkstreamEventContextToJSON(value.context),
-        'summaries': FlattenedWorkstreamSummariesToJSON(value.summaries),
-    };
+export function FlattenedWorkstreamEventToJSON(
+	value?: FlattenedWorkstreamEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		score: ScoreToJSON(value.score),
+		application: ApplicationToJSON(value.application),
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		trigger: WorkstreamEventTriggerToJSON(value.trigger),
+		context: WorkstreamEventContextToJSON(value.context),
+		summaries: FlattenedWorkstreamSummariesToJSON(value.summaries),
+	};
 }
-

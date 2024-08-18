@@ -12,90 +12,120 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Distribution,
-} from '../models/index';
-import {
-    DistributionFromJSON,
-    DistributionToJSON,
-} from '../models/index';
+import type { Distribution } from "../models/index.ts";
+import { DistributionFromJSON, DistributionToJSON } from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface DistributionUpdateRequest {
-    distribution?: Distribution;
+	distribution?: Distribution;
 }
 
 export interface DistributionsSpecificDistributionSnapshotRequest {
-    distribution: string;
+	distribution: string;
 }
 
 /**
- * 
+ *
  */
 export class DistributionApi extends runtime.BaseAPI {
+	/**
+	 * This will update a specific Distribution.
+	 * /distribution/update [POST]
+	 */
+	async distributionUpdateRaw(
+		requestParameters: DistributionUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Distribution>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will update a specific Distribution.
-     * /distribution/update [POST]
-     */
-    async distributionUpdateRaw(requestParameters: DistributionUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Distribution>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/distribution/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: DistributionToJSON(requestParameters.distribution),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/distribution/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: DistributionToJSON(requestParameters.distribution),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			DistributionFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DistributionFromJSON(jsonValue));
-    }
+	/**
+	 * This will update a specific Distribution.
+	 * /distribution/update [POST]
+	 */
+	async distributionUpdate(
+		requestParameters: DistributionUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Distribution> {
+		const response = await this.distributionUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will update a specific Distribution.
-     * /distribution/update [POST]
-     */
-    async distributionUpdate(requestParameters: DistributionUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Distribution> {
-        const response = await this.distributionUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will get a specific snapshot of a distribution.
+	 * /distribution/{distribution} [GET]
+	 */
+	async distributionsSpecificDistributionSnapshotRaw(
+		requestParameters: DistributionsSpecificDistributionSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Distribution>> {
+		if (
+			requestParameters.distribution === null ||
+			requestParameters.distribution === undefined
+		) {
+			throw new runtime.RequiredError(
+				"distribution",
+				"Required parameter requestParameters.distribution was null or undefined when calling distributionsSpecificDistributionSnapshot.",
+			);
+		}
 
-    /**
-     * This will get a specific snapshot of a distribution.
-     * /distribution/{distribution} [GET]
-     */
-    async distributionsSpecificDistributionSnapshotRaw(requestParameters: DistributionsSpecificDistributionSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Distribution>> {
-        if (requestParameters.distribution === null || requestParameters.distribution === undefined) {
-            throw new runtime.RequiredError('distribution','Required parameter requestParameters.distribution was null or undefined when calling distributionsSpecificDistributionSnapshot.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/distribution/{distribution}".replace(
+					`{${"distribution"}}`,
+					encodeURIComponent(String(requestParameters.distribution)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/distribution/{distribution}`.replace(`{${"distribution"}}`, encodeURIComponent(String(requestParameters.distribution))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			DistributionFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DistributionFromJSON(jsonValue));
-    }
-
-    /**
-     * This will get a specific snapshot of a distribution.
-     * /distribution/{distribution} [GET]
-     */
-    async distributionsSpecificDistributionSnapshot(requestParameters: DistributionsSpecificDistributionSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Distribution> {
-        const response = await this.distributionsSpecificDistributionSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will get a specific snapshot of a distribution.
+	 * /distribution/{distribution} [GET]
+	 */
+	async distributionsSpecificDistributionSnapshot(
+		requestParameters: DistributionsSpecificDistributionSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Distribution> {
+		const response =
+			await this.distributionsSpecificDistributionSnapshotRaw(
+				requestParameters,
+				initOverrides,
+			);
+		return await response.value();
+	}
 }

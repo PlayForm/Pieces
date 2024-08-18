@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedAnnotation } from './SearchedAnnotation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedAnnotation } from "./SearchedAnnotation.tsx";
 import {
-    SearchedAnnotationFromJSON,
-    SearchedAnnotationFromJSONTyped,
-    SearchedAnnotationToJSON,
-} from './SearchedAnnotation';
+	SearchedAnnotationFromJSON,
+	SearchedAnnotationToJSON,
+} from "./SearchedAnnotation.tsx";
 
 /**
  * This is the plural Model used to return many SearchedAnnotation.
@@ -32,56 +30,60 @@ import {
  * @interface SearchedAnnotations
  */
 export interface SearchedAnnotations {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedAnnotations
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SearchedAnnotation>}
-     * @memberof SearchedAnnotations
-     */
-    iterable: Array<SearchedAnnotation>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedAnnotations
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SearchedAnnotation>}
+	 * @memberof SearchedAnnotations
+	 */
+	iterable: SearchedAnnotation[];
 }
 
 /**
  * Check if a given object implements the SearchedAnnotations interface.
  */
 export function instanceOfSearchedAnnotations(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedAnnotationsFromJSON(json: any): SearchedAnnotations {
-    return SearchedAnnotationsFromJSONTyped(json, false);
+	return SearchedAnnotationsFromJSONTyped(json, false);
 }
 
-export function SearchedAnnotationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedAnnotations {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SearchedAnnotationFromJSON)),
-    };
+export function SearchedAnnotationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedAnnotations {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(SearchedAnnotationFromJSON),
+	};
 }
 
-export function SearchedAnnotationsToJSON(value?: SearchedAnnotations | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SearchedAnnotationToJSON)),
-    };
+export function SearchedAnnotationsToJSON(
+	value?: SearchedAnnotations | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(SearchedAnnotationToJSON),
+	};
 }
-

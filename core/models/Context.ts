@@ -12,31 +12,18 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Health } from './Health';
-import {
-    HealthFromJSON,
-    HealthFromJSONTyped,
-    HealthToJSON,
-} from './Health';
-import type { UserProfile } from './UserProfile';
-import {
-    UserProfileFromJSON,
-    UserProfileFromJSONTyped,
-    UserProfileToJSON,
-} from './UserProfile';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Health } from "./Health.tsx";
+import { HealthFromJSON, HealthToJSON } from "./Health.tsx";
+import type { UserProfile } from "./UserProfile.tsx";
+import { UserProfileFromJSON, UserProfileToJSON } from "./UserProfile.tsx";
 
 /**
  * A Context that is returned from almost all calls to the ContextAPI
@@ -44,82 +31,86 @@ import {
  * @interface Context
  */
 export interface Context {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Context
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is th UUID of the OS that this context is currently connected to. This attempts to be the same as Segment's anonmyousId feild. It is attempted to be set at initial installation at Pieces/.identity/.os
-     * @type {string}
-     * @memberof Context
-     */
-    os: string;
-    /**
-     * 
-     * @type {Application}
-     * @memberof Context
-     */
-    application: Application;
-    /**
-     * 
-     * @type {Health}
-     * @memberof Context
-     */
-    health: Health;
-    /**
-     * 
-     * @type {UserProfile}
-     * @memberof Context
-     */
-    user?: UserProfile;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Context
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is th UUID of the OS that this context is currently connected to. This attempts to be the same as Segment's anonmyousId feild. It is attempted to be set at initial installation at Pieces/.identity/.os
+	 * @type {string}
+	 * @memberof Context
+	 */
+	os: string;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof Context
+	 */
+	application: Application;
+	/**
+	 *
+	 * @type {Health}
+	 * @memberof Context
+	 */
+	health: Health;
+	/**
+	 *
+	 * @type {UserProfile}
+	 * @memberof Context
+	 */
+	user?: UserProfile;
 }
 
 /**
  * Check if a given object implements the Context interface.
  */
 export function instanceOfContext(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "os" in value;
-    isInstance = isInstance && "application" in value;
-    isInstance = isInstance && "health" in value;
+	let isInstance = true;
+	isInstance = isInstance && "os" in value;
+	isInstance = isInstance && "application" in value;
+	isInstance = isInstance && "health" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ContextFromJSON(json: any): Context {
-    return ContextFromJSONTyped(json, false);
+	return ContextFromJSONTyped(json, false);
 }
 
-export function ContextFromJSONTyped(json: any, ignoreDiscriminator: boolean): Context {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'os': json['os'],
-        'application': ApplicationFromJSON(json['application']),
-        'health': HealthFromJSON(json['health']),
-        'user': !exists(json, 'user') ? undefined : UserProfileFromJSON(json['user']),
-    };
+export function ContextFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Context {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		os: json["os"],
+		application: ApplicationFromJSON(json["application"]),
+		health: HealthFromJSON(json["health"]),
+		user: exists(json, "user")
+			? UserProfileFromJSON(json["user"])
+			: undefined,
+	};
 }
 
 export function ContextToJSON(value?: Context | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'os': value.os,
-        'application': ApplicationToJSON(value.application),
-        'health': HealthToJSON(value.health),
-        'user': UserProfileToJSON(value.user),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		os: value.os,
+		application: ApplicationToJSON(value.application),
+		health: HealthToJSON(value.health),
+		user: UserProfileToJSON(value.user),
+	};
 }
-

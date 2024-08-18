@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TextMatch } from './TextMatch';
-import {
-    TextMatchFromJSON,
-    TextMatchFromJSONTyped,
-    TextMatchToJSON,
-} from './TextMatch';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TextMatch } from "./TextMatch.tsx";
+import { TextMatchFromJSON, TextMatchToJSON } from "./TextMatch.tsx";
 
 /**
  * This is optional metatdata attached to a sensitive piece of data.
@@ -32,63 +27,67 @@ import {
  * @interface SensitiveMetadata
  */
 export interface SensitiveMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SensitiveMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TextMatch}
-     * @memberof SensitiveMetadata
-     */
-    match?: TextMatch;
-    /**
-     * entropy of the sensitive
-     * @type {number}
-     * @memberof SensitiveMetadata
-     */
-    entropy?: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SensitiveMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TextMatch}
+	 * @memberof SensitiveMetadata
+	 */
+	match?: TextMatch;
+	/**
+	 * entropy of the sensitive
+	 * @type {number}
+	 * @memberof SensitiveMetadata
+	 */
+	entropy?: number;
 }
 
 /**
  * Check if a given object implements the SensitiveMetadata interface.
  */
-export function instanceOfSensitiveMetadata(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSensitiveMetadata(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SensitiveMetadataFromJSON(json: any): SensitiveMetadata {
-    return SensitiveMetadataFromJSONTyped(json, false);
+	return SensitiveMetadataFromJSONTyped(json, false);
 }
 
-export function SensitiveMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SensitiveMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'match': !exists(json, 'match') ? undefined : TextMatchFromJSON(json['match']),
-        'entropy': !exists(json, 'entropy') ? undefined : json['entropy'],
-    };
+export function SensitiveMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SensitiveMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		match: exists(json, "match")
+			? TextMatchFromJSON(json["match"])
+			: undefined,
+		entropy: exists(json, "entropy") ? json["entropy"] : undefined,
+	};
 }
 
 export function SensitiveMetadataToJSON(value?: SensitiveMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'match': TextMatchToJSON(value.match),
-        'entropy': value.entropy,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		match: TextMatchToJSON(value.match),
+		entropy: value.entropy,
+	};
 }
-

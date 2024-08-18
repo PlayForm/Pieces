@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedWorkstreamEvent } from './FlattenedWorkstreamEvent';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedWorkstreamEvent } from "./FlattenedWorkstreamEvent.tsx";
 import {
-    FlattenedWorkstreamEventFromJSON,
-    FlattenedWorkstreamEventFromJSONTyped,
-    FlattenedWorkstreamEventToJSON,
-} from './FlattenedWorkstreamEvent';
+	FlattenedWorkstreamEventFromJSON,
+	FlattenedWorkstreamEventToJSON,
+} from "./FlattenedWorkstreamEvent.tsx";
 
 /**
  * This is a minimal representation of a WorkstreamEvent event.
@@ -32,64 +30,72 @@ import {
  * @interface ReferencedWorkstreamEvent
  */
 export interface ReferencedWorkstreamEvent {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedWorkstreamEvent
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReferencedWorkstreamEvent
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedWorkstreamEvent}
-     * @memberof ReferencedWorkstreamEvent
-     */
-    reference?: FlattenedWorkstreamEvent;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedWorkstreamEvent
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReferencedWorkstreamEvent
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamEvent}
+	 * @memberof ReferencedWorkstreamEvent
+	 */
+	reference?: FlattenedWorkstreamEvent;
 }
 
 /**
  * Check if a given object implements the ReferencedWorkstreamEvent interface.
  */
 export function instanceOfReferencedWorkstreamEvent(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ReferencedWorkstreamEventFromJSON(json: any): ReferencedWorkstreamEvent {
-    return ReferencedWorkstreamEventFromJSONTyped(json, false);
+export function ReferencedWorkstreamEventFromJSON(
+	json: any,
+): ReferencedWorkstreamEvent {
+	return ReferencedWorkstreamEventFromJSONTyped(json, false);
 }
 
-export function ReferencedWorkstreamEventFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedWorkstreamEvent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedWorkstreamEventFromJSON(json['reference']),
-    };
+export function ReferencedWorkstreamEventFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedWorkstreamEvent {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedWorkstreamEventFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
-export function ReferencedWorkstreamEventToJSON(value?: ReferencedWorkstreamEvent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedWorkstreamEventToJSON(value.reference),
-    };
+export function ReferencedWorkstreamEventToJSON(
+	value?: ReferencedWorkstreamEvent | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedWorkstreamEventToJSON(value.reference),
+	};
 }
-

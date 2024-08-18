@@ -12,107 +12,108 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FileMetadata } from './FileMetadata';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FileMetadata } from "./FileMetadata.tsx";
+import { FileMetadataFromJSON, FileMetadataToJSON } from "./FileMetadata.tsx";
+import type { TransferableBytes } from "./TransferableBytes.tsx";
 import {
-    FileMetadataFromJSON,
-    FileMetadataFromJSONTyped,
-    FileMetadataToJSON,
-} from './FileMetadata';
-import type { TransferableBytes } from './TransferableBytes';
+	TransferableBytesFromJSON,
+	TransferableBytesToJSON,
+} from "./TransferableBytes.tsx";
+import type { TransferableString } from "./TransferableString.tsx";
 import {
-    TransferableBytesFromJSON,
-    TransferableBytesFromJSONTyped,
-    TransferableBytesToJSON,
-} from './TransferableBytes';
-import type { TransferableString } from './TransferableString';
-import {
-    TransferableStringFromJSON,
-    TransferableStringFromJSONTyped,
-    TransferableStringToJSON,
-} from './TransferableString';
+	TransferableStringFromJSON,
+	TransferableStringToJSON,
+} from "./TransferableString.tsx";
 
 /**
  * This is a base model for a File(Seeded).
- * 
+ *
  * We will Throw an Error, if the text and the bytes properties are both null && if both the text and bytes properties are both defined. Ensure that you pass either a text or bytes property.
- * 
+ *
  * bytes and string are both optionl but, if both are null or both are defined we will throw an error. So You will be required to pass one or the other, NOT both.
  * @export
  * @interface SeededFile
  */
 export interface SeededFile {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededFile
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TransferableBytes}
-     * @memberof SeededFile
-     */
-    bytes?: TransferableBytes;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof SeededFile
-     */
-    string?: TransferableString;
-    /**
-     * 
-     * @type {FileMetadata}
-     * @memberof SeededFile
-     */
-    metadata?: FileMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededFile
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TransferableBytes}
+	 * @memberof SeededFile
+	 */
+	bytes?: TransferableBytes;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof SeededFile
+	 */
+	string?: TransferableString;
+	/**
+	 *
+	 * @type {FileMetadata}
+	 * @memberof SeededFile
+	 */
+	metadata?: FileMetadata;
 }
 
 /**
  * Check if a given object implements the SeededFile interface.
  */
-export function instanceOfSeededFile(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededFile(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededFileFromJSON(json: any): SeededFile {
-    return SeededFileFromJSONTyped(json, false);
+	return SeededFileFromJSONTyped(json, false);
 }
 
-export function SeededFileFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededFile {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'bytes': !exists(json, 'bytes') ? undefined : TransferableBytesFromJSON(json['bytes']),
-        'string': !exists(json, 'string') ? undefined : TransferableStringFromJSON(json['string']),
-        'metadata': !exists(json, 'metadata') ? undefined : FileMetadataFromJSON(json['metadata']),
-    };
+export function SeededFileFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededFile {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		bytes: exists(json, "bytes")
+			? TransferableBytesFromJSON(json["bytes"])
+			: undefined,
+		string: exists(json, "string")
+			? TransferableStringFromJSON(json["string"])
+			: undefined,
+		metadata: exists(json, "metadata")
+			? FileMetadataFromJSON(json["metadata"])
+			: undefined,
+	};
 }
 
 export function SeededFileToJSON(value?: SeededFile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'bytes': TransferableBytesToJSON(value.bytes),
-        'string': TransferableStringToJSON(value.string),
-        'metadata': FileMetadataToJSON(value.metadata),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		bytes: TransferableBytesToJSON(value.bytes),
+		string: TransferableStringToJSON(value.string),
+		metadata: FileMetadataToJSON(value.metadata),
+	};
 }
-

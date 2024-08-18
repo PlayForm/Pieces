@@ -12,93 +12,99 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedOCRAnalysis } from './FlattenedOCRAnalysis';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedOCRAnalysis } from "./FlattenedOCRAnalysis.tsx";
 import {
-    FlattenedOCRAnalysisFromJSON,
-    FlattenedOCRAnalysisFromJSONTyped,
-    FlattenedOCRAnalysisToJSON,
-} from './FlattenedOCRAnalysis';
+	FlattenedOCRAnalysisFromJSON,
+	FlattenedOCRAnalysisToJSON,
+} from "./FlattenedOCRAnalysis.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface FlattenedImageAnalysis
  */
 export interface FlattenedImageAnalysis {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedImageAnalysis
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof FlattenedImageAnalysis
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedOCRAnalysis}
-     * @memberof FlattenedImageAnalysis
-     */
-    ocr?: FlattenedOCRAnalysis;
-    /**
-     * this is a reference to our (parent)analysis
-     * @type {string}
-     * @memberof FlattenedImageAnalysis
-     */
-    analysis: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedImageAnalysis
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof FlattenedImageAnalysis
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedOCRAnalysis}
+	 * @memberof FlattenedImageAnalysis
+	 */
+	ocr?: FlattenedOCRAnalysis;
+	/**
+	 * this is a reference to our (parent)analysis
+	 * @type {string}
+	 * @memberof FlattenedImageAnalysis
+	 */
+	analysis: string;
 }
 
 /**
  * Check if a given object implements the FlattenedImageAnalysis interface.
  */
 export function instanceOfFlattenedImageAnalysis(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "analysis" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "analysis" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function FlattenedImageAnalysisFromJSON(json: any): FlattenedImageAnalysis {
-    return FlattenedImageAnalysisFromJSONTyped(json, false);
+export function FlattenedImageAnalysisFromJSON(
+	json: any,
+): FlattenedImageAnalysis {
+	return FlattenedImageAnalysisFromJSONTyped(json, false);
 }
 
-export function FlattenedImageAnalysisFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedImageAnalysis {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'ocr': !exists(json, 'ocr') ? undefined : FlattenedOCRAnalysisFromJSON(json['ocr']),
-        'analysis': json['analysis'],
-    };
+export function FlattenedImageAnalysisFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedImageAnalysis {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		ocr: exists(json, "ocr")
+			? FlattenedOCRAnalysisFromJSON(json["ocr"])
+			: undefined,
+		analysis: json["analysis"],
+	};
 }
 
-export function FlattenedImageAnalysisToJSON(value?: FlattenedImageAnalysis | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'ocr': FlattenedOCRAnalysisToJSON(value.ocr),
-        'analysis': value.analysis,
-    };
+export function FlattenedImageAnalysisToJSON(
+	value?: FlattenedImageAnalysis | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		ocr: FlattenedOCRAnalysisToJSON(value.ocr),
+		analysis: value.analysis,
+	};
 }
-

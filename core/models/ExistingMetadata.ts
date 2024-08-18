@@ -12,25 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedTag } from './ReferencedTag';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedTag } from "./ReferencedTag.tsx";
 import {
-    ReferencedTagFromJSON,
-    ReferencedTagFromJSONTyped,
-    ReferencedTagToJSON,
-} from './ReferencedTag';
-import type { ReferencedWebsite } from './ReferencedWebsite';
+	ReferencedTagFromJSON,
+	ReferencedTagToJSON,
+} from "./ReferencedTag.tsx";
+import type { ReferencedWebsite } from "./ReferencedWebsite.tsx";
 import {
-    ReferencedWebsiteFromJSON,
-    ReferencedWebsiteFromJSONTyped,
-    ReferencedWebsiteToJSON,
-} from './ReferencedWebsite';
+	ReferencedWebsiteFromJSON,
+	ReferencedWebsiteToJSON,
+} from "./ReferencedWebsite.tsx";
 
 /**
  * This is a shared input model for all the exists endpoints:
@@ -40,63 +37,69 @@ import {
  * @interface ExistingMetadata
  */
 export interface ExistingMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ExistingMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ReferencedWebsite}
-     * @memberof ExistingMetadata
-     */
-    website?: ReferencedWebsite;
-    /**
-     * 
-     * @type {ReferencedTag}
-     * @memberof ExistingMetadata
-     */
-    tag?: ReferencedTag;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ExistingMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ReferencedWebsite}
+	 * @memberof ExistingMetadata
+	 */
+	website?: ReferencedWebsite;
+	/**
+	 *
+	 * @type {ReferencedTag}
+	 * @memberof ExistingMetadata
+	 */
+	tag?: ReferencedTag;
 }
 
 /**
  * Check if a given object implements the ExistingMetadata interface.
  */
-export function instanceOfExistingMetadata(value: object): boolean {
-    let isInstance = true;
+export function instanceOfExistingMetadata(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ExistingMetadataFromJSON(json: any): ExistingMetadata {
-    return ExistingMetadataFromJSONTyped(json, false);
+	return ExistingMetadataFromJSONTyped(json, false);
 }
 
-export function ExistingMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExistingMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'website': !exists(json, 'website') ? undefined : ReferencedWebsiteFromJSON(json['website']),
-        'tag': !exists(json, 'tag') ? undefined : ReferencedTagFromJSON(json['tag']),
-    };
+export function ExistingMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExistingMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		website: exists(json, "website")
+			? ReferencedWebsiteFromJSON(json["website"])
+			: undefined,
+		tag: exists(json, "tag")
+			? ReferencedTagFromJSON(json["tag"])
+			: undefined,
+	};
 }
 
 export function ExistingMetadataToJSON(value?: ExistingMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'website': ReferencedWebsiteToJSON(value.website),
-        'tag': ReferencedTagToJSON(value.tag),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		website: ReferencedWebsiteToJSON(value.website),
+		tag: ReferencedTagToJSON(value.tag),
+	};
 }
-

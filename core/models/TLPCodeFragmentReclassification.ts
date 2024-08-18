@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TLPCodeFragmentReclassificationUpdates } from './TLPCodeFragmentReclassificationUpdates';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TLPCodeFragmentReclassificationUpdates } from "./TLPCodeFragmentReclassificationUpdates.tsx";
 import {
-    TLPCodeFragmentReclassificationUpdatesFromJSON,
-    TLPCodeFragmentReclassificationUpdatesFromJSONTyped,
-    TLPCodeFragmentReclassificationUpdatesToJSON,
-} from './TLPCodeFragmentReclassificationUpdates';
+	TLPCodeFragmentReclassificationUpdatesFromJSON,
+	TLPCodeFragmentReclassificationUpdatesToJSON,
+} from "./TLPCodeFragmentReclassificationUpdates.tsx";
 
 /**
  * Model for ML big query Reclassification.
@@ -32,101 +30,111 @@ import {
  * @interface TLPCodeFragmentReclassification
  */
 export interface TLPCodeFragmentReclassification {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TLPCodeFragmentReclassification
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentReclassification
-     */
-    asset: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentReclassification
-     */
-    model: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TLPCodeFragmentReclassification
-     */
-    created: string;
-    /**
-     * 
-     * @type {TLPCodeFragmentReclassificationUpdates}
-     * @memberof TLPCodeFragmentReclassification
-     */
-    updates: TLPCodeFragmentReclassificationUpdates;
-    /**
-     * this is the user that is reclassifying
-     * @type {string}
-     * @memberof TLPCodeFragmentReclassification
-     */
-    user: string;
-    /**
-     * this is the application is which this is from.
-     * @type {string}
-     * @memberof TLPCodeFragmentReclassification
-     */
-    context: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TLPCodeFragmentReclassification
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentReclassification
+	 */
+	asset: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentReclassification
+	 */
+	model: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof TLPCodeFragmentReclassification
+	 */
+	created: string;
+	/**
+	 *
+	 * @type {TLPCodeFragmentReclassificationUpdates}
+	 * @memberof TLPCodeFragmentReclassification
+	 */
+	updates: TLPCodeFragmentReclassificationUpdates;
+	/**
+	 * this is the user that is reclassifying
+	 * @type {string}
+	 * @memberof TLPCodeFragmentReclassification
+	 */
+	user: string;
+	/**
+	 * this is the application is which this is from.
+	 * @type {string}
+	 * @memberof TLPCodeFragmentReclassification
+	 */
+	context: string;
 }
 
 /**
  * Check if a given object implements the TLPCodeFragmentReclassification interface.
  */
-export function instanceOfTLPCodeFragmentReclassification(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "asset" in value;
-    isInstance = isInstance && "model" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updates" in value;
-    isInstance = isInstance && "user" in value;
-    isInstance = isInstance && "context" in value;
+export function instanceOfTLPCodeFragmentReclassification(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "asset" in value;
+	isInstance = isInstance && "model" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updates" in value;
+	isInstance = isInstance && "user" in value;
+	isInstance = isInstance && "context" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeFragmentReclassificationFromJSON(json: any): TLPCodeFragmentReclassification {
-    return TLPCodeFragmentReclassificationFromJSONTyped(json, false);
+export function TLPCodeFragmentReclassificationFromJSON(
+	json: any,
+): TLPCodeFragmentReclassification {
+	return TLPCodeFragmentReclassificationFromJSONTyped(json, false);
 }
 
-export function TLPCodeFragmentReclassificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFragmentReclassification {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': json['asset'],
-        'model': json['model'],
-        'created': json['created'],
-        'updates': TLPCodeFragmentReclassificationUpdatesFromJSON(json['updates']),
-        'user': json['user'],
-        'context': json['context'],
-    };
+export function TLPCodeFragmentReclassificationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFragmentReclassification {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: json["asset"],
+		model: json["model"],
+		created: json["created"],
+		updates: TLPCodeFragmentReclassificationUpdatesFromJSON(
+			json["updates"],
+		),
+		user: json["user"],
+		context: json["context"],
+	};
 }
 
-export function TLPCodeFragmentReclassificationToJSON(value?: TLPCodeFragmentReclassification | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': value.asset,
-        'model': value.model,
-        'created': value.created,
-        'updates': TLPCodeFragmentReclassificationUpdatesToJSON(value.updates),
-        'user': value.user,
-        'context': value.context,
-    };
+export function TLPCodeFragmentReclassificationToJSON(
+	value?: TLPCodeFragmentReclassification | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: value.asset,
+		model: value.model,
+		created: value.created,
+		updates: TLPCodeFragmentReclassificationUpdatesToJSON(value.updates),
+		user: value.user,
+		context: value.context,
+	};
 }
-

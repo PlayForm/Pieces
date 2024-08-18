@@ -12,120 +12,123 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { MechanismEnum } from './MechanismEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
-    MechanismEnumFromJSON,
-    MechanismEnumFromJSONTyped,
-    MechanismEnumToJSON,
-} from './MechanismEnum';
-import type { TagCategoryEnum } from './TagCategoryEnum';
+	MechanismEnumFromJSON,
+	MechanismEnumToJSON,
+} from "./MechanismEnum.tsx";
+import type { TagCategoryEnum } from "./TagCategoryEnum.tsx";
 import {
-    TagCategoryEnumFromJSON,
-    TagCategoryEnumFromJSONTyped,
-    TagCategoryEnumToJSON,
-} from './TagCategoryEnum';
+	TagCategoryEnumFromJSON,
+	TagCategoryEnumToJSON,
+} from "./TagCategoryEnum.tsx";
 
 /**
  * This is the minimum information needed when creating a Tag.
- * 
+ *
  * Default we will attach manual to a tag unless otherwise specified for mechanism.
- * 
+ *
  * you can optionally add an asset, format, or person uuid to attach this tag directly to it
- * 
+ *
  * TODO consider updating these asset,format to referenced Models
  * @export
  * @interface SeededTag
  */
 export interface SeededTag {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededTag
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the description of the tag.
-     * @type {string}
-     * @memberof SeededTag
-     */
-    text: string;
-    /**
-     * this is a uuid that references an asset.
-     * @type {string}
-     * @memberof SeededTag
-     */
-    asset?: string;
-    /**
-     * 
-     * @type {MechanismEnum}
-     * @memberof SeededTag
-     */
-    mechanism?: MechanismEnum;
-    /**
-     * 
-     * @type {TagCategoryEnum}
-     * @memberof SeededTag
-     */
-    category?: TagCategoryEnum;
-    /**
-     * uuid of the person, you want to add this tag too
-     * @type {string}
-     * @memberof SeededTag
-     */
-    person?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededTag
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the description of the tag.
+	 * @type {string}
+	 * @memberof SeededTag
+	 */
+	text: string;
+	/**
+	 * this is a uuid that references an asset.
+	 * @type {string}
+	 * @memberof SeededTag
+	 */
+	asset?: string;
+	/**
+	 *
+	 * @type {MechanismEnum}
+	 * @memberof SeededTag
+	 */
+	mechanism?: MechanismEnum;
+	/**
+	 *
+	 * @type {TagCategoryEnum}
+	 * @memberof SeededTag
+	 */
+	category?: TagCategoryEnum;
+	/**
+	 * uuid of the person, you want to add this tag too
+	 * @type {string}
+	 * @memberof SeededTag
+	 */
+	person?: string;
 }
 
 /**
  * Check if a given object implements the SeededTag interface.
  */
 export function instanceOfSeededTag(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "text" in value;
+	let isInstance = true;
+	isInstance = isInstance && "text" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededTagFromJSON(json: any): SeededTag {
-    return SeededTagFromJSONTyped(json, false);
+	return SeededTagFromJSONTyped(json, false);
 }
 
-export function SeededTagFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededTag {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'text': json['text'],
-        'asset': !exists(json, 'asset') ? undefined : json['asset'],
-        'mechanism': !exists(json, 'mechanism') ? undefined : MechanismEnumFromJSON(json['mechanism']),
-        'category': !exists(json, 'category') ? undefined : TagCategoryEnumFromJSON(json['category']),
-        'person': !exists(json, 'person') ? undefined : json['person'],
-    };
+export function SeededTagFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededTag {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		text: json["text"],
+		asset: exists(json, "asset") ? json["asset"] : undefined,
+		mechanism: exists(json, "mechanism")
+			? MechanismEnumFromJSON(json["mechanism"])
+			: undefined,
+		category: exists(json, "category")
+			? TagCategoryEnumFromJSON(json["category"])
+			: undefined,
+		person: exists(json, "person") ? json["person"] : undefined,
+	};
 }
 
 export function SeededTagToJSON(value?: SeededTag | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'text': value.text,
-        'asset': value.asset,
-        'mechanism': MechanismEnumToJSON(value.mechanism),
-        'category': TagCategoryEnumToJSON(value.category),
-        'person': value.person,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		text: value.text,
+		asset: value.asset,
+		mechanism: MechanismEnumToJSON(value.mechanism),
+		category: TagCategoryEnumToJSON(value.category),
+		person: value.person,
+	};
 }
-

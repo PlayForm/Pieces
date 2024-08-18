@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedModel } from './ReferencedModel';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
-    ReferencedModelFromJSON,
-    ReferencedModelFromJSONTyped,
-    ReferencedModelToJSON,
-} from './ReferencedModel';
+	ReferencedModelFromJSON,
+	ReferencedModelToJSON,
+} from "./ReferencedModel.tsx";
 
 /**
  * This is the output model for '/model/{model}/delete/cache'
@@ -32,56 +30,62 @@ import {
  * @interface ModelDeleteCacheOutput
  */
 export interface ModelDeleteCacheOutput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ModelDeleteCacheOutput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ReferencedModel}
-     * @memberof ModelDeleteCacheOutput
-     */
-    model: ReferencedModel;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ModelDeleteCacheOutput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ReferencedModel}
+	 * @memberof ModelDeleteCacheOutput
+	 */
+	model: ReferencedModel;
 }
 
 /**
  * Check if a given object implements the ModelDeleteCacheOutput interface.
  */
 export function instanceOfModelDeleteCacheOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "model" in value;
+	let isInstance = true;
+	isInstance = isInstance && "model" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ModelDeleteCacheOutputFromJSON(json: any): ModelDeleteCacheOutput {
-    return ModelDeleteCacheOutputFromJSONTyped(json, false);
+export function ModelDeleteCacheOutputFromJSON(
+	json: any,
+): ModelDeleteCacheOutput {
+	return ModelDeleteCacheOutputFromJSONTyped(json, false);
 }
 
-export function ModelDeleteCacheOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelDeleteCacheOutput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'model': ReferencedModelFromJSON(json['model']),
-    };
+export function ModelDeleteCacheOutputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ModelDeleteCacheOutput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		model: ReferencedModelFromJSON(json["model"]),
+	};
 }
 
-export function ModelDeleteCacheOutputToJSON(value?: ModelDeleteCacheOutput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'model': ReferencedModelToJSON(value.model),
-    };
+export function ModelDeleteCacheOutputToJSON(
+	value?: ModelDeleteCacheOutput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		model: ReferencedModelToJSON(value.model),
+	};
 }
-

@@ -12,142 +12,192 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  SeededScoreIncrement,
-  Share,
-} from '../models/index';
+import type { SeededScoreIncrement, Share } from "../models/index.ts";
 import {
-    SeededScoreIncrementFromJSON,
-    SeededScoreIncrementToJSON,
-    ShareFromJSON,
-    ShareToJSON,
-} from '../models/index';
+	SeededScoreIncrementToJSON,
+	ShareFromJSON,
+	ShareToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface ShareScoresIncrementRequest {
-    share: string;
-    seededScoreIncrement?: SeededScoreIncrement;
+	share: string;
+	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface ShareSnapshotRequest {
-    share: string;
-    transferables?: boolean;
+	share: string;
+	transferables?: boolean;
 }
 
 export interface ShareUpdateRequest {
-    transferables?: boolean;
-    share?: Share;
+	transferables?: boolean;
+	share?: Share;
 }
 
 /**
- * 
+ *
  */
 export class ShareApi extends runtime.BaseAPI {
+	/**
+	 * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
+	 * \'/share/{share}/scores/increment\' [POST]
+	 */
+	async shareScoresIncrementRaw(
+		requestParameters: ShareScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.share === null ||
+			requestParameters.share === undefined
+		) {
+			throw new runtime.RequiredError(
+				"share",
+				"Required parameter requestParameters.share was null or undefined when calling shareScoresIncrement.",
+			);
+		}
 
-    /**
-     * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
-     * \'/share/{share}/scores/increment\' [POST]
-     */
-    async shareScoresIncrementRaw(requestParameters: ShareScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.share === null || requestParameters.share === undefined) {
-            throw new runtime.RequiredError('share','Required parameter requestParameters.share was null or undefined when calling shareScoresIncrement.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/share/{share}/scores/increment".replace(
+					`{${"share"}}`,
+					encodeURIComponent(String(requestParameters.share)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededScoreIncrementToJSON(
+					requestParameters.seededScoreIncrement,
+				),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/share/{share}/scores/increment`.replace(`{${"share"}}`, encodeURIComponent(String(requestParameters.share))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededScoreIncrementToJSON(requestParameters.seededScoreIncrement),
-        }, initOverrides);
+		return new runtime.VoidApiResponse(response);
+	}
 
-        return new runtime.VoidApiResponse(response);
-    }
+	/**
+	 * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
+	 * \'/share/{share}/scores/increment\' [POST]
+	 */
+	async shareScoresIncrement(
+		requestParameters: ShareScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.shareScoresIncrementRaw(requestParameters, initOverrides);
+	}
 
-    /**
-     * This will take in a SeededScoreIncrement and will increment the material relative to the incoming body.
-     * \'/share/{share}/scores/increment\' [POST]
-     */
-    async shareScoresIncrement(requestParameters: ShareScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.shareScoresIncrementRaw(requestParameters, initOverrides);
-    }
+	/**
+	 * Get the snapshot of a specific share.
+	 * /share/{share}
+	 */
+	async shareSnapshotRaw(
+		requestParameters: ShareSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Share>> {
+		if (
+			requestParameters.share === null ||
+			requestParameters.share === undefined
+		) {
+			throw new runtime.RequiredError(
+				"share",
+				"Required parameter requestParameters.share was null or undefined when calling shareSnapshot.",
+			);
+		}
 
-    /**
-     * Get the snapshot of a specific share.
-     * /share/{share}
-     */
-    async shareSnapshotRaw(requestParameters: ShareSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Share>> {
-        if (requestParameters.share === null || requestParameters.share === undefined) {
-            throw new runtime.RequiredError('share','Required parameter requestParameters.share was null or undefined when calling shareSnapshot.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/share/{share}".replace(
+					`{${"share"}}`,
+					encodeURIComponent(String(requestParameters.share)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/share/{share}`.replace(`{${"share"}}`, encodeURIComponent(String(requestParameters.share))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ShareFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ShareFromJSON(jsonValue));
-    }
+	/**
+	 * Get the snapshot of a specific share.
+	 * /share/{share}
+	 */
+	async shareSnapshot(
+		requestParameters: ShareSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Share> {
+		const response = await this.shareSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * Get the snapshot of a specific share.
-     * /share/{share}
-     */
-    async shareSnapshot(requestParameters: ShareSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Share> {
-        const response = await this.shareSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This endpoint will accept a Share that the user wants to update, and will return a full Share that was updated!
+	 * /share/update [POST]
+	 */
+	async shareUpdateRaw(
+		requestParameters: ShareUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Share>> {
+		const queryParameters: any = {};
 
-    /**
-     * This endpoint will accept a Share that the user wants to update, and will return a full Share that was updated!
-     * /share/update [POST]
-     */
-    async shareUpdateRaw(requestParameters: ShareUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Share>> {
-        const queryParameters: any = {};
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
 
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/share/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: ShareToJSON(requestParameters.share),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/share/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ShareToJSON(requestParameters.share),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ShareFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ShareFromJSON(jsonValue));
-    }
-
-    /**
-     * This endpoint will accept a Share that the user wants to update, and will return a full Share that was updated!
-     * /share/update [POST]
-     */
-    async shareUpdate(requestParameters: ShareUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Share> {
-        const response = await this.shareUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This endpoint will accept a Share that the user wants to update, and will return a full Share that was updated!
+	 * /share/update [POST]
+	 */
+	async shareUpdate(
+		requestParameters: ShareUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Share> {
+		const response = await this.shareUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * config model for notification invoking
@@ -26,80 +25,82 @@ import {
  * @interface Notification
  */
 export interface Notification {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Notification
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof Notification
-     */
-    id: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Notification
-     */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Notification
-     */
-    message?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Notification
-     */
-    payload?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Notification
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof Notification
+	 */
+	id: number;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Notification
+	 */
+	title?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Notification
+	 */
+	message?: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Notification
+	 */
+	payload?: string;
 }
 
 /**
  * Check if a given object implements the Notification interface.
  */
 export function instanceOfNotification(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function NotificationFromJSON(json: any): Notification {
-    return NotificationFromJSONTyped(json, false);
+	return NotificationFromJSONTyped(json, false);
 }
 
-export function NotificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): Notification {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'payload': !exists(json, 'payload') ? undefined : json['payload'],
-    };
+export function NotificationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Notification {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		title: exists(json, "title") ? json["title"] : undefined,
+		message: exists(json, "message") ? json["message"] : undefined,
+		payload: exists(json, "payload") ? json["payload"] : undefined,
+	};
 }
 
 export function NotificationToJSON(value?: Notification | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'title': value.title,
-        'message': value.message,
-        'payload': value.payload,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		title: value.title,
+		message: value.message,
+		payload: value.payload,
+	};
 }
-

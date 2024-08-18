@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { OSAppletEnum } from './OSAppletEnum';
-import {
-    OSAppletEnumFromJSON,
-    OSAppletEnumFromJSONTyped,
-    OSAppletEnumToJSON,
-} from './OSAppletEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { OSAppletEnum } from "./OSAppletEnum.tsx";
+import { OSAppletEnumFromJSON, OSAppletEnumToJSON } from "./OSAppletEnum.tsx";
 
 /**
  * TODO
@@ -38,72 +29,80 @@ import {
  * @interface TerminatingOSServerApplet
  */
 export interface TerminatingOSServerApplet {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof TerminatingOSServerApplet
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Application}
-     * @memberof TerminatingOSServerApplet
-     */
-    parent?: Application;
-    /**
-     * Validation check if the port is passed in.
-     * @type {number}
-     * @memberof TerminatingOSServerApplet
-     */
-    port?: number | null;
-    /**
-     * 
-     * @type {OSAppletEnum}
-     * @memberof TerminatingOSServerApplet
-     */
-    type: OSAppletEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof TerminatingOSServerApplet
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof TerminatingOSServerApplet
+	 */
+	parent?: Application;
+	/**
+	 * Validation check if the port is passed in.
+	 * @type {number}
+	 * @memberof TerminatingOSServerApplet
+	 */
+	port?: number | null;
+	/**
+	 *
+	 * @type {OSAppletEnum}
+	 * @memberof TerminatingOSServerApplet
+	 */
+	type: OSAppletEnum;
 }
 
 /**
  * Check if a given object implements the TerminatingOSServerApplet interface.
  */
 export function instanceOfTerminatingOSServerApplet(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
+	let isInstance = true;
+	isInstance = isInstance && "type" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TerminatingOSServerAppletFromJSON(json: any): TerminatingOSServerApplet {
-    return TerminatingOSServerAppletFromJSONTyped(json, false);
+export function TerminatingOSServerAppletFromJSON(
+	json: any,
+): TerminatingOSServerApplet {
+	return TerminatingOSServerAppletFromJSONTyped(json, false);
 }
 
-export function TerminatingOSServerAppletFromJSONTyped(json: any, ignoreDiscriminator: boolean): TerminatingOSServerApplet {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'parent': !exists(json, 'parent') ? undefined : ApplicationFromJSON(json['parent']),
-        'port': !exists(json, 'port') ? undefined : json['port'],
-        'type': OSAppletEnumFromJSON(json['type']),
-    };
+export function TerminatingOSServerAppletFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TerminatingOSServerApplet {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		parent: exists(json, "parent")
+			? ApplicationFromJSON(json["parent"])
+			: undefined,
+		port: exists(json, "port") ? json["port"] : undefined,
+		type: OSAppletEnumFromJSON(json["type"]),
+	};
 }
 
-export function TerminatingOSServerAppletToJSON(value?: TerminatingOSServerApplet | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'parent': ApplicationToJSON(value.parent),
-        'port': value.port,
-        'type': OSAppletEnumToJSON(value.type),
-    };
+export function TerminatingOSServerAppletToJSON(
+	value?: TerminatingOSServerApplet | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		parent: ApplicationToJSON(value.parent),
+		port: value.port,
+		type: OSAppletEnumToJSON(value.type),
+	};
 }
-

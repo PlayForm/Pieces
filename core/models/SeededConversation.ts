@@ -12,218 +12,233 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { ConversationTypeEnum } from "./ConversationTypeEnum.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { ConversationTypeEnum } from './ConversationTypeEnum';
+	ConversationTypeEnumFromJSON,
+	ConversationTypeEnumToJSON,
+} from "./ConversationTypeEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ConversationTypeEnumFromJSON,
-    ConversationTypeEnumFromJSONTyped,
-    ConversationTypeEnumToJSON,
-} from './ConversationTypeEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAssets } from './FlattenedAssets';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { FlattenedWebsites } from './FlattenedWebsites';
+	FlattenedWebsitesFromJSON,
+	FlattenedWebsitesToJSON,
+} from "./FlattenedWebsites.tsx";
+import type { QGPTPromptPipeline } from "./QGPTPromptPipeline.tsx";
 import {
-    FlattenedWebsitesFromJSON,
-    FlattenedWebsitesFromJSONTyped,
-    FlattenedWebsitesToJSON,
-} from './FlattenedWebsites';
-import type { QGPTPromptPipeline } from './QGPTPromptPipeline';
+	QGPTPromptPipelineFromJSON,
+	QGPTPromptPipelineToJSON,
+} from "./QGPTPromptPipeline.tsx";
+import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
-    QGPTPromptPipelineFromJSON,
-    QGPTPromptPipelineFromJSONTyped,
-    QGPTPromptPipelineToJSON,
-} from './QGPTPromptPipeline';
-import type { ReferencedModel } from './ReferencedModel';
+	ReferencedModelFromJSON,
+	ReferencedModelToJSON,
+} from "./ReferencedModel.tsx";
+import type { SeededAnchor } from "./SeededAnchor.tsx";
+import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
+import type { SeededAnnotation } from "./SeededAnnotation.tsx";
 import {
-    ReferencedModelFromJSON,
-    ReferencedModelFromJSONTyped,
-    ReferencedModelToJSON,
-} from './ReferencedModel';
-import type { SeededAnchor } from './SeededAnchor';
+	SeededAnnotationFromJSON,
+	SeededAnnotationToJSON,
+} from "./SeededAnnotation.tsx";
+import type { SeededConversationMessage } from "./SeededConversationMessage.tsx";
 import {
-    SeededAnchorFromJSON,
-    SeededAnchorFromJSONTyped,
-    SeededAnchorToJSON,
-} from './SeededAnchor';
-import type { SeededAnnotation } from './SeededAnnotation';
-import {
-    SeededAnnotationFromJSON,
-    SeededAnnotationFromJSONTyped,
-    SeededAnnotationToJSON,
-} from './SeededAnnotation';
-import type { SeededConversationMessage } from './SeededConversationMessage';
-import {
-    SeededConversationMessageFromJSON,
-    SeededConversationMessageFromJSONTyped,
-    SeededConversationMessageToJSON,
-} from './SeededConversationMessage';
+	SeededConversationMessageFromJSON,
+	SeededConversationMessageToJSON,
+} from "./SeededConversationMessage.tsx";
 
 /**
  * This is a pre-Conversation object.
- * 
+ *
  * This will hold together a conversation. Ie allthe message within a conversation.
- * 
+ *
  * All the additional properties on here used on here like(anchors/assets) are used for context that will seed the conversation.
- * 
+ *
  * model is a calculated property, and will be the model of the last message sent if applicable.
  * @export
  * @interface SeededConversation
  */
 export interface SeededConversation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededConversation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is a name that is customized.
-     * @type {string}
-     * @memberof SeededConversation
-     */
-    name?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededConversation
-     */
-    favorited?: boolean;
-    /**
-     * 
-     * @type {Application}
-     * @memberof SeededConversation
-     */
-    application?: Application;
-    /**
-     * 
-     * @type {Array<SeededAnnotation>}
-     * @memberof SeededConversation
-     */
-    annotations?: Array<SeededAnnotation>;
-    /**
-     * 
-     * @type {Array<SeededConversationMessage>}
-     * @memberof SeededConversation
-     */
-    messages?: Array<SeededConversationMessage>;
-    /**
-     * 
-     * @type {ReferencedModel}
-     * @memberof SeededConversation
-     */
-    model?: ReferencedModel;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof SeededConversation
-     */
-    assets?: FlattenedAssets;
-    /**
-     * 
-     * @type {FlattenedWebsites}
-     * @memberof SeededConversation
-     */
-    websites?: FlattenedWebsites;
-    /**
-     * 
-     * @type {Array<SeededAnchor>}
-     * @memberof SeededConversation
-     */
-    anchors?: Array<SeededAnchor>;
-    /**
-     * 
-     * @type {ConversationTypeEnum}
-     * @memberof SeededConversation
-     */
-    type: ConversationTypeEnum;
-    /**
-     * 
-     * @type {QGPTPromptPipeline}
-     * @memberof SeededConversation
-     */
-    pipeline?: QGPTPromptPipeline;
-    /**
-     * This will let us know if this conversation was generated as a 'demo' conversation
-     * @type {boolean}
-     * @memberof SeededConversation
-     */
-    demo?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededConversation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is a name that is customized.
+	 * @type {string}
+	 * @memberof SeededConversation
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededConversation
+	 */
+	favorited?: boolean;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof SeededConversation
+	 */
+	application?: Application;
+	/**
+	 *
+	 * @type {Array<SeededAnnotation>}
+	 * @memberof SeededConversation
+	 */
+	annotations?: SeededAnnotation[];
+	/**
+	 *
+	 * @type {Array<SeededConversationMessage>}
+	 * @memberof SeededConversation
+	 */
+	messages?: SeededConversationMessage[];
+	/**
+	 *
+	 * @type {ReferencedModel}
+	 * @memberof SeededConversation
+	 */
+	model?: ReferencedModel;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof SeededConversation
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 *
+	 * @type {FlattenedWebsites}
+	 * @memberof SeededConversation
+	 */
+	websites?: FlattenedWebsites;
+	/**
+	 *
+	 * @type {Array<SeededAnchor>}
+	 * @memberof SeededConversation
+	 */
+	anchors?: SeededAnchor[];
+	/**
+	 *
+	 * @type {ConversationTypeEnum}
+	 * @memberof SeededConversation
+	 */
+	type: ConversationTypeEnum;
+	/**
+	 *
+	 * @type {QGPTPromptPipeline}
+	 * @memberof SeededConversation
+	 */
+	pipeline?: QGPTPromptPipeline;
+	/**
+	 * This will let us know if this conversation was generated as a 'demo' conversation
+	 * @type {boolean}
+	 * @memberof SeededConversation
+	 */
+	demo?: boolean;
 }
 
 /**
  * Check if a given object implements the SeededConversation interface.
  */
 export function instanceOfSeededConversation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
+	let isInstance = true;
+	isInstance = isInstance && "type" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededConversationFromJSON(json: any): SeededConversation {
-    return SeededConversationFromJSONTyped(json, false);
+	return SeededConversationFromJSONTyped(json, false);
 }
 
-export function SeededConversationFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededConversation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'favorited': !exists(json, 'favorited') ? undefined : json['favorited'],
-        'application': !exists(json, 'application') ? undefined : ApplicationFromJSON(json['application']),
-        'annotations': !exists(json, 'annotations') ? undefined : ((json['annotations'] as Array<any>).map(SeededAnnotationFromJSON)),
-        'messages': !exists(json, 'messages') ? undefined : ((json['messages'] as Array<any>).map(SeededConversationMessageFromJSON)),
-        'model': !exists(json, 'model') ? undefined : ReferencedModelFromJSON(json['model']),
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'websites': !exists(json, 'websites') ? undefined : FlattenedWebsitesFromJSON(json['websites']),
-        'anchors': !exists(json, 'anchors') ? undefined : ((json['anchors'] as Array<any>).map(SeededAnchorFromJSON)),
-        'type': ConversationTypeEnumFromJSON(json['type']),
-        'pipeline': !exists(json, 'pipeline') ? undefined : QGPTPromptPipelineFromJSON(json['pipeline']),
-        'demo': !exists(json, 'demo') ? undefined : json['demo'],
-    };
+export function SeededConversationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededConversation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		name: exists(json, "name") ? json["name"] : undefined,
+		favorited: exists(json, "favorited") ? json["favorited"] : undefined,
+		application: exists(json, "application")
+			? ApplicationFromJSON(json["application"])
+			: undefined,
+		annotations: exists(json, "annotations")
+			? (json["annotations"] as any[]).map(SeededAnnotationFromJSON)
+			: undefined,
+		messages: exists(json, "messages")
+			? (json["messages"] as any[]).map(SeededConversationMessageFromJSON)
+			: undefined,
+		model: exists(json, "model")
+			? ReferencedModelFromJSON(json["model"])
+			: undefined,
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		websites: exists(json, "websites")
+			? FlattenedWebsitesFromJSON(json["websites"])
+			: undefined,
+		anchors: exists(json, "anchors")
+			? (json["anchors"] as any[]).map(SeededAnchorFromJSON)
+			: undefined,
+		type: ConversationTypeEnumFromJSON(json["type"]),
+		pipeline: exists(json, "pipeline")
+			? QGPTPromptPipelineFromJSON(json["pipeline"])
+			: undefined,
+		demo: exists(json, "demo") ? json["demo"] : undefined,
+	};
 }
 
-export function SeededConversationToJSON(value?: SeededConversation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'name': value.name,
-        'favorited': value.favorited,
-        'application': ApplicationToJSON(value.application),
-        'annotations': value.annotations === undefined ? undefined : ((value.annotations as Array<any>).map(SeededAnnotationToJSON)),
-        'messages': value.messages === undefined ? undefined : ((value.messages as Array<any>).map(SeededConversationMessageToJSON)),
-        'model': ReferencedModelToJSON(value.model),
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'websites': FlattenedWebsitesToJSON(value.websites),
-        'anchors': value.anchors === undefined ? undefined : ((value.anchors as Array<any>).map(SeededAnchorToJSON)),
-        'type': ConversationTypeEnumToJSON(value.type),
-        'pipeline': QGPTPromptPipelineToJSON(value.pipeline),
-        'demo': value.demo,
-    };
+export function SeededConversationToJSON(
+	value?: SeededConversation | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		name: value.name,
+		favorited: value.favorited,
+		application: ApplicationToJSON(value.application),
+		annotations:
+			value.annotations === undefined
+				? undefined
+				: (value.annotations as any[]).map(SeededAnnotationToJSON),
+		messages:
+			value.messages === undefined
+				? undefined
+				: (value.messages as any[]).map(
+						SeededConversationMessageToJSON,
+					),
+		model: ReferencedModelToJSON(value.model),
+		assets: FlattenedAssetsToJSON(value.assets),
+		websites: FlattenedWebsitesToJSON(value.websites),
+		anchors:
+			value.anchors === undefined
+				? undefined
+				: (value.anchors as any[]).map(SeededAnchorToJSON),
+		type: ConversationTypeEnumToJSON(value.type),
+		pipeline: QGPTPromptPipelineToJSON(value.pipeline),
+		demo: value.demo,
+	};
 }
-

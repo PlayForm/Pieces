@@ -12,86 +12,90 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { EmbeddingsSearchOptionsEmbeddingTypeEnum } from './EmbeddingsSearchOptionsEmbeddingTypeEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { EmbeddingsSearchOptionsEmbeddingTypeEnum } from "./EmbeddingsSearchOptionsEmbeddingTypeEnum.tsx";
 import {
-    EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSON,
-    EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSONTyped,
-    EmbeddingsSearchOptionsEmbeddingTypeEnumToJSON,
-} from './EmbeddingsSearchOptionsEmbeddingTypeEnum';
+	EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSON,
+	EmbeddingsSearchOptionsEmbeddingTypeEnumToJSON,
+} from "./EmbeddingsSearchOptionsEmbeddingTypeEnum.tsx";
 
 /**
  * similarity: this is optional from 0 - 1, (where 1 is exact and 0 is everything)
- * 
+ *
  * TODO consider a plural of types for running many embedding search scopes
  * @export
  * @interface EmbeddingsSearchOptions
  */
 export interface EmbeddingsSearchOptions {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof EmbeddingsSearchOptions
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {EmbeddingsSearchOptionsEmbeddingTypeEnum}
-     * @memberof EmbeddingsSearchOptions
-     */
-    type: EmbeddingsSearchOptionsEmbeddingTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof EmbeddingsSearchOptions
-     */
-    similarity?: number;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof EmbeddingsSearchOptions
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {EmbeddingsSearchOptionsEmbeddingTypeEnum}
+	 * @memberof EmbeddingsSearchOptions
+	 */
+	type: EmbeddingsSearchOptionsEmbeddingTypeEnum;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof EmbeddingsSearchOptions
+	 */
+	similarity?: number;
 }
 
 /**
  * Check if a given object implements the EmbeddingsSearchOptions interface.
  */
 export function instanceOfEmbeddingsSearchOptions(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
+	let isInstance = true;
+	isInstance = isInstance && "type" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function EmbeddingsSearchOptionsFromJSON(json: any): EmbeddingsSearchOptions {
-    return EmbeddingsSearchOptionsFromJSONTyped(json, false);
+export function EmbeddingsSearchOptionsFromJSON(
+	json: any,
+): EmbeddingsSearchOptions {
+	return EmbeddingsSearchOptionsFromJSONTyped(json, false);
 }
 
-export function EmbeddingsSearchOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmbeddingsSearchOptions {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'type': EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSON(json['type']),
-        'similarity': !exists(json, 'similarity') ? undefined : json['similarity'],
-    };
+export function EmbeddingsSearchOptionsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): EmbeddingsSearchOptions {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		type: EmbeddingsSearchOptionsEmbeddingTypeEnumFromJSON(json["type"]),
+		similarity: exists(json, "similarity") ? json["similarity"] : undefined,
+	};
 }
 
-export function EmbeddingsSearchOptionsToJSON(value?: EmbeddingsSearchOptions | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'type': EmbeddingsSearchOptionsEmbeddingTypeEnumToJSON(value.type),
-        'similarity': value.similarity,
-    };
+export function EmbeddingsSearchOptionsToJSON(
+	value?: EmbeddingsSearchOptions | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		type: EmbeddingsSearchOptionsEmbeddingTypeEnumToJSON(value.type),
+		similarity: value.similarity,
+	};
 }
-

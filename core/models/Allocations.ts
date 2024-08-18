@@ -12,76 +12,76 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AllocationCloud } from './AllocationCloud';
+import { exists } from "../runtime.ts";
+import type { AllocationCloud } from "./AllocationCloud.tsx";
 import {
-    AllocationCloudFromJSON,
-    AllocationCloudFromJSONTyped,
-    AllocationCloudToJSON,
-} from './AllocationCloud';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AllocationCloudFromJSON,
+	AllocationCloudToJSON,
+} from "./AllocationCloud.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface Allocations
  */
 export interface Allocations {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Allocations
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<AllocationCloud>}
-     * @memberof Allocations
-     */
-    iterable: Array<AllocationCloud>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Allocations
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<AllocationCloud>}
+	 * @memberof Allocations
+	 */
+	iterable: AllocationCloud[];
 }
 
 /**
  * Check if a given object implements the Allocations interface.
  */
 export function instanceOfAllocations(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AllocationsFromJSON(json: any): Allocations {
-    return AllocationsFromJSONTyped(json, false);
+	return AllocationsFromJSONTyped(json, false);
 }
 
-export function AllocationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Allocations {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(AllocationCloudFromJSON)),
-    };
+export function AllocationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Allocations {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(AllocationCloudFromJSON),
+	};
 }
 
 export function AllocationsToJSON(value?: Allocations | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(AllocationCloudToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(AllocationCloudToJSON),
+	};
 }
-

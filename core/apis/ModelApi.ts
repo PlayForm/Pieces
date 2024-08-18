@@ -12,273 +12,418 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  Model,
-  ModelDownloadProgress,
-} from '../models/index';
+import type { Model, ModelDownloadProgress } from "../models/index.ts";
 import {
-    ModelFromJSON,
-    ModelToJSON,
-    ModelDownloadProgressFromJSON,
-    ModelDownloadProgressToJSON,
-} from '../models/index';
+	ModelDownloadProgressFromJSON,
+	ModelFromJSON,
+	ModelToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface ModelSpecificModelDownloadRequest {
-    model: string;
+	model: string;
 }
 
 export interface ModelSpecificModelDownloadCancelRequest {
-    model: string;
+	model: string;
 }
 
 export interface ModelSpecificModelDownloadProgressRequest {
-    model: string;
+	model: string;
 }
 
 export interface ModelSpecificModelLoadRequest {
-    model: string;
+	model: string;
 }
 
 export interface ModelSpecificModelUnloadRequest {
-    model: string;
+	model: string;
 }
 
 export interface ModelUpdateRequest {
-    model?: Model;
+	model?: Model;
 }
 
 export interface ModelsSpecificModelSnapshotRequest {
-    model: string;
+	model: string;
 }
 
 /**
- * 
+ *
  */
 export class ModelApi extends runtime.BaseAPI {
+	/**
+	 * Downloads a specific model to your local machine.
+	 * /model/{model}/download [POST]
+	 */
+	async modelSpecificModelDownloadRaw(
+		requestParameters: ModelSpecificModelDownloadRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Model>> {
+		if (
+			requestParameters.model === null ||
+			requestParameters.model === undefined
+		) {
+			throw new runtime.RequiredError(
+				"model",
+				"Required parameter requestParameters.model was null or undefined when calling modelSpecificModelDownload.",
+			);
+		}
 
-    /**
-     * Downloads a specific model to your local machine.
-     * /model/{model}/download [POST]
-     */
-    async modelSpecificModelDownloadRaw(requestParameters: ModelSpecificModelDownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Model>> {
-        if (requestParameters.model === null || requestParameters.model === undefined) {
-            throw new runtime.RequiredError('model','Required parameter requestParameters.model was null or undefined when calling modelSpecificModelDownload.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/model/{model}/download".replace(
+					`{${"model"}}`,
+					encodeURIComponent(String(requestParameters.model)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/model/{model}/download`.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters.model))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ModelFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
-    }
+	/**
+	 * Downloads a specific model to your local machine.
+	 * /model/{model}/download [POST]
+	 */
+	async modelSpecificModelDownload(
+		requestParameters: ModelSpecificModelDownloadRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Model> {
+		const response = await this.modelSpecificModelDownloadRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * Downloads a specific model to your local machine.
-     * /model/{model}/download [POST]
-     */
-    async modelSpecificModelDownload(requestParameters: ModelSpecificModelDownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Model> {
-        const response = await this.modelSpecificModelDownloadRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * Cancels a specific model download that is currently in progress.
+	 * /model/{model}/download/cancel [POST]
+	 */
+	async modelSpecificModelDownloadCancelRaw(
+		requestParameters: ModelSpecificModelDownloadCancelRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Model>> {
+		if (
+			requestParameters.model === null ||
+			requestParameters.model === undefined
+		) {
+			throw new runtime.RequiredError(
+				"model",
+				"Required parameter requestParameters.model was null or undefined when calling modelSpecificModelDownloadCancel.",
+			);
+		}
 
-    /**
-     * Cancels a specific model download that is currently in progress.
-     * /model/{model}/download/cancel [POST]
-     */
-    async modelSpecificModelDownloadCancelRaw(requestParameters: ModelSpecificModelDownloadCancelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Model>> {
-        if (requestParameters.model === null || requestParameters.model === undefined) {
-            throw new runtime.RequiredError('model','Required parameter requestParameters.model was null or undefined when calling modelSpecificModelDownloadCancel.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/model/{model}/download/cancel".replace(
+					`{${"model"}}`,
+					encodeURIComponent(String(requestParameters.model)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/model/{model}/download/cancel`.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters.model))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ModelFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
-    }
+	/**
+	 * Cancels a specific model download that is currently in progress.
+	 * /model/{model}/download/cancel [POST]
+	 */
+	async modelSpecificModelDownloadCancel(
+		requestParameters: ModelSpecificModelDownloadCancelRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Model> {
+		const response = await this.modelSpecificModelDownloadCancelRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * Cancels a specific model download that is currently in progress.
-     * /model/{model}/download/cancel [POST]
-     */
-    async modelSpecificModelDownloadCancel(requestParameters: ModelSpecificModelDownloadCancelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Model> {
-        const response = await this.modelSpecificModelDownloadCancelRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This is a WebSocket connection that provides real-time updates on the download progress of a specific model.
+	 * /model/{model}/download/progress [WS]
+	 */
+	async modelSpecificModelDownloadProgressRaw(
+		requestParameters: ModelSpecificModelDownloadProgressRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<ModelDownloadProgress>> {
+		if (
+			requestParameters.model === null ||
+			requestParameters.model === undefined
+		) {
+			throw new runtime.RequiredError(
+				"model",
+				"Required parameter requestParameters.model was null or undefined when calling modelSpecificModelDownloadProgress.",
+			);
+		}
 
-    /**
-     * This is a WebSocket connection that provides real-time updates on the download progress of a specific model.
-     * /model/{model}/download/progress [WS]
-     */
-    async modelSpecificModelDownloadProgressRaw(requestParameters: ModelSpecificModelDownloadProgressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModelDownloadProgress>> {
-        if (requestParameters.model === null || requestParameters.model === undefined) {
-            throw new runtime.RequiredError('model','Required parameter requestParameters.model was null or undefined when calling modelSpecificModelDownloadProgress.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/model/{model}/download/progress".replace(
+					`{${"model"}}`,
+					encodeURIComponent(String(requestParameters.model)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/model/{model}/download/progress`.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters.model))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ModelDownloadProgressFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelDownloadProgressFromJSON(jsonValue));
-    }
+	/**
+	 * This is a WebSocket connection that provides real-time updates on the download progress of a specific model.
+	 * /model/{model}/download/progress [WS]
+	 */
+	async modelSpecificModelDownloadProgress(
+		requestParameters: ModelSpecificModelDownloadProgressRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<ModelDownloadProgress> {
+		const response = await this.modelSpecificModelDownloadProgressRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This is a WebSocket connection that provides real-time updates on the download progress of a specific model.
-     * /model/{model}/download/progress [WS]
-     */
-    async modelSpecificModelDownloadProgress(requestParameters: ModelSpecificModelDownloadProgressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModelDownloadProgress> {
-        const response = await this.modelSpecificModelDownloadProgressRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * Loads a previously downloaded model into memory. It differs from downloading, as downloading involves transferring the entire model to your machine, while loading simply loads the model into memory.
+	 * /model/{model}/load [POST]
+	 */
+	async modelSpecificModelLoadRaw(
+		requestParameters: ModelSpecificModelLoadRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Model>> {
+		if (
+			requestParameters.model === null ||
+			requestParameters.model === undefined
+		) {
+			throw new runtime.RequiredError(
+				"model",
+				"Required parameter requestParameters.model was null or undefined when calling modelSpecificModelLoad.",
+			);
+		}
 
-    /**
-     * Loads a previously downloaded model into memory. It differs from downloading, as downloading involves transferring the entire model to your machine, while loading simply loads the model into memory.
-     * /model/{model}/load [POST]
-     */
-    async modelSpecificModelLoadRaw(requestParameters: ModelSpecificModelLoadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Model>> {
-        if (requestParameters.model === null || requestParameters.model === undefined) {
-            throw new runtime.RequiredError('model','Required parameter requestParameters.model was null or undefined when calling modelSpecificModelLoad.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/model/{model}/load".replace(
+					`{${"model"}}`,
+					encodeURIComponent(String(requestParameters.model)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/model/{model}/load`.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters.model))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ModelFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
-    }
+	/**
+	 * Loads a previously downloaded model into memory. It differs from downloading, as downloading involves transferring the entire model to your machine, while loading simply loads the model into memory.
+	 * /model/{model}/load [POST]
+	 */
+	async modelSpecificModelLoad(
+		requestParameters: ModelSpecificModelLoadRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Model> {
+		const response = await this.modelSpecificModelLoadRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * Loads a previously downloaded model into memory. It differs from downloading, as downloading involves transferring the entire model to your machine, while loading simply loads the model into memory.
-     * /model/{model}/load [POST]
-     */
-    async modelSpecificModelLoad(requestParameters: ModelSpecificModelLoadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Model> {
-        const response = await this.modelSpecificModelLoadRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * Unloads a previously loaded model from memory and effectively frees up the RAM consumed by the model.
+	 * /model/{model}/unload [POST]
+	 */
+	async modelSpecificModelUnloadRaw(
+		requestParameters: ModelSpecificModelUnloadRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Model>> {
+		if (
+			requestParameters.model === null ||
+			requestParameters.model === undefined
+		) {
+			throw new runtime.RequiredError(
+				"model",
+				"Required parameter requestParameters.model was null or undefined when calling modelSpecificModelUnload.",
+			);
+		}
 
-    /**
-     * Unloads a previously loaded model from memory and effectively frees up the RAM consumed by the model.
-     * /model/{model}/unload [POST]
-     */
-    async modelSpecificModelUnloadRaw(requestParameters: ModelSpecificModelUnloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Model>> {
-        if (requestParameters.model === null || requestParameters.model === undefined) {
-            throw new runtime.RequiredError('model','Required parameter requestParameters.model was null or undefined when calling modelSpecificModelUnload.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/model/{model}/unload".replace(
+					`{${"model"}}`,
+					encodeURIComponent(String(requestParameters.model)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/model/{model}/unload`.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters.model))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ModelFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
-    }
+	/**
+	 * Unloads a previously loaded model from memory and effectively frees up the RAM consumed by the model.
+	 * /model/{model}/unload [POST]
+	 */
+	async modelSpecificModelUnload(
+		requestParameters: ModelSpecificModelUnloadRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Model> {
+		const response = await this.modelSpecificModelUnloadRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * Unloads a previously loaded model from memory and effectively frees up the RAM consumed by the model.
-     * /model/{model}/unload [POST]
-     */
-    async modelSpecificModelUnload(requestParameters: ModelSpecificModelUnloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Model> {
-        const response = await this.modelSpecificModelUnloadRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * Updates a machine learning model. This functionality is exclusively available for models with the \'custom:true\' setting.
+	 * /model/update [POST]
+	 */
+	async modelUpdateRaw(
+		requestParameters: ModelUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Model>> {
+		const queryParameters: any = {};
 
-    /**
-     * Updates a machine learning model. This functionality is exclusively available for models with the \'custom:true\' setting.
-     * /model/update [POST]
-     */
-    async modelUpdateRaw(requestParameters: ModelUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Model>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/model/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: ModelToJSON(requestParameters.model),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/model/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ModelToJSON(requestParameters.model),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ModelFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
-    }
+	/**
+	 * Updates a machine learning model. This functionality is exclusively available for models with the \'custom:true\' setting.
+	 * /model/update [POST]
+	 */
+	async modelUpdate(
+		requestParameters: ModelUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Model> {
+		const response = await this.modelUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * Updates a machine learning model. This functionality is exclusively available for models with the \'custom:true\' setting.
-     * /model/update [POST]
-     */
-    async modelUpdate(requestParameters: ModelUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Model> {
-        const response = await this.modelUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * Retrieves a specific ML model.
+	 * /model/{model} [GET]
+	 */
+	async modelsSpecificModelSnapshotRaw(
+		requestParameters: ModelsSpecificModelSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Model>> {
+		if (
+			requestParameters.model === null ||
+			requestParameters.model === undefined
+		) {
+			throw new runtime.RequiredError(
+				"model",
+				"Required parameter requestParameters.model was null or undefined when calling modelsSpecificModelSnapshot.",
+			);
+		}
 
-    /**
-     * Retrieves a specific ML model.
-     * /model/{model} [GET]
-     */
-    async modelsSpecificModelSnapshotRaw(requestParameters: ModelsSpecificModelSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Model>> {
-        if (requestParameters.model === null || requestParameters.model === undefined) {
-            throw new runtime.RequiredError('model','Required parameter requestParameters.model was null or undefined when calling modelsSpecificModelSnapshot.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/model/{model}".replace(
+					`{${"model"}}`,
+					encodeURIComponent(String(requestParameters.model)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/model/{model}`.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters.model))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ModelFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieves a specific ML model.
-     * /model/{model} [GET]
-     */
-    async modelsSpecificModelSnapshot(requestParameters: ModelsSpecificModelSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Model> {
-        const response = await this.modelsSpecificModelSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * Retrieves a specific ML model.
+	 * /model/{model} [GET]
+	 */
+	async modelsSpecificModelSnapshot(
+		requestParameters: ModelsSpecificModelSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Model> {
+		const response = await this.modelsSpecificModelSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

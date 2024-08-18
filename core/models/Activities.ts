@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Activity } from './Activity';
+import { exists } from "../runtime.ts";
+import type { Activity } from "./Activity.tsx";
+import { ActivityFromJSON, ActivityToJSON } from "./Activity.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ActivityFromJSON,
-    ActivityFromJSONTyped,
-    ActivityToJSON,
-} from './Activity';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the plural of activity
@@ -32,56 +27,58 @@ import {
  * @interface Activities
  */
 export interface Activities {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Activities
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Activity>}
-     * @memberof Activities
-     */
-    iterable: Array<Activity>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Activities
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Activity>}
+	 * @memberof Activities
+	 */
+	iterable: Activity[];
 }
 
 /**
  * Check if a given object implements the Activities interface.
  */
 export function instanceOfActivities(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ActivitiesFromJSON(json: any): Activities {
-    return ActivitiesFromJSONTyped(json, false);
+	return ActivitiesFromJSONTyped(json, false);
 }
 
-export function ActivitiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): Activities {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ActivityFromJSON)),
-    };
+export function ActivitiesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Activities {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ActivityFromJSON),
+	};
 }
 
 export function ActivitiesToJSON(value?: Activities | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ActivityToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ActivityToJSON),
+	};
 }
-

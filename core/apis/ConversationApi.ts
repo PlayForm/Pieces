@@ -12,804 +12,1361 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
 import type {
-  Conversation,
-  ConversationMessages,
-  ConversationSummarizeInput,
-  ConversationSummarizeOutput,
-  SearchInput,
-  SearchedConversationMessages,
-  SeededScoreIncrement,
-} from '../models/index';
+	Conversation,
+	ConversationMessages,
+	ConversationSummarizeInput,
+	ConversationSummarizeOutput,
+	SearchInput,
+	SearchedConversationMessages,
+	SeededScoreIncrement,
+} from "../models/index.ts";
 import {
-    ConversationFromJSON,
-    ConversationToJSON,
-    ConversationMessagesFromJSON,
-    ConversationMessagesToJSON,
-    ConversationSummarizeInputFromJSON,
-    ConversationSummarizeInputToJSON,
-    ConversationSummarizeOutputFromJSON,
-    ConversationSummarizeOutputToJSON,
-    SearchInputFromJSON,
-    SearchInputToJSON,
-    SearchedConversationMessagesFromJSON,
-    SearchedConversationMessagesToJSON,
-    SeededScoreIncrementFromJSON,
-    SeededScoreIncrementToJSON,
-} from '../models/index';
+	ConversationFromJSON,
+	ConversationMessagesFromJSON,
+	ConversationSummarizeInputToJSON,
+	ConversationSummarizeOutputFromJSON,
+	ConversationToJSON,
+	SearchInputToJSON,
+	SearchedConversationMessagesFromJSON,
+	SeededScoreIncrementToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface ConversationAssociateAnchorRequest {
-    conversation: string;
-    anchor: string;
+	conversation: string;
+	anchor: string;
 }
 
 export interface ConversationAssociateAssetRequest {
-    conversation: string;
-    asset: string;
+	conversation: string;
+	asset: string;
 }
 
 export interface ConversationAssociateGroundingTemporalRangeWorkstreamRequest {
-    conversation: string;
-    range: string;
+	conversation: string;
+	range: string;
 }
 
 export interface ConversationAssociateWebsiteRequest {
-    conversation: string;
-    website: string;
+	conversation: string;
+	website: string;
 }
 
 export interface ConversationAssociateWorkstreamSummaryRequest {
-    conversation: string;
-    workstreamSummary: string;
+	conversation: string;
+	workstreamSummary: string;
 }
 
 export interface ConversationDisassociateAnchorRequest {
-    conversation: string;
-    anchor: string;
+	conversation: string;
+	anchor: string;
 }
 
 export interface ConversationDisassociateAssetRequest {
-    conversation: string;
-    asset: string;
+	conversation: string;
+	asset: string;
 }
 
 export interface ConversationDisassociateGroundingTemporalRangeWorkstreamRequest {
-    conversation: string;
-    range: string;
+	conversation: string;
+	range: string;
 }
 
 export interface ConversationDisassociateWebsiteRequest {
-    conversation: string;
-    website: string;
+	conversation: string;
+	website: string;
 }
 
 export interface ConversationDisassociateWorkstreamSummaryRequest {
-    conversation: string;
-    workstreamSummary: string;
+	conversation: string;
+	workstreamSummary: string;
 }
 
 export interface ConversationGetSpecificConversationRequest {
-    conversation: string;
-    transferables?: boolean;
+	conversation: string;
+	transferables?: boolean;
 }
 
 export interface ConversationGroundingMessagesAssociateMessageRequest {
-    conversation: string;
-    message: string;
+	conversation: string;
+	message: string;
 }
 
 export interface ConversationGroundingMessagesDisassociateMessageRequest {
-    conversation: string;
-    message: string;
+	conversation: string;
+	message: string;
 }
 
 export interface ConversationScoresIncrementRequest {
-    conversation: string;
-    seededScoreIncrement?: SeededScoreIncrement;
+	conversation: string;
+	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface ConversationSpecificConversationMessagesRequest {
-    conversation: string;
-    transferables?: boolean;
+	conversation: string;
+	transferables?: boolean;
 }
 
 export interface ConversationSpecificConversationRenameRequest {
-    conversation: string;
-    transferables?: boolean;
+	conversation: string;
+	transferables?: boolean;
 }
 
 export interface ConversationSummarizeRequest {
-    conversation: string;
-    conversationSummarizeInput?: ConversationSummarizeInput;
+	conversation: string;
+	conversationSummarizeInput?: ConversationSummarizeInput;
 }
 
 export interface ConversationUpdateRequest {
-    transferables?: boolean;
-    conversation?: Conversation;
+	transferables?: boolean;
+	conversation?: Conversation;
 }
 
 export interface SearchConversationSpecificMessagesRequest {
-    conversation: string;
-    transferables?: boolean;
-    searchInput?: SearchInput;
+	conversation: string;
+	transferables?: boolean;
+	searchInput?: SearchInput;
 }
 
 /**
- * 
+ *
  */
 export class ConversationApi extends runtime.BaseAPI {
-
-    /**
-     * Updates both the anchor and the conversation, associating them together.
-     * /conversation/{conversation}/anchors/associate/{anchor} [POST]
-     */
-    async conversationAssociateAnchorRaw(requestParameters: ConversationAssociateAnchorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateAnchor.');
-        }
-
-        if (requestParameters.anchor === null || requestParameters.anchor === undefined) {
-            throw new runtime.RequiredError('anchor','Required parameter requestParameters.anchor was null or undefined when calling conversationAssociateAnchor.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/anchors/associate/{anchor}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"anchor"}}`, encodeURIComponent(String(requestParameters.anchor))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Updates both the anchor and the conversation, associating them together.
-     * /conversation/{conversation}/anchors/associate/{anchor} [POST]
-     */
-    async conversationAssociateAnchor(requestParameters: ConversationAssociateAnchorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationAssociateAnchorRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Updates both the asset and the conversation, associating the two together.
-     * /conversation/{conversation}/assets/associate/{asset} [POST]
-     */
-    async conversationAssociateAssetRaw(requestParameters: ConversationAssociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateAsset.');
-        }
-
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling conversationAssociateAsset.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/assets/associate/{asset}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Updates both the asset and the conversation, associating the two together.
-     * /conversation/{conversation}/assets/associate/{asset} [POST]
-     */
-    async conversationAssociateAsset(requestParameters: ConversationAssociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationAssociateAssetRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * This will associate a workstream(range) with a conversation. This will do the same thing as the range equivalent.
-     * /conversation/{conversation}/grounding/temporal/ranges/associate/{range} [POST]
-     */
-    async conversationAssociateGroundingTemporalRangeWorkstreamRaw(requestParameters: ConversationAssociateGroundingTemporalRangeWorkstreamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateGroundingTemporalRangeWorkstream.');
-        }
-
-        if (requestParameters.range === null || requestParameters.range === undefined) {
-            throw new runtime.RequiredError('range','Required parameter requestParameters.range was null or undefined when calling conversationAssociateGroundingTemporalRangeWorkstream.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/grounding/temporal_range/workstreams/associate/{range}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"range"}}`, encodeURIComponent(String(requestParameters.range))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * This will associate a workstream(range) with a conversation. This will do the same thing as the range equivalent.
-     * /conversation/{conversation}/grounding/temporal/ranges/associate/{range} [POST]
-     */
-    async conversationAssociateGroundingTemporalRangeWorkstream(requestParameters: ConversationAssociateGroundingTemporalRangeWorkstreamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationAssociateGroundingTemporalRangeWorkstreamRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Updates both the website and the conversation, and associate them together.
-     * /conversation/{conversation}/websites/associate/{website} [POST]
-     */
-    async conversationAssociateWebsiteRaw(requestParameters: ConversationAssociateWebsiteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateWebsite.');
-        }
-
-        if (requestParameters.website === null || requestParameters.website === undefined) {
-            throw new runtime.RequiredError('website','Required parameter requestParameters.website was null or undefined when calling conversationAssociateWebsite.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/websites/associate/{website}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"website"}}`, encodeURIComponent(String(requestParameters.website))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Updates both the website and the conversation, and associate them together.
-     * /conversation/{conversation}/websites/associate/{website} [POST]
-     */
-    async conversationAssociateWebsite(requestParameters: ConversationAssociateWebsiteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationAssociateWebsiteRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * This will associate a conversation with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
-     * /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} [POST]
-     */
-    async conversationAssociateWorkstreamSummaryRaw(requestParameters: ConversationAssociateWorkstreamSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateWorkstreamSummary.');
-        }
-
-        if (requestParameters.workstreamSummary === null || requestParameters.workstreamSummary === undefined) {
-            throw new runtime.RequiredError('workstreamSummary','Required parameter requestParameters.workstreamSummary was null or undefined when calling conversationAssociateWorkstreamSummary.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/workstream_summaries/associate/{workstream_summary}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"workstream_summary"}}`, encodeURIComponent(String(requestParameters.workstreamSummary))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * This will associate a conversation with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
-     * /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} [POST]
-     */
-    async conversationAssociateWorkstreamSummary(requestParameters: ConversationAssociateWorkstreamSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationAssociateWorkstreamSummaryRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Updates both the anchor and the conversation, deleting (disassociating) them simultaneously.
-     * /conversation/{conversation}/anchors/disassociate/{anchor} [POST]
-     */
-    async conversationDisassociateAnchorRaw(requestParameters: ConversationDisassociateAnchorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateAnchor.');
-        }
-
-        if (requestParameters.anchor === null || requestParameters.anchor === undefined) {
-            throw new runtime.RequiredError('anchor','Required parameter requestParameters.anchor was null or undefined when calling conversationDisassociateAnchor.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/anchors/disassociate/{anchor}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"anchor"}}`, encodeURIComponent(String(requestParameters.anchor))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Updates both the anchor and the conversation, deleting (disassociating) them simultaneously.
-     * /conversation/{conversation}/anchors/disassociate/{anchor} [POST]
-     */
-    async conversationDisassociateAnchor(requestParameters: ConversationDisassociateAnchorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationDisassociateAnchorRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Updates both the asset and the conversation, effectively disassociating them.
-     * /conversation/{conversation}/assets/disassociate/{asset} [POST]
-     */
-    async conversationDisassociateAssetRaw(requestParameters: ConversationDisassociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateAsset.');
-        }
-
-        if (requestParameters.asset === null || requestParameters.asset === undefined) {
-            throw new runtime.RequiredError('asset','Required parameter requestParameters.asset was null or undefined when calling conversationDisassociateAsset.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/assets/disassociate/{asset}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"asset"}}`, encodeURIComponent(String(requestParameters.asset))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Updates both the asset and the conversation, effectively disassociating them.
-     * /conversation/{conversation}/assets/disassociate/{asset} [POST]
-     */
-    async conversationDisassociateAsset(requestParameters: ConversationDisassociateAssetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationDisassociateAssetRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * This will enable us to disassociate a workstream(range) from a conversation. This will do the same thing as the range equivalent.
-     * /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} [POST]
-     */
-    async conversationDisassociateGroundingTemporalRangeWorkstreamRaw(requestParameters: ConversationDisassociateGroundingTemporalRangeWorkstreamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateGroundingTemporalRangeWorkstream.');
-        }
-
-        if (requestParameters.range === null || requestParameters.range === undefined) {
-            throw new runtime.RequiredError('range','Required parameter requestParameters.range was null or undefined when calling conversationDisassociateGroundingTemporalRangeWorkstream.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"range"}}`, encodeURIComponent(String(requestParameters.range))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * This will enable us to disassociate a workstream(range) from a conversation. This will do the same thing as the range equivalent.
-     * /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} [POST]
-     */
-    async conversationDisassociateGroundingTemporalRangeWorkstream(requestParameters: ConversationDisassociateGroundingTemporalRangeWorkstreamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationDisassociateGroundingTemporalRangeWorkstreamRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Allows us to disassociate a conversation from a specific website
-     * /website/{website}/websites/disassociate/{website} [POST]
-     */
-    async conversationDisassociateWebsiteRaw(requestParameters: ConversationDisassociateWebsiteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateWebsite.');
-        }
-
-        if (requestParameters.website === null || requestParameters.website === undefined) {
-            throw new runtime.RequiredError('website','Required parameter requestParameters.website was null or undefined when calling conversationDisassociateWebsite.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/websites/disassociate/{website}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"website"}}`, encodeURIComponent(String(requestParameters.website))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Allows us to disassociate a conversation from a specific website
-     * /website/{website}/websites/disassociate/{website} [POST]
-     */
-    async conversationDisassociateWebsite(requestParameters: ConversationDisassociateWebsiteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationDisassociateWebsiteRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * This will enable us to disassociate an conversation from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
-     * /conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary} [POST]
-     */
-    async conversationDisassociateWorkstreamSummaryRaw(requestParameters: ConversationDisassociateWorkstreamSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateWorkstreamSummary.');
-        }
-
-        if (requestParameters.workstreamSummary === null || requestParameters.workstreamSummary === undefined) {
-            throw new runtime.RequiredError('workstreamSummary','Required parameter requestParameters.workstreamSummary was null or undefined when calling conversationDisassociateWorkstreamSummary.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"workstream_summary"}}`, encodeURIComponent(String(requestParameters.workstreamSummary))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * This will enable us to disassociate an conversation from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
-     * /conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary} [POST]
-     */
-    async conversationDisassociateWorkstreamSummary(requestParameters: ConversationDisassociateWorkstreamSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationDisassociateWorkstreamSummaryRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Retrieves a specific conversation.
-     * /conversation/{conversation} [GET]
-     */
-    async conversationGetSpecificConversationRaw(requestParameters: ConversationGetSpecificConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Conversation>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationGetSpecificConversation.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieves a specific conversation.
-     * /conversation/{conversation} [GET]
-     */
-    async conversationGetSpecificConversation(requestParameters: ConversationGetSpecificConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Conversation> {
-        const response = await this.conversationGetSpecificConversationRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Stores the grounding context for a conversation. It allows to associate a message with the conversation\'s grounding object, facilitating contextual understanding and management of the conversation.
-     * /conversation/{conversation}/grounding/messages/associate/{message} [POST]
-     */
-    async conversationGroundingMessagesAssociateMessageRaw(requestParameters: ConversationGroundingMessagesAssociateMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationGroundingMessagesAssociateMessage.');
-        }
-
-        if (requestParameters.message === null || requestParameters.message === undefined) {
-            throw new runtime.RequiredError('message','Required parameter requestParameters.message was null or undefined when calling conversationGroundingMessagesAssociateMessage.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/grounding/messages/associate/{message}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"message"}}`, encodeURIComponent(String(requestParameters.message))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Stores the grounding context for a conversation. It allows to associate a message with the conversation\'s grounding object, facilitating contextual understanding and management of the conversation.
-     * /conversation/{conversation}/grounding/messages/associate/{message} [POST]
-     */
-    async conversationGroundingMessagesAssociateMessage(requestParameters: ConversationGroundingMessagesAssociateMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationGroundingMessagesAssociateMessageRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Removes a specific grounding context for a conversation, and allows us to disassociate a message from the conversation\'s grounding object.
-     * /conversation/{conversation}/grounding/messages/disassociate/{message} [POST]
-     */
-    async conversationGroundingMessagesDisassociateMessageRaw(requestParameters: ConversationGroundingMessagesDisassociateMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationGroundingMessagesDisassociateMessage.');
-        }
-
-        if (requestParameters.message === null || requestParameters.message === undefined) {
-            throw new runtime.RequiredError('message','Required parameter requestParameters.message was null or undefined when calling conversationGroundingMessagesDisassociateMessage.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/grounding/messages/disassociate/{message}`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))).replace(`{${"message"}}`, encodeURIComponent(String(requestParameters.message))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Removes a specific grounding context for a conversation, and allows us to disassociate a message from the conversation\'s grounding object.
-     * /conversation/{conversation}/grounding/messages/disassociate/{message} [POST]
-     */
-    async conversationGroundingMessagesDisassociateMessage(requestParameters: ConversationGroundingMessagesDisassociateMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationGroundingMessagesDisassociateMessageRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Increment scores associated with a conversation. It accepts a SeededScoreIncrement object as input to adjust the scores accordingly based on the provided data.
-     * /conversation/{conversation}/scores/increment [POST]
-     */
-    async conversationScoresIncrementRaw(requestParameters: ConversationScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationScoresIncrement.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/scores/increment`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SeededScoreIncrementToJSON(requestParameters.seededScoreIncrement),
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Increment scores associated with a conversation. It accepts a SeededScoreIncrement object as input to adjust the scores accordingly based on the provided data.
-     * /conversation/{conversation}/scores/increment [POST]
-     */
-    async conversationScoresIncrement(requestParameters: ConversationScoresIncrementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.conversationScoresIncrementRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Retrieves messages specific to a particular conversation.
-     * /conversation/{conversation}/messages [GET]
-     */
-    async conversationSpecificConversationMessagesRaw(requestParameters: ConversationSpecificConversationMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMessages>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationSpecificConversationMessages.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/messages`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationMessagesFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieves messages specific to a particular conversation.
-     * /conversation/{conversation}/messages [GET]
-     */
-    async conversationSpecificConversationMessages(requestParameters: ConversationSpecificConversationMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMessages> {
-        const response = await this.conversationSpecificConversationMessagesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Renames a specific conversation using machine learning (ML) techniques.
-     * /conversation/{conversation}/rename [POST]
-     */
-    async conversationSpecificConversationRenameRaw(requestParameters: ConversationSpecificConversationRenameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Conversation>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationSpecificConversationRename.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/rename`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationFromJSON(jsonValue));
-    }
-
-    /**
-     * Renames a specific conversation using machine learning (ML) techniques.
-     * /conversation/{conversation}/rename [POST]
-     */
-    async conversationSpecificConversationRename(requestParameters: ConversationSpecificConversationRenameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Conversation> {
-        const response = await this.conversationSpecificConversationRenameRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Generates a summary of a given conversation and saves it as an annotation associated with the conversation. It returns a reference to the annotation, which serves as the summary.
-     * /conversation/{conversation}/summarize [POST]
-     */
-    async conversationSummarizeRaw(requestParameters: ConversationSummarizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationSummarizeOutput>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling conversationSummarize.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/summarize`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ConversationSummarizeInputToJSON(requestParameters.conversationSummarizeInput),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationSummarizeOutputFromJSON(jsonValue));
-    }
-
-    /**
-     * Generates a summary of a given conversation and saves it as an annotation associated with the conversation. It returns a reference to the annotation, which serves as the summary.
-     * /conversation/{conversation}/summarize [POST]
-     */
-    async conversationSummarize(requestParameters: ConversationSummarizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationSummarizeOutput> {
-        const response = await this.conversationSummarizeRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Updates a specific conversation.
-     * /conversation/update [POST]
-     */
-    async conversationUpdateRaw(requestParameters: ConversationUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Conversation>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/conversation/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ConversationToJSON(requestParameters.conversation),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationFromJSON(jsonValue));
-    }
-
-    /**
-     * Updates a specific conversation.
-     * /conversation/update [POST]
-     */
-    async conversationUpdate(requestParameters: ConversationUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Conversation> {
-        const response = await this.conversationUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * This will search a specific conversation for a match  note: here we will only search the conversationMessages for this given Conversation
-     * /conversation/{conversation}/search [POST]
-     */
-    async searchConversationSpecificMessagesRaw(requestParameters: SearchConversationSpecificMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchedConversationMessages>> {
-        if (requestParameters.conversation === null || requestParameters.conversation === undefined) {
-            throw new runtime.RequiredError('conversation','Required parameter requestParameters.conversation was null or undefined when calling searchConversationSpecificMessages.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.transferables !== undefined) {
-            queryParameters['transferables'] = requestParameters.transferables;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/conversation/{conversation}/search`.replace(`{${"conversation"}}`, encodeURIComponent(String(requestParameters.conversation))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SearchInputToJSON(requestParameters.searchInput),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchedConversationMessagesFromJSON(jsonValue));
-    }
-
-    /**
-     * This will search a specific conversation for a match  note: here we will only search the conversationMessages for this given Conversation
-     * /conversation/{conversation}/search [POST]
-     */
-    async searchConversationSpecificMessages(requestParameters: SearchConversationSpecificMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchedConversationMessages> {
-        const response = await this.searchConversationSpecificMessagesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * Updates both the anchor and the conversation, associating them together.
+	 * /conversation/{conversation}/anchors/associate/{anchor} [POST]
+	 */
+	async conversationAssociateAnchorRaw(
+		requestParameters: ConversationAssociateAnchorRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateAnchor.",
+			);
+		}
+
+		if (
+			requestParameters.anchor === null ||
+			requestParameters.anchor === undefined
+		) {
+			throw new runtime.RequiredError(
+				"anchor",
+				"Required parameter requestParameters.anchor was null or undefined when calling conversationAssociateAnchor.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/anchors/associate/{anchor}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"anchor"}}`,
+						encodeURIComponent(String(requestParameters.anchor)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Updates both the anchor and the conversation, associating them together.
+	 * /conversation/{conversation}/anchors/associate/{anchor} [POST]
+	 */
+	async conversationAssociateAnchor(
+		requestParameters: ConversationAssociateAnchorRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationAssociateAnchorRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Updates both the asset and the conversation, associating the two together.
+	 * /conversation/{conversation}/assets/associate/{asset} [POST]
+	 */
+	async conversationAssociateAssetRaw(
+		requestParameters: ConversationAssociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateAsset.",
+			);
+		}
+
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling conversationAssociateAsset.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/assets/associate/{asset}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"asset"}}`,
+						encodeURIComponent(String(requestParameters.asset)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Updates both the asset and the conversation, associating the two together.
+	 * /conversation/{conversation}/assets/associate/{asset} [POST]
+	 */
+	async conversationAssociateAsset(
+		requestParameters: ConversationAssociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationAssociateAssetRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * This will associate a workstream(range) with a conversation. This will do the same thing as the range equivalent.
+	 * /conversation/{conversation}/grounding/temporal/ranges/associate/{range} [POST]
+	 */
+	async conversationAssociateGroundingTemporalRangeWorkstreamRaw(
+		requestParameters: ConversationAssociateGroundingTemporalRangeWorkstreamRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateGroundingTemporalRangeWorkstream.",
+			);
+		}
+
+		if (
+			requestParameters.range === null ||
+			requestParameters.range === undefined
+		) {
+			throw new runtime.RequiredError(
+				"range",
+				"Required parameter requestParameters.range was null or undefined when calling conversationAssociateGroundingTemporalRangeWorkstream.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/grounding/temporal_range/workstreams/associate/{range}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"range"}}`,
+						encodeURIComponent(String(requestParameters.range)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * This will associate a workstream(range) with a conversation. This will do the same thing as the range equivalent.
+	 * /conversation/{conversation}/grounding/temporal/ranges/associate/{range} [POST]
+	 */
+	async conversationAssociateGroundingTemporalRangeWorkstream(
+		requestParameters: ConversationAssociateGroundingTemporalRangeWorkstreamRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationAssociateGroundingTemporalRangeWorkstreamRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Updates both the website and the conversation, and associate them together.
+	 * /conversation/{conversation}/websites/associate/{website} [POST]
+	 */
+	async conversationAssociateWebsiteRaw(
+		requestParameters: ConversationAssociateWebsiteRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateWebsite.",
+			);
+		}
+
+		if (
+			requestParameters.website === null ||
+			requestParameters.website === undefined
+		) {
+			throw new runtime.RequiredError(
+				"website",
+				"Required parameter requestParameters.website was null or undefined when calling conversationAssociateWebsite.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/websites/associate/{website}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"website"}}`,
+						encodeURIComponent(String(requestParameters.website)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Updates both the website and the conversation, and associate them together.
+	 * /conversation/{conversation}/websites/associate/{website} [POST]
+	 */
+	async conversationAssociateWebsite(
+		requestParameters: ConversationAssociateWebsiteRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationAssociateWebsiteRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * This will associate a conversation with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+	 * /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} [POST]
+	 */
+	async conversationAssociateWorkstreamSummaryRaw(
+		requestParameters: ConversationAssociateWorkstreamSummaryRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationAssociateWorkstreamSummary.",
+			);
+		}
+
+		if (
+			requestParameters.workstreamSummary === null ||
+			requestParameters.workstreamSummary === undefined
+		) {
+			throw new runtime.RequiredError(
+				"workstreamSummary",
+				"Required parameter requestParameters.workstreamSummary was null or undefined when calling conversationAssociateWorkstreamSummary.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/workstream_summaries/associate/{workstream_summary}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"workstream_summary"}}`,
+						encodeURIComponent(
+							String(requestParameters.workstreamSummary),
+						),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * This will associate a conversation with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+	 * /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} [POST]
+	 */
+	async conversationAssociateWorkstreamSummary(
+		requestParameters: ConversationAssociateWorkstreamSummaryRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationAssociateWorkstreamSummaryRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Updates both the anchor and the conversation, deleting (disassociating) them simultaneously.
+	 * /conversation/{conversation}/anchors/disassociate/{anchor} [POST]
+	 */
+	async conversationDisassociateAnchorRaw(
+		requestParameters: ConversationDisassociateAnchorRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateAnchor.",
+			);
+		}
+
+		if (
+			requestParameters.anchor === null ||
+			requestParameters.anchor === undefined
+		) {
+			throw new runtime.RequiredError(
+				"anchor",
+				"Required parameter requestParameters.anchor was null or undefined when calling conversationDisassociateAnchor.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/anchors/disassociate/{anchor}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"anchor"}}`,
+						encodeURIComponent(String(requestParameters.anchor)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Updates both the anchor and the conversation, deleting (disassociating) them simultaneously.
+	 * /conversation/{conversation}/anchors/disassociate/{anchor} [POST]
+	 */
+	async conversationDisassociateAnchor(
+		requestParameters: ConversationDisassociateAnchorRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationDisassociateAnchorRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Updates both the asset and the conversation, effectively disassociating them.
+	 * /conversation/{conversation}/assets/disassociate/{asset} [POST]
+	 */
+	async conversationDisassociateAssetRaw(
+		requestParameters: ConversationDisassociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateAsset.",
+			);
+		}
+
+		if (
+			requestParameters.asset === null ||
+			requestParameters.asset === undefined
+		) {
+			throw new runtime.RequiredError(
+				"asset",
+				"Required parameter requestParameters.asset was null or undefined when calling conversationDisassociateAsset.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/assets/disassociate/{asset}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"asset"}}`,
+						encodeURIComponent(String(requestParameters.asset)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Updates both the asset and the conversation, effectively disassociating them.
+	 * /conversation/{conversation}/assets/disassociate/{asset} [POST]
+	 */
+	async conversationDisassociateAsset(
+		requestParameters: ConversationDisassociateAssetRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationDisassociateAssetRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * This will enable us to disassociate a workstream(range) from a conversation. This will do the same thing as the range equivalent.
+	 * /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} [POST]
+	 */
+	async conversationDisassociateGroundingTemporalRangeWorkstreamRaw(
+		requestParameters: ConversationDisassociateGroundingTemporalRangeWorkstreamRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateGroundingTemporalRangeWorkstream.",
+			);
+		}
+
+		if (
+			requestParameters.range === null ||
+			requestParameters.range === undefined
+		) {
+			throw new runtime.RequiredError(
+				"range",
+				"Required parameter requestParameters.range was null or undefined when calling conversationDisassociateGroundingTemporalRangeWorkstream.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"range"}}`,
+						encodeURIComponent(String(requestParameters.range)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * This will enable us to disassociate a workstream(range) from a conversation. This will do the same thing as the range equivalent.
+	 * /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} [POST]
+	 */
+	async conversationDisassociateGroundingTemporalRangeWorkstream(
+		requestParameters: ConversationDisassociateGroundingTemporalRangeWorkstreamRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationDisassociateGroundingTemporalRangeWorkstreamRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Allows us to disassociate a conversation from a specific website
+	 * /website/{website}/websites/disassociate/{website} [POST]
+	 */
+	async conversationDisassociateWebsiteRaw(
+		requestParameters: ConversationDisassociateWebsiteRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateWebsite.",
+			);
+		}
+
+		if (
+			requestParameters.website === null ||
+			requestParameters.website === undefined
+		) {
+			throw new runtime.RequiredError(
+				"website",
+				"Required parameter requestParameters.website was null or undefined when calling conversationDisassociateWebsite.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/websites/disassociate/{website}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"website"}}`,
+						encodeURIComponent(String(requestParameters.website)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Allows us to disassociate a conversation from a specific website
+	 * /website/{website}/websites/disassociate/{website} [POST]
+	 */
+	async conversationDisassociateWebsite(
+		requestParameters: ConversationDisassociateWebsiteRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationDisassociateWebsiteRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * This will enable us to disassociate an conversation from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+	 * /conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary} [POST]
+	 */
+	async conversationDisassociateWorkstreamSummaryRaw(
+		requestParameters: ConversationDisassociateWorkstreamSummaryRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationDisassociateWorkstreamSummary.",
+			);
+		}
+
+		if (
+			requestParameters.workstreamSummary === null ||
+			requestParameters.workstreamSummary === undefined
+		) {
+			throw new runtime.RequiredError(
+				"workstreamSummary",
+				"Required parameter requestParameters.workstreamSummary was null or undefined when calling conversationDisassociateWorkstreamSummary.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"workstream_summary"}}`,
+						encodeURIComponent(
+							String(requestParameters.workstreamSummary),
+						),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * This will enable us to disassociate an conversation from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+	 * /conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary} [POST]
+	 */
+	async conversationDisassociateWorkstreamSummary(
+		requestParameters: ConversationDisassociateWorkstreamSummaryRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationDisassociateWorkstreamSummaryRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Retrieves a specific conversation.
+	 * /conversation/{conversation} [GET]
+	 */
+	async conversationGetSpecificConversationRaw(
+		requestParameters: ConversationGetSpecificConversationRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Conversation>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationGetSpecificConversation.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}".replace(
+					`{${"conversation"}}`,
+					encodeURIComponent(String(requestParameters.conversation)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ConversationFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Retrieves a specific conversation.
+	 * /conversation/{conversation} [GET]
+	 */
+	async conversationGetSpecificConversation(
+		requestParameters: ConversationGetSpecificConversationRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Conversation> {
+		const response = await this.conversationGetSpecificConversationRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Stores the grounding context for a conversation. It allows to associate a message with the conversation\'s grounding object, facilitating contextual understanding and management of the conversation.
+	 * /conversation/{conversation}/grounding/messages/associate/{message} [POST]
+	 */
+	async conversationGroundingMessagesAssociateMessageRaw(
+		requestParameters: ConversationGroundingMessagesAssociateMessageRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationGroundingMessagesAssociateMessage.",
+			);
+		}
+
+		if (
+			requestParameters.message === null ||
+			requestParameters.message === undefined
+		) {
+			throw new runtime.RequiredError(
+				"message",
+				"Required parameter requestParameters.message was null or undefined when calling conversationGroundingMessagesAssociateMessage.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/grounding/messages/associate/{message}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"message"}}`,
+						encodeURIComponent(String(requestParameters.message)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Stores the grounding context for a conversation. It allows to associate a message with the conversation\'s grounding object, facilitating contextual understanding and management of the conversation.
+	 * /conversation/{conversation}/grounding/messages/associate/{message} [POST]
+	 */
+	async conversationGroundingMessagesAssociateMessage(
+		requestParameters: ConversationGroundingMessagesAssociateMessageRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationGroundingMessagesAssociateMessageRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Removes a specific grounding context for a conversation, and allows us to disassociate a message from the conversation\'s grounding object.
+	 * /conversation/{conversation}/grounding/messages/disassociate/{message} [POST]
+	 */
+	async conversationGroundingMessagesDisassociateMessageRaw(
+		requestParameters: ConversationGroundingMessagesDisassociateMessageRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationGroundingMessagesDisassociateMessage.",
+			);
+		}
+
+		if (
+			requestParameters.message === null ||
+			requestParameters.message === undefined
+		) {
+			throw new runtime.RequiredError(
+				"message",
+				"Required parameter requestParameters.message was null or undefined when calling conversationGroundingMessagesDisassociateMessage.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/grounding/messages/disassociate/{message}"
+					.replace(
+						`{${"conversation"}}`,
+						encodeURIComponent(
+							String(requestParameters.conversation),
+						),
+					)
+					.replace(
+						`{${"message"}}`,
+						encodeURIComponent(String(requestParameters.message)),
+					),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Removes a specific grounding context for a conversation, and allows us to disassociate a message from the conversation\'s grounding object.
+	 * /conversation/{conversation}/grounding/messages/disassociate/{message} [POST]
+	 */
+	async conversationGroundingMessagesDisassociateMessage(
+		requestParameters: ConversationGroundingMessagesDisassociateMessageRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationGroundingMessagesDisassociateMessageRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Increment scores associated with a conversation. It accepts a SeededScoreIncrement object as input to adjust the scores accordingly based on the provided data.
+	 * /conversation/{conversation}/scores/increment [POST]
+	 */
+	async conversationScoresIncrementRaw(
+		requestParameters: ConversationScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<void>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationScoresIncrement.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/scores/increment".replace(
+					`{${"conversation"}}`,
+					encodeURIComponent(String(requestParameters.conversation)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SeededScoreIncrementToJSON(
+					requestParameters.seededScoreIncrement,
+				),
+			},
+			initOverrides,
+		);
+
+		return new runtime.VoidApiResponse(response);
+	}
+
+	/**
+	 * Increment scores associated with a conversation. It accepts a SeededScoreIncrement object as input to adjust the scores accordingly based on the provided data.
+	 * /conversation/{conversation}/scores/increment [POST]
+	 */
+	async conversationScoresIncrement(
+		requestParameters: ConversationScoresIncrementRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<void> {
+		await this.conversationScoresIncrementRaw(
+			requestParameters,
+			initOverrides,
+		);
+	}
+
+	/**
+	 * Retrieves messages specific to a particular conversation.
+	 * /conversation/{conversation}/messages [GET]
+	 */
+	async conversationSpecificConversationMessagesRaw(
+		requestParameters: ConversationSpecificConversationMessagesRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<ConversationMessages>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationSpecificConversationMessages.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/messages".replace(
+					`{${"conversation"}}`,
+					encodeURIComponent(String(requestParameters.conversation)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ConversationMessagesFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Retrieves messages specific to a particular conversation.
+	 * /conversation/{conversation}/messages [GET]
+	 */
+	async conversationSpecificConversationMessages(
+		requestParameters: ConversationSpecificConversationMessagesRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<ConversationMessages> {
+		const response = await this.conversationSpecificConversationMessagesRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Renames a specific conversation using machine learning (ML) techniques.
+	 * /conversation/{conversation}/rename [POST]
+	 */
+	async conversationSpecificConversationRenameRaw(
+		requestParameters: ConversationSpecificConversationRenameRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Conversation>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationSpecificConversationRename.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/rename".replace(
+					`{${"conversation"}}`,
+					encodeURIComponent(String(requestParameters.conversation)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ConversationFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Renames a specific conversation using machine learning (ML) techniques.
+	 * /conversation/{conversation}/rename [POST]
+	 */
+	async conversationSpecificConversationRename(
+		requestParameters: ConversationSpecificConversationRenameRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Conversation> {
+		const response = await this.conversationSpecificConversationRenameRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Generates a summary of a given conversation and saves it as an annotation associated with the conversation. It returns a reference to the annotation, which serves as the summary.
+	 * /conversation/{conversation}/summarize [POST]
+	 */
+	async conversationSummarizeRaw(
+		requestParameters: ConversationSummarizeRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<ConversationSummarizeOutput>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling conversationSummarize.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/summarize".replace(
+					`{${"conversation"}}`,
+					encodeURIComponent(String(requestParameters.conversation)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: ConversationSummarizeInputToJSON(
+					requestParameters.conversationSummarizeInput,
+				),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ConversationSummarizeOutputFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Generates a summary of a given conversation and saves it as an annotation associated with the conversation. It returns a reference to the annotation, which serves as the summary.
+	 * /conversation/{conversation}/summarize [POST]
+	 */
+	async conversationSummarize(
+		requestParameters: ConversationSummarizeRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<ConversationSummarizeOutput> {
+		const response = await this.conversationSummarizeRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * Updates a specific conversation.
+	 * /conversation/update [POST]
+	 */
+	async conversationUpdateRaw(
+		requestParameters: ConversationUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<Conversation>> {
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/conversation/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: ConversationToJSON(requestParameters.conversation),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			ConversationFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * Updates a specific conversation.
+	 * /conversation/update [POST]
+	 */
+	async conversationUpdate(
+		requestParameters: ConversationUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<Conversation> {
+		const response = await this.conversationUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
+
+	/**
+	 * This will search a specific conversation for a match  note: here we will only search the conversationMessages for this given Conversation
+	 * /conversation/{conversation}/search [POST]
+	 */
+	async searchConversationSpecificMessagesRaw(
+		requestParameters: SearchConversationSpecificMessagesRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<SearchedConversationMessages>> {
+		if (
+			requestParameters.conversation === null ||
+			requestParameters.conversation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"conversation",
+				"Required parameter requestParameters.conversation was null or undefined when calling searchConversationSpecificMessages.",
+			);
+		}
+
+		const queryParameters: any = {};
+
+		if (requestParameters.transferables !== undefined) {
+			queryParameters["transferables"] = requestParameters.transferables;
+		}
+
+		const headerParameters: runtime.HTTPHeaders = {};
+
+		headerParameters["Content-Type"] = "application/json";
+
+		const response = await this.request(
+			{
+				path: "/conversation/{conversation}/search".replace(
+					`{${"conversation"}}`,
+					encodeURIComponent(String(requestParameters.conversation)),
+				),
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: SearchInputToJSON(requestParameters.searchInput),
+			},
+			initOverrides,
+		);
+
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			SearchedConversationMessagesFromJSON(jsonValue),
+		);
+	}
+
+	/**
+	 * This will search a specific conversation for a match  note: here we will only search the conversationMessages for this given Conversation
+	 * /conversation/{conversation}/search [POST]
+	 */
+	async searchConversationSpecificMessages(
+		requestParameters: SearchConversationSpecificMessagesRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<SearchedConversationMessages> {
+		const response = await this.searchConversationSpecificMessagesRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

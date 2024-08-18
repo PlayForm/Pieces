@@ -12,149 +12,151 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ConversationMessageSentimentEnum } from './ConversationMessageSentimentEnum';
+import { exists } from "../runtime.ts";
+import type { ConversationMessageSentimentEnum } from "./ConversationMessageSentimentEnum.tsx";
 import {
-    ConversationMessageSentimentEnumFromJSON,
-    ConversationMessageSentimentEnumFromJSONTyped,
-    ConversationMessageSentimentEnumToJSON,
-} from './ConversationMessageSentimentEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	ConversationMessageSentimentEnumFromJSON,
+	ConversationMessageSentimentEnumToJSON,
+} from "./ConversationMessageSentimentEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FragmentFormat } from './FragmentFormat';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FragmentFormat } from "./FragmentFormat.tsx";
 import {
-    FragmentFormatFromJSON,
-    FragmentFormatFromJSONTyped,
-    FragmentFormatToJSON,
-} from './FragmentFormat';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	FragmentFormatFromJSON,
+	FragmentFormatToJSON,
+} from "./FragmentFormat.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { Model } from './Model';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { Model } from "./Model.tsx";
+import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
+import type { QGPTConversationMessageRoleEnum } from "./QGPTConversationMessageRoleEnum.tsx";
 import {
-    ModelFromJSON,
-    ModelFromJSONTyped,
-    ModelToJSON,
-} from './Model';
-import type { QGPTConversationMessageRoleEnum } from './QGPTConversationMessageRoleEnum';
+	QGPTConversationMessageRoleEnumFromJSON,
+	QGPTConversationMessageRoleEnumToJSON,
+} from "./QGPTConversationMessageRoleEnum.tsx";
+import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
-    QGPTConversationMessageRoleEnumFromJSON,
-    QGPTConversationMessageRoleEnumFromJSONTyped,
-    QGPTConversationMessageRoleEnumToJSON,
-} from './QGPTConversationMessageRoleEnum';
-import type { ReferencedConversation } from './ReferencedConversation';
-import {
-    ReferencedConversationFromJSON,
-    ReferencedConversationFromJSONTyped,
-    ReferencedConversationToJSON,
-} from './ReferencedConversation';
+	ReferencedConversationFromJSON,
+	ReferencedConversationToJSON,
+} from "./ReferencedConversation.tsx";
 
 /**
  * This is a seeded version of a ConversationMessage.
- * 
+ *
  * conversation is optional, this is because it can be used within the SeededConversation, however if this is passed into the /messages/create w/o a conversation uuid then we will throw an error.
  * @export
  * @interface SeededConversationMessage
  */
 export interface SeededConversationMessage {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededConversationMessage
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof SeededConversationMessage
-     */
-    created?: GroupedTimestamp;
-    /**
-     * 
-     * @type {Model}
-     * @memberof SeededConversationMessage
-     */
-    model?: Model;
-    /**
-     * 
-     * @type {FragmentFormat}
-     * @memberof SeededConversationMessage
-     */
-    fragment: FragmentFormat;
-    /**
-     * 
-     * @type {ReferencedConversation}
-     * @memberof SeededConversationMessage
-     */
-    conversation?: ReferencedConversation;
-    /**
-     * 
-     * @type {ConversationMessageSentimentEnum}
-     * @memberof SeededConversationMessage
-     */
-    sentiment?: ConversationMessageSentimentEnum;
-    /**
-     * 
-     * @type {QGPTConversationMessageRoleEnum}
-     * @memberof SeededConversationMessage
-     */
-    role: QGPTConversationMessageRoleEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededConversationMessage
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof SeededConversationMessage
+	 */
+	created?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {Model}
+	 * @memberof SeededConversationMessage
+	 */
+	model?: Model;
+	/**
+	 *
+	 * @type {FragmentFormat}
+	 * @memberof SeededConversationMessage
+	 */
+	fragment: FragmentFormat;
+	/**
+	 *
+	 * @type {ReferencedConversation}
+	 * @memberof SeededConversationMessage
+	 */
+	conversation?: ReferencedConversation;
+	/**
+	 *
+	 * @type {ConversationMessageSentimentEnum}
+	 * @memberof SeededConversationMessage
+	 */
+	sentiment?: ConversationMessageSentimentEnum;
+	/**
+	 *
+	 * @type {QGPTConversationMessageRoleEnum}
+	 * @memberof SeededConversationMessage
+	 */
+	role: QGPTConversationMessageRoleEnum;
 }
 
 /**
  * Check if a given object implements the SeededConversationMessage interface.
  */
 export function instanceOfSeededConversationMessage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "fragment" in value;
-    isInstance = isInstance && "role" in value;
+	let isInstance = true;
+	isInstance = isInstance && "fragment" in value;
+	isInstance = isInstance && "role" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededConversationMessageFromJSON(json: any): SeededConversationMessage {
-    return SeededConversationMessageFromJSONTyped(json, false);
+export function SeededConversationMessageFromJSON(
+	json: any,
+): SeededConversationMessage {
+	return SeededConversationMessageFromJSONTyped(json, false);
 }
 
-export function SeededConversationMessageFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededConversationMessage {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'created': !exists(json, 'created') ? undefined : GroupedTimestampFromJSON(json['created']),
-        'model': !exists(json, 'model') ? undefined : ModelFromJSON(json['model']),
-        'fragment': FragmentFormatFromJSON(json['fragment']),
-        'conversation': !exists(json, 'conversation') ? undefined : ReferencedConversationFromJSON(json['conversation']),
-        'sentiment': !exists(json, 'sentiment') ? undefined : ConversationMessageSentimentEnumFromJSON(json['sentiment']),
-        'role': QGPTConversationMessageRoleEnumFromJSON(json['role']),
-    };
+export function SeededConversationMessageFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededConversationMessage {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		created: exists(json, "created")
+			? GroupedTimestampFromJSON(json["created"])
+			: undefined,
+		model: exists(json, "model") ? ModelFromJSON(json["model"]) : undefined,
+		fragment: FragmentFormatFromJSON(json["fragment"]),
+		conversation: exists(json, "conversation")
+			? ReferencedConversationFromJSON(json["conversation"])
+			: undefined,
+		sentiment: exists(json, "sentiment")
+			? ConversationMessageSentimentEnumFromJSON(json["sentiment"])
+			: undefined,
+		role: QGPTConversationMessageRoleEnumFromJSON(json["role"]),
+	};
 }
 
-export function SeededConversationMessageToJSON(value?: SeededConversationMessage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'created': GroupedTimestampToJSON(value.created),
-        'model': ModelToJSON(value.model),
-        'fragment': FragmentFormatToJSON(value.fragment),
-        'conversation': ReferencedConversationToJSON(value.conversation),
-        'sentiment': ConversationMessageSentimentEnumToJSON(value.sentiment),
-        'role': QGPTConversationMessageRoleEnumToJSON(value.role),
-    };
+export function SeededConversationMessageToJSON(
+	value?: SeededConversationMessage | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		created: GroupedTimestampToJSON(value.created),
+		model: ModelToJSON(value.model),
+		fragment: FragmentFormatToJSON(value.fragment),
+		conversation: ReferencedConversationToJSON(value.conversation),
+		sentiment: ConversationMessageSentimentEnumToJSON(value.sentiment),
+		role: QGPTConversationMessageRoleEnumToJSON(value.role),
+	};
 }
-

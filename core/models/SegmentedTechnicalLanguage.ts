@@ -12,78 +12,86 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SegmentedTechnicalLanguageFragment } from './SegmentedTechnicalLanguageFragment';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SegmentedTechnicalLanguageFragment } from "./SegmentedTechnicalLanguageFragment.tsx";
 import {
-    SegmentedTechnicalLanguageFragmentFromJSON,
-    SegmentedTechnicalLanguageFragmentFromJSONTyped,
-    SegmentedTechnicalLanguageFragmentToJSON,
-} from './SegmentedTechnicalLanguageFragment';
+	SegmentedTechnicalLanguageFragmentFromJSON,
+	SegmentedTechnicalLanguageFragmentToJSON,
+} from "./SegmentedTechnicalLanguageFragment.tsx";
 
 /**
  * This is the output model for '/machine_learning/text/technical_language/parsers/segmentation'
- * 
+ *
  * This will have an iterable of the segmented Technical language text/code
  * @export
  * @interface SegmentedTechnicalLanguage
  */
 export interface SegmentedTechnicalLanguage {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SegmentedTechnicalLanguage
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<SegmentedTechnicalLanguageFragment>}
-     * @memberof SegmentedTechnicalLanguage
-     */
-    iterable: Array<SegmentedTechnicalLanguageFragment>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SegmentedTechnicalLanguage
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<SegmentedTechnicalLanguageFragment>}
+	 * @memberof SegmentedTechnicalLanguage
+	 */
+	iterable: SegmentedTechnicalLanguageFragment[];
 }
 
 /**
  * Check if a given object implements the SegmentedTechnicalLanguage interface.
  */
 export function instanceOfSegmentedTechnicalLanguage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SegmentedTechnicalLanguageFromJSON(json: any): SegmentedTechnicalLanguage {
-    return SegmentedTechnicalLanguageFromJSONTyped(json, false);
+export function SegmentedTechnicalLanguageFromJSON(
+	json: any,
+): SegmentedTechnicalLanguage {
+	return SegmentedTechnicalLanguageFromJSONTyped(json, false);
 }
 
-export function SegmentedTechnicalLanguageFromJSONTyped(json: any, ignoreDiscriminator: boolean): SegmentedTechnicalLanguage {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(SegmentedTechnicalLanguageFragmentFromJSON)),
-    };
+export function SegmentedTechnicalLanguageFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SegmentedTechnicalLanguage {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			SegmentedTechnicalLanguageFragmentFromJSON,
+		),
+	};
 }
 
-export function SegmentedTechnicalLanguageToJSON(value?: SegmentedTechnicalLanguage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(SegmentedTechnicalLanguageFragmentToJSON)),
-    };
+export function SegmentedTechnicalLanguageToJSON(
+	value?: SegmentedTechnicalLanguage | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(
+			SegmentedTechnicalLanguageFragmentToJSON,
+		),
+	};
 }
-

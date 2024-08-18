@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * if reuse was used in the reaction then we can provide the uuid of the asset that was reused.
@@ -26,56 +25,58 @@ import {
  * @interface ReuseReaction
  */
 export interface ReuseReaction {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReuseReaction
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReuseReaction
-     */
-    asset: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReuseReaction
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof ReuseReaction
+	 */
+	asset: string;
 }
 
 /**
  * Check if a given object implements the ReuseReaction interface.
  */
 export function instanceOfReuseReaction(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "asset" in value;
+	let isInstance = true;
+	isInstance = isInstance && "asset" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReuseReactionFromJSON(json: any): ReuseReaction {
-    return ReuseReactionFromJSONTyped(json, false);
+	return ReuseReactionFromJSONTyped(json, false);
 }
 
-export function ReuseReactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReuseReaction {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'asset': json['asset'],
-    };
+export function ReuseReactionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReuseReaction {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		asset: json["asset"],
+	};
 }
 
 export function ReuseReactionToJSON(value?: ReuseReaction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'asset': value.asset,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		asset: value.asset,
+	};
 }
-

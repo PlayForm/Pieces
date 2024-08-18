@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { LanguageServerProtocolDiagnostics } from './LanguageServerProtocolDiagnostics';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { LanguageServerProtocolDiagnostics } from "./LanguageServerProtocolDiagnostics.tsx";
 import {
-    LanguageServerProtocolDiagnosticsFromJSON,
-    LanguageServerProtocolDiagnosticsFromJSONTyped,
-    LanguageServerProtocolDiagnosticsToJSON,
-} from './LanguageServerProtocolDiagnostics';
+	LanguageServerProtocolDiagnosticsFromJSON,
+	LanguageServerProtocolDiagnosticsToJSON,
+} from "./LanguageServerProtocolDiagnostics.tsx";
 
 /**
  * TODO
@@ -32,55 +30,63 @@ import {
  * @interface LanguageServerProtocol
  */
 export interface LanguageServerProtocol {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof LanguageServerProtocol
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {LanguageServerProtocolDiagnostics}
-     * @memberof LanguageServerProtocol
-     */
-    diagnostics?: LanguageServerProtocolDiagnostics;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof LanguageServerProtocol
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {LanguageServerProtocolDiagnostics}
+	 * @memberof LanguageServerProtocol
+	 */
+	diagnostics?: LanguageServerProtocolDiagnostics;
 }
 
 /**
  * Check if a given object implements the LanguageServerProtocol interface.
  */
-export function instanceOfLanguageServerProtocol(value: object): boolean {
-    let isInstance = true;
+export function instanceOfLanguageServerProtocol(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function LanguageServerProtocolFromJSON(json: any): LanguageServerProtocol {
-    return LanguageServerProtocolFromJSONTyped(json, false);
+export function LanguageServerProtocolFromJSON(
+	json: any,
+): LanguageServerProtocol {
+	return LanguageServerProtocolFromJSONTyped(json, false);
 }
 
-export function LanguageServerProtocolFromJSONTyped(json: any, ignoreDiscriminator: boolean): LanguageServerProtocol {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'diagnostics': !exists(json, 'diagnostics') ? undefined : LanguageServerProtocolDiagnosticsFromJSON(json['diagnostics']),
-    };
+export function LanguageServerProtocolFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): LanguageServerProtocol {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		diagnostics: exists(json, "diagnostics")
+			? LanguageServerProtocolDiagnosticsFromJSON(json["diagnostics"])
+			: undefined,
+	};
 }
 
-export function LanguageServerProtocolToJSON(value?: LanguageServerProtocol | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'diagnostics': LanguageServerProtocolDiagnosticsToJSON(value.diagnostics),
-    };
+export function LanguageServerProtocolToJSON(
+	value?: LanguageServerProtocol | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		diagnostics: LanguageServerProtocolDiagnosticsToJSON(value.diagnostics),
+	};
 }
-

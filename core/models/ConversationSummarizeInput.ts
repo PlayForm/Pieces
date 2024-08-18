@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedConversationMessages } from './FlattenedConversationMessages';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
-    FlattenedConversationMessagesFromJSON,
-    FlattenedConversationMessagesFromJSONTyped,
-    FlattenedConversationMessagesToJSON,
-} from './FlattenedConversationMessages';
+	FlattenedConversationMessagesFromJSON,
+	FlattenedConversationMessagesToJSON,
+} from "./FlattenedConversationMessages.tsx";
 
 /**
  * Optionally you may pass in a list of conversation message that you would like to use for the summary.
@@ -32,55 +30,63 @@ import {
  * @interface ConversationSummarizeInput
  */
 export interface ConversationSummarizeInput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ConversationSummarizeInput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {FlattenedConversationMessages}
-     * @memberof ConversationSummarizeInput
-     */
-    messages?: FlattenedConversationMessages;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ConversationSummarizeInput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {FlattenedConversationMessages}
+	 * @memberof ConversationSummarizeInput
+	 */
+	messages?: FlattenedConversationMessages;
 }
 
 /**
  * Check if a given object implements the ConversationSummarizeInput interface.
  */
-export function instanceOfConversationSummarizeInput(value: object): boolean {
-    let isInstance = true;
+export function instanceOfConversationSummarizeInput(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function ConversationSummarizeInputFromJSON(json: any): ConversationSummarizeInput {
-    return ConversationSummarizeInputFromJSONTyped(json, false);
+export function ConversationSummarizeInputFromJSON(
+	json: any,
+): ConversationSummarizeInput {
+	return ConversationSummarizeInputFromJSONTyped(json, false);
 }
 
-export function ConversationSummarizeInputFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationSummarizeInput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'messages': !exists(json, 'messages') ? undefined : FlattenedConversationMessagesFromJSON(json['messages']),
-    };
+export function ConversationSummarizeInputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ConversationSummarizeInput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		messages: exists(json, "messages")
+			? FlattenedConversationMessagesFromJSON(json["messages"])
+			: undefined,
+	};
 }
 
-export function ConversationSummarizeInputToJSON(value?: ConversationSummarizeInput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'messages': FlattenedConversationMessagesToJSON(value.messages),
-    };
+export function ConversationSummarizeInputToJSON(
+	value?: ConversationSummarizeInput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		messages: FlattenedConversationMessagesToJSON(value.messages),
+	};
 }
-

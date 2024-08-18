@@ -12,302 +12,304 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { ConversationGrounding } from "./ConversationGrounding.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { ConversationGrounding } from './ConversationGrounding';
+	ConversationGroundingFromJSON,
+	ConversationGroundingToJSON,
+} from "./ConversationGrounding.tsx";
+import type { ConversationTypeEnum } from "./ConversationTypeEnum.tsx";
 import {
-    ConversationGroundingFromJSON,
-    ConversationGroundingFromJSONTyped,
-    ConversationGroundingToJSON,
-} from './ConversationGrounding';
-import type { ConversationTypeEnum } from './ConversationTypeEnum';
+	ConversationTypeEnumFromJSON,
+	ConversationTypeEnumToJSON,
+} from "./ConversationTypeEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ConversationTypeEnumFromJSON,
-    ConversationTypeEnumFromJSONTyped,
-    ConversationTypeEnumToJSON,
-} from './ConversationTypeEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAnchors } from './FlattenedAnchors';
+	FlattenedAnchorsFromJSON,
+	FlattenedAnchorsToJSON,
+} from "./FlattenedAnchors.tsx";
+import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
-    FlattenedAnchorsFromJSON,
-    FlattenedAnchorsFromJSONTyped,
-    FlattenedAnchorsToJSON,
-} from './FlattenedAnchors';
-import type { FlattenedAnnotations } from './FlattenedAnnotations';
+	FlattenedAnnotationsFromJSON,
+	FlattenedAnnotationsToJSON,
+} from "./FlattenedAnnotations.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    FlattenedAnnotationsFromJSON,
-    FlattenedAnnotationsFromJSONTyped,
-    FlattenedAnnotationsToJSON,
-} from './FlattenedAnnotations';
-import type { FlattenedAssets } from './FlattenedAssets';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { FlattenedConversationMessages } from './FlattenedConversationMessages';
+	FlattenedConversationMessagesFromJSON,
+	FlattenedConversationMessagesToJSON,
+} from "./FlattenedConversationMessages.tsx";
+import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
-    FlattenedConversationMessagesFromJSON,
-    FlattenedConversationMessagesFromJSONTyped,
-    FlattenedConversationMessagesToJSON,
-} from './FlattenedConversationMessages';
-import type { FlattenedWebsites } from './FlattenedWebsites';
+	FlattenedWebsitesFromJSON,
+	FlattenedWebsitesToJSON,
+} from "./FlattenedWebsites.tsx";
+import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
-    FlattenedWebsitesFromJSON,
-    FlattenedWebsitesFromJSONTyped,
-    FlattenedWebsitesToJSON,
-} from './FlattenedWebsites';
-import type { FlattenedWorkstreamSummaries } from './FlattenedWorkstreamSummaries';
+	FlattenedWorkstreamSummariesFromJSON,
+	FlattenedWorkstreamSummariesToJSON,
+} from "./FlattenedWorkstreamSummaries.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    FlattenedWorkstreamSummariesFromJSON,
-    FlattenedWorkstreamSummariesFromJSONTyped,
-    FlattenedWorkstreamSummariesToJSON,
-} from './FlattenedWorkstreamSummaries';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { QGPTPromptPipeline } from "./QGPTPromptPipeline.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { QGPTPromptPipeline } from './QGPTPromptPipeline';
+	QGPTPromptPipelineFromJSON,
+	QGPTPromptPipelineToJSON,
+} from "./QGPTPromptPipeline.tsx";
+import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
-    QGPTPromptPipelineFromJSON,
-    QGPTPromptPipelineFromJSONTyped,
-    QGPTPromptPipelineToJSON,
-} from './QGPTPromptPipeline';
-import type { ReferencedModel } from './ReferencedModel';
-import {
-    ReferencedModelFromJSON,
-    ReferencedModelFromJSONTyped,
-    ReferencedModelToJSON,
-} from './ReferencedModel';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedModelFromJSON,
+	ReferencedModelToJSON,
+} from "./ReferencedModel.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is a fully referenced Conversation.
- * 
+ *
  * This will hold together a conversation. Ie allthe message within a conversation.
- * 
+ *
  * All the additional properties on here used on here like(anchors/assets) are used for context that will seed the conversation.
- * 
+ *
  * model is a calculated property, and will be the model of the last message sent if applicable.
  * @export
  * @interface Conversation
  */
 export interface Conversation {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Conversation
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof Conversation
-     */
-    id: string;
-    /**
-     * This is a name that is customized.
-     * @type {string}
-     * @memberof Conversation
-     */
-    name?: string;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Conversation
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Conversation
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Conversation
-     */
-    deleted?: GroupedTimestamp;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Conversation
-     */
-    favorited?: boolean;
-    /**
-     * 
-     * @type {Application}
-     * @memberof Conversation
-     */
-    application?: Application;
-    /**
-     * 
-     * @type {FlattenedAnnotations}
-     * @memberof Conversation
-     */
-    annotations?: FlattenedAnnotations;
-    /**
-     * 
-     * @type {FlattenedConversationMessages}
-     * @memberof Conversation
-     */
-    messages: FlattenedConversationMessages;
-    /**
-     * 
-     * @type {ReferencedModel}
-     * @memberof Conversation
-     */
-    model?: ReferencedModel;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof Conversation
-     */
-    assets?: FlattenedAssets;
-    /**
-     * 
-     * @type {FlattenedWebsites}
-     * @memberof Conversation
-     */
-    websites?: FlattenedWebsites;
-    /**
-     * 
-     * @type {FlattenedAnchors}
-     * @memberof Conversation
-     */
-    anchors?: FlattenedAnchors;
-    /**
-     * 
-     * @type {ConversationTypeEnum}
-     * @memberof Conversation
-     */
-    type: ConversationTypeEnum;
-    /**
-     * 
-     * @type {ConversationGrounding}
-     * @memberof Conversation
-     */
-    grounding?: ConversationGrounding;
-    /**
-     * 
-     * @type {Score}
-     * @memberof Conversation
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {QGPTPromptPipeline}
-     * @memberof Conversation
-     */
-    pipeline?: QGPTPromptPipeline;
-    /**
-     * This will let us know if this conversation was generated as a 'demo' conversation
-     * @type {boolean}
-     * @memberof Conversation
-     */
-    demo?: boolean;
-    /**
-     * 
-     * @type {FlattenedWorkstreamSummaries}
-     * @memberof Conversation
-     */
-    summaries?: FlattenedWorkstreamSummaries;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Conversation
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Conversation
+	 */
+	id: string;
+	/**
+	 * This is a name that is customized.
+	 * @type {string}
+	 * @memberof Conversation
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Conversation
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Conversation
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Conversation
+	 */
+	deleted?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof Conversation
+	 */
+	favorited?: boolean;
+	/**
+	 *
+	 * @type {Application}
+	 * @memberof Conversation
+	 */
+	application?: Application;
+	/**
+	 *
+	 * @type {FlattenedAnnotations}
+	 * @memberof Conversation
+	 */
+	annotations?: FlattenedAnnotations;
+	/**
+	 *
+	 * @type {FlattenedConversationMessages}
+	 * @memberof Conversation
+	 */
+	messages: FlattenedConversationMessages;
+	/**
+	 *
+	 * @type {ReferencedModel}
+	 * @memberof Conversation
+	 */
+	model?: ReferencedModel;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof Conversation
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 *
+	 * @type {FlattenedWebsites}
+	 * @memberof Conversation
+	 */
+	websites?: FlattenedWebsites;
+	/**
+	 *
+	 * @type {FlattenedAnchors}
+	 * @memberof Conversation
+	 */
+	anchors?: FlattenedAnchors;
+	/**
+	 *
+	 * @type {ConversationTypeEnum}
+	 * @memberof Conversation
+	 */
+	type: ConversationTypeEnum;
+	/**
+	 *
+	 * @type {ConversationGrounding}
+	 * @memberof Conversation
+	 */
+	grounding?: ConversationGrounding;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Conversation
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {QGPTPromptPipeline}
+	 * @memberof Conversation
+	 */
+	pipeline?: QGPTPromptPipeline;
+	/**
+	 * This will let us know if this conversation was generated as a 'demo' conversation
+	 * @type {boolean}
+	 * @memberof Conversation
+	 */
+	demo?: boolean;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamSummaries}
+	 * @memberof Conversation
+	 */
+	summaries?: FlattenedWorkstreamSummaries;
 }
 
 /**
  * Check if a given object implements the Conversation interface.
  */
 export function instanceOfConversation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
-    isInstance = isInstance && "messages" in value;
-    isInstance = isInstance && "type" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
+	isInstance = isInstance && "messages" in value;
+	isInstance = isInstance && "type" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ConversationFromJSON(json: any): Conversation {
-    return ConversationFromJSONTyped(json, false);
+	return ConversationFromJSONTyped(json, false);
 }
 
-export function ConversationFromJSONTyped(json: any, ignoreDiscriminator: boolean): Conversation {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-        'favorited': !exists(json, 'favorited') ? undefined : json['favorited'],
-        'application': !exists(json, 'application') ? undefined : ApplicationFromJSON(json['application']),
-        'annotations': !exists(json, 'annotations') ? undefined : FlattenedAnnotationsFromJSON(json['annotations']),
-        'messages': FlattenedConversationMessagesFromJSON(json['messages']),
-        'model': !exists(json, 'model') ? undefined : ReferencedModelFromJSON(json['model']),
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'websites': !exists(json, 'websites') ? undefined : FlattenedWebsitesFromJSON(json['websites']),
-        'anchors': !exists(json, 'anchors') ? undefined : FlattenedAnchorsFromJSON(json['anchors']),
-        'type': ConversationTypeEnumFromJSON(json['type']),
-        'grounding': !exists(json, 'grounding') ? undefined : ConversationGroundingFromJSON(json['grounding']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'pipeline': !exists(json, 'pipeline') ? undefined : QGPTPromptPipelineFromJSON(json['pipeline']),
-        'demo': !exists(json, 'demo') ? undefined : json['demo'],
-        'summaries': !exists(json, 'summaries') ? undefined : FlattenedWorkstreamSummariesFromJSON(json['summaries']),
-    };
+export function ConversationFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Conversation {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		name: exists(json, "name") ? json["name"] : undefined,
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+		favorited: exists(json, "favorited") ? json["favorited"] : undefined,
+		application: exists(json, "application")
+			? ApplicationFromJSON(json["application"])
+			: undefined,
+		annotations: exists(json, "annotations")
+			? FlattenedAnnotationsFromJSON(json["annotations"])
+			: undefined,
+		messages: FlattenedConversationMessagesFromJSON(json["messages"]),
+		model: exists(json, "model")
+			? ReferencedModelFromJSON(json["model"])
+			: undefined,
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		websites: exists(json, "websites")
+			? FlattenedWebsitesFromJSON(json["websites"])
+			: undefined,
+		anchors: exists(json, "anchors")
+			? FlattenedAnchorsFromJSON(json["anchors"])
+			: undefined,
+		type: ConversationTypeEnumFromJSON(json["type"]),
+		grounding: exists(json, "grounding")
+			? ConversationGroundingFromJSON(json["grounding"])
+			: undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		pipeline: exists(json, "pipeline")
+			? QGPTPromptPipelineFromJSON(json["pipeline"])
+			: undefined,
+		demo: exists(json, "demo") ? json["demo"] : undefined,
+		summaries: exists(json, "summaries")
+			? FlattenedWorkstreamSummariesFromJSON(json["summaries"])
+			: undefined,
+	};
 }
 
 export function ConversationToJSON(value?: Conversation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'name': value.name,
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-        'favorited': value.favorited,
-        'application': ApplicationToJSON(value.application),
-        'annotations': FlattenedAnnotationsToJSON(value.annotations),
-        'messages': FlattenedConversationMessagesToJSON(value.messages),
-        'model': ReferencedModelToJSON(value.model),
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'websites': FlattenedWebsitesToJSON(value.websites),
-        'anchors': FlattenedAnchorsToJSON(value.anchors),
-        'type': ConversationTypeEnumToJSON(value.type),
-        'grounding': ConversationGroundingToJSON(value.grounding),
-        'score': ScoreToJSON(value.score),
-        'pipeline': QGPTPromptPipelineToJSON(value.pipeline),
-        'demo': value.demo,
-        'summaries': FlattenedWorkstreamSummariesToJSON(value.summaries),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		name: value.name,
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		deleted: GroupedTimestampToJSON(value.deleted),
+		favorited: value.favorited,
+		application: ApplicationToJSON(value.application),
+		annotations: FlattenedAnnotationsToJSON(value.annotations),
+		messages: FlattenedConversationMessagesToJSON(value.messages),
+		model: ReferencedModelToJSON(value.model),
+		assets: FlattenedAssetsToJSON(value.assets),
+		websites: FlattenedWebsitesToJSON(value.websites),
+		anchors: FlattenedAnchorsToJSON(value.anchors),
+		type: ConversationTypeEnumToJSON(value.type),
+		grounding: ConversationGroundingToJSON(value.grounding),
+		score: ScoreToJSON(value.score),
+		pipeline: QGPTPromptPipelineToJSON(value.pipeline),
+		demo: value.demo,
+		summaries: FlattenedWorkstreamSummariesToJSON(value.summaries),
+	};
 }
-

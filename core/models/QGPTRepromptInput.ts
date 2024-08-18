@@ -12,118 +12,121 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { QGPTConversation } from './QGPTConversation';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { QGPTConversation } from "./QGPTConversation.tsx";
 import {
-    QGPTConversationFromJSON,
-    QGPTConversationFromJSONTyped,
-    QGPTConversationToJSON,
-} from './QGPTConversation';
-import type { QGPTPromptPipeline } from './QGPTPromptPipeline';
+	QGPTConversationFromJSON,
+	QGPTConversationToJSON,
+} from "./QGPTConversation.tsx";
+import type { QGPTPromptPipeline } from "./QGPTPromptPipeline.tsx";
 import {
-    QGPTPromptPipelineFromJSON,
-    QGPTPromptPipelineFromJSONTyped,
-    QGPTPromptPipelineToJSON,
-} from './QGPTPromptPipeline';
+	QGPTPromptPipelineFromJSON,
+	QGPTPromptPipelineToJSON,
+} from "./QGPTPromptPipeline.tsx";
 
 /**
  * Query is your followup question.
- * 
+ *
  * Conversation is a list of the back and fourth with the qgpt bot.
  * where the first entry in the array was the last message sent.
  * @export
  * @interface QGPTRepromptInput
  */
 export interface QGPTRepromptInput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTRepromptInput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof QGPTRepromptInput
-     */
-    query: string;
-    /**
-     * 
-     * @type {QGPTConversation}
-     * @memberof QGPTRepromptInput
-     */
-    conversation: QGPTConversation;
-    /**
-     * optional application id
-     * @type {string}
-     * @memberof QGPTRepromptInput
-     */
-    application?: string;
-    /**
-     * optional model id
-     * @type {string}
-     * @memberof QGPTRepromptInput
-     */
-    model?: string;
-    /**
-     * 
-     * @type {QGPTPromptPipeline}
-     * @memberof QGPTRepromptInput
-     */
-    pipeline?: QGPTPromptPipeline;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTRepromptInput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof QGPTRepromptInput
+	 */
+	query: string;
+	/**
+	 *
+	 * @type {QGPTConversation}
+	 * @memberof QGPTRepromptInput
+	 */
+	conversation: QGPTConversation;
+	/**
+	 * optional application id
+	 * @type {string}
+	 * @memberof QGPTRepromptInput
+	 */
+	application?: string;
+	/**
+	 * optional model id
+	 * @type {string}
+	 * @memberof QGPTRepromptInput
+	 */
+	model?: string;
+	/**
+	 *
+	 * @type {QGPTPromptPipeline}
+	 * @memberof QGPTRepromptInput
+	 */
+	pipeline?: QGPTPromptPipeline;
 }
 
 /**
  * Check if a given object implements the QGPTRepromptInput interface.
  */
 export function instanceOfQGPTRepromptInput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "query" in value;
-    isInstance = isInstance && "conversation" in value;
+	let isInstance = true;
+	isInstance = isInstance && "query" in value;
+	isInstance = isInstance && "conversation" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function QGPTRepromptInputFromJSON(json: any): QGPTRepromptInput {
-    return QGPTRepromptInputFromJSONTyped(json, false);
+	return QGPTRepromptInputFromJSONTyped(json, false);
 }
 
-export function QGPTRepromptInputFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTRepromptInput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'query': json['query'],
-        'conversation': QGPTConversationFromJSON(json['conversation']),
-        'application': !exists(json, 'application') ? undefined : json['application'],
-        'model': !exists(json, 'model') ? undefined : json['model'],
-        'pipeline': !exists(json, 'pipeline') ? undefined : QGPTPromptPipelineFromJSON(json['pipeline']),
-    };
+export function QGPTRepromptInputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTRepromptInput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		query: json["query"],
+		conversation: QGPTConversationFromJSON(json["conversation"]),
+		application: exists(json, "application")
+			? json["application"]
+			: undefined,
+		model: exists(json, "model") ? json["model"] : undefined,
+		pipeline: exists(json, "pipeline")
+			? QGPTPromptPipelineFromJSON(json["pipeline"])
+			: undefined,
+	};
 }
 
 export function QGPTRepromptInputToJSON(value?: QGPTRepromptInput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'query': value.query,
-        'conversation': QGPTConversationToJSON(value.conversation),
-        'application': value.application,
-        'model': value.model,
-        'pipeline': QGPTPromptPipelineToJSON(value.pipeline),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		query: value.query,
+		conversation: QGPTConversationToJSON(value.conversation),
+		application: value.application,
+		model: value.model,
+		pipeline: QGPTPromptPipelineToJSON(value.pipeline),
+	};
 }
-

@@ -12,79 +12,92 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededTrackedKeyboardEventIdentifierDescriptionPairs
  */
 export interface SeededTrackedKeyboardEventIdentifierDescriptionPairs {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededTrackedKeyboardEventIdentifierDescriptionPairs
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof SeededTrackedKeyboardEventIdentifierDescriptionPairs
-     */
-    assetsListRefreshed?: SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededTrackedKeyboardEventIdentifierDescriptionPairs
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof SeededTrackedKeyboardEventIdentifierDescriptionPairs
+	 */
+	assetsListRefreshed?: SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum;
 }
-
 
 /**
  * @export
  */
-export const SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum = {
-    TheAssetsListWasRefreshedThroughAKeyboardShortcut: 'the_assets_list_was_refreshed_through_a_keyboard_shortcut'
-} as const;
-export type SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum = typeof SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum[keyof typeof SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum];
-
+export const SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum =
+	{
+		TheAssetsListWasRefreshedThroughAKeyboardShortcut:
+			"the_assets_list_was_refreshed_through_a_keyboard_shortcut",
+	} as const;
+export type SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum =
+	(typeof SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum)[keyof typeof SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum];
 
 /**
  * Check if a given object implements the SeededTrackedKeyboardEventIdentifierDescriptionPairs interface.
  */
-export function instanceOfSeededTrackedKeyboardEventIdentifierDescriptionPairs(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededTrackedKeyboardEventIdentifierDescriptionPairs(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededTrackedKeyboardEventIdentifierDescriptionPairsFromJSON(json: any): SeededTrackedKeyboardEventIdentifierDescriptionPairs {
-    return SeededTrackedKeyboardEventIdentifierDescriptionPairsFromJSONTyped(json, false);
+export function SeededTrackedKeyboardEventIdentifierDescriptionPairsFromJSON(
+	json: any,
+): SeededTrackedKeyboardEventIdentifierDescriptionPairs {
+	return SeededTrackedKeyboardEventIdentifierDescriptionPairsFromJSONTyped(
+		json,
+		false,
+	);
 }
 
-export function SeededTrackedKeyboardEventIdentifierDescriptionPairsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededTrackedKeyboardEventIdentifierDescriptionPairs {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'assetsListRefreshed': !exists(json, 'assets_list_refreshed') ? undefined : json['assets_list_refreshed'],
-    };
+export function SeededTrackedKeyboardEventIdentifierDescriptionPairsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededTrackedKeyboardEventIdentifierDescriptionPairs {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		assetsListRefreshed: exists(json, "assets_list_refreshed")
+			? json["assets_list_refreshed"]
+			: undefined,
+	};
 }
 
-export function SeededTrackedKeyboardEventIdentifierDescriptionPairsToJSON(value?: SeededTrackedKeyboardEventIdentifierDescriptionPairs | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'assets_list_refreshed': value.assetsListRefreshed,
-    };
+export function SeededTrackedKeyboardEventIdentifierDescriptionPairsToJSON(
+	value?: SeededTrackedKeyboardEventIdentifierDescriptionPairs | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		assets_list_refreshed: value.assetsListRefreshed,
+	};
 }
-

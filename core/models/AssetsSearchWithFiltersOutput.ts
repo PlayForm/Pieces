@@ -12,76 +12,82 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedAssets } from './SearchedAssets';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedAssets } from "./SearchedAssets.tsx";
 import {
-    SearchedAssetsFromJSON,
-    SearchedAssetsFromJSONTyped,
-    SearchedAssetsToJSON,
-} from './SearchedAssets';
+	SearchedAssetsFromJSON,
+	SearchedAssetsToJSON,
+} from "./SearchedAssets.tsx";
 
 /**
- * output for the /assets/search [POST] 
+ * output for the /assets/search [POST]
  * @export
  * @interface AssetsSearchWithFiltersOutput
  */
 export interface AssetsSearchWithFiltersOutput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AssetsSearchWithFiltersOutput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SearchedAssets}
-     * @memberof AssetsSearchWithFiltersOutput
-     */
-    results: SearchedAssets;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AssetsSearchWithFiltersOutput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SearchedAssets}
+	 * @memberof AssetsSearchWithFiltersOutput
+	 */
+	results: SearchedAssets;
 }
 
 /**
  * Check if a given object implements the AssetsSearchWithFiltersOutput interface.
  */
-export function instanceOfAssetsSearchWithFiltersOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "results" in value;
+export function instanceOfAssetsSearchWithFiltersOutput(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "results" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function AssetsSearchWithFiltersOutputFromJSON(json: any): AssetsSearchWithFiltersOutput {
-    return AssetsSearchWithFiltersOutputFromJSONTyped(json, false);
+export function AssetsSearchWithFiltersOutputFromJSON(
+	json: any,
+): AssetsSearchWithFiltersOutput {
+	return AssetsSearchWithFiltersOutputFromJSONTyped(json, false);
 }
 
-export function AssetsSearchWithFiltersOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): AssetsSearchWithFiltersOutput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'results': SearchedAssetsFromJSON(json['results']),
-    };
+export function AssetsSearchWithFiltersOutputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AssetsSearchWithFiltersOutput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		results: SearchedAssetsFromJSON(json["results"]),
+	};
 }
 
-export function AssetsSearchWithFiltersOutputToJSON(value?: AssetsSearchWithFiltersOutput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'results': SearchedAssetsToJSON(value.results),
-    };
+export function AssetsSearchWithFiltersOutputToJSON(
+	value?: AssetsSearchWithFiltersOutput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		results: SearchedAssetsToJSON(value.results),
+	};
 }
-

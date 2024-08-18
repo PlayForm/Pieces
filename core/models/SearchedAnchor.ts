@@ -12,133 +12,133 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Anchor } from './Anchor';
+import { exists } from "../runtime.ts";
+import type { Anchor } from "./Anchor.tsx";
+import { AnchorFromJSON, AnchorToJSON } from "./Anchor.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    AnchorFromJSON,
-    AnchorFromJSONTyped,
-    AnchorToJSON,
-} from './Anchor';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SearchedAnchorPoints } from "./SearchedAnchorPoints.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SearchedAnchorPoints } from './SearchedAnchorPoints';
-import {
-    SearchedAnchorPointsFromJSON,
-    SearchedAnchorPointsFromJSONTyped,
-    SearchedAnchorPointsToJSON,
-} from './SearchedAnchorPoints';
+	SearchedAnchorPointsFromJSON,
+	SearchedAnchorPointsToJSON,
+} from "./SearchedAnchorPoints.tsx";
 
 /**
  * This is used for the Anchors searching endpoint.
- * 
+ *
  * anchor here is only provided if transferables are set to true.
- * 
+ *
  * temporal: if this is provided this means that their material matched the input via a timestamp.
- * 
+ *
  * TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials
  * ie suggestion: WorkstreamSuggestions
- * 
+ *
  * note: if we match a specific anchorPoint we will provide this as well.
  * @export
  * @interface SearchedAnchor
  */
 export interface SearchedAnchor {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SearchedAnchor
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Anchor}
-     * @memberof SearchedAnchor
-     */
-    anchor?: Anchor;
-    /**
-     * 
-     * @type {SearchedAnchorPoints}
-     * @memberof SearchedAnchor
-     */
-    points?: SearchedAnchorPoints;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedAnchor
-     */
-    exact: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchedAnchor
-     */
-    similarity: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchedAnchor
-     */
-    temporal?: boolean;
-    /**
-     * This is the uuid of the anchor.
-     * @type {string}
-     * @memberof SearchedAnchor
-     */
-    identifier: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SearchedAnchor
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Anchor}
+	 * @memberof SearchedAnchor
+	 */
+	anchor?: Anchor;
+	/**
+	 *
+	 * @type {SearchedAnchorPoints}
+	 * @memberof SearchedAnchor
+	 */
+	points?: SearchedAnchorPoints;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedAnchor
+	 */
+	exact: boolean;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof SearchedAnchor
+	 */
+	similarity: number;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SearchedAnchor
+	 */
+	temporal?: boolean;
+	/**
+	 * This is the uuid of the anchor.
+	 * @type {string}
+	 * @memberof SearchedAnchor
+	 */
+	identifier: string;
 }
 
 /**
  * Check if a given object implements the SearchedAnchor interface.
  */
 export function instanceOfSearchedAnchor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "exact" in value;
-    isInstance = isInstance && "similarity" in value;
-    isInstance = isInstance && "identifier" in value;
+	let isInstance = true;
+	isInstance = isInstance && "exact" in value;
+	isInstance = isInstance && "similarity" in value;
+	isInstance = isInstance && "identifier" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SearchedAnchorFromJSON(json: any): SearchedAnchor {
-    return SearchedAnchorFromJSONTyped(json, false);
+	return SearchedAnchorFromJSONTyped(json, false);
 }
 
-export function SearchedAnchorFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchedAnchor {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'anchor': !exists(json, 'anchor') ? undefined : AnchorFromJSON(json['anchor']),
-        'points': !exists(json, 'points') ? undefined : SearchedAnchorPointsFromJSON(json['points']),
-        'exact': json['exact'],
-        'similarity': json['similarity'],
-        'temporal': !exists(json, 'temporal') ? undefined : json['temporal'],
-        'identifier': json['identifier'],
-    };
+export function SearchedAnchorFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SearchedAnchor {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		anchor: exists(json, "anchor")
+			? AnchorFromJSON(json["anchor"])
+			: undefined,
+		points: exists(json, "points")
+			? SearchedAnchorPointsFromJSON(json["points"])
+			: undefined,
+		exact: json["exact"],
+		similarity: json["similarity"],
+		temporal: exists(json, "temporal") ? json["temporal"] : undefined,
+		identifier: json["identifier"],
+	};
 }
 
 export function SearchedAnchorToJSON(value?: SearchedAnchor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'anchor': AnchorToJSON(value.anchor),
-        'points': SearchedAnchorPointsToJSON(value.points),
-        'exact': value.exact,
-        'similarity': value.similarity,
-        'temporal': value.temporal,
-        'identifier': value.identifier,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		anchor: AnchorToJSON(value.anchor),
+		points: SearchedAnchorPointsToJSON(value.points),
+		exact: value.exact,
+		similarity: value.similarity,
+		temporal: value.temporal,
+		identifier: value.identifier,
+	};
 }
-

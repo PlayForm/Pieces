@@ -12,103 +12,104 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * This is the low level seeded score and will let us know what exactly we want to increment on our material.
- * 
+ *
  * Note: ONLY include one of these, as we will only increment one of the following.
  * @export
  * @interface SeededScore
  */
 export interface SeededScore {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededScore
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededScore
-     */
-    reuse?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededScore
-     */
-    update?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededScore
-     */
-    reference?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededScore
-     */
-    priority?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SeededScore
-     */
-    searched?: boolean;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededScore
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededScore
+	 */
+	reuse?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededScore
+	 */
+	update?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededScore
+	 */
+	reference?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededScore
+	 */
+	priority?: boolean;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof SeededScore
+	 */
+	searched?: boolean;
 }
 
 /**
  * Check if a given object implements the SeededScore interface.
  */
-export function instanceOfSeededScore(value: object): boolean {
-    let isInstance = true;
+export function instanceOfSeededScore(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function SeededScoreFromJSON(json: any): SeededScore {
-    return SeededScoreFromJSONTyped(json, false);
+	return SeededScoreFromJSONTyped(json, false);
 }
 
-export function SeededScoreFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededScore {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'reuse': !exists(json, 'reuse') ? undefined : json['reuse'],
-        'update': !exists(json, 'update') ? undefined : json['update'],
-        'reference': !exists(json, 'reference') ? undefined : json['reference'],
-        'priority': !exists(json, 'priority') ? undefined : json['priority'],
-        'searched': !exists(json, 'searched') ? undefined : json['searched'],
-    };
+export function SeededScoreFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededScore {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		reuse: exists(json, "reuse") ? json["reuse"] : undefined,
+		update: exists(json, "update") ? json["update"] : undefined,
+		reference: exists(json, "reference") ? json["reference"] : undefined,
+		priority: exists(json, "priority") ? json["priority"] : undefined,
+		searched: exists(json, "searched") ? json["searched"] : undefined,
+	};
 }
 
 export function SeededScoreToJSON(value?: SeededScore | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'reuse': value.reuse,
-        'update': value.update,
-        'reference': value.reference,
-        'priority': value.priority,
-        'searched': value.searched,
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		reuse: value.reuse,
+		update: value.update,
+		reference: value.reference,
+		priority: value.priority,
+		searched: value.searched,
+	};
 }
-

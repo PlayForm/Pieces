@@ -12,25 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedTag } from './ReferencedTag';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedTag } from "./ReferencedTag.tsx";
 import {
-    ReferencedTagFromJSON,
-    ReferencedTagFromJSONTyped,
-    ReferencedTagToJSON,
-} from './ReferencedTag';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	ReferencedTagFromJSON,
+	ReferencedTagToJSON,
+} from "./ReferencedTag.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is multiple ReferencedTags(which includes an optional FlattenedTag Model within the reference model).
@@ -38,72 +32,74 @@ import {
  * @interface FlattenedTags
  */
 export interface FlattenedTags {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FlattenedTags
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<ReferencedTag>}
-     * @memberof FlattenedTags
-     */
-    iterable: Array<ReferencedTag>;
-    /**
-     * This is a Map<String, int> where the the key is an tag id.
-     * @type {{ [key: string]: number; }}
-     * @memberof FlattenedTags
-     */
-    indices?: { [key: string]: number; };
-    /**
-     * 
-     * @type {Score}
-     * @memberof FlattenedTags
-     */
-    score?: Score;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FlattenedTags
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<ReferencedTag>}
+	 * @memberof FlattenedTags
+	 */
+	iterable: ReferencedTag[];
+	/**
+	 * This is a Map<String, int> where the the key is an tag id.
+	 * @type {{ [key: string]: number; }}
+	 * @memberof FlattenedTags
+	 */
+	indices?: { [key: string]: number };
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof FlattenedTags
+	 */
+	score?: Score;
 }
 
 /**
  * Check if a given object implements the FlattenedTags interface.
  */
 export function instanceOfFlattenedTags(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FlattenedTagsFromJSON(json: any): FlattenedTags {
-    return FlattenedTagsFromJSONTyped(json, false);
+	return FlattenedTagsFromJSONTyped(json, false);
 }
 
-export function FlattenedTagsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlattenedTags {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ReferencedTagFromJSON)),
-        'indices': !exists(json, 'indices') ? undefined : json['indices'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-    };
+export function FlattenedTagsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FlattenedTags {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ReferencedTagFromJSON),
+		indices: exists(json, "indices") ? json["indices"] : undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+	};
 }
 
 export function FlattenedTagsToJSON(value?: FlattenedTags | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ReferencedTagToJSON)),
-        'indices': value.indices,
-        'score': ScoreToJSON(value.score),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ReferencedTagToJSON),
+		indices: value.indices,
+		score: ScoreToJSON(value.score),
+	};
 }
-

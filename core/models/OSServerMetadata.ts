@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { TrackedSummaryTotals } from './TrackedSummaryTotals';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { TrackedSummaryTotals } from "./TrackedSummaryTotals.tsx";
 import {
-    TrackedSummaryTotalsFromJSON,
-    TrackedSummaryTotalsFromJSONTyped,
-    TrackedSummaryTotalsToJSON,
-} from './TrackedSummaryTotals';
+	TrackedSummaryTotalsFromJSON,
+	TrackedSummaryTotalsToJSON,
+} from "./TrackedSummaryTotals.tsx";
 
 /**
  * This will return metadata (total materials) in your pieces drive.
@@ -32,55 +30,59 @@ import {
  * @interface OSServerMetadata
  */
 export interface OSServerMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof OSServerMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TrackedSummaryTotals}
-     * @memberof OSServerMetadata
-     */
-    totals?: TrackedSummaryTotals;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof OSServerMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TrackedSummaryTotals}
+	 * @memberof OSServerMetadata
+	 */
+	totals?: TrackedSummaryTotals;
 }
 
 /**
  * Check if a given object implements the OSServerMetadata interface.
  */
-export function instanceOfOSServerMetadata(value: object): boolean {
-    let isInstance = true;
+export function instanceOfOSServerMetadata(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function OSServerMetadataFromJSON(json: any): OSServerMetadata {
-    return OSServerMetadataFromJSONTyped(json, false);
+	return OSServerMetadataFromJSONTyped(json, false);
 }
 
-export function OSServerMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): OSServerMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'totals': !exists(json, 'totals') ? undefined : TrackedSummaryTotalsFromJSON(json['totals']),
-    };
+export function OSServerMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): OSServerMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		totals: exists(json, "totals")
+			? TrackedSummaryTotalsFromJSON(json["totals"])
+			: undefined,
+	};
 }
 
 export function OSServerMetadataToJSON(value?: OSServerMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'totals': TrackedSummaryTotalsToJSON(value.totals),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		totals: TrackedSummaryTotalsToJSON(value.totals),
+	};
 }
-

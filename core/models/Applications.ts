@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Application } from './Application';
+import { exists } from "../runtime.ts";
+import type { Application } from "./Application.tsx";
+import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationFromJSON,
-    ApplicationFromJSONTyped,
-    ApplicationToJSON,
-} from './Application';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
-import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * A list of all the applications
@@ -32,56 +27,58 @@ import {
  * @interface Applications
  */
 export interface Applications {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Applications
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<Application>}
-     * @memberof Applications
-     */
-    iterable: Array<Application>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Applications
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<Application>}
+	 * @memberof Applications
+	 */
+	iterable: Application[];
 }
 
 /**
  * Check if a given object implements the Applications interface.
  */
 export function instanceOfApplications(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ApplicationsFromJSON(json: any): Applications {
-    return ApplicationsFromJSONTyped(json, false);
+	return ApplicationsFromJSONTyped(json, false);
 }
 
-export function ApplicationsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Applications {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(ApplicationFromJSON)),
-    };
+export function ApplicationsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Applications {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(ApplicationFromJSON),
+	};
 }
 
 export function ApplicationsToJSON(value?: Applications | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(ApplicationToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(ApplicationToJSON),
+	};
 }
-

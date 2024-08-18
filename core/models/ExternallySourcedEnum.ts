@@ -12,37 +12,42 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * This is an enum that will highlight something that is externally sourced.
  * @export
  */
 export const ExternallySourcedEnum = {
-    Twitter: 'TWITTER',
-    Medium: 'MEDIUM',
-    LinkedIn: 'LINKED_IN',
-    Instagram: 'INSTAGRAM',
-    Facebook: 'FACEBOOK',
-    Reddit: 'REDDIT',
-    Discord: 'DISCORD',
-    BitBucket: 'BIT_BUCKET',
-    GitLab: 'GIT_LAB',
-    GitHub: 'GIT_HUB',
-    Slack: 'SLACK',
-    Mailgun: 'MAILGUN'
+	Twitter: "TWITTER",
+	Medium: "MEDIUM",
+	LinkedIn: "LINKED_IN",
+	Instagram: "INSTAGRAM",
+	Facebook: "FACEBOOK",
+	Reddit: "REDDIT",
+	Discord: "DISCORD",
+	BitBucket: "BIT_BUCKET",
+	GitLab: "GIT_LAB",
+	GitHub: "GIT_HUB",
+	Slack: "SLACK",
+	Mailgun: "MAILGUN",
 } as const;
-export type ExternallySourcedEnum = typeof ExternallySourcedEnum[keyof typeof ExternallySourcedEnum];
+export type ExternallySourcedEnum =
+	(typeof ExternallySourcedEnum)[keyof typeof ExternallySourcedEnum];
 
-
-export function ExternallySourcedEnumFromJSON(json: any): ExternallySourcedEnum {
-    return ExternallySourcedEnumFromJSONTyped(json, false);
+export function ExternallySourcedEnumFromJSON(
+	json: any,
+): ExternallySourcedEnum {
+	return ExternallySourcedEnumFromJSONTyped(json, false);
 }
 
-export function ExternallySourcedEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExternallySourcedEnum {
-    return json as ExternallySourcedEnum;
+export function ExternallySourcedEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ExternallySourcedEnum {
+	return json as ExternallySourcedEnum;
 }
 
-export function ExternallySourcedEnumToJSON(value?: ExternallySourcedEnum | null): any {
-    return value as any;
+export function ExternallySourcedEnumToJSON(
+	value?: ExternallySourcedEnum | null,
+): any {
+	return value as any;
 }
-

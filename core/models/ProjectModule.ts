@@ -12,126 +12,126 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnonymousTemporalRange } from './AnonymousTemporalRange';
+import { exists } from "../runtime.ts";
+import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
-    AnonymousTemporalRangeFromJSON,
-    AnonymousTemporalRangeFromJSONTyped,
-    AnonymousTemporalRangeToJSON,
-} from './AnonymousTemporalRange';
-import type { Classifications } from './Classifications';
+	AnonymousTemporalRangeFromJSON,
+	AnonymousTemporalRangeToJSON,
+} from "./AnonymousTemporalRange.tsx";
+import type { Classifications } from "./Classifications.tsx";
 import {
-    ClassificationsFromJSON,
-    ClassificationsFromJSONTyped,
-    ClassificationsToJSON,
-} from './Classifications';
-import type { DocumentContributors } from './DocumentContributors';
+	ClassificationsFromJSON,
+	ClassificationsToJSON,
+} from "./Classifications.tsx";
+import type { DocumentContributors } from "./DocumentContributors.tsx";
 import {
-    DocumentContributorsFromJSON,
-    DocumentContributorsFromJSONTyped,
-    DocumentContributorsToJSON,
-} from './DocumentContributors';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	DocumentContributorsFromJSON,
+	DocumentContributorsToJSON,
+} from "./DocumentContributors.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededAnchor } from './SeededAnchor';
-import {
-    SeededAnchorFromJSON,
-    SeededAnchorFromJSONTyped,
-    SeededAnchorToJSON,
-} from './SeededAnchor';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededAnchor } from "./SeededAnchor.tsx";
+import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
 
 /**
  * This is a representation of a Module or a Project
- * 
+ *
  * anchor: is the folder path of this repo/module
- * 
+ *
  * contributors: is a nice to have is all the contributors of this repo/module
- * 
+ *
  * range: is the amount of time this user has been working on this repo
- * 
+ *
  * classifications: if all the languages that are used within this repo/module
  * @export
  * @interface ProjectModule
  */
 export interface ProjectModule {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ProjectModule
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {SeededAnchor}
-     * @memberof ProjectModule
-     */
-    anchor: SeededAnchor;
-    /**
-     * 
-     * @type {AnonymousTemporalRange}
-     * @memberof ProjectModule
-     */
-    range?: AnonymousTemporalRange;
-    /**
-     * 
-     * @type {DocumentContributors}
-     * @memberof ProjectModule
-     */
-    contributors?: DocumentContributors;
-    /**
-     * 
-     * @type {Classifications}
-     * @memberof ProjectModule
-     */
-    classifications?: Classifications;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ProjectModule
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {SeededAnchor}
+	 * @memberof ProjectModule
+	 */
+	anchor: SeededAnchor;
+	/**
+	 *
+	 * @type {AnonymousTemporalRange}
+	 * @memberof ProjectModule
+	 */
+	range?: AnonymousTemporalRange;
+	/**
+	 *
+	 * @type {DocumentContributors}
+	 * @memberof ProjectModule
+	 */
+	contributors?: DocumentContributors;
+	/**
+	 *
+	 * @type {Classifications}
+	 * @memberof ProjectModule
+	 */
+	classifications?: Classifications;
 }
 
 /**
  * Check if a given object implements the ProjectModule interface.
  */
 export function instanceOfProjectModule(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "anchor" in value;
+	let isInstance = true;
+	isInstance = isInstance && "anchor" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ProjectModuleFromJSON(json: any): ProjectModule {
-    return ProjectModuleFromJSONTyped(json, false);
+	return ProjectModuleFromJSONTyped(json, false);
 }
 
-export function ProjectModuleFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectModule {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'anchor': SeededAnchorFromJSON(json['anchor']),
-        'range': !exists(json, 'range') ? undefined : AnonymousTemporalRangeFromJSON(json['range']),
-        'contributors': !exists(json, 'contributors') ? undefined : DocumentContributorsFromJSON(json['contributors']),
-        'classifications': !exists(json, 'classifications') ? undefined : ClassificationsFromJSON(json['classifications']),
-    };
+export function ProjectModuleFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ProjectModule {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		anchor: SeededAnchorFromJSON(json["anchor"]),
+		range: exists(json, "range")
+			? AnonymousTemporalRangeFromJSON(json["range"])
+			: undefined,
+		contributors: exists(json, "contributors")
+			? DocumentContributorsFromJSON(json["contributors"])
+			: undefined,
+		classifications: exists(json, "classifications")
+			? ClassificationsFromJSON(json["classifications"])
+			: undefined,
+	};
 }
 
 export function ProjectModuleToJSON(value?: ProjectModule | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'anchor': SeededAnchorToJSON(value.anchor),
-        'range': AnonymousTemporalRangeToJSON(value.range),
-        'contributors': DocumentContributorsToJSON(value.contributors),
-        'classifications': ClassificationsToJSON(value.classifications),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		anchor: SeededAnchorToJSON(value.anchor),
+		range: AnonymousTemporalRangeToJSON(value.range),
+		contributors: DocumentContributorsToJSON(value.contributors),
+		classifications: ClassificationsToJSON(value.classifications),
+	};
 }
-

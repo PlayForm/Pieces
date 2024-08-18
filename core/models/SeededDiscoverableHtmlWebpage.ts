@@ -12,80 +12,87 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface SeededDiscoverableHtmlWebpage
  */
 export interface SeededDiscoverableHtmlWebpage {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof SeededDiscoverableHtmlWebpage
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * The route of the page
-     * 
-     * @type {string}
-     * @memberof SeededDiscoverableHtmlWebpage
-     */
-    url: string;
-    /**
-     * page's html as a string
-     * @type {string}
-     * @memberof SeededDiscoverableHtmlWebpage
-     */
-    page: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof SeededDiscoverableHtmlWebpage
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * The route of the page
+	 *
+	 * @type {string}
+	 * @memberof SeededDiscoverableHtmlWebpage
+	 */
+	url: string;
+	/**
+	 * page's html as a string
+	 * @type {string}
+	 * @memberof SeededDiscoverableHtmlWebpage
+	 */
+	page: string;
 }
 
 /**
  * Check if a given object implements the SeededDiscoverableHtmlWebpage interface.
  */
-export function instanceOfSeededDiscoverableHtmlWebpage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "url" in value;
-    isInstance = isInstance && "page" in value;
+export function instanceOfSeededDiscoverableHtmlWebpage(
+	value: object,
+): boolean {
+	let isInstance = true;
+	isInstance = isInstance && "url" in value;
+	isInstance = isInstance && "page" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function SeededDiscoverableHtmlWebpageFromJSON(json: any): SeededDiscoverableHtmlWebpage {
-    return SeededDiscoverableHtmlWebpageFromJSONTyped(json, false);
+export function SeededDiscoverableHtmlWebpageFromJSON(
+	json: any,
+): SeededDiscoverableHtmlWebpage {
+	return SeededDiscoverableHtmlWebpageFromJSONTyped(json, false);
 }
 
-export function SeededDiscoverableHtmlWebpageFromJSONTyped(json: any, ignoreDiscriminator: boolean): SeededDiscoverableHtmlWebpage {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'url': json['url'],
-        'page': json['page'],
-    };
+export function SeededDiscoverableHtmlWebpageFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): SeededDiscoverableHtmlWebpage {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		url: json["url"],
+		page: json["page"],
+	};
 }
 
-export function SeededDiscoverableHtmlWebpageToJSON(value?: SeededDiscoverableHtmlWebpage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'url': value.url,
-        'page': value.page,
-    };
+export function SeededDiscoverableHtmlWebpageToJSON(
+	value?: SeededDiscoverableHtmlWebpage | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		url: value.url,
+		page: value.page,
+	};
 }
-

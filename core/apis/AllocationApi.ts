@@ -12,90 +12,122 @@
  * Do not edit the class manually.
  */
 
-
-import * as runtime from '../runtime';
-import type {
-  AllocationCloud,
-} from '../models/index';
+import type { AllocationCloud } from "../models/index.ts";
 import {
-    AllocationCloudFromJSON,
-    AllocationCloudToJSON,
-} from '../models/index';
+	AllocationCloudFromJSON,
+	AllocationCloudToJSON,
+} from "../models/index.ts";
+import * as runtime from "../runtime.ts";
 
 export interface AllocationSnapshotRequest {
-    allocation: string;
+	allocation: string;
 }
 
 export interface AllocationUpdateRequest {
-    allocationCloud?: AllocationCloud;
+	allocationCloud?: AllocationCloud;
 }
 
 /**
- * 
+ *
  */
 export class AllocationApi extends runtime.BaseAPI {
+	/**
+	 * This will get a snapshot of a specific allocation.
+	 * /allocation/{allocation} [GET]
+	 */
+	async allocationSnapshotRaw(
+		requestParameters: AllocationSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<AllocationCloud>> {
+		if (
+			requestParameters.allocation === null ||
+			requestParameters.allocation === undefined
+		) {
+			throw new runtime.RequiredError(
+				"allocation",
+				"Required parameter requestParameters.allocation was null or undefined when calling allocationSnapshot.",
+			);
+		}
 
-    /**
-     * This will get a snapshot of a specific allocation.
-     * /allocation/{allocation} [GET]
-     */
-    async allocationSnapshotRaw(requestParameters: AllocationSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AllocationCloud>> {
-        if (requestParameters.allocation === null || requestParameters.allocation === undefined) {
-            throw new runtime.RequiredError('allocation','Required parameter requestParameters.allocation was null or undefined when calling allocationSnapshot.');
-        }
+		const queryParameters: any = {};
 
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		const response = await this.request(
+			{
+				path: "/allocation/{allocation}".replace(
+					`{${"allocation"}}`,
+					encodeURIComponent(String(requestParameters.allocation)),
+				),
+				method: "GET",
+				headers: headerParameters,
+				query: queryParameters,
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/allocation/{allocation}`.replace(`{${"allocation"}}`, encodeURIComponent(String(requestParameters.allocation))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AllocationCloudFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AllocationCloudFromJSON(jsonValue));
-    }
+	/**
+	 * This will get a snapshot of a specific allocation.
+	 * /allocation/{allocation} [GET]
+	 */
+	async allocationSnapshot(
+		requestParameters: AllocationSnapshotRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<AllocationCloud> {
+		const response = await this.allocationSnapshotRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 
-    /**
-     * This will get a snapshot of a specific allocation.
-     * /allocation/{allocation} [GET]
-     */
-    async allocationSnapshot(requestParameters: AllocationSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AllocationCloud> {
-        const response = await this.allocationSnapshotRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
+	/**
+	 * This will update a specific allocation.
+	 * /allocation/update [POST]
+	 */
+	async allocationUpdateRaw(
+		requestParameters: AllocationUpdateRequest,
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<runtime.ApiResponse<AllocationCloud>> {
+		const queryParameters: any = {};
 
-    /**
-     * This will update a specific allocation.
-     * /allocation/update [POST]
-     */
-    async allocationUpdateRaw(requestParameters: AllocationUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AllocationCloud>> {
-        const queryParameters: any = {};
+		const headerParameters: runtime.HTTPHeaders = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
+		headerParameters["Content-Type"] = "application/json";
 
-        headerParameters['Content-Type'] = 'application/json';
+		const response = await this.request(
+			{
+				path: "/allocation/update",
+				method: "POST",
+				headers: headerParameters,
+				query: queryParameters,
+				body: AllocationCloudToJSON(requestParameters.allocationCloud),
+			},
+			initOverrides,
+		);
 
-        const response = await this.request({
-            path: `/allocation/update`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: AllocationCloudToJSON(requestParameters.allocationCloud),
-        }, initOverrides);
+		return new runtime.JSONApiResponse(response, (jsonValue) =>
+			AllocationCloudFromJSON(jsonValue),
+		);
+	}
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AllocationCloudFromJSON(jsonValue));
-    }
-
-    /**
-     * This will update a specific allocation.
-     * /allocation/update [POST]
-     */
-    async allocationUpdate(requestParameters: AllocationUpdateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AllocationCloud> {
-        const response = await this.allocationUpdateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
+	/**
+	 * This will update a specific allocation.
+	 * /allocation/update [POST]
+	 */
+	async allocationUpdate(
+		requestParameters: AllocationUpdateRequest = {},
+		initOverrides?: RequestInit | runtime.InitOverrideFunction,
+	): Promise<AllocationCloud> {
+		const response = await this.allocationUpdateRaw(
+			requestParameters,
+			initOverrides,
+		);
+		return await response.value();
+	}
 }

@@ -12,85 +12,63 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Applications } from './Applications';
+import { exists } from "../runtime.ts";
+import type { Applications } from "./Applications.tsx";
+import { ApplicationsFromJSON, ApplicationsToJSON } from "./Applications.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    ApplicationsFromJSON,
-    ApplicationsFromJSONTyped,
-    ApplicationsToJSON,
-} from './Applications';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAnchors } from './FlattenedAnchors';
+	FlattenedAnchorsFromJSON,
+	FlattenedAnchorsToJSON,
+} from "./FlattenedAnchors.tsx";
+import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
-    FlattenedAnchorsFromJSON,
-    FlattenedAnchorsFromJSONTyped,
-    FlattenedAnchorsToJSON,
-} from './FlattenedAnchors';
-import type { FlattenedAnnotations } from './FlattenedAnnotations';
+	FlattenedAnnotationsFromJSON,
+	FlattenedAnnotationsToJSON,
+} from "./FlattenedAnnotations.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    FlattenedAnnotationsFromJSON,
-    FlattenedAnnotationsFromJSONTyped,
-    FlattenedAnnotationsToJSON,
-} from './FlattenedAnnotations';
-import type { FlattenedAssets } from './FlattenedAssets';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { FlattenedConversations } from './FlattenedConversations';
+	FlattenedConversationsFromJSON,
+	FlattenedConversationsToJSON,
+} from "./FlattenedConversations.tsx";
+import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
-    FlattenedConversationsFromJSON,
-    FlattenedConversationsFromJSONTyped,
-    FlattenedConversationsToJSON,
-} from './FlattenedConversations';
-import type { FlattenedPersons } from './FlattenedPersons';
+	FlattenedPersonsFromJSON,
+	FlattenedPersonsToJSON,
+} from "./FlattenedPersons.tsx";
+import type { FlattenedRanges } from "./FlattenedRanges.tsx";
 import {
-    FlattenedPersonsFromJSON,
-    FlattenedPersonsFromJSONTyped,
-    FlattenedPersonsToJSON,
-} from './FlattenedPersons';
-import type { FlattenedRanges } from './FlattenedRanges';
+	FlattenedRangesFromJSON,
+	FlattenedRangesToJSON,
+} from "./FlattenedRanges.tsx";
+import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
-    FlattenedRangesFromJSON,
-    FlattenedRangesFromJSONTyped,
-    FlattenedRangesToJSON,
-} from './FlattenedRanges';
-import type { FlattenedWebsites } from './FlattenedWebsites';
+	FlattenedWebsitesFromJSON,
+	FlattenedWebsitesToJSON,
+} from "./FlattenedWebsites.tsx";
+import type { FlattenedWorkstreamEvents } from "./FlattenedWorkstreamEvents.tsx";
 import {
-    FlattenedWebsitesFromJSON,
-    FlattenedWebsitesFromJSONTyped,
-    FlattenedWebsitesToJSON,
-} from './FlattenedWebsites';
-import type { FlattenedWorkstreamEvents } from './FlattenedWorkstreamEvents';
+	FlattenedWorkstreamEventsFromJSON,
+	FlattenedWorkstreamEventsToJSON,
+} from "./FlattenedWorkstreamEvents.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    FlattenedWorkstreamEventsFromJSON,
-    FlattenedWorkstreamEventsFromJSONTyped,
-    FlattenedWorkstreamEventsToJSON,
-} from './FlattenedWorkstreamEvents';
-import type { GroupedTimestamp } from './GroupedTimestamp';
-import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { Model } from './Model';
-import {
-    ModelFromJSON,
-    ModelFromJSONTyped,
-    ModelToJSON,
-} from './Model';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { Model } from "./Model.tsx";
+import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
  * This is representation or a summarized version of the highly relevant WorkstreamEvent events from a given time period, 1 day, 1 week, 1 month, dependinng on your given flow.
@@ -98,172 +76,192 @@ import {
  * @interface WorkstreamSummary
  */
 export interface WorkstreamSummary {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamSummary
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof WorkstreamSummary
-     */
-    id: string;
-    /**
-     * 
-     * @type {Score}
-     * @memberof WorkstreamSummary
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof WorkstreamSummary
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof WorkstreamSummary
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {FlattenedWorkstreamEvents}
-     * @memberof WorkstreamSummary
-     */
-    events?: FlattenedWorkstreamEvents;
-    /**
-     * 
-     * @type {string}
-     * @memberof WorkstreamSummary
-     */
-    name: string;
-    /**
-     * 
-     * @type {FlattenedAnnotations}
-     * @memberof WorkstreamSummary
-     */
-    annotations?: FlattenedAnnotations;
-    /**
-     * 
-     * @type {FlattenedRanges}
-     * @memberof WorkstreamSummary
-     */
-    ranges?: FlattenedRanges;
-    /**
-     * 
-     * @type {Model}
-     * @memberof WorkstreamSummary
-     */
-    model: Model;
-    /**
-     * 
-     * @type {FlattenedWebsites}
-     * @memberof WorkstreamSummary
-     */
-    websites?: FlattenedWebsites;
-    /**
-     * 
-     * @type {FlattenedAnchors}
-     * @memberof WorkstreamSummary
-     */
-    anchors?: FlattenedAnchors;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof WorkstreamSummary
-     */
-    assets?: FlattenedAssets;
-    /**
-     * 
-     * @type {FlattenedConversations}
-     * @memberof WorkstreamSummary
-     */
-    conversations?: FlattenedConversations;
-    /**
-     * 
-     * @type {FlattenedPersons}
-     * @memberof WorkstreamSummary
-     */
-    persons?: FlattenedPersons;
-    /**
-     * 
-     * @type {Applications}
-     * @memberof WorkstreamSummary
-     */
-    applications?: Applications;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamSummary
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof WorkstreamSummary
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof WorkstreamSummary
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof WorkstreamSummary
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof WorkstreamSummary
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamEvents}
+	 * @memberof WorkstreamSummary
+	 */
+	events?: FlattenedWorkstreamEvents;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof WorkstreamSummary
+	 */
+	name: string;
+	/**
+	 *
+	 * @type {FlattenedAnnotations}
+	 * @memberof WorkstreamSummary
+	 */
+	annotations?: FlattenedAnnotations;
+	/**
+	 *
+	 * @type {FlattenedRanges}
+	 * @memberof WorkstreamSummary
+	 */
+	ranges?: FlattenedRanges;
+	/**
+	 *
+	 * @type {Model}
+	 * @memberof WorkstreamSummary
+	 */
+	model: Model;
+	/**
+	 *
+	 * @type {FlattenedWebsites}
+	 * @memberof WorkstreamSummary
+	 */
+	websites?: FlattenedWebsites;
+	/**
+	 *
+	 * @type {FlattenedAnchors}
+	 * @memberof WorkstreamSummary
+	 */
+	anchors?: FlattenedAnchors;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof WorkstreamSummary
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 *
+	 * @type {FlattenedConversations}
+	 * @memberof WorkstreamSummary
+	 */
+	conversations?: FlattenedConversations;
+	/**
+	 *
+	 * @type {FlattenedPersons}
+	 * @memberof WorkstreamSummary
+	 */
+	persons?: FlattenedPersons;
+	/**
+	 *
+	 * @type {Applications}
+	 * @memberof WorkstreamSummary
+	 */
+	applications?: Applications;
 }
 
 /**
  * Check if a given object implements the WorkstreamSummary interface.
  */
 export function instanceOfWorkstreamSummary(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "model" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
+	isInstance = isInstance && "name" in value;
+	isInstance = isInstance && "model" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function WorkstreamSummaryFromJSON(json: any): WorkstreamSummary {
-    return WorkstreamSummaryFromJSONTyped(json, false);
+	return WorkstreamSummaryFromJSONTyped(json, false);
 }
 
-export function WorkstreamSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamSummary {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'events': !exists(json, 'events') ? undefined : FlattenedWorkstreamEventsFromJSON(json['events']),
-        'name': json['name'],
-        'annotations': !exists(json, 'annotations') ? undefined : FlattenedAnnotationsFromJSON(json['annotations']),
-        'ranges': !exists(json, 'ranges') ? undefined : FlattenedRangesFromJSON(json['ranges']),
-        'model': ModelFromJSON(json['model']),
-        'websites': !exists(json, 'websites') ? undefined : FlattenedWebsitesFromJSON(json['websites']),
-        'anchors': !exists(json, 'anchors') ? undefined : FlattenedAnchorsFromJSON(json['anchors']),
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'conversations': !exists(json, 'conversations') ? undefined : FlattenedConversationsFromJSON(json['conversations']),
-        'persons': !exists(json, 'persons') ? undefined : FlattenedPersonsFromJSON(json['persons']),
-        'applications': !exists(json, 'applications') ? undefined : ApplicationsFromJSON(json['applications']),
-    };
+export function WorkstreamSummaryFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamSummary {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		events: exists(json, "events")
+			? FlattenedWorkstreamEventsFromJSON(json["events"])
+			: undefined,
+		name: json["name"],
+		annotations: exists(json, "annotations")
+			? FlattenedAnnotationsFromJSON(json["annotations"])
+			: undefined,
+		ranges: exists(json, "ranges")
+			? FlattenedRangesFromJSON(json["ranges"])
+			: undefined,
+		model: ModelFromJSON(json["model"]),
+		websites: exists(json, "websites")
+			? FlattenedWebsitesFromJSON(json["websites"])
+			: undefined,
+		anchors: exists(json, "anchors")
+			? FlattenedAnchorsFromJSON(json["anchors"])
+			: undefined,
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		conversations: exists(json, "conversations")
+			? FlattenedConversationsFromJSON(json["conversations"])
+			: undefined,
+		persons: exists(json, "persons")
+			? FlattenedPersonsFromJSON(json["persons"])
+			: undefined,
+		applications: exists(json, "applications")
+			? ApplicationsFromJSON(json["applications"])
+			: undefined,
+	};
 }
 
 export function WorkstreamSummaryToJSON(value?: WorkstreamSummary | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'score': ScoreToJSON(value.score),
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'events': FlattenedWorkstreamEventsToJSON(value.events),
-        'name': value.name,
-        'annotations': FlattenedAnnotationsToJSON(value.annotations),
-        'ranges': FlattenedRangesToJSON(value.ranges),
-        'model': ModelToJSON(value.model),
-        'websites': FlattenedWebsitesToJSON(value.websites),
-        'anchors': FlattenedAnchorsToJSON(value.anchors),
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'conversations': FlattenedConversationsToJSON(value.conversations),
-        'persons': FlattenedPersonsToJSON(value.persons),
-        'applications': ApplicationsToJSON(value.applications),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		score: ScoreToJSON(value.score),
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		events: FlattenedWorkstreamEventsToJSON(value.events),
+		name: value.name,
+		annotations: FlattenedAnnotationsToJSON(value.annotations),
+		ranges: FlattenedRangesToJSON(value.ranges),
+		model: ModelToJSON(value.model),
+		websites: FlattenedWebsitesToJSON(value.websites),
+		anchors: FlattenedAnchorsToJSON(value.anchors),
+		assets: FlattenedAssetsToJSON(value.assets),
+		conversations: FlattenedConversationsToJSON(value.conversations),
+		persons: FlattenedPersonsToJSON(value.persons),
+		applications: ApplicationsToJSON(value.applications),
+	};
 }
-

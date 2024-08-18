@@ -12,176 +12,181 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAssets } from './FlattenedAssets';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { FlattenedConversationMessages } from './FlattenedConversationMessages';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
-    FlattenedConversationMessagesFromJSON,
-    FlattenedConversationMessagesFromJSONTyped,
-    FlattenedConversationMessagesToJSON,
-} from './FlattenedConversationMessages';
-import type { QGPTRelevanceInputOptions } from './QGPTRelevanceInputOptions';
+	FlattenedConversationMessagesFromJSON,
+	FlattenedConversationMessagesToJSON,
+} from "./FlattenedConversationMessages.tsx";
+import type { QGPTRelevanceInputOptions } from "./QGPTRelevanceInputOptions.tsx";
 import {
-    QGPTRelevanceInputOptionsFromJSON,
-    QGPTRelevanceInputOptionsFromJSONTyped,
-    QGPTRelevanceInputOptionsToJSON,
-} from './QGPTRelevanceInputOptions';
-import type { Seeds } from './Seeds';
+	QGPTRelevanceInputOptionsFromJSON,
+	QGPTRelevanceInputOptionsToJSON,
+} from "./QGPTRelevanceInputOptions.tsx";
+import type { Seeds } from "./Seeds.tsx";
+import { SeedsFromJSON, SeedsToJSON } from "./Seeds.tsx";
+import type { TemporalRangeGrounding } from "./TemporalRangeGrounding.tsx";
 import {
-    SeedsFromJSON,
-    SeedsFromJSONTyped,
-    SeedsToJSON,
-} from './Seeds';
-import type { TemporalRangeGrounding } from './TemporalRangeGrounding';
-import {
-    TemporalRangeGroundingFromJSON,
-    TemporalRangeGroundingFromJSONTyped,
-    TemporalRangeGroundingToJSON,
-} from './TemporalRangeGrounding';
+	TemporalRangeGroundingFromJSON,
+	TemporalRangeGroundingToJSON,
+} from "./TemporalRangeGrounding.tsx";
 
 /**
  * This is the input body for the /code_gpt/relevance endpoint.
- * 
+ *
  * There are a couple different options that you may take with this Model.
- * 
+ *
  * First we will talk about the space in which you will compare your query too.
  * These are the following cases for the space.
  * 1. provide an absolute path on the users machine that we can use locally.
  * 2. provide Seeds that you want to compare to, which will be ONLY fragment/string values(all other values will be ignored)
  * 3. provide assets, here you can provide an iterable of the asset id, and we will do the rest
  * 4. you can set your database boolean to true which will tell us to use your entire DB as the query space.
- * 
+ *
  * Note:
  * - for ease of use, we have an additional boolean called 'question', which will also ask your question to gpt3.5, and compare to the relevant snippets that we found. That way you dont need to call /code_gpt/question. Otherwise the next step would be is to take the results and feed them into /code_gpt/question. to get your question answered.
  * @export
  * @interface QGPTRelevanceInput
  */
 export interface QGPTRelevanceInput {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof QGPTRelevanceInput
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This is the question that the user is asking.
-     * @type {string}
-     * @memberof QGPTRelevanceInput
-     */
-    query: string;
-    /**
-     * This is an optional list of file || folder paths.
-     * @type {Array<string>}
-     * @memberof QGPTRelevanceInput
-     */
-    paths?: Array<string>;
-    /**
-     * 
-     * @type {Seeds}
-     * @memberof QGPTRelevanceInput
-     */
-    seeds?: Seeds;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof QGPTRelevanceInput
-     */
-    assets?: FlattenedAssets;
-    /**
-     * 
-     * @type {FlattenedConversationMessages}
-     * @memberof QGPTRelevanceInput
-     */
-    messages?: FlattenedConversationMessages;
-    /**
-     * 
-     * @type {QGPTRelevanceInputOptions}
-     * @memberof QGPTRelevanceInput
-     */
-    options?: QGPTRelevanceInputOptions;
-    /**
-     * optional application id
-     * @type {string}
-     * @memberof QGPTRelevanceInput
-     */
-    application?: string;
-    /**
-     * optional model id
-     * @type {string}
-     * @memberof QGPTRelevanceInput
-     */
-    model?: string;
-    /**
-     * 
-     * @type {TemporalRangeGrounding}
-     * @memberof QGPTRelevanceInput
-     */
-    temporal?: TemporalRangeGrounding;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof QGPTRelevanceInput
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This is the question that the user is asking.
+	 * @type {string}
+	 * @memberof QGPTRelevanceInput
+	 */
+	query: string;
+	/**
+	 * This is an optional list of file || folder paths.
+	 * @type {Array<string>}
+	 * @memberof QGPTRelevanceInput
+	 */
+	paths?: string[];
+	/**
+	 *
+	 * @type {Seeds}
+	 * @memberof QGPTRelevanceInput
+	 */
+	seeds?: Seeds;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof QGPTRelevanceInput
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 *
+	 * @type {FlattenedConversationMessages}
+	 * @memberof QGPTRelevanceInput
+	 */
+	messages?: FlattenedConversationMessages;
+	/**
+	 *
+	 * @type {QGPTRelevanceInputOptions}
+	 * @memberof QGPTRelevanceInput
+	 */
+	options?: QGPTRelevanceInputOptions;
+	/**
+	 * optional application id
+	 * @type {string}
+	 * @memberof QGPTRelevanceInput
+	 */
+	application?: string;
+	/**
+	 * optional model id
+	 * @type {string}
+	 * @memberof QGPTRelevanceInput
+	 */
+	model?: string;
+	/**
+	 *
+	 * @type {TemporalRangeGrounding}
+	 * @memberof QGPTRelevanceInput
+	 */
+	temporal?: TemporalRangeGrounding;
 }
 
 /**
  * Check if a given object implements the QGPTRelevanceInput interface.
  */
 export function instanceOfQGPTRelevanceInput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "query" in value;
+	let isInstance = true;
+	isInstance = isInstance && "query" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function QGPTRelevanceInputFromJSON(json: any): QGPTRelevanceInput {
-    return QGPTRelevanceInputFromJSONTyped(json, false);
+	return QGPTRelevanceInputFromJSONTyped(json, false);
 }
 
-export function QGPTRelevanceInputFromJSONTyped(json: any, ignoreDiscriminator: boolean): QGPTRelevanceInput {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'query': json['query'],
-        'paths': !exists(json, 'paths') ? undefined : json['paths'],
-        'seeds': !exists(json, 'seeds') ? undefined : SeedsFromJSON(json['seeds']),
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'messages': !exists(json, 'messages') ? undefined : FlattenedConversationMessagesFromJSON(json['messages']),
-        'options': !exists(json, 'options') ? undefined : QGPTRelevanceInputOptionsFromJSON(json['options']),
-        'application': !exists(json, 'application') ? undefined : json['application'],
-        'model': !exists(json, 'model') ? undefined : json['model'],
-        'temporal': !exists(json, 'temporal') ? undefined : TemporalRangeGroundingFromJSON(json['temporal']),
-    };
+export function QGPTRelevanceInputFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): QGPTRelevanceInput {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		query: json["query"],
+		paths: exists(json, "paths") ? json["paths"] : undefined,
+		seeds: exists(json, "seeds") ? SeedsFromJSON(json["seeds"]) : undefined,
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		messages: exists(json, "messages")
+			? FlattenedConversationMessagesFromJSON(json["messages"])
+			: undefined,
+		options: exists(json, "options")
+			? QGPTRelevanceInputOptionsFromJSON(json["options"])
+			: undefined,
+		application: exists(json, "application")
+			? json["application"]
+			: undefined,
+		model: exists(json, "model") ? json["model"] : undefined,
+		temporal: exists(json, "temporal")
+			? TemporalRangeGroundingFromJSON(json["temporal"])
+			: undefined,
+	};
 }
 
-export function QGPTRelevanceInputToJSON(value?: QGPTRelevanceInput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'query': value.query,
-        'paths': value.paths,
-        'seeds': SeedsToJSON(value.seeds),
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'messages': FlattenedConversationMessagesToJSON(value.messages),
-        'options': QGPTRelevanceInputOptionsToJSON(value.options),
-        'application': value.application,
-        'model': value.model,
-        'temporal': TemporalRangeGroundingToJSON(value.temporal),
-    };
+export function QGPTRelevanceInputToJSON(
+	value?: QGPTRelevanceInput | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		query: value.query,
+		paths: value.paths,
+		seeds: SeedsToJSON(value.seeds),
+		assets: FlattenedAssetsToJSON(value.assets),
+		messages: FlattenedConversationMessagesToJSON(value.messages),
+		options: QGPTRelevanceInputOptionsToJSON(value.options),
+		application: value.application,
+		model: value.model,
+		temporal: TemporalRangeGroundingToJSON(value.temporal),
+	};
 }
-

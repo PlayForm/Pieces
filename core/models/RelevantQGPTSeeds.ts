@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { RelevantQGPTSeed } from './RelevantQGPTSeed';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { RelevantQGPTSeed } from "./RelevantQGPTSeed.tsx";
 import {
-    RelevantQGPTSeedFromJSON,
-    RelevantQGPTSeedFromJSONTyped,
-    RelevantQGPTSeedToJSON,
-} from './RelevantQGPTSeed';
+	RelevantQGPTSeedFromJSON,
+	RelevantQGPTSeedToJSON,
+} from "./RelevantQGPTSeed.tsx";
 
 /**
  * This is a plural of RelevantQGPTSeed.
@@ -32,56 +30,58 @@ import {
  * @interface RelevantQGPTSeeds
  */
 export interface RelevantQGPTSeeds {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof RelevantQGPTSeeds
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<RelevantQGPTSeed>}
-     * @memberof RelevantQGPTSeeds
-     */
-    iterable: Array<RelevantQGPTSeed>;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof RelevantQGPTSeeds
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<RelevantQGPTSeed>}
+	 * @memberof RelevantQGPTSeeds
+	 */
+	iterable: RelevantQGPTSeed[];
 }
 
 /**
  * Check if a given object implements the RelevantQGPTSeeds interface.
  */
 export function instanceOfRelevantQGPTSeeds(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function RelevantQGPTSeedsFromJSON(json: any): RelevantQGPTSeeds {
-    return RelevantQGPTSeedsFromJSONTyped(json, false);
+	return RelevantQGPTSeedsFromJSONTyped(json, false);
 }
 
-export function RelevantQGPTSeedsFromJSONTyped(json: any, ignoreDiscriminator: boolean): RelevantQGPTSeeds {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(RelevantQGPTSeedFromJSON)),
-    };
+export function RelevantQGPTSeedsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): RelevantQGPTSeeds {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(RelevantQGPTSeedFromJSON),
+	};
 }
 
 export function RelevantQGPTSeedsToJSON(value?: RelevantQGPTSeeds | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(RelevantQGPTSeedToJSON)),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(RelevantQGPTSeedToJSON),
+	};
 }
-

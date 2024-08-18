@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAssets } from './FlattenedAssets';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
 
 /**
  * This is a model of all optional properties, that will get returned from /assets/pseudo.
@@ -32,55 +30,59 @@ import {
  * @interface PseudoAssets
  */
 export interface PseudoAssets {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof PseudoAssets
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof PseudoAssets
-     */
-    identifiers?: FlattenedAssets;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof PseudoAssets
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof PseudoAssets
+	 */
+	identifiers?: FlattenedAssets;
 }
 
 /**
  * Check if a given object implements the PseudoAssets interface.
  */
-export function instanceOfPseudoAssets(value: object): boolean {
-    let isInstance = true;
+export function instanceOfPseudoAssets(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function PseudoAssetsFromJSON(json: any): PseudoAssets {
-    return PseudoAssetsFromJSONTyped(json, false);
+	return PseudoAssetsFromJSONTyped(json, false);
 }
 
-export function PseudoAssetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): PseudoAssets {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'identifiers': !exists(json, 'identifiers') ? undefined : FlattenedAssetsFromJSON(json['identifiers']),
-    };
+export function PseudoAssetsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): PseudoAssets {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		identifiers: exists(json, "identifiers")
+			? FlattenedAssetsFromJSON(json["identifiers"])
+			: undefined,
+	};
 }
 
 export function PseudoAssetsToJSON(value?: PseudoAssets | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'identifiers': FlattenedAssetsToJSON(value.identifiers),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		identifiers: FlattenedAssetsToJSON(value.identifiers),
+	};
 }
-

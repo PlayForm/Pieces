@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * OPEN: Means that privacy is fully open
  * CLOSED: Means that privacy is fully locked down, and private
@@ -20,22 +19,23 @@
  * @export
  */
 export const PrivacyEnum = {
-    Open: 'OPEN',
-    Closed: 'CLOSED',
-    Anonymous: 'ANONYMOUS'
+	Open: "OPEN",
+	Closed: "CLOSED",
+	Anonymous: "ANONYMOUS",
 } as const;
-export type PrivacyEnum = typeof PrivacyEnum[keyof typeof PrivacyEnum];
-
+export type PrivacyEnum = (typeof PrivacyEnum)[keyof typeof PrivacyEnum];
 
 export function PrivacyEnumFromJSON(json: any): PrivacyEnum {
-    return PrivacyEnumFromJSONTyped(json, false);
+	return PrivacyEnumFromJSONTyped(json, false);
 }
 
-export function PrivacyEnumFromJSONTyped(json: any, ignoreDiscriminator: boolean): PrivacyEnum {
-    return json as PrivacyEnum;
+export function PrivacyEnumFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): PrivacyEnum {
+	return json as PrivacyEnum;
 }
 
 export function PrivacyEnumToJSON(value?: PrivacyEnum | null): any {
-    return value as any;
+	return value as any;
 }
-

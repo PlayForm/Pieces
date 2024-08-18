@@ -12,69 +12,74 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface GraphicalSVGStatistics
  */
 export interface GraphicalSVGStatistics {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof GraphicalSVGStatistics
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof GraphicalSVGStatistics
-     */
-    id?: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof GraphicalSVGStatistics
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GraphicalSVGStatistics
+	 */
+	id?: string;
 }
 
 /**
  * Check if a given object implements the GraphicalSVGStatistics interface.
  */
-export function instanceOfGraphicalSVGStatistics(value: object): boolean {
-    let isInstance = true;
+export function instanceOfGraphicalSVGStatistics(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function GraphicalSVGStatisticsFromJSON(json: any): GraphicalSVGStatistics {
-    return GraphicalSVGStatisticsFromJSONTyped(json, false);
+export function GraphicalSVGStatisticsFromJSON(
+	json: any,
+): GraphicalSVGStatistics {
+	return GraphicalSVGStatisticsFromJSONTyped(json, false);
 }
 
-export function GraphicalSVGStatisticsFromJSONTyped(json: any, ignoreDiscriminator: boolean): GraphicalSVGStatistics {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': !exists(json, 'id') ? undefined : json['id'],
-    };
+export function GraphicalSVGStatisticsFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): GraphicalSVGStatistics {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: exists(json, "id") ? json["id"] : undefined,
+	};
 }
 
-export function GraphicalSVGStatisticsToJSON(value?: GraphicalSVGStatistics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-    };
+export function GraphicalSVGStatisticsToJSON(
+	value?: GraphicalSVGStatistics | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+	};
 }
-

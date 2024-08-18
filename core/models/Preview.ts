@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReferencedFormat } from './ReferencedFormat';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReferencedFormat } from "./ReferencedFormat.tsx";
 import {
-    ReferencedFormatFromJSON,
-    ReferencedFormatFromJSONTyped,
-    ReferencedFormatToJSON,
-} from './ReferencedFormat';
+	ReferencedFormatFromJSON,
+	ReferencedFormatToJSON,
+} from "./ReferencedFormat.tsx";
 
 /**
  * This is a preview Model that will hold references to at minimum the base preview. which can be potentiall a base image, or also base text/code and then the oveylay is another format(image/text/code) that is 'overlayed' ontop of the base format.
@@ -32,64 +30,68 @@ import {
  * @interface Preview
  */
 export interface Preview {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Preview
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {ReferencedFormat}
-     * @memberof Preview
-     */
-    base: ReferencedFormat;
-    /**
-     * 
-     * @type {ReferencedFormat}
-     * @memberof Preview
-     */
-    overlay?: ReferencedFormat;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Preview
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {ReferencedFormat}
+	 * @memberof Preview
+	 */
+	base: ReferencedFormat;
+	/**
+	 *
+	 * @type {ReferencedFormat}
+	 * @memberof Preview
+	 */
+	overlay?: ReferencedFormat;
 }
 
 /**
  * Check if a given object implements the Preview interface.
  */
 export function instanceOfPreview(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "base" in value;
+	let isInstance = true;
+	isInstance = isInstance && "base" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function PreviewFromJSON(json: any): Preview {
-    return PreviewFromJSONTyped(json, false);
+	return PreviewFromJSONTyped(json, false);
 }
 
-export function PreviewFromJSONTyped(json: any, ignoreDiscriminator: boolean): Preview {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'base': ReferencedFormatFromJSON(json['base']),
-        'overlay': !exists(json, 'overlay') ? undefined : ReferencedFormatFromJSON(json['overlay']),
-    };
+export function PreviewFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Preview {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		base: ReferencedFormatFromJSON(json["base"]),
+		overlay: exists(json, "overlay")
+			? ReferencedFormatFromJSON(json["overlay"])
+			: undefined,
+	};
 }
 
 export function PreviewToJSON(value?: Preview | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'base': ReferencedFormatToJSON(value.base),
-        'overlay': ReferencedFormatToJSON(value.overlay),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		base: ReferencedFormatToJSON(value.base),
+		overlay: ReferencedFormatToJSON(value.overlay),
+	};
 }
-

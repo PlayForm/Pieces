@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { Recipients } from './Recipients';
-import {
-    RecipientsFromJSON,
-    RecipientsFromJSONTyped,
-    RecipientsToJSON,
-} from './Recipients';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { Recipients } from "./Recipients.tsx";
+import { RecipientsFromJSON, RecipientsToJSON } from "./Recipients.tsx";
 
 /**
  * This is a specific Distribution for mailgun specific information.
@@ -32,56 +27,60 @@ import {
  * @interface MailgunDistribution
  */
 export interface MailgunDistribution {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof MailgunDistribution
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Recipients}
-     * @memberof MailgunDistribution
-     */
-    recipients: Recipients;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof MailgunDistribution
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Recipients}
+	 * @memberof MailgunDistribution
+	 */
+	recipients: Recipients;
 }
 
 /**
  * Check if a given object implements the MailgunDistribution interface.
  */
 export function instanceOfMailgunDistribution(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "recipients" in value;
+	let isInstance = true;
+	isInstance = isInstance && "recipients" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function MailgunDistributionFromJSON(json: any): MailgunDistribution {
-    return MailgunDistributionFromJSONTyped(json, false);
+	return MailgunDistributionFromJSONTyped(json, false);
 }
 
-export function MailgunDistributionFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailgunDistribution {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'recipients': RecipientsFromJSON(json['recipients']),
-    };
+export function MailgunDistributionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): MailgunDistribution {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		recipients: RecipientsFromJSON(json["recipients"]),
+	};
 }
 
-export function MailgunDistributionToJSON(value?: MailgunDistribution | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'recipients': RecipientsToJSON(value.recipients),
-    };
+export function MailgunDistributionToJSON(
+	value?: MailgunDistribution | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		recipients: RecipientsToJSON(value.recipients),
+	};
 }
-

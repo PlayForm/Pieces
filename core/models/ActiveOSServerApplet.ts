@@ -12,19 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { OSAppletEnum } from './OSAppletEnum';
-import {
-    OSAppletEnumFromJSON,
-    OSAppletEnumFromJSONTyped,
-    OSAppletEnumToJSON,
-} from './OSAppletEnum';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { OSAppletEnum } from "./OSAppletEnum.tsx";
+import { OSAppletEnumFromJSON, OSAppletEnumToJSON } from "./OSAppletEnum.tsx";
 
 /**
  * TODO
@@ -32,65 +27,69 @@ import {
  * @interface ActiveOSServerApplet
  */
 export interface ActiveOSServerApplet {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ActiveOSServerApplet
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {number}
-     * @memberof ActiveOSServerApplet
-     */
-    port: number;
-    /**
-     * 
-     * @type {OSAppletEnum}
-     * @memberof ActiveOSServerApplet
-     */
-    type: OSAppletEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ActiveOSServerApplet
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {number}
+	 * @memberof ActiveOSServerApplet
+	 */
+	port: number;
+	/**
+	 *
+	 * @type {OSAppletEnum}
+	 * @memberof ActiveOSServerApplet
+	 */
+	type: OSAppletEnum;
 }
 
 /**
  * Check if a given object implements the ActiveOSServerApplet interface.
  */
 export function instanceOfActiveOSServerApplet(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "port" in value;
-    isInstance = isInstance && "type" in value;
+	let isInstance = true;
+	isInstance = isInstance && "port" in value;
+	isInstance = isInstance && "type" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ActiveOSServerAppletFromJSON(json: any): ActiveOSServerApplet {
-    return ActiveOSServerAppletFromJSONTyped(json, false);
+	return ActiveOSServerAppletFromJSONTyped(json, false);
 }
 
-export function ActiveOSServerAppletFromJSONTyped(json: any, ignoreDiscriminator: boolean): ActiveOSServerApplet {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'port': json['port'],
-        'type': OSAppletEnumFromJSON(json['type']),
-    };
+export function ActiveOSServerAppletFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ActiveOSServerApplet {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		port: json["port"],
+		type: OSAppletEnumFromJSON(json["type"]),
+	};
 }
 
-export function ActiveOSServerAppletToJSON(value?: ActiveOSServerApplet | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'port': value.port,
-        'type': OSAppletEnumToJSON(value.type),
-    };
+export function ActiveOSServerAppletToJSON(
+	value?: ActiveOSServerApplet | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		port: value.port,
+		type: OSAppletEnumToJSON(value.type),
+	};
 }
-

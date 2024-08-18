@@ -12,105 +12,106 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { ReuseReaction } from './ReuseReaction';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { ReuseReaction } from "./ReuseReaction.tsx";
 import {
-    ReuseReactionFromJSON,
-    ReuseReactionFromJSONTyped,
-    ReuseReactionToJSON,
-} from './ReuseReaction';
-import type { SeededConnectorCreation } from './SeededConnectorCreation';
+	ReuseReactionFromJSON,
+	ReuseReactionToJSON,
+} from "./ReuseReaction.tsx";
+import type { SeededConnectorCreation } from "./SeededConnectorCreation.tsx";
 import {
-    SeededConnectorCreationFromJSON,
-    SeededConnectorCreationFromJSONTyped,
-    SeededConnectorCreationToJSON,
-} from './SeededConnectorCreation';
+	SeededConnectorCreationFromJSON,
+	SeededConnectorCreationToJSON,
+} from "./SeededConnectorCreation.tsx";
 
 /**
  * This will the the Request body of the Request Endpoint.
- * 
+ *
  * Reuse will not be required here because we do NOT know if the user will choose to reuse what we have suggested.
- * 
+ *
  * save will however be required because this will let us know if we should save the coppied asset that was first sent over or not.
- * 
+ *
  * seed is required, because we will want to know 100% sure what the original suggestion was made against.
  * @export
  * @interface Reaction
  */
 export interface Reaction {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Reaction
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * This will just be a simple boolean here that will say if the use should save the asset or not.
-     * @type {boolean}
-     * @memberof Reaction
-     */
-    save: boolean;
-    /**
-     * 
-     * @type {ReuseReaction}
-     * @memberof Reaction
-     */
-    reuse?: ReuseReaction;
-    /**
-     * 
-     * @type {SeededConnectorCreation}
-     * @memberof Reaction
-     */
-    seed: SeededConnectorCreation;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Reaction
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * This will just be a simple boolean here that will say if the use should save the asset or not.
+	 * @type {boolean}
+	 * @memberof Reaction
+	 */
+	save: boolean;
+	/**
+	 *
+	 * @type {ReuseReaction}
+	 * @memberof Reaction
+	 */
+	reuse?: ReuseReaction;
+	/**
+	 *
+	 * @type {SeededConnectorCreation}
+	 * @memberof Reaction
+	 */
+	seed: SeededConnectorCreation;
 }
 
 /**
  * Check if a given object implements the Reaction interface.
  */
 export function instanceOfReaction(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "save" in value;
-    isInstance = isInstance && "seed" in value;
+	let isInstance = true;
+	isInstance = isInstance && "save" in value;
+	isInstance = isInstance && "seed" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReactionFromJSON(json: any): Reaction {
-    return ReactionFromJSONTyped(json, false);
+	return ReactionFromJSONTyped(json, false);
 }
 
-export function ReactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Reaction {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'save': json['save'],
-        'reuse': !exists(json, 'reuse') ? undefined : ReuseReactionFromJSON(json['reuse']),
-        'seed': SeededConnectorCreationFromJSON(json['seed']),
-    };
+export function ReactionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Reaction {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		save: json["save"],
+		reuse: exists(json, "reuse")
+			? ReuseReactionFromJSON(json["reuse"])
+			: undefined,
+		seed: SeededConnectorCreationFromJSON(json["seed"]),
+	};
 }
 
 export function ReactionToJSON(value?: Reaction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'save': value.save,
-        'reuse': ReuseReactionToJSON(value.reuse),
-        'seed': SeededConnectorCreationToJSON(value.seed),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		save: value.save,
+		reuse: ReuseReactionToJSON(value.reuse),
+		seed: SeededConnectorCreationToJSON(value.seed),
+	};
 }
-

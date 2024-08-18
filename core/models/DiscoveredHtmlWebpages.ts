@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { DiscoveredHtmlWebpage } from './DiscoveredHtmlWebpage';
+import { exists } from "../runtime.ts";
+import type { DiscoveredHtmlWebpage } from "./DiscoveredHtmlWebpage.tsx";
 import {
-    DiscoveredHtmlWebpageFromJSON,
-    DiscoveredHtmlWebpageFromJSONTyped,
-    DiscoveredHtmlWebpageToJSON,
-} from './DiscoveredHtmlWebpage';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	DiscoveredHtmlWebpageFromJSON,
+	DiscoveredHtmlWebpageToJSON,
+} from "./DiscoveredHtmlWebpage.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
  * Assumption: The iterable will be in the exact same order as it was passed in within the seededDiscoveredHtmlWebpages
@@ -32,65 +30,73 @@ import {
  * @interface DiscoveredHtmlWebpages
  */
 export interface DiscoveredHtmlWebpages {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof DiscoveredHtmlWebpages
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {Array<DiscoveredHtmlWebpage>}
-     * @memberof DiscoveredHtmlWebpages
-     */
-    iterable: Array<DiscoveredHtmlWebpage>;
-    /**
-     * 
-     * @type {string}
-     * @memberof DiscoveredHtmlWebpages
-     */
-    application: string;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof DiscoveredHtmlWebpages
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {Array<DiscoveredHtmlWebpage>}
+	 * @memberof DiscoveredHtmlWebpages
+	 */
+	iterable: DiscoveredHtmlWebpage[];
+	/**
+	 *
+	 * @type {string}
+	 * @memberof DiscoveredHtmlWebpages
+	 */
+	application: string;
 }
 
 /**
  * Check if a given object implements the DiscoveredHtmlWebpages interface.
  */
 export function instanceOfDiscoveredHtmlWebpages(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "iterable" in value;
-    isInstance = isInstance && "application" in value;
+	let isInstance = true;
+	isInstance = isInstance && "iterable" in value;
+	isInstance = isInstance && "application" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function DiscoveredHtmlWebpagesFromJSON(json: any): DiscoveredHtmlWebpages {
-    return DiscoveredHtmlWebpagesFromJSONTyped(json, false);
+export function DiscoveredHtmlWebpagesFromJSON(
+	json: any,
+): DiscoveredHtmlWebpages {
+	return DiscoveredHtmlWebpagesFromJSONTyped(json, false);
 }
 
-export function DiscoveredHtmlWebpagesFromJSONTyped(json: any, ignoreDiscriminator: boolean): DiscoveredHtmlWebpages {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'iterable': ((json['iterable'] as Array<any>).map(DiscoveredHtmlWebpageFromJSON)),
-        'application': json['application'],
-    };
+export function DiscoveredHtmlWebpagesFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): DiscoveredHtmlWebpages {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		iterable: (json["iterable"] as any[]).map(
+			DiscoveredHtmlWebpageFromJSON,
+		),
+		application: json["application"],
+	};
 }
 
-export function DiscoveredHtmlWebpagesToJSON(value?: DiscoveredHtmlWebpages | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'iterable': ((value.iterable as Array<any>).map(DiscoveredHtmlWebpageToJSON)),
-        'application': value.application,
-    };
+export function DiscoveredHtmlWebpagesToJSON(
+	value?: DiscoveredHtmlWebpages | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		iterable: (value.iterable as any[]).map(DiscoveredHtmlWebpageToJSON),
+		application: value.application,
+	};
 }
-

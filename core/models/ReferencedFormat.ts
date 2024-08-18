@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedFormat } from './FlattenedFormat';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedFormat } from "./FlattenedFormat.tsx";
 import {
-    FlattenedFormatFromJSON,
-    FlattenedFormatFromJSONTyped,
-    FlattenedFormatToJSON,
-} from './FlattenedFormat';
+	FlattenedFormatFromJSON,
+	FlattenedFormatToJSON,
+} from "./FlattenedFormat.tsx";
 
 /**
  * A reference to a format which at minimum must have the format's id. But in the case of a hydrated client API it may have a populated reference of type Format.
@@ -32,64 +30,68 @@ import {
  * @interface ReferencedFormat
  */
 export interface ReferencedFormat {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof ReferencedFormat
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * The id of the Format
-     * @type {string}
-     * @memberof ReferencedFormat
-     */
-    id: string;
-    /**
-     * 
-     * @type {FlattenedFormat}
-     * @memberof ReferencedFormat
-     */
-    reference?: FlattenedFormat;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof ReferencedFormat
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 * The id of the Format
+	 * @type {string}
+	 * @memberof ReferencedFormat
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {FlattenedFormat}
+	 * @memberof ReferencedFormat
+	 */
+	reference?: FlattenedFormat;
 }
 
 /**
  * Check if a given object implements the ReferencedFormat interface.
  */
 export function instanceOfReferencedFormat(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ReferencedFormatFromJSON(json: any): ReferencedFormat {
-    return ReferencedFormatFromJSONTyped(json, false);
+	return ReferencedFormatFromJSONTyped(json, false);
 }
 
-export function ReferencedFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencedFormat {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'reference': !exists(json, 'reference') ? undefined : FlattenedFormatFromJSON(json['reference']),
-    };
+export function ReferencedFormatFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): ReferencedFormat {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		reference: exists(json, "reference")
+			? FlattenedFormatFromJSON(json["reference"])
+			: undefined,
+	};
 }
 
 export function ReferencedFormatToJSON(value?: ReferencedFormat | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'reference': FlattenedFormatToJSON(value.reference),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		reference: FlattenedFormatToJSON(value.reference),
+	};
 }
-

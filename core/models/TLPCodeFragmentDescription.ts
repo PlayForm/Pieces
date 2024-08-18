@@ -12,114 +12,120 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { exists } from "../runtime.ts";
 /**
  * Model for ML big query Code Description.
  * @export
  * @interface TLPCodeFragmentDescription
  */
 export interface TLPCodeFragmentDescription {
-    /**
-     * This is the stringified json of a TLPDescription object
-     * @type {string}
-     * @memberof TLPCodeFragmentDescription
-     */
-    description?: string;
-    /**
-     * This is the asset id.
-     * @type {string}
-     * @memberof TLPCodeFragmentDescription
-     */
-    asset: string;
-    /**
-     * timestamp of creation
-     * @type {string}
-     * @memberof TLPCodeFragmentDescription
-     */
-    created: string;
-    /**
-     * this is the model version
-     * @type {string}
-     * @memberof TLPCodeFragmentDescription
-     */
-    model: string;
-    /**
-     * the time it takes to run this model.
-     * @type {number}
-     * @memberof TLPCodeFragmentDescription
-     */
-    latency?: number;
-    /**
-     * the uuid of the user the description was created for.
-     * @type {string}
-     * @memberof TLPCodeFragmentDescription
-     */
-    user: string;
-    /**
-     * the application this description was created from.
-     * @type {string}
-     * @memberof TLPCodeFragmentDescription
-     */
-    context?: string;
-    /**
-     * This is the UUID of the OS that this context is currently connected to.
-     * @type {string}
-     * @memberof TLPCodeFragmentDescription
-     */
-    os?: string;
+	/**
+	 * This is the stringified json of a TLPDescription object
+	 * @type {string}
+	 * @memberof TLPCodeFragmentDescription
+	 */
+	description?: string;
+	/**
+	 * This is the asset id.
+	 * @type {string}
+	 * @memberof TLPCodeFragmentDescription
+	 */
+	asset: string;
+	/**
+	 * timestamp of creation
+	 * @type {string}
+	 * @memberof TLPCodeFragmentDescription
+	 */
+	created: string;
+	/**
+	 * this is the model version
+	 * @type {string}
+	 * @memberof TLPCodeFragmentDescription
+	 */
+	model: string;
+	/**
+	 * the time it takes to run this model.
+	 * @type {number}
+	 * @memberof TLPCodeFragmentDescription
+	 */
+	latency?: number;
+	/**
+	 * the uuid of the user the description was created for.
+	 * @type {string}
+	 * @memberof TLPCodeFragmentDescription
+	 */
+	user: string;
+	/**
+	 * the application this description was created from.
+	 * @type {string}
+	 * @memberof TLPCodeFragmentDescription
+	 */
+	context?: string;
+	/**
+	 * This is the UUID of the OS that this context is currently connected to.
+	 * @type {string}
+	 * @memberof TLPCodeFragmentDescription
+	 */
+	os?: string;
 }
 
 /**
  * Check if a given object implements the TLPCodeFragmentDescription interface.
  */
 export function instanceOfTLPCodeFragmentDescription(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "asset" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "model" in value;
-    isInstance = isInstance && "user" in value;
+	let isInstance = true;
+	isInstance = isInstance && "asset" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "model" in value;
+	isInstance = isInstance && "user" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function TLPCodeFragmentDescriptionFromJSON(json: any): TLPCodeFragmentDescription {
-    return TLPCodeFragmentDescriptionFromJSONTyped(json, false);
+export function TLPCodeFragmentDescriptionFromJSON(
+	json: any,
+): TLPCodeFragmentDescription {
+	return TLPCodeFragmentDescriptionFromJSONTyped(json, false);
 }
 
-export function TLPCodeFragmentDescriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): TLPCodeFragmentDescription {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'asset': json['asset'],
-        'created': json['created'],
-        'model': json['model'],
-        'latency': !exists(json, 'latency') ? undefined : json['latency'],
-        'user': json['user'],
-        'context': !exists(json, 'context') ? undefined : json['context'],
-        'os': !exists(json, 'os') ? undefined : json['os'],
-    };
+export function TLPCodeFragmentDescriptionFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): TLPCodeFragmentDescription {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		description: exists(json, "description")
+			? json["description"]
+			: undefined,
+		asset: json["asset"],
+		created: json["created"],
+		model: json["model"],
+		latency: exists(json, "latency") ? json["latency"] : undefined,
+		user: json["user"],
+		context: exists(json, "context") ? json["context"] : undefined,
+		os: exists(json, "os") ? json["os"] : undefined,
+	};
 }
 
-export function TLPCodeFragmentDescriptionToJSON(value?: TLPCodeFragmentDescription | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'description': value.description,
-        'asset': value.asset,
-        'created': value.created,
-        'model': value.model,
-        'latency': value.latency,
-        'user': value.user,
-        'context': value.context,
-        'os': value.os,
-    };
+export function TLPCodeFragmentDescriptionToJSON(
+	value?: TLPCodeFragmentDescription | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		description: value.description,
+		asset: value.asset,
+		created: value.created,
+		model: value.model,
+		latency: value.latency,
+		user: value.user,
+		context: value.context,
+		os: value.os,
+	};
 }
-

@@ -12,150 +12,153 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnonymousTemporalRange } from './AnonymousTemporalRange';
+import { exists } from "../runtime.ts";
+import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
-    AnonymousTemporalRangeFromJSON,
-    AnonymousTemporalRangeFromJSONTyped,
-    AnonymousTemporalRangeToJSON,
-} from './AnonymousTemporalRange';
-import type { BrowserTabValues } from './BrowserTabValues';
+	AnonymousTemporalRangeFromJSON,
+	AnonymousTemporalRangeToJSON,
+} from "./AnonymousTemporalRange.tsx";
+import type { BrowserTabValues } from "./BrowserTabValues.tsx";
 import {
-    BrowserTabValuesFromJSON,
-    BrowserTabValuesFromJSONTyped,
-    BrowserTabValuesToJSON,
-} from './BrowserTabValues';
-import type { DocumentContributors } from './DocumentContributors';
+	BrowserTabValuesFromJSON,
+	BrowserTabValuesToJSON,
+} from "./BrowserTabValues.tsx";
+import type { DocumentContributors } from "./DocumentContributors.tsx";
 import {
-    DocumentContributorsFromJSON,
-    DocumentContributorsFromJSONTyped,
-    DocumentContributorsToJSON,
-} from './DocumentContributors';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	DocumentContributorsFromJSON,
+	DocumentContributorsToJSON,
+} from "./DocumentContributors.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { SeededAnchor } from './SeededAnchor';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { SeededAnchor } from "./SeededAnchor.tsx";
+import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
+import type { SeededWebsite } from "./SeededWebsite.tsx";
 import {
-    SeededAnchorFromJSON,
-    SeededAnchorFromJSONTyped,
-    SeededAnchorToJSON,
-} from './SeededAnchor';
-import type { SeededWebsite } from './SeededWebsite';
-import {
-    SeededWebsiteFromJSON,
-    SeededWebsiteFromJSONTyped,
-    SeededWebsiteToJSON,
-} from './SeededWebsite';
+	SeededWebsiteFromJSON,
+	SeededWebsiteToJSON,
+} from "./SeededWebsite.tsx";
 
 /**
  * a tab can have many values because you might want to pass in a value that represents the code_blocks(snippets) or a md represenet
  * note: please only pass 1 representation, I will clean on POS side tho (txt || md || html)
- * 
+ *
  * anchor: can be defined in the browser if view a local file
- * 
+ *
  * website: this is the given url of the tab
- * 
+ *
  * range: this is the amount of time this user is current on this given tab
- * 
+ *
  * current: means that this is the current tab that is open
- * 
+ *
  * contributors: these are all the extracted people from this given tab
  * @export
  * @interface BrowserTab
  */
 export interface BrowserTab {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof BrowserTab
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {BrowserTabValues}
-     * @memberof BrowserTab
-     */
-    values?: BrowserTabValues;
-    /**
-     * 
-     * @type {SeededAnchor}
-     * @memberof BrowserTab
-     */
-    anchor?: SeededAnchor;
-    /**
-     * 
-     * @type {SeededWebsite}
-     * @memberof BrowserTab
-     */
-    website?: SeededWebsite;
-    /**
-     * 
-     * @type {AnonymousTemporalRange}
-     * @memberof BrowserTab
-     */
-    range?: AnonymousTemporalRange;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BrowserTab
-     */
-    current?: boolean;
-    /**
-     * 
-     * @type {DocumentContributors}
-     * @memberof BrowserTab
-     */
-    contributors?: DocumentContributors;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof BrowserTab
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {BrowserTabValues}
+	 * @memberof BrowserTab
+	 */
+	values?: BrowserTabValues;
+	/**
+	 *
+	 * @type {SeededAnchor}
+	 * @memberof BrowserTab
+	 */
+	anchor?: SeededAnchor;
+	/**
+	 *
+	 * @type {SeededWebsite}
+	 * @memberof BrowserTab
+	 */
+	website?: SeededWebsite;
+	/**
+	 *
+	 * @type {AnonymousTemporalRange}
+	 * @memberof BrowserTab
+	 */
+	range?: AnonymousTemporalRange;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof BrowserTab
+	 */
+	current?: boolean;
+	/**
+	 *
+	 * @type {DocumentContributors}
+	 * @memberof BrowserTab
+	 */
+	contributors?: DocumentContributors;
 }
 
 /**
  * Check if a given object implements the BrowserTab interface.
  */
-export function instanceOfBrowserTab(value: object): boolean {
-    let isInstance = true;
+export function instanceOfBrowserTab(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function BrowserTabFromJSON(json: any): BrowserTab {
-    return BrowserTabFromJSONTyped(json, false);
+	return BrowserTabFromJSONTyped(json, false);
 }
 
-export function BrowserTabFromJSONTyped(json: any, ignoreDiscriminator: boolean): BrowserTab {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'values': !exists(json, 'values') ? undefined : BrowserTabValuesFromJSON(json['values']),
-        'anchor': !exists(json, 'anchor') ? undefined : SeededAnchorFromJSON(json['anchor']),
-        'website': !exists(json, 'website') ? undefined : SeededWebsiteFromJSON(json['website']),
-        'range': !exists(json, 'range') ? undefined : AnonymousTemporalRangeFromJSON(json['range']),
-        'current': !exists(json, 'current') ? undefined : json['current'],
-        'contributors': !exists(json, 'contributors') ? undefined : DocumentContributorsFromJSON(json['contributors']),
-    };
+export function BrowserTabFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): BrowserTab {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		values: exists(json, "values")
+			? BrowserTabValuesFromJSON(json["values"])
+			: undefined,
+		anchor: exists(json, "anchor")
+			? SeededAnchorFromJSON(json["anchor"])
+			: undefined,
+		website: exists(json, "website")
+			? SeededWebsiteFromJSON(json["website"])
+			: undefined,
+		range: exists(json, "range")
+			? AnonymousTemporalRangeFromJSON(json["range"])
+			: undefined,
+		current: exists(json, "current") ? json["current"] : undefined,
+		contributors: exists(json, "contributors")
+			? DocumentContributorsFromJSON(json["contributors"])
+			: undefined,
+	};
 }
 
 export function BrowserTabToJSON(value?: BrowserTab | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'values': BrowserTabValuesToJSON(value.values),
-        'anchor': SeededAnchorToJSON(value.anchor),
-        'website': SeededWebsiteToJSON(value.website),
-        'range': AnonymousTemporalRangeToJSON(value.range),
-        'current': value.current,
-        'contributors': DocumentContributorsToJSON(value.contributors),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		values: BrowserTabValuesToJSON(value.values),
+		anchor: SeededAnchorToJSON(value.anchor),
+		website: SeededWebsiteToJSON(value.website),
+		range: AnonymousTemporalRangeToJSON(value.range),
+		current: value.current,
+		contributors: DocumentContributorsToJSON(value.contributors),
+	};
 }
-

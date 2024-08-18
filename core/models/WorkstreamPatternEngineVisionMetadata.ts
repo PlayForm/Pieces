@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { WorkstreamPatternEngineVisionEventsMetadata } from './WorkstreamPatternEngineVisionEventsMetadata';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { WorkstreamPatternEngineVisionEventsMetadata } from "./WorkstreamPatternEngineVisionEventsMetadata.tsx";
 import {
-    WorkstreamPatternEngineVisionEventsMetadataFromJSON,
-    WorkstreamPatternEngineVisionEventsMetadataFromJSONTyped,
-    WorkstreamPatternEngineVisionEventsMetadataToJSON,
-} from './WorkstreamPatternEngineVisionEventsMetadata';
+	WorkstreamPatternEngineVisionEventsMetadataFromJSON,
+	WorkstreamPatternEngineVisionEventsMetadataToJSON,
+} from "./WorkstreamPatternEngineVisionEventsMetadata.tsx";
 
 /**
  * This will return all the WPE vision specific metadata
@@ -32,55 +30,67 @@ import {
  * @interface WorkstreamPatternEngineVisionMetadata
  */
 export interface WorkstreamPatternEngineVisionMetadata {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof WorkstreamPatternEngineVisionMetadata
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {WorkstreamPatternEngineVisionEventsMetadata}
-     * @memberof WorkstreamPatternEngineVisionMetadata
-     */
-    events?: WorkstreamPatternEngineVisionEventsMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof WorkstreamPatternEngineVisionMetadata
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {WorkstreamPatternEngineVisionEventsMetadata}
+	 * @memberof WorkstreamPatternEngineVisionMetadata
+	 */
+	events?: WorkstreamPatternEngineVisionEventsMetadata;
 }
 
 /**
  * Check if a given object implements the WorkstreamPatternEngineVisionMetadata interface.
  */
-export function instanceOfWorkstreamPatternEngineVisionMetadata(value: object): boolean {
-    let isInstance = true;
+export function instanceOfWorkstreamPatternEngineVisionMetadata(
+	_value: object,
+): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function WorkstreamPatternEngineVisionMetadataFromJSON(json: any): WorkstreamPatternEngineVisionMetadata {
-    return WorkstreamPatternEngineVisionMetadataFromJSONTyped(json, false);
+export function WorkstreamPatternEngineVisionMetadataFromJSON(
+	json: any,
+): WorkstreamPatternEngineVisionMetadata {
+	return WorkstreamPatternEngineVisionMetadataFromJSONTyped(json, false);
 }
 
-export function WorkstreamPatternEngineVisionMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkstreamPatternEngineVisionMetadata {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'events': !exists(json, 'events') ? undefined : WorkstreamPatternEngineVisionEventsMetadataFromJSON(json['events']),
-    };
+export function WorkstreamPatternEngineVisionMetadataFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): WorkstreamPatternEngineVisionMetadata {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		events: exists(json, "events")
+			? WorkstreamPatternEngineVisionEventsMetadataFromJSON(
+					json["events"],
+				)
+			: undefined,
+	};
 }
 
-export function WorkstreamPatternEngineVisionMetadataToJSON(value?: WorkstreamPatternEngineVisionMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'events': WorkstreamPatternEngineVisionEventsMetadataToJSON(value.events),
-    };
+export function WorkstreamPatternEngineVisionMetadataToJSON(
+	value?: WorkstreamPatternEngineVisionMetadata | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		events: WorkstreamPatternEngineVisionEventsMetadataToJSON(value.events),
+	};
 }
-

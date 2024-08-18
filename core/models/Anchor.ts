@@ -12,232 +12,233 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AnchorTypeEnum } from './AnchorTypeEnum';
+import { exists } from "../runtime.ts";
+import type { AnchorTypeEnum } from "./AnchorTypeEnum.tsx";
 import {
-    AnchorTypeEnumFromJSON,
-    AnchorTypeEnumFromJSONTyped,
-    AnchorTypeEnumToJSON,
-} from './AnchorTypeEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AnchorTypeEnumFromJSON,
+	AnchorTypeEnumToJSON,
+} from "./AnchorTypeEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FlattenedAnchorPoints } from './FlattenedAnchorPoints';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FlattenedAnchorPoints } from "./FlattenedAnchorPoints.tsx";
 import {
-    FlattenedAnchorPointsFromJSON,
-    FlattenedAnchorPointsFromJSONTyped,
-    FlattenedAnchorPointsToJSON,
-} from './FlattenedAnchorPoints';
-import type { FlattenedAnnotations } from './FlattenedAnnotations';
+	FlattenedAnchorPointsFromJSON,
+	FlattenedAnchorPointsToJSON,
+} from "./FlattenedAnchorPoints.tsx";
+import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
-    FlattenedAnnotationsFromJSON,
-    FlattenedAnnotationsFromJSONTyped,
-    FlattenedAnnotationsToJSON,
-} from './FlattenedAnnotations';
-import type { FlattenedAssets } from './FlattenedAssets';
+	FlattenedAnnotationsFromJSON,
+	FlattenedAnnotationsToJSON,
+} from "./FlattenedAnnotations.tsx";
+import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
-    FlattenedAssetsFromJSON,
-    FlattenedAssetsFromJSONTyped,
-    FlattenedAssetsToJSON,
-} from './FlattenedAssets';
-import type { FlattenedConversations } from './FlattenedConversations';
+	FlattenedAssetsFromJSON,
+	FlattenedAssetsToJSON,
+} from "./FlattenedAssets.tsx";
+import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
-    FlattenedConversationsFromJSON,
-    FlattenedConversationsFromJSONTyped,
-    FlattenedConversationsToJSON,
-} from './FlattenedConversations';
-import type { FlattenedPersons } from './FlattenedPersons';
+	FlattenedConversationsFromJSON,
+	FlattenedConversationsToJSON,
+} from "./FlattenedConversations.tsx";
+import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
-    FlattenedPersonsFromJSON,
-    FlattenedPersonsFromJSONTyped,
-    FlattenedPersonsToJSON,
-} from './FlattenedPersons';
-import type { FlattenedWorkstreamSummaries } from './FlattenedWorkstreamSummaries';
+	FlattenedPersonsFromJSON,
+	FlattenedPersonsToJSON,
+} from "./FlattenedPersons.tsx";
+import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
-    FlattenedWorkstreamSummariesFromJSON,
-    FlattenedWorkstreamSummariesFromJSONTyped,
-    FlattenedWorkstreamSummariesToJSON,
-} from './FlattenedWorkstreamSummaries';
-import type { GroupedTimestamp } from './GroupedTimestamp';
+	FlattenedWorkstreamSummariesFromJSON,
+	FlattenedWorkstreamSummariesToJSON,
+} from "./FlattenedWorkstreamSummaries.tsx";
+import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
-    GroupedTimestampFromJSON,
-    GroupedTimestampFromJSONTyped,
-    GroupedTimestampToJSON,
-} from './GroupedTimestamp';
-import type { Score } from './Score';
-import {
-    ScoreFromJSON,
-    ScoreFromJSONTyped,
-    ScoreToJSON,
-} from './Score';
+	GroupedTimestampFromJSON,
+	GroupedTimestampToJSON,
+} from "./GroupedTimestamp.tsx";
+import type { Score } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface Anchor
  */
 export interface Anchor {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof Anchor
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof Anchor
-     */
-    id: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Anchor
-     */
-    name?: string;
-    /**
-     * 
-     * @type {AnchorTypeEnum}
-     * @memberof Anchor
-     */
-    type: AnchorTypeEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Anchor
-     */
-    watch?: boolean;
-    /**
-     * 
-     * @type {FlattenedAnchorPoints}
-     * @memberof Anchor
-     */
-    points: FlattenedAnchorPoints;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Anchor
-     */
-    created: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Anchor
-     */
-    updated: GroupedTimestamp;
-    /**
-     * 
-     * @type {GroupedTimestamp}
-     * @memberof Anchor
-     */
-    deleted?: GroupedTimestamp;
-    /**
-     * 
-     * @type {FlattenedAssets}
-     * @memberof Anchor
-     */
-    assets?: FlattenedAssets;
-    /**
-     * 
-     * @type {FlattenedAnnotations}
-     * @memberof Anchor
-     */
-    annotations?: FlattenedAnnotations;
-    /**
-     * 
-     * @type {FlattenedConversations}
-     * @memberof Anchor
-     */
-    conversations?: FlattenedConversations;
-    /**
-     * 
-     * @type {Score}
-     * @memberof Anchor
-     */
-    score?: Score;
-    /**
-     * 
-     * @type {FlattenedWorkstreamSummaries}
-     * @memberof Anchor
-     */
-    summaries?: FlattenedWorkstreamSummaries;
-    /**
-     * 
-     * @type {FlattenedPersons}
-     * @memberof Anchor
-     */
-    persons?: FlattenedPersons;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof Anchor
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Anchor
+	 */
+	id: string;
+	/**
+	 *
+	 * @type {string}
+	 * @memberof Anchor
+	 */
+	name?: string;
+	/**
+	 *
+	 * @type {AnchorTypeEnum}
+	 * @memberof Anchor
+	 */
+	type: AnchorTypeEnum;
+	/**
+	 *
+	 * @type {boolean}
+	 * @memberof Anchor
+	 */
+	watch?: boolean;
+	/**
+	 *
+	 * @type {FlattenedAnchorPoints}
+	 * @memberof Anchor
+	 */
+	points: FlattenedAnchorPoints;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Anchor
+	 */
+	created: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Anchor
+	 */
+	updated: GroupedTimestamp;
+	/**
+	 *
+	 * @type {GroupedTimestamp}
+	 * @memberof Anchor
+	 */
+	deleted?: GroupedTimestamp;
+	/**
+	 *
+	 * @type {FlattenedAssets}
+	 * @memberof Anchor
+	 */
+	assets?: FlattenedAssets;
+	/**
+	 *
+	 * @type {FlattenedAnnotations}
+	 * @memberof Anchor
+	 */
+	annotations?: FlattenedAnnotations;
+	/**
+	 *
+	 * @type {FlattenedConversations}
+	 * @memberof Anchor
+	 */
+	conversations?: FlattenedConversations;
+	/**
+	 *
+	 * @type {Score}
+	 * @memberof Anchor
+	 */
+	score?: Score;
+	/**
+	 *
+	 * @type {FlattenedWorkstreamSummaries}
+	 * @memberof Anchor
+	 */
+	summaries?: FlattenedWorkstreamSummaries;
+	/**
+	 *
+	 * @type {FlattenedPersons}
+	 * @memberof Anchor
+	 */
+	persons?: FlattenedPersons;
 }
 
 /**
  * Check if a given object implements the Anchor interface.
  */
 export function instanceOfAnchor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "points" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "updated" in value;
+	let isInstance = true;
+	isInstance = isInstance && "id" in value;
+	isInstance = isInstance && "type" in value;
+	isInstance = isInstance && "points" in value;
+	isInstance = isInstance && "created" in value;
+	isInstance = isInstance && "updated" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function AnchorFromJSON(json: any): Anchor {
-    return AnchorFromJSONTyped(json, false);
+	return AnchorFromJSONTyped(json, false);
 }
 
-export function AnchorFromJSONTyped(json: any, ignoreDiscriminator: boolean): Anchor {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'id': json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'type': AnchorTypeEnumFromJSON(json['type']),
-        'watch': !exists(json, 'watch') ? undefined : json['watch'],
-        'points': FlattenedAnchorPointsFromJSON(json['points']),
-        'created': GroupedTimestampFromJSON(json['created']),
-        'updated': GroupedTimestampFromJSON(json['updated']),
-        'deleted': !exists(json, 'deleted') ? undefined : GroupedTimestampFromJSON(json['deleted']),
-        'assets': !exists(json, 'assets') ? undefined : FlattenedAssetsFromJSON(json['assets']),
-        'annotations': !exists(json, 'annotations') ? undefined : FlattenedAnnotationsFromJSON(json['annotations']),
-        'conversations': !exists(json, 'conversations') ? undefined : FlattenedConversationsFromJSON(json['conversations']),
-        'score': !exists(json, 'score') ? undefined : ScoreFromJSON(json['score']),
-        'summaries': !exists(json, 'summaries') ? undefined : FlattenedWorkstreamSummariesFromJSON(json['summaries']),
-        'persons': !exists(json, 'persons') ? undefined : FlattenedPersonsFromJSON(json['persons']),
-    };
+export function AnchorFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): Anchor {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		id: json["id"],
+		name: exists(json, "name") ? json["name"] : undefined,
+		type: AnchorTypeEnumFromJSON(json["type"]),
+		watch: exists(json, "watch") ? json["watch"] : undefined,
+		points: FlattenedAnchorPointsFromJSON(json["points"]),
+		created: GroupedTimestampFromJSON(json["created"]),
+		updated: GroupedTimestampFromJSON(json["updated"]),
+		deleted: exists(json, "deleted")
+			? GroupedTimestampFromJSON(json["deleted"])
+			: undefined,
+		assets: exists(json, "assets")
+			? FlattenedAssetsFromJSON(json["assets"])
+			: undefined,
+		annotations: exists(json, "annotations")
+			? FlattenedAnnotationsFromJSON(json["annotations"])
+			: undefined,
+		conversations: exists(json, "conversations")
+			? FlattenedConversationsFromJSON(json["conversations"])
+			: undefined,
+		score: exists(json, "score") ? ScoreFromJSON(json["score"]) : undefined,
+		summaries: exists(json, "summaries")
+			? FlattenedWorkstreamSummariesFromJSON(json["summaries"])
+			: undefined,
+		persons: exists(json, "persons")
+			? FlattenedPersonsFromJSON(json["persons"])
+			: undefined,
+	};
 }
 
 export function AnchorToJSON(value?: Anchor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'id': value.id,
-        'name': value.name,
-        'type': AnchorTypeEnumToJSON(value.type),
-        'watch': value.watch,
-        'points': FlattenedAnchorPointsToJSON(value.points),
-        'created': GroupedTimestampToJSON(value.created),
-        'updated': GroupedTimestampToJSON(value.updated),
-        'deleted': GroupedTimestampToJSON(value.deleted),
-        'assets': FlattenedAssetsToJSON(value.assets),
-        'annotations': FlattenedAnnotationsToJSON(value.annotations),
-        'conversations': FlattenedConversationsToJSON(value.conversations),
-        'score': ScoreToJSON(value.score),
-        'summaries': FlattenedWorkstreamSummariesToJSON(value.summaries),
-        'persons': FlattenedPersonsToJSON(value.persons),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		id: value.id,
+		name: value.name,
+		type: AnchorTypeEnumToJSON(value.type),
+		watch: value.watch,
+		points: FlattenedAnchorPointsToJSON(value.points),
+		created: GroupedTimestampToJSON(value.created),
+		updated: GroupedTimestampToJSON(value.updated),
+		deleted: GroupedTimestampToJSON(value.deleted),
+		assets: FlattenedAssetsToJSON(value.assets),
+		annotations: FlattenedAnnotationsToJSON(value.annotations),
+		conversations: FlattenedConversationsToJSON(value.conversations),
+		score: ScoreToJSON(value.score),
+		summaries: FlattenedWorkstreamSummariesToJSON(value.summaries),
+		persons: FlattenedPersonsToJSON(value.persons),
+	};
 }
-

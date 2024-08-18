@@ -12,31 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+import { exists } from "../runtime.ts";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
-import type { FragmentMetadata } from './FragmentMetadata';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
+import type { FragmentMetadata } from "./FragmentMetadata.tsx";
 import {
-    FragmentMetadataFromJSON,
-    FragmentMetadataFromJSONTyped,
-    FragmentMetadataToJSON,
-} from './FragmentMetadata';
-import type { TransferableBytes } from './TransferableBytes';
+	FragmentMetadataFromJSON,
+	FragmentMetadataToJSON,
+} from "./FragmentMetadata.tsx";
+import type { TransferableBytes } from "./TransferableBytes.tsx";
 import {
-    TransferableBytesFromJSON,
-    TransferableBytesFromJSONTyped,
-    TransferableBytesToJSON,
-} from './TransferableBytes';
-import type { TransferableString } from './TransferableString';
+	TransferableBytesFromJSON,
+	TransferableBytesToJSON,
+} from "./TransferableBytes.tsx";
+import type { TransferableString } from "./TransferableString.tsx";
 import {
-    TransferableStringFromJSON,
-    TransferableStringFromJSONTyped,
-    TransferableStringToJSON,
-} from './TransferableString';
+	TransferableStringFromJSON,
+	TransferableStringToJSON,
+} from "./TransferableString.tsx";
 
 /**
  * This will be either a TransferableString or TransferableBytes that represent your fragment. ONLY Pass one or the other DONT pass both or neither.
@@ -44,71 +40,79 @@ import {
  * @interface FragmentFormat
  */
 export interface FragmentFormat {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof FragmentFormat
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {TransferableString}
-     * @memberof FragmentFormat
-     */
-    string?: TransferableString;
-    /**
-     * 
-     * @type {TransferableBytes}
-     * @memberof FragmentFormat
-     */
-    bytes?: TransferableBytes;
-    /**
-     * 
-     * @type {FragmentMetadata}
-     * @memberof FragmentFormat
-     */
-    metadata?: FragmentMetadata;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof FragmentFormat
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {TransferableString}
+	 * @memberof FragmentFormat
+	 */
+	string?: TransferableString;
+	/**
+	 *
+	 * @type {TransferableBytes}
+	 * @memberof FragmentFormat
+	 */
+	bytes?: TransferableBytes;
+	/**
+	 *
+	 * @type {FragmentMetadata}
+	 * @memberof FragmentFormat
+	 */
+	metadata?: FragmentMetadata;
 }
 
 /**
  * Check if a given object implements the FragmentFormat interface.
  */
-export function instanceOfFragmentFormat(value: object): boolean {
-    let isInstance = true;
+export function instanceOfFragmentFormat(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function FragmentFormatFromJSON(json: any): FragmentFormat {
-    return FragmentFormatFromJSONTyped(json, false);
+	return FragmentFormatFromJSONTyped(json, false);
 }
 
-export function FragmentFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): FragmentFormat {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'string': !exists(json, 'string') ? undefined : TransferableStringFromJSON(json['string']),
-        'bytes': !exists(json, 'bytes') ? undefined : TransferableBytesFromJSON(json['bytes']),
-        'metadata': !exists(json, 'metadata') ? undefined : FragmentMetadataFromJSON(json['metadata']),
-    };
+export function FragmentFormatFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): FragmentFormat {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		string: exists(json, "string")
+			? TransferableStringFromJSON(json["string"])
+			: undefined,
+		bytes: exists(json, "bytes")
+			? TransferableBytesFromJSON(json["bytes"])
+			: undefined,
+		metadata: exists(json, "metadata")
+			? FragmentMetadataFromJSON(json["metadata"])
+			: undefined,
+	};
 }
 
 export function FragmentFormatToJSON(value?: FragmentFormat | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'string': TransferableStringToJSON(value.string),
-        'bytes': TransferableBytesToJSON(value.bytes),
-        'metadata': FragmentMetadataToJSON(value.metadata),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		string: TransferableStringToJSON(value.string),
+		bytes: TransferableBytesToJSON(value.bytes),
+		metadata: FragmentMetadataToJSON(value.metadata),
+	};
 }
-

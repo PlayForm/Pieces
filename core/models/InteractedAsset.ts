@@ -12,69 +12,70 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { InteractedAssetInteractions } from './InteractedAssetInteractions';
+import { exists } from "../runtime.ts";
+import type { InteractedAssetInteractions } from "./InteractedAssetInteractions.tsx";
 import {
-    InteractedAssetInteractionsFromJSON,
-    InteractedAssetInteractionsFromJSONTyped,
-    InteractedAssetInteractionsToJSON,
-} from './InteractedAssetInteractions';
+	InteractedAssetInteractionsFromJSON,
+	InteractedAssetInteractionsToJSON,
+} from "./InteractedAssetInteractions.tsx";
 
 /**
- * A model that represents an asset that has been interacted with. 
+ * A model that represents an asset that has been interacted with.
  * @export
  * @interface InteractedAsset
  */
 export interface InteractedAsset {
-    /**
-     * A uuid model. 36 Characters (4 Dashes, 32 Numbers/Letters) 
-     * @type {string}
-     * @memberof InteractedAsset
-     */
-    asset?: string;
-    /**
-     * 
-     * @type {InteractedAssetInteractions}
-     * @memberof InteractedAsset
-     */
-    interactions?: InteractedAssetInteractions;
+	/**
+	 * A uuid model. 36 Characters (4 Dashes, 32 Numbers/Letters)
+	 * @type {string}
+	 * @memberof InteractedAsset
+	 */
+	asset?: string;
+	/**
+	 *
+	 * @type {InteractedAssetInteractions}
+	 * @memberof InteractedAsset
+	 */
+	interactions?: InteractedAssetInteractions;
 }
 
 /**
  * Check if a given object implements the InteractedAsset interface.
  */
-export function instanceOfInteractedAsset(value: object): boolean {
-    let isInstance = true;
+export function instanceOfInteractedAsset(_value: object): boolean {
+	const isInstance = true;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function InteractedAssetFromJSON(json: any): InteractedAsset {
-    return InteractedAssetFromJSONTyped(json, false);
+	return InteractedAssetFromJSONTyped(json, false);
 }
 
-export function InteractedAssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): InteractedAsset {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'asset': !exists(json, 'asset') ? undefined : json['asset'],
-        'interactions': !exists(json, 'interactions') ? undefined : InteractedAssetInteractionsFromJSON(json['interactions']),
-    };
+export function InteractedAssetFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): InteractedAsset {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		asset: exists(json, "asset") ? json["asset"] : undefined,
+		interactions: exists(json, "interactions")
+			? InteractedAssetInteractionsFromJSON(json["interactions"])
+			: undefined,
+	};
 }
 
 export function InteractedAssetToJSON(value?: InteractedAsset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'asset': value.asset,
-        'interactions': InteractedAssetInteractionsToJSON(value.interactions),
-    };
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		asset: value.asset,
+		interactions: InteractedAssetInteractionsToJSON(value.interactions),
+	};
 }
-

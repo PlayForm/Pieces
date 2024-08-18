@@ -12,76 +12,80 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AllocationStatusEnum } from './AllocationStatusEnum';
+import { exists } from "../runtime.ts";
+import type { AllocationStatusEnum } from "./AllocationStatusEnum.tsx";
 import {
-    AllocationStatusEnumFromJSON,
-    AllocationStatusEnumFromJSONTyped,
-    AllocationStatusEnumToJSON,
-} from './AllocationStatusEnum';
-import type { EmbeddedModelSchema } from './EmbeddedModelSchema';
+	AllocationStatusEnumFromJSON,
+	AllocationStatusEnumToJSON,
+} from "./AllocationStatusEnum.tsx";
+import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
-    EmbeddedModelSchemaFromJSON,
-    EmbeddedModelSchemaFromJSONTyped,
-    EmbeddedModelSchemaToJSON,
-} from './EmbeddedModelSchema';
+	EmbeddedModelSchemaFromJSON,
+	EmbeddedModelSchemaToJSON,
+} from "./EmbeddedModelSchema.tsx";
 
 /**
- * 
+ *
  * @export
  * @interface AllocationCloudStatus
  */
 export interface AllocationCloudStatus {
-    /**
-     * 
-     * @type {EmbeddedModelSchema}
-     * @memberof AllocationCloudStatus
-     */
-    schema?: EmbeddedModelSchema;
-    /**
-     * 
-     * @type {AllocationStatusEnum}
-     * @memberof AllocationCloudStatus
-     */
-    cloud: AllocationStatusEnum;
+	/**
+	 *
+	 * @type {EmbeddedModelSchema}
+	 * @memberof AllocationCloudStatus
+	 */
+	schema?: EmbeddedModelSchema;
+	/**
+	 *
+	 * @type {AllocationStatusEnum}
+	 * @memberof AllocationCloudStatus
+	 */
+	cloud: AllocationStatusEnum;
 }
 
 /**
  * Check if a given object implements the AllocationCloudStatus interface.
  */
 export function instanceOfAllocationCloudStatus(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "cloud" in value;
+	let isInstance = true;
+	isInstance = isInstance && "cloud" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
-export function AllocationCloudStatusFromJSON(json: any): AllocationCloudStatus {
-    return AllocationCloudStatusFromJSONTyped(json, false);
+export function AllocationCloudStatusFromJSON(
+	json: any,
+): AllocationCloudStatus {
+	return AllocationCloudStatusFromJSONTyped(json, false);
 }
 
-export function AllocationCloudStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): AllocationCloudStatus {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'schema': !exists(json, 'schema') ? undefined : EmbeddedModelSchemaFromJSON(json['schema']),
-        'cloud': AllocationStatusEnumFromJSON(json['cloud']),
-    };
+export function AllocationCloudStatusFromJSONTyped(
+	json: any,
+	_ignoreDiscriminator: boolean,
+): AllocationCloudStatus {
+	if (json === undefined || json === null) {
+		return json;
+	}
+	return {
+		schema: exists(json, "schema")
+			? EmbeddedModelSchemaFromJSON(json["schema"])
+			: undefined,
+		cloud: AllocationStatusEnumFromJSON(json["cloud"]),
+	};
 }
 
-export function AllocationCloudStatusToJSON(value?: AllocationCloudStatus | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'schema': EmbeddedModelSchemaToJSON(value.schema),
-        'cloud': AllocationStatusEnumToJSON(value.cloud),
-    };
+export function AllocationCloudStatusToJSON(
+	value?: AllocationCloudStatus | null,
+): any {
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
+		schema: EmbeddedModelSchemaToJSON(value.schema),
+		cloud: AllocationStatusEnumToJSON(value.cloud),
+	};
 }
-
