@@ -1,33 +1,33 @@
 {
-  "name": "@pieces.app/pieces-os-client",
-  "version": "4.0.0",
-  "description": "@pieces.app/pieces-os-client is an open source on-device AI development workflow assistant. Follow along the README.md to get started and add Pieces Copilot functionality to your application or project.",
-  "keywords": [
-    "pieces",
-    "pieces for developers",
-    "sdk",
-    "on-device",
-    "storage",
-    "copilot",
-    "javascript",
-    "typescript"
-  ],
-  "homepage": "https://github.com/pieces-app/pieces-os-client-sdk-for-typescript",
-  "issues": "https://github.com/pieces-app/pieces-os-client-sdk-for-typescript/issues",
-  "main": "dist/index.js",
-  "files": [
-    "dist",
-    "LICENSE"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "clean": "rm -r node_modules && rm package-lock.json && rm -r dist",
-    "export": "npm pack --pack-destination ~"
-  },
-  "author": "Pieces for Developers",
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "5.6.0-dev.20240818"
-  }
+	"name": "@pieces.app/pieces-os-client",
+	"version": "4.0.0",
+	"description": "@pieces.app/pieces-os-client is an open source on-device AI development workflow assistant. Follow along the README.md to get started and add Pieces Copilot functionality to your application or project.",
+	"keywords": [
+		"pieces",
+		"pieces for developers",
+		"sdk",
+		"on-device",
+		"storage",
+		"copilot",
+		"javascript",
+		"typescript"
+	],
+	"homepage": "https://github.com/pieces-app/pieces-os-client-sdk-for-typescript",
+	"license": "MIT",
+	"author": "Pieces for Developers",
+	"main": "dist/index.js",
+	"files": [
+		"dist",
+		"LICENSE"
+	],
+	"scripts": {
+		"build": "tsc",
+		"clean": "rm -r node_modules && rm package-lock.json && rm -r dist",
+		"export": "npm pack --pack-destination ~",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"typescript": "5.6.0-dev.20240818"
+	},
+	"issues": "https://github.com/pieces-app/pieces-os-client-sdk-for-typescript/issues"
 }

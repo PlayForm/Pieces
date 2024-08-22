@@ -11,6 +11,7 @@
 </h1>
 
 # <p align="center"> Pieces OS Client SDK For TypeScript
+
    <p align="center">
       <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-typescript/graphs/contributors" alt="GitHub contributors">
          <img src="https://img.shields.io/github/contributors/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
@@ -39,15 +40,21 @@
    </p>
 </p>
 
-
 ## Introduction
-The Pieces SDK is a powerful code engine package designed for writing applications on top of [Pieces OS](/installation-getting-started/what-am-i-installing). It facilitates communication with a locally hosted server to enable features such as copilot chats, asset saving, and more.
+
+The Pieces SDK is a powerful code engine package designed for writing
+applications on top of
+[Pieces OS](/installation-getting-started/what-am-i-installing). It facilitates
+communication with a locally hosted server to enable features such as copilot
+chats, asset saving, and more.
 
 ## Requirements
+
 The Pieces SDK has the following system requirements:
 
-- [Pieces OS](/installation-getting-started/what-am-i-installing) running as a backend service.
-- NodeJs environment with npm for installing the SDK package.
+-   [Pieces OS](/installation-getting-started/what-am-i-installing) running as a
+    backend service.
+-   NodeJs environment with npm for installing the SDK package.
 
 ## Installation
 
@@ -55,13 +62,20 @@ To get started with the Pieces SDK, follow these steps:
 
 ### 1. Downloading Pieces OS
 
-Pieces OS runs in the background of your computer and serves as a hub for all plugins and extensions developed by the team. In order to utilize your own Server locally and support all the functionality that powers things like [Global Search](https://docs.pieces.app/features/global-search), [Copilot Chats](https://docs.pieces.app/features/pieces-copilot), [Asset Saving](https://docs.pieces.app/features/managing-saved-materials), [context](https://docs.pieces.app/features/pieces-copilot#set-your-own-copilot-context), and more.
+Pieces OS runs in the background of your computer and serves as a hub for all
+plugins and extensions developed by the team. In order to utilize your own
+Server locally and support all the functionality that powers things like
+[Global Search](https://docs.pieces.app/features/global-search),
+[Copilot Chats](https://docs.pieces.app/features/pieces-copilot),
+[Asset Saving](https://docs.pieces.app/features/managing-saved-materials),
+[context](https://docs.pieces.app/features/pieces-copilot#set-your-own-copilot-context),
+and more.
 
 Select the right version to download Pieces OS for your operating system:
 
-- [macOS](https://docs.pieces.app/installation-getting-started/macos)
-- [Windows](https://docs.pieces.app/installation-getting-started/windows)
-- [Linux](https://docs.pieces.app/installation-getting-started/linux) 
+-   [macOS](https://docs.pieces.app/installation-getting-started/macos)
+-   [Windows](https://docs.pieces.app/installation-getting-started/windows)
+-   [Linux](https://docs.pieces.app/installation-getting-started/linux)
 
 ### 2. Downloading NPM Package
 
@@ -70,6 +84,7 @@ Using npm:
 ```bash
 npm install @pieces.app/pieces-os-client
 ```
+
 Using pnpm:
 
 ```bash
@@ -83,43 +98,55 @@ yarn add @pieces.app/pieces-os-client
 ```
 
 ## Usage
-After you install the package, you can import the library into your file(s) using require:
+
+After you install the package, you can import the library into your file(s)
+using require:
 
 ```javascript
-const pieces = require('@pieces.app/pieces-os-client')
+const pieces = require("@pieces.app/pieces-os-client");
 ```
 
 or you can import the package using import as well:
 
 ```javascript
-import * as pieces from '@pieces.app/pieces-os-client'
+import * as pieces from "@pieces.app/pieces-os-client";
 ```
 
-> **Recommendation**
-> The order that npm packages are saved and added to your dependencies is important and will affect your installation flow. 
+> **Recommendation** The order that npm packages are saved and added to your
+> dependencies is important and will affect your installation flow.
 >
-> **If you are having issues with your installation, it is likely due to a conflict in Typescript versions - `npm uninstall typescript` - then go back and perform all other npm installations before reinstalling typescript again**.
+> **If you are having issues with your installation, it is likely due to a
+> conflict in Typescript versions - `npm uninstall typescript` - then go back
+> and perform all other npm installations before reinstalling typescript
+> again**.
 
-You can take a look at an example repo using the TS SDK: [GitHub Repo](https://github.com/pieces-app/example-typescript)
+You can take a look at an example repo using the TS SDK:
+[GitHub Repo](https://github.com/pieces-app/example-typescript)
 
-For detailed usage instructions and examples, refer to the [documentation](https://docs.pieces.app/build/reference/typescript).
+For detailed usage instructions and examples, refer to the
+[documentation](https://docs.pieces.app/build/reference/typescript).
 
 ## Features
+
 The Pieces SDK offers the following key features:
 
 1. Copilot Chats: Communicate seamlessly with copilot chats functionality.
 2. Asset Management: Save and manage assets and formats efficiently.
-3. Local Server Interaction: Interact with a locally hosted server for various functionalities.
+3. Local Server Interaction: Interact with a locally hosted server for various
+   functionalities.
 4. Multi LLMs support: Use any Pieces supported LLMs to power apps.
 
 ## Getting Started
 
-First, we will create a Typescript script to test the connection to the Pieces OS server. This involves creating a main.ts file to store your configuration info to test the connection.
+First, we will create a Typescript script to test the connection to the Pieces
+OS server. This involves creating a main.ts file to store your configuration
+info to test the connection.
 
-> It's important to note that the localhost port for Pieces OS is different based on the operating system.
+> It's important to note that the localhost port for Pieces OS is different
+> based on the operating system.
 >
 > For Linux, you should use `localhost:5323`.
-> 
+>
 > For macOS and Windows, you should use `localhost:1000`.
 
 Create a `main.ts` file and add the following code:
@@ -157,38 +184,48 @@ ts-node main.ts
 ```
 
 ## Examples
-Here are a few examples of using some of the basic endpoints for getting up and running, along with creating an asset for the first time.
+
+Here are a few examples of using some of the basic endpoints for getting up and
+running, along with creating an asset for the first time.
 
 <details>
 <summary> Connect </summary>
 
-  When developing and creating an application on top of Pieces OS, it is important that you authenticate with the application itself when performing requests.
-  
-  To 'connect' your application (this typescript project) to the server, you will need to make a POST request to the `apiInstance.connect()` endpoint of the API and print the response.
+When developing and creating an application on top of Pieces OS, it is important
+that you authenticate with the application itself when performing requests.
 
-  ```tsx
+To 'connect' your application (this typescript project) to the server, you will
+need to make a POST request to the `apiInstance.connect()` endpoint of the API
+and print the response.
 
-  import * as Pieces from '@pieces.app/pieces-os-client'
+```tsx
 
-  const configuration = Pieces.Configuration()
-  const apiInstance = new Pieces.ConnectorApi(configuration)
+import * as Pieces from '@pieces.app/pieces-os-client'
 
-  const body: Pieces.ConnectRequest = {
-      // SeededConnectorConnection |  (optional)
-      seededConnectorConnection: ,
-  };
+const configuration = Pieces.Configuration()
+const apiInstance = new Pieces.ConnectorApi(configuration)
 
-  apiInstance.connect(body).then((data: Context) => {
-      console.log('API called successfully. Returned data: ' + data)
-  }).catch((error: unknown) => console.error(error))
+const body: Pieces.ConnectRequest = {
+    // SeededConnectorConnection |  (optional)
+    seededConnectorConnection: ,
+};
 
-  ```
+apiInstance.connect(body).then((data: Context) => {
+    console.log('API called successfully. Returned data: ' + data)
+}).catch((error: unknown) => console.error(error))
+
+```
+
 </details>
 
 <details>
 <summary>Create New Assets</summary>
 
-Now before continuing forward, we will need to prepare the `create()` function to connect to the proper creation endpoint. Create differs from connect, since previously our json object did not require any preprocessing. In this case **we will need to include the application data that was returned back from our initial call to `connect()`.**
+Now before continuing forward, we will need to prepare the `create()` function
+to connect to the proper creation endpoint. Create differs from connect, since
+previously our json object did not require any preprocessing. In this case **we
+will need to include the application data that was returned back from our
+initial call to `connect()`.**
 
 The `createAsset()` function needs to accomplish:
 
@@ -237,15 +274,18 @@ function createAsset() {
 }
 ```
 
-The response back will look similar to the following: [https://jwaf.pieces.cloud](https://jwaf.pieces.cloud/?p=24e242a85e)
+The response back will look similar to the following:
+[https://jwaf.pieces.cloud](https://jwaf.pieces.cloud/?p=24e242a85e)
 
 </details>
-
 
 <details>
 <summary>Get your Assets Snapshot</summary>
 
-When reading along, if you would like to view your data incrementally through the full browser window, you can navigate to `http://localhost:1000/assets` to view a full list of snippets that have been saved in your browser. Otherwise, you can access the snapshot with these steps:
+When reading along, if you would like to view your data incrementally through
+the full browser window, you can navigate to `http://localhost:1000/assets` to
+view a full list of snippets that have been saved in your browser. Otherwise,
+you can access the snapshot with these steps:
 
 ```tsx
 new Pieces.AssetsApi().assetsSnapshot({}).then(_assetList => {
@@ -255,16 +295,21 @@ new Pieces.AssetsApi().assetsSnapshot({}).then(_assetList => {
     }
 })
 ```
+
 </details>
 
-A developer documentation that outlines all the ins and outs of our available endpoints can be found [here](https://docs.pieces.app/build/reference/typescript/).
+A developer documentation that outlines all the ins and outs of our available
+endpoints can be found
+[here](https://docs.pieces.app/build/reference/typescript/).
 
-## Learn More 
+## Learn More
+
 Explore more about Pieces SDK and get help from the following resources:
 
-- 🚀 [Getting Started Tutorial](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
-- 📜 [Pieces Docs](https://docs.pieces.app/)
-- 💬 [Discord Community](https://discord.gg/getpieces)
+-   🚀
+    [Getting Started Tutorial](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
+-   📜 [Pieces Docs](https://docs.pieces.app/)
+-   💬 [Discord Community](https://discord.gg/getpieces)
 
 ## License
 
