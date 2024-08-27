@@ -56,7 +56,7 @@ The Pieces SDK has the following system requirements:
     backend service.
 -   NodeJs environment with npm for installing the SDK package.
 
-## Installation
+## 🚀 Installation
 
 To get started with the Pieces SDK, follow these steps:
 
@@ -97,7 +97,7 @@ Using yarn:
 yarn add @pieces.app/pieces-os-client
 ```
 
-## Usage
+## 🛠️ Usage
 
 After you install the package, you can import the library into your file(s)
 using require:
