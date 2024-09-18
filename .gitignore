@@ -1,5 +1,3 @@
-# Local Files #
-########################
 node_modules
 .idea
 dist
