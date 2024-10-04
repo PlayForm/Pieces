@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { TLPCodeFragmentSuggestedReuse } from "./TLPCodeFragmentSuggestedReuse.tsx";
 import {
 	TLPCodeFragmentSuggestedReuseFromJSON,
 	TLPCodeFragmentSuggestedReuseToJSON,
+	type TLPCodeFragmentSuggestedReuse,
 } from "./TLPCodeFragmentSuggestedReuse.tsx";
-import type { TLPCodeFragmentSuggestedSave } from "./TLPCodeFragmentSuggestedSave.tsx";
 import {
 	TLPCodeFragmentSuggestedSaveFromJSON,
 	TLPCodeFragmentSuggestedSaveToJSON,
+	type TLPCodeFragmentSuggestedSave,
 } from "./TLPCodeFragmentSuggestedSave.tsx";
 
 /**

@@ -12,13 +12,11 @@
  * Do not edit the class manually.
  */
 
-import type {
-	OpenAIModelsListInput,
-	OpenAIModelsListOutput,
-} from "../models/index.ts";
 import {
 	OpenAIModelsListInputToJSON,
 	OpenAIModelsListOutputFromJSON,
+	type OpenAIModelsListInput,
+	type OpenAIModelsListOutput,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

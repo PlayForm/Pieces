@@ -13,18 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedWorkstreamPatternEngineVisionEvents } from "./FlattenedWorkstreamPatternEngineVisionEvents.tsx";
 import {
 	FlattenedWorkstreamPatternEngineVisionEventsFromJSON,
 	FlattenedWorkstreamPatternEngineVisionEventsToJSON,
+	type FlattenedWorkstreamPatternEngineVisionEvents,
 } from "./FlattenedWorkstreamPatternEngineVisionEvents.tsx";
-import type { SearchInput } from "./SearchInput.tsx";
-import { SearchInputFromJSON, SearchInputToJSON } from "./SearchInput.tsx";
+import {
+	SearchInputFromJSON,
+	SearchInputToJSON,
+	type SearchInput,
+} from "./SearchInput.tsx";
 
 /**
  * note: recomended to use the search option here(where you can pass in workstream.

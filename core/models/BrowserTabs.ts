@@ -13,12 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { BrowserTab } from "./BrowserTab.tsx";
-import { BrowserTabFromJSON, BrowserTabToJSON } from "./BrowserTab.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	BrowserTabFromJSON,
+	BrowserTabToJSON,
+	type BrowserTab,
+} from "./BrowserTab.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

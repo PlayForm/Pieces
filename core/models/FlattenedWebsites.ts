@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReferencedWebsite } from "./ReferencedWebsite.tsx";
 import {
 	ReferencedWebsiteFromJSON,
 	ReferencedWebsiteToJSON,
+	type ReferencedWebsite,
 } from "./ReferencedWebsite.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a specific model for related websites to an asset.[DAG SAFE]

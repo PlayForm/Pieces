@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ConversationMessage } from "./ConversationMessage.tsx";
 import {
 	ConversationMessageFromJSON,
 	ConversationMessageToJSON,
+	type ConversationMessage,
 } from "./ConversationMessage.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

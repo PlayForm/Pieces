@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
 
 /**

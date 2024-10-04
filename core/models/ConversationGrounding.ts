@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
 	FlattenedConversationMessagesFromJSON,
 	FlattenedConversationMessagesToJSON,
+	type FlattenedConversationMessages,
 } from "./FlattenedConversationMessages.tsx";
-import type { TemporalRangeGrounding } from "./TemporalRangeGrounding.tsx";
 import {
 	TemporalRangeGroundingFromJSON,
 	TemporalRangeGroundingToJSON,
+	type TemporalRangeGrounding,
 } from "./TemporalRangeGrounding.tsx";
 
 /**

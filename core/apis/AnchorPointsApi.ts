@@ -12,15 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type {
-	AnchorPoint,
-	AnchorPoints,
-	SeededAnchorPoint,
-} from "../models/index.ts";
 import {
 	AnchorPointFromJSON,
 	AnchorPointsFromJSON,
 	SeededAnchorPointToJSON,
+	type AnchorPoint,
+	type AnchorPoints,
+	type SeededAnchorPoint,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

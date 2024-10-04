@@ -12,11 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { Annotation, SeededScoreIncrement } from "../models/index.ts";
 import {
 	AnnotationFromJSON,
 	AnnotationToJSON,
 	SeededScoreIncrementToJSON,
+	type Annotation,
+	type SeededScoreIncrement,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

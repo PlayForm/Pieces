@@ -13,32 +13,35 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Aesthetics } from "./Aesthetics.tsx";
-import { AestheticsFromJSON, AestheticsToJSON } from "./Aesthetics.tsx";
-import type { AllocationCloud } from "./AllocationCloud.tsx";
+import {
+	AestheticsFromJSON,
+	AestheticsToJSON,
+	type Aesthetics,
+} from "./Aesthetics.tsx";
 import {
 	AllocationCloudFromJSON,
 	AllocationCloudToJSON,
+	type AllocationCloud,
 } from "./AllocationCloud.tsx";
-import type { Auth0UserMetadata } from "./Auth0UserMetadata.tsx";
 import {
 	Auth0UserMetadataFromJSON,
 	Auth0UserMetadataToJSON,
+	type Auth0UserMetadata,
 } from "./Auth0UserMetadata.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ExternalProviders } from "./ExternalProviders.tsx";
 import {
 	ExternalProvidersFromJSON,
 	ExternalProvidersToJSON,
+	type ExternalProviders,
 } from "./ExternalProviders.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
 
 /**

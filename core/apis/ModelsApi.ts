@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Model,
-	ModelDeleteCacheInput,
-	ModelDeleteCacheOutput,
-	Models,
-	SeededModel,
-} from "../models/index.ts";
 import {
 	ModelDeleteCacheInputToJSON,
 	ModelDeleteCacheOutputFromJSON,
 	ModelFromJSON,
 	ModelsFromJSON,
 	SeededModelToJSON,
+	type Model,
+	type ModelDeleteCacheInput,
+	type ModelDeleteCacheOutput,
+	type Models,
+	type SeededModel,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

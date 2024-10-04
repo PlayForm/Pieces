@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Auth0OpenAIUserMetadata } from "./Auth0OpenAIUserMetadata.tsx";
 import {
 	Auth0OpenAIUserMetadataFromJSON,
 	Auth0OpenAIUserMetadataToJSON,
+	type Auth0OpenAIUserMetadata,
 } from "./Auth0OpenAIUserMetadata.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

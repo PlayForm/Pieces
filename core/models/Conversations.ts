@@ -13,15 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Conversation } from "./Conversation.tsx";
-import { ConversationFromJSON, ConversationToJSON } from "./Conversation.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	ConversationFromJSON,
+	ConversationToJSON,
+	type Conversation,
+} from "./Conversation.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a plural version of a Conversation.

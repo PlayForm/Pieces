@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { OSAppletEnum } from "./OSAppletEnum.tsx";
-import { OSAppletEnumFromJSON, OSAppletEnumToJSON } from "./OSAppletEnum.tsx";
+import {
+	OSAppletEnumFromJSON,
+	OSAppletEnumToJSON,
+	type OSAppletEnum,
+} from "./OSAppletEnum.tsx";
 
 /**
  * TODO

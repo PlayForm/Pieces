@@ -12,16 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Activities,
-	Asset,
-	AssetReclassification,
-	Conversations,
-	ExportedAsset,
-	Formats,
-	SeededAccessor,
-	SeededScoreIncrement,
-} from "../models/index.ts";
 import {
 	ActivitiesFromJSON,
 	AssetFromJSON,
@@ -32,6 +22,14 @@ import {
 	FormatsFromJSON,
 	SeededAccessorToJSON,
 	SeededScoreIncrementToJSON,
+	type Activities,
+	type Asset,
+	type AssetReclassification,
+	type Conversations,
+	type ExportedAsset,
+	type Formats,
+	type SeededAccessor,
+	type SeededScoreIncrement,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

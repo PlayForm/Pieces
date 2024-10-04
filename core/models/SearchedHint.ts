@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Hint } from "./Hint.tsx";
-import { HintFromJSON, HintToJSON } from "./Hint.tsx";
+import { HintFromJSON, HintToJSON, type Hint } from "./Hint.tsx";
 
 /**
  * This is used for the Hint searching endpoint

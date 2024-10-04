@@ -12,25 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	ActiveOSServerApplet,
-	FilePickerInput,
-	InactiveOSServerApplet,
-	OSDeviceInformationReturnable,
-	OSFileStreamingRead,
-	OSFileStreamingReadAttempt,
-	OSPermissions,
-	OSServerMetadata,
-	OSServerSettings,
-	OSServerUpdateStatus,
-	ReturnedUserProfile,
-	SeededExternalProvider,
-	TerminatingOSServerApplet,
-	UncheckedOSServerUpdate,
-	UserProfile,
-	Users,
-	VerifiedOSFilesystemPath,
-} from "../models/index.ts";
 import {
 	ActiveOSServerAppletFromJSON,
 	FilePickerInputToJSON,
@@ -51,6 +32,23 @@ import {
 	UserProfileFromJSON,
 	UsersFromJSON,
 	VerifiedOSFilesystemPathFromJSON,
+	type ActiveOSServerApplet,
+	type FilePickerInput,
+	type InactiveOSServerApplet,
+	type OSDeviceInformationReturnable,
+	type OSFileStreamingRead,
+	type OSFileStreamingReadAttempt,
+	type OSPermissions,
+	type OSServerMetadata,
+	type OSServerSettings,
+	type OSServerUpdateStatus,
+	type ReturnedUserProfile,
+	type SeededExternalProvider,
+	type TerminatingOSServerApplet,
+	type UncheckedOSServerUpdate,
+	type UserProfile,
+	type Users,
+	type VerifiedOSFilesystemPath,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

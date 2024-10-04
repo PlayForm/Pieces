@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FormatMetric } from "./FormatMetric.tsx";
-import { FormatMetricFromJSON, FormatMetricToJSON } from "./FormatMetric.tsx";
+import {
+	FormatMetricFromJSON,
+	FormatMetricToJSON,
+	type FormatMetric,
+} from "./FormatMetric.tsx";
 
 /**
  *

@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { TrackedConversationEventRenameMetadata } from "./TrackedConversationEventRenameMetadata.tsx";
 import {
 	TrackedConversationEventRenameMetadataFromJSON,
 	TrackedConversationEventRenameMetadataToJSON,
+	type TrackedConversationEventRenameMetadata,
 } from "./TrackedConversationEventRenameMetadata.tsx";
 
 /**

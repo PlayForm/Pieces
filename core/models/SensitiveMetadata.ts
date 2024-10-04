@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { TextMatch } from "./TextMatch.tsx";
-import { TextMatchFromJSON, TextMatchToJSON } from "./TextMatch.tsx";
+import {
+	TextMatchFromJSON,
+	TextMatchToJSON,
+	type TextMatch,
+} from "./TextMatch.tsx";
 
 /**
  * This is optional metatdata attached to a sensitive piece of data.

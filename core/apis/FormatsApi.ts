@@ -12,8 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { Format, Formats } from "../models/index.ts";
-import { FormatFromJSON, FormatsFromJSON } from "../models/index.ts";
+import {
+	FormatFromJSON,
+	FormatsFromJSON,
+	type Format,
+	type Formats,
+} from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface FormatsSnapshotRequest {

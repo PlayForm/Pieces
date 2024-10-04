@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GraphicalImageProcessing } from "./GraphicalImageProcessing.tsx";
 import {
 	GraphicalImageProcessingFromJSON,
 	GraphicalImageProcessingToJSON,
+	type GraphicalImageProcessing,
 } from "./GraphicalImageProcessing.tsx";
-import type { GraphicalOCRProcessing } from "./GraphicalOCRProcessing.tsx";
 import {
 	GraphicalOCRProcessingFromJSON,
 	GraphicalOCRProcessingToJSON,
+	type GraphicalOCRProcessing,
 } from "./GraphicalOCRProcessing.tsx";
-import type { GraphicalSVGStatistics } from "./GraphicalSVGStatistics.tsx";
 import {
 	GraphicalSVGStatisticsFromJSON,
 	GraphicalSVGStatisticsToJSON,
+	type GraphicalSVGStatistics,
 } from "./GraphicalSVGStatistics.tsx";
 
 /**

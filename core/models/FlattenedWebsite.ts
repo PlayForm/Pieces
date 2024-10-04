@@ -13,43 +13,42 @@
  */
 
 import { exists, mapValues } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
 	FlattenedConversationsFromJSON,
 	FlattenedConversationsToJSON,
+	type FlattenedConversations,
 } from "./FlattenedConversations.tsx";
-import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
 	FlattenedPersonsFromJSON,
 	FlattenedPersonsToJSON,
+	type FlattenedPersons,
 } from "./FlattenedPersons.tsx";
-import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
 	FlattenedWorkstreamSummariesFromJSON,
 	FlattenedWorkstreamSummariesToJSON,
+	type FlattenedWorkstreamSummaries,
 } from "./FlattenedWorkstreamSummaries.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a specific model for related websites to an asset.[DAG SAFE]

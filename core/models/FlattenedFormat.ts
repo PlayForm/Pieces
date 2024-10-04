@@ -13,49 +13,57 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Application } from "./Application.tsx";
-import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
-import type { ByteDescriptor } from "./ByteDescriptor.tsx";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "./Application.tsx";
 import {
 	ByteDescriptorFromJSON,
 	ByteDescriptorToJSON,
+	type ByteDescriptor,
 } from "./ByteDescriptor.tsx";
-import type { Classification } from "./Classification.tsx";
 import {
 	ClassificationFromJSON,
 	ClassificationToJSON,
+	type Classification,
 } from "./Classification.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FileFormat } from "./FileFormat.tsx";
-import { FileFormatFromJSON, FileFormatToJSON } from "./FileFormat.tsx";
-import type { FlattenedActivities } from "./FlattenedActivities.tsx";
+import {
+	FileFormatFromJSON,
+	FileFormatToJSON,
+	type FileFormat,
+} from "./FileFormat.tsx";
 import {
 	FlattenedActivitiesFromJSON,
 	FlattenedActivitiesToJSON,
+	type FlattenedActivities,
 } from "./FlattenedActivities.tsx";
-import type { FlattenedAnalysis } from "./FlattenedAnalysis.tsx";
 import {
 	FlattenedAnalysisFromJSON,
 	FlattenedAnalysisToJSON,
+	type FlattenedAnalysis,
 } from "./FlattenedAnalysis.tsx";
-import type { FragmentFormat } from "./FragmentFormat.tsx";
 import {
 	FragmentFormatFromJSON,
 	FragmentFormatToJSON,
+	type FragmentFormat,
 } from "./FragmentFormat.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { Relationship } from "./Relationship.tsx";
-import { RelationshipFromJSON, RelationshipToJSON } from "./Relationship.tsx";
-import type { Role } from "./Role.tsx";
-import { RoleFromJSON, RoleToJSON } from "./Role.tsx";
+import {
+	RelationshipFromJSON,
+	RelationshipToJSON,
+	type Relationship,
+} from "./Relationship.tsx";
+import { RoleFromJSON, RoleToJSON, type Role } from "./Role.tsx";
 
 /**
  * A representation of Data for a particular Form Factor of an Asset.[DAG Compatible - Directed Acyclic Graph Data Structure]

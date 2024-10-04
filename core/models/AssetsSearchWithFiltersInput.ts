@@ -13,17 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AssetFilters } from "./AssetFilters.tsx";
-import { AssetFiltersFromJSON, AssetFiltersToJSON } from "./AssetFilters.tsx";
-import type { AssetSearchSpace } from "./AssetSearchSpace.tsx";
+import {
+	AssetFiltersFromJSON,
+	AssetFiltersToJSON,
+	type AssetFilters,
+} from "./AssetFilters.tsx";
 import {
 	AssetSearchSpaceFromJSON,
 	AssetSearchSpaceToJSON,
+	type AssetSearchSpace,
 } from "./AssetSearchSpace.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

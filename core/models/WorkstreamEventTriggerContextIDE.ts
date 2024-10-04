@@ -13,17 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { IDETabs } from "./IDETabs.tsx";
-import { IDETabsFromJSON, IDETabsToJSON } from "./IDETabs.tsx";
-import type { ProjectModules } from "./ProjectModules.tsx";
+import { IDETabsFromJSON, IDETabsToJSON, type IDETabs } from "./IDETabs.tsx";
 import {
 	ProjectModulesFromJSON,
 	ProjectModulesToJSON,
+	type ProjectModules,
 } from "./ProjectModules.tsx";
 
 /**

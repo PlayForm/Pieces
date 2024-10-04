@@ -12,16 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	DiscoveredAssets,
-	DiscoveredHtmlWebpages,
-	DiscoveredRelatedTags,
-	DiscoveredSensitives,
-	SeededDiscoverableAssets,
-	SeededDiscoverableHtmlWebpages,
-	SeededDiscoverableRelatedTags,
-	SeededDiscoverableSensitives,
-} from "../models/index.ts";
 import {
 	DiscoveredAssetsFromJSON,
 	DiscoveredHtmlWebpagesFromJSON,
@@ -31,6 +21,14 @@ import {
 	SeededDiscoverableHtmlWebpagesToJSON,
 	SeededDiscoverableRelatedTagsToJSON,
 	SeededDiscoverableSensitivesToJSON,
+	type DiscoveredAssets,
+	type DiscoveredHtmlWebpages,
+	type DiscoveredRelatedTags,
+	type DiscoveredSensitives,
+	type SeededDiscoverableAssets,
+	type SeededDiscoverableHtmlWebpages,
+	type SeededDiscoverableRelatedTags,
+	type SeededDiscoverableSensitives,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

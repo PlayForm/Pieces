@@ -13,37 +13,42 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AccessEnum } from "./AccessEnum.tsx";
-import { AccessEnumFromJSON, AccessEnumToJSON } from "./AccessEnum.tsx";
-import type { Accessors } from "./Accessors.tsx";
-import { AccessorsFromJSON, AccessorsToJSON } from "./Accessors.tsx";
-import type { Distributions } from "./Distributions.tsx";
+import {
+	AccessEnumFromJSON,
+	AccessEnumToJSON,
+	type AccessEnum,
+} from "./AccessEnum.tsx";
+import {
+	AccessorsFromJSON,
+	AccessorsToJSON,
+	type Accessors,
+} from "./Accessors.tsx";
 import {
 	DistributionsFromJSON,
 	DistributionsToJSON,
+	type Distributions,
 } from "./Distributions.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAsset } from "./FlattenedAsset.tsx";
 import {
 	FlattenedAssetFromJSON,
 	FlattenedAssetToJSON,
+	type FlattenedAsset,
 } from "./FlattenedAsset.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This represents what information that is relavent to anything and every sharing related. v1 will look very bare and will add more and more data as we go!

@@ -13,12 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Activity } from "./Activity.tsx";
-import { ActivityFromJSON, ActivityToJSON } from "./Activity.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	ActivityFromJSON,
+	ActivityToJSON,
+	type Activity,
+} from "./Activity.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

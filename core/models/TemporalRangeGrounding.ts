@@ -13,10 +13,10 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { FlattenedRanges } from "./FlattenedRanges.tsx";
 import {
 	FlattenedRangesFromJSON,
 	FlattenedRangesToJSON,
+	type FlattenedRanges,
 } from "./FlattenedRanges.tsx";
 
 /**

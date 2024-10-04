@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Recipients } from "./Recipients.tsx";
-import { RecipientsFromJSON, RecipientsToJSON } from "./Recipients.tsx";
+import {
+	RecipientsFromJSON,
+	RecipientsToJSON,
+	type Recipients,
+} from "./Recipients.tsx";
 
 /**
  * This is the minimum information needed to distribute a Piece to a Gist.

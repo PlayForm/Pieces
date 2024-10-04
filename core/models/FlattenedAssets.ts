@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
 	ReferencedAssetFromJSON,
 	ReferencedAssetToJSON,
+	type ReferencedAsset,
 } from "./ReferencedAsset.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * A collection of Assets specific to the authenticated user. [DAG Compatible - Directed Acyclic Graph Data Structure]

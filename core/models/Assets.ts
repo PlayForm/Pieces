@@ -13,15 +13,13 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Asset } from "./Asset.tsx";
-import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import { AssetFromJSON, AssetToJSON, type Asset } from "./Asset.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * A base class for a collection of assets and some additional meta properties. Fully Populated with Formats internally (not just uuid's).

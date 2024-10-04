@@ -12,10 +12,11 @@
  * Do not edit the class manually.
  */
 
-import type { SeededGithubGistsImport, Seeds } from "../models/index.ts";
 import {
 	SeededGithubGistsImportToJSON,
 	SeedsFromJSON,
+	type SeededGithubGistsImport,
+	type Seeds,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

@@ -12,17 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type {
-	OnboardedPersonaDetails,
-	PreonboardedPersonaDetails,
-	SegmentedTechnicalLanguage,
-	UnsegmentedTechnicalLanguage,
-} from "../models/index.ts";
 import {
 	OnboardedPersonaDetailsFromJSON,
 	PreonboardedPersonaDetailsToJSON,
 	SegmentedTechnicalLanguageFromJSON,
 	UnsegmentedTechnicalLanguageToJSON,
+	type OnboardedPersonaDetails,
+	type PreonboardedPersonaDetails,
+	type SegmentedTechnicalLanguage,
+	type UnsegmentedTechnicalLanguage,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

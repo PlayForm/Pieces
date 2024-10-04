@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReferencedTag } from "./ReferencedTag.tsx";
 import {
 	ReferencedTagFromJSON,
 	ReferencedTagToJSON,
+	type ReferencedTag,
 } from "./ReferencedTag.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is multiple ReferencedTags(which includes an optional FlattenedTag Model within the reference model).

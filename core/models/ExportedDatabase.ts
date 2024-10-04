@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ExportedDatabaseFormats } from "./ExportedDatabaseFormats.tsx";
 import {
 	ExportedDatabaseFormatsFromJSON,
 	ExportedDatabaseFormatsToJSON,
+	type ExportedDatabaseFormats,
 } from "./ExportedDatabaseFormats.tsx";
 
 /**

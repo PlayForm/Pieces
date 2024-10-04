@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Persons } from "./Persons.tsx";
-import { PersonsFromJSON, PersonsToJSON } from "./Persons.tsx";
+import { PersonsFromJSON, PersonsToJSON, type Persons } from "./Persons.tsx";
 
 /**
  * This model is used for the output of the /qgpt/related/persons endpoint.

@@ -13,42 +13,45 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Application } from "./Application.tsx";
-import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "./Application.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedUserProfile } from "./FlattenedUserProfile.tsx";
 import {
 	FlattenedUserProfileFromJSON,
 	FlattenedUserProfileToJSON,
+	type FlattenedUserProfile,
 } from "./FlattenedUserProfile.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
 	ReferencedAssetFromJSON,
 	ReferencedAssetToJSON,
+	type ReferencedAsset,
 } from "./ReferencedAsset.tsx";
-import type { ReferencedFormat } from "./ReferencedFormat.tsx";
 import {
 	ReferencedFormatFromJSON,
 	ReferencedFormatToJSON,
+	type ReferencedFormat,
 } from "./ReferencedFormat.tsx";
-import type { SeededConnectorTracking } from "./SeededConnectorTracking.tsx";
 import {
 	SeededConnectorTrackingFromJSON,
 	SeededConnectorTrackingToJSON,
+	type SeededConnectorTracking,
 } from "./SeededConnectorTracking.tsx";
 
 /**

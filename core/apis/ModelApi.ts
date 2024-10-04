@@ -12,11 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { Model, ModelDownloadProgress } from "../models/index.ts";
 import {
 	ModelDownloadProgressFromJSON,
 	ModelFromJSON,
 	ModelToJSON,
+	type Model,
+	type ModelDownloadProgress,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

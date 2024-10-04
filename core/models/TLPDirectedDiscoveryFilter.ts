@@ -1,7 +1,7 @@
-import type { TLPDirectedDiscoveryFilterEnum } from "./TLPDirectedDiscoveryFilterEnum.tsx";
 import {
 	TLPDirectedDiscoveryFilterEnumFromJSON,
 	TLPDirectedDiscoveryFilterEnumToJSON,
+	type TLPDirectedDiscoveryFilterEnum,
 } from "./TLPDirectedDiscoveryFilterEnum.tsx";
 
 /**

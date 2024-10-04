@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import type { OCRAnalyses } from "../models/index.ts";
-import { OCRAnalysesFromJSON } from "../models/index.ts";
+import { OCRAnalysesFromJSON, type OCRAnalyses } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface OcrAnalysesSnapshotRequest {

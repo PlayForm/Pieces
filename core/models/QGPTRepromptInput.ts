@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { QGPTConversation } from "./QGPTConversation.tsx";
 import {
 	QGPTConversationFromJSON,
 	QGPTConversationToJSON,
+	type QGPTConversation,
 } from "./QGPTConversation.tsx";
-import type { QGPTPromptPipeline } from "./QGPTPromptPipeline.tsx";
 import {
 	QGPTPromptPipelineFromJSON,
 	QGPTPromptPipelineToJSON,
+	type QGPTPromptPipeline,
 } from "./QGPTPromptPipeline.tsx";
 
 /**

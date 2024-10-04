@@ -12,14 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type {
-	SeededScoreIncrement,
-	WorkstreamSummary,
-} from "../models/index.ts";
 import {
 	SeededScoreIncrementToJSON,
 	WorkstreamSummaryFromJSON,
 	WorkstreamSummaryToJSON,
+	type SeededScoreIncrement,
+	type WorkstreamSummary,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

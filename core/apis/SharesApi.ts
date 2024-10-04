@@ -12,11 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { SeededShare, Share, Shares } from "../models/index.ts";
 import {
 	SeededShareToJSON,
 	ShareFromJSON,
 	SharesFromJSON,
+	type SeededShare,
+	type Share,
+	type Shares,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

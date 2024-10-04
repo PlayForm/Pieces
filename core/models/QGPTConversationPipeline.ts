@@ -13,30 +13,30 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { QGPTConversationPipelineForContextualizedCodeDialog } from "./QGPTConversationPipelineForContextualizedCodeDialog.tsx";
 import {
 	QGPTConversationPipelineForContextualizedCodeDialogFromJSON,
 	QGPTConversationPipelineForContextualizedCodeDialogToJSON,
+	type QGPTConversationPipelineForContextualizedCodeDialog,
 } from "./QGPTConversationPipelineForContextualizedCodeDialog.tsx";
-import type { QGPTConversationPipelineForContextualizedCodeGeneration } from "./QGPTConversationPipelineForContextualizedCodeGeneration.tsx";
 import {
 	QGPTConversationPipelineForContextualizedCodeGenerationFromJSON,
 	QGPTConversationPipelineForContextualizedCodeGenerationToJSON,
+	type QGPTConversationPipelineForContextualizedCodeGeneration,
 } from "./QGPTConversationPipelineForContextualizedCodeGeneration.tsx";
-import type { QGPTConversationPipelineForContextualizedCodeWorkstreamDialog } from "./QGPTConversationPipelineForContextualizedCodeWorkstreamDialog.tsx";
 import {
 	QGPTConversationPipelineForContextualizedCodeWorkstreamDialogFromJSON,
 	QGPTConversationPipelineForContextualizedCodeWorkstreamDialogToJSON,
+	type QGPTConversationPipelineForContextualizedCodeWorkstreamDialog,
 } from "./QGPTConversationPipelineForContextualizedCodeWorkstreamDialog.tsx";
-import type { QGPTConversationPipelineForGeneralizedCodeDialog } from "./QGPTConversationPipelineForGeneralizedCodeDialog.tsx";
 import {
 	QGPTConversationPipelineForGeneralizedCodeDialogFromJSON,
 	QGPTConversationPipelineForGeneralizedCodeDialogToJSON,
+	type QGPTConversationPipelineForGeneralizedCodeDialog,
 } from "./QGPTConversationPipelineForGeneralizedCodeDialog.tsx";
 
 /**

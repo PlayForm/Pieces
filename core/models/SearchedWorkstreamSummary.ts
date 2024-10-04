@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SearchedAnnotations } from "./SearchedAnnotations.tsx";
 import {
 	SearchedAnnotationsFromJSON,
 	SearchedAnnotationsToJSON,
+	type SearchedAnnotations,
 } from "./SearchedAnnotations.tsx";
-import type { WorkstreamSummary } from "./WorkstreamSummary.tsx";
 import {
 	WorkstreamSummaryFromJSON,
 	WorkstreamSummaryToJSON,
+	type WorkstreamSummary,
 } from "./WorkstreamSummary.tsx";
 
 /**

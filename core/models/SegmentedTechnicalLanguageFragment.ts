@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ClassificationGenericEnum } from "./ClassificationGenericEnum.tsx";
 import {
 	ClassificationGenericEnumFromJSON,
 	ClassificationGenericEnumToJSON,
+	type ClassificationGenericEnum,
 } from "./ClassificationGenericEnum.tsx";
-import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
 import {
 	ClassificationSpecificEnumFromJSON,
 	ClassificationSpecificEnumToJSON,
+	type ClassificationSpecificEnum,
 } from "./ClassificationSpecificEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FragmentFormat } from "./FragmentFormat.tsx";
 import {
 	FragmentFormatFromJSON,
 	FragmentFormatToJSON,
+	type FragmentFormat,
 } from "./FragmentFormat.tsx";
 
 /**

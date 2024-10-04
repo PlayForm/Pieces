@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { IDESelection } from "./IDESelection.tsx";
-import { IDESelectionFromJSON, IDESelectionToJSON } from "./IDESelection.tsx";
+import {
+	IDESelectionFromJSON,
+	IDESelectionToJSON,
+	type IDESelection,
+} from "./IDESelection.tsx";
 
 /**
  * Plural model that represent many selections in the browser

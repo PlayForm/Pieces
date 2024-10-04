@@ -13,12 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { CodeAnalysis } from "./CodeAnalysis.tsx";
-import { CodeAnalysisFromJSON, CodeAnalysisToJSON } from "./CodeAnalysis.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	CodeAnalysisFromJSON,
+	CodeAnalysisToJSON,
+	type CodeAnalysis,
+} from "./CodeAnalysis.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

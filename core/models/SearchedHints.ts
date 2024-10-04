@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SearchedHint } from "./SearchedHint.tsx";
-import { SearchedHintFromJSON, SearchedHintToJSON } from "./SearchedHint.tsx";
+import {
+	SearchedHintFromJSON,
+	SearchedHintToJSON,
+	type SearchedHint,
+} from "./SearchedHint.tsx";
 
 /**
  * This is the plural Model used to return many SearchedHint.

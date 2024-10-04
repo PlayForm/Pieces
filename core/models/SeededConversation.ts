@@ -13,49 +13,55 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Application } from "./Application.tsx";
-import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
-import type { ConversationTypeEnum } from "./ConversationTypeEnum.tsx";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "./Application.tsx";
 import {
 	ConversationTypeEnumFromJSON,
 	ConversationTypeEnumToJSON,
+	type ConversationTypeEnum,
 } from "./ConversationTypeEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
 	FlattenedWebsitesFromJSON,
 	FlattenedWebsitesToJSON,
+	type FlattenedWebsites,
 } from "./FlattenedWebsites.tsx";
-import type { QGPTPromptPipeline } from "./QGPTPromptPipeline.tsx";
 import {
 	QGPTPromptPipelineFromJSON,
 	QGPTPromptPipelineToJSON,
+	type QGPTPromptPipeline,
 } from "./QGPTPromptPipeline.tsx";
-import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
 	ReferencedModelFromJSON,
 	ReferencedModelToJSON,
+	type ReferencedModel,
 } from "./ReferencedModel.tsx";
-import type { SeededAnchor } from "./SeededAnchor.tsx";
-import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
-import type { SeededAnnotation } from "./SeededAnnotation.tsx";
+import {
+	SeededAnchorFromJSON,
+	SeededAnchorToJSON,
+	type SeededAnchor,
+} from "./SeededAnchor.tsx";
 import {
 	SeededAnnotationFromJSON,
 	SeededAnnotationToJSON,
+	type SeededAnnotation,
 } from "./SeededAnnotation.tsx";
-import type { SeededConversationMessage } from "./SeededConversationMessage.tsx";
 import {
 	SeededConversationMessageFromJSON,
 	SeededConversationMessageToJSON,
+	type SeededConversationMessage,
 } from "./SeededConversationMessage.tsx";
 
 /**

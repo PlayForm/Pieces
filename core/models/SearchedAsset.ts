@@ -13,17 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Asset } from "./Asset.tsx";
-import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import { AssetFromJSON, AssetToJSON, type Asset } from "./Asset.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SearchedMatchEnum } from "./SearchedMatchEnum.tsx";
 import {
 	SearchedMatchEnumFromJSON,
 	SearchedMatchEnumToJSON,
+	type SearchedMatchEnum,
 } from "./SearchedMatchEnum.tsx";
 
 /**

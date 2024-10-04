@@ -13,24 +13,28 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AccessEnum } from "./AccessEnum.tsx";
-import { AccessEnumFromJSON, AccessEnumToJSON } from "./AccessEnum.tsx";
-import type { Asset } from "./Asset.tsx";
-import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	AccessEnumFromJSON,
+	AccessEnumToJSON,
+	type AccessEnum,
+} from "./AccessEnum.tsx";
+import { AssetFromJSON, AssetToJSON, type Asset } from "./Asset.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Seed } from "./Seed.tsx";
-import { SeedFromJSON, SeedToJSON } from "./Seed.tsx";
-import type { SeededDistributions } from "./SeededDistributions.tsx";
+import { SeedFromJSON, SeedToJSON, type Seed } from "./Seed.tsx";
 import {
 	SeededDistributionsFromJSON,
 	SeededDistributionsToJSON,
+	type SeededDistributions,
 } from "./SeededDistributions.tsx";
-import type { SeededUser } from "./SeededUser.tsx";
-import { SeededUserFromJSON, SeededUserToJSON } from "./SeededUser.tsx";
+import {
+	SeededUserFromJSON,
+	SeededUserToJSON,
+	type SeededUser,
+} from "./SeededUser.tsx";
 
 /**
  * This is the incoming linkify model.

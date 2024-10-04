@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { QGPTConversation } from "./QGPTConversation.tsx";
 import {
 	QGPTConversationFromJSON,
 	QGPTConversationToJSON,
+	type QGPTConversation,
 } from "./QGPTConversation.tsx";
-import type { Seed } from "./Seed.tsx";
-import { SeedFromJSON, SeedToJSON } from "./Seed.tsx";
+import { SeedFromJSON, SeedToJSON, type Seed } from "./Seed.tsx";
 
 /**
  * This is used for /qgpt/persons/related.

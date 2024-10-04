@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { IDETab } from "./IDETab.tsx";
-import { IDETabFromJSON, IDETabToJSON } from "./IDETab.tsx";
+import { IDETabFromJSON, IDETabToJSON, type IDETab } from "./IDETab.tsx";
 
 /**
  * This is a plural representation of a IDETab

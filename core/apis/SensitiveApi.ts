@@ -12,11 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { SeededScoreIncrement, Sensitive } from "../models/index.ts";
 import {
 	SeededScoreIncrementToJSON,
 	SensitiveFromJSON,
 	SensitiveToJSON,
+	type SeededScoreIncrement,
+	type Sensitive,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

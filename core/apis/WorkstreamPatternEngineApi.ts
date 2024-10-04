@@ -12,26 +12,10 @@
  * Do not edit the class manually.
  */
 
-import type {
-	FlattenedWorkstreamPatternEngineVisionEvents,
-	SearchInput,
-	SearchedWorkstreamPatternEngineVisionEvents,
-	SeededWorkstreamIngestion,
-	WorkstreamIngestion,
-	WorkstreamPatternEngineDataCleanupRequest,
-	WorkstreamPatternEngineSources,
-	WorkstreamPatternEngineStatus,
-	WorkstreamPatternEngineVisionCalibration,
-	WorkstreamPatternEngineVisionCalibrations,
-	WorkstreamPatternEngineVisionEvent,
-	WorkstreamPatternEngineVisionEventDeletions,
-	WorkstreamPatternEngineVisionEvents,
-	WorkstreamPatternEngineVisionMetadata,
-} from "../models/index.ts";
 import {
 	FlattenedWorkstreamPatternEngineVisionEventsFromJSON,
-	SearchInputToJSON,
 	SearchedWorkstreamPatternEngineVisionEventsFromJSON,
+	SearchInputToJSON,
 	SeededWorkstreamIngestionToJSON,
 	WorkstreamIngestionFromJSON,
 	WorkstreamPatternEngineDataCleanupRequestToJSON,
@@ -44,6 +28,20 @@ import {
 	WorkstreamPatternEngineVisionEventFromJSON,
 	WorkstreamPatternEngineVisionEventsFromJSON,
 	WorkstreamPatternEngineVisionMetadataFromJSON,
+	type FlattenedWorkstreamPatternEngineVisionEvents,
+	type SearchedWorkstreamPatternEngineVisionEvents,
+	type SearchInput,
+	type SeededWorkstreamIngestion,
+	type WorkstreamIngestion,
+	type WorkstreamPatternEngineDataCleanupRequest,
+	type WorkstreamPatternEngineSources,
+	type WorkstreamPatternEngineStatus,
+	type WorkstreamPatternEngineVisionCalibration,
+	type WorkstreamPatternEngineVisionCalibrations,
+	type WorkstreamPatternEngineVisionEvent,
+	type WorkstreamPatternEngineVisionEventDeletions,
+	type WorkstreamPatternEngineVisionEvents,
+	type WorkstreamPatternEngineVisionMetadata,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

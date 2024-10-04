@@ -13,30 +13,30 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Classification } from "./Classification.tsx";
 import {
 	ClassificationFromJSON,
 	ClassificationToJSON,
+	type Classification,
 } from "./Classification.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { PersonBasicType } from "./PersonBasicType.tsx";
 import {
 	PersonBasicTypeFromJSON,
 	PersonBasicTypeToJSON,
+	type PersonBasicType,
 } from "./PersonBasicType.tsx";
-import type { TransferableString } from "./TransferableString.tsx";
 import {
 	TransferableStringFromJSON,
 	TransferableStringToJSON,
+	type TransferableString,
 } from "./TransferableString.tsx";
 
 /**

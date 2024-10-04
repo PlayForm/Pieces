@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ExternallySourcedEnum } from "./ExternallySourcedEnum.tsx";
 import {
 	ExternallySourcedEnumFromJSON,
 	ExternallySourcedEnumToJSON,
+	type ExternallySourcedEnum,
 } from "./ExternallySourcedEnum.tsx";
-import type { MailgunMetadata } from "./MailgunMetadata.tsx";
 import {
 	MailgunMetadataFromJSON,
 	MailgunMetadataToJSON,
+	type MailgunMetadata,
 } from "./MailgunMetadata.tsx";
 
 /**

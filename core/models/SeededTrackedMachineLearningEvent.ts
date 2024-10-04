@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GraphicalMachineLearningProcessingEvent } from "./GraphicalMachineLearningProcessingEvent.tsx";
 import {
 	GraphicalMachineLearningProcessingEventFromJSON,
 	GraphicalMachineLearningProcessingEventToJSON,
+	type GraphicalMachineLearningProcessingEvent,
 } from "./GraphicalMachineLearningProcessingEvent.tsx";
-import type { TLPMachineLearningProcessingEvent } from "./TLPMachineLearningProcessingEvent.tsx";
 import {
 	TLPMachineLearningProcessingEventFromJSON,
 	TLPMachineLearningProcessingEventToJSON,
+	type TLPMachineLearningProcessingEvent,
 } from "./TLPMachineLearningProcessingEvent.tsx";
 
 /**

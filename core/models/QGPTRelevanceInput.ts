@@ -13,32 +13,31 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
 	FlattenedConversationMessagesFromJSON,
 	FlattenedConversationMessagesToJSON,
+	type FlattenedConversationMessages,
 } from "./FlattenedConversationMessages.tsx";
-import type { QGPTRelevanceInputOptions } from "./QGPTRelevanceInputOptions.tsx";
 import {
 	QGPTRelevanceInputOptionsFromJSON,
 	QGPTRelevanceInputOptionsToJSON,
+	type QGPTRelevanceInputOptions,
 } from "./QGPTRelevanceInputOptions.tsx";
-import type { Seeds } from "./Seeds.tsx";
-import { SeedsFromJSON, SeedsToJSON } from "./Seeds.tsx";
-import type { TemporalRangeGrounding } from "./TemporalRangeGrounding.tsx";
+import { SeedsFromJSON, SeedsToJSON, type Seeds } from "./Seeds.tsx";
 import {
 	TemporalRangeGroundingFromJSON,
 	TemporalRangeGroundingToJSON,
+	type TemporalRangeGrounding,
 } from "./TemporalRangeGrounding.tsx";
 
 /**

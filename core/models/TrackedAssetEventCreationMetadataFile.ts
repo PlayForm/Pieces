@@ -13,6 +13,7 @@
  */
 
 import { exists } from "../runtime.ts";
+
 /**
  * If an asset was created from a file attachment
  * @export

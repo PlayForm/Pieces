@@ -13,30 +13,32 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
 	FlattenedAnchorsFromJSON,
 	FlattenedAnchorsToJSON,
+	type FlattenedAnchors,
 } from "./FlattenedAnchors.tsx";
-import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
 	FlattenedPersonsFromJSON,
 	FlattenedPersonsToJSON,
+	type FlattenedPersons,
 } from "./FlattenedPersons.tsx";
-import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
 	FlattenedWebsitesFromJSON,
 	FlattenedWebsitesToJSON,
+	type FlattenedWebsites,
 } from "./FlattenedWebsites.tsx";
-import type { Seeds } from "./Seeds.tsx";
-import { SeedsFromJSON, SeedsToJSON } from "./Seeds.tsx";
-import type { TextLocation } from "./TextLocation.tsx";
-import { TextLocationFromJSON, TextLocationToJSON } from "./TextLocation.tsx";
+import { SeedsFromJSON, SeedsToJSON, type Seeds } from "./Seeds.tsx";
+import {
+	TextLocationFromJSON,
+	TextLocationToJSON,
+	type TextLocation,
+} from "./TextLocation.tsx";
 
 /**
  * This is an extraction,

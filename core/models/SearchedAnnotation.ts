@@ -13,12 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Annotation } from "./Annotation.tsx";
-import { AnnotationFromJSON, AnnotationToJSON } from "./Annotation.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	AnnotationFromJSON,
+	AnnotationToJSON,
+	type Annotation,
+} from "./Annotation.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

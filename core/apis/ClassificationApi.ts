@@ -12,8 +12,11 @@
  * Do not edit the class manually.
  */
 
-import type { SeededFormat } from "../models/index.ts";
-import { SeededFormatFromJSON, SeededFormatToJSON } from "../models/index.ts";
+import {
+	SeededFormatFromJSON,
+	SeededFormatToJSON,
+	type SeededFormat,
+} from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface ConvertGenericClassificationRequest {

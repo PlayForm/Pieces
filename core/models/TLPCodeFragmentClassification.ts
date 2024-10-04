@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SystemExecutionInformation } from "./SystemExecutionInformation.tsx";
 import {
 	SystemExecutionInformationFromJSON,
 	SystemExecutionInformationToJSON,
+	type SystemExecutionInformation,
 } from "./SystemExecutionInformation.tsx";
-import type { TLPCodeFragmentClassificationMetadata } from "./TLPCodeFragmentClassificationMetadata.tsx";
 import {
 	TLPCodeFragmentClassificationMetadataFromJSON,
 	TLPCodeFragmentClassificationMetadataToJSON,
+	type TLPCodeFragmentClassificationMetadata,
 } from "./TLPCodeFragmentClassificationMetadata.tsx";
 
 /**

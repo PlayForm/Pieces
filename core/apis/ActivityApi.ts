@@ -12,11 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { Activity, FlattenedActivities } from "../models/index.ts";
 import {
 	ActivityFromJSON,
 	ActivityToJSON,
 	FlattenedActivitiesFromJSON,
+	type Activity,
+	type FlattenedActivities,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

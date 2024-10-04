@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Hint,
-	Hints,
-	SearchInput,
-	SearchedHints,
-	SeededHint,
-} from "../models/index.ts";
 import {
 	HintFromJSON,
 	HintsFromJSON,
-	SearchInputToJSON,
 	SearchedHintsFromJSON,
+	SearchInputToJSON,
 	SeededHintToJSON,
+	type Hint,
+	type Hints,
+	type SearchedHints,
+	type SearchInput,
+	type SeededHint,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

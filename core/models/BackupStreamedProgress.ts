@@ -13,17 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Backup } from "./Backup.tsx";
-import { BackupFromJSON, BackupToJSON } from "./Backup.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import { BackupFromJSON, BackupToJSON, type Backup } from "./Backup.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ModelDownloadProgressStatusEnum } from "./ModelDownloadProgressStatusEnum.tsx";
 import {
 	ModelDownloadProgressStatusEnumFromJSON,
 	ModelDownloadProgressStatusEnumToJSON,
+	type ModelDownloadProgressStatusEnum,
 } from "./ModelDownloadProgressStatusEnum.tsx";
 
 /**

@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReferencedWorkstreamEvent } from "./ReferencedWorkstreamEvent.tsx";
 import {
 	ReferencedWorkstreamEventFromJSON,
 	ReferencedWorkstreamEventToJSON,
+	type ReferencedWorkstreamEvent,
 } from "./ReferencedWorkstreamEvent.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a plural (DAG Safe) version of a WorkstreamEvents.

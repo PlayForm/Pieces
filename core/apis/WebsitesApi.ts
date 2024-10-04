@@ -12,23 +12,21 @@
  * Do not edit the class manually.
  */
 
-import type {
-	ExistentMetadata,
-	ExistingMetadata,
-	SearchInput,
-	SearchedWebsites,
-	SeededWebsite,
-	Website,
-	Websites,
-} from "../models/index.ts";
 import {
 	ExistentMetadataToJSON,
 	ExistingMetadataFromJSON,
-	SearchInputToJSON,
 	SearchedWebsitesFromJSON,
+	SearchInputToJSON,
 	SeededWebsiteToJSON,
 	WebsiteFromJSON,
 	WebsitesFromJSON,
+	type ExistentMetadata,
+	type ExistingMetadata,
+	type SearchedWebsites,
+	type SearchInput,
+	type SeededWebsite,
+	type Website,
+	type Websites,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

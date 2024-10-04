@@ -12,18 +12,16 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Backup,
-	BackupStreamedProgress,
-	Backups,
-	SeededBackup,
-} from "../models/index.ts";
 import {
 	BackupFromJSON,
+	BackupsFromJSON,
 	BackupStreamedProgressFromJSON,
 	BackupToJSON,
-	BackupsFromJSON,
 	SeededBackupToJSON,
+	type Backup,
+	type Backups,
+	type BackupStreamedProgress,
+	type SeededBackup,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

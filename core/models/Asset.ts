@@ -13,59 +13,63 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Activities } from "./Activities.tsx";
-import { ActivitiesFromJSON, ActivitiesToJSON } from "./Activities.tsx";
-import type { Anchors } from "./Anchors.tsx";
-import { AnchorsFromJSON, AnchorsToJSON } from "./Anchors.tsx";
-import type { Annotations } from "./Annotations.tsx";
-import { AnnotationsFromJSON, AnnotationsToJSON } from "./Annotations.tsx";
-import type { Conversations } from "./Conversations.tsx";
+import {
+	ActivitiesFromJSON,
+	ActivitiesToJSON,
+	type Activities,
+} from "./Activities.tsx";
+import { AnchorsFromJSON, AnchorsToJSON, type Anchors } from "./Anchors.tsx";
+import {
+	AnnotationsFromJSON,
+	AnnotationsToJSON,
+	type Annotations,
+} from "./Annotations.tsx";
 import {
 	ConversationsFromJSON,
 	ConversationsToJSON,
+	type Conversations,
 } from "./Conversations.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Formats } from "./Formats.tsx";
-import { FormatsFromJSON, FormatsToJSON } from "./Formats.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
+import { FormatsFromJSON, FormatsToJSON, type Formats } from "./Formats.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { Hints } from "./Hints.tsx";
-import { HintsFromJSON, HintsToJSON } from "./Hints.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
+import { HintsFromJSON, HintsToJSON, type Hints } from "./Hints.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { Persons } from "./Persons.tsx";
-import { PersonsFromJSON, PersonsToJSON } from "./Persons.tsx";
-import type { Preview } from "./Preview.tsx";
-import { PreviewFromJSON, PreviewToJSON } from "./Preview.tsx";
-import type { ReferencedFormat } from "./ReferencedFormat.tsx";
+import { PersonsFromJSON, PersonsToJSON, type Persons } from "./Persons.tsx";
+import { PreviewFromJSON, PreviewToJSON, type Preview } from "./Preview.tsx";
 import {
 	ReferencedFormatFromJSON,
 	ReferencedFormatToJSON,
+	type ReferencedFormat,
 } from "./ReferencedFormat.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
-import type { Sensitives } from "./Sensitives.tsx";
-import { SensitivesFromJSON, SensitivesToJSON } from "./Sensitives.tsx";
-import type { Shares } from "./Shares.tsx";
-import { SharesFromJSON, SharesToJSON } from "./Shares.tsx";
-import type { Tags } from "./Tags.tsx";
-import { TagsFromJSON, TagsToJSON } from "./Tags.tsx";
-import type { Websites } from "./Websites.tsx";
-import { WebsitesFromJSON, WebsitesToJSON } from "./Websites.tsx";
-import type { WorkstreamSummaries } from "./WorkstreamSummaries.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
+import {
+	SensitivesFromJSON,
+	SensitivesToJSON,
+	type Sensitives,
+} from "./Sensitives.tsx";
+import { SharesFromJSON, SharesToJSON, type Shares } from "./Shares.tsx";
+import { TagsFromJSON, TagsToJSON, type Tags } from "./Tags.tsx";
+import {
+	WebsitesFromJSON,
+	WebsitesToJSON,
+	type Websites,
+} from "./Websites.tsx";
 import {
 	WorkstreamSummariesFromJSON,
 	WorkstreamSummariesToJSON,
+	type WorkstreamSummaries,
 } from "./WorkstreamSummaries.tsx";
 
 /**

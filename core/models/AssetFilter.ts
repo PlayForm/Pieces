@@ -13,27 +13,30 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AssetFilterPhrase } from "./AssetFilterPhrase.tsx";
 import {
 	AssetFilterPhraseFromJSON,
 	AssetFilterPhraseToJSON,
+	type AssetFilterPhrase,
 } from "./AssetFilterPhrase.tsx";
-import type { AssetFilterTimestamp } from "./AssetFilterTimestamp.tsx";
+import {
+	AssetFiltersFromJSON,
+	AssetFiltersToJSON,
+	type AssetFilters,
+} from "./AssetFilters.tsx";
 import {
 	AssetFilterTimestampFromJSON,
 	AssetFilterTimestampToJSON,
+	type AssetFilterTimestamp,
 } from "./AssetFilterTimestamp.tsx";
-import type { AssetFilters } from "./AssetFilters.tsx";
-import { AssetFiltersFromJSON, AssetFiltersToJSON } from "./AssetFilters.tsx";
-import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
 import {
 	ClassificationSpecificEnumFromJSON,
 	ClassificationSpecificEnumToJSON,
+	type ClassificationSpecificEnum,
 } from "./ClassificationSpecificEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

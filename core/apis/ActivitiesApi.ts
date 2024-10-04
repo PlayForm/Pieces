@@ -12,11 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { Activities, Activity, SeededActivity } from "../models/index.ts";
 import {
 	ActivitiesFromJSON,
 	ActivityFromJSON,
 	SeededActivityToJSON,
+	type Activities,
+	type Activity,
+	type SeededActivity,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

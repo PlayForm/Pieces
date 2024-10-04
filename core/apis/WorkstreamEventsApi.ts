@@ -12,15 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type {
-	SeededWorkstreamEvent,
-	WorkstreamEvent,
-	WorkstreamEvents,
-} from "../models/index.ts";
 import {
 	SeededWorkstreamEventToJSON,
 	WorkstreamEventFromJSON,
 	WorkstreamEventsFromJSON,
+	type SeededWorkstreamEvent,
+	type WorkstreamEvent,
+	type WorkstreamEvents,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

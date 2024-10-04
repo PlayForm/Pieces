@@ -13,17 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Model } from "./Model.tsx";
-import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
-import type { ReferencedFormat } from "./ReferencedFormat.tsx";
+import { ModelFromJSON, ModelToJSON, type Model } from "./Model.tsx";
 import {
 	ReferencedFormatFromJSON,
 	ReferencedFormatToJSON,
+	type ReferencedFormat,
 } from "./ReferencedFormat.tsx";
 
 /**

@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Person } from "./Person.tsx";
-import { PersonFromJSON, PersonToJSON } from "./Person.tsx";
+import { PersonFromJSON, PersonToJSON, type Person } from "./Person.tsx";
 
 /**
  * This is used for the Persons searching endpoint.

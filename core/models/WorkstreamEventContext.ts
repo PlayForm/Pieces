@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { WorkstreamEventTriggerContextBrowser } from "./WorkstreamEventTriggerContextBrowser.tsx";
 import {
 	WorkstreamEventTriggerContextBrowserFromJSON,
 	WorkstreamEventTriggerContextBrowserToJSON,
+	type WorkstreamEventTriggerContextBrowser,
 } from "./WorkstreamEventTriggerContextBrowser.tsx";
-import type { WorkstreamEventTriggerContextIDE } from "./WorkstreamEventTriggerContextIDE.tsx";
 import {
 	WorkstreamEventTriggerContextIDEFromJSON,
 	WorkstreamEventTriggerContextIDEToJSON,
+	type WorkstreamEventTriggerContextIDE,
 } from "./WorkstreamEventTriggerContextIDE.tsx";
 
 /**

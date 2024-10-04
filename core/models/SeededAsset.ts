@@ -13,30 +13,36 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Application } from "./Application.tsx";
-import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
-import type { AvailableFormats } from "./AvailableFormats.tsx";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "./Application.tsx";
 import {
 	AvailableFormatsFromJSON,
 	AvailableFormatsToJSON,
+	type AvailableFormats,
 } from "./AvailableFormats.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededAssetEnrichment } from "./SeededAssetEnrichment.tsx";
 import {
 	SeededAssetEnrichmentFromJSON,
 	SeededAssetEnrichmentToJSON,
+	type SeededAssetEnrichment,
 } from "./SeededAssetEnrichment.tsx";
-import type { SeededAssetMetadata } from "./SeededAssetMetadata.tsx";
 import {
 	SeededAssetMetadataFromJSON,
 	SeededAssetMetadataToJSON,
+	type SeededAssetMetadata,
 } from "./SeededAssetMetadata.tsx";
-import type { SeededFormat } from "./SeededFormat.tsx";
-import { SeededFormatFromJSON, SeededFormatToJSON } from "./SeededFormat.tsx";
+import {
+	SeededFormatFromJSON,
+	SeededFormatToJSON,
+	type SeededFormat,
+} from "./SeededFormat.tsx";
 
 /**
  * This is seed data that will be come an asset.

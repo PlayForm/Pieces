@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Anchor,
-	Anchors,
-	SearchInput,
-	SearchedAnchors,
-	SeededAnchor,
-} from "../models/index.ts";
 import {
 	AnchorFromJSON,
 	AnchorsFromJSON,
-	SearchInputToJSON,
 	SearchedAnchorsFromJSON,
+	SearchInputToJSON,
 	SeededAnchorToJSON,
+	type Anchor,
+	type Anchors,
+	type SearchedAnchors,
+	type SearchInput,
+	type SeededAnchor,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

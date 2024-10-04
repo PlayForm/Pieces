@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { MailgunDistribution } from "./MailgunDistribution.tsx";
 import {
 	MailgunDistributionFromJSON,
 	MailgunDistributionToJSON,
+	type MailgunDistribution,
 } from "./MailgunDistribution.tsx";
-import type { SeededGitHubDistribution } from "./SeededGitHubDistribution.tsx";
 import {
 	SeededGitHubDistributionFromJSON,
 	SeededGitHubDistributionToJSON,
+	type SeededGitHubDistribution,
 } from "./SeededGitHubDistribution.tsx";
 
 /**

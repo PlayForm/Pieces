@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import type { CodeAnalyses } from "../models/index.ts";
-import { CodeAnalysesFromJSON } from "../models/index.ts";
+import { CodeAnalysesFromJSON, type CodeAnalyses } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 /**

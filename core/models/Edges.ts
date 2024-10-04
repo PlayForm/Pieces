@@ -1,5 +1,4 @@
-import type { Node } from "./Node.tsx";
-import { NodeFromJSON, NodeToJSON } from "./Node.tsx";
+import { NodeFromJSON, NodeToJSON, type Node } from "./Node.tsx";
 
 /**
  *

@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import type { ImageAnalyses } from "../models/index.ts";
-import { ImageAnalysesFromJSON } from "../models/index.ts";
+import { ImageAnalysesFromJSON, type ImageAnalyses } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface ImageAnalysesSnapshotRequest {

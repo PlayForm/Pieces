@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import type { Notification } from "../models/index.ts";
-import { NotificationToJSON } from "../models/index.ts";
+import { NotificationToJSON, type Notification } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface SendLocalNotificationRequest {

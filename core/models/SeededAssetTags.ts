@@ -1,7 +1,7 @@
-import type { SeededAssetTag } from "./SeededAssetTag.tsx";
 import {
 	SeededAssetTagFromJSON,
 	SeededAssetTagToJSON,
+	type SeededAssetTag,
 } from "./SeededAssetTag.tsx";
 
 /**

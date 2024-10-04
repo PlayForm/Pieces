@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Format } from "./Format.tsx";
-import { FormatFromJSON, FormatToJSON } from "./Format.tsx";
+import { FormatFromJSON, FormatToJSON, type Format } from "./Format.tsx";
 
 /**
  * A base class for a collection of formats and some additional meta properties.

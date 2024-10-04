@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { DiscoveredAssets } from "./DiscoveredAssets.tsx";
 import {
 	DiscoveredAssetsFromJSON,
 	DiscoveredAssetsToJSON,
+	type DiscoveredAssets,
 } from "./DiscoveredAssets.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

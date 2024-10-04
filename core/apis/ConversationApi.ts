@@ -12,24 +12,22 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Conversation,
-	ConversationMessages,
-	ConversationSummarizeInput,
-	ConversationSummarizeOutput,
-	SearchInput,
-	SearchedConversationMessages,
-	SeededScoreIncrement,
-} from "../models/index.ts";
 import {
 	ConversationFromJSON,
 	ConversationMessagesFromJSON,
 	ConversationSummarizeInputToJSON,
 	ConversationSummarizeOutputFromJSON,
 	ConversationToJSON,
-	SearchInputToJSON,
 	SearchedConversationMessagesFromJSON,
+	SearchInputToJSON,
 	SeededScoreIncrementToJSON,
+	type Conversation,
+	type ConversationMessages,
+	type ConversationSummarizeInput,
+	type ConversationSummarizeOutput,
+	type SearchedConversationMessages,
+	type SearchInput,
+	type SeededScoreIncrement,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

@@ -13,18 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
 import {
 	ClassificationSpecificEnumFromJSON,
 	ClassificationSpecificEnumToJSON,
+	type ClassificationSpecificEnum,
 } from "./ClassificationSpecificEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededFormat } from "./SeededFormat.tsx";
-import { SeededFormatFromJSON, SeededFormatToJSON } from "./SeededFormat.tsx";
+import {
+	SeededFormatFromJSON,
+	SeededFormatToJSON,
+	type SeededFormat,
+} from "./SeededFormat.tsx";
 
 /**
  * A SeededUEAsset is the minimum data sent from UE required to create an asset within Pieces.

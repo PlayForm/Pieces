@@ -1,5 +1,8 @@
-import type { Embedding } from "./Embedding.tsx";
-import { EmbeddingFromJSON, EmbeddingToJSON } from "./Embedding.tsx";
+import {
+	EmbeddingFromJSON,
+	EmbeddingToJSON,
+	type Embedding,
+} from "./Embedding.tsx";
 
 /**
  *

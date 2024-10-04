@@ -13,40 +13,40 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { TLPCodeFragmentClassification } from "./TLPCodeFragmentClassification.tsx";
 import {
 	TLPCodeFragmentClassificationFromJSON,
 	TLPCodeFragmentClassificationToJSON,
+	type TLPCodeFragmentClassification,
 } from "./TLPCodeFragmentClassification.tsx";
-import type { TLPCodeFragmentDescription } from "./TLPCodeFragmentDescription.tsx";
 import {
 	TLPCodeFragmentDescriptionFromJSON,
 	TLPCodeFragmentDescriptionToJSON,
+	type TLPCodeFragmentDescription,
 } from "./TLPCodeFragmentDescription.tsx";
-import type { TLPCodeFragmentReclassification } from "./TLPCodeFragmentReclassification.tsx";
 import {
 	TLPCodeFragmentReclassificationFromJSON,
 	TLPCodeFragmentReclassificationToJSON,
+	type TLPCodeFragmentReclassification,
 } from "./TLPCodeFragmentReclassification.tsx";
-import type { TLPCodeFragmentStatistics } from "./TLPCodeFragmentStatistics.tsx";
 import {
 	TLPCodeFragmentStatisticsFromJSON,
 	TLPCodeFragmentStatisticsToJSON,
+	type TLPCodeFragmentStatistics,
 } from "./TLPCodeFragmentStatistics.tsx";
-import type { TLPCodeFragmentTagify } from "./TLPCodeFragmentTagify.tsx";
 import {
 	TLPCodeFragmentTagifyFromJSON,
 	TLPCodeFragmentTagifyToJSON,
+	type TLPCodeFragmentTagify,
 } from "./TLPCodeFragmentTagify.tsx";
-import type { TLPCodeSnippetSuggestedInteractions } from "./TLPCodeSnippetSuggestedInteractions.tsx";
 import {
 	TLPCodeSnippetSuggestedInteractionsFromJSON,
 	TLPCodeSnippetSuggestedInteractionsToJSON,
+	type TLPCodeSnippetSuggestedInteractions,
 } from "./TLPCodeSnippetSuggestedInteractions.tsx";
 
 /**

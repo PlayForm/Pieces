@@ -13,35 +13,37 @@
  */
 
 import { exists, mapValues } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { HintTypeEnum } from "./HintTypeEnum.tsx";
-import { HintTypeEnumFromJSON, HintTypeEnumToJSON } from "./HintTypeEnum.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
+import {
+	HintTypeEnumFromJSON,
+	HintTypeEnumToJSON,
+	type HintTypeEnum,
+} from "./HintTypeEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
 	ReferencedModelFromJSON,
 	ReferencedModelToJSON,
+	type ReferencedModel,
 } from "./ReferencedModel.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a hint that is attached to an asset, used for suggested_queries, and hints given via the qgpt flow.

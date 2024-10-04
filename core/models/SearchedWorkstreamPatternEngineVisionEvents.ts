@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SearchedWorkstreamPatternEngineVisionEvent } from "./SearchedWorkstreamPatternEngineVisionEvent.tsx";
 import {
 	SearchedWorkstreamPatternEngineVisionEventFromJSON,
 	SearchedWorkstreamPatternEngineVisionEventToJSON,
+	type SearchedWorkstreamPatternEngineVisionEvent,
 } from "./SearchedWorkstreamPatternEngineVisionEvent.tsx";
 
 /**

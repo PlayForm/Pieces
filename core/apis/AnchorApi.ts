@@ -12,11 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { Anchor, SeededScoreIncrement } from "../models/index.ts";
 import {
 	AnchorFromJSON,
 	AnchorToJSON,
 	SeededScoreIncrementToJSON,
+	type Anchor,
+	type SeededScoreIncrement,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

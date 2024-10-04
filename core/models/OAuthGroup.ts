@@ -13,10 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { OAuthAccount } from "./OAuthAccount.tsx";
-import { OAuthAccountFromJSON, OAuthAccountToJSON } from "./OAuthAccount.tsx";
-import type { OAuthToken } from "./OAuthToken.tsx";
-import { OAuthTokenFromJSON, OAuthTokenToJSON } from "./OAuthToken.tsx";
+import {
+	OAuthAccountFromJSON,
+	OAuthAccountToJSON,
+	type OAuthAccount,
+} from "./OAuthAccount.tsx";
+import {
+	OAuthTokenFromJSON,
+	OAuthTokenToJSON,
+	type OAuthToken,
+} from "./OAuthToken.tsx";
 
 /**
  * A model to group all of the properties associated with OAuthGroup

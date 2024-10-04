@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Auth0UserBetaStatus } from "./Auth0UserBetaStatus.tsx";
 import {
 	Auth0UserBetaStatusFromJSON,
 	Auth0UserBetaStatusToJSON,
+	type Auth0UserBetaStatus,
 } from "./Auth0UserBetaStatus.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

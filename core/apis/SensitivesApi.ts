@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import type {
-	SearchInput,
-	SearchedSensitives,
-	SeededSensitive,
-	Sensitive,
-	Sensitives,
-} from "../models/index.ts";
 import {
-	SearchInputToJSON,
 	SearchedSensitivesFromJSON,
+	SearchInputToJSON,
 	SeededSensitiveToJSON,
 	SensitiveFromJSON,
 	SensitivesFromJSON,
+	type SearchedSensitives,
+	type SearchInput,
+	type SeededSensitive,
+	type Sensitive,
+	type Sensitives,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

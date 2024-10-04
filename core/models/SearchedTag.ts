@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Tag } from "./Tag.tsx";
-import { TagFromJSON, TagToJSON } from "./Tag.tsx";
+import { TagFromJSON, TagToJSON, type Tag } from "./Tag.tsx";
 
 /**
  * This is used for the Tags searching endpoint.

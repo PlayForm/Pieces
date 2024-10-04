@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { BrowserTabValue } from "./BrowserTabValue.tsx";
 import {
 	BrowserTabValueFromJSON,
 	BrowserTabValueToJSON,
+	type BrowserTabValue,
 } from "./BrowserTabValue.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

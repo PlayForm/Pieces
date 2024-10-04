@@ -13,42 +13,51 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { SeededAnchor } from "./SeededAnchor.tsx";
-import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
-import type { SeededAnnotation } from "./SeededAnnotation.tsx";
+import {
+	SeededAnchorFromJSON,
+	SeededAnchorToJSON,
+	type SeededAnchor,
+} from "./SeededAnchor.tsx";
 import {
 	SeededAnnotationFromJSON,
 	SeededAnnotationToJSON,
+	type SeededAnnotation,
 } from "./SeededAnnotation.tsx";
-import type { SeededAssetSensitive } from "./SeededAssetSensitive.tsx";
 import {
 	SeededAssetSensitiveFromJSON,
 	SeededAssetSensitiveToJSON,
+	type SeededAssetSensitive,
 } from "./SeededAssetSensitive.tsx";
-import type { SeededAssetTag } from "./SeededAssetTag.tsx";
 import {
 	SeededAssetTagFromJSON,
 	SeededAssetTagToJSON,
+	type SeededAssetTag,
 } from "./SeededAssetTag.tsx";
-import type { SeededAssetWebsite } from "./SeededAssetWebsite.tsx";
 import {
 	SeededAssetWebsiteFromJSON,
 	SeededAssetWebsiteToJSON,
+	type SeededAssetWebsite,
 } from "./SeededAssetWebsite.tsx";
-import type { SeededHint } from "./SeededHint.tsx";
-import { SeededHintFromJSON, SeededHintToJSON } from "./SeededHint.tsx";
-import type { SeededPerson } from "./SeededPerson.tsx";
-import { SeededPersonFromJSON, SeededPersonToJSON } from "./SeededPerson.tsx";
+import {
+	SeededHintFromJSON,
+	SeededHintToJSON,
+	type SeededHint,
+} from "./SeededHint.tsx";
+import {
+	SeededPersonFromJSON,
+	SeededPersonToJSON,
+	type SeededPerson,
+} from "./SeededPerson.tsx";
 
 /**
  * This is optional metadata sent with the SeededAsset and other SeededAssets ie (UE, Jetbrains...)

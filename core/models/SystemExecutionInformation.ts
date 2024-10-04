@@ -1,7 +1,7 @@
-import type { SystemExecutionCpuInformation } from "./SystemExecutionCpuInformation.tsx";
 import {
 	SystemExecutionCpuInformationFromJSON,
 	SystemExecutionCpuInformationToJSON,
+	type SystemExecutionCpuInformation,
 } from "./SystemExecutionCpuInformation.tsx";
 
 /**

@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReferencedWorkstreamSummary } from "./ReferencedWorkstreamSummary.tsx";
 import {
 	ReferencedWorkstreamSummaryFromJSON,
 	ReferencedWorkstreamSummaryToJSON,
+	type ReferencedWorkstreamSummary,
 } from "./ReferencedWorkstreamSummary.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a DAG-Safe plural model of workstreamsummaries

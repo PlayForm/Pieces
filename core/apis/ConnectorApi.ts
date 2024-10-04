@@ -12,15 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Context,
-	Reaction,
-	SeededConnectorAsset,
-	SeededConnectorConnection,
-	SeededConnectorCreation,
-	SeededConnectorTracking,
-	Suggestion,
-} from "../models/index.ts";
 import {
 	ContextFromJSON,
 	ReactionToJSON,
@@ -29,6 +20,13 @@ import {
 	SeededConnectorCreationToJSON,
 	SeededConnectorTrackingToJSON,
 	SuggestionFromJSON,
+	type Context,
+	type Reaction,
+	type SeededConnectorAsset,
+	type SeededConnectorConnection,
+	type SeededConnectorCreation,
+	type SeededConnectorTracking,
+	type Suggestion,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

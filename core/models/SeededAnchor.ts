@@ -13,27 +13,30 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnchorTypeEnum } from "./AnchorTypeEnum.tsx";
 import {
 	AnchorTypeEnumFromJSON,
 	AnchorTypeEnumToJSON,
+	type AnchorTypeEnum,
 } from "./AnchorTypeEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
 	FlattenedPersonsFromJSON,
 	FlattenedPersonsToJSON,
+	type FlattenedPersons,
 } from "./FlattenedPersons.tsx";
-import type { PlatformEnum } from "./PlatformEnum.tsx";
-import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
-import type { SeededAnnotation } from "./SeededAnnotation.tsx";
+import {
+	PlatformEnumFromJSON,
+	PlatformEnumToJSON,
+	type PlatformEnum,
+} from "./PlatformEnum.tsx";
 import {
 	SeededAnnotationFromJSON,
 	SeededAnnotationToJSON,
+	type SeededAnnotation,
 } from "./SeededAnnotation.tsx";
 
 /**

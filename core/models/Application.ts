@@ -13,30 +13,36 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ApplicationNameEnum } from "./ApplicationNameEnum.tsx";
 import {
 	ApplicationNameEnumFromJSON,
 	ApplicationNameEnumToJSON,
+	type ApplicationNameEnum,
 } from "./ApplicationNameEnum.tsx";
-import type { CapabilitiesEnum } from "./CapabilitiesEnum.tsx";
 import {
 	CapabilitiesEnumFromJSON,
 	CapabilitiesEnumToJSON,
+	type CapabilitiesEnum,
 } from "./CapabilitiesEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { PlatformEnum } from "./PlatformEnum.tsx";
-import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
-import type { PrivacyEnum } from "./PrivacyEnum.tsx";
-import { PrivacyEnumFromJSON, PrivacyEnumToJSON } from "./PrivacyEnum.tsx";
+import {
+	PlatformEnumFromJSON,
+	PlatformEnumToJSON,
+	type PlatformEnum,
+} from "./PlatformEnum.tsx";
+import {
+	PrivacyEnumFromJSON,
+	PrivacyEnumToJSON,
+	type PrivacyEnum,
+} from "./PrivacyEnum.tsx";
 
 /**
  * A Model to describe what application a format/analytics event originated.

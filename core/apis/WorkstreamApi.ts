@@ -12,15 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type {
-	SeededWorkstreamSuggestionsRefresh,
-	WorkstreamSuggestions,
-	WorkstreamSuggestionsRefresh,
-} from "../models/index.ts";
 import {
 	SeededWorkstreamSuggestionsRefreshToJSON,
 	WorkstreamSuggestionsFromJSON,
 	WorkstreamSuggestionsRefreshFromJSON,
+	type SeededWorkstreamSuggestionsRefresh,
+	type WorkstreamSuggestions,
+	type WorkstreamSuggestionsRefresh,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

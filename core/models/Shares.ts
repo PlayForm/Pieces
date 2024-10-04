@@ -13,15 +13,13 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
-import type { Share } from "./Share.tsx";
-import { ShareFromJSON, ShareToJSON } from "./Share.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
+import { ShareFromJSON, ShareToJSON, type Share } from "./Share.tsx";
 
 /**
  * this is just an iterable of our individual share models.

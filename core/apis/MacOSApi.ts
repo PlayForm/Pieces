@@ -12,8 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { Asset, SeededMacOSAsset } from "../models/index.ts";
-import { AssetFromJSON, SeededMacOSAssetToJSON } from "../models/index.ts";
+import {
+	AssetFromJSON,
+	SeededMacOSAssetToJSON,
+	type Asset,
+	type SeededMacOSAsset,
+} from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface AssetsCreateNewAssetFromMacosRequest {

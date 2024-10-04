@@ -12,11 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { Linkify, LinkifyMultiple, Shares } from "../models/index.ts";
 import {
 	LinkifyMultipleToJSON,
 	LinkifyToJSON,
 	SharesFromJSON,
+	type Linkify,
+	type LinkifyMultiple,
+	type Shares,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

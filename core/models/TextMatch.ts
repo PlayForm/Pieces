@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { TextLocation } from "./TextLocation.tsx";
-import { TextLocationFromJSON, TextLocationToJSON } from "./TextLocation.tsx";
+import {
+	TextLocationFromJSON,
+	TextLocationToJSON,
+	type TextLocation,
+} from "./TextLocation.tsx";
 
 /**
  * Thext Match currently used for sensitive for scales for people, and anything related to text matching.

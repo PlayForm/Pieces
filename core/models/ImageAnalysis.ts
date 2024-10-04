@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { OCRAnalysis } from "./OCRAnalysis.tsx";
-import { OCRAnalysisFromJSON, OCRAnalysisToJSON } from "./OCRAnalysis.tsx";
+import {
+	OCRAnalysisFromJSON,
+	OCRAnalysisToJSON,
+	type OCRAnalysis,
+} from "./OCRAnalysis.tsx";
 
 /**
  * This is a model that represents all the information collected during the processing of an image.

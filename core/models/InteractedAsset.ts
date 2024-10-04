@@ -13,10 +13,10 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { InteractedAssetInteractions } from "./InteractedAssetInteractions.tsx";
 import {
 	InteractedAssetInteractionsFromJSON,
 	InteractedAssetInteractionsToJSON,
+	type InteractedAssetInteractions,
 } from "./InteractedAssetInteractions.tsx";
 
 /**

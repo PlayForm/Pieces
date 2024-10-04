@@ -13,17 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { HintTypeEnum } from "./HintTypeEnum.tsx";
-import { HintTypeEnumFromJSON, HintTypeEnumToJSON } from "./HintTypeEnum.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
+import {
+	HintTypeEnumFromJSON,
+	HintTypeEnumToJSON,
+	type HintTypeEnum,
+} from "./HintTypeEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
 
 /**

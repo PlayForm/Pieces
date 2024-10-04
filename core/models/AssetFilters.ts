@@ -13,17 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AssetFilter } from "./AssetFilter.tsx";
-import { AssetFilterFromJSON, AssetFilterToJSON } from "./AssetFilter.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	AssetFilterFromJSON,
+	AssetFilterToJSON,
+	type AssetFilter,
+} from "./AssetFilter.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FilterOperationTypeEnum } from "./FilterOperationTypeEnum.tsx";
 import {
 	FilterOperationTypeEnumFromJSON,
 	FilterOperationTypeEnumToJSON,
+	type FilterOperationTypeEnum,
 } from "./FilterOperationTypeEnum.tsx";
 
 /**

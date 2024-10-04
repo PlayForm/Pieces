@@ -1,7 +1,7 @@
-import type { TLPDirectedDiscoveryFilter } from "./TLPDirectedDiscoveryFilter.tsx";
 import {
 	TLPDirectedDiscoveryFilterFromJSON,
 	TLPDirectedDiscoveryFilterToJSON,
+	type TLPDirectedDiscoveryFilter,
 } from "./TLPDirectedDiscoveryFilter.tsx";
 
 /**

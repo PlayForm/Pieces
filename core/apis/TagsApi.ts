@@ -12,23 +12,21 @@
  * Do not edit the class manually.
  */
 
-import type {
-	ExistentMetadata,
-	ExistingMetadata,
-	SearchInput,
-	SearchedTags,
-	SeededTag,
-	Tag,
-	Tags,
-} from "../models/index.ts";
 import {
 	ExistentMetadataToJSON,
 	ExistingMetadataFromJSON,
-	SearchInputToJSON,
 	SearchedTagsFromJSON,
+	SearchInputToJSON,
 	SeededTagToJSON,
 	TagFromJSON,
 	TagsFromJSON,
+	type ExistentMetadata,
+	type ExistingMetadata,
+	type SearchedTags,
+	type SearchInput,
+	type SeededTag,
+	type Tag,
+	type Tags,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

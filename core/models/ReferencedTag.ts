@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedTag } from "./FlattenedTag.tsx";
-import { FlattenedTagFromJSON, FlattenedTagToJSON } from "./FlattenedTag.tsx";
+import {
+	FlattenedTagFromJSON,
+	FlattenedTagToJSON,
+	type FlattenedTag,
+} from "./FlattenedTag.tsx";
 
 /**
  * [DAG Safe] version of a Tag Model.

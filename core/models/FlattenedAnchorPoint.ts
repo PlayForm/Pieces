@@ -13,25 +13,27 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { PlatformEnum } from "./PlatformEnum.tsx";
-import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
-import type { ReferencedAnchor } from "./ReferencedAnchor.tsx";
+import {
+	PlatformEnumFromJSON,
+	PlatformEnumToJSON,
+	type PlatformEnum,
+} from "./PlatformEnum.tsx";
 import {
 	ReferencedAnchorFromJSON,
 	ReferencedAnchorToJSON,
+	type ReferencedAnchor,
 } from "./ReferencedAnchor.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  *

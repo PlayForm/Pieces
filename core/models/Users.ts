@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { UserProfile } from "./UserProfile.tsx";
-import { UserProfileFromJSON, UserProfileToJSON } from "./UserProfile.tsx";
+import {
+	UserProfileFromJSON,
+	UserProfileToJSON,
+	type UserProfile,
+} from "./UserProfile.tsx";
 
 /**
  * A base class for a collection of users and some additional meta properties.

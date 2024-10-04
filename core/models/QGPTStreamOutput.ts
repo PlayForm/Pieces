@@ -13,31 +13,31 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { QGPTAgentRoutes } from "./QGPTAgentRoutes.tsx";
 import {
 	QGPTAgentRoutesFromJSON,
 	QGPTAgentRoutesToJSON,
+	type QGPTAgentRoutes,
 } from "./QGPTAgentRoutes.tsx";
-import type { QGPTQuestionOutput } from "./QGPTQuestionOutput.tsx";
 import {
 	QGPTQuestionOutputFromJSON,
 	QGPTQuestionOutputToJSON,
+	type QGPTQuestionOutput,
 } from "./QGPTQuestionOutput.tsx";
-import type { QGPTRelevanceOutput } from "./QGPTRelevanceOutput.tsx";
 import {
 	QGPTRelevanceOutputFromJSON,
 	QGPTRelevanceOutputToJSON,
+	type QGPTRelevanceOutput,
 } from "./QGPTRelevanceOutput.tsx";
-import type { QGPTStreamEnum } from "./QGPTStreamEnum.tsx";
-import {
-	QGPTStreamEnumFromJSON,
-	QGPTStreamEnumToJSON,
-} from "./QGPTStreamEnum.tsx";
-import type { QGPTStreamedOutputExtractedMaterials } from "./QGPTStreamedOutputExtractedMaterials.tsx";
 import {
 	QGPTStreamedOutputExtractedMaterialsFromJSON,
 	QGPTStreamedOutputExtractedMaterialsToJSON,
+	type QGPTStreamedOutputExtractedMaterials,
 } from "./QGPTStreamedOutputExtractedMaterials.tsx";
+import {
+	QGPTStreamEnumFromJSON,
+	QGPTStreamEnumToJSON,
+	type QGPTStreamEnum,
+} from "./QGPTStreamEnum.tsx";
 
 /**
  * This is the out for the /qgpt/stream endpoint.

@@ -13,89 +13,87 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
 	FlattenedAnchorsFromJSON,
 	FlattenedAnchorsToJSON,
+	type FlattenedAnchors,
 } from "./FlattenedAnchors.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
 	FlattenedConversationsFromJSON,
 	FlattenedConversationsToJSON,
+	type FlattenedConversations,
 } from "./FlattenedConversations.tsx";
-import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
 	FlattenedPersonsFromJSON,
 	FlattenedPersonsToJSON,
+	type FlattenedPersons,
 } from "./FlattenedPersons.tsx";
-import type { FlattenedTags } from "./FlattenedTags.tsx";
 import {
 	FlattenedTagsFromJSON,
 	FlattenedTagsToJSON,
+	type FlattenedTags,
 } from "./FlattenedTags.tsx";
-import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
 	FlattenedWebsitesFromJSON,
 	FlattenedWebsitesToJSON,
+	type FlattenedWebsites,
 } from "./FlattenedWebsites.tsx";
-import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
 	FlattenedWorkstreamSummariesFromJSON,
 	FlattenedWorkstreamSummariesToJSON,
+	type FlattenedWorkstreamSummaries,
 } from "./FlattenedWorkstreamSummaries.tsx";
-import type { ReferencedAnchor } from "./ReferencedAnchor.tsx";
 import {
 	ReferencedAnchorFromJSON,
 	ReferencedAnchorToJSON,
+	type ReferencedAnchor,
 } from "./ReferencedAnchor.tsx";
-import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
 	ReferencedAssetFromJSON,
 	ReferencedAssetToJSON,
+	type ReferencedAsset,
 } from "./ReferencedAsset.tsx";
-import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
 	ReferencedConversationFromJSON,
 	ReferencedConversationToJSON,
+	type ReferencedConversation,
 } from "./ReferencedConversation.tsx";
-import type { ReferencedPerson } from "./ReferencedPerson.tsx";
 import {
 	ReferencedPersonFromJSON,
 	ReferencedPersonToJSON,
+	type ReferencedPerson,
 } from "./ReferencedPerson.tsx";
-import type { ReferencedTag } from "./ReferencedTag.tsx";
 import {
 	ReferencedTagFromJSON,
 	ReferencedTagToJSON,
+	type ReferencedTag,
 } from "./ReferencedTag.tsx";
-import type { ReferencedWebsite } from "./ReferencedWebsite.tsx";
 import {
 	ReferencedWebsiteFromJSON,
 	ReferencedWebsiteToJSON,
+	type ReferencedWebsite,
 } from "./ReferencedWebsite.tsx";
-import type { ReferencedWorkstreamSummary } from "./ReferencedWorkstreamSummary.tsx";
 import {
 	ReferencedWorkstreamSummaryFromJSON,
 	ReferencedWorkstreamSummaryToJSON,
+	type ReferencedWorkstreamSummary,
 } from "./ReferencedWorkstreamSummary.tsx";
-import type { Seed } from "./Seed.tsx";
-import { SeedFromJSON, SeedToJSON } from "./Seed.tsx";
-import type { Seeds } from "./Seeds.tsx";
-import { SeedsFromJSON, SeedsToJSON } from "./Seeds.tsx";
-import type { WorkstreamSuggestions } from "./WorkstreamSuggestions.tsx";
+import { SeedFromJSON, SeedToJSON, type Seed } from "./Seed.tsx";
+import { SeedsFromJSON, SeedsToJSON, type Seeds } from "./Seeds.tsx";
 import {
 	WorkstreamSuggestionsFromJSON,
 	WorkstreamSuggestionsToJSON,
+	type WorkstreamSuggestions,
 } from "./WorkstreamSuggestions.tsx";
 
 /**

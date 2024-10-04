@@ -13,22 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededClassification } from "./SeededClassification.tsx";
 import {
 	SeededClassificationFromJSON,
 	SeededClassificationToJSON,
+	type SeededClassification,
 } from "./SeededClassification.tsx";
-import type { SeededFile } from "./SeededFile.tsx";
-import { SeededFileFromJSON, SeededFileToJSON } from "./SeededFile.tsx";
-import type { SeededFragment } from "./SeededFragment.tsx";
+import {
+	SeededFileFromJSON,
+	SeededFileToJSON,
+	type SeededFile,
+} from "./SeededFile.tsx";
 import {
 	SeededFragmentFromJSON,
 	SeededFragmentToJSON,
+	type SeededFragment,
 } from "./SeededFragment.tsx";
 
 /**

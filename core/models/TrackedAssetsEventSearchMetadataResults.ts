@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { Space } from "./Space.tsx";
-import { SpaceFromJSON, SpaceToJSON } from "./Space.tsx";
+import { SpaceFromJSON, SpaceToJSON, type Space } from "./Space.tsx";
 
 /**
  * Numbers related to search results

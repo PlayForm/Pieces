@@ -12,8 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { Asset, SeededUltraSuiteAsset } from "../models/index.ts";
-import { AssetFromJSON, SeededUltraSuiteAssetToJSON } from "../models/index.ts";
+import {
+	AssetFromJSON,
+	SeededUltraSuiteAssetToJSON,
+	type Asset,
+	type SeededUltraSuiteAsset,
+} from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface AssetsCreateUltraSuiteAssetRequest {

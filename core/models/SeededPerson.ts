@@ -13,31 +13,40 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
 	FlattenedAnchorsFromJSON,
 	FlattenedAnchorsToJSON,
+	type FlattenedAnchors,
 } from "./FlattenedAnchors.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { PersonAccess } from "./PersonAccess.tsx";
-import { PersonAccessFromJSON, PersonAccessToJSON } from "./PersonAccess.tsx";
-import type { PersonModel } from "./PersonModel.tsx";
-import { PersonModelFromJSON, PersonModelToJSON } from "./PersonModel.tsx";
-import type { PersonType } from "./PersonType.tsx";
-import { PersonTypeFromJSON, PersonTypeToJSON } from "./PersonType.tsx";
-import type { SeededAnnotation } from "./SeededAnnotation.tsx";
+import {
+	PersonAccessFromJSON,
+	PersonAccessToJSON,
+	type PersonAccess,
+} from "./PersonAccess.tsx";
+import {
+	PersonModelFromJSON,
+	PersonModelToJSON,
+	type PersonModel,
+} from "./PersonModel.tsx";
+import {
+	PersonTypeFromJSON,
+	PersonTypeToJSON,
+	type PersonType,
+} from "./PersonType.tsx";
 import {
 	SeededAnnotationFromJSON,
 	SeededAnnotationToJSON,
+	type SeededAnnotation,
 } from "./SeededAnnotation.tsx";
 
 /**

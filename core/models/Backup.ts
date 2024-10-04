@@ -13,18 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { PlatformEnum } from "./PlatformEnum.tsx";
-import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
+import {
+	PlatformEnumFromJSON,
+	PlatformEnumToJSON,
+	type PlatformEnum,
+} from "./PlatformEnum.tsx";
 
 /**
  * This is a cloud Backup. This is specific metadata needed inorder to retrieve a Backup.

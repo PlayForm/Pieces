@@ -13,63 +13,62 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnnotationTypeEnum } from "./AnnotationTypeEnum.tsx";
 import {
 	AnnotationTypeEnumFromJSON,
 	AnnotationTypeEnumToJSON,
+	type AnnotationTypeEnum,
 } from "./AnnotationTypeEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
 	FlattenedConversationMessagesFromJSON,
 	FlattenedConversationMessagesToJSON,
+	type FlattenedConversationMessages,
 } from "./FlattenedConversationMessages.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { ReferencedAnchor } from "./ReferencedAnchor.tsx";
 import {
 	ReferencedAnchorFromJSON,
 	ReferencedAnchorToJSON,
+	type ReferencedAnchor,
 } from "./ReferencedAnchor.tsx";
-import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
 	ReferencedAssetFromJSON,
 	ReferencedAssetToJSON,
+	type ReferencedAsset,
 } from "./ReferencedAsset.tsx";
-import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
 	ReferencedConversationFromJSON,
 	ReferencedConversationToJSON,
+	type ReferencedConversation,
 } from "./ReferencedConversation.tsx";
-import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
 	ReferencedModelFromJSON,
 	ReferencedModelToJSON,
+	type ReferencedModel,
 } from "./ReferencedModel.tsx";
-import type { ReferencedPerson } from "./ReferencedPerson.tsx";
 import {
 	ReferencedPersonFromJSON,
 	ReferencedPersonToJSON,
+	type ReferencedPerson,
 } from "./ReferencedPerson.tsx";
-import type { ReferencedWorkstreamSummary } from "./ReferencedWorkstreamSummary.tsx";
 import {
 	ReferencedWorkstreamSummaryFromJSON,
 	ReferencedWorkstreamSummaryToJSON,
+	type ReferencedWorkstreamSummary,
 } from "./ReferencedWorkstreamSummary.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * An Annotation is the replacement for descriptions, this will enable comments, description, summaries and many more.

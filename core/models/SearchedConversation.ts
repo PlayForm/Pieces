@@ -13,22 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Conversation } from "./Conversation.tsx";
-import { ConversationFromJSON, ConversationToJSON } from "./Conversation.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	ConversationFromJSON,
+	ConversationToJSON,
+	type Conversation,
+} from "./Conversation.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SearchedAnnotations } from "./SearchedAnnotations.tsx";
 import {
 	SearchedAnnotationsFromJSON,
 	SearchedAnnotationsToJSON,
+	type SearchedAnnotations,
 } from "./SearchedAnnotations.tsx";
-import type { SearchedConversationMessages } from "./SearchedConversationMessages.tsx";
 import {
 	SearchedConversationMessagesFromJSON,
 	SearchedConversationMessagesToJSON,
+	type SearchedConversationMessages,
 } from "./SearchedConversationMessages.tsx";
 
 /**

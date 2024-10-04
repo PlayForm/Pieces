@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { Model } from "./Model.tsx";
-import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
+import { ModelFromJSON, ModelToJSON, type Model } from "./Model.tsx";
 
 /**
  *

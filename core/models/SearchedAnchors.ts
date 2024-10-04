@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SearchedAnchor } from "./SearchedAnchor.tsx";
 import {
 	SearchedAnchorFromJSON,
 	SearchedAnchorToJSON,
+	type SearchedAnchor,
 } from "./SearchedAnchor.tsx";
 
 /**

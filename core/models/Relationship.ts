@@ -13,19 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Edges } from "./Edges.tsx";
-import { EdgesFromJSON, EdgesToJSON } from "./Edges.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import { EdgesFromJSON, EdgesToJSON, type Edges } from "./Edges.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Embeddings } from "./Embeddings.tsx";
-import { EmbeddingsFromJSON, EmbeddingsToJSON } from "./Embeddings.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
+import {
+	EmbeddingsFromJSON,
+	EmbeddingsToJSON,
+	type Embeddings,
+} from "./Embeddings.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
 
 /**

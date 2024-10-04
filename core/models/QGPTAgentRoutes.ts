@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { QGPTAgentRelatedRoutes } from "./QGPTAgentRelatedRoutes.tsx";
 import {
 	QGPTAgentRelatedRoutesFromJSON,
 	QGPTAgentRelatedRoutesToJSON,
+	type QGPTAgentRelatedRoutes,
 } from "./QGPTAgentRelatedRoutes.tsx";
 
 /**

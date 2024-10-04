@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Seeds } from "./Seeds.tsx";
-import { SeedsFromJSON, SeedsToJSON } from "./Seeds.tsx";
+import { SeedsFromJSON, SeedsToJSON, type Seeds } from "./Seeds.tsx";
 
 /**
  * This is an out body for the /machine_learning/text/technical_processing/generators/personification endpoint.

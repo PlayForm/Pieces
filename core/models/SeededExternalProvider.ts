@@ -1,7 +1,7 @@
-import type { ExternalProviderTypeEnum } from "./ExternalProviderTypeEnum.tsx";
 import {
 	ExternalProviderTypeEnumFromJSON,
 	ExternalProviderTypeEnumToJSON,
+	type ExternalProviderTypeEnum,
 } from "./ExternalProviderTypeEnum.tsx";
 
 /**

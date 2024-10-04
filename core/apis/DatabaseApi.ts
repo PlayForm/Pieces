@@ -12,10 +12,10 @@
  * Do not edit the class manually.
  */
 
-import type { ExportedDatabase } from "../models/index.ts";
 import {
 	ExportedDatabaseFromJSON,
 	ExportedDatabaseToJSON,
+	type ExportedDatabase,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

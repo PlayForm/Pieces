@@ -12,20 +12,18 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Asset,
-	Assets,
-	Backup,
-	BackupStatus,
-	BackupStreamedProgress,
-} from "../models/index.ts";
 import {
-	AssetToJSON,
 	AssetsToJSON,
+	AssetToJSON,
 	BackupFromJSON,
 	BackupStatusFromJSON,
 	BackupStreamedProgressFromJSON,
 	BackupToJSON,
+	type Asset,
+	type Assets,
+	type Backup,
+	type BackupStatus,
+	type BackupStreamedProgress,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

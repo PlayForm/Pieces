@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
 	AnonymousTemporalRangeFromJSON,
 	AnonymousTemporalRangeToJSON,
+	type AnonymousTemporalRange,
 } from "./AnonymousTemporalRange.tsx";
-import type { Auth0OpenAIUserMetadata } from "./Auth0OpenAIUserMetadata.tsx";
 import {
 	Auth0OpenAIUserMetadataFromJSON,
 	Auth0OpenAIUserMetadataToJSON,
+	type Auth0OpenAIUserMetadata,
 } from "./Auth0OpenAIUserMetadata.tsx";
-import type { Auth0UserAllocationMetadata } from "./Auth0UserAllocationMetadata.tsx";
 import {
 	Auth0UserAllocationMetadataFromJSON,
 	Auth0UserAllocationMetadataToJSON,
+	type Auth0UserAllocationMetadata,
 } from "./Auth0UserAllocationMetadata.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { PersonBasicType } from "./PersonBasicType.tsx";
 import {
 	PersonBasicTypeFromJSON,
 	PersonBasicTypeToJSON,
+	type PersonBasicType,
 } from "./PersonBasicType.tsx";
 
 /**

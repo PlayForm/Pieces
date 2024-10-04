@@ -1,9 +1,12 @@
-import type { FileFormat } from "./FileFormat.tsx";
-import { FileFormatFromJSON, FileFormatToJSON } from "./FileFormat.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
+import {
+	FileFormatFromJSON,
+	FileFormatToJSON,
+	type FileFormat,
+} from "./FileFormat.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
 
 /**

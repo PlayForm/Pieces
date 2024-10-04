@@ -12,11 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { OAuthToken, UserProfile, Users } from "../models/index.ts";
 import {
 	OAuthTokenToJSON,
 	UserProfileFromJSON,
 	UsersFromJSON,
+	type OAuthToken,
+	type UserProfile,
+	type Users,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

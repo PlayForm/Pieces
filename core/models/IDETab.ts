@@ -13,42 +13,45 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
 	AnonymousTemporalRangeFromJSON,
 	AnonymousTemporalRangeToJSON,
+	type AnonymousTemporalRange,
 } from "./AnonymousTemporalRange.tsx";
-import type { Classification } from "./Classification.tsx";
 import {
 	ClassificationFromJSON,
 	ClassificationToJSON,
+	type Classification,
 } from "./Classification.tsx";
-import type { DocumentContributors } from "./DocumentContributors.tsx";
 import {
 	DocumentContributorsFromJSON,
 	DocumentContributorsToJSON,
+	type DocumentContributors,
 } from "./DocumentContributors.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { IDESelections } from "./IDESelections.tsx";
 import {
 	IDESelectionsFromJSON,
 	IDESelectionsToJSON,
+	type IDESelections,
 } from "./IDESelections.tsx";
-import type { LanguageServerProtocol } from "./LanguageServerProtocol.tsx";
 import {
 	LanguageServerProtocolFromJSON,
 	LanguageServerProtocolToJSON,
+	type LanguageServerProtocol,
 } from "./LanguageServerProtocol.tsx";
-import type { SeededAnchor } from "./SeededAnchor.tsx";
-import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
-import type { TransferableString } from "./TransferableString.tsx";
+import {
+	SeededAnchorFromJSON,
+	SeededAnchorToJSON,
+	type SeededAnchor,
+} from "./SeededAnchor.tsx";
 import {
 	TransferableStringFromJSON,
 	TransferableStringToJSON,
+	type TransferableString,
 } from "./TransferableString.tsx";
 
 /**

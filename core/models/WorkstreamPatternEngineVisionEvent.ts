@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { WorkstreamPatternEngineSource } from "./WorkstreamPatternEngineSource.tsx";
 import {
 	WorkstreamPatternEngineSourceFromJSON,
 	WorkstreamPatternEngineSourceToJSON,
+	type WorkstreamPatternEngineSource,
 } from "./WorkstreamPatternEngineSource.tsx";
-import type { WorkstreamPatternEngineVisionEventTextualValue } from "./WorkstreamPatternEngineVisionEventTextualValue.tsx";
 import {
 	WorkstreamPatternEngineVisionEventTextualValueFromJSON,
 	WorkstreamPatternEngineVisionEventTextualValueToJSON,
+	type WorkstreamPatternEngineVisionEventTextualValue,
 } from "./WorkstreamPatternEngineVisionEventTextualValue.tsx";
 
 /**

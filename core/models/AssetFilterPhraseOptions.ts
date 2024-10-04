@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnnotationTypeEnum } from "./AnnotationTypeEnum.tsx";
 import {
 	AnnotationTypeEnumFromJSON,
 	AnnotationTypeEnumToJSON,
+	type AnnotationTypeEnum,
 } from "./AnnotationTypeEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ByteDescriptor } from "./ByteDescriptor.tsx";
 import {
 	ByteDescriptorFromJSON,
 	ByteDescriptorToJSON,
+	type ByteDescriptor,
 } from "./ByteDescriptor.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { WorkstreamPatternEngineVisionEvent } from "./WorkstreamPatternEngineVisionEvent.tsx";
 import {
 	WorkstreamPatternEngineVisionEventFromJSON,
 	WorkstreamPatternEngineVisionEventToJSON,
+	type WorkstreamPatternEngineVisionEvent,
 } from "./WorkstreamPatternEngineVisionEvent.tsx";
 
 /**

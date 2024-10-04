@@ -12,10 +12,11 @@
  * Do not edit the class manually.
  */
 
-import type { SearchedAssets, SeededAssetTags } from "../models/index.ts";
 import {
 	SearchedAssetsFromJSON,
 	SeededAssetTagsToJSON,
+	type SearchedAssets,
+	type SeededAssetTags,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

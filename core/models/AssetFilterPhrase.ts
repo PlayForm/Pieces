@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AssetFilterPhraseOptions } from "./AssetFilterPhraseOptions.tsx";
 import {
 	AssetFilterPhraseOptionsFromJSON,
 	AssetFilterPhraseOptionsToJSON,
+	type AssetFilterPhraseOptions,
 } from "./AssetFilterPhraseOptions.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

@@ -13,18 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnchorTypeEnum } from "./AnchorTypeEnum.tsx";
 import {
 	AnchorTypeEnumFromJSON,
 	AnchorTypeEnumToJSON,
+	type AnchorTypeEnum,
 } from "./AnchorTypeEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { PlatformEnum } from "./PlatformEnum.tsx";
-import { PlatformEnumFromJSON, PlatformEnumToJSON } from "./PlatformEnum.tsx";
+import {
+	PlatformEnumFromJSON,
+	PlatformEnumToJSON,
+	type PlatformEnum,
+} from "./PlatformEnum.tsx";
 
 /**
  *

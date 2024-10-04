@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import type {
-	SearchInput,
-	SearchedWorkstreamSummaries,
-	SeededWorkstreamSummary,
-	WorkstreamSummaries,
-	WorkstreamSummary,
-} from "../models/index.ts";
 import {
-	SearchInputToJSON,
 	SearchedWorkstreamSummariesFromJSON,
+	SearchInputToJSON,
 	SeededWorkstreamSummaryToJSON,
 	WorkstreamSummariesFromJSON,
 	WorkstreamSummaryFromJSON,
+	type SearchedWorkstreamSummaries,
+	type SearchInput,
+	type SeededWorkstreamSummary,
+	type WorkstreamSummaries,
+	type WorkstreamSummary,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

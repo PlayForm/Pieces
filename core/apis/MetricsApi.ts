@@ -12,10 +12,11 @@
  * Do not edit the class manually.
  */
 
-import type { FormatsMetrics, OrderedMetrics } from "../models/index.ts";
 import {
 	FormatsMetricsFromJSON,
 	OrderedMetricsFromJSON,
+	type FormatsMetrics,
+	type OrderedMetrics,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

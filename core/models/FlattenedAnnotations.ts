@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReferencedAnnotation } from "./ReferencedAnnotation.tsx";
 import {
 	ReferencedAnnotationFromJSON,
 	ReferencedAnnotationToJSON,
+	type ReferencedAnnotation,
 } from "./ReferencedAnnotation.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a flattened plural of Annotation, typically this will just be a list of uuids.

@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import type { Relationships } from "../models/index.ts";
-import { RelationshipsFromJSON } from "../models/index.ts";
+import { RelationshipsFromJSON, type Relationships } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 /**

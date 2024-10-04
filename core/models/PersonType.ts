@@ -13,18 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { PersonBasicType } from "./PersonBasicType.tsx";
 import {
 	PersonBasicTypeFromJSON,
 	PersonBasicTypeToJSON,
+	type PersonBasicType,
 } from "./PersonBasicType.tsx";
-import type { UserProfile } from "./UserProfile.tsx";
-import { UserProfileFromJSON, UserProfileToJSON } from "./UserProfile.tsx";
+import {
+	UserProfileFromJSON,
+	UserProfileToJSON,
+	type UserProfile,
+} from "./UserProfile.tsx";
 
 /**
  * basic or platform is absolutely required here.

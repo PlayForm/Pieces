@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReferencedAnnotation } from "./ReferencedAnnotation.tsx";
 import {
 	ReferencedAnnotationFromJSON,
 	ReferencedAnnotationToJSON,
+	type ReferencedAnnotation,
 } from "./ReferencedAnnotation.tsx";
-import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
 	ReferencedConversationFromJSON,
 	ReferencedConversationToJSON,
+	type ReferencedConversation,
 } from "./ReferencedConversation.tsx";
 
 /**

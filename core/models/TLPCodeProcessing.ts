@@ -13,30 +13,30 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { TLPCodeDirectoryAnalytics } from "./TLPCodeDirectoryAnalytics.tsx";
 import {
 	TLPCodeDirectoryAnalyticsFromJSON,
 	TLPCodeDirectoryAnalyticsToJSON,
+	type TLPCodeDirectoryAnalytics,
 } from "./TLPCodeDirectoryAnalytics.tsx";
-import type { TLPCodeFileAnalytics } from "./TLPCodeFileAnalytics.tsx";
 import {
 	TLPCodeFileAnalyticsFromJSON,
 	TLPCodeFileAnalyticsToJSON,
+	type TLPCodeFileAnalytics,
 } from "./TLPCodeFileAnalytics.tsx";
-import type { TLPCodeRepositoryAnalytics } from "./TLPCodeRepositoryAnalytics.tsx";
 import {
 	TLPCodeRepositoryAnalyticsFromJSON,
 	TLPCodeRepositoryAnalyticsToJSON,
+	type TLPCodeRepositoryAnalytics,
 } from "./TLPCodeRepositoryAnalytics.tsx";
-import type { TLPCodeSnippetAnalytics } from "./TLPCodeSnippetAnalytics.tsx";
 import {
 	TLPCodeSnippetAnalyticsFromJSON,
 	TLPCodeSnippetAnalyticsToJSON,
+	type TLPCodeSnippetAnalytics,
 } from "./TLPCodeSnippetAnalytics.tsx";
 
 /**

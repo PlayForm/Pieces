@@ -13,18 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FilterOperationTypeEnum } from "./FilterOperationTypeEnum.tsx";
 import {
 	FilterOperationTypeEnumFromJSON,
 	FilterOperationTypeEnumToJSON,
+	type FilterOperationTypeEnum,
 } from "./FilterOperationTypeEnum.tsx";
-import type { SearchEngine } from "./SearchEngine.tsx";
-import { SearchEngineFromJSON, SearchEngineToJSON } from "./SearchEngine.tsx";
+import {
+	SearchEngineFromJSON,
+	SearchEngineToJSON,
+	type SearchEngine,
+} from "./SearchEngine.tsx";
 
 /**
  * This is a model for plural Engine.

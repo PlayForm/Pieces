@@ -1,7 +1,7 @@
-import type { EmbeddedModelSchemaSemanticVersionEnum } from "./EmbeddedModelSchemaSemanticVersionEnum.tsx";
 import {
 	EmbeddedModelSchemaSemanticVersionEnumFromJSON,
 	EmbeddedModelSchemaSemanticVersionEnumToJSON,
+	type EmbeddedModelSchemaSemanticVersionEnum,
 } from "./EmbeddedModelSchemaSemanticVersionEnum.tsx";
 
 /**

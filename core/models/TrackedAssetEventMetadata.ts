@@ -13,65 +13,65 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ReferencedAnchor } from "./ReferencedAnchor.tsx";
 import {
 	ReferencedAnchorFromJSON,
 	ReferencedAnchorToJSON,
+	type ReferencedAnchor,
 } from "./ReferencedAnchor.tsx";
-import type { ReferencedAnnotation } from "./ReferencedAnnotation.tsx";
 import {
 	ReferencedAnnotationFromJSON,
 	ReferencedAnnotationToJSON,
+	type ReferencedAnnotation,
 } from "./ReferencedAnnotation.tsx";
-import type { ReferencedHint } from "./ReferencedHint.tsx";
 import {
 	ReferencedHintFromJSON,
 	ReferencedHintToJSON,
+	type ReferencedHint,
 } from "./ReferencedHint.tsx";
-import type { ReferencedPerson } from "./ReferencedPerson.tsx";
 import {
 	ReferencedPersonFromJSON,
 	ReferencedPersonToJSON,
+	type ReferencedPerson,
 } from "./ReferencedPerson.tsx";
-import type { ReferencedSensitive } from "./ReferencedSensitive.tsx";
 import {
 	ReferencedSensitiveFromJSON,
 	ReferencedSensitiveToJSON,
+	type ReferencedSensitive,
 } from "./ReferencedSensitive.tsx";
-import type { ReferencedShare } from "./ReferencedShare.tsx";
 import {
 	ReferencedShareFromJSON,
 	ReferencedShareToJSON,
+	type ReferencedShare,
 } from "./ReferencedShare.tsx";
-import type { ReferencedTag } from "./ReferencedTag.tsx";
 import {
 	ReferencedTagFromJSON,
 	ReferencedTagToJSON,
+	type ReferencedTag,
 } from "./ReferencedTag.tsx";
-import type { ReferencedWebsite } from "./ReferencedWebsite.tsx";
 import {
 	ReferencedWebsiteFromJSON,
 	ReferencedWebsiteToJSON,
+	type ReferencedWebsite,
 } from "./ReferencedWebsite.tsx";
-import type { TrackedAssetEventCreationMetadata } from "./TrackedAssetEventCreationMetadata.tsx";
 import {
 	TrackedAssetEventCreationMetadataFromJSON,
 	TrackedAssetEventCreationMetadataToJSON,
+	type TrackedAssetEventCreationMetadata,
 } from "./TrackedAssetEventCreationMetadata.tsx";
-import type { TrackedAssetEventFormatReclassificationMetadata } from "./TrackedAssetEventFormatReclassificationMetadata.tsx";
 import {
 	TrackedAssetEventFormatReclassificationMetadataFromJSON,
 	TrackedAssetEventFormatReclassificationMetadataToJSON,
+	type TrackedAssetEventFormatReclassificationMetadata,
 } from "./TrackedAssetEventFormatReclassificationMetadata.tsx";
-import type { TrackedAssetEventRenameMetadata } from "./TrackedAssetEventRenameMetadata.tsx";
 import {
 	TrackedAssetEventRenameMetadataFromJSON,
 	TrackedAssetEventRenameMetadataToJSON,
+	type TrackedAssetEventRenameMetadata,
 } from "./TrackedAssetEventRenameMetadata.tsx";
-import type { TrackedAssetsEventSearchMetadata } from "./TrackedAssetsEventSearchMetadata.tsx";
 import {
 	TrackedAssetsEventSearchMetadataFromJSON,
 	TrackedAssetsEventSearchMetadataToJSON,
+	type TrackedAssetsEventSearchMetadata,
 } from "./TrackedAssetsEventSearchMetadata.tsx";
 
 /**

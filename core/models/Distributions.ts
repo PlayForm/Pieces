@@ -13,12 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Distribution } from "./Distribution.tsx";
-import { DistributionFromJSON, DistributionToJSON } from "./Distribution.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	DistributionFromJSON,
+	DistributionToJSON,
+	type Distribution,
+} from "./Distribution.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { OSDeviceCPUHardwareInformation } from "./OSDeviceCPUHardwareInformation.tsx";
 import {
 	OSDeviceCPUHardwareInformationFromJSON,
 	OSDeviceCPUHardwareInformationToJSON,
+	type OSDeviceCPUHardwareInformation,
 } from "./OSDeviceCPUHardwareInformation.tsx";
-import type { OSDeviceGPUHardwareInformation } from "./OSDeviceGPUHardwareInformation.tsx";
 import {
 	OSDeviceGPUHardwareInformationFromJSON,
 	OSDeviceGPUHardwareInformationToJSON,
+	type OSDeviceGPUHardwareInformation,
 } from "./OSDeviceGPUHardwareInformation.tsx";
 
 /**

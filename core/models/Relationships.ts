@@ -1,5 +1,8 @@
-import type { Relationship } from "./Relationship.tsx";
-import { RelationshipFromJSON, RelationshipToJSON } from "./Relationship.tsx";
+import {
+	RelationshipFromJSON,
+	RelationshipToJSON,
+	type Relationship,
+} from "./Relationship.tsx";
 
 /**
  *

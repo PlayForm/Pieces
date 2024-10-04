@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Sensitive } from "./Sensitive.tsx";
-import { SensitiveFromJSON, SensitiveToJSON } from "./Sensitive.tsx";
+import {
+	SensitiveFromJSON,
+	SensitiveToJSON,
+	type Sensitive,
+} from "./Sensitive.tsx";
 
 /**
  * This is used for the Sensitives searching endpoint.

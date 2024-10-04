@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededDiscoverableAsset } from "./SeededDiscoverableAsset.tsx";
 import {
 	SeededDiscoverableAssetFromJSON,
 	SeededDiscoverableAssetToJSON,
+	type SeededDiscoverableAsset,
 } from "./SeededDiscoverableAsset.tsx";
-import type { TLPDirectedDiscoveryFilters } from "./TLPDirectedDiscoveryFilters.tsx";
 import {
 	TLPDirectedDiscoveryFiltersFromJSON,
 	TLPDirectedDiscoveryFiltersToJSON,
+	type TLPDirectedDiscoveryFilters,
 } from "./TLPDirectedDiscoveryFilters.tsx";
 
 /**

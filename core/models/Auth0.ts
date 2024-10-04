@@ -13,25 +13,31 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Auth0Identity } from "./Auth0Identity.tsx";
 import {
 	Auth0IdentityFromJSON,
 	Auth0IdentityToJSON,
+	type Auth0Identity,
 } from "./Auth0Identity.tsx";
-import type { Auth0Redirects } from "./Auth0Redirects.tsx";
 import {
 	Auth0RedirectsFromJSON,
 	Auth0RedirectsToJSON,
+	type Auth0Redirects,
 } from "./Auth0Redirects.tsx";
-import type { Auth0User } from "./Auth0User.tsx";
-import { Auth0UserFromJSON, Auth0UserToJSON } from "./Auth0User.tsx";
-import type { Auth0UserMetadata } from "./Auth0UserMetadata.tsx";
+import {
+	Auth0UserFromJSON,
+	Auth0UserToJSON,
+	type Auth0User,
+} from "./Auth0User.tsx";
 import {
 	Auth0UserMetadataFromJSON,
 	Auth0UserMetadataToJSON,
+	type Auth0UserMetadata,
 } from "./Auth0UserMetadata.tsx";
-import type { OAuthGroup } from "./OAuthGroup.tsx";
-import { OAuthGroupFromJSON, OAuthGroupToJSON } from "./OAuthGroup.tsx";
+import {
+	OAuthGroupFromJSON,
+	OAuthGroupToJSON,
+	type OAuthGroup,
+} from "./OAuthGroup.tsx";
 
 /**
  * An object representing all of the properties that are available within a Auth0 PKCE Flow

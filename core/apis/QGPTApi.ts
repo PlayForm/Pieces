@@ -12,19 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	QGPTHintsInput,
-	QGPTPersonsRelatedInput,
-	QGPTPersonsRelatedOutput,
-	QGPTQuestionInput,
-	QGPTQuestionOutput,
-	QGPTRelevanceInput,
-	QGPTRelevanceOutput,
-	QGPTRepromptInput,
-	QGPTRepromptOutput,
-	QGPTStreamInput,
-	QGPTStreamOutput,
-} from "../models/index.ts";
 import {
 	QGPTHintsInputToJSON,
 	QGPTPersonsRelatedInputToJSON,
@@ -37,6 +24,17 @@ import {
 	QGPTRepromptOutputFromJSON,
 	QGPTStreamInputToJSON,
 	QGPTStreamOutputFromJSON,
+	type QGPTHintsInput,
+	type QGPTPersonsRelatedInput,
+	type QGPTPersonsRelatedOutput,
+	type QGPTQuestionInput,
+	type QGPTQuestionOutput,
+	type QGPTRelevanceInput,
+	type QGPTRelevanceOutput,
+	type QGPTRepromptInput,
+	type QGPTRepromptOutput,
+	type QGPTStreamInput,
+	type QGPTStreamOutput,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

@@ -13,15 +13,13 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Backup } from "./Backup.tsx";
-import { BackupFromJSON, BackupToJSON } from "./Backup.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import { BackupFromJSON, BackupToJSON, type Backup } from "./Backup.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a plural model of many Cloud Backups.

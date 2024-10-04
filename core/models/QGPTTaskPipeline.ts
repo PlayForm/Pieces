@@ -13,35 +13,35 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { QGPTTaskPipelineForCodeCommentation } from "./QGPTTaskPipelineForCodeCommentation.tsx";
 import {
 	QGPTTaskPipelineForCodeCommentationFromJSON,
 	QGPTTaskPipelineForCodeCommentationToJSON,
+	type QGPTTaskPipelineForCodeCommentation,
 } from "./QGPTTaskPipelineForCodeCommentation.tsx";
-import type { QGPTTaskPipelineForCodeCompletion } from "./QGPTTaskPipelineForCodeCompletion.tsx";
 import {
 	QGPTTaskPipelineForCodeCompletionFromJSON,
 	QGPTTaskPipelineForCodeCompletionToJSON,
+	type QGPTTaskPipelineForCodeCompletion,
 } from "./QGPTTaskPipelineForCodeCompletion.tsx";
-import type { QGPTTaskPipelineForCodeExplanation } from "./QGPTTaskPipelineForCodeExplanation.tsx";
 import {
 	QGPTTaskPipelineForCodeExplanationFromJSON,
 	QGPTTaskPipelineForCodeExplanationToJSON,
+	type QGPTTaskPipelineForCodeExplanation,
 } from "./QGPTTaskPipelineForCodeExplanation.tsx";
-import type { QGPTTaskPipelineForCodeFix } from "./QGPTTaskPipelineForCodeFix.tsx";
 import {
 	QGPTTaskPipelineForCodeFixFromJSON,
 	QGPTTaskPipelineForCodeFixToJSON,
+	type QGPTTaskPipelineForCodeFix,
 } from "./QGPTTaskPipelineForCodeFix.tsx";
-import type { QGPTTaskPipelineForCodeModification } from "./QGPTTaskPipelineForCodeModification.tsx";
 import {
 	QGPTTaskPipelineForCodeModificationFromJSON,
 	QGPTTaskPipelineForCodeModificationToJSON,
+	type QGPTTaskPipelineForCodeModification,
 } from "./QGPTTaskPipelineForCodeModification.tsx";
 
 /**

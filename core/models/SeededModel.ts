@@ -13,45 +13,45 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ByteDescriptor } from "./ByteDescriptor.tsx";
 import {
 	ByteDescriptorFromJSON,
 	ByteDescriptorToJSON,
+	type ByteDescriptor,
 } from "./ByteDescriptor.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ExternalMLProviderEnum } from "./ExternalMLProviderEnum.tsx";
 import {
 	ExternalMLProviderEnumFromJSON,
 	ExternalMLProviderEnumToJSON,
+	type ExternalMLProviderEnum,
 } from "./ExternalMLProviderEnum.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { ModelFoundationEnum } from "./ModelFoundationEnum.tsx";
 import {
 	ModelFoundationEnumFromJSON,
 	ModelFoundationEnumToJSON,
+	type ModelFoundationEnum,
 } from "./ModelFoundationEnum.tsx";
-import type { ModelMaxTokens } from "./ModelMaxTokens.tsx";
 import {
 	ModelMaxTokensFromJSON,
 	ModelMaxTokensToJSON,
+	type ModelMaxTokens,
 } from "./ModelMaxTokens.tsx";
-import type { ModelTypeEnum } from "./ModelTypeEnum.tsx";
 import {
 	ModelTypeEnumFromJSON,
 	ModelTypeEnumToJSON,
+	type ModelTypeEnum,
 } from "./ModelTypeEnum.tsx";
-import type { ModelUsageEnum } from "./ModelUsageEnum.tsx";
 import {
 	ModelUsageEnumFromJSON,
 	ModelUsageEnumToJSON,
+	type ModelUsageEnum,
 } from "./ModelUsageEnum.tsx";
 
 /**

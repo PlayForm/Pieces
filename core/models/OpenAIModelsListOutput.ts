@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededModels } from "./SeededModels.tsx";
-import { SeededModelsFromJSON, SeededModelsToJSON } from "./SeededModels.tsx";
+import {
+	SeededModelsFromJSON,
+	SeededModelsToJSON,
+	type SeededModels,
+} from "./SeededModels.tsx";
 
 /**
  * This is the output model for the /open_ai/models/list endpoint.

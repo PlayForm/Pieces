@@ -13,17 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Assets } from "./Assets.tsx";
-import { AssetsFromJSON, AssetsToJSON } from "./Assets.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import { AssetsFromJSON, AssetsToJSON, type Assets } from "./Assets.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { InteractedAssets } from "./InteractedAssets.tsx";
 import {
 	InteractedAssetsFromJSON,
 	InteractedAssetsToJSON,
+	type InteractedAssets,
 } from "./InteractedAssets.tsx";
 
 /**

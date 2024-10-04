@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededPKCEADDITIONALPARAMETERS } from "./SeededPKCEADDITIONALPARAMETERS.tsx";
 import {
 	SeededPKCEADDITIONALPARAMETERSFromJSON,
 	SeededPKCEADDITIONALPARAMETERSToJSON,
+	type SeededPKCEADDITIONALPARAMETERS,
 } from "./SeededPKCEADDITIONALPARAMETERS.tsx";
 
 /**

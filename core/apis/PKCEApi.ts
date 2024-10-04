@@ -12,17 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type {
-	EmbeddedModelSchema,
-	PKCE,
-	SeededPKCE,
-	TokenizedPKCE,
-} from "../models/index.ts";
 import {
 	EmbeddedModelSchemaToJSON,
 	PKCEFromJSON,
 	SeededPKCEToJSON,
 	TokenizedPKCEToJSON,
+	type EmbeddedModelSchema,
+	type PKCE,
+	type SeededPKCE,
+	type TokenizedPKCE,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

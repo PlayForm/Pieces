@@ -12,14 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type {
-	ConversationMessage,
-	SeededScoreIncrement,
-} from "../models/index.ts";
 import {
 	ConversationMessageFromJSON,
 	ConversationMessageToJSON,
 	SeededScoreIncrementToJSON,
+	type ConversationMessage,
+	type SeededScoreIncrement,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

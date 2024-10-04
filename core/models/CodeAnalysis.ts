@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ClassificationGenericEnum } from "./ClassificationGenericEnum.tsx";
 import {
 	ClassificationGenericEnumFromJSON,
 	ClassificationGenericEnumToJSON,
+	type ClassificationGenericEnum,
 } from "./ClassificationGenericEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Model } from "./Model.tsx";
-import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
+import { ModelFromJSON, ModelToJSON, type Model } from "./Model.tsx";
 
 /**
  * This is the ML Analysis object Specific to code.

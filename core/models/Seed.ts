@@ -13,21 +13,30 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededAnchor } from "./SeededAnchor.tsx";
-import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
-import type { SeededAsset } from "./SeededAsset.tsx";
-import { SeededAssetFromJSON, SeededAssetToJSON } from "./SeededAsset.tsx";
-import type { SeededPerson } from "./SeededPerson.tsx";
-import { SeededPersonFromJSON, SeededPersonToJSON } from "./SeededPerson.tsx";
-import type { SeededWebsite } from "./SeededWebsite.tsx";
+import {
+	SeededAnchorFromJSON,
+	SeededAnchorToJSON,
+	type SeededAnchor,
+} from "./SeededAnchor.tsx";
+import {
+	SeededAssetFromJSON,
+	SeededAssetToJSON,
+	type SeededAsset,
+} from "./SeededAsset.tsx";
+import {
+	SeededPersonFromJSON,
+	SeededPersonToJSON,
+	type SeededPerson,
+} from "./SeededPerson.tsx";
 import {
 	SeededWebsiteFromJSON,
 	SeededWebsiteToJSON,
+	type SeededWebsite,
 } from "./SeededWebsite.tsx";
 
 /**

@@ -13,62 +13,63 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Applications } from "./Applications.tsx";
-import { ApplicationsFromJSON, ApplicationsToJSON } from "./Applications.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	ApplicationsFromJSON,
+	ApplicationsToJSON,
+	type Applications,
+} from "./Applications.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
 	FlattenedAnchorsFromJSON,
 	FlattenedAnchorsToJSON,
+	type FlattenedAnchors,
 } from "./FlattenedAnchors.tsx";
-import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
 	FlattenedAnnotationsFromJSON,
 	FlattenedAnnotationsToJSON,
+	type FlattenedAnnotations,
 } from "./FlattenedAnnotations.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
 	FlattenedConversationsFromJSON,
 	FlattenedConversationsToJSON,
+	type FlattenedConversations,
 } from "./FlattenedConversations.tsx";
-import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
 	FlattenedPersonsFromJSON,
 	FlattenedPersonsToJSON,
+	type FlattenedPersons,
 } from "./FlattenedPersons.tsx";
-import type { FlattenedRanges } from "./FlattenedRanges.tsx";
 import {
 	FlattenedRangesFromJSON,
 	FlattenedRangesToJSON,
+	type FlattenedRanges,
 } from "./FlattenedRanges.tsx";
-import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
 	FlattenedWebsitesFromJSON,
 	FlattenedWebsitesToJSON,
+	type FlattenedWebsites,
 } from "./FlattenedWebsites.tsx";
-import type { FlattenedWorkstreamEvents } from "./FlattenedWorkstreamEvents.tsx";
 import {
 	FlattenedWorkstreamEventsFromJSON,
 	FlattenedWorkstreamEventsToJSON,
+	type FlattenedWorkstreamEvents,
 } from "./FlattenedWorkstreamEvents.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { Model } from "./Model.tsx";
-import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ModelFromJSON, ModelToJSON, type Model } from "./Model.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is representation or a summarized version of the highly relevant WorkstreamEvent events from a given time period, 1 day, 1 week, 1 month, dependinng on your given flow.

@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { DiscoveredRelatedTag } from "./DiscoveredRelatedTag.tsx";
 import {
 	DiscoveredRelatedTagFromJSON,
 	DiscoveredRelatedTagToJSON,
+	type DiscoveredRelatedTag,
 } from "./DiscoveredRelatedTag.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

@@ -12,8 +12,11 @@
  * Do not edit the class manually.
  */
 
-import type { Distribution } from "../models/index.ts";
-import { DistributionFromJSON, DistributionToJSON } from "../models/index.ts";
+import {
+	DistributionFromJSON,
+	DistributionToJSON,
+	type Distribution,
+} from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface DistributionUpdateRequest {

@@ -13,30 +13,30 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { LanguageServerProtocolCode } from "./LanguageServerProtocolCode.tsx";
 import {
 	LanguageServerProtocolCodeFromJSON,
 	LanguageServerProtocolCodeToJSON,
+	type LanguageServerProtocolCode,
 } from "./LanguageServerProtocolCode.tsx";
-import type { LanguageServerProtocolCodeDescription } from "./LanguageServerProtocolCodeDescription.tsx";
 import {
 	LanguageServerProtocolCodeDescriptionFromJSON,
 	LanguageServerProtocolCodeDescriptionToJSON,
+	type LanguageServerProtocolCodeDescription,
 } from "./LanguageServerProtocolCodeDescription.tsx";
-import type { LanguageServerProtocolLocationRange } from "./LanguageServerProtocolLocationRange.tsx";
 import {
 	LanguageServerProtocolLocationRangeFromJSON,
 	LanguageServerProtocolLocationRangeToJSON,
+	type LanguageServerProtocolLocationRange,
 } from "./LanguageServerProtocolLocationRange.tsx";
-import type { LanguageServerProtocolSeverityEnum } from "./LanguageServerProtocolSeverityEnum.tsx";
 import {
 	LanguageServerProtocolSeverityEnumFromJSON,
 	LanguageServerProtocolSeverityEnumToJSON,
+	type LanguageServerProtocolSeverityEnum,
 } from "./LanguageServerProtocolSeverityEnum.tsx";
 
 /**

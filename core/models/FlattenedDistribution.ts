@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GitHubDistribution } from "./GitHubDistribution.tsx";
 import {
 	GitHubDistributionFromJSON,
 	GitHubDistributionToJSON,
+	type GitHubDistribution,
 } from "./GitHubDistribution.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { MailgunDistribution } from "./MailgunDistribution.tsx";
 import {
 	MailgunDistributionFromJSON,
 	MailgunDistributionToJSON,
+	type MailgunDistribution,
 } from "./MailgunDistribution.tsx";
 
 /**

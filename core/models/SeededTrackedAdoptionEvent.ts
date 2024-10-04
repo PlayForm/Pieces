@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs } from "./AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs.tsx";
 import {
 	AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsFromJSON,
 	AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsToJSON,
+	type AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs,
 } from "./AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

@@ -12,17 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Auth0User,
-	EmbeddedModelSchema,
-	OAuthToken,
-	ResultedPKCE,
-} from "../models/index.ts";
 import {
 	Auth0UserFromJSON,
 	EmbeddedModelSchemaToJSON,
 	OAuthTokenFromJSON,
 	ResultedPKCEFromJSON,
+	type Auth0User,
+	type EmbeddedModelSchema,
+	type OAuthToken,
+	type ResultedPKCE,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

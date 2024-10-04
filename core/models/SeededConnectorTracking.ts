@@ -13,55 +13,55 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededTrackedAdoptionEvent } from "./SeededTrackedAdoptionEvent.tsx";
 import {
 	SeededTrackedAdoptionEventFromJSON,
 	SeededTrackedAdoptionEventToJSON,
+	type SeededTrackedAdoptionEvent,
 } from "./SeededTrackedAdoptionEvent.tsx";
-import type { SeededTrackedAssetEvent } from "./SeededTrackedAssetEvent.tsx";
 import {
 	SeededTrackedAssetEventFromJSON,
 	SeededTrackedAssetEventToJSON,
+	type SeededTrackedAssetEvent,
 } from "./SeededTrackedAssetEvent.tsx";
-import type { SeededTrackedAssetsEvent } from "./SeededTrackedAssetsEvent.tsx";
 import {
 	SeededTrackedAssetsEventFromJSON,
 	SeededTrackedAssetsEventToJSON,
+	type SeededTrackedAssetsEvent,
 } from "./SeededTrackedAssetsEvent.tsx";
-import type { SeededTrackedConversationEvent } from "./SeededTrackedConversationEvent.tsx";
 import {
 	SeededTrackedConversationEventFromJSON,
 	SeededTrackedConversationEventToJSON,
+	type SeededTrackedConversationEvent,
 } from "./SeededTrackedConversationEvent.tsx";
-import type { SeededTrackedFormatEvent } from "./SeededTrackedFormatEvent.tsx";
 import {
 	SeededTrackedFormatEventFromJSON,
 	SeededTrackedFormatEventToJSON,
+	type SeededTrackedFormatEvent,
 } from "./SeededTrackedFormatEvent.tsx";
-import type { SeededTrackedInteractionEvent } from "./SeededTrackedInteractionEvent.tsx";
 import {
 	SeededTrackedInteractionEventFromJSON,
 	SeededTrackedInteractionEventToJSON,
+	type SeededTrackedInteractionEvent,
 } from "./SeededTrackedInteractionEvent.tsx";
-import type { SeededTrackedKeyboardEvent } from "./SeededTrackedKeyboardEvent.tsx";
 import {
 	SeededTrackedKeyboardEventFromJSON,
 	SeededTrackedKeyboardEventToJSON,
+	type SeededTrackedKeyboardEvent,
 } from "./SeededTrackedKeyboardEvent.tsx";
-import type { SeededTrackedMachineLearningEvent } from "./SeededTrackedMachineLearningEvent.tsx";
 import {
 	SeededTrackedMachineLearningEventFromJSON,
 	SeededTrackedMachineLearningEventToJSON,
+	type SeededTrackedMachineLearningEvent,
 } from "./SeededTrackedMachineLearningEvent.tsx";
-import type { SeededTrackedSessionEvent } from "./SeededTrackedSessionEvent.tsx";
 import {
 	SeededTrackedSessionEventFromJSON,
 	SeededTrackedSessionEventToJSON,
+	type SeededTrackedSessionEvent,
 } from "./SeededTrackedSessionEvent.tsx";
 
 /**

@@ -12,14 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	CreatedExternalProviderApiKey,
-	DeletedExternalProviderApiKey,
-	PrecreatedExternalProviderApiKey,
-	PredeletedExternalProviderApiKey,
-	PreupdatedExternalProviderApiKey,
-	UpdatedExternalProviderApiKey,
-} from "../models/index.ts";
 import {
 	CreatedExternalProviderApiKeyFromJSON,
 	DeletedExternalProviderApiKeyFromJSON,
@@ -27,6 +19,12 @@ import {
 	PredeletedExternalProviderApiKeyToJSON,
 	PreupdatedExternalProviderApiKeyToJSON,
 	UpdatedExternalProviderApiKeyFromJSON,
+	type CreatedExternalProviderApiKey,
+	type DeletedExternalProviderApiKey,
+	type PrecreatedExternalProviderApiKey,
+	type PredeletedExternalProviderApiKey,
+	type PreupdatedExternalProviderApiKey,
+	type UpdatedExternalProviderApiKey,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

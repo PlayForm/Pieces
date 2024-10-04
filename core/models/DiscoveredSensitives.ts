@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { DiscoveredSensitive } from "./DiscoveredSensitive.tsx";
 import {
 	DiscoveredSensitiveFromJSON,
 	DiscoveredSensitiveToJSON,
+	type DiscoveredSensitive,
 } from "./DiscoveredSensitive.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

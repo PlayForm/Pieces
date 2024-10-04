@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Website } from "./Website.tsx";
-import { WebsiteFromJSON, WebsiteToJSON } from "./Website.tsx";
+import { WebsiteFromJSON, WebsiteToJSON, type Website } from "./Website.tsx";
 
 /**
  * This is used for the Websites searching endpoint.

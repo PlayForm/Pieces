@@ -13,19 +13,23 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AccessEnum } from "./AccessEnum.tsx";
-import { AccessEnumFromJSON, AccessEnumToJSON } from "./AccessEnum.tsx";
-import type { Asset } from "./Asset.tsx";
-import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
-import type { Assets } from "./Assets.tsx";
-import { AssetsFromJSON, AssetsToJSON } from "./Assets.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	AccessEnumFromJSON,
+	AccessEnumToJSON,
+	type AccessEnum,
+} from "./AccessEnum.tsx";
+import { AssetFromJSON, AssetToJSON, type Asset } from "./Asset.tsx";
+import { AssetsFromJSON, AssetsToJSON, type Assets } from "./Assets.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededUser } from "./SeededUser.tsx";
-import { SeededUserFromJSON, SeededUserToJSON } from "./SeededUser.tsx";
+import {
+	SeededUserFromJSON,
+	SeededUserToJSON,
+	type SeededUser,
+} from "./SeededUser.tsx";
 
 /**
  *  required to pass in an asset or assets.

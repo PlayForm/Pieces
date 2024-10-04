@@ -13,17 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Anchor } from "./Anchor.tsx";
-import { AnchorFromJSON, AnchorToJSON } from "./Anchor.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import { AnchorFromJSON, AnchorToJSON, type Anchor } from "./Anchor.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SearchedAnchorPoints } from "./SearchedAnchorPoints.tsx";
 import {
 	SearchedAnchorPointsFromJSON,
 	SearchedAnchorPointsToJSON,
+	type SearchedAnchorPoints,
 } from "./SearchedAnchorPoints.tsx";
 
 /**

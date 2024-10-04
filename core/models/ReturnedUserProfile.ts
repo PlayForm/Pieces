@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { UserProfile } from "./UserProfile.tsx";
-import { UserProfileFromJSON, UserProfileToJSON } from "./UserProfile.tsx";
+import {
+	UserProfileFromJSON,
+	UserProfileToJSON,
+	type UserProfile,
+} from "./UserProfile.tsx";
 
 /**
  * This is a modle strictly for the purpose that when calling '/user' and other user related endpoints the UserProfile could potentially be null, so we needed a model to do that.

@@ -13,15 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AccessEnum } from "./AccessEnum.tsx";
-import { AccessEnumFromJSON, AccessEnumToJSON } from "./AccessEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	AccessEnumFromJSON,
+	AccessEnumToJSON,
+	type AccessEnum,
+} from "./AccessEnum.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededUser } from "./SeededUser.tsx";
-import { SeededUserFromJSON, SeededUserToJSON } from "./SeededUser.tsx";
+import {
+	SeededUserFromJSON,
+	SeededUserToJSON,
+	type SeededUser,
+} from "./SeededUser.tsx";
 
 /**
  * This is the incoming linkify model.

@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ModelDownloadProgressStatusEnum } from "./ModelDownloadProgressStatusEnum.tsx";
 import {
 	ModelDownloadProgressStatusEnumFromJSON,
 	ModelDownloadProgressStatusEnumToJSON,
+	type ModelDownloadProgressStatusEnum,
 } from "./ModelDownloadProgressStatusEnum.tsx";
-import type { TransferableBytes } from "./TransferableBytes.tsx";
 import {
 	TransferableBytesFromJSON,
 	TransferableBytesToJSON,
+	type TransferableBytes,
 } from "./TransferableBytes.tsx";
 
 /**

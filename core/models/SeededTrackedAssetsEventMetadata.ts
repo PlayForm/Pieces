@@ -13,10 +13,10 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { TrackedAssetsEventSearchMetadata } from "./TrackedAssetsEventSearchMetadata.tsx";
 import {
 	TrackedAssetsEventSearchMetadataFromJSON,
 	TrackedAssetsEventSearchMetadataToJSON,
+	type TrackedAssetsEventSearchMetadata,
 } from "./TrackedAssetsEventSearchMetadata.tsx";
 
 /**

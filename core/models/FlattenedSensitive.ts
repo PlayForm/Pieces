@@ -13,42 +13,41 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
 	ReferencedAssetFromJSON,
 	ReferencedAssetToJSON,
+	type ReferencedAsset,
 } from "./ReferencedAsset.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
-import type { SensitiveCategoryEnum } from "./SensitiveCategoryEnum.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 import {
 	SensitiveCategoryEnumFromJSON,
 	SensitiveCategoryEnumToJSON,
+	type SensitiveCategoryEnum,
 } from "./SensitiveCategoryEnum.tsx";
-import type { SensitiveMetadata } from "./SensitiveMetadata.tsx";
 import {
 	SensitiveMetadataFromJSON,
 	SensitiveMetadataToJSON,
+	type SensitiveMetadata,
 } from "./SensitiveMetadata.tsx";
-import type { SensitiveSeverityEnum } from "./SensitiveSeverityEnum.tsx";
 import {
 	SensitiveSeverityEnumFromJSON,
 	SensitiveSeverityEnumToJSON,
+	type SensitiveSeverityEnum,
 } from "./SensitiveSeverityEnum.tsx";
 
 /**

@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { OSHealth } from "./OSHealth.tsx";
-import { OSHealthFromJSON, OSHealthToJSON } from "./OSHealth.tsx";
+import {
+	OSHealthFromJSON,
+	OSHealthToJSON,
+	type OSHealth,
+} from "./OSHealth.tsx";
 
 /**
  * This is a health model used to determine the "health" of the os server and cloud server(Coming Soon). READONLY Model.

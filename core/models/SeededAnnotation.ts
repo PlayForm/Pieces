@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnnotationTypeEnum } from "./AnnotationTypeEnum.tsx";
 import {
 	AnnotationTypeEnumFromJSON,
 	AnnotationTypeEnumToJSON,
+	type AnnotationTypeEnum,
 } from "./AnnotationTypeEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
 	FlattenedConversationMessagesFromJSON,
 	FlattenedConversationMessagesToJSON,
+	type FlattenedConversationMessages,
 } from "./FlattenedConversationMessages.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
 
 /**

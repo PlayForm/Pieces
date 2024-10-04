@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SearchedTag } from "./SearchedTag.tsx";
-import { SearchedTagFromJSON, SearchedTagToJSON } from "./SearchedTag.tsx";
+import {
+	SearchedTagFromJSON,
+	SearchedTagToJSON,
+	type SearchedTag,
+} from "./SearchedTag.tsx";
 
 /**
  * This is the plural Model used to return many searchedTags.

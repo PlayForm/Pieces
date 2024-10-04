@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { RelevantQGPTSeed } from "./RelevantQGPTSeed.tsx";
 import {
 	RelevantQGPTSeedFromJSON,
 	RelevantQGPTSeedToJSON,
+	type RelevantQGPTSeed,
 } from "./RelevantQGPTSeed.tsx";
 
 /**

@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { ReferencedAnnotation } from "./ReferencedAnnotation.tsx";
 import {
 	ReferencedAnnotationFromJSON,
 	ReferencedAnnotationToJSON,
+	type ReferencedAnnotation,
 } from "./ReferencedAnnotation.tsx";
-import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
 	ReferencedAssetFromJSON,
 	ReferencedAssetToJSON,
+	type ReferencedAsset,
 } from "./ReferencedAsset.tsx";
-import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
 	ReferencedModelFromJSON,
 	ReferencedModelToJSON,
+	type ReferencedModel,
 } from "./ReferencedModel.tsx";
 
 /**

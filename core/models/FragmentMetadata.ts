@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
 import {
 	ClassificationSpecificEnumFromJSON,
 	ClassificationSpecificEnumToJSON,
+	type ClassificationSpecificEnum,
 } from "./ClassificationSpecificEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

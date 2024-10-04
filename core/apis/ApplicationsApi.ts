@@ -12,22 +12,10 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Application,
-	Applications,
-	DetectedExternalApplications,
-	SeededTrackedInteractionEvent,
-	SeededTrackedKeyboardEvent,
-	Session,
-	TrackedApplicationInstall,
-	TrackedApplicationUpdate,
-	TrackedInteractionEvent,
-	TrackedKeyboardEvent,
-} from "../models/index.ts";
 import {
 	ApplicationFromJSON,
-	ApplicationToJSON,
 	ApplicationsFromJSON,
+	ApplicationToJSON,
 	DetectedExternalApplicationsFromJSON,
 	SeededTrackedInteractionEventToJSON,
 	SeededTrackedKeyboardEventToJSON,
@@ -36,6 +24,16 @@ import {
 	TrackedApplicationUpdateToJSON,
 	TrackedInteractionEventFromJSON,
 	TrackedKeyboardEventFromJSON,
+	type Application,
+	type Applications,
+	type DetectedExternalApplications,
+	type SeededTrackedInteractionEvent,
+	type SeededTrackedKeyboardEvent,
+	type Session,
+	type TrackedApplicationInstall,
+	type TrackedApplicationUpdate,
+	type TrackedInteractionEvent,
+	type TrackedKeyboardEvent,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

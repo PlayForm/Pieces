@@ -13,88 +13,87 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedActivities } from "./FlattenedActivities.tsx";
 import {
 	FlattenedActivitiesFromJSON,
 	FlattenedActivitiesToJSON,
+	type FlattenedActivities,
 } from "./FlattenedActivities.tsx";
-import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
 	FlattenedAnchorsFromJSON,
 	FlattenedAnchorsToJSON,
+	type FlattenedAnchors,
 } from "./FlattenedAnchors.tsx";
-import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
 	FlattenedAnnotationsFromJSON,
 	FlattenedAnnotationsToJSON,
+	type FlattenedAnnotations,
 } from "./FlattenedAnnotations.tsx";
-import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
 	FlattenedConversationsFromJSON,
 	FlattenedConversationsToJSON,
+	type FlattenedConversations,
 } from "./FlattenedConversations.tsx";
-import type { FlattenedFormats } from "./FlattenedFormats.tsx";
 import {
 	FlattenedFormatsFromJSON,
 	FlattenedFormatsToJSON,
+	type FlattenedFormats,
 } from "./FlattenedFormats.tsx";
-import type { FlattenedHints } from "./FlattenedHints.tsx";
 import {
 	FlattenedHintsFromJSON,
 	FlattenedHintsToJSON,
+	type FlattenedHints,
 } from "./FlattenedHints.tsx";
-import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
 	FlattenedPersonsFromJSON,
 	FlattenedPersonsToJSON,
+	type FlattenedPersons,
 } from "./FlattenedPersons.tsx";
-import type { FlattenedPreview } from "./FlattenedPreview.tsx";
 import {
 	FlattenedPreviewFromJSON,
 	FlattenedPreviewToJSON,
+	type FlattenedPreview,
 } from "./FlattenedPreview.tsx";
-import type { FlattenedSensitives } from "./FlattenedSensitives.tsx";
 import {
 	FlattenedSensitivesFromJSON,
 	FlattenedSensitivesToJSON,
+	type FlattenedSensitives,
 } from "./FlattenedSensitives.tsx";
-import type { FlattenedShares } from "./FlattenedShares.tsx";
 import {
 	FlattenedSharesFromJSON,
 	FlattenedSharesToJSON,
+	type FlattenedShares,
 } from "./FlattenedShares.tsx";
-import type { FlattenedTags } from "./FlattenedTags.tsx";
 import {
 	FlattenedTagsFromJSON,
 	FlattenedTagsToJSON,
+	type FlattenedTags,
 } from "./FlattenedTags.tsx";
-import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
 	FlattenedWebsitesFromJSON,
 	FlattenedWebsitesToJSON,
+	type FlattenedWebsites,
 } from "./FlattenedWebsites.tsx";
-import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
 	FlattenedWorkstreamSummariesFromJSON,
 	FlattenedWorkstreamSummariesToJSON,
+	type FlattenedWorkstreamSummaries,
 } from "./FlattenedWorkstreamSummaries.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * An Asset Model representing data extracted from an Application connecting a group of data containing one or more Formats. [DAG Compatible - Directed Acyclic Graph Data Structure]

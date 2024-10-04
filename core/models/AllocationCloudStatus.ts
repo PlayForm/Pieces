@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AllocationStatusEnum } from "./AllocationStatusEnum.tsx";
 import {
 	AllocationStatusEnumFromJSON,
 	AllocationStatusEnumToJSON,
+	type AllocationStatusEnum,
 } from "./AllocationStatusEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

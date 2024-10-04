@@ -13,18 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
 import {
 	ClassificationSpecificEnumFromJSON,
 	ClassificationSpecificEnumToJSON,
+	type ClassificationSpecificEnum,
 } from "./ClassificationSpecificEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Format } from "./Format.tsx";
-import { FormatFromJSON, FormatToJSON } from "./Format.tsx";
+import { FormatFromJSON, FormatToJSON, type Format } from "./Format.tsx";
 
 /**
  * This is a model that will represent the miminum properties required to update the classification of this format.

@@ -13,59 +13,67 @@
  */
 
 import { exists, mapValues } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
 	FlattenedAnchorsFromJSON,
 	FlattenedAnchorsToJSON,
+	type FlattenedAnchors,
 } from "./FlattenedAnchors.tsx";
-import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
 	FlattenedAnnotationsFromJSON,
 	FlattenedAnnotationsToJSON,
+	type FlattenedAnnotations,
 } from "./FlattenedAnnotations.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { FlattenedTags } from "./FlattenedTags.tsx";
 import {
 	FlattenedTagsFromJSON,
 	FlattenedTagsToJSON,
+	type FlattenedTags,
 } from "./FlattenedTags.tsx";
-import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
 	FlattenedWebsitesFromJSON,
 	FlattenedWebsitesToJSON,
+	type FlattenedWebsites,
 } from "./FlattenedWebsites.tsx";
-import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
 	FlattenedWorkstreamSummariesFromJSON,
 	FlattenedWorkstreamSummariesToJSON,
+	type FlattenedWorkstreamSummaries,
 } from "./FlattenedWorkstreamSummaries.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { PersonAccess } from "./PersonAccess.tsx";
-import { PersonAccessFromJSON, PersonAccessToJSON } from "./PersonAccess.tsx";
-import type { PersonModel } from "./PersonModel.tsx";
-import { PersonModelFromJSON, PersonModelToJSON } from "./PersonModel.tsx";
-import type { PersonType } from "./PersonType.tsx";
-import { PersonTypeFromJSON, PersonTypeToJSON } from "./PersonType.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import {
+	PersonAccessFromJSON,
+	PersonAccessToJSON,
+	type PersonAccess,
+} from "./PersonAccess.tsx";
+import {
+	PersonModelFromJSON,
+	PersonModelToJSON,
+	type PersonModel,
+} from "./PersonModel.tsx";
+import {
+	PersonTypeFromJSON,
+	PersonTypeToJSON,
+	type PersonType,
+} from "./PersonType.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * if expiration is add then, after the alloted expiration date the user will only have view && comment only permissions. Only present in the case there is a scope such as a defined collection/asset...

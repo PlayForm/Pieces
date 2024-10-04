@@ -13,15 +13,13 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
-import type { Website } from "./Website.tsx";
-import { WebsiteFromJSON, WebsiteToJSON } from "./Website.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
+import { WebsiteFromJSON, WebsiteToJSON, type Website } from "./Website.tsx";
 
 /**
  * This is a specific model for related websites to an asset.

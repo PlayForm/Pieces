@@ -13,15 +13,13 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Font } from "./Font.tsx";
-import { FontFromJSON, FontToJSON } from "./Font.tsx";
-import type { Theme } from "./Theme.tsx";
-import { ThemeFromJSON, ThemeToJSON } from "./Theme.tsx";
+import { FontFromJSON, FontToJSON, type Font } from "./Font.tsx";
+import { ThemeFromJSON, ThemeToJSON, type Theme } from "./Theme.tsx";
 
 /**
  * These are aesthetics properties that will ensure the darkmode + font size and other aesthetics properties persist:)

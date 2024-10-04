@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
 	AnonymousTemporalRangeFromJSON,
 	AnonymousTemporalRangeToJSON,
+	type AnonymousTemporalRange,
 } from "./AnonymousTemporalRange.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

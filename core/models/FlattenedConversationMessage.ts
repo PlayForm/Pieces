@@ -13,45 +13,43 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ConversationMessageSentimentEnum } from "./ConversationMessageSentimentEnum.tsx";
 import {
 	ConversationMessageSentimentEnumFromJSON,
 	ConversationMessageSentimentEnumToJSON,
+	type ConversationMessageSentimentEnum,
 } from "./ConversationMessageSentimentEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
 	FlattenedAnnotationsFromJSON,
 	FlattenedAnnotationsToJSON,
+	type FlattenedAnnotations,
 } from "./FlattenedAnnotations.tsx";
-import type { FragmentFormat } from "./FragmentFormat.tsx";
 import {
 	FragmentFormatFromJSON,
 	FragmentFormatToJSON,
+	type FragmentFormat,
 } from "./FragmentFormat.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { Model } from "./Model.tsx";
-import { ModelFromJSON, ModelToJSON } from "./Model.tsx";
-import type { QGPTConversationMessageRoleEnum } from "./QGPTConversationMessageRoleEnum.tsx";
+import { ModelFromJSON, ModelToJSON, type Model } from "./Model.tsx";
 import {
 	QGPTConversationMessageRoleEnumFromJSON,
 	QGPTConversationMessageRoleEnumToJSON,
+	type QGPTConversationMessageRoleEnum,
 } from "./QGPTConversationMessageRoleEnum.tsx";
-import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
 	ReferencedConversationFromJSON,
 	ReferencedConversationToJSON,
+	type ReferencedConversation,
 } from "./ReferencedConversation.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a flattened DAG safe version of a ConversationMessage.

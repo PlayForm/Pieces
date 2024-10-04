@@ -12,8 +12,11 @@
  * Do not edit the class manually.
  */
 
-import type { Application } from "../models/index.ts";
-import { ApplicationFromJSON, ApplicationToJSON } from "../models/index.ts";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface ApplicationUpdateRequest {

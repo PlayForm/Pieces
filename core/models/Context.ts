@@ -13,17 +13,22 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Application } from "./Application.tsx";
-import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "./Application.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Health } from "./Health.tsx";
-import { HealthFromJSON, HealthToJSON } from "./Health.tsx";
-import type { UserProfile } from "./UserProfile.tsx";
-import { UserProfileFromJSON, UserProfileToJSON } from "./UserProfile.tsx";
+import { HealthFromJSON, HealthToJSON, type Health } from "./Health.tsx";
+import {
+	UserProfileFromJSON,
+	UserProfileToJSON,
+	type UserProfile,
+} from "./UserProfile.tsx";
 
 /**
  * A Context that is returned from almost all calls to the ContextAPI

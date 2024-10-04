@@ -13,35 +13,35 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { EmbeddingsSearchOptions } from "./EmbeddingsSearchOptions.tsx";
 import {
 	EmbeddingsSearchOptionsFromJSON,
 	EmbeddingsSearchOptionsToJSON,
+	type EmbeddingsSearchOptions,
 } from "./EmbeddingsSearchOptions.tsx";
-import type { FullTextSearchOptions } from "./FullTextSearchOptions.tsx";
 import {
 	FullTextSearchOptionsFromJSON,
 	FullTextSearchOptionsToJSON,
+	type FullTextSearchOptions,
 } from "./FullTextSearchOptions.tsx";
-import type { SearchEngines } from "./SearchEngines.tsx";
 import {
 	SearchEnginesFromJSON,
 	SearchEnginesToJSON,
+	type SearchEngines,
 } from "./SearchEngines.tsx";
-import type { TemporalSearchOptions } from "./TemporalSearchOptions.tsx";
 import {
 	TemporalSearchOptionsFromJSON,
 	TemporalSearchOptionsToJSON,
+	type TemporalSearchOptions,
 } from "./TemporalSearchOptions.tsx";
-import type { WorkstreamSearchOptions } from "./WorkstreamSearchOptions.tsx";
 import {
 	WorkstreamSearchOptionsFromJSON,
 	WorkstreamSearchOptionsToJSON,
+	type WorkstreamSearchOptions,
 } from "./WorkstreamSearchOptions.tsx";
 
 /**

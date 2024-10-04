@@ -12,16 +12,14 @@
  * Do not edit the class manually.
  */
 
-import type {
-	AllocationCloud,
-	Allocations,
-	UserProfile,
-} from "../models/index.ts";
 import {
 	AllocationCloudFromJSON,
 	AllocationCloudToJSON,
 	AllocationsFromJSON,
 	UserProfileToJSON,
+	type AllocationCloud,
+	type Allocations,
+	type UserProfile,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

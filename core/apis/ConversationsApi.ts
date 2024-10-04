@@ -12,23 +12,21 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Conversation,
-	Conversations,
-	ConversationsCreateFromAssetOutput,
-	FlattenedConversations,
-	SearchInput,
-	SearchedConversations,
-	SeededConversation,
-} from "../models/index.ts";
 import {
 	ConversationFromJSON,
 	ConversationsCreateFromAssetOutputFromJSON,
 	ConversationsFromJSON,
 	FlattenedConversationsFromJSON,
-	SearchInputToJSON,
 	SearchedConversationsFromJSON,
+	SearchInputToJSON,
 	SeededConversationToJSON,
+	type Conversation,
+	type Conversations,
+	type ConversationsCreateFromAssetOutput,
+	type FlattenedConversations,
+	type SearchedConversations,
+	type SearchInput,
+	type SeededConversation,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

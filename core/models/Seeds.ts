@@ -13,13 +13,12 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Seed } from "./Seed.tsx";
-import { SeedFromJSON, SeedToJSON } from "./Seed.tsx";
+import { SeedFromJSON, SeedToJSON, type Seed } from "./Seed.tsx";
 
 /**
  * This is a plural model for multiple Seed.

@@ -13,15 +13,17 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
-import type { Sensitive } from "./Sensitive.tsx";
-import { SensitiveFromJSON, SensitiveToJSON } from "./Sensitive.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
+import {
+	SensitiveFromJSON,
+	SensitiveToJSON,
+	type Sensitive,
+} from "./Sensitive.tsx";
 
 /**
  * This is a model that represents many individual sensitive pieces of data.

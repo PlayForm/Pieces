@@ -13,48 +13,62 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Activities } from "./Activities.tsx";
-import { ActivitiesFromJSON, ActivitiesToJSON } from "./Activities.tsx";
-import type { Analysis } from "./Analysis.tsx";
-import { AnalysisFromJSON, AnalysisToJSON } from "./Analysis.tsx";
-import type { Application } from "./Application.tsx";
-import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
-import type { ByteDescriptor } from "./ByteDescriptor.tsx";
+import {
+	ActivitiesFromJSON,
+	ActivitiesToJSON,
+	type Activities,
+} from "./Activities.tsx";
+import {
+	AnalysisFromJSON,
+	AnalysisToJSON,
+	type Analysis,
+} from "./Analysis.tsx";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "./Application.tsx";
 import {
 	ByteDescriptorFromJSON,
 	ByteDescriptorToJSON,
+	type ByteDescriptor,
 } from "./ByteDescriptor.tsx";
-import type { Classification } from "./Classification.tsx";
 import {
 	ClassificationFromJSON,
 	ClassificationToJSON,
+	type Classification,
 } from "./Classification.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FileFormat } from "./FileFormat.tsx";
-import { FileFormatFromJSON, FileFormatToJSON } from "./FileFormat.tsx";
-import type { FlattenedAsset } from "./FlattenedAsset.tsx";
+import {
+	FileFormatFromJSON,
+	FileFormatToJSON,
+	type FileFormat,
+} from "./FileFormat.tsx";
 import {
 	FlattenedAssetFromJSON,
 	FlattenedAssetToJSON,
+	type FlattenedAsset,
 } from "./FlattenedAsset.tsx";
-import type { FragmentFormat } from "./FragmentFormat.tsx";
 import {
 	FragmentFormatFromJSON,
 	FragmentFormatToJSON,
+	type FragmentFormat,
 } from "./FragmentFormat.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { Relationship } from "./Relationship.tsx";
-import { RelationshipFromJSON, RelationshipToJSON } from "./Relationship.tsx";
-import type { Role } from "./Role.tsx";
-import { RoleFromJSON, RoleToJSON } from "./Role.tsx";
+import {
+	RelationshipFromJSON,
+	RelationshipToJSON,
+	type Relationship,
+} from "./Relationship.tsx";
+import { RoleFromJSON, RoleToJSON, type Role } from "./Role.tsx";
 
 /**
  * A representation of Data for a particular Form Factor of an Asset.

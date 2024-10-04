@@ -13,39 +13,41 @@
  */
 
 import { exists, mapValues } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { FlattenedPersons } from "./FlattenedPersons.tsx";
 import {
 	FlattenedPersonsFromJSON,
 	FlattenedPersonsToJSON,
+	type FlattenedPersons,
 } from "./FlattenedPersons.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { MechanismEnum } from "./MechanismEnum.tsx";
 import {
 	MechanismEnumFromJSON,
 	MechanismEnumToJSON,
+	type MechanismEnum,
 } from "./MechanismEnum.tsx";
-import type { Relationship } from "./Relationship.tsx";
-import { RelationshipFromJSON, RelationshipToJSON } from "./Relationship.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
-import type { TagCategoryEnum } from "./TagCategoryEnum.tsx";
+import {
+	RelationshipFromJSON,
+	RelationshipToJSON,
+	type Relationship,
+} from "./Relationship.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 import {
 	TagCategoryEnumFromJSON,
 	TagCategoryEnumToJSON,
+	type TagCategoryEnum,
 } from "./TagCategoryEnum.tsx";
 
 /**

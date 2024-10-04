@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { TransferableBytes } from "./TransferableBytes.tsx";
 import {
 	TransferableBytesFromJSON,
 	TransferableBytesToJSON,
+	type TransferableBytes,
 } from "./TransferableBytes.tsx";
-import type { TransferableString } from "./TransferableString.tsx";
 import {
 	TransferableStringFromJSON,
 	TransferableStringToJSON,
+	type TransferableString,
 } from "./TransferableString.tsx";
 
 /**

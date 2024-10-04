@@ -13,17 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Asset } from "./Asset.tsx";
-import { AssetFromJSON, AssetToJSON } from "./Asset.tsx";
-import type { ClassificationSpecificEnum } from "./ClassificationSpecificEnum.tsx";
+import { AssetFromJSON, AssetToJSON, type Asset } from "./Asset.tsx";
 import {
 	ClassificationSpecificEnumFromJSON,
 	ClassificationSpecificEnumToJSON,
+	type ClassificationSpecificEnum,
 } from "./ClassificationSpecificEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

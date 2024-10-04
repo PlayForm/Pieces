@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Person,
-	Persons,
-	SearchInput,
-	SearchedPersons,
-	SeededPerson,
-} from "../models/index.ts";
 import {
 	PersonFromJSON,
 	PersonsFromJSON,
-	SearchInputToJSON,
 	SearchedPersonsFromJSON,
+	SearchInputToJSON,
 	SeededPersonToJSON,
+	type Person,
+	type Persons,
+	type SearchedPersons,
+	type SearchInput,
+	type SeededPerson,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

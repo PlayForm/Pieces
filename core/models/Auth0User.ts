@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Auth0Identity } from "./Auth0Identity.tsx";
 import {
 	Auth0IdentityFromJSON,
 	Auth0IdentityToJSON,
+	type Auth0Identity,
 } from "./Auth0Identity.tsx";
-import type { Auth0UserMetadata } from "./Auth0UserMetadata.tsx";
 import {
 	Auth0UserMetadataFromJSON,
 	Auth0UserMetadataToJSON,
+	type Auth0UserMetadata,
 } from "./Auth0UserMetadata.tsx";
 
 /**

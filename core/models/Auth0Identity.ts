@@ -13,6 +13,7 @@
  */
 
 import { exists } from "../runtime.ts";
+
 /**
  * Contains info retrieved from the identity provider with which the user originally authenticates. Users may also link their profile to multiple identity providers; those identities will then also appear in this array. The contents of an individual identity provider object varies by provider, but it will typically include the following.
  * Link: [https://auth0.com/docs/rules/user-object-in-rules]

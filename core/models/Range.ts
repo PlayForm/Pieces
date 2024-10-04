@@ -13,28 +13,27 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedConversations } from "./FlattenedConversations.tsx";
 import {
 	FlattenedConversationsFromJSON,
 	FlattenedConversationsToJSON,
+	type FlattenedConversations,
 } from "./FlattenedConversations.tsx";
-import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
 	FlattenedWorkstreamSummariesFromJSON,
 	FlattenedWorkstreamSummariesToJSON,
+	type FlattenedWorkstreamSummaries,
 } from "./FlattenedWorkstreamSummaries.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is an identified Range, this is ONLY needed when using plural rangedTimestamps, in order to ensure granularity(add/modify/delete)

@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReferencedTag } from "./ReferencedTag.tsx";
 import {
 	ReferencedTagFromJSON,
 	ReferencedTagToJSON,
+	type ReferencedTag,
 } from "./ReferencedTag.tsx";
-import type { ReferencedWebsite } from "./ReferencedWebsite.tsx";
 import {
 	ReferencedWebsiteFromJSON,
 	ReferencedWebsiteToJSON,
+	type ReferencedWebsite,
 } from "./ReferencedWebsite.tsx";
 
 /**

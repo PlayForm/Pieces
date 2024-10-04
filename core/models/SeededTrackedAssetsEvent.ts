@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededTrackedAssetsEventMetadata } from "./SeededTrackedAssetsEventMetadata.tsx";
 import {
 	SeededTrackedAssetsEventMetadataFromJSON,
 	SeededTrackedAssetsEventMetadataToJSON,
+	type SeededTrackedAssetsEventMetadata,
 } from "./SeededTrackedAssetsEventMetadata.tsx";
-import type { TrackedAssetsEventIdentifierDescriptionPairs } from "./TrackedAssetsEventIdentifierDescriptionPairs.tsx";
 import {
 	TrackedAssetsEventIdentifierDescriptionPairsFromJSON,
 	TrackedAssetsEventIdentifierDescriptionPairsToJSON,
+	type TrackedAssetsEventIdentifierDescriptionPairs,
 } from "./TrackedAssetsEventIdentifierDescriptionPairs.tsx";
 
 /**

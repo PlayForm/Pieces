@@ -13,28 +13,36 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Auth0 } from "./Auth0.tsx";
-import { Auth0FromJSON, Auth0ToJSON } from "./Auth0.tsx";
-import type { ChallengedPKCE } from "./ChallengedPKCE.tsx";
+import { Auth0FromJSON, Auth0ToJSON, type Auth0 } from "./Auth0.tsx";
 import {
 	ChallengedPKCEFromJSON,
 	ChallengedPKCEToJSON,
+	type ChallengedPKCE,
 } from "./ChallengedPKCE.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ResultedPKCE } from "./ResultedPKCE.tsx";
-import { ResultedPKCEFromJSON, ResultedPKCEToJSON } from "./ResultedPKCE.tsx";
-import type { RevokedPKCE } from "./RevokedPKCE.tsx";
-import { RevokedPKCEFromJSON, RevokedPKCEToJSON } from "./RevokedPKCE.tsx";
-import type { SeededPKCE } from "./SeededPKCE.tsx";
-import { SeededPKCEFromJSON, SeededPKCEToJSON } from "./SeededPKCE.tsx";
-import type { TokenizedPKCE } from "./TokenizedPKCE.tsx";
+import {
+	ResultedPKCEFromJSON,
+	ResultedPKCEToJSON,
+	type ResultedPKCE,
+} from "./ResultedPKCE.tsx";
+import {
+	RevokedPKCEFromJSON,
+	RevokedPKCEToJSON,
+	type RevokedPKCE,
+} from "./RevokedPKCE.tsx";
+import {
+	SeededPKCEFromJSON,
+	SeededPKCEToJSON,
+	type SeededPKCE,
+} from "./SeededPKCE.tsx";
 import {
 	TokenizedPKCEFromJSON,
 	TokenizedPKCEToJSON,
+	type TokenizedPKCE,
 } from "./TokenizedPKCE.tsx";
 
 /**

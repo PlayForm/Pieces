@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedActivity } from "./FlattenedActivity.tsx";
 import {
 	FlattenedActivityFromJSON,
 	FlattenedActivityToJSON,
+	type FlattenedActivity,
 } from "./FlattenedActivity.tsx";
 
 /**

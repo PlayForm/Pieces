@@ -12,11 +12,12 @@
  * Do not edit the class manually.
  */
 
-import type { Range, SeededScoreIncrement } from "../models/index.ts";
 import {
 	RangeFromJSON,
 	RangeToJSON,
 	SeededScoreIncrementToJSON,
+	type Range,
+	type SeededScoreIncrement,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

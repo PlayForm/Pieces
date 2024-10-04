@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { QGPTQuestionAnswer } from "./QGPTQuestionAnswer.tsx";
 import {
 	QGPTQuestionAnswerFromJSON,
 	QGPTQuestionAnswerToJSON,
+	type QGPTQuestionAnswer,
 } from "./QGPTQuestionAnswer.tsx";
-import type { RelevantQGPTSeeds } from "./RelevantQGPTSeeds.tsx";
 import {
 	RelevantQGPTSeedsFromJSON,
 	RelevantQGPTSeedsToJSON,
+	type RelevantQGPTSeeds,
 } from "./RelevantQGPTSeeds.tsx";
 
 /**

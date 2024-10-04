@@ -13,28 +13,31 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
 	AnonymousTemporalRangeFromJSON,
 	AnonymousTemporalRangeToJSON,
+	type AnonymousTemporalRange,
 } from "./AnonymousTemporalRange.tsx";
-import type { Classifications } from "./Classifications.tsx";
 import {
 	ClassificationsFromJSON,
 	ClassificationsToJSON,
+	type Classifications,
 } from "./Classifications.tsx";
-import type { DocumentContributors } from "./DocumentContributors.tsx";
 import {
 	DocumentContributorsFromJSON,
 	DocumentContributorsToJSON,
+	type DocumentContributors,
 } from "./DocumentContributors.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededAnchor } from "./SeededAnchor.tsx";
-import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
+import {
+	SeededAnchorFromJSON,
+	SeededAnchorToJSON,
+	type SeededAnchor,
+} from "./SeededAnchor.tsx";
 
 /**
  * This is a representation of a Module or a Project

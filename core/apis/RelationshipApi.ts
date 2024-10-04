@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import type { Relationship } from "../models/index.ts";
-import { RelationshipFromJSON } from "../models/index.ts";
+import { RelationshipFromJSON, type Relationship } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
 export interface RelationshipsSpecificRelationshipSnapshotRequest {

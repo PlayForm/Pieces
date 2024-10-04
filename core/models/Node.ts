@@ -1,10 +1,13 @@
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { NodeTypeEnum } from "./NodeTypeEnum.tsx";
-import { NodeTypeEnumFromJSON, NodeTypeEnumToJSON } from "./NodeTypeEnum.tsx";
+import {
+	NodeTypeEnumFromJSON,
+	NodeTypeEnumToJSON,
+	type NodeTypeEnum,
+} from "./NodeTypeEnum.tsx";
 
 /**
  * This describes a node within a relationship graph used to related like types. ie asset to asset, tag to tag, ...etc

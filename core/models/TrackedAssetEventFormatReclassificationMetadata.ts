@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Classification } from "./Classification.tsx";
 import {
 	ClassificationFromJSON,
 	ClassificationToJSON,
+	type Classification,
 } from "./Classification.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

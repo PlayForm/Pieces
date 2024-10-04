@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ExternalProviderProfileData } from "./ExternalProviderProfileData.tsx";
 import {
 	ExternalProviderProfileDataFromJSON,
 	ExternalProviderProfileDataToJSON,
+	type ExternalProviderProfileData,
 } from "./ExternalProviderProfileData.tsx";
-import type { ExternalProviderTypeEnum } from "./ExternalProviderTypeEnum.tsx";
 import {
 	ExternalProviderTypeEnumFromJSON,
 	ExternalProviderTypeEnumToJSON,
+	type ExternalProviderTypeEnum,
 } from "./ExternalProviderTypeEnum.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
 
 /**

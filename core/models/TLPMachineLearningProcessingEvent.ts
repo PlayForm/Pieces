@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { TLPCodeProcessing } from "./TLPCodeProcessing.tsx";
 import {
 	TLPCodeProcessingFromJSON,
 	TLPCodeProcessingToJSON,
+	type TLPCodeProcessing,
 } from "./TLPCodeProcessing.tsx";
 
 /**

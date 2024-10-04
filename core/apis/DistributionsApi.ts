@@ -12,15 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Distribution,
-	Distributions,
-	SeededDistribution,
-} from "../models/index.ts";
 import {
 	DistributionFromJSON,
 	DistributionsFromJSON,
 	SeededDistributionToJSON,
+	type Distribution,
+	type Distributions,
+	type SeededDistribution,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

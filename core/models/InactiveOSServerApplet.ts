@@ -13,15 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Application } from "./Application.tsx";
-import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "./Application.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { OSAppletEnum } from "./OSAppletEnum.tsx";
-import { OSAppletEnumFromJSON, OSAppletEnumToJSON } from "./OSAppletEnum.tsx";
+import {
+	OSAppletEnumFromJSON,
+	OSAppletEnumToJSON,
+	type OSAppletEnum,
+} from "./OSAppletEnum.tsx";
 
 /**
  * Note: parent is optional here in the case that (parent here is the integration that wants the module launched(VSCode))

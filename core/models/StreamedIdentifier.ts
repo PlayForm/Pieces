@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { ReferencedAsset } from "./ReferencedAsset.tsx";
 import {
 	ReferencedAssetFromJSON,
 	ReferencedAssetToJSON,
+	type ReferencedAsset,
 } from "./ReferencedAsset.tsx";
-import type { ReferencedConversation } from "./ReferencedConversation.tsx";
 import {
 	ReferencedConversationFromJSON,
 	ReferencedConversationToJSON,
+	type ReferencedConversation,
 } from "./ReferencedConversation.tsx";
 
 /**

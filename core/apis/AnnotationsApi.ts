@@ -12,19 +12,17 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Annotation,
-	Annotations,
-	SearchInput,
-	SearchedAnnotations,
-	SeededAnnotation,
-} from "../models/index.ts";
 import {
 	AnnotationFromJSON,
 	AnnotationsFromJSON,
-	SearchInputToJSON,
 	SearchedAnnotationsFromJSON,
+	SearchInputToJSON,
 	SeededAnnotationToJSON,
+	type Annotation,
+	type Annotations,
+	type SearchedAnnotations,
+	type SearchInput,
+	type SeededAnnotation,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AllocationCloud } from "./AllocationCloud.tsx";
 import {
 	AllocationCloudFromJSON,
 	AllocationCloudToJSON,
+	type AllocationCloud,
 } from "./AllocationCloud.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededModel } from "./SeededModel.tsx";
-import { SeededModelFromJSON, SeededModelToJSON } from "./SeededModel.tsx";
+import {
+	SeededModelFromJSON,
+	SeededModelToJSON,
+	type SeededModel,
+} from "./SeededModel.tsx";
 
 /**
  * This is a Model that will hold an iterable of SeededModels.

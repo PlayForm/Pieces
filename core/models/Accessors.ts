@@ -13,12 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Accessor } from "./Accessor.tsx";
-import { AccessorFromJSON, AccessorToJSON } from "./Accessor.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import {
+	AccessorFromJSON,
+	AccessorToJSON,
+	type Accessor,
+} from "./Accessor.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

@@ -12,13 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Analysis,
-	Format,
-	FormatReclassification,
-	SeededTrackedFormatEvent,
-	TrackedFormatEvent,
-} from "../models/index.ts";
 import {
 	AnalysisFromJSON,
 	FormatFromJSON,
@@ -26,6 +19,11 @@ import {
 	FormatToJSON,
 	SeededTrackedFormatEventToJSON,
 	TrackedFormatEventFromJSON,
+	type Analysis,
+	type Format,
+	type FormatReclassification,
+	type SeededTrackedFormatEvent,
+	type TrackedFormatEvent,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

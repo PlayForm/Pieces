@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { ReferencedWorkstreamSummary } from "./ReferencedWorkstreamSummary.tsx";
 import {
 	ReferencedWorkstreamSummaryFromJSON,
 	ReferencedWorkstreamSummaryToJSON,
+	type ReferencedWorkstreamSummary,
 } from "./ReferencedWorkstreamSummary.tsx";
-import type { SeededRangeConversationAssociation } from "./SeededRangeConversationAssociation.tsx";
 import {
 	SeededRangeConversationAssociationFromJSON,
 	SeededRangeConversationAssociationToJSON,
+	type SeededRangeConversationAssociation,
 } from "./SeededRangeConversationAssociation.tsx";
 
 /**

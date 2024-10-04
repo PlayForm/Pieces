@@ -13,15 +13,15 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { DetectedExternalApplication } from "./DetectedExternalApplication.tsx";
 import {
 	DetectedExternalApplicationFromJSON,
 	DetectedExternalApplicationToJSON,
+	type DetectedExternalApplication,
 } from "./DetectedExternalApplication.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
 
 /**

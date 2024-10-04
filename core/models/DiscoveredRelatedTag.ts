@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededTag } from "./SeededTag.tsx";
-import { SeededTagFromJSON, SeededTagToJSON } from "./SeededTag.tsx";
+import {
+	SeededTagFromJSON,
+	SeededTagToJSON,
+	type SeededTag,
+} from "./SeededTag.tsx";
 
 /**
  *

@@ -13,13 +13,16 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededScore } from "./SeededScore.tsx";
-import { SeededScoreFromJSON, SeededScoreToJSON } from "./SeededScore.tsx";
+import {
+	SeededScoreFromJSON,
+	SeededScoreToJSON,
+	type SeededScore,
+} from "./SeededScore.tsx";
 
 /**
  * This is the body for a respective scores increment,

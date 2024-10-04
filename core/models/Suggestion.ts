@@ -13,27 +13,26 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Assets } from "./Assets.tsx";
-import { AssetsFromJSON, AssetsToJSON } from "./Assets.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
+import { AssetsFromJSON, AssetsToJSON, type Assets } from "./Assets.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { ReuseSuggestion } from "./ReuseSuggestion.tsx";
 import {
 	ReuseSuggestionFromJSON,
 	ReuseSuggestionToJSON,
+	type ReuseSuggestion,
 } from "./ReuseSuggestion.tsx";
-import type { SaveSuggestion } from "./SaveSuggestion.tsx";
 import {
 	SaveSuggestionFromJSON,
 	SaveSuggestionToJSON,
+	type SaveSuggestion,
 } from "./SaveSuggestion.tsx";
-import type { SuggestionTarget } from "./SuggestionTarget.tsx";
 import {
 	SuggestionTargetFromJSON,
 	SuggestionTargetToJSON,
+	type SuggestionTarget,
 } from "./SuggestionTarget.tsx";
 
 /**

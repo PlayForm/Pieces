@@ -13,25 +13,25 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AllocationCloudStatus } from "./AllocationCloudStatus.tsx";
 import {
 	AllocationCloudStatusFromJSON,
 	AllocationCloudStatusToJSON,
+	type AllocationCloudStatus,
 } from "./AllocationCloudStatus.tsx";
-import type { AllocationCloudUrls } from "./AllocationCloudUrls.tsx";
 import {
 	AllocationCloudUrlsFromJSON,
 	AllocationCloudUrlsToJSON,
+	type AllocationCloudUrls,
 } from "./AllocationCloudUrls.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
 
 /**

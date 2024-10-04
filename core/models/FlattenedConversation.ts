@@ -13,70 +13,72 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { Application } from "./Application.tsx";
-import { ApplicationFromJSON, ApplicationToJSON } from "./Application.tsx";
-import type { ConversationGrounding } from "./ConversationGrounding.tsx";
+import {
+	ApplicationFromJSON,
+	ApplicationToJSON,
+	type Application,
+} from "./Application.tsx";
 import {
 	ConversationGroundingFromJSON,
 	ConversationGroundingToJSON,
+	type ConversationGrounding,
 } from "./ConversationGrounding.tsx";
-import type { ConversationTypeEnum } from "./ConversationTypeEnum.tsx";
 import {
 	ConversationTypeEnumFromJSON,
 	ConversationTypeEnumToJSON,
+	type ConversationTypeEnum,
 } from "./ConversationTypeEnum.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { FlattenedAnchors } from "./FlattenedAnchors.tsx";
 import {
 	FlattenedAnchorsFromJSON,
 	FlattenedAnchorsToJSON,
+	type FlattenedAnchors,
 } from "./FlattenedAnchors.tsx";
-import type { FlattenedAnnotations } from "./FlattenedAnnotations.tsx";
 import {
 	FlattenedAnnotationsFromJSON,
 	FlattenedAnnotationsToJSON,
+	type FlattenedAnnotations,
 } from "./FlattenedAnnotations.tsx";
-import type { FlattenedAssets } from "./FlattenedAssets.tsx";
 import {
 	FlattenedAssetsFromJSON,
 	FlattenedAssetsToJSON,
+	type FlattenedAssets,
 } from "./FlattenedAssets.tsx";
-import type { FlattenedConversationMessages } from "./FlattenedConversationMessages.tsx";
 import {
 	FlattenedConversationMessagesFromJSON,
 	FlattenedConversationMessagesToJSON,
+	type FlattenedConversationMessages,
 } from "./FlattenedConversationMessages.tsx";
-import type { FlattenedWebsites } from "./FlattenedWebsites.tsx";
 import {
 	FlattenedWebsitesFromJSON,
 	FlattenedWebsitesToJSON,
+	type FlattenedWebsites,
 } from "./FlattenedWebsites.tsx";
-import type { FlattenedWorkstreamSummaries } from "./FlattenedWorkstreamSummaries.tsx";
 import {
 	FlattenedWorkstreamSummariesFromJSON,
 	FlattenedWorkstreamSummariesToJSON,
+	type FlattenedWorkstreamSummaries,
 } from "./FlattenedWorkstreamSummaries.tsx";
-import type { GroupedTimestamp } from "./GroupedTimestamp.tsx";
 import {
 	GroupedTimestampFromJSON,
 	GroupedTimestampToJSON,
+	type GroupedTimestamp,
 } from "./GroupedTimestamp.tsx";
-import type { QGPTPromptPipeline } from "./QGPTPromptPipeline.tsx";
 import {
 	QGPTPromptPipelineFromJSON,
 	QGPTPromptPipelineToJSON,
+	type QGPTPromptPipeline,
 } from "./QGPTPromptPipeline.tsx";
-import type { ReferencedModel } from "./ReferencedModel.tsx";
 import {
 	ReferencedModelFromJSON,
 	ReferencedModelToJSON,
+	type ReferencedModel,
 } from "./ReferencedModel.tsx";
-import type { Score } from "./Score.tsx";
-import { ScoreFromJSON, ScoreToJSON } from "./Score.tsx";
+import { ScoreFromJSON, ScoreToJSON, type Score } from "./Score.tsx";
 
 /**
  * This is a flattend version of the Convsersation for DAG-Safety.

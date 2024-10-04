@@ -12,19 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Asset,
-	Assets,
-	AssetsSearchWithFiltersInput,
-	AssetsSearchWithFiltersOutput,
-	FlattenedAssets,
-	Formats,
-	PseudoAssets,
-	SearchedAssets,
-	Seed,
-	SeededAssetsRecommendation,
-	StreamedIdentifiers,
-} from "../models/index.ts";
 import {
 	AssetFromJSON,
 	AssetsFromJSON,
@@ -35,10 +22,21 @@ import {
 	FormatsFromJSON,
 	PseudoAssetsFromJSON,
 	SearchedAssetsFromJSON,
+	SeededAssetsRecommendationToJSON,
 	SeedFromJSON,
 	SeedToJSON,
-	SeededAssetsRecommendationToJSON,
 	StreamedIdentifiersFromJSON,
+	type Asset,
+	type Assets,
+	type AssetsSearchWithFiltersInput,
+	type AssetsSearchWithFiltersOutput,
+	type FlattenedAssets,
+	type Formats,
+	type PseudoAssets,
+	type SearchedAssets,
+	type Seed,
+	type SeededAssetsRecommendation,
+	type StreamedIdentifiers,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 

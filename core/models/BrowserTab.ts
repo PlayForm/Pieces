@@ -13,32 +13,35 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { AnonymousTemporalRange } from "./AnonymousTemporalRange.tsx";
 import {
 	AnonymousTemporalRangeFromJSON,
 	AnonymousTemporalRangeToJSON,
+	type AnonymousTemporalRange,
 } from "./AnonymousTemporalRange.tsx";
-import type { BrowserTabValues } from "./BrowserTabValues.tsx";
 import {
 	BrowserTabValuesFromJSON,
 	BrowserTabValuesToJSON,
+	type BrowserTabValues,
 } from "./BrowserTabValues.tsx";
-import type { DocumentContributors } from "./DocumentContributors.tsx";
 import {
 	DocumentContributorsFromJSON,
 	DocumentContributorsToJSON,
+	type DocumentContributors,
 } from "./DocumentContributors.tsx";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededAnchor } from "./SeededAnchor.tsx";
-import { SeededAnchorFromJSON, SeededAnchorToJSON } from "./SeededAnchor.tsx";
-import type { SeededWebsite } from "./SeededWebsite.tsx";
+import {
+	SeededAnchorFromJSON,
+	SeededAnchorToJSON,
+	type SeededAnchor,
+} from "./SeededAnchor.tsx";
 import {
 	SeededWebsiteFromJSON,
 	SeededWebsiteToJSON,
+	type SeededWebsite,
 } from "./SeededWebsite.tsx";
 
 /**

@@ -13,20 +13,20 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { QGPTQuestionOutput } from "./QGPTQuestionOutput.tsx";
 import {
 	QGPTQuestionOutputFromJSON,
 	QGPTQuestionOutputToJSON,
+	type QGPTQuestionOutput,
 } from "./QGPTQuestionOutput.tsx";
-import type { RelevantQGPTSeeds } from "./RelevantQGPTSeeds.tsx";
 import {
 	RelevantQGPTSeedsFromJSON,
 	RelevantQGPTSeedsToJSON,
+	type RelevantQGPTSeeds,
 } from "./RelevantQGPTSeeds.tsx";
 
 /**

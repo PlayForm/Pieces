@@ -13,18 +13,21 @@
  */
 
 import { exists } from "../runtime.ts";
-import type { EmbeddedModelSchema } from "./EmbeddedModelSchema.tsx";
 import {
 	EmbeddedModelSchemaFromJSON,
 	EmbeddedModelSchemaToJSON,
+	type EmbeddedModelSchema,
 } from "./EmbeddedModelSchema.tsx";
-import type { SeededAssetMetadata } from "./SeededAssetMetadata.tsx";
 import {
 	SeededAssetMetadataFromJSON,
 	SeededAssetMetadataToJSON,
+	type SeededAssetMetadata,
 } from "./SeededAssetMetadata.tsx";
-import type { SeededFormat } from "./SeededFormat.tsx";
-import { SeededFormatFromJSON, SeededFormatToJSON } from "./SeededFormat.tsx";
+import {
+	SeededFormatFromJSON,
+	SeededFormatToJSON,
+	type SeededFormat,
+} from "./SeededFormat.tsx";
 
 /**
  * A generic model to use with the Connector API that requires little to no additional information about the current application.

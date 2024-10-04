@@ -12,12 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-	Auth0User,
-	ReturnedUserProfile,
-	UserBetaStatus,
-	UserProfile,
-} from "../models/index.ts";
 import {
 	Auth0UserToJSON,
 	ReturnedUserProfileFromJSON,
@@ -25,6 +19,10 @@ import {
 	UserBetaStatusToJSON,
 	UserProfileFromJSON,
 	UserProfileToJSON,
+	type Auth0User,
+	type ReturnedUserProfile,
+	type UserBetaStatus,
+	type UserProfile,
 } from "../models/index.ts";
 import * as runtime from "../runtime.ts";
 
