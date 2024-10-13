@@ -42,18 +42,18 @@ an Open-Source Pieces project:
 
 1. Ensure you have the latest version of Pieces OS installed on your system:
 
-    - [Windows](https://docs.pieces.app/installation-getting-started/windows)
-    - [macOS](https://docs.pieces.app/installation-getting-started/macos)
-    - [Linux](https://docs.pieces.app/installation-getting-started/linux)
+    - [`Windows`](https://docs.pieces.app/installation-getting-started/windows)
+    - [`macOS`](https://docs.pieces.app/installation-getting-started/macos)
+    - [`Linux`](https://docs.pieces.app/installation-getting-started/linux)
 
 2. Ensure that you have
-   [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+   [`NPM`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
    installed.
 
 ### Pull Request
 
 **1.** Fork the
-[repository](https://github.com/pieces-app/pieces-os-client-sdk-for-typescript)
+[`repository`](https://github.com/pieces-app/pieces-os-client-sdk-for-typescript)
 on GitHub.
 
 **2.** Clone the forked repository. Open up the GitBash/Command Line and type:
@@ -129,7 +129,7 @@ planning to make before raising a PR is a good open-source practice.** <br>
 Let's walk through the steps to create an issue:
 
 **1.** On GitHub, navigate to the main page of the repository.
-[Here](https://github.com/.git) in this case.
+[`Here`](https://github.com/.git) in this case.
 
 **2.** Under your repository name, click on the `Issues` button.
 
@@ -142,5 +142,5 @@ Let's walk through the steps to create an issue:
 
 ### Tutorials that may help you:
 
--   [Git & GitHub Tutorial](https://www.youtube.com/watch?v=RGOj5yH7evk)
--   [Resolve merge conflict](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-on-github)
+-   [`Git & GitHub Tutorial`](https://www.youtube.com/watch?v=RGOj5yH7evk)
+-   [`Resolve merge conflict`](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/resolving-a-merge-conflict-on-github)

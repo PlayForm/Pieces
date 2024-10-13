@@ -44,7 +44,7 @@
 
 The Pieces SDK is a powerful code engine package designed for writing
 applications on top of
-[Pieces OS](/installation-getting-started/what-am-i-installing). It facilitates
+[`Pieces OS`](/installation-getting-started/what-am-i-installing). It facilitates
 communication with a locally hosted server to enable features such as copilot
 chats, asset saving, and more.
 
@@ -52,7 +52,7 @@ chats, asset saving, and more.
 
 The Pieces SDK has the following system requirements:
 
--   [Pieces OS](/installation-getting-started/what-am-i-installing) running as a
+-   [`Pieces OS`](/installation-getting-started/what-am-i-installing) running as a
     backend service.
 -   NodeJs environment with npm for installing the SDK package.
 
@@ -65,17 +65,17 @@ To get started with the Pieces SDK, follow these steps:
 Pieces OS runs in the background of your computer and serves as a hub for all
 plugins and extensions developed by the team. In order to utilize your own
 Server locally and support all the functionality that powers things like
-[Global Search](https://docs.pieces.app/features/global-search),
-[Copilot Chats](https://docs.pieces.app/features/pieces-copilot),
-[Asset Saving](https://docs.pieces.app/features/managing-saved-materials),
-[context](https://docs.pieces.app/features/pieces-copilot#set-your-own-copilot-context),
+[`Global Search`](https://docs.pieces.app/features/global-search),
+[`Copilot Chats`](https://docs.pieces.app/features/pieces-copilot),
+[`Asset Saving`](https://docs.pieces.app/features/managing-saved-materials),
+[`context`](https://docs.pieces.app/features/pieces-copilot#set-your-own-copilot-context),
 and more.
 
 Select the right version to download Pieces OS for your operating system:
 
--   [macOS](https://docs.pieces.app/installation-getting-started/macos)
--   [Windows](https://docs.pieces.app/installation-getting-started/windows)
--   [Linux](https://docs.pieces.app/installation-getting-started/linux)
+-   [`macOS`](https://docs.pieces.app/installation-getting-started/macos)
+-   [`Windows`](https://docs.pieces.app/installation-getting-started/windows)
+-   [`Linux`](https://docs.pieces.app/installation-getting-started/linux)
 
 ### 2. Downloading NPM Package
 
@@ -121,10 +121,10 @@ import * as pieces from "@pieces.app/pieces-os-client";
 > again**.
 
 You can take a look at an example repo using the TS SDK:
-[GitHub Repo](https://github.com/pieces-app/example-typescript)
+[`GitHub Repo`](https://github.com/pieces-app/example-typescript)
 
 For detailed usage instructions and examples, refer to the
-[documentation](https://docs.pieces.app/build/reference/typescript).
+[`documentation`](https://docs.pieces.app/build/reference/typescript).
 
 ## Features
 
@@ -275,7 +275,7 @@ function createAsset() {
 ```
 
 The response back will look similar to the following:
-[https://jwaf.pieces.cloud](https://jwaf.pieces.cloud/?p=24e242a85e)
+[`https://jwaf.pieces.cloud`](https://jwaf.pieces.cloud/?p=24e242a85e)
 
 </details>
 
@@ -300,17 +300,17 @@ new Pieces.AssetsApi().assetsSnapshot({}).then(_assetList => {
 
 A developer documentation that outlines all the ins and outs of our available
 endpoints can be found
-[here](https://docs.pieces.app/build/reference/typescript/).
+[`here`](https://docs.pieces.app/build/reference/typescript/).
 
 ## Learn More
 
 Explore more about Pieces SDK and get help from the following resources:
 
 -   🚀
-    [Getting Started Tutorial](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
--   📜 [Pieces Docs](https://docs.pieces.app/)
--   💬 [Discord Community](https://discord.gg/getpieces)
+    [`Getting Started Tutorial`](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
+-   📜 [`Pieces Docs`](https://docs.pieces.app/)
+-   💬 [`Discord Community`](https://discord.gg/getpieces)
 
 ## License
 
-This repository is available under the [MIT License](./LICENSE).
+This repository is available under the [`MIT License`](./LICENSE).
