@@ -310,7 +310,3 @@ Explore more about Pieces SDK and get help from the following resources:
     [`Getting Started Tutorial`](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
 -   📜 [`Pieces Docs`](https://docs.pieces.app/)
 -   💬 [`Discord Community`](https://discord.gg/getpieces)
-
-## License
-
-This repository is available under the [`MIT License`](./LICENSE).
