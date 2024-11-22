@@ -87,6 +87,7 @@ export class AnchorPointsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -185,6 +186,7 @@ export class AnchorPointsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

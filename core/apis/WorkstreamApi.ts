@@ -74,6 +74,7 @@ export class WorkstreamApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -112,6 +113,7 @@ export class WorkstreamApi extends runtime.BaseAPI {
 	): Promise<WorkstreamSuggestions> {
 		const response =
 			await this.workstreamSuggestionsStreamRaw(initOverrides);
+
 		return await response.value();
 	}
 }

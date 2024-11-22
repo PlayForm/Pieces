@@ -114,6 +114,7 @@ export class UserApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<UserProfile> {
 		const response = await this.refreshUserRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -177,6 +178,7 @@ export class UserApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -214,6 +216,7 @@ export class UserApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<UserProfile> {
 		const response = await this.streamUserRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -259,6 +262,7 @@ export class UserApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -304,6 +308,7 @@ export class UserApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -341,6 +346,7 @@ export class UserApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<ReturnedUserProfile> {
 		const response = await this.userProvidersRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -378,6 +384,7 @@ export class UserApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<ReturnedUserProfile> {
 		const response = await this.userSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -423,6 +430,7 @@ export class UserApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

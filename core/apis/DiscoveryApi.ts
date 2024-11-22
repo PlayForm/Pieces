@@ -104,6 +104,7 @@ export class DiscoveryApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -155,6 +156,7 @@ export class DiscoveryApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -206,6 +208,7 @@ export class DiscoveryApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -257,6 +260,7 @@ export class DiscoveryApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

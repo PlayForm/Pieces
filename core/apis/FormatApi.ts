@@ -33,6 +33,7 @@ export interface FormatAnalysisRequest {
 
 export interface FormatReclassifyRequest {
 	transferable?: boolean;
+
 	formatReclassification?: FormatReclassification;
 }
 
@@ -43,6 +44,7 @@ export interface FormatSnapshotRequest {
 
 export interface FormatUpdateValueRequest {
 	transferable?: boolean;
+
 	format?: Format;
 }
 
@@ -106,6 +108,7 @@ export class FormatApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -157,6 +160,7 @@ export class FormatApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -216,6 +220,7 @@ export class FormatApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -265,6 +270,7 @@ export class FormatApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -312,6 +318,7 @@ export class FormatApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

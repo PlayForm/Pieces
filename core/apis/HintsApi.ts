@@ -85,6 +85,7 @@ export class HintsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -171,6 +172,7 @@ export class HintsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Hints> {
 		const response = await this.hintsSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -220,6 +222,7 @@ export class HintsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

@@ -78,6 +78,7 @@ export class DistributionsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -167,6 +168,7 @@ export class DistributionsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Distributions> {
 		const response = await this.distributionsSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 }

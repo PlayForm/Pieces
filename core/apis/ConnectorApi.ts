@@ -107,6 +107,7 @@ export class ConnectorApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -169,6 +170,7 @@ export class ConnectorApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -229,6 +231,7 @@ export class ConnectorApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -286,6 +289,7 @@ export class ConnectorApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<string> {
 		const response = await this.reactRaw(requestParameters, initOverrides);
+
 		return await response.value();
 	}
 
@@ -346,6 +350,7 @@ export class ConnectorApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -405,6 +410,7 @@ export class ConnectorApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<string> {
 		const response = await this.trackRaw(requestParameters, initOverrides);
+
 		return await response.value();
 	}
 }

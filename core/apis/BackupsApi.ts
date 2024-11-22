@@ -84,6 +84,7 @@ export class BackupsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -129,6 +130,7 @@ export class BackupsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -221,6 +223,7 @@ export class BackupsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Backups> {
 		const response = await this.backupsSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 }

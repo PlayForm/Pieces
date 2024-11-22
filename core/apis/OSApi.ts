@@ -148,6 +148,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -195,6 +196,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -242,6 +244,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -359,6 +362,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<OSDeviceInformationReturnable> {
 		const response = await this.osDeviceInformationRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -445,6 +449,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -490,6 +495,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -533,6 +539,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -568,6 +575,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<string[]> {
 		const response = await this.osFilesystemPickFoldersRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -639,6 +647,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<OSServerMetadata> {
 		const response = await this.osMetadataRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -676,6 +685,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<OSPermissions> {
 		const response = await this.osPermissionsRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -721,6 +731,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -792,6 +803,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<OSServerSettings> {
 		const response = await this.osSettingsSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -829,6 +841,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<OSServerSettings> {
 		const response = await this.osSettingsStreamRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -876,6 +889,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -957,6 +971,7 @@ export class OSApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -994,6 +1009,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<OSServerUpdateStatus> {
 		const response = await this.osUpdateCheckStreamRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -1031,6 +1047,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<UserProfile> {
 		const response = await this.signIntoOSRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -1068,6 +1085,7 @@ export class OSApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Users> {
 		const response = await this.signOutOfOSRaw(initOverrides);
+
 		return await response.value();
 	}
 }

@@ -98,6 +98,7 @@ export class UsersApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -153,6 +154,7 @@ export class UsersApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -190,6 +192,7 @@ export class UsersApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Users> {
 		const response = await this.usersSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -245,6 +248,7 @@ export class UsersApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

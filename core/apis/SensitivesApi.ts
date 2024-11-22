@@ -89,6 +89,7 @@ export class SensitivesApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -134,6 +135,7 @@ export class SensitivesApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -223,6 +225,7 @@ export class SensitivesApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Sensitives> {
 		const response = await this.sensitivesSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 }

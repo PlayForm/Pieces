@@ -118,6 +118,7 @@ export class PKCEApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -163,6 +164,7 @@ export class PKCEApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -200,6 +202,7 @@ export class PKCEApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<PKCE> {
 		const response = await this.getChallengeRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -242,7 +245,9 @@ export class PKCEApi extends runtime.BaseAPI {
 		const canConsumeForm = runtime.canConsumeForm(consumes);
 
 		let formParams: { append(param: string, value: any): any };
+
 		const useForm = false;
+
 		if (useForm) {
 			formParams = new FormData();
 		} else {
@@ -299,6 +304,7 @@ export class PKCEApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

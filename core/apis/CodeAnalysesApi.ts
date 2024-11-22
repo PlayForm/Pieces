@@ -53,6 +53,7 @@ export class CodeAnalysesApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<CodeAnalyses> {
 		const response = await this.codeAnalysesSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 }

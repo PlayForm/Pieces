@@ -85,6 +85,7 @@ export class ModelsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -197,6 +198,7 @@ export class ModelsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -234,6 +236,7 @@ export class ModelsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Models> {
 		const response = await this.modelsSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 

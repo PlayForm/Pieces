@@ -58,6 +58,7 @@ export class MetricsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<FormatsMetrics> {
 		const response = await this.getMetricsFormatsRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -95,6 +96,7 @@ export class MetricsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<OrderedMetrics> {
 		const response = await this.metricsFormatsOrderedRaw(initOverrides);
+
 		return await response.value();
 	}
 }

@@ -297,6 +297,7 @@ export class WorkstreamEventApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -359,6 +360,7 @@ export class WorkstreamEventApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 }

@@ -106,6 +106,7 @@ export class QGPTApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<QGPTQuestionOutput> {
 		const response = await this.hintsRaw(requestParameters, initOverrides);
+
 		return await response.value();
 	}
 
@@ -157,6 +158,7 @@ export class QGPTApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -202,6 +204,7 @@ export class QGPTApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -249,6 +252,7 @@ export class QGPTApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -296,6 +300,7 @@ export class QGPTApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -343,6 +348,7 @@ export class QGPTApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

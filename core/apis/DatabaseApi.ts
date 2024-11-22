@@ -61,6 +61,7 @@ export class DatabaseApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<ExportedDatabase> {
 		const response = await this.databaseExportRaw(initOverrides);
+
 		return await response.value();
 	}
 

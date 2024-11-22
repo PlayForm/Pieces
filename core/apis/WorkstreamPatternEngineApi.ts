@@ -131,6 +131,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -171,6 +172,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 			await this.workstreamPatternEngineProcessorsSourcesRaw(
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -219,6 +221,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -259,6 +262,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 			await this.workstreamPatternEngineProcessorsVisionCalibrationCaptureRaw(
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -299,6 +303,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 			await this.workstreamPatternEngineProcessorsVisionCalibrationsFocusedRaw(
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -339,6 +344,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 			await this.workstreamPatternEngineProcessorsVisionCalibrationsSnapshotRaw(
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -431,6 +437,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -533,6 +540,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -585,6 +593,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -632,6 +641,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -692,6 +702,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -732,6 +743,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 			await this.workstreamPatternEngineProcessorsVisionMetadataRaw(
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -772,6 +784,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 			await this.workstreamPatternEngineProcessorsVisionStatusRaw(
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -812,6 +825,7 @@ export class WorkstreamPatternEngineApi extends runtime.BaseAPI {
 			await this.workstreamPatternEngineProcessorsVisionStatusStreamRaw(
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 }

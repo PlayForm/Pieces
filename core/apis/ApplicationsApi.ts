@@ -108,6 +108,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 	): Promise<DetectedExternalApplications> {
 		const response =
 			await this.applicationsExternalRelatedRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -146,6 +147,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 	): Promise<DetectedExternalApplications> {
 		const response =
 			await this.applicationsExternalSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -193,6 +195,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -240,6 +243,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -279,6 +283,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Session> {
 		const response = await this.applicationsSessionOpenRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -336,6 +341,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -373,6 +379,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Applications> {
 		const response = await this.applicationsSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -428,6 +435,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -477,6 +485,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -526,6 +535,7 @@ export class ApplicationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 

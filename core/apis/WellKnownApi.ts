@@ -54,6 +54,7 @@ export class WellKnownApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<string> {
 		const response = await this.getWellKnownHealthRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -93,6 +94,7 @@ export class WellKnownApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<string> {
 		const response = await this.getWellKnownVersionRaw(initOverrides);
+
 		return await response.value();
 	}
 }

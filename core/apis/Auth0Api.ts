@@ -26,6 +26,7 @@ import * as runtime from "../runtime.ts";
 
 export interface Auth0LogoutRequest {
 	clientId?: string;
+
 	returnTo?: string;
 }
 
@@ -106,6 +107,7 @@ export class Auth0Api extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -265,6 +267,7 @@ export class Auth0Api extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -337,7 +340,9 @@ export class Auth0Api extends runtime.BaseAPI {
 		const canConsumeForm = runtime.canConsumeForm(consumes);
 
 		let formParams: { append(param: string, value: any): any };
+
 		const useForm = false;
+
 		if (useForm) {
 			formParams = new FormData();
 		} else {
@@ -416,6 +421,7 @@ export class Auth0Api extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -471,6 +477,7 @@ export class Auth0Api extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Auth0User> {
 		const response = await this.getAuth0UserInfoRaw(initOverrides);
+
 		return await response.value();
 	}
 }

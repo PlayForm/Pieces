@@ -53,6 +53,7 @@ export class RelationshipsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Relationships> {
 		const response = await this.relationshipsSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 }

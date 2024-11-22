@@ -141,6 +141,7 @@ export interface AssetSpecificAssetConversationsRequest {
 
 export interface AssetSpecificAssetExportRequest {
 	asset: string;
+
 	exportType: AssetSpecificAssetExportExportTypeEnum;
 }
 
@@ -1128,6 +1129,7 @@ export class AssetApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -1179,6 +1181,7 @@ export class AssetApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -1292,6 +1295,7 @@ export class AssetApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -1354,6 +1358,7 @@ export class AssetApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -1413,6 +1418,7 @@ export class AssetApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -1472,6 +1478,7 @@ export class AssetApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -1541,6 +1548,7 @@ export class AssetApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -1590,6 +1598,7 @@ export class AssetApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

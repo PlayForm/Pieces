@@ -66,6 +66,7 @@ export class AnalysesApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

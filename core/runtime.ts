@@ -68,6 +68,7 @@ export class Configuration {
 
 	get apiKey(): ((name: string) => string | Promise<string>) | undefined {
 		const apiKey = this.configuration.apiKey;
+
 		if (apiKey) {
 			return typeof apiKey === "function" ? apiKey : () => apiKey;
 		}
@@ -78,6 +79,7 @@ export class Configuration {
 		| ((name?: string, scopes?: string[]) => string | Promise<string>)
 		| undefined {
 		const accessToken = this.configuration.accessToken;
+
 		if (accessToken) {
 			return typeof accessToken === "function"
 				? accessToken
@@ -123,6 +125,7 @@ export class BaseAPI {
 	withMiddleware<T extends BaseAPI>(this: T, ...middlewares: Middleware[]) {
 		const next = this.clone<T>();
 		next.middleware = next.middleware.concat(...middlewares);
+
 		return next;
 	}
 
@@ -131,6 +134,7 @@ export class BaseAPI {
 		...preMiddlewares: Middleware["pre"][]
 	) {
 		const middlewares = preMiddlewares.map((pre) => ({ pre }));
+
 		return this.withMiddleware<T>(...middlewares);
 	}
 
@@ -139,6 +143,7 @@ export class BaseAPI {
 		...postMiddlewares: Middleware["post"][]
 	) {
 		const middlewares = postMiddlewares.map((post) => ({ post }));
+
 		return this.withMiddleware<T>(...middlewares);
 	}
 
@@ -167,7 +172,9 @@ export class BaseAPI {
 			context,
 			initOverrides,
 		);
+
 		const response = await this.fetchApi(url, init);
+
 		if (response && response.status >= 200 && response.status < 300) {
 			return response;
 		}
@@ -179,6 +186,7 @@ export class BaseAPI {
 		initOverrides?: RequestInit | InitOverrideFunction,
 	) {
 		let url = this.configuration.basePath + context.path;
+
 		if (
 			context.query !== undefined &&
 			Object.keys(context.query).length > 0
@@ -219,6 +227,7 @@ export class BaseAPI {
 		};
 
 		let body: any;
+
 		if (
 			isFormData(overriddenInit.body) ||
 			overriddenInit.body instanceof URLSearchParams ||
@@ -241,6 +250,7 @@ export class BaseAPI {
 
 	private fetchApi = async (url: string, init: RequestInit) => {
 		let fetchParams = { url, init };
+
 		for (const middleware of this.middleware) {
 			if (middleware.pre) {
 				fetchParams =
@@ -251,6 +261,7 @@ export class BaseAPI {
 			}
 		}
 		let response: Response | undefined;
+
 		try {
 			response = await (this.configuration.fetchApi || fetch)(
 				fetchParams.url,
@@ -300,8 +311,10 @@ export class BaseAPI {
 	 */
 	private clone<T extends BaseAPI>(this: T): T {
 		const constructor = this.constructor as any;
+
 		const next = new constructor(this.configuration);
 		next.middleware = this.middleware.slice();
+
 		return next;
 	}
 }
@@ -316,6 +329,7 @@ function isFormData(value: any): value is FormData {
 
 export class ResponseError extends Error {
 	override name = "ResponseError" as const;
+
 	constructor(
 		public response: Response,
 		msg?: string,
@@ -326,6 +340,7 @@ export class ResponseError extends Error {
 
 export class FetchError extends Error {
 	override name = "FetchError" as const;
+
 	constructor(
 		public cause: Error,
 		msg?: string,
@@ -336,6 +351,7 @@ export class FetchError extends Error {
 
 export class RequiredError extends Error {
 	override name = "RequiredError" as const;
+
 	constructor(
 		public field: string,
 		msg?: string,
@@ -406,6 +422,7 @@ export interface RequestOpts {
 
 export function exists(json: any, key: string) {
 	const value = json[key];
+
 	return value !== null && value !== undefined;
 }
 
@@ -430,14 +447,17 @@ function querystringSingleKey(
 	keyPrefix = "",
 ): string {
 	const fullKey = keyPrefix + (keyPrefix.length > 0 ? `[${key}]` : key);
+
 	if (Array.isArray(value)) {
 		const multiValue = value
 			.map((singleValue) => encodeURIComponent(String(singleValue)))
 			.join(`&${encodeURIComponent(fullKey)}=`);
+
 		return `${encodeURIComponent(fullKey)}=${multiValue}`;
 	}
 	if (value instanceof Set) {
 		const valueAsArray = Array.from(value);
+
 		return querystringSingleKey(key, valueAsArray, keyPrefix);
 	}
 	if (value instanceof Date) {

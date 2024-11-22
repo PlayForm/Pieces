@@ -94,6 +94,7 @@ export class WorkstreamSummariesApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -146,6 +147,7 @@ export class WorkstreamSummariesApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 
@@ -246,6 +248,7 @@ export class WorkstreamSummariesApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

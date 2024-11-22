@@ -108,6 +108,7 @@ export class ConversationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -159,6 +160,7 @@ export class ConversationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -249,6 +251,7 @@ export class ConversationsApi extends runtime.BaseAPI {
 	): Promise<FlattenedConversations> {
 		const response =
 			await this.conversationsIdentifiersSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -295,6 +298,7 @@ export class ConversationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -378,6 +382,7 @@ export class ConversationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

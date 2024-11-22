@@ -73,6 +73,7 @@ export class DistributionApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -129,6 +130,7 @@ export class DistributionApi extends runtime.BaseAPI {
 				requestParameters,
 				initOverrides,
 			);
+
 		return await response.value();
 	}
 }

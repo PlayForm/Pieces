@@ -76,6 +76,7 @@ export class RangesApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -165,6 +166,7 @@ export class RangesApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Ranges> {
 		const response = await this.rangesSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 }

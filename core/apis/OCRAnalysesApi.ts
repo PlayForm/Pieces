@@ -66,6 +66,7 @@ export class OCRAnalysesApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 }

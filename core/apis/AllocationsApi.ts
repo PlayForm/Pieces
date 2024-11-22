@@ -89,6 +89,7 @@ export class AllocationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -134,6 +135,7 @@ export class AllocationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -181,6 +183,7 @@ export class AllocationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -228,6 +231,7 @@ export class AllocationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -273,6 +277,7 @@ export class AllocationsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -310,6 +315,7 @@ export class AllocationsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Allocations> {
 		const response = await this.allocationsSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 }

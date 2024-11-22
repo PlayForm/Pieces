@@ -145,6 +145,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -202,6 +203,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -251,6 +253,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -298,6 +301,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -343,6 +347,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -389,6 +394,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -426,6 +432,7 @@ export class AssetsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<PseudoAssets> {
 		const response = await this.assetsPseudoSnapshotRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -481,6 +488,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -535,6 +543,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -594,6 +603,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -653,6 +663,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -690,6 +701,7 @@ export class AssetsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<StreamedIdentifiers> {
 		const response = await this.assetsStreamIdentifiersRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -728,6 +740,7 @@ export class AssetsApi extends runtime.BaseAPI {
 	): Promise<Assets> {
 		const response =
 			await this.getAssetsStreamTransferablesRaw(initOverrides);
+
 		return await response.value();
 	}
 
@@ -787,6 +800,7 @@ export class AssetsApi extends runtime.BaseAPI {
 			requestParameters,
 			initOverrides,
 		);
+
 		return await response.value();
 	}
 
@@ -824,6 +838,7 @@ export class AssetsApi extends runtime.BaseAPI {
 		initOverrides?: RequestInit | runtime.InitOverrideFunction,
 	): Promise<Assets> {
 		const response = await this.streamAssetsRaw(initOverrides);
+
 		return await response.value();
 	}
 }
