@@ -40,6 +40,7 @@ export interface SeededPKCEADDITIONALPARAMETERS {
 export const SeededPKCEADDITIONALPARAMETERSAccessTypeEnum = {
 	Offline: "offline",
 } as const;
+
 export type SeededPKCEADDITIONALPARAMETERSAccessTypeEnum =
 	(typeof SeededPKCEADDITIONALPARAMETERSAccessTypeEnum)[keyof typeof SeededPKCEADDITIONALPARAMETERSAccessTypeEnum];
 
@@ -49,6 +50,7 @@ export type SeededPKCEADDITIONALPARAMETERSAccessTypeEnum =
 export const SeededPKCEADDITIONALPARAMETERSDisplayEnum = {
 	Popup: "popup",
 } as const;
+
 export type SeededPKCEADDITIONALPARAMETERSDisplayEnum =
 	(typeof SeededPKCEADDITIONALPARAMETERSDisplayEnum)[keyof typeof SeededPKCEADDITIONALPARAMETERSDisplayEnum];
 

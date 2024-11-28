@@ -20,6 +20,7 @@ export const FilterOperationTypeEnum = {
 	And: "AND",
 	Or: "OR",
 } as const;
+
 export type FilterOperationTypeEnum =
 	(typeof FilterOperationTypeEnum)[keyof typeof FilterOperationTypeEnum];
 

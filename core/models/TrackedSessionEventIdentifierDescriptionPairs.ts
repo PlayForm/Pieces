@@ -113,6 +113,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionInitializedEnum
 		ASessionHasBeenInitializedAndTheApplicationHasBeenOpened:
 			"a_session_has_been_initialized_and_the_application_has_been_opened",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionInitializedEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionInitializedEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionInitializedEnum];
 
@@ -124,6 +125,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionLocalConnection
 		OneOrMoreApplicationsHasSuccessfullyConnected:
 			"one_or_more_applications_has_successfully_connected",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionLocalConnectionSucceededEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionLocalConnectionSucceededEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionLocalConnectionSucceededEnum];
 
@@ -135,6 +137,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionLocalConnection
 		OneOrMoreApplicationsHasFailedToConnectLocally:
 			"one_or_more_applications_has_failed_to_connect_locally",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionLocalConnectionFailedEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionLocalConnectionFailedEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionLocalConnectionFailedEnum];
 
@@ -146,6 +149,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionInactiveEnum =
 		ASessionIsInactiveBecauseTheApplicationIsNotInTheForeground:
 			"a_session_is_inactive_because_the_application_is_not_in_the_foreground",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionInactiveEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionInactiveEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionInactiveEnum];
 
@@ -156,6 +160,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionActiveEnum = {
 	ASessionIsActiveBecauseTheApplicationIsInTheForeground:
 		"a_session_is_active_because_the_application_is_in_the_foreground",
 } as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionActiveEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionActiveEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionActiveEnum];
 
@@ -167,6 +172,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionTerminatedEnum 
 		ASessionHasBeenEndedAndTheApplicationHasBeenClosed:
 			"a_session_has_been_ended_and_the_application_has_been_closed",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionTerminatedEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionTerminatedEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionTerminatedEnum];
 
@@ -178,6 +184,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionAuthenticatedWi
 		AUserHasSignedIntoThisSessionWithAAnExternalAccount:
 			"a_user_has_signed_into_this_session_with_a_an_external_account",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionAuthenticatedWithSignInEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionAuthenticatedWithSignInEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionAuthenticatedWithSignInEnum];
 
@@ -188,6 +195,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticated
 	{
 		AUserHasSignedOutOfThisSession: "a_user_has_signed_out_of_this_session",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithSignOutEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithSignOutEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithSignOutEnum];
 
@@ -199,6 +207,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticated
 		AUserDidNotSignIntoTheSessionWithADismissal:
 			"a_user_did_not_sign_into_the_session_with_a_dismissal",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithDismissEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithDismissEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithDismissEnum];
 
@@ -210,6 +219,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticated
 		AUserDidNotSignIntoTheSessionWithAReminder:
 			"a_user_did_not_sign_into_the_session_with_a_reminder",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithRemindEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithRemindEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionUnauthenticatedWithRemindEnum];
 
@@ -221,6 +231,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionOnboardingIniti
 		OnboardingHasBeenInitializedForThisSession:
 			"onboarding_has_been_initialized_for_this_session",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionOnboardingInitializedEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionOnboardingInitializedEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionOnboardingInitializedEnum];
 
@@ -232,6 +243,7 @@ export const TrackedSessionEventIdentifierDescriptionPairsSessionOnboardingCompl
 		OnboardingHasBeenCompletedForThisSession:
 			"onboarding_has_been_completed_for_this_session",
 	} as const;
+
 export type TrackedSessionEventIdentifierDescriptionPairsSessionOnboardingCompletedEnum =
 	(typeof TrackedSessionEventIdentifierDescriptionPairsSessionOnboardingCompletedEnum)[keyof typeof TrackedSessionEventIdentifierDescriptionPairsSessionOnboardingCompletedEnum];
 

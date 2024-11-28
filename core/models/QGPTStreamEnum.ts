@@ -26,6 +26,7 @@ export const QGPTStreamEnum = {
 	Stopped: "STOPPED",
 	Reset: "RESET",
 } as const;
+
 export type QGPTStreamEnum =
 	(typeof QGPTStreamEnum)[keyof typeof QGPTStreamEnum];
 

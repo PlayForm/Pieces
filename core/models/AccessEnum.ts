@@ -20,6 +20,7 @@ export const AccessEnum = {
 	Public: "PUBLIC",
 	Private: "PRIVATE",
 } as const;
+
 export type AccessEnum = (typeof AccessEnum)[keyof typeof AccessEnum];
 
 export function AccessEnumFromJSON(json: any): AccessEnum {

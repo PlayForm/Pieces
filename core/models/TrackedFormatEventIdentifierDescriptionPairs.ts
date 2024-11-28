@@ -99,6 +99,7 @@ export interface TrackedFormatEventIdentifierDescriptionPairs {
 export const TrackedFormatEventIdentifierDescriptionPairsFormatCreatedEnum = {
 	AFormatWasCreated: "a_format_was_created",
 } as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatCreatedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatCreatedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatCreatedEnum];
 
@@ -108,6 +109,7 @@ export type TrackedFormatEventIdentifierDescriptionPairsFormatCreatedEnum =
 export const TrackedFormatEventIdentifierDescriptionPairsFormatCopiedEnum = {
 	IfAFormatWasEntirelyCopied: "if_a_format_was_entirely_copied",
 } as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatCopiedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatCopiedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatCopiedEnum];
 
@@ -118,6 +120,7 @@ export const TrackedFormatEventIdentifierDescriptionPairsFormatPartiallyCopiedEn
 	{
 		IfAFormatWasPartiallyCopied: "if_a_format_was_partially_copied",
 	} as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatPartiallyCopiedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatPartiallyCopiedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatPartiallyCopiedEnum];
 
@@ -128,6 +131,7 @@ export const TrackedFormatEventIdentifierDescriptionPairsFormatDownloadedEnum =
 	{
 		IfAFormatWasDownloaded: "if_a_format_was_downloaded",
 	} as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatDownloadedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatDownloadedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatDownloadedEnum];
 
@@ -137,6 +141,7 @@ export type TrackedFormatEventIdentifierDescriptionPairsFormatDownloadedEnum =
 export const TrackedFormatEventIdentifierDescriptionPairsFormatDeletedEnum = {
 	IfAFormatWasDeleted: "if_a_format_was_deleted",
 } as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatDeletedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatDeletedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatDeletedEnum];
 
@@ -148,6 +153,7 @@ export const TrackedFormatEventIdentifierDescriptionPairsFormatGenericClassifica
 		IfAGenericClassificationWasChangedOnAFormat:
 			"if_a_generic_classification_was_changed_on_a_format",
 	} as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatGenericClassificationUpdatedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatGenericClassificationUpdatedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatGenericClassificationUpdatedEnum];
 
@@ -159,6 +165,7 @@ export const TrackedFormatEventIdentifierDescriptionPairsFormatSpecificClassific
 		IfASpecificClassificationWasChangedOnAFormat:
 			"if_a_specific_classification_was_changed_on_a_format",
 	} as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatSpecificClassificationUpdatedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatSpecificClassificationUpdatedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatSpecificClassificationUpdatedEnum];
 
@@ -168,6 +175,7 @@ export type TrackedFormatEventIdentifierDescriptionPairsFormatSpecificClassifica
 export const TrackedFormatEventIdentifierDescriptionPairsFormatUpdatedEnum = {
 	AFormatWasUpdated: "a_format_was_updated",
 } as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatUpdatedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatUpdatedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatUpdatedEnum];
 
@@ -177,6 +185,7 @@ export type TrackedFormatEventIdentifierDescriptionPairsFormatUpdatedEnum =
 export const TrackedFormatEventIdentifierDescriptionPairsFormatInsertedEnum = {
 	AFormatWasInserted: "a_format_was_inserted",
 } as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatInsertedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatInsertedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatInsertedEnum];
 
@@ -187,6 +196,7 @@ export const TrackedFormatEventIdentifierDescriptionPairsFormatValueEditedEnum =
 	{
 		AFormatValueWasEdited: "a_format_value_was_edited",
 	} as const;
+
 export type TrackedFormatEventIdentifierDescriptionPairsFormatValueEditedEnum =
 	(typeof TrackedFormatEventIdentifierDescriptionPairsFormatValueEditedEnum)[keyof typeof TrackedFormatEventIdentifierDescriptionPairsFormatValueEditedEnum];
 

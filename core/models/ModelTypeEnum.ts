@@ -21,6 +21,7 @@ export const ModelTypeEnum = {
 	Speed: "SPEED",
 	Accuracy: "ACCURACY",
 } as const;
+
 export type ModelTypeEnum = (typeof ModelTypeEnum)[keyof typeof ModelTypeEnum];
 
 export function ModelTypeEnumFromJSON(json: any): ModelTypeEnum {

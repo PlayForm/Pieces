@@ -76,6 +76,7 @@ export const TokenizedPKCEGrantTypeEnum = {
 	RefreshToken: "refresh_token",
 	AuthorizationCode: "authorization_code",
 } as const;
+
 export type TokenizedPKCEGrantTypeEnum =
 	(typeof TokenizedPKCEGrantTypeEnum)[keyof typeof TokenizedPKCEGrantTypeEnum];
 

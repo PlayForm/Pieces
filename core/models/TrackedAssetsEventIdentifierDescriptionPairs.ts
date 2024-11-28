@@ -45,6 +45,7 @@ export interface TrackedAssetsEventIdentifierDescriptionPairs {
 export const TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum = {
 	AssetsWereSearched: "assets_were_searched",
 } as const;
+
 export type TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum =
 	(typeof TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum)[keyof typeof TrackedAssetsEventIdentifierDescriptionPairsAssetsSearchedEnum];
 

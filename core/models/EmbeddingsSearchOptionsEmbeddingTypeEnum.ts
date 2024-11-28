@@ -20,6 +20,7 @@ export const EmbeddingsSearchOptionsEmbeddingTypeEnum = {
 	Jina: "JINA",
 	Ncs: "NCS",
 } as const;
+
 export type EmbeddingsSearchOptionsEmbeddingTypeEnum =
 	(typeof EmbeddingsSearchOptionsEmbeddingTypeEnum)[keyof typeof EmbeddingsSearchOptionsEmbeddingTypeEnum];
 

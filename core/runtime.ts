@@ -370,6 +370,7 @@ export const COLLECTION_FORMATS = {
 export type FetchAPI = WindowOrWorkerGlobalScope["fetch"];
 
 export type Json = any;
+
 export type HTTPMethod =
 	| "GET"
 	| "POST"
@@ -378,7 +379,9 @@ export type HTTPMethod =
 	| "DELETE"
 	| "OPTIONS"
 	| "HEAD";
+
 export type HTTPHeaders = { [key: string]: string };
+
 export type HTTPQuery = {
 	[key: string]:
 		| string
@@ -389,13 +392,16 @@ export type HTTPQuery = {
 		| Set<string | number | null | boolean>
 		| HTTPQuery;
 };
+
 export type HTTPBody = Json | FormData | URLSearchParams;
+
 export type HTTPRequestInit = {
 	headers?: HTTPHeaders;
 	method: HTTPMethod;
 	credentials?: RequestCredentials;
 	body?: HTTPBody;
 };
+
 export type ModelPropertyNaming =
 	| "camelCase"
 	| "snake_case"

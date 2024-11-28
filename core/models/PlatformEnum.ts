@@ -26,6 +26,7 @@ export const PlatformEnum = {
 	Android: "ANDROID",
 	Unknown: "UNKNOWN",
 } as const;
+
 export type PlatformEnum = (typeof PlatformEnum)[keyof typeof PlatformEnum];
 
 export function PlatformEnumFromJSON(json: any): PlatformEnum {

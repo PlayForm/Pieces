@@ -22,6 +22,7 @@ export const Role = {
 	Both: "BOTH",
 	Preview: "PREVIEW",
 } as const;
+
 export type Role = (typeof Role)[keyof typeof Role];
 
 export function RoleFromJSON(json: any): Role {

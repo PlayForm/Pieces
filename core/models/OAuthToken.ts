@@ -75,6 +75,7 @@ export interface OAuthToken {
 export const OAuthTokenTokenTypeEnum = {
 	Bearer: "Bearer",
 } as const;
+
 export type OAuthTokenTokenTypeEnum =
 	(typeof OAuthTokenTokenTypeEnum)[keyof typeof OAuthTokenTokenTypeEnum];
 

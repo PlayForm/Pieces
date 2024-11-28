@@ -25,6 +25,7 @@ export const ClassificationGenericEnum = {
 	Unknown: "UNKNOWN",
 	File: "FILE",
 } as const;
+
 export type ClassificationGenericEnum =
 	(typeof ClassificationGenericEnum)[keyof typeof ClassificationGenericEnum];
 

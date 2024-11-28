@@ -25,6 +25,7 @@ export const ModelDownloadProgressStatusEnum = {
 	Canceled: "CANCELED",
 	Reset: "RESET",
 } as const;
+
 export type ModelDownloadProgressStatusEnum =
 	(typeof ModelDownloadProgressStatusEnum)[keyof typeof ModelDownloadProgressStatusEnum];
 

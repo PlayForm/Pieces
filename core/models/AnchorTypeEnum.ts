@@ -20,6 +20,7 @@ export const AnchorTypeEnum = {
 	File: "FILE",
 	Directory: "DIRECTORY",
 } as const;
+
 export type AnchorTypeEnum =
 	(typeof AnchorTypeEnum)[keyof typeof AnchorTypeEnum];
 

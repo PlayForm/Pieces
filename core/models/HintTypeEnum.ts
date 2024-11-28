@@ -20,6 +20,7 @@ export const HintTypeEnum = {
 	SuggestedQuery: "SUGGESTED_QUERY",
 	QgptHint: "QGPT_HINT",
 } as const;
+
 export type HintTypeEnum = (typeof HintTypeEnum)[keyof typeof HintTypeEnum];
 
 export function HintTypeEnumFromJSON(json: any): HintTypeEnum {

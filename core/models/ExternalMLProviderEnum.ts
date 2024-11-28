@@ -45,6 +45,7 @@ export const ExternalMLProviderEnum = {
 	Snowflake: "SNOWFLAKE",
 	Perplexity: "PERPLEXITY",
 } as const;
+
 export type ExternalMLProviderEnum =
 	(typeof ExternalMLProviderEnum)[keyof typeof ExternalMLProviderEnum];
 

@@ -22,6 +22,7 @@ export const NodeTypeEnum = {
 	Format: "FORMAT",
 	Asset: "ASSET",
 } as const;
+
 export type NodeTypeEnum = (typeof NodeTypeEnum)[keyof typeof NodeTypeEnum];
 
 export function NodeTypeEnumFromJSON(json: any): NodeTypeEnum {

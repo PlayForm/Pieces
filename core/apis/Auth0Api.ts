@@ -491,6 +491,7 @@ export const AuthorizeAuth0ScopeEnum = {
 	Profile: "profile",
 	OfflineAccess: "offline_access",
 } as const;
+
 export type AuthorizeAuth0ScopeEnum =
 	(typeof AuthorizeAuth0ScopeEnum)[keyof typeof AuthorizeAuth0ScopeEnum];
 /**
@@ -499,6 +500,7 @@ export type AuthorizeAuth0ScopeEnum =
 export const AuthorizeAuth0ResponseTypeEnum = {
 	Code: "code",
 } as const;
+
 export type AuthorizeAuth0ResponseTypeEnum =
 	(typeof AuthorizeAuth0ResponseTypeEnum)[keyof typeof AuthorizeAuth0ResponseTypeEnum];
 /**
@@ -507,6 +509,7 @@ export type AuthorizeAuth0ResponseTypeEnum =
 export const AuthorizeAuth0CodeChallengeMethodEnum = {
 	S256: "S256",
 } as const;
+
 export type AuthorizeAuth0CodeChallengeMethodEnum =
 	(typeof AuthorizeAuth0CodeChallengeMethodEnum)[keyof typeof AuthorizeAuth0CodeChallengeMethodEnum];
 /**
@@ -518,6 +521,7 @@ export const AuthorizeAuth0ResponseModeEnum = {
 	Query: "query",
 	WebMessage: "web_message",
 } as const;
+
 export type AuthorizeAuth0ResponseModeEnum =
 	(typeof AuthorizeAuth0ResponseModeEnum)[keyof typeof AuthorizeAuth0ResponseModeEnum];
 /**
@@ -527,5 +531,6 @@ export const ExchangeForAuth0TokenGrantTypeEnum = {
 	RefreshToken: "refresh_token",
 	AuthorizationCode: "authorization_code",
 } as const;
+
 export type ExchangeForAuth0TokenGrantTypeEnum =
 	(typeof ExchangeForAuth0TokenGrantTypeEnum)[keyof typeof ExchangeForAuth0TokenGrantTypeEnum];

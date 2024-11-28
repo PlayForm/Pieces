@@ -31,6 +31,7 @@ export const UpdatingStatusEnum = {
 	ReinstallRequired: "REINSTALL_REQUIRED",
 	ContactSupport: "CONTACT_SUPPORT",
 } as const;
+
 export type UpdatingStatusEnum =
 	(typeof UpdatingStatusEnum)[keyof typeof UpdatingStatusEnum];
 

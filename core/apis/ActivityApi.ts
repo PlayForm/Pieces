@@ -212,5 +212,6 @@ export const ActivityIdentifiersSnapshotActivityFilterEnumEnum = {
 	Deleted: "DELETED",
 	Referenced: "REFERENCED",
 } as const;
+
 export type ActivityIdentifiersSnapshotActivityFilterEnumEnum =
 	(typeof ActivityIdentifiersSnapshotActivityFilterEnumEnum)[keyof typeof ActivityIdentifiersSnapshotActivityFilterEnumEnum];

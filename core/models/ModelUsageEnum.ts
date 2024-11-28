@@ -40,6 +40,7 @@ export const ModelUsageEnum = {
 	TextEmbedding: "TEXT_EMBEDDING",
 	TechnicalError: "TECHNICAL_ERROR",
 } as const;
+
 export type ModelUsageEnum =
 	(typeof ModelUsageEnum)[keyof typeof ModelUsageEnum];
 

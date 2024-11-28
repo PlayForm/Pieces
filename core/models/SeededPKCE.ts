@@ -143,6 +143,7 @@ export const SeededPKCEResponseTypeEnum = {
 	Token: "token",
 	IdToken: "id_token",
 } as const;
+
 export type SeededPKCEResponseTypeEnum =
 	(typeof SeededPKCEResponseTypeEnum)[keyof typeof SeededPKCEResponseTypeEnum];
 
@@ -152,6 +153,7 @@ export type SeededPKCEResponseTypeEnum =
 export const SeededPKCECodeChallengeMethodEnum = {
 	S256: "S256",
 } as const;
+
 export type SeededPKCECodeChallengeMethodEnum =
 	(typeof SeededPKCECodeChallengeMethodEnum)[keyof typeof SeededPKCECodeChallengeMethodEnum];
 
@@ -161,6 +163,7 @@ export type SeededPKCECodeChallengeMethodEnum =
 export const SeededPKCEScreenHintEnum = {
 	Signup: "signup",
 } as const;
+
 export type SeededPKCEScreenHintEnum =
 	(typeof SeededPKCEScreenHintEnum)[keyof typeof SeededPKCEScreenHintEnum];
 
@@ -171,6 +174,7 @@ export const SeededPKCEPromptEnum = {
 	Login: "login",
 	None: "none",
 } as const;
+
 export type SeededPKCEPromptEnum =
 	(typeof SeededPKCEPromptEnum)[keyof typeof SeededPKCEPromptEnum];
 
@@ -183,6 +187,7 @@ export const SeededPKCEScopeEnum = {
 	Profile: "profile",
 	Openid: "openid",
 } as const;
+
 export type SeededPKCEScopeEnum =
 	(typeof SeededPKCEScopeEnum)[keyof typeof SeededPKCEScopeEnum];
 
@@ -195,6 +200,7 @@ export const SeededPKCEResponseModeEnum = {
 	Fragment: "fragment",
 	Query: "query",
 } as const;
+
 export type SeededPKCEResponseModeEnum =
 	(typeof SeededPKCEResponseModeEnum)[keyof typeof SeededPKCEResponseModeEnum];
 

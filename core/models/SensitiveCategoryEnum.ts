@@ -31,6 +31,7 @@ export const SensitiveCategoryEnum = {
 	ApiId: "API_ID",
 	WebHookUrl: "WEB_HOOK_URL",
 } as const;
+
 export type SensitiveCategoryEnum =
 	(typeof SensitiveCategoryEnum)[keyof typeof SensitiveCategoryEnum];
 

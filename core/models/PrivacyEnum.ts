@@ -23,6 +23,7 @@ export const PrivacyEnum = {
 	Closed: "CLOSED",
 	Anonymous: "ANONYMOUS",
 } as const;
+
 export type PrivacyEnum = (typeof PrivacyEnum)[keyof typeof PrivacyEnum];
 
 export function PrivacyEnumFromJSON(json: any): PrivacyEnum {

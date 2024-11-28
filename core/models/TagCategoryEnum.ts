@@ -21,6 +21,7 @@ export const TagCategoryEnum = {
 	Email: "EMAIL",
 	Unknown: "UNKNOWN",
 } as const;
+
 export type TagCategoryEnum =
 	(typeof TagCategoryEnum)[keyof typeof TagCategoryEnum];
 

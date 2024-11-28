@@ -19,6 +19,7 @@
 export const ConversationTypeEnum = {
 	Copilot: "COPILOT",
 } as const;
+
 export type ConversationTypeEnum =
 	(typeof ConversationTypeEnum)[keyof typeof ConversationTypeEnum];
 

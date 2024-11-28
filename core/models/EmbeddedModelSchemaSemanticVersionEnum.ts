@@ -19,6 +19,7 @@
 export const EmbeddedModelSchemaSemanticVersionEnum = {
 	Major0Minor0Patch1: "MAJOR_0_MINOR_0_PATCH_1",
 } as const;
+
 export type EmbeddedModelSchemaSemanticVersionEnum =
 	(typeof EmbeddedModelSchemaSemanticVersionEnum)[keyof typeof EmbeddedModelSchemaSemanticVersionEnum];
 

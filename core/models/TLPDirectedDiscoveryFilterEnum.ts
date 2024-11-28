@@ -28,6 +28,7 @@ export const TLPDirectedDiscoveryFilterEnum = {
 	Loop: "LOOP",
 	Return: "RETURN",
 } as const;
+
 export type TLPDirectedDiscoveryFilterEnum =
 	(typeof TLPDirectedDiscoveryFilterEnum)[keyof typeof TLPDirectedDiscoveryFilterEnum];
 

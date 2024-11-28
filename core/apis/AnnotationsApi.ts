@@ -259,5 +259,6 @@ export const AnnotationsSnapshotAnnotationTypeFilterEnum = {
 	Explanation: "EXPLANATION",
 	GitCommit: "GIT_COMMIT",
 } as const;
+
 export type AnnotationsSnapshotAnnotationTypeFilterEnum =
 	(typeof AnnotationsSnapshotAnnotationTypeFilterEnum)[keyof typeof AnnotationsSnapshotAnnotationTypeFilterEnum];

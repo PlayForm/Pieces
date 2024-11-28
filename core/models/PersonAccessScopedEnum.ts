@@ -22,6 +22,7 @@ export const PersonAccessScopedEnum = {
 	Commenter: "COMMENTER",
 	Viewer: "VIEWER",
 } as const;
+
 export type PersonAccessScopedEnum =
 	(typeof PersonAccessScopedEnum)[keyof typeof PersonAccessScopedEnum];
 

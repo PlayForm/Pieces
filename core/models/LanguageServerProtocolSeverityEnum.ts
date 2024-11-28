@@ -22,6 +22,7 @@ export const LanguageServerProtocolSeverityEnum = {
 	Information: "INFORMATION",
 	Hint: "HINT",
 } as const;
+
 export type LanguageServerProtocolSeverityEnum =
 	(typeof LanguageServerProtocolSeverityEnum)[keyof typeof LanguageServerProtocolSeverityEnum];
 

@@ -39,6 +39,7 @@ export const OSAppletEnum = {
 	FutureAppletModulePlaceholderC: "FUTURE_APPLET_MODULE_PLACEHOLDER_C",
 	UnknownAppletModule: "UNKNOWN_APPLET_MODULE",
 } as const;
+
 export type OSAppletEnum = (typeof OSAppletEnum)[keyof typeof OSAppletEnum];
 
 export function OSAppletEnumFromJSON(json: any): OSAppletEnum {

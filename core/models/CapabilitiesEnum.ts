@@ -21,6 +21,7 @@ export const CapabilitiesEnum = {
 	Cloud: "CLOUD",
 	Blended: "BLENDED",
 } as const;
+
 export type CapabilitiesEnum =
 	(typeof CapabilitiesEnum)[keyof typeof CapabilitiesEnum];
 

@@ -65,6 +65,7 @@ export const TrackedUserProfileGranularityEnum = {
 	Account: "ACCOUNT",
 	Anonymous: "ANONYMOUS",
 } as const;
+
 export type TrackedUserProfileGranularityEnum =
 	(typeof TrackedUserProfileGranularityEnum)[keyof typeof TrackedUserProfileGranularityEnum];
 

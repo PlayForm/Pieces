@@ -21,6 +21,7 @@ export const SensitiveSeverityEnum = {
 	Moderate: "MODERATE",
 	High: "HIGH",
 } as const;
+
 export type SensitiveSeverityEnum =
 	(typeof SensitiveSeverityEnum)[keyof typeof SensitiveSeverityEnum];
 

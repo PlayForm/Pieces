@@ -21,6 +21,7 @@ export const QGPTConversationMessageRoleEnum = {
 	System: "SYSTEM",
 	Assistant: "ASSISTANT",
 } as const;
+
 export type QGPTConversationMessageRoleEnum =
 	(typeof QGPTConversationMessageRoleEnum)[keyof typeof QGPTConversationMessageRoleEnum];
 

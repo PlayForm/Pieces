@@ -31,6 +31,7 @@ export const MechanismEnum = {
 	Internal: "INTERNAL",
 	Deleted: "DELETED",
 } as const;
+
 export type MechanismEnum = (typeof MechanismEnum)[keyof typeof MechanismEnum];
 
 export function MechanismEnumFromJSON(json: any): MechanismEnum {

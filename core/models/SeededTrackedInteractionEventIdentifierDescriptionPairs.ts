@@ -47,6 +47,7 @@ export const SeededTrackedInteractionEventIdentifierDescriptionPairsAssetsListRe
 		TheAssetsListWasRefreshedThroughUiElement:
 			"the_assets_list_was_refreshed_through_ui_element",
 	} as const;
+
 export type SeededTrackedInteractionEventIdentifierDescriptionPairsAssetsListRefreshedEnum =
 	(typeof SeededTrackedInteractionEventIdentifierDescriptionPairsAssetsListRefreshedEnum)[keyof typeof SeededTrackedInteractionEventIdentifierDescriptionPairsAssetsListRefreshedEnum];
 

@@ -24,6 +24,7 @@ export const AnnotationTypeEnum = {
 	Explanation: "EXPLANATION",
 	GitCommit: "GIT_COMMIT",
 } as const;
+
 export type AnnotationTypeEnum =
 	(typeof AnnotationTypeEnum)[keyof typeof AnnotationTypeEnum];
 

@@ -144,6 +144,7 @@ export const ModelFoundationEnum = {
 	PerplexityDefault: "PERPLEXITY_DEFAULT",
 	PerplexityCustom: "PERPLEXITY_CUSTOM",
 } as const;
+
 export type ModelFoundationEnum =
 	(typeof ModelFoundationEnum)[keyof typeof ModelFoundationEnum];
 

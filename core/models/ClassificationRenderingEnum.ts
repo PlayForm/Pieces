@@ -21,6 +21,7 @@ export const ClassificationRenderingEnum = {
 	TwentyFourBitAnsiEscapedSequences: "TWENTY_FOUR_BIT_ANSI_ESCAPED_SEQUENCES",
 	HighlightJsHtml: "HIGHLIGHT_JS_HTML",
 } as const;
+
 export type ClassificationRenderingEnum =
 	(typeof ClassificationRenderingEnum)[keyof typeof ClassificationRenderingEnum];
 

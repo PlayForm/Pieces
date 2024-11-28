@@ -82,6 +82,7 @@ export const TrackedConversationEventIdentifierDescriptionPairsConversationCreat
 	{
 		AConversationWasCreated: "a_conversation_was_created",
 	} as const;
+
 export type TrackedConversationEventIdentifierDescriptionPairsConversationCreatedEnum =
 	(typeof TrackedConversationEventIdentifierDescriptionPairsConversationCreatedEnum)[keyof typeof TrackedConversationEventIdentifierDescriptionPairsConversationCreatedEnum];
 
@@ -93,6 +94,7 @@ export const TrackedConversationEventIdentifierDescriptionPairsConversationRefer
 		AConversationWasReferencedByTheUser:
 			"a_conversation_was_referenced_by_the_user",
 	} as const;
+
 export type TrackedConversationEventIdentifierDescriptionPairsConversationReferencedEnum =
 	(typeof TrackedConversationEventIdentifierDescriptionPairsConversationReferencedEnum)[keyof typeof TrackedConversationEventIdentifierDescriptionPairsConversationReferencedEnum];
 
@@ -103,6 +105,7 @@ export const TrackedConversationEventIdentifierDescriptionPairsConversationDelet
 	{
 		AConversationWasDeleted: "a_conversation_was_deleted",
 	} as const;
+
 export type TrackedConversationEventIdentifierDescriptionPairsConversationDeletedEnum =
 	(typeof TrackedConversationEventIdentifierDescriptionPairsConversationDeletedEnum)[keyof typeof TrackedConversationEventIdentifierDescriptionPairsConversationDeletedEnum];
 
@@ -114,6 +117,7 @@ export const TrackedConversationEventIdentifierDescriptionPairsConversationSumma
 		AConversationSummaryAnnotationWasGeneratedByTheUser:
 			"a_conversation_summary_annotation_was_generated_by_the_user",
 	} as const;
+
 export type TrackedConversationEventIdentifierDescriptionPairsConversationSummaryAnnotationGeneratedByTheUserEnum =
 	(typeof TrackedConversationEventIdentifierDescriptionPairsConversationSummaryAnnotationGeneratedByTheUserEnum)[keyof typeof TrackedConversationEventIdentifierDescriptionPairsConversationSummaryAnnotationGeneratedByTheUserEnum];
 
@@ -125,6 +129,7 @@ export const TrackedConversationEventIdentifierDescriptionPairsConversationNameU
 		AConversationWasRenamedByTheSystem:
 			"a_conversation_was_renamed_by_the_system",
 	} as const;
+
 export type TrackedConversationEventIdentifierDescriptionPairsConversationNameUpdatedByTheSystemEnum =
 	(typeof TrackedConversationEventIdentifierDescriptionPairsConversationNameUpdatedByTheSystemEnum)[keyof typeof TrackedConversationEventIdentifierDescriptionPairsConversationNameUpdatedByTheSystemEnum];
 
@@ -136,6 +141,7 @@ export const TrackedConversationEventIdentifierDescriptionPairsConversationNameU
 		AConversationWasRenamedByTheUser:
 			"a_conversation_was_renamed_by_the_user",
 	} as const;
+
 export type TrackedConversationEventIdentifierDescriptionPairsConversationNameUpdatedByTheUserEnum =
 	(typeof TrackedConversationEventIdentifierDescriptionPairsConversationNameUpdatedByTheUserEnum)[keyof typeof TrackedConversationEventIdentifierDescriptionPairsConversationNameUpdatedByTheUserEnum];
 
@@ -147,6 +153,7 @@ export const TrackedConversationEventIdentifierDescriptionPairsConversationSumma
 		AConversationSummaryAnnotationWasGeneratedByTheSystem:
 			"a_conversation_summary_annotation_was_generated_by_the_system",
 	} as const;
+
 export type TrackedConversationEventIdentifierDescriptionPairsConversationSummaryAnnotationGeneratedByTheSystemEnum =
 	(typeof TrackedConversationEventIdentifierDescriptionPairsConversationSummaryAnnotationGeneratedByTheSystemEnum)[keyof typeof TrackedConversationEventIdentifierDescriptionPairsConversationSummaryAnnotationGeneratedByTheSystemEnum];
 

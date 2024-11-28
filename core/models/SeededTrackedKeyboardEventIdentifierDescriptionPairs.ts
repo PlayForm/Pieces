@@ -47,6 +47,7 @@ export const SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefre
 		TheAssetsListWasRefreshedThroughAKeyboardShortcut:
 			"the_assets_list_was_refreshed_through_a_keyboard_shortcut",
 	} as const;
+
 export type SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum =
 	(typeof SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum)[keyof typeof SeededTrackedKeyboardEventIdentifierDescriptionPairsAssetsListRefreshedEnum];
 

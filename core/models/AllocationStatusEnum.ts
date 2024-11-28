@@ -23,6 +23,7 @@ export const AllocationStatusEnum = {
 	Succeeded: "SUCCEEDED",
 	Unknown: "UNKNOWN",
 } as const;
+
 export type AllocationStatusEnum =
 	(typeof AllocationStatusEnum)[keyof typeof AllocationStatusEnum];
 

@@ -96,6 +96,7 @@ export const SeedTypeEnum = {
 	Format: "SEEDED_FORMAT",
 	Asset: "SEEDED_ASSET",
 } as const;
+
 export type SeedTypeEnum = (typeof SeedTypeEnum)[keyof typeof SeedTypeEnum];
 
 /**

@@ -21,6 +21,7 @@ export const ConversationMessageSentimentEnum = {
 	Dislike: "DISLIKE",
 	Report: "REPORT",
 } as const;
+
 export type ConversationMessageSentimentEnum =
 	(typeof ConversationMessageSentimentEnum)[keyof typeof ConversationMessageSentimentEnum];
 

@@ -60,6 +60,7 @@ export const ApplicationNameEnum = {
 	Netbeans: "NETBEANS",
 	Unknown: "UNKNOWN",
 } as const;
+
 export type ApplicationNameEnum =
 	(typeof ApplicationNameEnum)[keyof typeof ApplicationNameEnum];
 

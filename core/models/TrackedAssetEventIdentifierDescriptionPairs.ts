@@ -255,6 +255,7 @@ export interface TrackedAssetEventIdentifierDescriptionPairs {
 export const TrackedAssetEventIdentifierDescriptionPairsAssetCreatedEnum = {
 	AnAssetWasCreated: "an_asset_was_created",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetCreatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetCreatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetCreatedEnum];
 
@@ -264,6 +265,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetCreatedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetViewedEnum = {
 	AnAssetWasViewed: "an_asset_was_viewed",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetViewedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetViewedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetViewedEnum];
 
@@ -274,6 +276,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetFormatCopiedEnum =
 	{
 		AnAssetPreviewFormatWasCopied: "an_asset_preview_format_was_copied",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetFormatCopiedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatCopiedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatCopiedEnum];
 
@@ -284,6 +287,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetFormatDownloadedEnu
 	{
 		AnAssetFormatWasDownloaded: "an_asset_format_was_downloaded",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetFormatDownloadedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatDownloadedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatDownloadedEnum];
 
@@ -293,6 +297,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetFormatDownloadedEnum
 export const TrackedAssetEventIdentifierDescriptionPairsAssetDeletedEnum = {
 	AnAssetWasDeleted: "an_asset_was_deleted",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetDeletedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetDeletedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetDeletedEnum];
 
@@ -303,6 +308,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetDescriptionUpdatedE
 	{
 		AnAssetWasRedescribedByTheUser: "an_asset_was_redescribed_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetDescriptionUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetDescriptionUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetDescriptionUpdatedEnum];
 
@@ -312,6 +318,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetDescriptionUpdatedEn
 export const TrackedAssetEventIdentifierDescriptionPairsAssetNameUpdatedEnum = {
 	AnAssetWasRenamedByTheUser: "an_asset_was_renamed_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetNameUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetNameUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetNameUpdatedEnum];
 
@@ -323,6 +330,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetFormatGenericClassi
 		AGenericClassificationWasChangedOnAFormatWithinAnAsset:
 			"a_generic_classification_was_changed_on_a_format_within_an_asset",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetFormatGenericClassificationUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatGenericClassificationUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatGenericClassificationUpdatedEnum];
 
@@ -334,6 +342,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetFormatSpecificClass
 		ASpecificClassificationWasChangedOnAFormatWithinAnAsset:
 			"a_specific_classification_was_changed_on_a_format_within_an_asset",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetFormatSpecificClassificationUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatSpecificClassificationUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatSpecificClassificationUpdatedEnum];
 
@@ -344,6 +353,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetCreationFailedEnum 
 	{
 		AnAssetFailedToBeCreated: "an_asset_failed_to_be_created",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetCreationFailedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetCreationFailedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetCreationFailedEnum];
 
@@ -353,6 +363,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetCreationFailedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetTagAddedEnum = {
 	ATagWasAddedByTheUser: "a_tag_was_added_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetTagAddedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetTagAddedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetTagAddedEnum];
 
@@ -362,6 +373,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetTagAddedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetLinkAddedEnum = {
 	ALinkWasAddedByTheUser: "a_link_was_added_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetLinkAddedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetLinkAddedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetLinkAddedEnum];
 
@@ -372,6 +384,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetLinkGeneratedEnum =
 	{
 		AnAssetLinkWasGenerated: "an_asset_link_was_generated",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetLinkGeneratedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetLinkGeneratedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetLinkGeneratedEnum];
 
@@ -381,6 +394,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetLinkGeneratedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetLinkDeletedEnum = {
 	ALinkWasDeletedByTheUser: "a_link_was_deleted_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetLinkDeletedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetLinkDeletedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetLinkDeletedEnum];
 
@@ -390,6 +404,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetLinkDeletedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetTagDeletedEnum = {
 	ATagWasDeletedByTheUser: "a_tag_was_deleted_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetTagDeletedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetTagDeletedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetTagDeletedEnum];
 
@@ -399,6 +414,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetTagDeletedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetUpdatedEnum = {
 	AnAssetWasUpdated: "an_asset_was_updated",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetUpdatedEnum];
 
@@ -410,6 +426,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetFormatValueEditedEn
 		ASpecificFormatValueWasEditedOnAnAsset:
 			"a_specific_format_value_was_edited_on_an_asset",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetFormatValueEditedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatValueEditedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatValueEditedEnum];
 
@@ -421,6 +438,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetFormatUpdatedEnum =
 		ASpecificFormatWasUpdatedOnAnAsset:
 			"a_specific_format_was_updated_on_an_asset",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetFormatUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetFormatUpdatedEnum];
 
@@ -430,6 +448,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetFormatUpdatedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetLinkRevokedEnum = {
 	AnAssetLinkWasRevoked: "an_asset_link_was_revoked",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetLinkRevokedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetLinkRevokedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetLinkRevokedEnum];
 
@@ -439,6 +458,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetLinkRevokedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetPersonAddedEnum = {
 	APersonWasAddedByTheUser: "a_person_was_added_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetPersonAddedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetPersonAddedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetPersonAddedEnum];
 
@@ -449,6 +469,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetPersonDeletedEnum =
 	{
 		APersonWasDeletedByTheUser: "a_person_was_deleted_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetPersonDeletedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetPersonDeletedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetPersonDeletedEnum];
 
@@ -459,6 +480,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetSensitiveAddedEnum 
 	{
 		ASensitiveWasAddedByTheUser: "a_sensitive_was_added_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetSensitiveAddedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetSensitiveAddedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetSensitiveAddedEnum];
 
@@ -469,6 +491,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetSensitiveDeletedEnu
 	{
 		ASensitiveWasDeletedByTheUser: "a_sensitive_was_deleted_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetSensitiveDeletedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetSensitiveDeletedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetSensitiveDeletedEnum];
 
@@ -480,6 +503,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsSuggestedAssetReferenced
 		ASuggestedAssetWasReferencedByTheUser:
 			"a_suggested_asset_was_referenced_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsSuggestedAssetReferencedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsSuggestedAssetReferencedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsSuggestedAssetReferencedEnum];
 
@@ -491,6 +515,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsSearchedAssetReferencedE
 		ASearchedAssetWasReferencedByTheUser:
 			"a_searched_asset_was_referenced_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsSearchedAssetReferencedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsSearchedAssetReferencedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsSearchedAssetReferencedEnum];
 
@@ -500,6 +525,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsSearchedAssetReferencedEn
 export const TrackedAssetEventIdentifierDescriptionPairsAssetReferencedEnum = {
 	AnAssetWasReferencedByTheUser: "an_asset_was_referenced_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetReferencedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetReferencedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetReferencedEnum];
 
@@ -511,6 +537,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsActivityAssetReferencedE
 		AnActivityAssetWasReferencedByTheUser:
 			"an_activity_asset_was_referenced_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsActivityAssetReferencedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsActivityAssetReferencedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsActivityAssetReferencedEnum];
 
@@ -521,6 +548,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationAddedEnum
 	{
 		AnAnnotationWasAddedByTheUser: "an_annotation_was_added_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationAddedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationAddedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationAddedEnum];
 
@@ -532,6 +560,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationDeletedEn
 		AnAnnotationWasDeletedByTheUser:
 			"an_annotation_was_deleted_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationDeletedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationDeletedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationDeletedEnum];
 
@@ -543,6 +572,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationUpdatedEn
 		AnAnnotationWasUpdatedByTheUser:
 			"an_annotation_was_updated_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationUpdatedEnum];
 
@@ -552,6 +582,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetAnnotationUpdatedEnu
 export const TrackedAssetEventIdentifierDescriptionPairsAssetHintAddedEnum = {
 	AHintWasAddedByTheUser: "a_hint_was_added_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetHintAddedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetHintAddedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetHintAddedEnum];
 
@@ -561,6 +592,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetHintAddedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetHintDeletedEnum = {
 	AHintWasDeletedByTheUser: "a_hint_was_deleted_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetHintDeletedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetHintDeletedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetHintDeletedEnum];
 
@@ -570,6 +602,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetHintDeletedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetHintUpdatedEnum = {
 	AHintWasUpdatedByTheUser: "a_hint_was_updated_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetHintUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetHintUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetHintUpdatedEnum];
 
@@ -579,6 +612,7 @@ export type TrackedAssetEventIdentifierDescriptionPairsAssetHintUpdatedEnum =
 export const TrackedAssetEventIdentifierDescriptionPairsAssetAnchorAddedEnum = {
 	AAnchorWasAddedByTheUser: "a_anchor_was_added_by_the_user",
 } as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetAnchorAddedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnchorAddedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnchorAddedEnum];
 
@@ -589,6 +623,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetAnchorDeletedEnum =
 	{
 		AAnchorWasDeletedByTheUser: "a_anchor_was_deleted_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetAnchorDeletedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnchorDeletedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnchorDeletedEnum];
 
@@ -599,6 +634,7 @@ export const TrackedAssetEventIdentifierDescriptionPairsAssetAnchorUpdatedEnum =
 	{
 		AAnchorWasUpdatedByTheUser: "a_anchor_was_updated_by_the_user",
 	} as const;
+
 export type TrackedAssetEventIdentifierDescriptionPairsAssetAnchorUpdatedEnum =
 	(typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnchorUpdatedEnum)[keyof typeof TrackedAssetEventIdentifierDescriptionPairsAssetAnchorUpdatedEnum];
 

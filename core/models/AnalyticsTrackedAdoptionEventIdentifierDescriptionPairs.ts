@@ -53,6 +53,7 @@ export const AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsAdoptionInst
 		TheUserHasInstalledAPiecesApplication:
 			"the_user_has_installed_a_pieces_application",
 	} as const;
+
 export type AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsAdoptionInstallEnum =
 	(typeof AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsAdoptionInstallEnum)[keyof typeof AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsAdoptionInstallEnum];
 
@@ -64,6 +65,7 @@ export const AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsAdoptionUnin
 		TheUserHasUninstalledAPiecesApplication:
 			"the_user_has_uninstalled_a_pieces_application",
 	} as const;
+
 export type AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsAdoptionUninstallEnum =
 	(typeof AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsAdoptionUninstallEnum)[keyof typeof AnalyticsTrackedAdoptionEventIdentifierDescriptionPairsAdoptionUninstallEnum];
 

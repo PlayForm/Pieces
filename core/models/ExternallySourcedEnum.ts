@@ -30,6 +30,7 @@ export const ExternallySourcedEnum = {
 	Slack: "SLACK",
 	Mailgun: "MAILGUN",
 } as const;
+
 export type ExternallySourcedEnum =
 	(typeof ExternallySourcedEnum)[keyof typeof ExternallySourcedEnum];
 

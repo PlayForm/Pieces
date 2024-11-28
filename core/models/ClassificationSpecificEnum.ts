@@ -520,6 +520,7 @@ export const ClassificationSpecificEnum = {
 	Hcl: "hcl",
 	Abap: "abap",
 } as const;
+
 export type ClassificationSpecificEnum =
 	(typeof ClassificationSpecificEnum)[keyof typeof ClassificationSpecificEnum];
 

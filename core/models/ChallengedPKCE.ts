@@ -69,6 +69,7 @@ export interface ChallengedPKCE {
 export const ChallengedPKCEMethodEnum = {
 	S256: "S256",
 } as const;
+
 export type ChallengedPKCEMethodEnum =
 	(typeof ChallengedPKCEMethodEnum)[keyof typeof ChallengedPKCEMethodEnum];
 

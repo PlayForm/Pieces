@@ -27,6 +27,7 @@ export const SearchedMatchEnum = {
 	Websites: "WEBSITES",
 	Persons: "PERSONS",
 } as const;
+
 export type SearchedMatchEnum =
 	(typeof SearchedMatchEnum)[keyof typeof SearchedMatchEnum];
 

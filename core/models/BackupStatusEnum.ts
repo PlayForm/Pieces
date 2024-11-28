@@ -25,6 +25,7 @@ export const BackupStatusEnum = {
 	Canceled: "CANCELED",
 	Reset: "RESET",
 } as const;
+
 export type BackupStatusEnum =
 	(typeof BackupStatusEnum)[keyof typeof BackupStatusEnum];
 

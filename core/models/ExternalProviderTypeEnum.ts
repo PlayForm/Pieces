@@ -30,6 +30,7 @@ export const ExternalProviderTypeEnum = {
 	Facebook: "facebook",
 	Waad: "waad",
 } as const;
+
 export type ExternalProviderTypeEnum =
 	(typeof ExternalProviderTypeEnum)[keyof typeof ExternalProviderTypeEnum];
 
