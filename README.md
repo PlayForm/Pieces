@@ -1,6 +1,6 @@
 <h1 align="center">
     <b>
-        <a href="https://pieces.app">
+        <a href="HTTPS://pieces.app">
             <picture>
                 <source srcset="./assets/Logo-light-theme.png" media="(prefers-color-scheme: light)">
                 <source srcset="./assets/Logo-dark-theme.png" media="(prefers-color-scheme: dark)">
@@ -13,29 +13,29 @@
 # <p align="center"> Pieces OS Client SDK For TypeScript
 
    <p align="center">
-      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-typescript/graphs/contributors" alt="GitHub contributors">
-         <img src="https://img.shields.io/github/contributors/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
+      <a href="HTTPS://github.com/pieces-app/pieces-os-client-sdk-for-typescript/graphs/contributors" alt="GitHub contributors">
+         <img src="HTTPS://img.shields.io/github/contributors/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
       <a>
-      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-typescript/issues" alt="GitHub issues by-label">
-         <img src="https://img.shields.io/github/issues/pieces-app/pieces-os-client-sdk-for-typescript" />
+      <a href="HTTPS://github.com/pieces-app/pieces-os-client-sdk-for-typescript/issues" alt="GitHub issues by-label">
+         <img src="HTTPS://img.shields.io/github/issues/pieces-app/pieces-os-client-sdk-for-typescript" />
       </a>
-      <a href="https://discord.gg/getpieces" alt="Discord">
-         <img src="https://img.shields.io/badge/Discord-@layer5.svg?color=7389D8&label&logo=discord&logoColor=ffffff" />
+      <a href="HTTPS://discord.gg/getpieces" alt="Discord">
+         <img src="HTTPS://img.shields.io/badge/Discord-@layer5.svg?color=7389D8&label&logo=discord&logoColor=ffffff" />
       </a>
-      <a href="https://x.com/getpieces" alt="Twitter Follow">
-         <img src="https://img.shields.io/twitter/follow/pieces.svg?label=Follow" />
+      <a href="HTTPS://x.com/getpieces" alt="Twitter Follow">
+         <img src="HTTPS://img.shields.io/twitter/follow/pieces.svg?label=Follow" />
       </a>
-      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-typescript/blob/main/LICENSE" alt="License">
-         <img src="https://img.shields.io/github/license/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
+      <a href="HTTPS://github.com/pieces-app/pieces-os-client-sdk-for-typescript/blob/main/LICENSE" alt="License">
+         <img src="HTTPS://img.shields.io/github/license/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
       </a>
-      <a href="https://www.npmjs.com/package/@pieces.app/pieces-os-client" >
-         <img src="https://badge.fury.io/js/@pieces.app%2Fpieces-os-client.svg" />
+      <a href="HTTPS://www.npmjs.com/package/@pieces.app/pieces-os-client" >
+         <img src="HTTPS://badge.fury.io/js/@pieces.app%2Fpieces-os-client.svg" />
       </a>
-      <a href="https://www.npmjs.com/package/@pieces.app/pieces-os-client" >
-         <img src="https://img.shields.io/npm/dm/@pieces.app/pieces-os-client.svg" />
+      <a href="HTTPS://www.npmjs.com/package/@pieces.app/pieces-os-client" >
+         <img src="HTTPS://img.shields.io/npm/dm/@pieces.app/pieces-os-client.svg" />
       </a>
-      <a href="https://www.npmjs.com/package/@pieces.app/pieces-os-client" >
-         <img src="https://img.shields.io/npm/dt/@pieces.app/pieces-os-client.svg" />
+      <a href="HTTPS://www.npmjs.com/package/@pieces.app/pieces-os-client" >
+         <img src="HTTPS://img.shields.io/npm/dt/@pieces.app/pieces-os-client.svg" />
       </a>
    </p>
 </p>
@@ -65,17 +65,17 @@ To get started with the Pieces SDK, follow these steps:
 Pieces OS runs in the background of your computer and serves as a hub for all
 plugins and extensions developed by the team. In order to utilize your own
 Server locally and support all the functionality that powers things like
-[`Global Search`](https://docs.pieces.app/features/global-search),
-[`Copilot Chats`](https://docs.pieces.app/features/pieces-copilot),
-[`Asset Saving`](https://docs.pieces.app/features/managing-saved-materials),
-[`context`](https://docs.pieces.app/features/pieces-copilot#set-your-own-copilot-context),
+[`Global Search`](HTTPS://docs.pieces.app/features/global-search),
+[`Copilot Chats`](HTTPS://docs.pieces.app/features/pieces-copilot),
+[`Asset Saving`](HTTPS://docs.pieces.app/features/managing-saved-materials),
+[`context`](HTTPS://docs.pieces.app/features/pieces-copilot#set-your-own-copilot-context),
 and more.
 
 Select the right version to download Pieces OS for your operating system:
 
--   [`macOS`](https://docs.pieces.app/installation-getting-started/macos)
--   [`Windows`](https://docs.pieces.app/installation-getting-started/windows)
--   [`Linux`](https://docs.pieces.app/installation-getting-started/linux)
+-   [`macOS`](HTTPS://docs.pieces.app/installation-getting-started/macos)
+-   [`Windows`](HTTPS://docs.pieces.app/installation-getting-started/windows)
+-   [`Linux`](HTTPS://docs.pieces.app/installation-getting-started/linux)
 
 ### 2. Downloading NPM Package
 
@@ -121,10 +121,10 @@ import * as pieces from "@pieces.app/pieces-os-client";
 > again**.
 
 You can take a look at an example repo using the TS SDK:
-[`GitHub Repo`](https://github.com/pieces-app/example-typescript)
+[`GitHub Repo`](HTTPS://github.com/pieces-app/example-typescript)
 
 For detailed usage instructions and examples, refer to the
-[`documentation`](https://docs.pieces.app/build/reference/typescript).
+[`documentation`](HTTPS://docs.pieces.app/build/reference/typescript).
 
 ## Features
 
@@ -165,9 +165,9 @@ if (platform === 'linux') {
   port = 1000;
 }
 
-// The `basePath` defaults to http://localhost:1000, however we need to change it to the correct port based on the operating system.
+// The `basePath` defaults to HTTP://localhost:1000, however we need to change it to the correct port based on the operating system.
 const configuration = Pieces.Configuration({
-  basePath: `http://localhost:${port}`
+  basePath: `HTTP://localhost:${port}`
 })
 // Create an instance of the WellKnownApi class
 const apiInstance = new Pieces.WellKnownApi(configuration)
@@ -275,7 +275,7 @@ function createAsset() {
 ```
 
 The response back will look similar to the following:
-[`https://jwaf.pieces.cloud`](https://jwaf.pieces.cloud/?p=24e242a85e)
+[`HTTPS://jwaf.pieces.cloud`](HTTPS://jwaf.pieces.cloud/?p=24e242a85e)
 
 </details>
 
@@ -283,7 +283,7 @@ The response back will look similar to the following:
 <summary>Get your Assets Snapshot</summary>
 
 When reading along, if you would like to view your data incrementally through
-the full browser window, you can navigate to `http://localhost:1000/assets` to
+the full browser window, you can navigate to `HTTP://localhost:1000/assets` to
 view a full list of snippets that have been saved in your browser. Otherwise,
 you can access the snapshot with these steps:
 
@@ -300,13 +300,13 @@ new Pieces.AssetsApi().assetsSnapshot({}).then(_assetList => {
 
 A developer documentation that outlines all the ins and outs of our available
 endpoints can be found
-[`here`](https://docs.pieces.app/build/reference/typescript/).
+[`here`](HTTPS://docs.pieces.app/build/reference/typescript/).
 
 ## Learn More
 
 Explore more about Pieces SDK and get help from the following resources:
 
 -   🚀
-    [`Getting Started Tutorial`](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
--   📜 [`Pieces Docs`](https://docs.pieces.app/)
--   💬 [`Discord Community`](https://discord.gg/getpieces)
+    [`Getting Started Tutorial`](HTTPS://docs.pieces.app/installation-getting-started/what-am-i-installing)
+-   📜 [`Pieces Docs`](HTTPS://docs.pieces.app/)
+-   💬 [`Discord Community`](HTTPS://discord.gg/getpieces)
