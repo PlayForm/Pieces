@@ -49,6 +49,7 @@ export interface AssetSearchSpace {
  */
 export function instanceOfAssetSearchSpace(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "identifers" in value;
 
 	return isInstance;
@@ -65,6 +66,7 @@ export function AssetSearchSpaceFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -77,9 +79,11 @@ export function AssetSearchSpaceToJSON(value?: AssetSearchSpace | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		identifers: FlattenedAssetsToJSON(value.identifers),

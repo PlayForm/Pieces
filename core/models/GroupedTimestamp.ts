@@ -50,6 +50,7 @@ export interface GroupedTimestamp {
  */
 export function instanceOfGroupedTimestamp(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "value" in value;
 
 	return isInstance;
@@ -66,6 +67,7 @@ export function GroupedTimestampFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -79,9 +81,11 @@ export function GroupedTimestampToJSON(value?: GroupedTimestamp | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		value: value.value.toISOString(),

@@ -55,7 +55,9 @@ export interface OSFileStreamingReadProgress {
  */
 export function instanceOfOSFileStreamingReadProgress(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "total" in value;
+
 	isInstance = isInstance && "transferred" in value;
 
 	return isInstance;
@@ -74,6 +76,7 @@ export function OSFileStreamingReadProgressFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -89,9 +92,11 @@ export function OSFileStreamingReadProgressToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		total: ByteDescriptorToJSON(value.total),

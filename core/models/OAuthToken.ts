@@ -84,9 +84,13 @@ export type OAuthTokenTokenTypeEnum =
  */
 export function instanceOfOAuthToken(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "accessToken" in value;
+
 	isInstance = isInstance && "tokenType" in value;
+
 	isInstance = isInstance && "expiresIn" in value;
+
 	isInstance = isInstance && "scope" in value;
 
 	return isInstance;
@@ -103,6 +107,7 @@ export function OAuthTokenFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -122,9 +127,11 @@ export function OAuthTokenToJSON(value?: OAuthToken | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		access_token: value.accessToken,

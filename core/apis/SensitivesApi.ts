@@ -28,6 +28,7 @@ import * as runtime from "../runtime.ts";
 
 export interface SearchSensitivesRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 

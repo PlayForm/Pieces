@@ -24,6 +24,7 @@ import * as runtime from "../runtime.ts";
 
 export interface ActivitiesCreateNewActivityRequest {
 	transferables?: boolean;
+
 	seededActivity?: SeededActivity;
 }
 
@@ -33,6 +34,7 @@ export interface ActivitiesDeleteSpecificActivityRequest {
 
 export interface ActivitiesSnapshotRequest {
 	transferables?: boolean;
+
 	pseudo?: boolean;
 }
 

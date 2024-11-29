@@ -55,7 +55,9 @@ export interface ReuseSuggestion {
  */
 export function instanceOfReuseSuggestion(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "suggested" in value;
+
 	isInstance = isInstance && "assets" in value;
 
 	return isInstance;
@@ -72,6 +74,7 @@ export function ReuseSuggestionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -85,9 +88,11 @@ export function ReuseSuggestionToJSON(value?: ReuseSuggestion | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		suggested: value.suggested,

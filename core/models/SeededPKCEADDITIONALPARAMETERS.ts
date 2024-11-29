@@ -78,6 +78,7 @@ export function SeededPKCEADDITIONALPARAMETERSFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		accessType: exists(json, "access_type")
 			? json["access_type"]
@@ -92,9 +93,11 @@ export function SeededPKCEADDITIONALPARAMETERSToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		access_type: value.accessType,
 		display: value.display,

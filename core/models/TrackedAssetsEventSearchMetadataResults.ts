@@ -76,6 +76,7 @@ export function TrackedAssetsEventSearchMetadataResultsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		fuzzy: exists(json, "fuzzy") ? json["fuzzy"] : undefined,
 		exact: exists(json, "exact") ? json["exact"] : undefined,
@@ -92,9 +93,11 @@ export function TrackedAssetsEventSearchMetadataResultsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		fuzzy: value.fuzzy,
 		exact: value.exact,

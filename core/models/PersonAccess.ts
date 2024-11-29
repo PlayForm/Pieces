@@ -77,6 +77,7 @@ export function PersonAccessFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -94,9 +95,11 @@ export function PersonAccessToJSON(value?: PersonAccess | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		scoped: PersonAccessScopedEnumToJSON(value.scoped),

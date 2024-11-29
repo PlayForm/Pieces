@@ -68,8 +68,11 @@ export interface FormatMetric {
  */
 export function instanceOfFormatMetric(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "generic" in value;
+
 	isInstance = isInstance && "specific" in value;
+
 	isInstance = isInstance && "identifiers" in value;
 
 	return isInstance;
@@ -86,6 +89,7 @@ export function FormatMetricFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -100,9 +104,11 @@ export function FormatMetricToJSON(value?: FormatMetric | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		generic: ClassificationGenericEnumToJSON(value.generic),

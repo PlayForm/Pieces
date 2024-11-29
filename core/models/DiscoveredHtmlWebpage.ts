@@ -55,7 +55,9 @@ export interface DiscoveredHtmlWebpage {
  */
 export function instanceOfDiscoveredHtmlWebpage(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "assets" in value;
+
 	isInstance = isInstance && "url" in value;
 
 	return isInstance;
@@ -74,6 +76,7 @@ export function DiscoveredHtmlWebpageFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -89,9 +92,11 @@ export function DiscoveredHtmlWebpageToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		assets: DiscoveredAssetsToJSON(value.assets),

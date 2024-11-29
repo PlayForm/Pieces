@@ -106,9 +106,13 @@ export interface CodeAnalysis {
  */
 export function instanceOfCodeAnalysis(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "type" in value;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "analysis" in value;
+
 	isInstance = isInstance && "model" in value;
 
 	return isInstance;
@@ -125,6 +129,7 @@ export function CodeAnalysisFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -146,9 +151,11 @@ export function CodeAnalysisToJSON(value?: CodeAnalysis | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		tokenized: value.tokenized,

@@ -77,6 +77,7 @@ export function ExistingMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -94,9 +95,11 @@ export function ExistingMetadataToJSON(value?: ExistingMetadata | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		website: ReferencedWebsiteToJSON(value.website),

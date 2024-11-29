@@ -73,8 +73,11 @@ export interface Context {
  */
 export function instanceOfContext(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "os" in value;
+
 	isInstance = isInstance && "application" in value;
+
 	isInstance = isInstance && "health" in value;
 
 	return isInstance;
@@ -91,6 +94,7 @@ export function ContextFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -108,9 +112,11 @@ export function ContextToJSON(value?: Context | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		os: value.os,

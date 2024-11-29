@@ -84,6 +84,7 @@ export function Auth0IdentityFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		connection: exists(json, "connection") ? json["connection"] : undefined,
 		isSocial: exists(json, "isSocial") ? json["isSocial"] : undefined,
@@ -100,9 +101,11 @@ export function Auth0IdentityToJSON(value?: Auth0Identity | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		connection: value.connection,
 		isSocial: value.isSocial,

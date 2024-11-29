@@ -55,6 +55,7 @@ export function TrackedFormatEventMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		reclassification: exists(json, "reclassification")
 			? TrackedAssetEventFormatReclassificationMetadataFromJSON(
@@ -70,9 +71,11 @@ export function TrackedFormatEventMetadataToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		reclassification: TrackedAssetEventFormatReclassificationMetadataToJSON(
 			value.reclassification,

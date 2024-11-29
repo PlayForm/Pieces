@@ -70,10 +70,15 @@ export interface OCRAnalysis {
  */
 export function instanceOfOCRAnalysis(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "raw" in value;
+
 	isInstance = isInstance && "hocr" in value;
+
 	isInstance = isInstance && "image" in value;
+
 	isInstance = isInstance && "model" in value;
 
 	return isInstance;
@@ -90,6 +95,7 @@ export function OCRAnalysisFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -106,9 +112,11 @@ export function OCRAnalysisToJSON(value?: OCRAnalysis | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

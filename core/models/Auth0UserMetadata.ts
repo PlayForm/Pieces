@@ -95,6 +95,7 @@ export interface Auth0UserMetadata {
  */
 export function instanceOfAuth0UserMetadata(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "globalId" in value;
 
 	return isInstance;
@@ -111,6 +112,7 @@ export function Auth0UserMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -137,9 +139,11 @@ export function Auth0UserMetadataToJSON(value?: Auth0UserMetadata | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		global_id: value.globalId,

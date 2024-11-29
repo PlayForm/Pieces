@@ -23,61 +23,73 @@ import * as runtime from "../runtime.ts";
 
 export interface AnchorAssociateAssetRequest {
 	anchor: string;
+
 	asset: string;
 }
 
 export interface AnchorAssociateConversationRequest {
 	anchor: string;
+
 	conversation: string;
 }
 
 export interface AnchorAssociatePersonRequest {
 	anchor: string;
+
 	person: string;
 }
 
 export interface AnchorAssociateWorkstreamSummaryRequest {
 	anchor: string;
+
 	workstreamSummary: string;
 }
 
 export interface AnchorDisassociateAssetRequest {
 	anchor: string;
+
 	asset: string;
 }
 
 export interface AnchorDisassociateConversationRequest {
 	anchor: string;
+
 	conversation: string;
 }
 
 export interface AnchorDisassociatePersonRequest {
 	anchor: string;
+
 	person: string;
 }
 
 export interface AnchorDisassociateWorkstreamSummaryRequest {
 	anchor: string;
+
 	workstreamSummary: string;
 }
 
 export interface AnchorRenameRequest {
 	anchor: string;
+
 	transferables?: boolean;
 }
 
 export interface AnchorScoresIncrementRequest {
 	anchor: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface AnchorSpecificAnchorSnapshotRequest {
 	anchor: string;
+
 	transferables?: boolean;
 }
 
 export interface AnchorUpdateRequest {
 	transferables?: boolean;
+
 	anchor?: Anchor;
 }
 

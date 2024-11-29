@@ -78,6 +78,7 @@ export function SeededTrackedInteractionEventIdentifierDescriptionPairsFromJSONT
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -94,9 +95,11 @@ export function SeededTrackedInteractionEventIdentifierDescriptionPairsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		assets_list_refreshed: value.assetsListRefreshed,

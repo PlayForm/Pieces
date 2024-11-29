@@ -23,16 +23,19 @@ import * as runtime from "../runtime.ts";
 
 export interface HintAssociateAssetRequest {
 	hint: string;
+
 	asset: string;
 }
 
 export interface HintDisassociateAssetRequest {
 	hint: string;
+
 	asset: string;
 }
 
 export interface HintScoresIncrementRequest {
 	hint: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 

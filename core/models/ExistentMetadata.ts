@@ -46,6 +46,7 @@ export interface ExistentMetadata {
  */
 export function instanceOfExistentMetadata(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "value" in value;
 
 	return isInstance;
@@ -62,6 +63,7 @@ export function ExistentMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -74,9 +76,11 @@ export function ExistentMetadataToJSON(value?: ExistentMetadata | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		value: value.value,

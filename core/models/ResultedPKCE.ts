@@ -50,7 +50,9 @@ export interface ResultedPKCE {
  */
 export function instanceOfResultedPKCE(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "code" in value;
+
 	isInstance = isInstance && "state" in value;
 
 	return isInstance;
@@ -67,6 +69,7 @@ export function ResultedPKCEFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -80,9 +83,11 @@ export function ResultedPKCEToJSON(value?: ResultedPKCE | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		code: value.code,

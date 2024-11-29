@@ -76,8 +76,11 @@ export interface SearchedPerson {
  */
 export function instanceOfSearchedPerson(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "exact" in value;
+
 	isInstance = isInstance && "similarity" in value;
+
 	isInstance = isInstance && "identifier" in value;
 
 	return isInstance;
@@ -94,6 +97,7 @@ export function SearchedPersonFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -112,9 +116,11 @@ export function SearchedPersonToJSON(value?: SearchedPerson | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		person: PersonToJSON(value.person),

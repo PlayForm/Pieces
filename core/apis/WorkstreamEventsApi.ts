@@ -24,6 +24,7 @@ import * as runtime from "../runtime.ts";
 
 export interface WorkstreamEventsCreateNewWorkstreamEventRequest {
 	transferables?: boolean;
+
 	seededWorkstreamEvent?: SeededWorkstreamEvent;
 }
 

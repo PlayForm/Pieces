@@ -77,6 +77,7 @@ export function TrackedAssetEventFormatReclassificationMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -96,9 +97,11 @@ export function TrackedAssetEventFormatReclassificationMetadataToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		previous: ClassificationToJSON(value.previous),

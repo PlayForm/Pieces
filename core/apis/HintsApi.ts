@@ -36,6 +36,7 @@ export interface HintsDeleteSpecificHintRequest {
 
 export interface SearchHintsRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 

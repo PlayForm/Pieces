@@ -40,6 +40,7 @@ export interface AnnotationsSnapshotRequest {
 
 export interface SearchAnnotationsRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 

@@ -46,6 +46,7 @@ export interface SaveSuggestion {
  */
 export function instanceOfSaveSuggestion(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "suggested" in value;
 
 	return isInstance;
@@ -62,6 +63,7 @@ export function SaveSuggestionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -74,9 +76,11 @@ export function SaveSuggestionToJSON(value?: SaveSuggestion | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		suggested: value.suggested,

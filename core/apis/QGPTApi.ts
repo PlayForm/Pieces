@@ -44,6 +44,7 @@ export interface HintsRequest {
 
 export interface PersonsRelatedRequest {
 	transferables?: boolean;
+
 	qGPTPersonsRelatedInput?: QGPTPersonsRelatedInput;
 }
 

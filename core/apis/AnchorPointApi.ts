@@ -23,16 +23,19 @@ import * as runtime from "../runtime.ts";
 
 export interface AnchorPointScoresIncrementRequest {
 	anchorPoint: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface AnchorPointSpecificAnchorPointSnapshotRequest {
 	anchorPoint: string;
+
 	transferables?: boolean;
 }
 
 export interface AnchorPointUpdateRequest {
 	transferables?: boolean;
+
 	anchorPoint?: AnchorPoint;
 }
 

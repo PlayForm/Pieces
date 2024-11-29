@@ -123,6 +123,7 @@ export function AssetFilterFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -152,9 +153,11 @@ export function AssetFilterToJSON(value?: AssetFilter | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		classification: ClassificationSpecificEnumToJSON(value.classification),

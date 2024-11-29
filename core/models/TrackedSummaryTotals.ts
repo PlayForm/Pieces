@@ -113,22 +113,39 @@ export interface TrackedSummaryTotals {
  */
 export function instanceOfTrackedSummaryTotals(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "assets" in value;
+
 	isInstance = isInstance && "tags" in value;
+
 	isInstance = isInstance && "websites" in value;
+
 	isInstance = isInstance && "persons" in value;
+
 	isInstance = isInstance && "sensitives" in value;
+
 	isInstance = isInstance && "shares" in value;
+
 	isInstance = isInstance && "copilotSends" in value;
+
 	isInstance = isInstance && "copilotReceives" in value;
+
 	isInstance = isInstance && "copilotSessions" in value;
+
 	isInstance = isInstance && "copilotConversations" in value;
+
 	isInstance = isInstance && "productivityScore" in value;
+
 	isInstance = isInstance && "searches" in value;
+
 	isInstance = isInstance && "references" in value;
+
 	isInstance = isInstance && "reuses" in value;
+
 	isInstance = isInstance && "anchorFiles" in value;
+
 	isInstance = isInstance && "anchorFolders" in value;
+
 	isInstance = isInstance && "isrReports" in value;
 
 	return isInstance;
@@ -145,6 +162,7 @@ export function TrackedSummaryTotalsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		assets: json["assets"],
 		tags: json["tags"],
@@ -172,9 +190,11 @@ export function TrackedSummaryTotalsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		assets: value.assets,
 		tags: value.tags,

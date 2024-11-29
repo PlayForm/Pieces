@@ -95,9 +95,13 @@ export interface FlattenedDistribution {
  */
 export function instanceOfFlattenedDistribution(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "share" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
 
 	return isInstance;
@@ -116,6 +120,7 @@ export function FlattenedDistributionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -142,9 +147,11 @@ export function FlattenedDistributionToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

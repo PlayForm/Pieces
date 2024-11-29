@@ -54,6 +54,7 @@ export interface QGPTPersonsRelatedOutput {
  */
 export function instanceOfQGPTPersonsRelatedOutput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "persons" in value;
 
 	return isInstance;
@@ -72,6 +73,7 @@ export function QGPTPersonsRelatedOutputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -89,9 +91,11 @@ export function QGPTPersonsRelatedOutputToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		persons: PersonsToJSON(value.persons),

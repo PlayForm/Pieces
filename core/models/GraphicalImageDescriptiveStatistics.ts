@@ -82,11 +82,17 @@ export function instanceOfGraphicalImageDescriptiveStatistics(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "width" in value;
+
 	isInstance = isInstance && "height" in value;
+
 	isInstance = isInstance && "channels" in value;
+
 	isInstance = isInstance && "asset" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "os" in value;
 
 	return isInstance;
@@ -105,6 +111,7 @@ export function GraphicalImageDescriptiveStatisticsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -125,9 +132,11 @@ export function GraphicalImageDescriptiveStatisticsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		width: value.width,

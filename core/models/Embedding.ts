@@ -63,9 +63,13 @@ export interface Embedding {
  */
 export function instanceOfEmbedding(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "raw" in value;
+
 	isInstance = isInstance && "model" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
 
 	return isInstance;
@@ -82,6 +86,7 @@ export function EmbeddingFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		raw: json["raw"],
 		model: ModelFromJSON(json["model"]),
@@ -97,9 +102,11 @@ export function EmbeddingToJSON(value?: Embedding | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		raw: value.raw,
 		model: ModelToJSON(value.model),

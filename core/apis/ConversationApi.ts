@@ -33,97 +33,117 @@ import * as runtime from "../runtime.ts";
 
 export interface ConversationAssociateAnchorRequest {
 	conversation: string;
+
 	anchor: string;
 }
 
 export interface ConversationAssociateAssetRequest {
 	conversation: string;
+
 	asset: string;
 }
 
 export interface ConversationAssociateGroundingTemporalRangeWorkstreamRequest {
 	conversation: string;
+
 	range: string;
 }
 
 export interface ConversationAssociateWebsiteRequest {
 	conversation: string;
+
 	website: string;
 }
 
 export interface ConversationAssociateWorkstreamSummaryRequest {
 	conversation: string;
+
 	workstreamSummary: string;
 }
 
 export interface ConversationDisassociateAnchorRequest {
 	conversation: string;
+
 	anchor: string;
 }
 
 export interface ConversationDisassociateAssetRequest {
 	conversation: string;
+
 	asset: string;
 }
 
 export interface ConversationDisassociateGroundingTemporalRangeWorkstreamRequest {
 	conversation: string;
+
 	range: string;
 }
 
 export interface ConversationDisassociateWebsiteRequest {
 	conversation: string;
+
 	website: string;
 }
 
 export interface ConversationDisassociateWorkstreamSummaryRequest {
 	conversation: string;
+
 	workstreamSummary: string;
 }
 
 export interface ConversationGetSpecificConversationRequest {
 	conversation: string;
+
 	transferables?: boolean;
 }
 
 export interface ConversationGroundingMessagesAssociateMessageRequest {
 	conversation: string;
+
 	message: string;
 }
 
 export interface ConversationGroundingMessagesDisassociateMessageRequest {
 	conversation: string;
+
 	message: string;
 }
 
 export interface ConversationScoresIncrementRequest {
 	conversation: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface ConversationSpecificConversationMessagesRequest {
 	conversation: string;
+
 	transferables?: boolean;
 }
 
 export interface ConversationSpecificConversationRenameRequest {
 	conversation: string;
+
 	transferables?: boolean;
 }
 
 export interface ConversationSummarizeRequest {
 	conversation: string;
+
 	conversationSummarizeInput?: ConversationSummarizeInput;
 }
 
 export interface ConversationUpdateRequest {
 	transferables?: boolean;
+
 	conversation?: Conversation;
 }
 
 export interface SearchConversationSpecificMessagesRequest {
 	conversation: string;
+
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 

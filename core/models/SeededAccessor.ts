@@ -61,7 +61,9 @@ export interface SeededAccessor {
  */
 export function instanceOfSeededAccessor(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "os" in value;
+
 	isInstance = isInstance && "share" in value;
 
 	return isInstance;
@@ -78,6 +80,7 @@ export function SeededAccessorFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -94,9 +97,11 @@ export function SeededAccessorToJSON(value?: SeededAccessor | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		os: value.os,

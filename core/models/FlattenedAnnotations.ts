@@ -62,6 +62,7 @@ export interface FlattenedAnnotations {
  */
 export function instanceOfFlattenedAnnotations(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -78,6 +79,7 @@ export function FlattenedAnnotationsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -94,9 +96,11 @@ export function FlattenedAnnotationsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		iterable: (value.iterable as any[]).map(ReferencedAnnotationToJSON),

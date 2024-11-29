@@ -24,6 +24,7 @@ import * as runtime from "../runtime.ts";
 
 export interface SharesCreateNewShareRequest {
 	transferables?: boolean;
+
 	seededShare?: SeededShare;
 }
 
@@ -37,6 +38,7 @@ export interface SharesSnapshotRequest {
 
 export interface SharesSpecificShareSnapshotRequest {
 	share: string;
+
 	transferables?: boolean;
 }
 

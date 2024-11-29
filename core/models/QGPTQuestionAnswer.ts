@@ -50,7 +50,9 @@ export interface QGPTQuestionAnswer {
  */
 export function instanceOfQGPTQuestionAnswer(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "score" in value;
+
 	isInstance = isInstance && "text" in value;
 
 	return isInstance;
@@ -67,6 +69,7 @@ export function QGPTQuestionAnswerFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -82,9 +85,11 @@ export function QGPTQuestionAnswerToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		score: value.score,

@@ -90,6 +90,7 @@ export interface ProjectModule {
  */
 export function instanceOfProjectModule(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "anchor" in value;
 
 	return isInstance;
@@ -106,6 +107,7 @@ export function ProjectModuleFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -127,9 +129,11 @@ export function ProjectModuleToJSON(value?: ProjectModule | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		anchor: SeededAnchorToJSON(value.anchor),

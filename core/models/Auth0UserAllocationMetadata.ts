@@ -23,7 +23,9 @@ export interface Auth0UserAllocationMetadata {
  */
 export function instanceOfAuth0UserAllocationMetadata(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "project" in value;
+
 	isInstance = isInstance && "region" in value;
 
 	return isInstance;
@@ -42,6 +44,7 @@ export function Auth0UserAllocationMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		project: json["project"],
 		region: json["region"],
@@ -54,9 +57,11 @@ export function Auth0UserAllocationMetadataToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		project: value.project,
 		region: value.region,

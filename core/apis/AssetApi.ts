@@ -35,107 +35,129 @@ import * as runtime from "../runtime.ts";
 
 export interface AssetAssociateAnchorRequest {
 	asset: string;
+
 	anchor: string;
 }
 
 export interface AssetAssociateConversationRequest {
 	asset: string;
+
 	conversation: string;
 }
 
 export interface AssetAssociateHintRequest {
 	asset: string;
+
 	hint: string;
 }
 
 export interface AssetAssociatePersonRequest {
 	asset: string;
+
 	person: string;
 }
 
 export interface AssetAssociateTagRequest {
 	asset: string;
+
 	tag: string;
 }
 
 export interface AssetAssociateWebsiteRequest {
 	asset: string;
+
 	website: string;
 }
 
 export interface AssetAssociateWorkstreamSummaryRequest {
 	asset: string;
+
 	workstreamSummary: string;
 }
 
 export interface AssetDisassociateAnchorRequest {
 	asset: string;
+
 	anchor: string;
 }
 
 export interface AssetDisassociateConversationRequest {
 	asset: string;
+
 	conversation: string;
 }
 
 export interface AssetDisassociateHintRequest {
 	asset: string;
+
 	hint: string;
 }
 
 export interface AssetDisassociatePersonRequest {
 	asset: string;
+
 	person: string;
 }
 
 export interface AssetDisassociateTagRequest {
 	tag: string;
+
 	asset: string;
 }
 
 export interface AssetDisassociateWebsiteRequest {
 	website: string;
+
 	asset: string;
 }
 
 export interface AssetDisassociateWorkstreamSummaryRequest {
 	asset: string;
+
 	workstreamSummary: string;
 }
 
 export interface AssetFormatsRequest {
 	asset: string;
+
 	transferables?: boolean;
 }
 
 export interface AssetReclassifyRequest {
 	transferables?: boolean;
+
 	assetReclassification?: AssetReclassification;
 }
 
 export interface AssetScoresIncrementRequest {
 	asset: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface AssetSnapshotRequest {
 	asset: string;
+
 	transferables?: boolean;
 }
 
 export interface AssetSnapshotPostRequest {
 	asset: string;
+
 	transferables?: boolean;
+
 	seededAccessor?: SeededAccessor;
 }
 
 export interface AssetSpecificAssetActivitiesRequest {
 	asset: string;
+
 	transferables?: boolean;
 }
 
 export interface AssetSpecificAssetConversationsRequest {
 	asset: string;
+
 	transferables?: boolean;
 }
 
@@ -147,6 +169,7 @@ export interface AssetSpecificAssetExportRequest {
 
 export interface AssetUpdateRequest {
 	transferables?: boolean;
+
 	asset?: Asset;
 }
 

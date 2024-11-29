@@ -60,7 +60,9 @@ export interface ConversationSummarizeOutput {
  */
 export function instanceOfConversationSummarizeOutput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "conversation" in value;
+
 	isInstance = isInstance && "annotation" in value;
 
 	return isInstance;
@@ -79,6 +81,7 @@ export function ConversationSummarizeOutputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -94,9 +97,11 @@ export function ConversationSummarizeOutputToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		conversation: ReferencedConversationToJSON(value.conversation),

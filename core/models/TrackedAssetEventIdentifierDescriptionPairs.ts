@@ -665,6 +665,7 @@ export function TrackedAssetEventIdentifierDescriptionPairsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -792,9 +793,11 @@ export function TrackedAssetEventIdentifierDescriptionPairsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		asset_created: value.assetCreated,

@@ -65,14 +65,23 @@ export interface OAuthAccount {
  */
 export function instanceOfOAuthAccount(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "clientId" in value;
+
 	isInstance = isInstance && "email" in value;
+
 	isInstance = isInstance && "connection" in value;
+
 	isInstance = isInstance && "username" in value;
+
 	isInstance = isInstance && "givenName" in value;
+
 	isInstance = isInstance && "familyName" in value;
+
 	isInstance = isInstance && "name" in value;
+
 	isInstance = isInstance && "picture" in value;
+
 	isInstance = isInstance && "nickname" in value;
 
 	return isInstance;
@@ -89,6 +98,7 @@ export function OAuthAccountFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		clientId: json["client_id"],
 		email: json["email"],
@@ -106,9 +116,11 @@ export function OAuthAccountToJSON(value?: OAuthAccount | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		client_id: value.clientId,
 		email: value.email,

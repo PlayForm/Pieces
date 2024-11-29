@@ -22,6 +22,7 @@ import * as runtime from "../runtime.ts";
 
 export interface ImportGithubGistsRequest {
 	automatic?: boolean;
+
 	seededGithubGistsImport?: SeededGithubGistsImport;
 }
 

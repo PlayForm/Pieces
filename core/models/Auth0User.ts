@@ -169,6 +169,7 @@ export function Auth0UserFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		name: exists(json, "name") ? json["name"] : undefined,
 		picture: exists(json, "picture") ? json["picture"] : undefined,
@@ -216,9 +217,11 @@ export function Auth0UserToJSON(value?: Auth0User | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		name: value.name,
 		picture: value.picture,

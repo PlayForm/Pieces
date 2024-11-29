@@ -71,7 +71,9 @@ export interface Classification {
  */
 export function instanceOfClassification(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "generic" in value;
+
 	isInstance = isInstance && "specific" in value;
 
 	return isInstance;
@@ -88,6 +90,7 @@ export function ClassificationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -104,9 +107,11 @@ export function ClassificationToJSON(value?: Classification | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		generic: ClassificationGenericEnumToJSON(value.generic),

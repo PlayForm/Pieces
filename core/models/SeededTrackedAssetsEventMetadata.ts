@@ -57,6 +57,7 @@ export function SeededTrackedAssetsEventMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		search: exists(json, "search")
 			? TrackedAssetsEventSearchMetadataFromJSON(json["search"])
@@ -70,9 +71,11 @@ export function SeededTrackedAssetsEventMetadataToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		search: TrackedAssetsEventSearchMetadataToJSON(value.search),
 	};

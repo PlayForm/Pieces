@@ -44,6 +44,7 @@ export interface ReuseReaction {
  */
 export function instanceOfReuseReaction(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "asset" in value;
 
 	return isInstance;
@@ -60,6 +61,7 @@ export function ReuseReactionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -72,9 +74,11 @@ export function ReuseReactionToJSON(value?: ReuseReaction | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		asset: value.asset,

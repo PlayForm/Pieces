@@ -49,6 +49,7 @@ export interface AllocationCloudStatus {
  */
 export function instanceOfAllocationCloudStatus(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "cloud" in value;
 
 	return isInstance;
@@ -67,6 +68,7 @@ export function AllocationCloudStatusFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -81,9 +83,11 @@ export function AllocationCloudStatusToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		cloud: AllocationStatusEnumToJSON(value.cloud),

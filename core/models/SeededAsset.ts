@@ -118,7 +118,9 @@ export interface SeededAsset {
  */
 export function instanceOfSeededAsset(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "application" in value;
+
 	isInstance = isInstance && "format" in value;
 
 	return isInstance;
@@ -135,6 +137,7 @@ export function SeededAssetFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -160,9 +163,11 @@ export function SeededAssetToJSON(value?: SeededAsset | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		metadata: SeededAssetMetadataToJSON(value.metadata),

@@ -66,7 +66,9 @@ export interface SeededDiscoverableAssets {
  */
 export function instanceOfSeededDiscoverableAssets(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "application" in value;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -85,6 +87,7 @@ export function SeededDiscoverableAssetsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -105,9 +108,11 @@ export function SeededDiscoverableAssetsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		application: value.application,

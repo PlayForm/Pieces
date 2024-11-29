@@ -57,7 +57,9 @@ export function instanceOfLanguageServerProtocolLocationRange(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "start" in value;
+
 	isInstance = isInstance && "end" in value;
 
 	return isInstance;
@@ -76,6 +78,7 @@ export function LanguageServerProtocolLocationRangeFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -93,9 +96,11 @@ export function LanguageServerProtocolLocationRangeToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		start: LanguageServerProtocolLocationRangePositionToJSON(value.start),

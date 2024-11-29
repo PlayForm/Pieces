@@ -54,6 +54,7 @@ export function Auth0RedirectsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		authenticated: exists(json, "authenticated")
 			? json["authenticated"]
@@ -68,9 +69,11 @@ export function Auth0RedirectsToJSON(value?: Auth0Redirects | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		authenticated: value.authenticated,
 		unauthenticated: value.unauthenticated,

@@ -102,7 +102,9 @@ export interface SeededConversationMessage {
  */
 export function instanceOfSeededConversationMessage(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "fragment" in value;
+
 	isInstance = isInstance && "role" in value;
 
 	return isInstance;
@@ -121,6 +123,7 @@ export function SeededConversationMessageFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -146,9 +149,11 @@ export function SeededConversationMessageToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		created: GroupedTimestampToJSON(value.created),

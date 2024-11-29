@@ -75,6 +75,7 @@ export function FileFormatFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -92,9 +93,11 @@ export function FileFormatToJSON(value?: FileFormat | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		bytes: TransferableBytesToJSON(value.bytes),

@@ -71,6 +71,7 @@ export interface QGPTHintsInput {
  */
 export function instanceOfQGPTHintsInput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "relevant" in value;
 
 	return isInstance;
@@ -87,6 +88,7 @@ export function QGPTHintsInputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		query: exists(json, "query") ? json["query"] : undefined,
 		answer: exists(json, "answer")
@@ -104,9 +106,11 @@ export function QGPTHintsInputToJSON(value?: QGPTHintsInput | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		query: value.query,
 		answer: QGPTQuestionAnswerToJSON(value.answer),

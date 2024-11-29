@@ -36,6 +36,7 @@ export interface ModelsDeleteSpecificModelRequest {
 
 export interface ModelsDeleteSpecificModelCacheRequest {
 	model: string;
+
 	modelDeleteCacheInput?: ModelDeleteCacheInput;
 }
 

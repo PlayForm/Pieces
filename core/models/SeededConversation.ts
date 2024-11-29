@@ -161,6 +161,7 @@ export interface SeededConversation {
  */
 export function instanceOfSeededConversation(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "type" in value;
 
 	return isInstance;
@@ -177,6 +178,7 @@ export function SeededConversationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -218,9 +220,11 @@ export function SeededConversationToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		name: value.name,

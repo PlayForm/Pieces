@@ -102,12 +102,19 @@ export interface GitHubGistDistribution {
  */
 export function instanceOfGitHubGistDistribution(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "recipients" in value;
+
 	isInstance = isInstance && "_public" in value;
+
 	isInstance = isInstance && "name" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
+
 	isInstance = isInstance && "githubId" in value;
+
 	isInstance = isInstance && "url" in value;
 
 	return isInstance;
@@ -126,6 +133,7 @@ export function GitHubGistDistributionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -152,9 +160,11 @@ export function GitHubGistDistributionToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		recipients: RecipientsToJSON(value.recipients),

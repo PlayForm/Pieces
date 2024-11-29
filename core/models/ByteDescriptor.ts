@@ -50,7 +50,9 @@ export interface ByteDescriptor {
  */
 export function instanceOfByteDescriptor(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "value" in value;
+
 	isInstance = isInstance && "readable" in value;
 
 	return isInstance;
@@ -67,6 +69,7 @@ export function ByteDescriptorFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -80,9 +83,11 @@ export function ByteDescriptorToJSON(value?: ByteDescriptor | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		value: value.value,

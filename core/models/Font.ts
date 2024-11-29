@@ -44,6 +44,7 @@ export interface Font {
  */
 export function instanceOfFont(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "size" in value;
 
 	return isInstance;
@@ -60,6 +61,7 @@ export function FontFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -72,9 +74,11 @@ export function FontToJSON(value?: Font | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		size: value.size,

@@ -64,6 +64,7 @@ export function PseudoAssetsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -78,9 +79,11 @@ export function PseudoAssetsToJSON(value?: PseudoAssets | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		identifiers: FlattenedAssetsToJSON(value.identifiers),

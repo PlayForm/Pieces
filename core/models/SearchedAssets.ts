@@ -61,8 +61,11 @@ export interface SearchedAssets {
  */
 export function instanceOfSearchedAssets(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
+
 	isInstance = isInstance && "suggested" in value;
+
 	isInstance = isInstance && "exact" in value;
 
 	return isInstance;
@@ -79,6 +82,7 @@ export function SearchedAssetsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -93,9 +97,11 @@ export function SearchedAssetsToJSON(value?: SearchedAssets | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		iterable: (value.iterable as any[]).map(SearchedAssetToJSON),

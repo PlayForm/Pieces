@@ -51,6 +51,7 @@ export interface QGPTQuestionOutput {
  */
 export function instanceOfQGPTQuestionOutput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "answers" in value;
 
 	return isInstance;
@@ -67,6 +68,7 @@ export function QGPTQuestionOutputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -81,9 +83,11 @@ export function QGPTQuestionOutputToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		answers: QGPTQuestionAnswersToJSON(value.answers),

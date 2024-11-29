@@ -55,6 +55,7 @@ export interface ReferencedWorkstreamEvent {
  */
 export function instanceOfReferencedWorkstreamEvent(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
 
 	return isInstance;
@@ -73,6 +74,7 @@ export function ReferencedWorkstreamEventFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -90,9 +92,11 @@ export function ReferencedWorkstreamEventToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

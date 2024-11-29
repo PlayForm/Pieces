@@ -274,6 +274,7 @@ export function ExternalProviderProfileDataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		name: exists(json, "name") ? json["name"] : undefined,
 		picture: exists(json, "picture") ? json["picture"] : undefined,
@@ -354,9 +355,11 @@ export function ExternalProviderProfileDataToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		name: value.name,
 		picture: value.picture,

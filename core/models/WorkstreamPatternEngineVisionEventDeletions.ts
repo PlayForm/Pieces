@@ -83,6 +83,7 @@ export function WorkstreamPatternEngineVisionEventDeletionsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -104,9 +105,11 @@ export function WorkstreamPatternEngineVisionEventDeletionsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		search_scope: SearchInputToJSON(value.searchScope),

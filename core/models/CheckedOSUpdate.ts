@@ -75,6 +75,7 @@ export interface CheckedOSUpdate {
  */
 export function instanceOfCheckedOSUpdate(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "status" in value;
 
 	return isInstance;
@@ -91,6 +92,7 @@ export function CheckedOSUpdateFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -107,9 +109,11 @@ export function CheckedOSUpdateToJSON(value?: CheckedOSUpdate | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		status: UpdatingStatusEnumToJSON(value.status),

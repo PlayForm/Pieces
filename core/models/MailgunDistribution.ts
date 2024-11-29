@@ -49,6 +49,7 @@ export interface MailgunDistribution {
  */
 export function instanceOfMailgunDistribution(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "recipients" in value;
 
 	return isInstance;
@@ -65,6 +66,7 @@ export function MailgunDistributionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -79,9 +81,11 @@ export function MailgunDistributionToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		recipients: RecipientsToJSON(value.recipients),

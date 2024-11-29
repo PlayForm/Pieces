@@ -44,6 +44,7 @@ export interface OSFileStreamingReadAttempt {
  */
 export function instanceOfOSFileStreamingReadAttempt(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "path" in value;
 
 	return isInstance;
@@ -62,6 +63,7 @@ export function OSFileStreamingReadAttemptFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -76,9 +78,11 @@ export function OSFileStreamingReadAttemptToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		path: value.path,

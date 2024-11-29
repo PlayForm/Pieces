@@ -36,26 +36,31 @@ export interface ConnectRequest {
 
 export interface IntentionRequest {
 	application: string;
+
 	seededConnectorAsset?: SeededConnectorAsset;
 }
 
 export interface OnboardedRequest {
 	application: string;
+
 	body?: boolean;
 }
 
 export interface ReactRequest {
 	application: string;
+
 	reaction?: Reaction;
 }
 
 export interface SuggestRequest {
 	application: string;
+
 	seededConnectorCreation?: SeededConnectorCreation;
 }
 
 export interface TrackRequest {
 	application: string;
+
 	seededConnectorTracking?: SeededConnectorTracking;
 }
 

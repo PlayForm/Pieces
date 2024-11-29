@@ -80,8 +80,11 @@ export interface SearchedAnnotation {
  */
 export function instanceOfSearchedAnnotation(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "exact" in value;
+
 	isInstance = isInstance && "similarity" in value;
+
 	isInstance = isInstance && "identifier" in value;
 
 	return isInstance;
@@ -98,6 +101,7 @@ export function SearchedAnnotationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -118,9 +122,11 @@ export function SearchedAnnotationToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		annotation: AnnotationToJSON(value.annotation),

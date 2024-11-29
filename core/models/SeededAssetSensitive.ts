@@ -104,10 +104,15 @@ export interface SeededAssetSensitive {
  */
 export function instanceOfSeededAssetSensitive(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "text" in value;
+
 	isInstance = isInstance && "category" in value;
+
 	isInstance = isInstance && "severity" in value;
+
 	isInstance = isInstance && "name" in value;
+
 	isInstance = isInstance && "description" in value;
 
 	return isInstance;
@@ -124,6 +129,7 @@ export function SeededAssetSensitiveFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -148,9 +154,11 @@ export function SeededAssetSensitiveToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		text: value.text,

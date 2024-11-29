@@ -23,6 +23,7 @@ import * as runtime from "../runtime.ts";
 
 export interface AnnotationScoresIncrementRequest {
 	annotation: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 

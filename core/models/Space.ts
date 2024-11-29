@@ -54,6 +54,7 @@ export function SpaceFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		size: exists(json, "size") ? json["size"] : undefined,
 		duration: exists(json, "duration") ? json["duration"] : undefined,
@@ -64,9 +65,11 @@ export function SpaceToJSON(value?: Space | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		size: value.size,
 		duration: value.duration,

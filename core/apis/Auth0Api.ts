@@ -32,25 +32,41 @@ export interface Auth0LogoutRequest {
 
 export interface AuthorizeAuth0Request {
 	audience: string;
+
 	scope: AuthorizeAuth0ScopeEnum[];
+
 	responseType: AuthorizeAuth0ResponseTypeEnum;
+
 	clientId: string;
+
 	codeChallengeMethod: AuthorizeAuth0CodeChallengeMethodEnum;
+
 	codeChallenge: string;
+
 	responseMode: AuthorizeAuth0ResponseModeEnum;
+
 	state?: string;
+
 	redirectUri?: string;
+
 	connection?: string;
+
 	prompt?: string;
 }
 
 export interface ExchangeForAuth0TokenRequest {
 	grantType: ExchangeForAuth0TokenGrantTypeEnum;
+
 	clientId: string;
+
 	code: string;
+
 	redirectUri: string;
+
 	codeVerifier: string;
+
 	schema?: EmbeddedModelSchema;
+
 	audience?: string;
 }
 

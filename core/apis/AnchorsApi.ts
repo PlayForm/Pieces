@@ -28,6 +28,7 @@ import * as runtime from "../runtime.ts";
 
 export interface AnchorsCreateNewAnchorRequest {
 	transferables?: boolean;
+
 	seededAnchor?: SeededAnchor;
 }
 
@@ -41,6 +42,7 @@ export interface AnchorsSnapshotRequest {
 
 export interface SearchAnchorsRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 

@@ -28,6 +28,7 @@ import * as runtime from "../runtime.ts";
 
 export interface PersonsCreateNewPersonRequest {
 	transferables?: boolean;
+
 	seededPerson?: SeededPerson;
 }
 
@@ -41,6 +42,7 @@ export interface PersonsSnapshotRequest {
 
 export interface SearchPersonsRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 

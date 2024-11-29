@@ -32,11 +32,13 @@ import * as runtime from "../runtime.ts";
 
 export interface SearchTagsRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 
 export interface TagsCreateNewTagRequest {
 	transferables?: boolean;
+
 	seededTag?: SeededTag;
 }
 

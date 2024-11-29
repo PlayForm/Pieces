@@ -94,6 +94,7 @@ export function QGPTStreamInputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		relevance: exists(json, "relevance")
 			? QGPTRelevanceInputFromJSON(json["relevance"])
@@ -115,9 +116,11 @@ export function QGPTStreamInputToJSON(value?: QGPTStreamInput | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		relevance: QGPTRelevanceInputToJSON(value.relevance),
 		question: QGPTQuestionInputToJSON(value.question),

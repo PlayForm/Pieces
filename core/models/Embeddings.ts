@@ -23,6 +23,7 @@ export interface Embeddings {
  */
 export function instanceOfEmbeddings(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -39,6 +40,7 @@ export function EmbeddingsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		iterable: (json["iterable"] as any[]).map(EmbeddingFromJSON),
 	};
@@ -48,9 +50,11 @@ export function EmbeddingsToJSON(value?: Embeddings | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		iterable: (value.iterable as any[]).map(EmbeddingToJSON),
 	};

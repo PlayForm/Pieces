@@ -71,6 +71,7 @@ export interface WorkstreamPatternEngineProcessorsVisionEventsScopedDeleteReques
 
 export interface WorkstreamPatternEngineProcessorsVisionEventsSearchRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 
@@ -80,6 +81,7 @@ export interface WorkstreamPatternEngineProcessorsVisionEventsSnapshotRequest {
 
 export interface WorkstreamPatternEngineProcessorsVisionEventsSpecificSnapshotRequest {
 	visionEvent: string;
+
 	transferables?: boolean;
 }
 

@@ -60,6 +60,7 @@ export interface ModelMaxTokens {
  */
 export function instanceOfModelMaxTokens(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "total" in value;
 
 	return isInstance;
@@ -76,6 +77,7 @@ export function ModelMaxTokensFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -90,9 +92,11 @@ export function ModelMaxTokensToJSON(value?: ModelMaxTokens | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		total: value.total,

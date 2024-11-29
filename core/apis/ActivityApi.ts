@@ -23,16 +23,19 @@ import * as runtime from "../runtime.ts";
 
 export interface ActivitiesSpecificActivitySnapshotRequest {
 	activity: string;
+
 	transferables?: boolean;
 }
 
 export interface ActivityIdentifiersSnapshotRequest {
 	pseudo?: boolean;
+
 	activityFilterEnum?: ActivityIdentifiersSnapshotActivityFilterEnumEnum;
 }
 
 export interface ActivityUpdateRequest {
 	transferables?: boolean;
+
 	activity?: Activity;
 }
 

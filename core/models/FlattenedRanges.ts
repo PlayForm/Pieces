@@ -68,6 +68,7 @@ export interface FlattenedRanges {
  */
 export function instanceOfFlattenedRanges(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -84,6 +85,7 @@ export function FlattenedRangesFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -99,9 +101,11 @@ export function FlattenedRangesToJSON(value?: FlattenedRanges | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		iterable: (value.iterable as any[]).map(ReferencedRangeToJSON),

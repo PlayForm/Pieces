@@ -57,6 +57,7 @@ export function instanceOfPrecreatedExternalProviderApiKey(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "user" in value;
 
 	return isInstance;
@@ -75,6 +76,7 @@ export function PrecreatedExternalProviderApiKeyFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -92,9 +94,11 @@ export function PrecreatedExternalProviderApiKeyToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		user: value.user,

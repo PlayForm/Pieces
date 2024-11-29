@@ -26,6 +26,7 @@ export interface FormatsSnapshotRequest {
 
 export interface FormatsSpecificFormatSnapshotRequest {
 	format: string;
+
 	transferable?: boolean;
 }
 

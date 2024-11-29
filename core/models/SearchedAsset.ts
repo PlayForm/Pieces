@@ -80,9 +80,13 @@ export interface SearchedAsset {
  */
 export function instanceOfSearchedAsset(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "exact" in value;
+
 	isInstance = isInstance && "score" in value;
+
 	isInstance = isInstance && "match" in value;
+
 	isInstance = isInstance && "identifier" in value;
 
 	return isInstance;
@@ -99,6 +103,7 @@ export function SearchedAssetFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -116,9 +121,11 @@ export function SearchedAssetToJSON(value?: SearchedAsset | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		asset: AssetToJSON(value.asset),

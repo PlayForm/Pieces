@@ -198,14 +198,23 @@ export interface FlattenedFormat {
  */
 export function instanceOfFlattenedFormat(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "creator" in value;
+
 	isInstance = isInstance && "classification" in value;
+
 	isInstance = isInstance && "role" in value;
+
 	isInstance = isInstance && "application" in value;
+
 	isInstance = isInstance && "asset" in value;
+
 	isInstance = isInstance && "bytes" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
 
 	return isInstance;
@@ -222,6 +231,7 @@ export function FlattenedFormatFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -265,9 +275,11 @@ export function FlattenedFormatToJSON(value?: FlattenedFormat | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

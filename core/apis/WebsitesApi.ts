@@ -32,11 +32,13 @@ import * as runtime from "../runtime.ts";
 
 export interface SearchWebsitesRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 
 export interface WebsitesCreateNewWebsiteRequest {
 	transferables?: boolean;
+
 	seededWebsite?: SeededWebsite;
 }
 

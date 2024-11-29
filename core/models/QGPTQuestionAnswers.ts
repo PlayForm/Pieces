@@ -49,6 +49,7 @@ export interface QGPTQuestionAnswers {
  */
 export function instanceOfQGPTQuestionAnswers(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -65,6 +66,7 @@ export function QGPTQuestionAnswersFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -79,9 +81,11 @@ export function QGPTQuestionAnswersToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		iterable: (value.iterable as any[]).map(QGPTQuestionAnswerToJSON),

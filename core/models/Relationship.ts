@@ -86,10 +86,15 @@ export interface Relationship {
  */
 export function instanceOfRelationship(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "embeddings" in value;
+
 	isInstance = isInstance && "edges" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
 
 	return isInstance;
@@ -106,6 +111,7 @@ export function RelationshipFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		id: json["id"],
 		schema: exists(json, "schema")
@@ -125,9 +131,11 @@ export function RelationshipToJSON(value?: Relationship | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		id: value.id,
 		schema: EmbeddedModelSchemaToJSON(value.schema),

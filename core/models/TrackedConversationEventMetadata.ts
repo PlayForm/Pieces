@@ -68,6 +68,7 @@ export function TrackedConversationEventMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -84,9 +85,11 @@ export function TrackedConversationEventMetadataToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		rename: TrackedConversationEventRenameMetadataToJSON(value.rename),

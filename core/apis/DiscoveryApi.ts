@@ -34,21 +34,25 @@ import * as runtime from "../runtime.ts";
 
 export interface DiscoveryDiscoverAssetsRequest {
 	automatic?: boolean;
+
 	seededDiscoverableAssets?: SeededDiscoverableAssets;
 }
 
 export interface DiscoveryDiscoverAssetsHtmlRequest {
 	automatic?: boolean;
+
 	seededDiscoverableHtmlWebpages?: SeededDiscoverableHtmlWebpages;
 }
 
 export interface DiscoveryDiscoverSensitivesRequest {
 	automatic?: boolean;
+
 	seededDiscoverableSensitives?: SeededDiscoverableSensitives;
 }
 
 export interface DiscoveryDiscoverTagsRelatedRequest {
 	automatic?: boolean;
+
 	seededDiscoverableRelatedTags?: SeededDiscoverableRelatedTags;
 }
 

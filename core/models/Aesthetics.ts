@@ -52,7 +52,9 @@ export interface Aesthetics {
  */
 export function instanceOfAesthetics(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "theme" in value;
+
 	isInstance = isInstance && "font" in value;
 
 	return isInstance;
@@ -69,6 +71,7 @@ export function AestheticsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -82,9 +85,11 @@ export function AestheticsToJSON(value?: Aesthetics | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		theme: ThemeToJSON(value.theme),

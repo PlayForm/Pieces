@@ -67,6 +67,7 @@ export interface QGPTRelevanceOutput {
  */
 export function instanceOfQGPTRelevanceOutput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "relevant" in value;
 
 	return isInstance;
@@ -83,6 +84,7 @@ export function QGPTRelevanceOutputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -100,9 +102,11 @@ export function QGPTRelevanceOutputToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		answer: QGPTQuestionOutputToJSON(value.answer),

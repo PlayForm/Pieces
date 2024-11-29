@@ -35,6 +35,7 @@ export interface BackupsCreateNewBackupStreamedRequest {
 
 export interface BackupsDeleteSpecificBackupRequest {
 	backup: string;
+
 	backup2?: Backup;
 }
 

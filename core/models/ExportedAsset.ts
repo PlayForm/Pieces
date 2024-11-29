@@ -47,9 +47,13 @@ export interface ExportedAsset {
  */
 export function instanceOfExportedAsset(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "name" in value;
+
 	isInstance = isInstance && "description" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "raw" in value;
 
 	return isInstance;
@@ -66,6 +70,7 @@ export function ExportedAssetFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		name: json["name"],
 		description: json["description"],
@@ -78,9 +83,11 @@ export function ExportedAssetToJSON(value?: ExportedAsset | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		name: value.name,
 		description: value.description,

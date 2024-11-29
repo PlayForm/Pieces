@@ -61,7 +61,9 @@ export interface SeededAssetWebsite {
  */
 export function instanceOfSeededAssetWebsite(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "url" in value;
+
 	isInstance = isInstance && "name" in value;
 
 	return isInstance;
@@ -78,6 +80,7 @@ export function SeededAssetWebsiteFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -96,9 +99,11 @@ export function SeededAssetWebsiteToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		url: value.url,

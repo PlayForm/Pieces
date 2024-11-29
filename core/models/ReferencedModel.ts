@@ -44,6 +44,7 @@ export interface ReferencedModel {
  */
 export function instanceOfReferencedModel(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
 
 	return isInstance;
@@ -60,6 +61,7 @@ export function ReferencedModelFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -72,9 +74,11 @@ export function ReferencedModelToJSON(value?: ReferencedModel | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

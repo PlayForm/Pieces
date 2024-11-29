@@ -49,6 +49,7 @@ export interface Recipients {
  */
 export function instanceOfRecipients(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -65,6 +66,7 @@ export function RecipientsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		iterable: (json["iterable"] as any[]).map(PersonBasicTypeFromJSON),
 		schema: exists(json, "schema")
@@ -77,9 +79,11 @@ export function RecipientsToJSON(value?: Recipients | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		iterable: (value.iterable as any[]).map(PersonBasicTypeToJSON),
 		schema: EmbeddedModelSchemaToJSON(value.schema),

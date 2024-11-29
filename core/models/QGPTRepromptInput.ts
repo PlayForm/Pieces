@@ -81,7 +81,9 @@ export interface QGPTRepromptInput {
  */
 export function instanceOfQGPTRepromptInput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "query" in value;
+
 	isInstance = isInstance && "conversation" in value;
 
 	return isInstance;
@@ -98,6 +100,7 @@ export function QGPTRepromptInputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -118,9 +121,11 @@ export function QGPTRepromptInputToJSON(value?: QGPTRepromptInput | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		query: value.query,

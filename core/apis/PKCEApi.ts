@@ -34,7 +34,9 @@ export interface GenerateTokenRequest {
 
 export interface RespondWithCodeRequest {
 	code: string;
+
 	state: string;
+
 	schema?: EmbeddedModelSchema;
 }
 

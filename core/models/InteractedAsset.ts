@@ -59,6 +59,7 @@ export function InteractedAssetFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		asset: exists(json, "asset") ? json["asset"] : undefined,
 		interactions: exists(json, "interactions")
@@ -71,9 +72,11 @@ export function InteractedAssetToJSON(value?: InteractedAsset | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		asset: value.asset,
 		interactions: InteractedAssetInteractionsToJSON(value.interactions),

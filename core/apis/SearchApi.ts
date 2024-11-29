@@ -22,16 +22,19 @@ import * as runtime from "../runtime.ts";
 
 export interface FullTextSearchRequest {
 	query?: string;
+
 	pseudo?: boolean;
 }
 
 export interface NeuralCodeSearchRequest {
 	query?: string;
+
 	pseudo?: boolean;
 }
 
 export interface TagBasedSearchRequest {
 	pseudo?: boolean;
+
 	seededAssetTags?: SeededAssetTags;
 }
 

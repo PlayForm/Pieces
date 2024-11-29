@@ -55,6 +55,7 @@ export interface ReferencedFormat {
  */
 export function instanceOfReferencedFormat(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
 
 	return isInstance;
@@ -71,6 +72,7 @@ export function ReferencedFormatFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -86,9 +88,11 @@ export function ReferencedFormatToJSON(value?: ReferencedFormat | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

@@ -89,8 +89,11 @@ export interface OSFileStreamingRead {
  */
 export function instanceOfOSFileStreamingRead(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "status" in value;
+
 	isInstance = isInstance && "path" in value;
+
 	isInstance = isInstance && "id" in value;
 
 	return isInstance;
@@ -107,6 +110,7 @@ export function OSFileStreamingReadFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -130,9 +134,11 @@ export function OSFileStreamingReadToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		status: ModelDownloadProgressStatusEnumToJSON(value.status),

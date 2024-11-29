@@ -106,10 +106,15 @@ export interface Auth0 {
  */
 export function instanceOfAuth0(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "domain" in value;
+
 	isInstance = isInstance && "client" in value;
+
 	isInstance = isInstance && "audience" in value;
+
 	isInstance = isInstance && "redirects" in value;
+
 	isInstance = isInstance && "oAuth" in value;
 
 	return isInstance;
@@ -126,6 +131,7 @@ export function Auth0FromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		identity: exists(json, "identity")
 			? Auth0IdentityFromJSON(json["identity"])
@@ -149,9 +155,11 @@ export function Auth0ToJSON(value?: Auth0 | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		identity: Auth0IdentityToJSON(value.identity),
 		user: Auth0UserToJSON(value.user),

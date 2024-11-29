@@ -88,6 +88,7 @@ export interface Linkify {
  */
 export function instanceOfLinkify(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "access" in value;
 
 	return isInstance;
@@ -104,6 +105,7 @@ export function LinkifyFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -124,9 +126,11 @@ export function LinkifyToJSON(value?: Linkify | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		seed: SeedToJSON(value.seed),

@@ -110,7 +110,9 @@ export interface SeededActivity {
  */
 export function instanceOfSeededActivity(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "event" in value;
+
 	isInstance = isInstance && "application" in value;
 
 	return isInstance;
@@ -127,6 +129,7 @@ export function SeededActivityFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		event: SeededConnectorTrackingFromJSON(json["event"]),
 		application: ApplicationFromJSON(json["application"]),
@@ -152,9 +155,11 @@ export function SeededActivityToJSON(value?: SeededActivity | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		event: SeededConnectorTrackingToJSON(value.event),
 		application: ApplicationToJSON(value.application),

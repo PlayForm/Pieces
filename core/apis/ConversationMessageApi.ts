@@ -23,31 +23,37 @@ import * as runtime from "../runtime.ts";
 
 export interface MessageAssociateAnnotationRequest {
 	annotation: string;
+
 	message: string;
 }
 
 export interface MessageDisassociateAnnotationRequest {
 	annotation: string;
+
 	message: string;
 }
 
 export interface MessageScoresIncrementRequest {
 	message: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface MessageSpecificMessageSnapshotRequest {
 	message: string;
+
 	transferables?: boolean;
 }
 
 export interface MessageSpecificMessageUpdateRequest {
 	transferables?: boolean;
+
 	conversationMessage?: ConversationMessage;
 }
 
 export interface MessageUpdateValueRequest {
 	transferables?: boolean;
+
 	conversationMessage?: ConversationMessage;
 }
 

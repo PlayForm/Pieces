@@ -50,6 +50,7 @@ export interface DetectedExternalApplication {
  */
 export function instanceOfDetectedExternalApplication(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "name" in value;
 
 	return isInstance;
@@ -68,6 +69,7 @@ export function DetectedExternalApplicationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -83,9 +85,11 @@ export function DetectedExternalApplicationToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		name: value.name,

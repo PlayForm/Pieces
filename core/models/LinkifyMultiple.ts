@@ -77,7 +77,9 @@ export interface LinkifyMultiple {
  */
 export function instanceOfLinkifyMultiple(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "assets" in value;
+
 	isInstance = isInstance && "access" in value;
 
 	return isInstance;
@@ -94,6 +96,7 @@ export function LinkifyMultipleFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -111,9 +114,11 @@ export function LinkifyMultipleToJSON(value?: LinkifyMultiple | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		assets: value.assets,

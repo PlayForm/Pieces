@@ -45,6 +45,7 @@ export interface MailgunMetadata {
  */
 export function instanceOfMailgunMetadata(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "messageId" in value;
 
 	return isInstance;
@@ -61,6 +62,7 @@ export function MailgunMetadataFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -73,9 +75,11 @@ export function MailgunMetadataToJSON(value?: MailgunMetadata | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		messageId: value.messageId,

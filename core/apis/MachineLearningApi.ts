@@ -30,6 +30,7 @@ export interface PersonificationTechnicalLanguageGenerationRequest {
 
 export interface SegmentTechnicalLanguageRequest {
 	classify?: boolean;
+
 	unsegmentedTechnicalLanguage?: UnsegmentedTechnicalLanguage;
 }
 

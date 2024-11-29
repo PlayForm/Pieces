@@ -64,6 +64,7 @@ export interface BackupStatus {
  */
 export function instanceOfBackupStatus(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "backup" in value;
 
 	return isInstance;
@@ -80,6 +81,7 @@ export function BackupStatusFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -96,9 +98,11 @@ export function BackupStatusToJSON(value?: BackupStatus | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		value: BackupStatusEnumToJSON(value.value),

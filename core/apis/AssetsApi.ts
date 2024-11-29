@@ -42,6 +42,7 @@ import * as runtime from "../runtime.ts";
 
 export interface AssetsCreateNewAssetRequest {
 	transferables?: boolean;
+
 	seed?: Seed;
 }
 
@@ -51,6 +52,7 @@ export interface AssetsDeleteAssetRequest {
 
 export interface AssetsDraftRequest {
 	transferables?: boolean;
+
 	seed?: Seed;
 }
 
@@ -68,30 +70,39 @@ export interface AssetsIdentifiersSnapshotRequest {
 
 export interface AssetsSearchWithFiltersRequest {
 	transferables?: boolean;
+
 	pseudo?: boolean;
+
 	assetsSearchWithFiltersInput?: AssetsSearchWithFiltersInput;
 }
 
 export interface AssetsSnapshotRequest {
 	transferables?: boolean;
+
 	suggested?: boolean;
+
 	pseudo?: boolean;
 }
 
 export interface AssetsSpecificAssetFormatsSnapshotRequest {
 	asset: string;
+
 	transferables?: boolean;
 }
 
 export interface AssetsSpecificAssetSnapshotRequest {
 	asset: string;
+
 	transferables?: boolean;
 }
 
 export interface SearchAssetsRequest {
 	query?: string;
+
 	transferables?: boolean;
+
 	searchableTags?: string;
+
 	pseudo?: boolean;
 }
 

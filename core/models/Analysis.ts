@@ -76,7 +76,9 @@ export interface Analysis {
  */
 export function instanceOfAnalysis(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "format" in value;
 
 	return isInstance;
@@ -93,6 +95,7 @@ export function AnalysisFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -112,9 +115,11 @@ export function AnalysisToJSON(value?: Analysis | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		code: CodeAnalysisToJSON(value.code),

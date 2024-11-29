@@ -153,15 +153,25 @@ export interface FlattenedSensitive {
  */
 export function instanceOfFlattenedSensitive(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
+
 	isInstance = isInstance && "asset" in value;
+
 	isInstance = isInstance && "text" in value;
+
 	isInstance = isInstance && "mechanism" in value;
+
 	isInstance = isInstance && "category" in value;
+
 	isInstance = isInstance && "severity" in value;
+
 	isInstance = isInstance && "name" in value;
+
 	isInstance = isInstance && "description" in value;
 
 	return isInstance;
@@ -178,6 +188,7 @@ export function FlattenedSensitiveFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -211,9 +222,11 @@ export function FlattenedSensitiveToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

@@ -140,11 +140,17 @@ export interface FlattenedActivity {
  */
 export function instanceOfFlattenedActivity(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
+
 	isInstance = isInstance && "event" in value;
+
 	isInstance = isInstance && "application" in value;
+
 	isInstance = isInstance && "mechanism" in value;
 
 	return isInstance;
@@ -161,6 +167,7 @@ export function FlattenedActivityFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -191,9 +198,11 @@ export function FlattenedActivityToJSON(value?: FlattenedActivity | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

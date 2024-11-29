@@ -59,7 +59,9 @@ export function instanceOfFlattenedWorkstreamPatternEngineVisionEvent(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "created" in value;
 
 	return isInstance;
@@ -81,6 +83,7 @@ export function FlattenedWorkstreamPatternEngineVisionEventFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -96,9 +99,11 @@ export function FlattenedWorkstreamPatternEngineVisionEventToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

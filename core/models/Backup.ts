@@ -90,12 +90,19 @@ export interface Backup {
  */
 export function instanceOfBackup(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "version" in value;
+
 	isInstance = isInstance && "timestamp" in value;
+
 	isInstance = isInstance && "bytes" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "deviceName" in value;
+
 	isInstance = isInstance && "platform" in value;
 
 	return isInstance;
@@ -112,6 +119,7 @@ export function BackupFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -130,9 +138,11 @@ export function BackupToJSON(value?: Backup | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

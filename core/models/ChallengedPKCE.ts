@@ -78,10 +78,15 @@ export type ChallengedPKCEMethodEnum =
  */
 export function instanceOfChallengedPKCE(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "state" in value;
+
 	isInstance = isInstance && "nonce" in value;
+
 	isInstance = isInstance && "challenge" in value;
+
 	isInstance = isInstance && "method" in value;
+
 	isInstance = isInstance && "verifier" in value;
 
 	return isInstance;
@@ -98,6 +103,7 @@ export function ChallengedPKCEFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -114,9 +120,11 @@ export function ChallengedPKCEToJSON(value?: ChallengedPKCE | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		state: value.state,

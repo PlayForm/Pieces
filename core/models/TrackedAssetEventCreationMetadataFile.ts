@@ -64,6 +64,7 @@ export function TrackedAssetEventCreationMetadataFileFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		keyboard: exists(json, "keyboard") ? json["keyboard"] : undefined,
 		dragAndDrop: exists(json, "drag_and_drop")
@@ -81,9 +82,11 @@ export function TrackedAssetEventCreationMetadataFileToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		keyboard: value.keyboard,
 		drag_and_drop: value.dragAndDrop,

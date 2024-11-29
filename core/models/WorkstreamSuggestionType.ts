@@ -146,6 +146,7 @@ export function WorkstreamSuggestionTypeFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema") ? json["schema"] : undefined,
 		summary: exists(json, "summary") ? json["summary"] : undefined,
@@ -177,9 +178,11 @@ export function WorkstreamSuggestionTypeToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: value.schema,
 		summary: value.summary,

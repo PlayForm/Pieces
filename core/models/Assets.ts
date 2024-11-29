@@ -58,6 +58,7 @@ export interface Assets {
  */
 export function instanceOfAssets(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -74,6 +75,7 @@ export function AssetsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -88,9 +90,11 @@ export function AssetsToJSON(value?: Assets | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		iterable: (value.iterable as any[]).map(AssetToJSON),

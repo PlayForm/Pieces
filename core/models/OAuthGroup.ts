@@ -64,6 +64,7 @@ export function OAuthGroupFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		token: exists(json, "token")
 			? OAuthTokenFromJSON(json["token"])
@@ -78,9 +79,11 @@ export function OAuthGroupToJSON(value?: OAuthGroup | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		token: OAuthTokenToJSON(value.token),
 		account: OAuthAccountToJSON(value.account),

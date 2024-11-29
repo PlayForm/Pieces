@@ -23,66 +23,79 @@ import * as runtime from "../runtime.ts";
 
 export interface PersonAssociateAnchorRequest {
 	person: string;
+
 	anchor: string;
 }
 
 export interface PersonAssociateAssetRequest {
 	person: string;
+
 	asset: string;
 }
 
 export interface PersonAssociateTagRequest {
 	person: string;
+
 	tag: string;
 }
 
 export interface PersonAssociateWebsiteRequest {
 	person: string;
+
 	website: string;
 }
 
 export interface PersonAssociateWorkstreamSummaryRequest {
 	person: string;
+
 	workstreamSummary: string;
 }
 
 export interface PersonDisassociateAnchorRequest {
 	person: string;
+
 	anchor: string;
 }
 
 export interface PersonDisassociateAssetRequest {
 	person: string;
+
 	asset: string;
 }
 
 export interface PersonDisassociateTagRequest {
 	person: string;
+
 	tag: string;
 }
 
 export interface PersonDisassociateWebsiteRequest {
 	person: string;
+
 	website: string;
 }
 
 export interface PersonDisassociateWorkstreamSummaryRequest {
 	person: string;
+
 	workstreamSummary: string;
 }
 
 export interface PersonScoresIncrementRequest {
 	person: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface PersonSnapshotRequest {
 	person: string;
+
 	transferables?: boolean;
 }
 
 export interface UpdatePersonRequest {
 	transferables?: boolean;
+
 	person?: Person;
 }
 

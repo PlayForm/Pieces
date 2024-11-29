@@ -141,10 +141,15 @@ export interface FlattenedTag {
  */
 export function instanceOfFlattenedTag(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "text" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
+
 	isInstance = isInstance && "category" in value;
 
 	return isInstance;
@@ -161,6 +166,7 @@ export function FlattenedTagFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -196,9 +202,11 @@ export function FlattenedTagToJSON(value?: FlattenedTag | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

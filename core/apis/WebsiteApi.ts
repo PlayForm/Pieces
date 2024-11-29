@@ -23,56 +23,67 @@ import * as runtime from "../runtime.ts";
 
 export interface WebsiteAssociateAssetRequest {
 	asset: string;
+
 	website: string;
 }
 
 export interface WebsiteAssociateConversationRequest {
 	website: string;
+
 	conversation: string;
 }
 
 export interface WebsiteAssociatePersonRequest {
 	website: string;
+
 	person: string;
 }
 
 export interface WebsiteAssociateWorkstreamSummaryRequest {
 	website: string;
+
 	workstreamSummary: string;
 }
 
 export interface WebsiteDisassociateAssetRequest {
 	website: string;
+
 	asset: string;
 }
 
 export interface WebsiteDisassociateConversationRequest {
 	website: string;
+
 	conversation: string;
 }
 
 export interface WebsiteDisassociatePersonRequest {
 	website: string;
+
 	person: string;
 }
 
 export interface WebsiteDisassociateWorkstreamSummaryRequest {
 	website: string;
+
 	workstreamSummary: string;
 }
 
 export interface WebsiteScoresIncrementRequest {
 	website: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface WebsiteUpdateRequest {
 	transferables?: boolean;
+
 	website?: Website;
 }
 
 export interface WebsitesSpecificWebsiteSnapshotRequest {
 	website: string;
+
 	transferables?: boolean;
 }
 

@@ -112,6 +112,7 @@ export interface QGPTStreamOutput {
  */
 export function instanceOfQGPTStreamOutput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "conversation" in value;
 
 	return isInstance;
@@ -128,6 +129,7 @@ export function QGPTStreamOutputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		request: exists(json, "request") ? json["request"] : undefined,
 		relevance: exists(json, "relevance")
@@ -157,9 +159,11 @@ export function QGPTStreamOutputToJSON(value?: QGPTStreamOutput | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		request: value.request,
 		relevance: QGPTRelevanceOutputToJSON(value.relevance),

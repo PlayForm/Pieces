@@ -23,86 +23,103 @@ import * as runtime from "../runtime.ts";
 
 export interface WorkstreamSummariesSpecificWorkstreamSummarySnapshotRequest {
 	workstreamSummary: string;
+
 	transferables?: boolean;
 }
 
 export interface WorkstreamSummaryAssociateAnchorRequest {
 	workstreamSummary: string;
+
 	anchor: string;
 }
 
 export interface WorkstreamSummaryAssociateAssetRequest {
 	workstreamSummary: string;
+
 	asset: string;
 }
 
 export interface WorkstreamSummaryAssociateConversationRequest {
 	workstreamSummary: string;
+
 	conversation: string;
 }
 
 export interface WorkstreamSummaryAssociatePersonRequest {
 	workstreamSummary: string;
+
 	person: string;
 }
 
 export interface WorkstreamSummaryAssociateRangeRequest {
 	workstreamSummary: string;
+
 	range: string;
 }
 
 export interface WorkstreamSummaryAssociateWebsiteRequest {
 	workstreamSummary: string;
+
 	website: string;
 }
 
 export interface WorkstreamSummaryAssociateWorkstreamEventRequest {
 	workstreamSummary: string;
+
 	workstreamEvent: string;
 }
 
 export interface WorkstreamSummaryDisassociateAnchorRequest {
 	workstreamSummary: string;
+
 	anchor: string;
 }
 
 export interface WorkstreamSummaryDisassociateAssetRequest {
 	workstreamSummary: string;
+
 	asset: string;
 }
 
 export interface WorkstreamSummaryDisassociateConversationRequest {
 	workstreamSummary: string;
+
 	conversation: string;
 }
 
 export interface WorkstreamSummaryDisassociatePersonRequest {
 	workstreamSummary: string;
+
 	person: string;
 }
 
 export interface WorkstreamSummaryDisassociateRangeRequest {
 	workstreamSummary: string;
+
 	range: string;
 }
 
 export interface WorkstreamSummaryDisassociateWebsiteRequest {
 	workstreamSummary: string;
+
 	website: string;
 }
 
 export interface WorkstreamSummaryDisassociateWorkstreamEventRequest {
 	workstreamSummary: string;
+
 	workstreamEvent: string;
 }
 
 export interface WorkstreamSummaryScoresIncrementRequest {
 	workstreamSummary: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface WorkstreamSummaryUpdateRequest {
 	transferables?: boolean;
+
 	workstreamSummary?: WorkstreamSummary;
 }
 

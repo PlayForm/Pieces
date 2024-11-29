@@ -28,11 +28,13 @@ import * as runtime from "../runtime.ts";
 
 export interface SearchWorkstreamSummariesRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 
 export interface WorkstreamSummariesCreateNewWorkstreamSummaryRequest {
 	transferables?: boolean;
+
 	seededWorkstreamSummary?: SeededWorkstreamSummary;
 }
 

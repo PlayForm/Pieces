@@ -209,12 +209,19 @@ export type SeededPKCEResponseModeEnum =
  */
 export function instanceOfSeededPKCE(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "responseType" in value;
+
 	isInstance = isInstance && "state" in value;
+
 	isInstance = isInstance && "nonce" in value;
+
 	isInstance = isInstance && "codeChallenge" in value;
+
 	isInstance = isInstance && "codeChallengeMethod" in value;
+
 	isInstance = isInstance && "scope" in value;
+
 	isInstance = isInstance && "clientId" in value;
 
 	return isInstance;
@@ -231,6 +238,7 @@ export function SeededPKCEFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -270,9 +278,11 @@ export function SeededPKCEToJSON(value?: SeededPKCE | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		response_type: value.responseType,

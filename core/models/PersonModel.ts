@@ -88,6 +88,7 @@ export function PersonModelFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		asset: exists(json, "asset")
 			? ReferencedAssetFromJSON(json["asset"])
@@ -108,9 +109,11 @@ export function PersonModelToJSON(value?: PersonModel | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		asset: ReferencedAssetToJSON(value.asset),
 		model: ReferencedModelToJSON(value.model),

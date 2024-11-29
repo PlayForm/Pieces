@@ -62,6 +62,7 @@ export interface AnchorPoints {
  */
 export function instanceOfAnchorPoints(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -78,6 +79,7 @@ export function AnchorPointsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -92,9 +94,11 @@ export function AnchorPointsToJSON(value?: AnchorPoints | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		iterable: (value.iterable as any[]).map(AnchorPointToJSON),

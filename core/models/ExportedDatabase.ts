@@ -223,22 +223,39 @@ export interface ExportedDatabase {
  */
 export function instanceOfExportedDatabase(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "analyses" in value;
+
 	isInstance = isInstance && "applications" in value;
+
 	isInstance = isInstance && "assets" in value;
+
 	isInstance = isInstance && "codeAnalyses" in value;
+
 	isInstance = isInstance && "files" in value;
+
 	isInstance = isInstance && "formatMetrics" in value;
+
 	isInstance = isInstance && "formats" in value;
+
 	isInstance = isInstance && "fragments" in value;
+
 	isInstance = isInstance && "imageAnalyses" in value;
+
 	isInstance = isInstance && "models" in value;
+
 	isInstance = isInstance && "ocrAnalyses" in value;
+
 	isInstance = isInstance && "persons" in value;
+
 	isInstance = isInstance && "sensitives" in value;
+
 	isInstance = isInstance && "tags" in value;
+
 	isInstance = isInstance && "websites" in value;
+
 	isInstance = isInstance && "values" in value;
+
 	isInstance = isInstance && "version" in value;
 
 	return isInstance;
@@ -255,6 +272,7 @@ export function ExportedDatabaseFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		analyses: json["analyses"],
 		applications: json["applications"],
@@ -314,9 +332,11 @@ export function ExportedDatabaseToJSON(value?: ExportedDatabase | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		analyses: value.analyses,
 		applications: value.applications,

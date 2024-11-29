@@ -49,6 +49,7 @@ export interface DiscoveredRelatedTag {
  */
 export function instanceOfDiscoveredRelatedTag(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "seed" in value;
 
 	return isInstance;
@@ -65,6 +66,7 @@ export function DiscoveredRelatedTagFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -79,9 +81,11 @@ export function DiscoveredRelatedTagToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		seed: SeededTagToJSON(value.seed),

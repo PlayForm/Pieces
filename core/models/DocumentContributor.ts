@@ -88,6 +88,7 @@ export interface DocumentContributor {
  */
 export function instanceOfDocumentContributor(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "person" in value;
 
 	return isInstance;
@@ -104,6 +105,7 @@ export function DocumentContributorFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -127,9 +129,11 @@ export function DocumentContributorToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		classification: ClassificationToJSON(value.classification),

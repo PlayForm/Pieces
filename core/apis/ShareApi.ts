@@ -23,16 +23,19 @@ import * as runtime from "../runtime.ts";
 
 export interface ShareScoresIncrementRequest {
 	share: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface ShareSnapshotRequest {
 	share: string;
+
 	transferables?: boolean;
 }
 
 export interface ShareUpdateRequest {
 	transferables?: boolean;
+
 	share?: Share;
 }
 

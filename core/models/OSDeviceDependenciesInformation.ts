@@ -46,6 +46,7 @@ export function instanceOfOSDeviceDependenciesInformation(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "vulkan" in value;
 
 	return isInstance;
@@ -64,6 +65,7 @@ export function OSDeviceDependenciesInformationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -78,9 +80,11 @@ export function OSDeviceDependenciesInformationToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		vulkan: value.vulkan,

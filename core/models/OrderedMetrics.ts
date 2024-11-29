@@ -44,6 +44,7 @@ export interface OrderedMetrics {
  */
 export function instanceOfOrderedMetrics(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "ordered" in value;
 
 	return isInstance;
@@ -60,6 +61,7 @@ export function OrderedMetricsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -72,9 +74,11 @@ export function OrderedMetricsToJSON(value?: OrderedMetrics | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		ordered: value.ordered,

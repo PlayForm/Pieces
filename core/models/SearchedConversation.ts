@@ -102,8 +102,11 @@ export interface SearchedConversation {
  */
 export function instanceOfSearchedConversation(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "exact" in value;
+
 	isInstance = isInstance && "similarity" in value;
+
 	isInstance = isInstance && "identifier" in value;
 
 	return isInstance;
@@ -120,6 +123,7 @@ export function SearchedConversationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -146,9 +150,11 @@ export function SearchedConversationToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		conversation: ConversationToJSON(value.conversation),

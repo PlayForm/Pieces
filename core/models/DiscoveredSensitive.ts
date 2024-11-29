@@ -55,7 +55,9 @@ export interface DiscoveredSensitive {
  */
 export function instanceOfDiscoveredSensitive(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "seed" in value;
+
 	isInstance = isInstance && "text" in value;
 
 	return isInstance;
@@ -72,6 +74,7 @@ export function DiscoveredSensitiveFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -87,9 +90,11 @@ export function DiscoveredSensitiveToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		seed: SeededSensitiveToJSON(value.seed),

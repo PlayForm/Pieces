@@ -53,7 +53,9 @@ export function instanceOfSeededDiscoverableHtmlWebpage(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "url" in value;
+
 	isInstance = isInstance && "page" in value;
 
 	return isInstance;
@@ -72,6 +74,7 @@ export function SeededDiscoverableHtmlWebpageFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -87,9 +90,11 @@ export function SeededDiscoverableHtmlWebpageToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		url: value.url,

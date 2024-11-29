@@ -23,26 +23,31 @@ import * as runtime from "../runtime.ts";
 
 export interface WorkstreamEventAssociateWorkstreamSummaryRequest {
 	workstreamEvent: string;
+
 	workstreamSummary: string;
 }
 
 export interface WorkstreamEventDisassociateWorkstreamSummaryRequest {
 	workstreamEvent: string;
+
 	workstreamSummary: string;
 }
 
 export interface WorkstreamEventScoresIncrementRequest {
 	workstreamEvent: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface WorkstreamEventUpdateRequest {
 	transferables?: boolean;
+
 	workstreamEvent?: WorkstreamEvent;
 }
 
 export interface WorkstreamEventsSpecificWorkstreamEventSnapshotRequest {
 	workstreamEvent: string;
+
 	transferables?: boolean;
 }
 

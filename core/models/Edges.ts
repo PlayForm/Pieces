@@ -19,6 +19,7 @@ export interface Edges {
  */
 export function instanceOfEdges(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -35,6 +36,7 @@ export function EdgesFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		iterable: (json["iterable"] as any[]).map(NodeFromJSON),
 	};
@@ -44,9 +46,11 @@ export function EdgesToJSON(value?: Edges | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		iterable: (value.iterable as any[]).map(NodeToJSON),
 	};

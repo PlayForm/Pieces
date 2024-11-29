@@ -57,6 +57,7 @@ export interface EmbeddingsSearchOptions {
  */
 export function instanceOfEmbeddingsSearchOptions(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "type" in value;
 
 	return isInstance;
@@ -75,6 +76,7 @@ export function EmbeddingsSearchOptionsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -90,9 +92,11 @@ export function EmbeddingsSearchOptionsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		type: EmbeddingsSearchOptionsEmbeddingTypeEnumToJSON(value.type),

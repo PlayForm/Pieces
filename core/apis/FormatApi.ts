@@ -39,6 +39,7 @@ export interface FormatReclassifyRequest {
 
 export interface FormatSnapshotRequest {
 	format: string;
+
 	transferable?: boolean;
 }
 

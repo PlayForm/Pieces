@@ -31,8 +31,11 @@ export function instanceOfSystemExecutionCpuInformation(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "count" in value;
+
 	isInstance = isInstance && "brand" in value;
+
 	isInstance = isInstance && "frequency" in value;
 
 	return isInstance;
@@ -51,6 +54,7 @@ export function SystemExecutionCpuInformationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		count: json["count"],
 		brand: json["brand"],
@@ -64,9 +68,11 @@ export function SystemExecutionCpuInformationToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		count: value.count,
 		brand: value.brand,

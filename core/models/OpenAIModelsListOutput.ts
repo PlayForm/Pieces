@@ -49,6 +49,7 @@ export interface OpenAIModelsListOutput {
  */
 export function instanceOfOpenAIModelsListOutput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "models" in value;
 
 	return isInstance;
@@ -67,6 +68,7 @@ export function OpenAIModelsListOutputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -81,9 +83,11 @@ export function OpenAIModelsListOutputToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		models: SeededModelsToJSON(value.models),

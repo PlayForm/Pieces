@@ -85,10 +85,15 @@ export type TokenizedPKCEGrantTypeEnum =
  */
 export function instanceOfTokenizedPKCE(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "grantType" in value;
+
 	isInstance = isInstance && "clientId" in value;
+
 	isInstance = isInstance && "code" in value;
+
 	isInstance = isInstance && "redirectUri" in value;
+
 	isInstance = isInstance && "codeVerifier" in value;
 
 	return isInstance;
@@ -105,6 +110,7 @@ export function TokenizedPKCEFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -122,9 +128,11 @@ export function TokenizedPKCEToJSON(value?: TokenizedPKCE | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		grant_type: value.grantType,

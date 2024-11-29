@@ -56,7 +56,9 @@ export interface RevokedPKCE {
  */
 export function instanceOfRevokedPKCE(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "clientId" in value;
+
 	isInstance = isInstance && "token" in value;
 
 	return isInstance;
@@ -73,6 +75,7 @@ export function RevokedPKCEFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -86,9 +89,11 @@ export function RevokedPKCEToJSON(value?: RevokedPKCE | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		client_id: value.clientId,

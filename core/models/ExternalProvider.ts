@@ -107,9 +107,13 @@ export interface ExternalProvider {
  */
 export function instanceOfExternalProvider(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "type" in value;
+
 	isInstance = isInstance && "userId" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
 
 	return isInstance;
@@ -126,6 +130,7 @@ export function ExternalProviderFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -150,9 +155,11 @@ export function ExternalProviderToJSON(value?: ExternalProvider | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		type: ExternalProviderTypeEnumToJSON(value.type),

@@ -138,11 +138,17 @@ export interface FlattenedShare {
  */
 export function instanceOfFlattenedShare(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "link" in value;
+
 	isInstance = isInstance && "access" in value;
+
 	isInstance = isInstance && "accessors" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "_short" in value;
 
 	return isInstance;
@@ -159,6 +165,7 @@ export function FlattenedShareFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -186,9 +193,11 @@ export function FlattenedShareToJSON(value?: FlattenedShare | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

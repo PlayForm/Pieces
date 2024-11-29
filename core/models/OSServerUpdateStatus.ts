@@ -75,6 +75,7 @@ export interface OSServerUpdateStatus {
  */
 export function instanceOfOSServerUpdateStatus(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "status" in value;
 
 	return isInstance;
@@ -91,6 +92,7 @@ export function OSServerUpdateStatusFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -109,9 +111,11 @@ export function OSServerUpdateStatusToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		status: UpdatingStatusEnumToJSON(value.status),

@@ -56,7 +56,9 @@ export interface SeededAssetsRecommendation {
  */
 export function instanceOfSeededAssetsRecommendation(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "assets" in value;
+
 	isInstance = isInstance && "interactions" in value;
 
 	return isInstance;
@@ -75,6 +77,7 @@ export function SeededAssetsRecommendationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -90,9 +93,11 @@ export function SeededAssetsRecommendationToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		assets: AssetsToJSON(value.assets),

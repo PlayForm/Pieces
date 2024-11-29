@@ -51,6 +51,7 @@ export function instanceOfConversationsCreateFromAssetOutput(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "conversation" in value;
 
 	return isInstance;
@@ -69,6 +70,7 @@ export function ConversationsCreateFromAssetOutputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -83,9 +85,11 @@ export function ConversationsCreateFromAssetOutputToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		conversation: ReferencedConversationToJSON(value.conversation),

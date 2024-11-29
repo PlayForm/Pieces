@@ -180,10 +180,15 @@ export interface FlattenedWorkstreamSummary {
  */
 export function instanceOfFlattenedWorkstreamSummary(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
+
 	isInstance = isInstance && "name" in value;
+
 	isInstance = isInstance && "model" in value;
 
 	return isInstance;
@@ -202,6 +207,7 @@ export function FlattenedWorkstreamSummaryFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -248,9 +254,11 @@ export function FlattenedWorkstreamSummaryToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

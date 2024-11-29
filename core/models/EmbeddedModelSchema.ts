@@ -29,7 +29,9 @@ export interface EmbeddedModelSchema {
  */
 export function instanceOfEmbeddedModelSchema(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "migration" in value;
+
 	isInstance = isInstance && "semantic" in value;
 
 	return isInstance;
@@ -46,6 +48,7 @@ export function EmbeddedModelSchemaFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		migration: json["migration"],
 		semantic: EmbeddedModelSchemaSemanticVersionEnumFromJSON(
@@ -60,9 +63,11 @@ export function EmbeddedModelSchemaToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		migration: value.migration,
 		semantic: EmbeddedModelSchemaSemanticVersionEnumToJSON(value.semantic),

@@ -55,6 +55,7 @@ export interface ReferencedAsset {
  */
 export function instanceOfReferencedAsset(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
 
 	return isInstance;
@@ -71,6 +72,7 @@ export function ReferencedAssetFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -86,9 +88,11 @@ export function ReferencedAssetToJSON(value?: ReferencedAsset | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

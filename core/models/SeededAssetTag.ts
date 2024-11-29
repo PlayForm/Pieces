@@ -66,6 +66,7 @@ export interface SeededAssetTag {
  */
 export function instanceOfSeededAssetTag(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "text" in value;
 
 	return isInstance;
@@ -82,6 +83,7 @@ export function SeededAssetTagFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -100,9 +102,11 @@ export function SeededAssetTagToJSON(value?: SeededAssetTag | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		text: value.text,

@@ -36,6 +36,7 @@ export interface ConversationsCreateFromAssetRequest {
 
 export interface ConversationsCreateSpecificConversationRequest {
 	transferables?: boolean;
+
 	seededConversation?: SeededConversation;
 }
 
@@ -49,6 +50,7 @@ export interface ConversationsSnapshotRequest {
 
 export interface SearchConversationsRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 

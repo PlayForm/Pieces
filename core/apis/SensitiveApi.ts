@@ -23,6 +23,7 @@ import * as runtime from "../runtime.ts";
 
 export interface SensitiveScoresIncrementRequest {
 	sensitive: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 

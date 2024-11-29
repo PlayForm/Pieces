@@ -55,6 +55,7 @@ export interface Preview {
  */
 export function instanceOfPreview(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "base" in value;
 
 	return isInstance;
@@ -71,6 +72,7 @@ export function PreviewFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -86,9 +88,11 @@ export function PreviewToJSON(value?: Preview | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		base: ReferencedFormatToJSON(value.base),

@@ -66,8 +66,11 @@ export interface QGPTConversationMessage {
  */
 export function instanceOfQGPTConversationMessage(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "text" in value;
+
 	isInstance = isInstance && "role" in value;
+
 	isInstance = isInstance && "timestamp" in value;
 
 	return isInstance;
@@ -86,6 +89,7 @@ export function QGPTConversationMessageFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -102,9 +106,11 @@ export function QGPTConversationMessageToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		text: value.text,

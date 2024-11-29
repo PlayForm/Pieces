@@ -75,9 +75,13 @@ export interface Accessor {
  */
 export function instanceOfAccessor(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "os" in value;
+
 	isInstance = isInstance && "share" in value;
+
 	isInstance = isInstance && "count" in value;
 
 	return isInstance;
@@ -94,6 +98,7 @@ export function AccessorFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -112,9 +117,11 @@ export function AccessorToJSON(value?: Accessor | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

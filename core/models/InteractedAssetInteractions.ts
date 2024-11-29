@@ -45,6 +45,7 @@ export interface InteractedAssetInteractions {
  */
 export function instanceOfInteractedAssetInteractions(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "viewed" in value;
 
 	return isInstance;
@@ -63,6 +64,7 @@ export function InteractedAssetInteractionsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		viewed: json["viewed"],
 		touched: exists(json, "touched") ? json["touched"] : undefined,
@@ -76,9 +78,11 @@ export function InteractedAssetInteractionsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		viewed: value.viewed,
 		touched: value.touched,

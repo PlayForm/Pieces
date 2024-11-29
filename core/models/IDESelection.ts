@@ -88,6 +88,7 @@ export function IDESelectionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -108,9 +109,11 @@ export function IDESelectionToJSON(value?: IDESelection | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		location: LanguageServerProtocolLocationToJSON(value.location),

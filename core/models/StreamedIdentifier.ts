@@ -70,6 +70,7 @@ export function StreamedIdentifierFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		asset: exists(json, "asset")
 			? ReferencedAssetFromJSON(json["asset"])
@@ -87,9 +88,11 @@ export function StreamedIdentifierToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		asset: ReferencedAssetToJSON(value.asset),
 		conversation: ReferencedConversationToJSON(value.conversation),

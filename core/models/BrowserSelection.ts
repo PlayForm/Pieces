@@ -60,7 +60,9 @@ export interface BrowserSelection {
  */
 export function instanceOfBrowserSelection(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "classification" in value;
+
 	isInstance = isInstance && "value" in value;
 
 	return isInstance;
@@ -77,6 +79,7 @@ export function BrowserSelectionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -90,9 +93,11 @@ export function BrowserSelectionToJSON(value?: BrowserSelection | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		classification: ClassificationToJSON(value.classification),

@@ -293,13 +293,21 @@ export interface FlattenedAsset {
  */
 export function instanceOfFlattenedAsset(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "id" in value;
+
 	isInstance = isInstance && "creator" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "updated" in value;
+
 	isInstance = isInstance && "formats" in value;
+
 	isInstance = isInstance && "preview" in value;
+
 	isInstance = isInstance && "original" in value;
+
 	isInstance = isInstance && "mechanism" in value;
 
 	return isInstance;
@@ -316,6 +324,7 @@ export function FlattenedAssetFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -384,9 +393,11 @@ export function FlattenedAssetToJSON(value?: FlattenedAsset | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		id: value.id,

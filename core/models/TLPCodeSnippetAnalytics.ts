@@ -121,6 +121,7 @@ export function TLPCodeSnippetAnalyticsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -152,9 +153,11 @@ export function TLPCodeSnippetAnalyticsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		statistics: TLPCodeFragmentStatisticsToJSON(value.statistics),

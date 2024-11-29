@@ -23,36 +23,43 @@ import * as runtime from "../runtime.ts";
 
 export interface TagAssociateAssetRequest {
 	asset: string;
+
 	tag: string;
 }
 
 export interface TagAssociatePersonRequest {
 	tag: string;
+
 	person: string;
 }
 
 export interface TagDisassociateAssetRequest {
 	tag: string;
+
 	asset: string;
 }
 
 export interface TagDisassociatePersonRequest {
 	tag: string;
+
 	person: string;
 }
 
 export interface TagScoresIncrementRequest {
 	tag: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
 export interface TagUpdateRequest {
 	transferables?: boolean;
+
 	tag?: Tag;
 }
 
 export interface TagsSpecificTagSnapshotRequest {
 	tag: string;
+
 	transferables?: boolean;
 }
 

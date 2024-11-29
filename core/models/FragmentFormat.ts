@@ -86,6 +86,7 @@ export function FragmentFormatFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -106,9 +107,11 @@ export function FragmentFormatToJSON(value?: FragmentFormat | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		string: TransferableStringToJSON(value.string),

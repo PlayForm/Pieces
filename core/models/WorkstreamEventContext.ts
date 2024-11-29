@@ -81,6 +81,7 @@ export function WorkstreamEventContextFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -100,9 +101,11 @@ export function WorkstreamEventContextToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		ide: WorkstreamEventTriggerContextIDEToJSON(value.ide),

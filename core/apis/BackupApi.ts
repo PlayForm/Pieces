@@ -37,11 +37,13 @@ export interface BackupAssetRequest {
 
 export interface BackupRestoreSpecificBackupRequest {
 	backup: string;
+
 	backup2?: Backup;
 }
 
 export interface BackupRestoreSpecificBackupStreamedRequest {
 	backup: string;
+
 	backup2?: Backup;
 }
 
@@ -59,6 +61,7 @@ export interface BackupSpecificCreationStatusRequest {
 
 export interface BackupSpecificRestorationCancelRequest {
 	backup: string;
+
 	backup2?: Backup;
 }
 

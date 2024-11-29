@@ -72,6 +72,7 @@ export class Configuration {
 		if (apiKey) {
 			return typeof apiKey === "function" ? apiKey : () => apiKey;
 		}
+
 		return undefined;
 	}
 
@@ -85,6 +86,7 @@ export class Configuration {
 				? accessToken
 				: async () => accessToken;
 		}
+
 		return undefined;
 	}
 
@@ -116,6 +118,7 @@ export class BaseAPI {
 	$;
 	/
 	i;
+
 	private middleware: Middleware[];
 
 	constructor(protected configuration = DefaultConfig) {
@@ -124,6 +127,7 @@ export class BaseAPI {
 
 	withMiddleware<T extends BaseAPI>(this: T, ...middlewares: Middleware[]) {
 		const next = this.clone<T>();
+
 		next.middleware = next.middleware.concat(...middlewares);
 
 		return next;
@@ -161,6 +165,7 @@ export class BaseAPI {
 		if (!mime) {
 			return false;
 		}
+
 		return BaseAPI.jsonRegex.test(mime);
 	}
 
@@ -178,6 +183,7 @@ export class BaseAPI {
 		if (response && response.status >= 200 && response.status < 300) {
 			return response;
 		}
+
 		throw new ResponseError(response, "Response returned an error code");
 	}
 
@@ -202,6 +208,7 @@ export class BaseAPI {
 			this.configuration.headers,
 			context.headers,
 		);
+
 		Object.keys(headers).forEach((key) =>
 			headers[key] === undefined ? delete headers[key] : {},
 		);
@@ -260,6 +267,7 @@ export class BaseAPI {
 					})) || fetchParams;
 			}
 		}
+
 		let response: Response | undefined;
 
 		try {
@@ -280,6 +288,7 @@ export class BaseAPI {
 						})) || response;
 				}
 			}
+
 			if (response === undefined) {
 				if (e instanceof Error) {
 					throw new FetchError(
@@ -291,6 +300,7 @@ export class BaseAPI {
 				}
 			}
 		}
+
 		for (const middleware of this.middleware) {
 			if (middleware.post) {
 				response =
@@ -302,6 +312,7 @@ export class BaseAPI {
 					})) || response;
 			}
 		}
+
 		return response;
 	};
 
@@ -313,6 +324,7 @@ export class BaseAPI {
 		const constructor = this.constructor as any;
 
 		const next = new constructor(this.configuration);
+
 		next.middleware = this.middleware.slice();
 
 		return next;
@@ -397,8 +409,11 @@ export type HTTPBody = Json | FormData | URLSearchParams;
 
 export type HTTPRequestInit = {
 	headers?: HTTPHeaders;
+
 	method: HTTPMethod;
+
 	credentials?: RequestCredentials;
+
 	body?: HTTPBody;
 };
 
@@ -410,19 +425,25 @@ export type ModelPropertyNaming =
 
 export type InitOverrideFunction = (requestContext: {
 	init: HTTPRequestInit;
+
 	context: RequestOpts;
 }) => Promise<RequestInit>;
 
 export interface FetchParams {
 	url: string;
+
 	init: RequestInit;
 }
 
 export interface RequestOpts {
 	path: string;
+
 	method: HTTPMethod;
+
 	headers: HTTPHeaders;
+
 	query?: HTTPQuery;
+
 	body?: HTTPBody;
 }
 
@@ -461,17 +482,21 @@ function querystringSingleKey(
 
 		return `${encodeURIComponent(fullKey)}=${multiValue}`;
 	}
+
 	if (value instanceof Set) {
 		const valueAsArray = Array.from(value);
 
 		return querystringSingleKey(key, valueAsArray, keyPrefix);
 	}
+
 	if (value instanceof Date) {
 		return `${encodeURIComponent(fullKey)}=${encodeURIComponent(value.toISOString())}`;
 	}
+
 	if (value instanceof Object) {
 		return querystring(value as HTTPQuery, fullKey);
 	}
+
 	return `${encodeURIComponent(fullKey)}=${encodeURIComponent(String(value))}`;
 }
 
@@ -488,6 +513,7 @@ export function canConsumeForm(consumes: Consume[]): boolean {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -497,33 +523,45 @@ export interface Consume {
 
 export interface RequestContext {
 	fetch: FetchAPI;
+
 	url: string;
+
 	init: RequestInit;
 }
 
 export interface ResponseContext {
 	fetch: FetchAPI;
+
 	url: string;
+
 	init: RequestInit;
+
 	response: Response;
 }
 
 export interface ErrorContext {
 	fetch: FetchAPI;
+
 	url: string;
+
 	init: RequestInit;
+
 	error: unknown;
+
 	response?: Response;
 }
 
 export interface Middleware {
 	pre?(context: RequestContext): Promise<FetchParams | undefined>;
+
 	post?(context: ResponseContext): Promise<Response | undefined>;
+
 	onError?(context: ErrorContext): Promise<Response | undefined>;
 }
 
 export interface ApiResponse<T> {
 	raw: Response;
+
 	value(): Promise<T>;
 }
 

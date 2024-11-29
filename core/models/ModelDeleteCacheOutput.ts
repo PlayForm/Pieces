@@ -49,6 +49,7 @@ export interface ModelDeleteCacheOutput {
  */
 export function instanceOfModelDeleteCacheOutput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "model" in value;
 
 	return isInstance;
@@ -67,6 +68,7 @@ export function ModelDeleteCacheOutputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -81,9 +83,11 @@ export function ModelDeleteCacheOutputToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		model: ReferencedModelToJSON(value.model),

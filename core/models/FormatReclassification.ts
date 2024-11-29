@@ -56,7 +56,9 @@ export interface FormatReclassification {
  */
 export function instanceOfFormatReclassification(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "ext" in value;
+
 	isInstance = isInstance && "format" in value;
 
 	return isInstance;
@@ -75,6 +77,7 @@ export function FormatReclassificationFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -90,9 +93,11 @@ export function FormatReclassificationToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		ext: ClassificationSpecificEnumToJSON(value.ext),

@@ -125,6 +125,7 @@ export interface QGPTRelevanceInput {
  */
 export function instanceOfQGPTRelevanceInput(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "query" in value;
 
 	return isInstance;
@@ -141,6 +142,7 @@ export function QGPTRelevanceInputFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -173,9 +175,11 @@ export function QGPTRelevanceInputToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		query: value.query,

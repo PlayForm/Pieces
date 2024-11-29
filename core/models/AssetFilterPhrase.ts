@@ -88,6 +88,7 @@ export function AssetFilterPhraseFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -106,9 +107,11 @@ export function AssetFilterPhraseToJSON(value?: AssetFilterPhrase | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		value: value.value,

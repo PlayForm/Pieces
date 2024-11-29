@@ -49,6 +49,7 @@ export interface SeededConnectorConnection {
  */
 export function instanceOfSeededConnectorConnection(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "application" in value;
 
 	return isInstance;
@@ -67,6 +68,7 @@ export function SeededConnectorConnectionFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -81,9 +83,11 @@ export function SeededConnectorConnectionToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		application: SeededTrackedApplicationToJSON(value.application),

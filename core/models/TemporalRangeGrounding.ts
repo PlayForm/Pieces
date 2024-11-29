@@ -59,6 +59,7 @@ export function TemporalRangeGroundingFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		workstreams: exists(json, "workstreams")
 			? FlattenedRangesFromJSON(json["workstreams"])
@@ -72,9 +73,11 @@ export function TemporalRangeGroundingToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		workstreams: FlattenedRangesToJSON(value.workstreams),
 	};

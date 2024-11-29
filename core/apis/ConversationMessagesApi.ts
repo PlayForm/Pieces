@@ -28,6 +28,7 @@ import * as runtime from "../runtime.ts";
 
 export interface MessagesCreateSpecificMessageRequest {
 	transferables?: boolean;
+
 	seededConversationMessage?: SeededConversationMessage;
 }
 
@@ -41,6 +42,7 @@ export interface MessagesSnapshotRequest {
 
 export interface SearchMessagesRequest {
 	transferables?: boolean;
+
 	searchInput?: SearchInput;
 }
 

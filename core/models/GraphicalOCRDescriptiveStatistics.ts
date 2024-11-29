@@ -87,12 +87,19 @@ export function instanceOfGraphicalOCRDescriptiveStatistics(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "asset" in value;
+
 	isInstance = isInstance && "user" in value;
+
 	isInstance = isInstance && "model" in value;
+
 	isInstance = isInstance && "created" in value;
+
 	isInstance = isInstance && "os" in value;
+
 	isInstance = isInstance && "confidence" in value;
+
 	isInstance = isInstance && "duration" in value;
 
 	return isInstance;
@@ -111,6 +118,7 @@ export function GraphicalOCRDescriptiveStatisticsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -133,9 +141,11 @@ export function GraphicalOCRDescriptiveStatisticsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		asset: value.asset,

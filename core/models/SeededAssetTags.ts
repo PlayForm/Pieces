@@ -23,6 +23,7 @@ export interface SeededAssetTags {
  */
 export function instanceOfSeededAssetTags(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "iterable" in value;
 
 	return isInstance;
@@ -39,6 +40,7 @@ export function SeededAssetTagsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		iterable: (json["iterable"] as any[]).map(SeededAssetTagFromJSON),
 	};
@@ -48,9 +50,11 @@ export function SeededAssetTagsToJSON(value?: SeededAssetTags | null): any {
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		iterable: (value.iterable as any[]).map(SeededAssetTagToJSON),
 	};

@@ -67,7 +67,9 @@ export interface AllocationCloudUrls {
  */
 export function instanceOfAllocationCloudUrls(value: object): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "base" in value;
+
 	isInstance = isInstance && "id" in value;
 
 	return isInstance;
@@ -84,6 +86,7 @@ export function AllocationCloudUrlsFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		schema: exists(json, "schema")
 			? EmbeddedModelSchemaFromJSON(json["schema"])
@@ -102,9 +105,11 @@ export function AllocationCloudUrlsToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		schema: EmbeddedModelSchemaToJSON(value.schema),
 		base: AllocationCloudUrlToJSON(value.base),

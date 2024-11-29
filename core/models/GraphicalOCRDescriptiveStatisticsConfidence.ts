@@ -19,6 +19,7 @@ export function instanceOfGraphicalOCRDescriptiveStatisticsConfidence(
 	value: object,
 ): boolean {
 	let isInstance = true;
+
 	isInstance = isInstance && "mean" in value;
 
 	return isInstance;
@@ -40,6 +41,7 @@ export function GraphicalOCRDescriptiveStatisticsConfidenceFromJSONTyped(
 	if (json === undefined || json === null) {
 		return json;
 	}
+
 	return {
 		mean: json["mean"],
 	};
@@ -51,9 +53,11 @@ export function GraphicalOCRDescriptiveStatisticsConfidenceToJSON(
 	if (value === undefined) {
 		return undefined;
 	}
+
 	if (value === null) {
 		return null;
 	}
+
 	return {
 		mean: value.mean,
 	};

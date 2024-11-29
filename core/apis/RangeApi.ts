@@ -23,26 +23,31 @@ import * as runtime from "../runtime.ts";
 
 export interface RangeAssociateConversationGroundingTemporalRangeWorkstreamsRequest {
 	range: string;
+
 	conversation: string;
 }
 
 export interface RangeAssociateWorkstreamSummaryRequest {
 	range: string;
+
 	workstreamSummary: string;
 }
 
 export interface RangeDisassociateConversationGroundingTemporalRangeWorkstreamsRequest {
 	range: string;
+
 	conversation: string;
 }
 
 export interface RangeDisassociateWorkstreamSummaryRequest {
 	range: string;
+
 	workstreamSummary: string;
 }
 
 export interface RangeScoresIncrementRequest {
 	range: string;
+
 	seededScoreIncrement?: SeededScoreIncrement;
 }
 
