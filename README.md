@@ -14,28 +14,28 @@
 
    <p align="center">
       <a href="HTTPS://github.com/pieces-app/pieces-os-client-sdk-for-typescript/graphs/contributors" alt="GitHub contributors">
-         <img src="HTTPS://img.shields.io/github/contributors/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
+         <img src="https://img.shields.io/github/contributors/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
       <a>
       <a href="HTTPS://github.com/pieces-app/pieces-os-client-sdk-for-typescript/issues" alt="GitHub issues by-label">
-         <img src="HTTPS://img.shields.io/github/issues/pieces-app/pieces-os-client-sdk-for-typescript" />
+         <img src="https://img.shields.io/github/issues/pieces-app/pieces-os-client-sdk-for-typescript" />
       </a>
       <a href="HTTPS://discord.gg/getpieces" alt="Discord">
-         <img src="HTTPS://img.shields.io/badge/Discord-@layer5.svg?color=7389D8&label&logo=discord&logoColor=ffffff" />
+         <img src="https://img.shields.io/badge/Discord-@layer5.svg?color=7389D8&label&logo=discord&logoColor=ffffff" />
       </a>
       <a href="HTTPS://x.com/getpieces" alt="Twitter Follow">
-         <img src="HTTPS://img.shields.io/twitter/follow/pieces.svg?label=Follow" />
+         <img src="https://img.shields.io/twitter/follow/pieces.svg?label=Follow" />
       </a>
       <a href="HTTPS://github.com/pieces-app/pieces-os-client-sdk-for-typescript/blob/main/LICENSE" alt="License">
-         <img src="HTTPS://img.shields.io/github/license/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
+         <img src="https://img.shields.io/github/license/pieces-app/pieces-os-client-sdk-for-typescript.svg" />
       </a>
       <a href="HTTPS://www.npmjs.com/package/@pieces.app/pieces-os-client" >
-         <img src="HTTPS://badge.fury.io/js/@pieces.app%2Fpieces-os-client.svg" />
+         <img src="https://badge.fury.io/js/@pieces.app%2Fpieces-os-client.svg" />
       </a>
       <a href="HTTPS://www.npmjs.com/package/@pieces.app/pieces-os-client" >
-         <img src="HTTPS://img.shields.io/npm/dm/@pieces.app/pieces-os-client.svg" />
+         <img src="https://img.shields.io/npm/dm/@pieces.app/pieces-os-client.svg" />
       </a>
       <a href="HTTPS://www.npmjs.com/package/@pieces.app/pieces-os-client" >
-         <img src="HTTPS://img.shields.io/npm/dt/@pieces.app/pieces-os-client.svg" />
+         <img src="https://img.shields.io/npm/dt/@pieces.app/pieces-os-client.svg" />
       </a>
    </p>
 </p>
