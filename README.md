@@ -65,17 +65,17 @@ To get started with the Pieces SDK, follow these steps:
 Pieces OS runs in the background of your computer and serves as a hub for all
 plugins and extensions developed by the team. In order to utilize your own
 Server locally and support all the functionality that powers things like
-[`Global Search`](HTTPS://docs.pieces.app/features/global-search),
-[`Copilot Chats`](HTTPS://docs.pieces.app/features/pieces-copilot),
-[`Asset Saving`](HTTPS://docs.pieces.app/features/managing-saved-materials),
-[`context`](HTTPS://docs.pieces.app/features/pieces-copilot#set-your-own-copilot-context),
+[`Global Search`](https://docs.pieces.app/features/global-search),
+[`Copilot Chats`](https://docs.pieces.app/features/pieces-copilot),
+[`Asset Saving`](https://docs.pieces.app/features/managing-saved-materials),
+[`context`](https://docs.pieces.app/features/pieces-copilot#set-your-own-copilot-context),
 and more.
 
 Select the right version to download Pieces OS for your operating system:
 
--   [`macOS`](HTTPS://docs.pieces.app/installation-getting-started/macos)
--   [`Windows`](HTTPS://docs.pieces.app/installation-getting-started/windows)
--   [`Linux`](HTTPS://docs.pieces.app/installation-getting-started/linux)
+-   [`macOS`](https://docs.pieces.app/installation-getting-started/macos)
+-   [`Windows`](https://docs.pieces.app/installation-getting-started/windows)
+-   [`Linux`](https://docs.pieces.app/installation-getting-started/linux)
 
 ### 2. Downloading NPM Package
 
@@ -121,10 +121,10 @@ import * as pieces from "@pieces.app/pieces-os-client";
 > again**.
 
 You can take a look at an example repo using the TS SDK:
-[`GitHub Repo`](HTTPS://github.com/pieces-app/example-typescript)
+[`GitHub Repo`](https://github.com/pieces-app/example-typescript)
 
 For detailed usage instructions and examples, refer to the
-[`documentation`](HTTPS://docs.pieces.app/build/reference/typescript).
+[`documentation`](https://docs.pieces.app/build/reference/typescript).
 
 ## Features
 
@@ -275,7 +275,7 @@ function createAsset() {
 ```
 
 The response back will look similar to the following:
-[`HTTPS://jwaf.pieces.cloud`](HTTPS://jwaf.pieces.cloud/?p=24e242a85e)
+[`HTTPS://jwaf.pieces.cloud`](https://jwaf.pieces.cloud/?p=24e242a85e)
 
 </details>
 
@@ -300,13 +300,13 @@ new Pieces.AssetsApi().assetsSnapshot({}).then(_assetList => {
 
 A developer documentation that outlines all the ins and outs of our available
 endpoints can be found
-[`here`](HTTPS://docs.pieces.app/build/reference/typescript/).
+[`here`](https://docs.pieces.app/build/reference/typescript/).
 
 ## Learn More
 
 Explore more about Pieces SDK and get help from the following resources:
 
 -   🚀
-    [`Getting Started Tutorial`](HTTPS://docs.pieces.app/installation-getting-started/what-am-i-installing)
--   📜 [`Pieces Docs`](HTTPS://docs.pieces.app/)
--   💬 [`Discord Community`](HTTPS://discord.gg/getpieces)
+    [`Getting Started Tutorial`](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
+-   📜 [`Pieces Docs`](https://docs.pieces.app/)
+-   💬 [`Discord Community`](https://discord.gg/getpieces)
